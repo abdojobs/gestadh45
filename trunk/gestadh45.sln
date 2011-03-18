@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.Model", "gestadh45.Model\gestadh45.Model.csproj", "{30A7733E-EAFD-4469-BDC8-7332A92E6585}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.dao", "gestadh45.dao\gestadh45.dao.csproj", "{5121D3C9-6745-405D-9374-DE1833907A07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{30A7733E-EAFD-4469-BDC8-7332A92E6585}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30A7733E-EAFD-4469-BDC8-7332A92E6585}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30A7733E-EAFD-4469-BDC8-7332A92E6585}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5121D3C9-6745-405D-9374-DE1833907A07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5121D3C9-6745-405D-9374-DE1833907A07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5121D3C9-6745-405D-9374-DE1833907A07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5121D3C9-6745-405D-9374-DE1833907A07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
