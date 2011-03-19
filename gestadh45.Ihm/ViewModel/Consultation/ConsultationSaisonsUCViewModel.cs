@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -32,28 +31,37 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public bool CanExecuteSupprimerSaisonCommand() {
-			return (((this.Saison != null) && SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison)) && !SaisonDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Saison));
+			return (
+				this.Saison != null 
+				&& SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison) 
+				&& !SaisonDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Saison)
+			);
 		}
 
 		private void CreateAfficherDetailsSaisonCommand() {
-			this.AfficherDetailsSaisonCommand = new RelayCommand<Saison>(new Action<Saison>(this, (IntPtr)this.ExecuteAfficherDetailsSaisonCommand));
+			this.AfficherDetailsSaisonCommand = new RelayCommand<Saison>(
+				this.ExecuteAfficherDetailsSaisonCommand
+			);
 		}
 
 		private void CreateCreerCommand() {
 			this.CreerCommand = new RelayCommand(
-				new Action(this, this.ExecuteCreerCommand));
+				this.ExecuteCreerCommand
+			);
 		}
 
 		private void CreateDefinirSaisonCouranteCommand() {
 			this.DefinirSaisonCouranteCommand = new RelayCommand<Saison>(
-				new Action<Saison>(this, this.ExecuteDefinirSaisonCouranteCommand), 
-				new Predicate<Saison>(this, this.CanExecuteDefinirSaisonCouranteCommand));
+				this.ExecuteDefinirSaisonCouranteCommand, 
+				this.CanExecuteDefinirSaisonCouranteCommand
+			);
 		}
 
 		private void CreateSupprimerSaisonCommand() {
 			this.SupprimerSaisonCommand = new RelayCommand(
-				new Action(this, this.ExecuteSupprimerSaisonCommand), 
-				new Func<bool>(this, this.CanExecuteSupprimerSaisonCommand));
+				this.ExecuteSupprimerSaisonCommand, 
+				this.CanExecuteSupprimerSaisonCommand
+			);
 		}
 
 		public void ExecuteAfficherDetailsSaisonCommand(Saison pSaison) {
@@ -82,7 +90,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			if (this.Saison != null) {
 				DialogMessageConfirmation message = new DialogMessageConfirmation(
 					ResMessages.MessageConfirmSupprSaison, 
-					new Action<MessageBoxResult>(this, this.ExecuteSupprimerSaisonCommandCallBack));
+					this.ExecuteSupprimerSaisonCommandCallBack
+				);
+
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
 			this.CreateSupprimerSaisonCommand();

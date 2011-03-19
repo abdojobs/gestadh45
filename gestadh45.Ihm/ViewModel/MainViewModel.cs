@@ -23,10 +23,7 @@ namespace gestadh45.Ihm.ViewModel
 			this.CreateAboutBoxCommand();
 			Messenger.Default.Register<NotificationMessage<Saison>>(
 				this, 
-				new Action<NotificationMessage<Saison>>(
-					this, 
-					this.NotificationChangementSaisonCourante
-				)
+				this.NotificationChangementSaisonCourante
 			);
 		}
 
@@ -50,25 +47,33 @@ namespace gestadh45.Ihm.ViewModel
 
 		private void CreateAboutBoxCommand() {
 			this.AboutBoxCommand = new RelayCommand(
-				new Action(this, this.ExecuteAboutBoxCommand));
+				this.ExecuteAboutBoxCommand
+			);
 		}
 
 		private void CreateAfficherUCCommand() {
 			this.AfficherUCCommand = new RelayCommand<string>(
-				new Action<string>(this, this.ExecuteAfficherUCCommand), new Predicate<string>(this, this.CanExecuteAfficherUCCommand));
+				this.ExecuteAfficherUCCommand, 
+				this.CanExecuteAfficherUCCommand
+			);
 		}
 
 		private void CreateChangerDataSourceCommand() {
 			this.ChangerDataSourceCommand = new RelayCommand(
-				new Action(this, this.ExecuteChangerDataSourceCommand));
+				this.ExecuteChangerDataSourceCommand
+			);
 		}
 
 		public void ExecuteAboutBoxCommand() {
-			Messenger.Default.Send<NotificationMessage>(new NotificationMessage("AboutBox"));
+			Messenger.Default.Send<NotificationMessage>(
+				new NotificationMessage("AboutBox")
+			);
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
-			Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>(pCodeUC, "ChangementUserControl"));
+			Messenger.Default.Send<NotificationMessage<string>>(
+				new NotificationMessage<string>(pCodeUC, "ChangementUserControl")
+			);
 		}
 
 		public void ExecuteChangerDataSourceCommand()
@@ -79,7 +84,7 @@ namespace gestadh45.Ihm.ViewModel
 					"OpenFileDialog", 
 					".eyb", 
 					string.Empty, 
-					new Action<string>(this, this.ExecuteChangerDataSourceCommand)
+					this.ExecuteChangerDataSourceCommand
 				);
 			Messenger.Default.Send<NotificationMessageActionFileDialog<string>>(message);
 		}

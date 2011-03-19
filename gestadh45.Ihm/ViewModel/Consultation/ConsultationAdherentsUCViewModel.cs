@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -43,22 +42,29 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void CreateAfficherDetailsAdherentCommand() {
 			this.AfficherDetailsAdherentCommand = new RelayCommand<Adherent>(
-				new Action<Adherent>(this, this.ExecuteAfficherDetailsAdherentCommand));
+				this.ExecuteAfficherDetailsAdherentCommand
+			);
 		}
 
 		private void CreateEditerCommand() {
 			this.EditerCommand = new RelayCommand<string>(
-				new Action<string>(this, this.ExecuteEditerCommand), new Predicate<string>(this, this.CanExecuteEditerCommand));
+				this.ExecuteEditerCommand, 
+				this.CanExecuteEditerCommand
+			);
 		}
 
 		private void CreateInscrireCommand() {
 			this.InscrireCommand = new RelayCommand<string>(
-				new Action<string>(this, this.ExecuteInscrireCommand), new Predicate<string>(this, this.CanExecuteInscrireCommand));
+				this.ExecuteInscrireCommand, 
+				this.CanExecuteInscrireCommand
+			);
 		}
 
 		private void CreateSupprimerAdherentCommand() {
 			this.SupprimerAdherentCommand = new RelayCommand(
-				new Action(this, this.ExecuteSupprimerAdherentCommand), new Func<bool>(this, this.CanExecuteSupprimerAdherentCommand));
+				this.ExecuteSupprimerAdherentCommand, 
+				this.CanExecuteSupprimerAdherentCommand
+			);
 		}
 
 		public void ExecuteAfficherDetailsAdherentCommand(Adherent pAdherent) {
@@ -77,7 +83,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public void ExecuteSupprimerAdherentCommand() {
 			if (this.Adherent != null) {
-				DialogMessageConfirmation message = new DialogMessageConfirmation(ResMessages.MessageConfirmSupprAdherent, new Action<MessageBoxResult>(this, this.ExecuteSupprimerAdherentCommandCallBack));
+				DialogMessageConfirmation message = new DialogMessageConfirmation(
+					ResMessages.MessageConfirmSupprAdherent, 
+					this.ExecuteSupprimerAdherentCommandCallBack
+				);
+
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 				this.CreateSupprimerAdherentCommand();
 			}
