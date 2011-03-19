@@ -1,0 +1,27 @@
+#summary Description du sous-projet gestadh45.Modele
+
+= Introduction =
+
+Il s'agit du modèle de données de l'application, mappé sur la base SQLite grâce à l'Entity Framework.
+
+Le modèle est généré automatiquement à partir de la BDD (1 table <=> 1 objet).
+
+Les objets générés sont ensuite enrichis par de nouvelles propriétés calculées à partir des des propriétés de base.
+
+= Details =
+
+*Détail des objets : *
+- InfosClub
+- Adresse
+- Ville
+- Adherent
+- Inscription
+- Groupe
+- Saison
+- Sexe
+- JourSemaine
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
