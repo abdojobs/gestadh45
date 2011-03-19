@@ -43,25 +43,29 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void CreateAfficherDetailsInscriptionCommand() {
 			this.AfficherDetailsInscriptionCommand = new RelayCommand<Inscription>(
-				new Action<Inscription>(this, this.ExecuteAfficherDetailsInscriptionCommand));
+				this.ExecuteAfficherDetailsInscriptionCommand
+			);
 		}
 
 		protected void CreateEditerCommand() {
 			this.EditerCommand = new RelayCommand<string>(
-				new Action<string>(this, this.ExecuteEditerCommand), 
-				new Predicate<string>(this, this.CanExecuteEditerCommand));
+				this.ExecuteEditerCommand, 
+				this.CanExecuteEditerCommand
+			);
 		}
 
 		private void CreateGenererDocumentCommand() {
 			this.GenererDocumentCommand = new RelayCommand<string>(
-				new Action<string>(this, this.ExecuteGenererDocumentCommand), 
-				new Predicate<string>(this, this.CanExecuteGenererDocumentCommand));
+				this.ExecuteGenererDocumentCommand, 
+				this.CanExecuteGenererDocumentCommand
+			);
 		}
 
 		private void CreateSupprimerInscriptionCommand() {
 			this.SupprimerInscriptionCommand = new RelayCommand(
-				new Action(this, this.ExecuteSupprimerInscriptionCommand), 
-				new Func<bool>(this, this.CanExecuteSupprimerInscriptionCommand));
+				this.ExecuteSupprimerInscriptionCommand, 
+				this.CanExecuteSupprimerInscriptionCommand
+			);
 		}
 
 		public void ExecuteAfficherDetailsInscriptionCommand(Inscription pInscription) {
@@ -85,7 +89,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				DialogMessageConfirmation message = 
 					new DialogMessageConfirmation(
 						ResMessages.MessageConfirmSupprInscription, 
-						new Action<MessageBoxResult>(this, this.ExecuteSupprimerInscriptionCommandCallBack));
+						this.ExecuteSupprimerInscriptionCommandCallBack
+					);
+
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
 			this.CreateSupprimerInscriptionCommand();

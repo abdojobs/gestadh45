@@ -3,13 +3,16 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using System.Collections.Generic;
+using System.Text;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public class ViewModelBaseFormulaire : ViewModelBase
 	{
-		private bool mAfficherErreurs;
 		private bool mEstEdition;
+
+		protected List<string> mErreurs;
 
 		protected ViewModelBaseFormulaire() {
 		}
@@ -24,18 +27,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>(pCodeUc, "ChangementUserControl"));
 		}
 
-		public bool AfficherErreurs {
-			get {
-				return this.mAfficherErreurs;
-			}
-			set {
-				if (this.mAfficherErreurs != value) {
-					this.mAfficherErreurs = value;
-					this.RaisePropertyChanged("AfficherErreurs");
-				}
-			}
-		}
-
 		public ICommand AnnulerCommand { get; set; }
 
 		public bool EstEdition {
@@ -47,6 +38,21 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 					this.mEstEdition = value;
 					this.RaisePropertyChanged("EstEdition");
 				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient la liste des erreurs sous forme d'une chaine unique
+		/// </summary>
+		public string ChaineErreurs {
+			get {
+				StringBuilder lSb = new StringBuilder();
+
+				foreach (string lErreur in this.mErreurs) {
+					lSb.Append(lErreur + "\r\n");
+				}
+
+				return lSb.ToString();
 			}
 		}
 	}

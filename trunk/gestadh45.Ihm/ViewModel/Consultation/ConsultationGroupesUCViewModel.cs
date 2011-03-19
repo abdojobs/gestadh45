@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -33,13 +32,15 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void CreateAfficherDetailsGroupeCommand() {
 			this.AfficherDetailsGroupeCommand = new RelayCommand<Groupe>(
-				new Action<Groupe>(this, this.ExecuteAfficherDetailsGroupeCommand));
+				this.ExecuteAfficherDetailsGroupeCommand
+			);
 		}
 
 		private void CreateSupprimerGroupeCommand() {
 			this.SupprimerGroupeCommand = new RelayCommand(
-				new Action(this, this.ExecuteSupprimerGroupeCommand), 
-				new Func<bool>(this, this.CanExecuteSupprimerGroupeCommand));
+				this.ExecuteSupprimerGroupeCommand, 
+				this.CanExecuteSupprimerGroupeCommand
+			);
 		}
 
 		public void ExecuteAfficherDetailsGroupeCommand(Groupe pGroupe) {
@@ -50,7 +51,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public void ExecuteSupprimerGroupeCommand() {
 			if (this.Groupe != null) {
-				DialogMessageConfirmation message = new DialogMessageConfirmation(ResMessages.MessageConfirmSupprGroupe, new Action<MessageBoxResult>(this, this.ExecuteSupprimerGroupeCommandCallBack));
+				DialogMessageConfirmation message = new DialogMessageConfirmation(
+					ResMessages.MessageConfirmSupprGroupe, 
+					this.ExecuteSupprimerGroupeCommandCallBack
+				);
+
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
 			this.CreateSupprimerGroupeCommand();

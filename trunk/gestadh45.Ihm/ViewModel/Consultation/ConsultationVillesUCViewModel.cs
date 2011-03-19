@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -33,13 +32,15 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void CreateAfficherDetailsVilleCommand() {
 			this.AfficherDetailsVilleCommand = new RelayCommand<Ville>(
-				new Action<Ville>(this, this.ExecuteAfficherDetailsVilleCommand));
+				this.ExecuteAfficherDetailsVilleCommand
+			);
 		}
 
 		private void CreateSupprimerVilleCommand() {
 			this.SupprimerVilleCommand = new RelayCommand(
-				new Action(this, this.ExecuteSupprimerVilleCommand), 
-				new Func<bool>(this, this.CanExecuteSupprimerVilleCommand));
+				this.ExecuteSupprimerVilleCommand, 
+				this.CanExecuteSupprimerVilleCommand
+			);
 		}
 
 		public void ExecuteAfficherDetailsVilleCommand(Ville pVille) {
@@ -52,7 +53,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			if (this.Ville != null) {
 				DialogMessageConfirmation message = new DialogMessageConfirmation(
 					ResMessages.MessageConfirmSupprVille, 
-					new Action<MessageBoxResult>(this, this.ExecuteSupprimerVilleCommandCallBack));
+					this.ExecuteSupprimerVilleCommandCallBack
+				);
+
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
 			this.CreateSupprimerVilleCommand();
