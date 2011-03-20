@@ -117,73 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Adherent_DateNaissanceObligatoire" xml:space="preserve">
-    <value>La date de naissance est obligatoire</value>
+  <data name="Libelle_Exterieurs" xml:space="preserve">
+    <value>Extérieurs</value>
   </data>
-  <data name="Adherent_Existe" xml:space="preserve">
-    <value>Cet adhérent existe déjà (nom + prénom + date naissance)</value>
+  <data name="Libelle_Majeurs" xml:space="preserve">
+    <value>Majeurs</value>
   </data>
-  <data name="Adherent_NomObligatoire" xml:space="preserve">
-    <value>Le nom est obligatoire</value>
+  <data name="Libelle_Mineurs" xml:space="preserve">
+    <value>Mineurs</value>
   </data>
-  <data name="Adherent_PrenomObligatoire" xml:space="preserve">
-    <value>Le prénom est obligatoire</value>
+  <data name="Libelle_Residents" xml:space="preserve">
+    <value>Résidents</value>
   </data>
-  <data name="Groupe_Existe" xml:space="preserve">
-    <value>Ce groupe existe déjà (nom + jour + heure début)</value>
+  <data name="Titre_RemplissageGroupes" xml:space="preserve">
+    <value>Remplissage des groupes</value>
   </data>
-  <data name="Groupe_HeureDebutObligatoire" xml:space="preserve">
-    <value>L'heure de début est obligatoire</value>
+  <data name="Titre_RepartitionAges" xml:space="preserve">
+    <value>Répartition des adhérents par âge</value>
   </data>
-  <data name="Groupe_HeureFinObligatoire" xml:space="preserve">
-    <value>L'heure de fin est obligatoire</value>
+  <data name="Titre_RepartitionMajeursMineurs" xml:space="preserve">
+    <value>Répartition des adhérents majeurs / mineurs</value>
   </data>
-  <data name="Groupe_HeureFinSupHeureDebut" xml:space="preserve">
-    <value>L'heure de fin doit être strictement supérieure à l'heure de début</value>
+  <data name="Titre_RepartitionResidentsExterieurs" xml:space="preserve">
+    <value>Répartition des adhérents résidents / extérieurs</value>
   </data>
-  <data name="Groupe_JourObligatoire" xml:space="preserve">
-    <value>Le jour est obligatoire</value>
-  </data>
-  <data name="Groupe_LibelleObligatoire" xml:space="preserve">
-    <value>Le libellé est obligatoire</value>
-  </data>
-  <data name="InfosClub_AdresseObligatoire" xml:space="preserve">
-    <value>L'adresse est obligatoire</value>
-  </data>
-  <data name="InfosClub_NomObligatoire" xml:space="preserve">
-    <value>Le nom est obligatoire</value>
-  </data>
-  <data name="InfosClub_VilleObligatoire" xml:space="preserve">
-    <value>La ville est obligatoire</value>
-  </data>
-  <data name="Inscription_AdherentObligatoire" xml:space="preserve">
-    <value>L'adhérent est obligatoire</value>
-  </data>
-  <data name="Inscription_Existe" xml:space="preserve">
-    <value>Cette inscription existe déjà (adhérent+groupe)</value>
-  </data>
-  <data name="Inscription_GroupeObligatoire" xml:space="preserve">
-    <value>Le groupe est obligatoire</value>
-  </data>
-  <data name="Saison_AnneeDebutObligatoire" xml:space="preserve">
-    <value>L'année de début est obligatoire</value>
-  </data>
-  <data name="Saison_AnneeFinObligatoire" xml:space="preserve">
-    <value>L'année de fin est obligatoire</value>
-  </data>
-  <data name="Saison_AnneeFinSupAnneeDebut" xml:space="preserve">
-    <value>L'année de fin doit être strictement supérieure à l'année de début</value>
-  </data>
-  <data name="Saison_Existe" xml:space="preserve">
-    <value>Cette saison existe déjà</value>
-  </data>
-  <data name="Ville_CodePostalObligatoire" xml:space="preserve">
-    <value>Le code postal est obligatoire</value>
-  </data>
-  <data name="Ville_Existe" xml:space="preserve">
-    <value>Cette ville existe déjà</value>
-  </data>
-  <data name="Ville_LibelleObligatoire" xml:space="preserve">
-    <value>Le libellé est obligatoire</value>
+  <data name="Titre_RepartitionSexes" xml:space="preserve">
+    <value>Répartition des adhérents par sexe</value>
   </data>
 </root>

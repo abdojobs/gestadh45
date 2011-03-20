@@ -19,7 +19,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		protected void CreateAnnulerCommand() {
 			this.AnnulerCommand = new RelayCommand<string>(
-				new Action<string>(this, this.ExecuteAnnulerCommand)
+				this.ExecuteAnnulerCommand
 			);
 		}
 

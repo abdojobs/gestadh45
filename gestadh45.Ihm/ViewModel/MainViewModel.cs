@@ -83,8 +83,8 @@ namespace gestadh45.Ihm.ViewModel
 				new NotificationMessageActionFileDialog<string>(
 					"OpenFileDialog", 
 					".eyb", 
-					string.Empty, 
-					this.ExecuteChangerDataSourceCommand
+					string.Empty,
+					this.ChangeDataSource
 				);
 			Messenger.Default.Send<NotificationMessageActionFileDialog<string>>(message);
 		}

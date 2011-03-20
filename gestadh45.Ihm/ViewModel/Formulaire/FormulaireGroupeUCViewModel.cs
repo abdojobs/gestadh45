@@ -94,20 +94,15 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				this.mErreurs.Add(ResErreurs.Groupe_JourObligatoire);
 			}
 
-			if (this.Groupe.HeureDebut == null || this.Groupe.MinuteDebut == null) {
-				this.mErreurs.Add(ResErreurs.Groupe_HeureDebutObligatoire);
-			}
-
-			if (this.Groupe.HeureFin == null || this.Groupe.MinuteFin == null) {
-				this.mErreurs.Add(ResErreurs.Groupe_HeureFinObligatoire);
-			}
-
 			if (this.Groupe.HeureDebut > this.Groupe.HeureFin
 				|| (this.Groupe.HeureDebut == this.Groupe.HeureDebut && this.Groupe.MinuteDebut >= this.Groupe.MinuteFin)) {
 					this.mErreurs.Add(ResErreurs.Groupe_HeureFinSupHeureDebut);
 			}
 
-			if (GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)) {
+			if (!this.EstEdition 
+				&& this.mErreurs.Count == 0
+				&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)) {
+
 				this.mErreurs.Add(ResErreurs.Inscription_Existe);
 			}
 

@@ -44,12 +44,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		private void CreateCreerCommand() {
-			this.CreerCommand = new RelayCommand(
-				this.ExecuteCreerCommand
-			);
-		}
-
 		private void CreateDefinirSaisonCouranteCommand() {
 			this.DefinirSaisonCouranteCommand = new RelayCommand<Saison>(
 				this.ExecuteDefinirSaisonCouranteCommand, 
@@ -113,8 +107,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ICommand AfficherDetailsSaisonCommand { get; set; }
-
-		public ICommand CreerCommand { get; set; }
 
 		public ICommand DefinirSaisonCouranteCommand { get; set; }
 

@@ -137,7 +137,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				this.mErreurs.Add(ResErreurs.Adherent_DateNaissanceObligatoire);
 			}
 
-			if (AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)) {
+			if (!this.EstEdition 
+				&& this.mErreurs.Count == 0 
+				&& AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)) {
+
 				this.mErreurs.Add(ResErreurs.Adherent_Existe);
 			}
 
