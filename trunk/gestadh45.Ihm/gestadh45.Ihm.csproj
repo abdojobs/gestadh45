@@ -41,6 +41,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -65,10 +66,13 @@
     <Compile Include="ViewModel\Consultation\ConsultationInscriptionsUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationSaisonsUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationVillesUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\GraphsSaisonCouranteUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\FormulaireAdherentUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\FormulaireGroupeUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\FormulaireInfosClubUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\FormulaireInscriptionUCViewModel.cs" />
+    <Compile Include="ViewModel\Formulaire\FormulaireSaisonUCViewModel.cs" />
+    <Compile Include="ViewModel\Formulaire\FormulaireVilleUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\ResErreurs.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -97,6 +101,10 @@
     <ProjectReference Include="..\gestadh45.Model\gestadh45.Model.csproj">
       <Project>{30A7733E-EAFD-4469-BDC8-7332A92E6585}</Project>
       <Name>gestadh45.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.service\gestadh45.service.csproj">
+      <Project>{F965A907-9B56-412D-AF80-69BDDD9B3AF8}</Project>
+      <Name>gestadh45.service</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

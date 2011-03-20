@@ -143,7 +143,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				this.mErreurs.Add(ResErreurs.Inscription_GroupeObligatoire);
 			}
 
-			if (InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {
+			if (!this.EstEdition
+				&& this.mErreurs.Count == 0
+				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {
+
 				this.mErreurs.Add(ResErreurs.Inscription_Existe);
 			}
 

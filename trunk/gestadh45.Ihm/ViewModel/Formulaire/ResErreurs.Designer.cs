@@ -203,5 +203,68 @@ namespace gestadh45.Ihm.ViewModel.Formulaire {
                 return ResourceManager.GetString("Inscription_GroupeObligatoire", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;année de début est obligatoire.
+        /// </summary>
+        internal static string Saison_AnneeDebutObligatoire {
+            get {
+                return ResourceManager.GetString("Saison_AnneeDebutObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;année de fin est obligatoire.
+        /// </summary>
+        internal static string Saison_AnneeFinObligatoire {
+            get {
+                return ResourceManager.GetString("Saison_AnneeFinObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;année de fin doit être strictement supérieure à l&apos;année de début.
+        /// </summary>
+        internal static string Saison_AnneeFinSupAnneeDebut {
+            get {
+                return ResourceManager.GetString("Saison_AnneeFinSupAnneeDebut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cette saison existe déjà.
+        /// </summary>
+        internal static string Saison_Existe {
+            get {
+                return ResourceManager.GetString("Saison_Existe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le code postal est obligatoire.
+        /// </summary>
+        internal static string Ville_CodePostalObligatoire {
+            get {
+                return ResourceManager.GetString("Ville_CodePostalObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cette ville existe déjà.
+        /// </summary>
+        internal static string Ville_Existe {
+            get {
+                return ResourceManager.GetString("Ville_Existe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le libellé est obligatoire.
+        /// </summary>
+        internal static string Ville_LibelleObligatoire {
+            get {
+                return ResourceManager.GetString("Ville_LibelleObligatoire", resourceCulture);
+            }
+        }
     }
 }
