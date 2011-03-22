@@ -61,6 +61,60 @@ namespace gestadh45.Ihm.SpecialMessages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à AboutBox.
+        /// </summary>
+        public static string CodeAboutBox {
+            get {
+                return ResourceManager.GetString("CodeAboutBox", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à ChangementSaisonCourante.
+        /// </summary>
+        public static string CodeChangementSaisonCourante {
+            get {
+                return ResourceManager.GetString("CodeChangementSaisonCourante", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à ChangementUserControl.
+        /// </summary>
+        public static string CodeChangementUserControl {
+            get {
+                return ResourceManager.GetString("CodeChangementUserControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Erreur.
+        /// </summary>
+        public static string CodeErreur {
+            get {
+                return ResourceManager.GetString("CodeErreur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à OpenFileDialog.
+        /// </summary>
+        public static string CodeOpenFileDialog {
+            get {
+                return ResourceManager.GetString("CodeOpenFileDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à SaveFileDialog.
+        /// </summary>
+        public static string CodeSaveFileDialog {
+            get {
+                return ResourceManager.GetString("CodeSaveFileDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Etes-vous sûr de vouloir supprimer cet adhérent?.
         /// </summary>
         public static string MessageConfirmSupprAdherent {
@@ -102,6 +156,15 @@ namespace gestadh45.Ihm.SpecialMessages {
         public static string MessageConfirmSupprVille {
             get {
                 return ResourceManager.GetString("MessageConfirmSupprVille", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le document a correctement été généré.
+        /// </summary>
+        public static string MessageInfoGenerationDocument {
+            get {
+                return ResourceManager.GetString("MessageInfoGenerationDocument", resourceCulture);
             }
         }
         

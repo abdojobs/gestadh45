@@ -44,9 +44,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				);
 			}
 			else {
-				// TODO verifier message erreur
 				Messenger.Default.Send<NotificationMessageErreur>(
-					new NotificationMessageErreur("ErrFormGroupe", this.ChaineErreurs)
+					new NotificationMessageErreur(ResMessages.CodeErreur, this.ChaineErreurs)
 				);
 			}
 		}

@@ -120,6 +120,9 @@
   <data name="Devise" xml:space="preserve">
     <value>€</value>
   </data>
+  <data name="ExtensionFichierPdf" xml:space="preserve">
+    <value>.pdf</value>
+  </data>
   <data name="LibelleAdresse" xml:space="preserve">
     <value>Adresse</value>
   </data>
@@ -191,6 +194,12 @@
   </data>
   <data name="PrefixeMail" xml:space="preserve">
     <value>E-mail</value>
+  </data>
+  <data name="PrefixeNomFichierAttestation" xml:space="preserve">
+    <value>Attestation</value>
+  </data>
+  <data name="PrefixeNomFichierInscription" xml:space="preserve">
+    <value>Inscription</value>
   </data>
   <data name="PrefixeNumeroClub" xml:space="preserve">
     <value>N° asso.</value>
