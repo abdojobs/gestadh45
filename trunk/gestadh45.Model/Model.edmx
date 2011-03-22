@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gestadh45.Model.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="gestadh45.Model.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gestadh45ModelStoreContainer">
           <EntitySet Name="Adherent" EntityType="gestadh45.Model.Store.Adherent" store:Type="Tables" />
           <EntitySet Name="Adresse" EntityType="gestadh45.Model.Store.Adresse" store:Type="Tables" />
@@ -118,6 +118,8 @@
           <Property Name="ID_Adresse" Type="integer" Nullable="false" />
           <Property Name="ID_Contact" Type="integer" Nullable="false" />
           <Property Name="Numero" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Siren" Type="nvarchar" Nullable="false" MaxLength="9" />
+          <Property Name="NIC" Type="nvarchar" Nullable="false" MaxLength="4" />
         </EntityType>
         <EntityType Name="Inscription">
           <Key>
@@ -295,8 +297,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gestadh45.Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -427,6 +428,8 @@
           <Property Name="Numero" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Adresse" Relationship="gestadh45.Model.FK_InfosClub_0" FromRole="InfosClub" ToRole="Adresse" />
           <NavigationProperty Name="Contact" Relationship="gestadh45.Model.FK_InfosClub_1" FromRole="InfosClub" ToRole="Contact" />
+          <Property Type="String" Name="Siren" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="NIC" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Inscription">
           <Key>
@@ -656,7 +659,9 @@
             <ScalarProperty Name="MinuteFin" ColumnName="MinuteFin" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="InfosClubs"><EntityTypeMapping TypeName="gestadh45.Model.InfosClub"><MappingFragment StoreEntitySet="InfosClub">
-            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="Siren" ColumnName="Siren" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="Nom" ColumnName="Nom" />
             <ScalarProperty Name="ID_Adresse" ColumnName="ID_Adresse" />
             <ScalarProperty Name="ID_Contact" ColumnName="ID_Contact" />
@@ -714,7 +719,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
