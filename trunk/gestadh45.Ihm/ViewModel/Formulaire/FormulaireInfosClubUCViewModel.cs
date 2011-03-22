@@ -46,9 +46,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>("ConsultationInfosClub", "ChangementUserControl"));
 			}
 			else {
-				// TODO verifier message erreur
 				Messenger.Default.Send<NotificationMessageErreur>(
-					new NotificationMessageErreur("ErrFormInfosClub", this.ChaineErreurs)
+					new NotificationMessageErreur(ResMessages.CodeErreur, this.ChaineErreurs)
 				);
 			}
 		}

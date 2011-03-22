@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
-using GalaSoft.MvvmLight.Command;
-using System.Windows.Input;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -36,11 +33,14 @@ namespace gestadh45.Ihm.ViewModel
 				ViewModelLocator.Context = new Entities(EntitySQLiteHelper.GetConnectionString(pFilePath));
 				this.InfosDataSource = EntitySQLiteHelper.GetFilePathFromContext(ViewModelLocator.Context);
 				this.InfosSaisonCourante = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante().ToShortString();
-				this.ExecuteAfficherUCCommand("ConsultationInfosClub");
+				this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
 			}
 			catch (Exception exception) {
 				ViewModelLocator.Context = null;
-				NotificationMessageErreur message = new NotificationMessageErreur("Erreur", exception.Message);
+				NotificationMessageErreur message = new NotificationMessageErreur(
+					ResMessages.CodeErreur, 
+					exception.Message
+				);
 				Messenger.Default.Send<NotificationMessageErreur>(message);
 			}
 		}
@@ -66,23 +66,22 @@ namespace gestadh45.Ihm.ViewModel
 
 		public void ExecuteAboutBoxCommand() {
 			Messenger.Default.Send<NotificationMessage>(
-				new NotificationMessage("AboutBox")
+				new NotificationMessage(ResMessages.CodeAboutBox)
 			);
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
 			Messenger.Default.Send<NotificationMessage<string>>(
-				new NotificationMessage<string>(pCodeUC, "ChangementUserControl")
+				new NotificationMessage<string>(pCodeUC, ResMessages.CodeChangementUserControl)
 			);
 		}
 
 		public void ExecuteChangerDataSourceCommand()
 		{
-			// TODO sortir les chaines de caracteres
 			NotificationMessageActionFileDialog<string> message = 
 				new NotificationMessageActionFileDialog<string>(
-					"OpenFileDialog", 
-					".eyb", 
+					ResMessages.CodeOpenFileDialog, 
+					MainRessources.ExtensionBase, 
 					string.Empty,
 					this.ChangeDataSource
 				);
@@ -90,7 +89,7 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		private void NotificationChangementSaisonCourante(NotificationMessage<Saison> msg) {
-			if (msg.Notification.Equals("ChangementSaisonCourante")) {
+			if (msg.Notification.Equals(ResMessages.CodeChangementSaisonCourante)) {
 				this.InfosSaisonCourante = msg.Content.ToShortString();
 			}
 		}

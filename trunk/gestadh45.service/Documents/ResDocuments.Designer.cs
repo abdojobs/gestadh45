@@ -22,7 +22,7 @@ namespace gestadh45.service.Documents {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResDocuments {
+    public class ResDocuments {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace gestadh45.service.Documents {
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.service.Documents.ResDocuments", typeof(ResDocuments).Assembly);
@@ -51,7 +51,7 @@ namespace gestadh45.service.Documents {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,25 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à €.
         /// </summary>
-        internal static string Devise {
+        public static string Devise {
             get {
                 return ResourceManager.GetString("Devise", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à .pdf.
+        /// </summary>
+        public static string ExtensionFichierPdf {
+            get {
+                return ResourceManager.GetString("ExtensionFichierPdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Adresse.
         /// </summary>
-        internal static string LibelleAdresse {
+        public static string LibelleAdresse {
             get {
                 return ResourceManager.GetString("LibelleAdresse", resourceCulture);
             }
@@ -81,7 +90,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à au club.
         /// </summary>
-        internal static string LibelleAuClub {
+        public static string LibelleAuClub {
             get {
                 return ResourceManager.GetString("LibelleAuClub", resourceCulture);
             }
@@ -90,7 +99,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Autorisation parentale pour les mineurs.
         /// </summary>
-        internal static string LibelleAutorisationParentale {
+        public static string LibelleAutorisationParentale {
             get {
                 return ResourceManager.GetString("LibelleAutorisationParentale", resourceCulture);
             }
@@ -99,7 +108,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Code postal.
         /// </summary>
-        internal static string LibelleCodePostal {
+        public static string LibelleCodePostal {
             get {
                 return ResourceManager.GetString("LibelleCodePostal", resourceCulture);
             }
@@ -108,7 +117,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Cotisation.
         /// </summary>
-        internal static string LibelleCotisation {
+        public static string LibelleCotisation {
             get {
                 return ResourceManager.GetString("LibelleCotisation", resourceCulture);
             }
@@ -117,7 +126,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Date de naissance.
         /// </summary>
-        internal static string LibelleDateNaissance {
+        public static string LibelleDateNaissance {
             get {
                 return ResourceManager.GetString("LibelleDateNaissance", resourceCulture);
             }
@@ -126,7 +135,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Fait à.
         /// </summary>
-        internal static string LibelleFaitA {
+        public static string LibelleFaitA {
             get {
                 return ResourceManager.GetString("LibelleFaitA", resourceCulture);
             }
@@ -135,7 +144,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Fait à .............................. le ...............................
         /// </summary>
-        internal static string LibelleFaitALe {
+        public static string LibelleFaitALe {
             get {
                 return ResourceManager.GetString("LibelleFaitALe", resourceCulture);
             }
@@ -144,7 +153,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Groupe.
         /// </summary>
-        internal static string LibelleGroupe {
+        public static string LibelleGroupe {
             get {
                 return ResourceManager.GetString("LibelleGroupe", resourceCulture);
             }
@@ -153,7 +162,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à le.
         /// </summary>
-        internal static string LibelleLe {
+        public static string LibelleLe {
             get {
                 return ResourceManager.GetString("LibelleLe", resourceCulture);
             }
@@ -162,7 +171,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Mail 1.
         /// </summary>
-        internal static string LibelleMail1 {
+        public static string LibelleMail1 {
             get {
                 return ResourceManager.GetString("LibelleMail1", resourceCulture);
             }
@@ -171,7 +180,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Mail 2.
         /// </summary>
-        internal static string LibelleMail2 {
+        public static string LibelleMail2 {
             get {
                 return ResourceManager.GetString("LibelleMail2", resourceCulture);
             }
@@ -180,7 +189,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Mail 3.
         /// </summary>
-        internal static string LibelleMail3 {
+        public static string LibelleMail3 {
             get {
                 return ResourceManager.GetString("LibelleMail3", resourceCulture);
             }
@@ -189,7 +198,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Nom.
         /// </summary>
-        internal static string LibelleNom {
+        public static string LibelleNom {
             get {
                 return ResourceManager.GetString("LibelleNom", resourceCulture);
             }
@@ -198,7 +207,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Prénom.
         /// </summary>
-        internal static string LibellePrenom {
+        public static string LibellePrenom {
             get {
                 return ResourceManager.GetString("LibellePrenom", resourceCulture);
             }
@@ -207,7 +216,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Reçu pour l&apos;adhésion.
         /// </summary>
-        internal static string LibelleRecuPourLAdhesion {
+        public static string LibelleRecuPourLAdhesion {
             get {
                 return ResourceManager.GetString("LibelleRecuPourLAdhesion", resourceCulture);
             }
@@ -216,7 +225,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à SAISON.
         /// </summary>
-        internal static string LibelleSaison {
+        public static string LibelleSaison {
             get {
                 return ResourceManager.GetString("LibelleSaison", resourceCulture);
             }
@@ -225,7 +234,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Signature de l&apos;adhérent ou de son représentant légal.
         /// </summary>
-        internal static string LibelleSignatureAdherent {
+        public static string LibelleSignatureAdherent {
             get {
                 return ResourceManager.GetString("LibelleSignatureAdherent", resourceCulture);
             }
@@ -234,7 +243,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Signature.
         /// </summary>
-        internal static string LibelleSignatureParent {
+        public static string LibelleSignatureParent {
             get {
                 return ResourceManager.GetString("LibelleSignatureParent", resourceCulture);
             }
@@ -243,7 +252,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Téléphone 1.
         /// </summary>
-        internal static string LibelleTelephone1 {
+        public static string LibelleTelephone1 {
             get {
                 return ResourceManager.GetString("LibelleTelephone1", resourceCulture);
             }
@@ -252,7 +261,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Téléphone 2.
         /// </summary>
-        internal static string LibelleTelephone2 {
+        public static string LibelleTelephone2 {
             get {
                 return ResourceManager.GetString("LibelleTelephone2", resourceCulture);
             }
@@ -261,7 +270,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Téléphone 3.
         /// </summary>
-        internal static string LibelleTelephone3 {
+        public static string LibelleTelephone3 {
             get {
                 return ResourceManager.GetString("LibelleTelephone3", resourceCulture);
             }
@@ -270,7 +279,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Ville.
         /// </summary>
-        internal static string LibelleVille {
+        public static string LibelleVille {
             get {
                 return ResourceManager.GetString("LibelleVille", resourceCulture);
             }
@@ -279,16 +288,34 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à E-mail.
         /// </summary>
-        internal static string PrefixeMail {
+        public static string PrefixeMail {
             get {
                 return ResourceManager.GetString("PrefixeMail", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Attestation.
+        /// </summary>
+        public static string PrefixeNomFichierAttestation {
+            get {
+                return ResourceManager.GetString("PrefixeNomFichierAttestation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inscription.
+        /// </summary>
+        public static string PrefixeNomFichierInscription {
+            get {
+                return ResourceManager.GetString("PrefixeNomFichierInscription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à N° asso..
         /// </summary>
-        internal static string PrefixeNumeroClub {
+        public static string PrefixeNumeroClub {
             get {
                 return ResourceManager.GetString("PrefixeNumeroClub", resourceCulture);
             }
@@ -297,7 +324,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à SIREN.
         /// </summary>
-        internal static string PrefixeSiren {
+        public static string PrefixeSiren {
             get {
                 return ResourceManager.GetString("PrefixeSiren", resourceCulture);
             }
@@ -306,7 +333,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Web.
         /// </summary>
-        internal static string PrefixeSiteWeb {
+        public static string PrefixeSiteWeb {
             get {
                 return ResourceManager.GetString("PrefixeSiteWeb", resourceCulture);
             }
@@ -315,7 +342,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Tel..
         /// </summary>
-        internal static string PrefixeTelephone {
+        public static string PrefixeTelephone {
             get {
                 return ResourceManager.GetString("PrefixeTelephone", resourceCulture);
             }
@@ -324,7 +351,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Je, soussigné .................................................., agissant en qualité de parent ou de tuteur légal de l&apos;enfant désigné ci-dessus, autorise le club à faire transporter mon enfant au centre hospitalier le plus proche si son état le nécessite ou a prendre toutes les mesures nécessaires en cas d&apos;accident survenant lors de la pratique de l&apos;escalade dans le cadre du club..
         /// </summary>
-        internal static string TexteAutorisationParentale {
+        public static string TexteAutorisationParentale {
             get {
                 return ResourceManager.GetString("TexteAutorisationParentale", resourceCulture);
             }
@@ -333,7 +360,7 @@ namespace gestadh45.service.Documents {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Fiche d&apos;inscription.
         /// </summary>
-        internal static string TitreFicheInscription {
+        public static string TitreFicheInscription {
             get {
                 return ResourceManager.GetString("TitreFicheInscription", resourceCulture);
             }

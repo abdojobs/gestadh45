@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
+using gestadh45.service.Documents;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
@@ -81,7 +82,49 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public void ExecuteGenererDocumentCommand(string pCodeDocument)
 		{
-			// TODO implémenter l'appel d'un file dialog avec le nom du fichier et rediriger le resultat vers this.GenererDocument(string pSaveFilePath, string pCodeDocument)
+			if (this.Inscription != null) {
+				NotificationMessageActionFileDialog<string> message =
+					new NotificationMessageActionFileDialog<string>(
+						ResMessages.CodeSaveFileDialog,
+						ResDocuments.ExtensionFichierPdf,
+						this.CreerNomFichierDocument(pCodeDocument),
+						callbackmessage =>
+						{
+							this.GenererDocument(callbackmessage, pCodeDocument);
+						}
+					);
+
+				Messenger.Default.Send<NotificationMessageActionFileDialog<string>>(message);
+			}
+		}
+
+		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
+			InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
+			DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, this.Inscription);
+			GenerateurDocumentPDF lGenerateur = new GenerateurDocumentPDF(lDonnees, pSaveFilePath);
+
+			try {
+				switch (pCodeDocument) {
+					case GenerateurDocumentBase.CodeInscriptionPdf:
+						lGenerateur.CreerDocumentInscription();
+						break;
+
+					case GenerateurDocumentBase.CodeAttestationPdf:
+						lGenerateur.CreerDocumentAttestation();
+						break;
+				}
+
+				Messenger.Default.Send(new NotificationMessage(ResMessages.MessageInfoGenerationDocument));
+			}
+			catch (Exception lEx) {
+				NotificationMessageErreur message =
+					new NotificationMessageErreur(
+						ResMessages.CodeErreur,
+						lEx.Message
+					);
+
+				Messenger.Default.Send<NotificationMessageErreur>(message);
+			}
 		}
 
 		public void ExecuteSupprimerInscriptionCommand() {
@@ -103,11 +146,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.InitialisationListeInscriptions();
 				this.Inscription = null;
 			}
-		}
-
-		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
-			// implémenter
-			throw new NotImplementedException("La génération de document n'est pas encore implémentée");
 		}
 
 		private void InitialisationListeInscriptions() {
@@ -152,5 +190,25 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ICommand SupprimerInscriptionCommand { get; set; }
+
+		private string CreerNomFichierDocument(string pCodeDocument) {
+			string lRetour = string.Empty;
+
+			switch (pCodeDocument) {
+				case GenerateurDocumentBase.CodeInscriptionPdf:
+					lRetour =  string.Format(
+						"{0} - {1}", 
+						ResDocuments.PrefixeNomFichierInscription, this.Inscription.Adherent.ToString());
+					break;
+
+				case GenerateurDocumentBase.CodeAttestationPdf:
+					lRetour =  string.Format(
+						"{0} - {1}", 
+						ResDocuments.PrefixeNomFichierAttestation, this.Inscription.Adherent.ToString());
+					break;
+			}
+
+			return lRetour;
+		}
 	}
 }

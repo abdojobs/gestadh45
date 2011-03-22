@@ -117,49 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CodeAboutBox" xml:space="preserve">
-    <value>AboutBox</value>
-  </data>
-  <data name="CodeChangementSaisonCourante" xml:space="preserve">
-    <value>ChangementSaisonCourante</value>
-  </data>
-  <data name="CodeChangementUserControl" xml:space="preserve">
-    <value>ChangementUserControl</value>
-  </data>
-  <data name="CodeErreur" xml:space="preserve">
-    <value>Erreur</value>
-  </data>
-  <data name="CodeOpenFileDialog" xml:space="preserve">
-    <value>OpenFileDialog</value>
-  </data>
-  <data name="CodeSaveFileDialog" xml:space="preserve">
-    <value>SaveFileDialog</value>
-  </data>
-  <data name="MessageConfirmSupprAdherent" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir supprimer cet adhérent?</value>
-  </data>
-  <data name="MessageConfirmSupprGroupe" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir supprimer ce groupe?</value>
-  </data>
-  <data name="MessageConfirmSupprInscription" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir supprimer cette inscription?</value>
-  </data>
-  <data name="MessageConfirmSupprSaison" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir supprimer cette saison?</value>
-  </data>
-  <data name="MessageConfirmSupprVille" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir supprimer cette ville?</value>
-  </data>
-  <data name="MessageInfoGenerationDocument" xml:space="preserve">
-    <value>Le document a correctement été généré</value>
-  </data>
-  <data name="TitreConfirmation" xml:space="preserve">
-    <value>Confirmation</value>
-  </data>
-  <data name="TitreErreur" xml:space="preserve">
-    <value>Erreur</value>
-  </data>
-  <data name="TitreInformation" xml:space="preserve">
-    <value>Information</value>
+  <data name="ExtensionBase" xml:space="preserve">
+    <value>.eyb</value>
   </data>
 </root>

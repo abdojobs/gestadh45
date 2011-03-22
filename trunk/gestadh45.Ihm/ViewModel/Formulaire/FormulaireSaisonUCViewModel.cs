@@ -43,9 +43,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>("ConsultationSaisons", "ChangementUserControl"));
 			}
 			else {
-				// TODO verifier message erreur
 				Messenger.Default.Send<NotificationMessageErreur>(
-					new NotificationMessageErreur("ErrFormSaison", this.ChaineErreurs)
+					new NotificationMessageErreur(ResMessages.CodeErreur, this.ChaineErreurs)
 				);
 			}
 		}
