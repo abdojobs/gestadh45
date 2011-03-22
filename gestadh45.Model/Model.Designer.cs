@@ -1666,7 +1666,9 @@ namespace gestadh45.Model
         /// <param name="iD_Adresse">Valeur initiale de la propriété ID_Adresse.</param>
         /// <param name="iD_Contact">Valeur initiale de la propriété ID_Contact.</param>
         /// <param name="numero">Valeur initiale de la propriété Numero.</param>
-        public static InfosClub CreateInfosClub(global::System.Int64 id, global::System.String nom, global::System.Int64 iD_Adresse, global::System.Int64 iD_Contact, global::System.String numero)
+        /// <param name="siren">Valeur initiale de la propriété Siren.</param>
+        /// <param name="nIC">Valeur initiale de la propriété NIC.</param>
+        public static InfosClub CreateInfosClub(global::System.Int64 id, global::System.String nom, global::System.Int64 iD_Adresse, global::System.Int64 iD_Contact, global::System.String numero, global::System.String siren, global::System.String nIC)
         {
             InfosClub infosClub = new InfosClub();
             infosClub.ID = id;
@@ -1674,6 +1676,8 @@ namespace gestadh45.Model
             infosClub.ID_Adresse = iD_Adresse;
             infosClub.ID_Contact = iD_Contact;
             infosClub.Numero = numero;
+            infosClub.Siren = siren;
+            infosClub.NIC = nIC;
             return infosClub;
         }
 
@@ -1802,6 +1806,54 @@ namespace gestadh45.Model
         private global::System.String _Numero;
         partial void OnNumeroChanging(global::System.String value);
         partial void OnNumeroChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Siren
+        {
+            get
+            {
+                return _Siren;
+            }
+            set
+            {
+                OnSirenChanging(value);
+                ReportPropertyChanging("Siren");
+                _Siren = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Siren");
+                OnSirenChanged();
+            }
+        }
+        private global::System.String _Siren;
+        partial void OnSirenChanging(global::System.String value);
+        partial void OnSirenChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String NIC
+        {
+            get
+            {
+                return _NIC;
+            }
+            set
+            {
+                OnNICChanging(value);
+                ReportPropertyChanging("NIC");
+                _NIC = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("NIC");
+                OnNICChanged();
+            }
+        }
+        private global::System.String _NIC;
+        partial void OnNICChanging(global::System.String value);
+        partial void OnNICChanged();
 
         #endregion
     
