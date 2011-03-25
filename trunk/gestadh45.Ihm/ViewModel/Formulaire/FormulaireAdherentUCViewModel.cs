@@ -66,7 +66,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(
-					new NotificationMessageUtilisateur(ResMessages.TypeNotification_Erreur, this.ChaineErreurs)
+					new NotificationMessageUtilisateur(TypesNotification.Erreur, this.ChaineErreurs)
 				);
 			}
 		}

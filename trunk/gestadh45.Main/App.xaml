@@ -1,8 +1,24 @@
 ﻿<Application x:Class="gestadh45.Main.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="clr-namespace:gestadh45.Ihm.ViewModel;assembly=gestadh45.Ihm"
+			 xmlns:ihmtools="clr-namespace:gestadh45.Ihm.Tools;assembly=gestadh45.Ihm"
+			 StartupUri="MainWindow.xaml">
+	<Application.Resources>
+		<vm:ViewModelLocator x:Key="Locator" />
+		<BooleanToVisibilityConverter x:Key="VisibilityOfBool" />
+		<ihmtools:BooleanInversionConverter x:Key="BooleanInversionConverter" />
+
+		<Style x:Key="inscriptionGroupe" TargetType="{x:Type GroupItem}">
+			<Setter Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Expander IsExpanded="False" Header="{Binding Name}">
+							<ItemsPresenter />
+						</Expander>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Application.Resources>
 </Application>

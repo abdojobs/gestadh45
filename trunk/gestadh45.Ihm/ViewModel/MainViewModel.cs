@@ -38,7 +38,7 @@ namespace gestadh45.Ihm.ViewModel
 			catch (Exception exception) {
 				ViewModelLocator.Context = null;
 				NotificationMessageUtilisateur message = new NotificationMessageUtilisateur(
-					ResMessages.TypeNotification_Erreur, 
+					TypesNotification.Erreur, 
 					exception.Message
 				);
 				Messenger.Default.Send<NotificationMessageUtilisateur>(message);
@@ -66,13 +66,13 @@ namespace gestadh45.Ihm.ViewModel
 
 		public void ExecuteAboutBoxCommand() {
 			Messenger.Default.Send<NotificationMessage>(
-				new NotificationMessage(ResMessages.TypeNotification_AboutBox)
+				new NotificationMessage(TypesNotification.AboutBox)
 			);
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
 			Messenger.Default.Send<NotificationMessage<string>>(
-				new NotificationMessage<string>(pCodeUC, ResMessages.TypeNotification_ChangementUC)
+				new NotificationMessage<string>(pCodeUC, TypesNotification.ChangementUC)
 			);
 		}
 
@@ -80,7 +80,7 @@ namespace gestadh45.Ihm.ViewModel
 		{
 			NotificationMessageActionFileDialog<string> message = 
 				new NotificationMessageActionFileDialog<string>(
-					ResMessages.TypeNotification_OpenFileDialog, 
+					TypesNotification.OpenFileDialog, 
 					MainRessources.ExtensionBase, 
 					string.Empty,
 					this.ChangeDataSource
@@ -89,7 +89,7 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		private void NotificationChangementSaisonCourante(NotificationMessage<Saison> msg) {
-			if (msg.Notification.Equals(ResMessages.TypeNotification_ChangementSaisonCourante)) {
+			if (msg.Notification.Equals(TypesNotification.ChangementSaisonCourante)) {
 				this.InfosSaisonCourante = msg.Content.ToShortString();
 			}
 		}
