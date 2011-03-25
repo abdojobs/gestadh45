@@ -1,8 +1,65 @@
 ﻿<Window x:Class="gestadh45.Main.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
+		Title="GestAdh45" MinHeight="500" MinWidth="705"
+		Background="#FFFFDEAD" 
+		DataContext="{Binding MainStatic, Source={StaticResource Locator}}" Icon="/gestadh45.Main;component/Icones/gestadh45.ico">
+	
+	<Window.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="Skins/MainSkin.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</Window.Resources>
+	
+	<DockPanel>
+		<Border DockPanel.Dock="Top" Width="auto" HorizontalAlignment="Center" Margin="0,5,0,0" BorderThickness="0.5" BorderBrush="#FF000000" CornerRadius="10" Style="{StaticResource StyleEnfant}">
+			<StackPanel Orientation="Horizontal">
+				<Button Name="btnOuvrir" ToolTip="Ouvrir une base" Height="30" Width="30" Margin="10,5,15,5" Command="{Binding Path=ChangerDataSourceCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_ouvrir.png" />
+				</Button>
+				<Button Name="btnAccueil" ToolTip="Informations sur le club" Height="30" Width="30" Margin="15,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationInfosClub}" Command="{Binding Path=AfficherUCCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_home.png" />
+				</Button>
+				<Button Name="btnConsultationSaisons" ToolTip="Parcourir les saisons" Height="30" Width="30" Margin="5,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationSaisons}" Command="{Binding Path=AfficherUCCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_saisons.png" />
+				</Button>
+				<Button Name="btnConsultationVilles" ToolTip="Parcourir les villes" Height="30" Width="30" Margin="5,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationVilles}" Command="{Binding Path=AfficherUCCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_city.png" />
+				</Button>
+				<Button Name="btnConsultAdherents" ToolTip="Parcourir les adhérents" Height="30" Width="30" Margin="5,5,15,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationAdherents}" Command="{Binding Path=AfficherUCCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_adherents.png" />
+				</Button>
+				<Button Name="btnConsulInscriptions" ToolTip="Parcourir les inscriptions de la saison courante" Height="30" Width="30" Margin="15,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationInscriptions}" Command="{Binding Path=AfficherUCCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_inscriptions.png" />
+				</Button>
+				<Button Name="btnConsultationGroupes" ToolTip="Parcourir les groupes de la saison courante" Height="30" Width="30" Margin="5,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationGroupes}" Command="{Binding Path=AfficherUCCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_groupes.png" />
+				</Button>
+				<Button Name="btnGraphs" ToolTip="Graphiques pour la saison courante" Height="30" Width="30" Margin="5,5,5,5" CommandParameter="{x:Static ihm:CodesUC.GraphsSaisonCourante}" Command="{Binding Path=AfficherUCCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_graphs.png" />
+				</Button>
+				<Button Name="btnAbout" ToolTip="A propos" Height="30" Width="30" Margin="20,5,5,5" Command="{Binding Path=AboutBoxCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_about.png" />
+				</Button>
+			</StackPanel>
+		</Border>
+		
+		<Border DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">
+			<StatusBar MaxHeight="25">
+				<StatusBar.Items>
+					<StatusBarItem HorizontalAlignment="Left">
+						<TextBlock Text="{Binding InfosDataSource}" />
+					</StatusBarItem>
+					<StatusBarItem HorizontalAlignment="Right">
+						<TextBlock Text="{Binding InfosSaisonCourante}" />
+					</StatusBarItem>
+				</StatusBar.Items>
+			</StatusBar>
+		</Border>
+		
+		<Border Name="contenu" Margin="5,5,5,5" BorderThickness="1" BorderBrush="#FF000000" Style="{StaticResource StyleEnfant}" />
+	</DockPanel>
 </Window>

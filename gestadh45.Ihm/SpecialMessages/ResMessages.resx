@@ -144,25 +144,4 @@
   <data name="TitreInformation" xml:space="preserve">
     <value>Information</value>
   </data>
-  <data name="TypeNotification_AboutBox" xml:space="preserve">
-    <value>aboutbox</value>
-  </data>
-  <data name="TypeNotification_ChangementSaisonCourante" xml:space="preserve">
-    <value>changementSaisonCourante</value>
-  </data>
-  <data name="TypeNotification_ChangementUC" xml:space="preserve">
-    <value>changementUC</value>
-  </data>
-  <data name="TypeNotification_Erreur" xml:space="preserve">
-    <value>erreur</value>
-  </data>
-  <data name="TypeNotification_Information" xml:space="preserve">
-    <value>information</value>
-  </data>
-  <data name="TypeNotification_OpenFileDialog" xml:space="preserve">
-    <value>openfiledialog</value>
-  </data>
-  <data name="TypeNotification_SaveFileDialog" xml:space="preserve">
-    <value>savefiledialog</value>
-  </data>
 </root>

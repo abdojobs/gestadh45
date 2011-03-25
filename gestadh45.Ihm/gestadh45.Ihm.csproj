@@ -59,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecialMessages\DialogMessageConfirmation.cs" />
     <Compile Include="SpecialMessages\NotificationMessageActionFileDialog.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageChangementUC.cs" />
     <Compile Include="SpecialMessages\NotificationMessageFormulaire.cs" />
     <Compile Include="SpecialMessages\NotificationMessageUtilisateur.cs" />
     <Compile Include="SpecialMessages\ResMessages.Designer.cs">
@@ -66,6 +67,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResMessages.resx</DependentUpon>
     </Compile>
+    <Compile Include="SpecialMessages\TypesNotification.cs" />
+    <Compile Include="Tools\BooleanInversionConverter.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationAdherentsUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationGroupesUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationInfosClubUCViewModel.cs" />

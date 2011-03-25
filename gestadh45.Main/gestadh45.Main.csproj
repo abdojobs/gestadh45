@@ -36,8 +36,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\Libs\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\Libs\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -67,6 +74,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Skins\MainSkin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -91,6 +102,84 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gestadh45.Ihm\gestadh45.Ihm.csproj">
+      <Project>{7D1DAFDD-8A59-4F52-9B5F-9D01AF975565}</Project>
+      <Name>gestadh45.Ihm</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_ouvrir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_add16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_addgroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_adduser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_adherents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_annuler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_city.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_deletegroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_deleteuser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_edituser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_enregistrer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_graphs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_groupes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_inscriptions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_inscrire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_moins.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_pdf16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_saisons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Icones\gestadh45.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

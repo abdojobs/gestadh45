@@ -77,7 +77,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public void ExecuteEditerCommand(string pCodeUC) {
 			Messenger.Default.Send<NotificationMessageFormulaire<string, Inscription>>(
-				new NotificationMessageFormulaire<string, Inscription>(pCodeUC, ResMessages.TypeNotification_ChangementUC, this.Inscription));
+				new NotificationMessageFormulaire<string, Inscription>(pCodeUC, TypesNotification.ChangementUC, this.Inscription));
 		}
 
 		public void ExecuteGenererDocumentCommand(string pCodeDocument)
@@ -85,7 +85,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			if (this.Inscription != null) {
 				NotificationMessageActionFileDialog<string> message =
 					new NotificationMessageActionFileDialog<string>(
-						ResMessages.TypeNotification_OpenFileDialog,
+						TypesNotification.SaveFileDialog,
 						ResDocuments.ExtensionFichierPdf,
 						this.CreerNomFichierDocument(pCodeDocument),
 						callbackmessage =>
@@ -119,7 +119,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			catch (Exception lEx) {
 				NotificationMessageUtilisateur message =
 					new NotificationMessageUtilisateur(
-						ResMessages.TypeNotification_Erreur,
+						TypesNotification.Erreur,
 						lEx.Message
 					);
 
