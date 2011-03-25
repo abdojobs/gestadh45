@@ -11,18 +11,6 @@ namespace gestadh45.Ihm.SpecialMessages
 			this.NomFichier = pNomFichier;
 		}
 
-		public NotificationMessageActionFileDialog(object sender, string notification, string pExtensionFichier, string pNomFichier, Action<TCallbackParameter> callback)
-			: base(sender, notification, callback) {
-			this.ExtensionFichier = pExtensionFichier;
-			this.NomFichier = pNomFichier;
-		}
-
-		public NotificationMessageActionFileDialog(object sender, object target, string notification, string pExtensionFichier, string pNomFichier, Action<TCallbackParameter> callback)
-			: base(sender, target, notification, callback) {
-			this.ExtensionFichier = pExtensionFichier;
-			this.NomFichier = pNomFichier;
-		}
-
 		/// <summary>
 		/// Obtient/Définit l'extension du fichier
 		/// </summary>

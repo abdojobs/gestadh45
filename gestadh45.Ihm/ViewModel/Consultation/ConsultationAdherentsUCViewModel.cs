@@ -74,11 +74,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public void ExecuteEditerCommand(string pCodeUC) {
-			Messenger.Default.Send<NotificationMessageFormulaire<string, Adherent>>(new NotificationMessageFormulaire<string, Adherent>(pCodeUC, "ChangementUserControl", this.Adherent));
+			Messenger.Default.Send<NotificationMessageFormulaire<string, Adherent>>(new NotificationMessageFormulaire<string, Adherent>(pCodeUC, ResMessages.TypeNotification_ChangementUC, this.Adherent));
 		}
 
 		public void ExecuteInscrireCommand(string pCodeUC) {
-			Messenger.Default.Send<NotificationMessageFormulaire<string, Adherent>>(new NotificationMessageFormulaire<string, Adherent>(pCodeUC, "ChangementUserControl", this.Adherent));
+			Messenger.Default.Send<NotificationMessageFormulaire<string, Adherent>>(new NotificationMessageFormulaire<string, Adherent>(pCodeUC, ResMessages.TypeNotification_ChangementUC, this.Adherent));
 		}
 
 		public void ExecuteSupprimerAdherentCommand() {
