@@ -35,8 +35,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>("ConsultationVilles", "ChangementUserControl"));
 			}
 			else {
-				Messenger.Default.Send<NotificationMessageErreur>(
-					new NotificationMessageErreur(ResMessages.CodeErreur, this.ChaineErreurs)
+				Messenger.Default.Send<NotificationMessageUtilisateur>(
+					new NotificationMessageUtilisateur(ResMessages.TypeNotification_Erreur, this.ChaineErreurs)
 				);
 			}
 		}
