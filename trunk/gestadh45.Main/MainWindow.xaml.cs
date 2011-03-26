@@ -1,7 +1,9 @@
 ﻿using System.Windows;
-using gestadh45.Ihm.SpecialMessages;
-using Microsoft.Win32;
 using GalaSoft.MvvmLight.Messaging;
+using gestadh45.Ihm;
+using gestadh45.Ihm.SpecialMessages;
+using gestadh45.Main.UserControls.Consultation;
+using Microsoft.Win32;
 
 namespace gestadh45.Main
 {
@@ -93,9 +95,12 @@ namespace gestadh45.Main
 		private void ChangerUC(NotificationMessageChangementUC pMessage) {
 			// TODO implémenter
 			
-			//switch (pMessage.CodeUC) {
-
-			//}
+			switch (pMessage.CodeUC) {
+				case CodesUC.ConsultationInfosClub:
+				default:
+					this.contenu.Child = new ConsultationInfosClubUC();
+					break;
+			}
 		}
 	}
 }

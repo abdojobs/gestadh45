@@ -56,6 +56,7 @@
     <Compile Include="Groupe.cs" />
     <Compile Include="EFExtension.cs" />
     <Compile Include="EntitySQLiteHelper.cs" />
+    <Compile Include="InfosClub.cs" />
     <Compile Include="Inscription.cs" />
     <Compile Include="JourSemaine.cs" />
     <Compile Include="Model.Designer.cs">

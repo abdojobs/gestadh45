@@ -30,10 +30,12 @@ namespace gestadh45.Ihm.ViewModel
 
 		private void ChangeDataSource(string pFilePath) {
 			try {
-				ViewModelLocator.Context = new Entities(EntitySQLiteHelper.GetConnectionString(pFilePath));
-				this.InfosDataSource = EntitySQLiteHelper.GetFilePathFromContext(ViewModelLocator.Context);
-				this.InfosSaisonCourante = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante().ToShortString();
-				this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
+				if (!string.IsNullOrWhiteSpace(pFilePath)) {
+					ViewModelLocator.Context = new Entities(EntitySQLiteHelper.GetConnectionString(pFilePath));
+					this.InfosDataSource = EntitySQLiteHelper.GetFilePathFromContext(ViewModelLocator.Context);
+					this.InfosSaisonCourante = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante().ToShortString();
+					this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
+				}
 			}
 			catch (Exception exception) {
 				ViewModelLocator.Context = null;
@@ -71,8 +73,8 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
-			Messenger.Default.Send<NotificationMessage<string>>(
-				new NotificationMessage<string>(pCodeUC, TypesNotification.ChangementUC)
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(pCodeUC)
 			);
 		}
 
