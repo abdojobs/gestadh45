@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Main.UserControls.Consultation;
+using gestadh45.Main.UserControls.Formulaire;
 using Microsoft.Win32;
 
 namespace gestadh45.Main
@@ -99,6 +100,10 @@ namespace gestadh45.Main
 				case CodesUC.ConsultationInfosClub:
 				default:
 					this.contenu.Child = new ConsultationInfosClubUC();
+					break;
+
+				case CodesUC.FormulaireInfosClub:
+					this.contenu.Child = new FormulaireInfosClubUC();
 					break;
 			}
 		}

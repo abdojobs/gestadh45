@@ -1,10 +1,10 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using System.Collections.Generic;
-using System.Text;
+using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -24,7 +24,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public virtual void ExecuteAnnulerCommand(string pCodeUc) {
-			Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>(pCodeUc, "ChangementUserControl"));
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(pCodeUc)
+			);
 		}
 
 		public ICommand AnnulerCommand { get; set; }
