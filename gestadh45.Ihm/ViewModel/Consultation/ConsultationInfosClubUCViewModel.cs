@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
+using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
@@ -22,7 +23,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public void ExecuteEditerCommand(string pCodeUC) {
-			Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>(pCodeUC, "ChangementUserControl"));
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(pCodeUC)
+			);
 		}
 
 		public ICommand EditerCommand { get; set; }

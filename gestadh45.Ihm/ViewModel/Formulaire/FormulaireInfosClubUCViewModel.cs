@@ -43,7 +43,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie()) {
 				InfosClubDao.GetInstance(ViewModelLocator.Context).Update(this.InfosClub);
-				Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>("ConsultationInfosClub", "ChangementUserControl"));
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(CodesUC.ConsultationInfosClub)
+				);
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(

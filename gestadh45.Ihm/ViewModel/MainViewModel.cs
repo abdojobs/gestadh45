@@ -73,6 +73,7 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
+			// TODO reflechir si on fait un refresh global
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(pCodeUC)
 			);

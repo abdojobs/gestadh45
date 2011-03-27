@@ -65,6 +65,9 @@
     <Compile Include="UserControls\Consultation\ConsultationInfosClubUC.xaml.cs">
       <DependentUpon>ConsultationInfosClubUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireInfosClubUC.xaml.cs">
+      <DependentUpon>FormulaireInfosClubUC.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,6 +85,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Consultation\ConsultationInfosClubUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Formulaire\FormulaireInfosClubUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,7 +195,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="UserControls\Formulaire\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
