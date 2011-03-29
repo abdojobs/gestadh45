@@ -13,6 +13,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public ConsultationInfosClubUCViewModel() {
 			this.InfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
+			InfosClubDao.GetInstance(ViewModelLocator.Context).Refresh(this.InfosClub);
+
 			this.CreateEditerCommand();
 		}
 
