@@ -105,6 +105,10 @@ namespace gestadh45.Main
 				case CodesUC.FormulaireInfosClub:
 					this.contenu.Child = new FormulaireInfosClubUC();
 					break;
+
+				case CodesUC.ConsultationSaisons:
+					this.contenu.Child = new ConsultationSaisonUC();
+					break;
 			}
 		}
 	}

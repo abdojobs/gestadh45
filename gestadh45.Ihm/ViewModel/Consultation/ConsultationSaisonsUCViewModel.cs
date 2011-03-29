@@ -101,7 +101,14 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		private void InitialisationListeSaisons() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(SaisonDao.GetInstance(ViewModelLocator.Context).List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
+				SaisonDao.GetInstance(ViewModelLocator.Context).List()
+			);
+
+			foreach (Saison lSaison in defaultView) {
+				SaisonDao.GetInstance(ViewModelLocator.Context).Refresh(lSaison);
+			}
+
 			defaultView.SortDescriptions.Add(new SortDescription("AnneeDebut", ListSortDirection.Ascending));
 			this.Saisons = defaultView;
 		}

@@ -73,14 +73,13 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
-			// TODO reflechir si on fait un refresh global
+			// TODO faire un refresh dans chaque constructeur de VM
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(pCodeUC)
 			);
 		}
 
-		public void ExecuteChangerDataSourceCommand()
-		{
+		public void ExecuteChangerDataSourceCommand() {
 			NotificationMessageActionFileDialog<string> message = 
 				new NotificationMessageActionFileDialog<string>(
 					TypesNotification.OpenFileDialog, 

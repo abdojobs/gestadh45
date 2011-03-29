@@ -17,7 +17,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public FormulaireInfosClubUCViewModel() {
 			this.InitialisationListeVilles();
+
 			this.InfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
+			InfosClubDao.GetInstance(ViewModelLocator.Context).Refresh(this.InfosClub);
+
 			base.CreateAnnulerCommand();
 			this.CreateEnregistrerCommand();
 		}
