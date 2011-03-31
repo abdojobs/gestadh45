@@ -70,13 +70,21 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public void ExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
 			if (pSaison != null) {
-				Saison saison = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante();
-				saison.EstSaisonCourante = 0L;
-				SaisonDao.GetInstance(ViewModelLocator.Context).Update(saison);
-				pSaison.EstSaisonCourante = 1L;
+				Saison lOldSaisonCourante = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante();
+				lOldSaisonCourante.EstSaisonCouranteBool = false;
+				SaisonDao.GetInstance(ViewModelLocator.Context).Update(lOldSaisonCourante);
+
+				pSaison.EstSaisonCouranteBool = true;
+
 				SaisonDao.GetInstance(ViewModelLocator.Context).Update(pSaison);
 				this.InitialisationListeSaisons();
-				Messenger.Default.Send<NotificationMessage<Saison>>(new NotificationMessage<Saison>(pSaison, "ChangementSaisonCourante"));
+
+				this.Saison = null;
+				this.Saison = pSaison;
+
+				Messenger.Default.Send<NotificationMessage<Saison>>(
+					new NotificationMessage<Saison>(pSaison, TypesNotification.ChangementSaisonCourante)
+				);
 			}
 		}
 
