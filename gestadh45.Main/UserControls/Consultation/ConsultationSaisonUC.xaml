@@ -20,10 +20,12 @@
 			</ListBox>
 			<StackPanel Orientation="Vertical" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,10,10,10">
 				<StackPanel.Children>
-					<Button ToolTip="Ajouter une nouvelle saison" Width="35" Height="35" Margin="0,0,0,10" Command="{Binding Path=CreerCommand}">
+					<Button ToolTip="Ajouter une nouvelle saison" Width="35" Height="35" Margin="0,0,0,10" 
+							Command="{Binding Path=CreerCommand}">
 						<Image Source="/gestadh45.Main;component/Images/btn_plus.png" />
 					</Button>
-					<Button ToolTip="Supprimer la saison sélectionnée" Width="35" Height="35" Margin="0,10,0,0" Command="{Binding Path=SupprimerSaisonCommand}">
+					<Button ToolTip="Supprimer la saison sélectionnée" Width="35" Height="35" Margin="0,10,0,0" 
+							Command="{Binding Path=SupprimerSaisonCommand}">
 						<Image Source="/gestadh45.Main;component/Images/btn_moins.png" />
 					</Button>
 				</StackPanel.Children>

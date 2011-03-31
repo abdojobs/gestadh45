@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
@@ -11,14 +12,12 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		protected void CreateCreerCommand() {
-			this.CreerCommand = new RelayCommand<string>(
+			this.CreerCommand = new RelayCommand(
 				this.ExecuteCreerCommand
 			);
 		}
 
-		public void ExecuteCreerCommand(string pCodeUC) {
-			Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>(pCodeUC, "ChangementUserControl"));
-		}
+		public virtual void ExecuteCreerCommand() { }
 
 		public ICommand CreerCommand { get; set; }
 	}

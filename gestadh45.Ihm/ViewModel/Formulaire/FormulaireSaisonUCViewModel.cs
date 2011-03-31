@@ -12,7 +12,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 	public class FormulaireSaisonUCViewModel : ViewModelBaseFormulaire
 	{
 		private Saison mSaison;
-		private static int DureeSaison = 1;
+		private const int DureeSaison = 1;
 
 		public FormulaireSaisonUCViewModel() {
 			Saison saison = new Saison
@@ -40,11 +40,16 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie() && !SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison)) {
 				SaisonDao.GetInstance(ViewModelLocator.Context).Create(this.Saison);
-				Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>("ConsultationSaisons", "ChangementUserControl"));
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(CodesUC.ConsultationSaisons)
+				);
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(
-					new NotificationMessageUtilisateur(TypesNotification.Erreur, this.ChaineErreurs)
+					new NotificationMessageUtilisateur(
+						TypesNotification.Erreur, 
+						this.ChaineErreurs
+					)
 				);
 			}
 		}
