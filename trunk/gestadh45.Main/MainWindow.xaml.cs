@@ -109,6 +109,10 @@ namespace gestadh45.Main
 				case CodesUC.ConsultationSaisons:
 					this.contenu.Child = new ConsultationSaisonUC();
 					break;
+
+				case CodesUC.FormulaireSaison:
+					this.contenu.Child = new FormulaireSaisonUC();
+					break;
 			}
 		}
 	}

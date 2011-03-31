@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="gestadh45.Main.UserControls.Formulaire.FormulaireSaisonUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
+			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
+             mc:Ignorable="d" 
+			 DataContext="{Binding FormulaireSaisonVMStatic, Source={StaticResource Locator}}" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<DockPanel>
+		<DockPanel.Children>
+			<TextBlock Text="Saison" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+			<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+				<StackPanel.Children>
+					<Grid HorizontalAlignment="Center">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="100" />
+							<ColumnDefinition />
+						</Grid.ColumnDefinitions>
+						<Grid.RowDefinitions>
+							<RowDefinition />
+							<RowDefinition />
+						</Grid.RowDefinitions>
+						<Grid.Children>
+							<TextBlock Grid.Row="0" Grid.Column="0" Text="Année de début : " />
+							<extToolkit1:NumericUpDown Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Left" Minimum="1950" Maximum="2999" Increment="1" IsEditable="False" Value="{Binding AnneeDebutIhm}" Text="{Binding AnneeDebutIhm}" xmlns:extToolkit1="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended" />
+							<TextBlock Grid.Row="1" Grid.Column="0" Text="Année de fin : " />
+							<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Saison.AnneeFin}" />
+						</Grid.Children>
+					</Grid>
+					<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
+					<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+						<StackPanel.Children>
+							<Button ToolTip="Annuler" Width="32" Height="32" Margin="0,0,10,0" 
+									CommandParameter="{x:Static ihm:CodesUC.ConsultationSaisons}" 
+									Command="{Binding AnnulerCommand}">
+								<Image Source="/GestAdh45.Main;component/Images/btn_annuler.png" />
+							</Button>
+							<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="32" Height="32" Margin="10,0,0,0" Command="{Binding EnregistrerCommand}">
+								<Image Source="/GestAdh45.Main;component/Images/btn_enregistrer.png" />
+							</Button>
+						</StackPanel.Children>
+					</StackPanel>
+				</StackPanel.Children>
+			</StackPanel>
+		</DockPanel.Children>
+	</DockPanel>
+</UserControl>

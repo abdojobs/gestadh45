@@ -64,8 +64,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public void ExecuteCreerCommand() {
-			Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>("FormulaireSaison", "ChangementUserControl"));
+		public override void ExecuteCreerCommand() {
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(CodesUC.FormulaireSaison)
+			);
 		}
 
 		public void ExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
