@@ -83,6 +83,9 @@
     <Compile Include="UserControls\Consultation\ConsultationVillesUC.xaml.cs">
       <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireGroupeUC.xaml.cs">
+      <DependentUpon>FormulaireGroupeUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Formulaire\FormulaireInfosClubUC.xaml.cs">
       <DependentUpon>FormulaireInfosClubUC.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Consultation\ConsultationVillesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Formulaire\FormulaireGroupeUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

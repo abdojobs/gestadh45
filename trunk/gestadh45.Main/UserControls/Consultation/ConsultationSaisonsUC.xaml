@@ -37,8 +37,14 @@
 							<StackPanel.Children>
 								<StackPanel Orientation="Horizontal">
 									<StackPanel.Children>
-										<TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Path=Saison.AnneeDebut, StringFormat='{}{0} - '}" />
-										<TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Path=Saison.AnneeFin}" />
+										<TextBlock FontWeight="Bold" FontSize="14">
+											<TextBlock.Text>
+												<MultiBinding StringFormat="{}{0} - {1}">
+													<Binding Path="Saison.AnneeDebut" />
+													<Binding Path="Saison.Fin" />
+												</MultiBinding>
+											</TextBlock.Text>
+										</TextBlock>
 									</StackPanel.Children>
 								</StackPanel>
 								<StackPanel Orientation="Horizontal">

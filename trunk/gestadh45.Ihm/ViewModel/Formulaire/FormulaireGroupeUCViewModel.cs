@@ -17,6 +17,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public FormulaireGroupeUCViewModel() {
 			this.Groupe = new Groupe();
+			this.Groupe.Commentaire = string.Empty;
 			this.Groupe.Saison = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante();
 			this.InitialisationListeJoursSemaine();
 			base.CreateAnnulerCommand();
@@ -94,7 +95,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 
 			if (this.Groupe.HeureDebut > this.Groupe.HeureFin
-				|| (this.Groupe.HeureDebut == this.Groupe.HeureDebut && this.Groupe.MinuteDebut >= this.Groupe.MinuteFin)) {
+				|| (this.Groupe.HeureDebut == this.Groupe.HeureFin && this.Groupe.MinuteDebut >= this.Groupe.MinuteFin)) {
 					this.mErreurs.Add(ResErreurs.Groupe_HeureFinSupHeureDebut);
 			}
 
@@ -102,7 +103,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				&& this.mErreurs.Count == 0
 				&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)) {
 
-				this.mErreurs.Add(ResErreurs.Inscription_Existe);
+				this.mErreurs.Add(ResErreurs.Groupe_Existe);
 			}
 
 			return this.mErreurs.Count == 0;

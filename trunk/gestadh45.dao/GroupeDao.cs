@@ -25,9 +25,11 @@ namespace gestadh45.dao
 		}
 
 		public bool Exist(Groupe pGroupe) {
-			return ((from g in Instance.Context.Groupes
-					 where ((g.Saison.ID == pGroupe.Saison.ID) && (g.JourSemaine.ID == pGroupe.JourSemaine.ID)) && g.Libelle.Equals(pGroupe.Libelle)
-					 select g).Count<Groupe>() > 0);
+			return (from g in Instance.Context.Groupes
+					 where g.Saison.ID == pGroupe.Saison.ID
+						&& g.JourSemaine.ID == pGroupe.JourSemaine.ID 
+						&& g.Libelle.Equals(pGroupe.Libelle)
+					 select g).Count<Groupe>() > 0;
 		}
 
 		public static GroupeDao GetInstance(Entities pContexte) {
