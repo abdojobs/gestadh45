@@ -210,5 +210,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 			return lRetour;
 		}
+
+		public override void ExecuteCreerCommand() {
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(CodesUC.FormulaireInscription)
+			);
+		}
 	}
 }

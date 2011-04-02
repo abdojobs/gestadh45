@@ -74,8 +74,11 @@
     <Compile Include="UserControls\Consultation\ConsultationInfosClubUC.xaml.cs">
       <DependentUpon>ConsultationInfosClubUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Consultation\ConsultationSaisonUC.xaml.cs">
-      <DependentUpon>ConsultationSaisonUC.xaml</DependentUpon>
+    <Compile Include="UserControls\Consultation\ConsultationSaisonsUC.xaml.cs">
+      <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultation\ConsultationVillesUC.xaml.cs">
+      <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Formulaire\FormulaireInfosClubUC.xaml.cs">
       <DependentUpon>FormulaireInfosClubUC.xaml</DependentUpon>
@@ -103,7 +106,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Consultation\ConsultationSaisonUC.xaml">
+    <Page Include="UserControls\Consultation\ConsultationSaisonsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Consultation\ConsultationVillesUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -70,7 +70,14 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		private void InitialisationListeVilles() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(VilleDao.GetInstance(ViewModelLocator.Context).List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
+				VilleDao.GetInstance(ViewModelLocator.Context).List()
+			);
+
+			foreach (Ville lVille in defaultView) {
+				VilleDao.GetInstance(ViewModelLocator.Context).Refresh(lVille);
+			}
+
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
 		}
@@ -101,6 +108,12 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 					this.RaisePropertyChanged("Villes");
 				}
 			}
+		}
+
+		public override void ExecuteCreerCommand() {
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(CodesUC.FormulaireVille)
+			);
 		}
 	}
 }

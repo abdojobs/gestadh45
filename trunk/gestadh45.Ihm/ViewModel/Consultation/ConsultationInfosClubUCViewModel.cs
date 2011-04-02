@@ -43,5 +43,14 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				}
 			}
 		}
+
+		/// <summary>
+		/// Ne devrait jamais être appellée
+		/// </summary>
+		public override void ExecuteCreerCommand() {
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(CodesUC.FormulaireInfosClub)
+			);
+		}
 	}
 }

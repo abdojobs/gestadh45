@@ -1,12 +1,10 @@
 ﻿using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
-	public class ViewModelBaseConsultation : ViewModelBase
+	public abstract class ViewModelBaseConsultation : ViewModelBase
 	{
 		protected ViewModelBaseConsultation() {
 		}
@@ -17,7 +15,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		public virtual void ExecuteCreerCommand() { }
+		public abstract void ExecuteCreerCommand();
 
 		public ICommand CreerCommand { get; set; }
 	}
