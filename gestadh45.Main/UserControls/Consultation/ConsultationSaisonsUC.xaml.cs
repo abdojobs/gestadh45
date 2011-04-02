@@ -5,9 +5,9 @@ namespace gestadh45.Main.UserControls.Consultation
 	/// <summary>
 	/// Logique d'interaction pour ConsultationSaisonUC.xaml
 	/// </summary>
-	public partial class ConsultationSaisonUC : UserControl
+	public partial class ConsultationSaisonsUC : UserControl
 	{
-		public ConsultationSaisonUC() {
+		public ConsultationSaisonsUC() {
 			InitializeComponent();
 		}
 	}

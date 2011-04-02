@@ -107,11 +107,15 @@ namespace gestadh45.Main
 					break;
 
 				case CodesUC.ConsultationSaisons:
-					this.contenu.Child = new ConsultationSaisonUC();
+					this.contenu.Child = new ConsultationSaisonsUC();
 					break;
 
 				case CodesUC.FormulaireSaison:
 					this.contenu.Child = new FormulaireSaisonUC();
+					break;
+
+				case CodesUC.ConsultationVilles:
+					this.contenu.Child = new ConsultationVillesUC();
 					break;
 			}
 		}

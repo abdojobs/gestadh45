@@ -73,6 +73,12 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
+		public override void ExecuteCreerCommand() {
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(CodesUC.FormulaireAdherent)
+			);
+		}
+
 		public void ExecuteEditerCommand(string pCodeUC) {
 			Messenger.Default.Send<NotificationMessageFormulaire<string, Adherent>>(new NotificationMessageFormulaire<string, Adherent>(pCodeUC, TypesNotification.ChangementUC, this.Adherent));
 		}

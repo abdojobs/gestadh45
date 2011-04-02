@@ -103,5 +103,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ICommand SupprimerGroupeCommand { get; set; }
+
+		public override void ExecuteCreerCommand() {
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(CodesUC.FormulaireGroupe)
+			);
+		}
 	}
 }
