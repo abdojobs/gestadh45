@@ -32,7 +32,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie() && !VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)) {
 				VilleDao.GetInstance(ViewModelLocator.Context).Create(this.Ville);
-				Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>("ConsultationVilles", "ChangementUserControl"));
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(CodesUC.ConsultationVilles)
+				);
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(
