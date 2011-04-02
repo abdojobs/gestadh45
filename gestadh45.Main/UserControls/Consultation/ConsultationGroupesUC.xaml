@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="gestadh45.Main.UserControls.Consultation.ConsultationGroupesUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
+             mc:Ignorable="d" 
+			 DataContext="{Binding ConsultationGroupesVMStatic, Source={StaticResource Locator}}" 
+             d:DesignHeight="300" d:DesignWidth="300">
+	<DockPanel Margin="5,5,5,5">
+		<DockPanel.Children>
+			<TextBlock Text="Groupes pour la saison courante" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+			<ListBox Name="lbxGroupes" Width="300" DockPanel.Dock="Left" ItemsSource="{Binding GroupesSaisonCourante}">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="SelectionChanged">
+						<cmd:EventToCommand Command="{Binding AfficherDetailsGroupeCommand, Mode=OneWay}" 
+							CommandParameter="{Binding ElementName=lbxGroupes, Path=SelectedItem}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</ListBox>
+			<StackPanel Orientation="Vertical" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,10,10,10">
+				<StackPanel.Children>
+					<Button ToolTip="Ajouter un nouveau groupe" Width="35" Height="35" Margin="0,0,0,10" 
+						CommandParameter="{x:Static ihm:CodesUC.FormulaireGroupe}" 
+						Command="{Binding Path=CreerCommand}">
+						<Image Source="/GestAdh45.Main;component/Images/btn_plus.png" />
+					</Button>
+					<Button ToolTip="Supprimer le groupe sélectionné" Width="35" Height="35" Margin="0,10,0,0" 
+						Command="{Binding Path=SupprimerGroupeCommand}" 
+						CommandParameter="{Binding ElementName=lbxGroupes, Path=SelectedItem}">
+						<Image Source="/GestAdh45.Main;component/Images/btn_moins.png" />
+					</Button>
+				</StackPanel.Children>
+			</StackPanel>
+			<StackPanel DockPanel.Dock="Right" Margin="20,0,0,0">
+				<StackPanel.Children>
+					<GroupBox Name="gbxInfos" Header="Informations" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
+						<StackPanel Orientation="Vertical">
+							<StackPanel.Children>
+								<TextBlock FontWeight="Bold" FontSize="14" Text="{Binding Groupe.Libelle}" />
+								<StackPanel Orientation="Horizontal">
+									<StackPanel.Children>
+										<TextBlock Text="Jour : " />
+										<TextBlock Text="{Binding Groupe.JourSemaine}" />
+									</StackPanel.Children>
+								</StackPanel>
+								<StackPanel Orientation="Horizontal">
+									<StackPanel.Children>
+										<TextBlock Text="Horaire : " />
+										<TextBlock Text="{Binding Path=Groupe.HeureDebut, StringFormat=&quot;HH:mm - &quot;}" />
+										<TextBlock Text="{Binding Path=Groupe.HeureFin, StringFormat=HH:mm}" />
+									</StackPanel.Children>
+								</StackPanel>
+								<StackPanel Orientation="Horizontal">
+									<StackPanel.Children>
+										<TextBlock Text="Nb. de places : " />
+										<TextBlock Text="{Binding Groupe.NbPlaces}" />
+									</StackPanel.Children>
+								</StackPanel>
+							</StackPanel.Children>
+						</StackPanel>
+					</GroupBox>
+					<GroupBox Name="gbxDivers" Header="Divers" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
+						<StackPanel Orientation="Vertical">
+							<StackPanel.Children>
+								<TextBlock TextWrapping="Wrap" Text="{Binding Groupe.Commentaire}" />
+							</StackPanel.Children>
+						</StackPanel>
+					</GroupBox>
+					<Separator Height="2" Background="#FF000000" />
+					<GroupBox Name="gbxStats" Header="Stats" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
+						<StackPanel Orientation="Vertical">
+							<StackPanel.Children>
+								<StackPanel Orientation="Horizontal">
+									<StackPanel.Children>
+										<TextBlock Text="Nb. groupes : " />
+										<TextBlock Text="{Binding ElementName=lbxGroupes, Path=Items.Count}" />
+									</StackPanel.Children>
+								</StackPanel>
+							</StackPanel.Children>
+						</StackPanel>
+					</GroupBox>
+				</StackPanel.Children>
+			</StackPanel>
+		</DockPanel.Children>
+	</DockPanel>
+</UserControl>

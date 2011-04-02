@@ -70,7 +70,14 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		private void InitialisationListeGroupes() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(GroupeDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
+				GroupeDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante()
+			);
+
+			foreach (Groupe lGroupe in defaultView) {
+				GroupeDao.GetInstance(ViewModelLocator.Context).Refresh(lGroupe);
+			}
+
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
 			this.GroupesSaisonCourante = defaultView;

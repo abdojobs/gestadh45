@@ -39,8 +39,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				&& !GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)) {
 				
 				GroupeDao.GetInstance(ViewModelLocator.Context).Create(this.Groupe);
-				Messenger.Default.Send<NotificationMessage<string>>(
-					new NotificationMessage<string>("ConsultationGroupes", "ChangementUserControl")
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(CodesUC.ConsultationGroupes)
 				);
 			}
 			else {
