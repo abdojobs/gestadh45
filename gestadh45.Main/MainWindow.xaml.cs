@@ -117,6 +117,10 @@ namespace gestadh45.Main
 				case CodesUC.ConsultationVilles:
 					this.contenu.Child = new ConsultationVillesUC();
 					break;
+
+				case CodesUC.FormulaireVille:
+					this.contenu.Child = new FormulaireVilleUC();
+					break;
 			}
 		}
 	}
