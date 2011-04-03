@@ -8,7 +8,7 @@ using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
-	public class ViewModelBaseFormulaire : ViewModelBase
+	public abstract class ViewModelBaseFormulaire : ViewModelBase
 	{
 		private bool mEstEdition;
 

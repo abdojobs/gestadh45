@@ -29,6 +29,7 @@ namespace gestadh45.service.Graphs
 
 				var q = from Inscription i in lInscriptions
 						where i.Groupe.ID == lGroupe.ID
+						orderby i.Groupe.JourSemaine.Numero ascending, i.Groupe.HeureDebut ascending, i.Groupe.MinuteDebut ascending
 						select i;
 
 				lDonnee.YValue = q.Count();
