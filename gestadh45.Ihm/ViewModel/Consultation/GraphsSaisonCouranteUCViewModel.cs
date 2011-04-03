@@ -40,7 +40,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public void ExecuteAfficherGraphCommand(StructCodesGraphs pCodeGraph)
 		{
-			switch (pCodeGraph.code) {
+			switch (pCodeGraph.Code) {
 				case CodesGraphs.RemplissageGroupes:
 					this.Graphique = GenerateurGraph.CreerGraphRemplissageGroupe(ViewModelLocator.Context);
 					break;
@@ -65,34 +65,36 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void initialisationListeGraphs()
 		{
+			this.ListeGraphs = new List<StructCodesGraphs>();
+
 			this.ListeGraphs.Add(new StructCodesGraphs
 			{
-				code = CodesGraphs.RemplissageGroupes,
-				libelle = ResGraphs.Titre_RemplissageGroupes
+				Code = CodesGraphs.RemplissageGroupes,
+				Libelle = ResGraphs.Titre_RemplissageGroupes
 			});
 
 			this.ListeGraphs.Add(new StructCodesGraphs
 			{
-				code = CodesGraphs.RepartitionSexes,
-				libelle = ResGraphs.Titre_RepartitionSexes
+				Code = CodesGraphs.RepartitionSexes,
+				Libelle = ResGraphs.Titre_RepartitionSexes
 			});
 
 			this.ListeGraphs.Add(new StructCodesGraphs
 			{
-				code = CodesGraphs.RepartitionMajeursMineurs,
-				libelle = ResGraphs.Titre_RepartitionMajeursMineurs
+				Code = CodesGraphs.RepartitionMajeursMineurs,
+				Libelle = ResGraphs.Titre_RepartitionMajeursMineurs
 			});
 
 			this.ListeGraphs.Add(new StructCodesGraphs
 			{
-				code = CodesGraphs.RepartitionResidentsExterieurs,
-				libelle = ResGraphs.Titre_RepartitionResidentsExterieurs
+				Code = CodesGraphs.RepartitionResidentsExterieurs,
+				Libelle = ResGraphs.Titre_RepartitionResidentsExterieurs
 			});
 
 			this.ListeGraphs.Add(new StructCodesGraphs
 			{
-				code = CodesGraphs.RepartitionAges,
-				libelle = ResGraphs.Titre_RepartitionAges
+				Code = CodesGraphs.RepartitionAges,
+				Libelle = ResGraphs.Titre_RepartitionAges
 			});
 		}
 

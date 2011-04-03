@@ -83,7 +83,7 @@ namespace gestadh45.Main
 					break;
 			}
 
-			lDialog.Filter = string.Format("fichiers.{0} (*{0})|*{0}", pMessage.ExtensionFichier);
+			lDialog.Filter = string.Format("fichiers {0} (*{0})|*{0}", pMessage.ExtensionFichier);
 			lDialog.RestoreDirectory = true;
 
 			if ((bool)lDialog.ShowDialog()) {
@@ -128,6 +128,10 @@ namespace gestadh45.Main
 
 				case CodesUC.FormulaireGroupe:
 					this.contenu.Child = new FormulaireGroupeUC();
+					break;
+
+				case CodesUC.GraphsSaisonCourante:
+					this.contenu.Child = new GraphsSaisonCouranteUC();
 					break;
 			}
 		}
