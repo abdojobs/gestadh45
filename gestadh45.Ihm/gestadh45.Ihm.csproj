@@ -60,7 +60,6 @@
     <Compile Include="SpecialMessages\DialogMessageConfirmation.cs" />
     <Compile Include="SpecialMessages\NotificationMessageActionFileDialog.cs" />
     <Compile Include="SpecialMessages\NotificationMessageChangementUC.cs" />
-    <Compile Include="SpecialMessages\NotificationMessageFormulaire.cs" />
     <Compile Include="SpecialMessages\NotificationMessageUtilisateur.cs" />
     <Compile Include="SpecialMessages\ResMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -90,6 +89,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ViewModelBaseConsultation.cs" />
     <Compile Include="ViewModel\Formulaire\ViewModelBaseFormulaire.cs" />
+    <Compile Include="ViewModel\ViewModelBaseUC.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>

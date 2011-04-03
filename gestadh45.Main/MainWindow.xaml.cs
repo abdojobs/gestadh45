@@ -4,6 +4,7 @@ using gestadh45.Ihm;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Main.UserControls.Consultation;
 using gestadh45.Main.UserControls.Formulaire;
+using gestadh45.Model;
 using Microsoft.Win32;
 
 namespace gestadh45.Main
@@ -16,7 +17,6 @@ namespace gestadh45.Main
 		public MainWindow() {
 			InitializeComponent();
 
-			// TODO s'abonner aux messages
 			Messenger.Default.Register<NotificationMessageUtilisateur>(
 				this, 
 				this.AfficherNotificationUtilisateur
@@ -35,6 +35,16 @@ namespace gestadh45.Main
 			Messenger.Default.Register<NotificationMessageChangementUC>(
 				this,
 				this.ChangerUC
+			);
+
+			Messenger.Default.Register<NotificationMessageChangementUC<Adherent>>(
+			    this,
+			    this.ChangerUCAvecParametre
+			);
+
+			Messenger.Default.Register<NotificationMessageChangementUC<Inscription>>(
+				this,
+				this.ChangerUCAvecParametre
 			);
 		}
 
@@ -136,6 +146,22 @@ namespace gestadh45.Main
 
 				case CodesUC.GraphsSaisonCourante:
 					this.contenu.Child = new GraphsSaisonCouranteUC();
+					break;
+			}
+		}
+
+		private void ChangerUCAvecParametre<T>(NotificationMessageChangementUC<T> pMessage) {
+			
+			// TODO réfléchir si on vérifie le type du paramètre passé au formulaire (ou alors vérif dans le constructeur du form?)
+			switch (pMessage.CodeUC) {
+				case CodesUC.FormulaireAdherent:
+					// TODO implémenter
+					// this.contenu.Child = new FormulaireAdherent((T)pMessage.Element);
+					break;
+
+				case CodesUC.FormulaireInscription:
+					// TODO implémenter
+					// this.contenu.Child = new FormulaireInscription((T)pMessage.Element);
 					break;
 			}
 		}

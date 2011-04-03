@@ -4,7 +4,7 @@ using GalaSoft.MvvmLight.Command;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
-	public abstract class ViewModelBaseConsultation : ViewModelBase
+	public abstract class ViewModelBaseConsultation : ViewModelBaseUC
 	{
 		protected ViewModelBaseConsultation() {
 		}
