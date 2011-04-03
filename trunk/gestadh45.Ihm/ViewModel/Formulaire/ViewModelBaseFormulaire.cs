@@ -8,7 +8,7 @@ using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
-	public abstract class ViewModelBaseFormulaire : ViewModelBase
+	public abstract class ViewModelBaseFormulaire : ViewModelBaseUC
 	{
 		private bool mEstEdition;
 
@@ -24,9 +24,17 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public virtual void ExecuteAnnulerCommand(string pCodeUc) {
-			Messenger.Default.Send<NotificationMessageChangementUC>(
-				new NotificationMessageChangementUC(pCodeUc)
-			);
+			if (this.ModeFenetre) {
+				// TODO remplacer par un message de fermeture de la fenetre
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(pCodeUc)
+				);
+			}
+			else {
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(pCodeUc)
+				);
+			}
 		}
 
 		public ICommand AnnulerCommand { get; set; }

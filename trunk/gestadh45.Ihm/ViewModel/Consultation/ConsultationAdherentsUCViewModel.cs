@@ -24,11 +24,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.CreateInscrireCommand();
 		}
 
-		public bool CanExecuteEditerCommand(string pCodeUC) {
+		public bool CanExecuteEditerCommand() {
 			return (this.Adherent != null);
 		}
 
-		public bool CanExecuteInscrireCommand(string pCodeUC) {
+		public bool CanExecuteInscrireCommand() {
 			return (this.Adherent != null);
 		}
 
@@ -47,14 +47,14 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		private void CreateEditerCommand() {
-			this.EditerCommand = new RelayCommand<string>(
+			this.EditerCommand = new RelayCommand(
 				this.ExecuteEditerCommand, 
 				this.CanExecuteEditerCommand
 			);
 		}
 
 		private void CreateInscrireCommand() {
-			this.InscrireCommand = new RelayCommand<string>(
+			this.InscrireCommand = new RelayCommand(
 				this.ExecuteInscrireCommand, 
 				this.CanExecuteInscrireCommand
 			);
@@ -79,12 +79,22 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		public void ExecuteEditerCommand(string pCodeUC) {
-			Messenger.Default.Send<NotificationMessageFormulaire<string, Adherent>>(new NotificationMessageFormulaire<string, Adherent>(pCodeUC, TypesNotification.ChangementUC, this.Adherent));
+		public void ExecuteEditerCommand() {
+			Messenger.Default.Send<NotificationMessageChangementUC<Adherent>>(
+				new NotificationMessageChangementUC<Adherent>(
+					CodesUC.FormulaireAdherent, 
+					this.Adherent
+				)
+			);
 		}
 
-		public void ExecuteInscrireCommand(string pCodeUC) {
-			Messenger.Default.Send<NotificationMessageFormulaire<string, Adherent>>(new NotificationMessageFormulaire<string, Adherent>(pCodeUC, TypesNotification.ChangementUC, this.Adherent));
+		public void ExecuteInscrireCommand() {
+			Messenger.Default.Send<NotificationMessageChangementUC<Adherent>>(
+				new NotificationMessageChangementUC<Adherent>(
+					CodesUC.FormulaireInscription,
+					this.Adherent
+				)
+			);
 		}
 
 		public void ExecuteSupprimerAdherentCommand() {
