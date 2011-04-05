@@ -104,8 +104,6 @@ namespace gestadh45.Main
 		}
 
 		private void ChangerUC(NotificationMessageChangementUC pMessage) {
-			// TODO implémenter
-			
 			switch (pMessage.CodeUC) {
 				case CodesUC.ConsultationInfosClub:
 				default:
@@ -140,6 +138,14 @@ namespace gestadh45.Main
 					this.contenu.Child = new FormulaireAdherentUC();
 					break;
 
+				case CodesUC.ConsultationInscriptions:
+					this.contenu.Child = new ConsultationInscriptionsUC();
+					break;
+
+				case CodesUC.FormulaireInscription:
+					this.contenu.Child = new FormulaireInscriptionUC();
+					break;
+
 				case CodesUC.ConsultationGroupes:
 					this.contenu.Child = new ConsultationGroupesUC();
 					break;
@@ -157,19 +163,17 @@ namespace gestadh45.Main
 		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Adherent> pMessage) {
 			switch (pMessage.CodeUC) {
 				case CodesUC.FormulaireAdherent:
-						this.contenu.Child = new FormulaireAdherentUC((Adherent)pMessage.Element);
+					this.contenu.Child = new FormulaireAdherentUC((Adherent)pMessage.Element);
 					break;
 
 				case CodesUC.FormulaireInscription:
-					// TODO implémenter
-					// this.contenu.Child = new FormulaireInscription((T)pMessage.Element);
+					this.contenu.Child = new FormulaireInscriptionUC((Adherent)pMessage.Element);
 					break;
 			}
 		}
 
 		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Inscription> pMessage) {
-			// TODO implémenter
-			// this.contenu.Child = new FormulaireInscription((T)pMessage.Element);
+			this.contenu.Child = new FormulaireInscriptionUC((Inscription)pMessage.Element);
 		}
 	}
 }

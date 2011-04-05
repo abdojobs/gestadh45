@@ -49,14 +49,18 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {
 
 				InscriptionDao.GetInstance(ViewModelLocator.Context).Update(this.Inscription);
-				Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>("ConsultationInscriptions", "ChangementUserControl"));
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(CodesUC.ConsultationInscriptions)
+				);
 			}
 			else if (this.VerifierSaisie() 
 				&& !base.EstEdition 
 				&& !InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {
 
 				InscriptionDao.GetInstance(ViewModelLocator.Context).Create(this.Inscription);
-				Messenger.Default.Send<NotificationMessage<string>>(new NotificationMessage<string>("ConsultationInscriptions", "ChangementUserControl"));
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(CodesUC.ConsultationInscriptions)
+				);
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(

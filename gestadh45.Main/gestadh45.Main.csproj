@@ -84,6 +84,9 @@
     <Compile Include="UserControls\Consultation\ConsultationInfosClubUC.xaml.cs">
       <DependentUpon>ConsultationInfosClubUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Consultation\ConsultationInscriptionsUC.xaml.cs">
+      <DependentUpon>ConsultationInscriptionsUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Consultation\ConsultationSaisonsUC.xaml.cs">
       <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,9 @@
     </Compile>
     <Compile Include="UserControls\Formulaire\FormulaireInfosClubUC.xaml.cs">
       <DependentUpon>FormulaireInfosClubUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireInscriptionUC.xaml.cs">
+      <DependentUpon>FormulaireInscriptionUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Formulaire\FormulaireSaisonUC.xaml.cs">
       <DependentUpon>FormulaireSaisonUC.xaml</DependentUpon>
@@ -136,6 +142,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Consultation\ConsultationInscriptionsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Consultation\ConsultationSaisonsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Formulaire\FormulaireInfosClubUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Formulaire\FormulaireInscriptionUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -202,6 +216,10 @@
     <ProjectReference Include="..\gestadh45.Model\gestadh45.Model.csproj">
       <Project>{30A7733E-EAFD-4469-BDC8-7332A92E6585}</Project>
       <Name>gestadh45.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.service\gestadh45.service.csproj">
+      <Project>{F965A907-9B56-412D-AF80-69BDDD9B3AF8}</Project>
+      <Name>gestadh45.service</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

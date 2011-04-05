@@ -47,6 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Documents\CodesDocument.cs" />
     <Compile Include="Documents\DonneesDocument.cs" />
     <Compile Include="Documents\DonneesDocumentAdaptateur.cs" />
     <Compile Include="Documents\GenerateurDocumentBase.cs" />
