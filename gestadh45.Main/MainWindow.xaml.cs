@@ -136,6 +136,10 @@ namespace gestadh45.Main
 					this.contenu.Child = new ConsultationAdherentsUC();
 					break;
 
+				case CodesUC.FormulaireAdherent:
+					this.contenu.Child = new FormulaireAdherentUC();
+					break;
+
 				case CodesUC.ConsultationGroupes:
 					this.contenu.Child = new ConsultationGroupesUC();
 					break;
@@ -150,13 +154,10 @@ namespace gestadh45.Main
 			}
 		}
 
-		private void ChangerUCAvecParametre<T>(NotificationMessageChangementUC<T> pMessage) {
-			
-			// TODO réfléchir si on vérifie le type du paramètre passé au formulaire (ou alors vérif dans le constructeur du form?)
+		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Adherent> pMessage) {
 			switch (pMessage.CodeUC) {
 				case CodesUC.FormulaireAdherent:
-					// TODO implémenter
-					// this.contenu.Child = new FormulaireAdherent((T)pMessage.Element);
+						this.contenu.Child = new FormulaireAdherentUC((Adherent)pMessage.Element);
 					break;
 
 				case CodesUC.FormulaireInscription:
@@ -164,6 +165,11 @@ namespace gestadh45.Main
 					// this.contenu.Child = new FormulaireInscription((T)pMessage.Element);
 					break;
 			}
+		}
+
+		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Inscription> pMessage) {
+			// TODO implémenter
+			// this.contenu.Child = new FormulaireInscription((T)pMessage.Element);
 		}
 	}
 }

@@ -67,7 +67,7 @@
 				</StackPanel>
 				<Separator Margin="0,20,0,20" />
 				<Button Name="btnModifier" ToolTip="Modifier les informations" HorizontalAlignment="Center" Width="35" Height="35" CommandParameter="{x:Static ihm:CodesUC.FormulaireInfosClub}" Command="{Binding Path=EditerCommand}">
-					<Image Source="/GestAdh45.Main;component/Images/btn_edit.png" />
+					<Image Source="/gestadh45.Main;component/Images/btn_edit.png" />
 				</Button>
 			</StackPanel.Children>
 		</StackPanel>

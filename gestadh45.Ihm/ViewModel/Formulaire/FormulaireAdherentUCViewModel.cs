@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -18,8 +19,26 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public FormulaireAdherentUCViewModel() {
 			this.Adherent = new Adherent();
+
 			this.Adherent.Adresse = new Adresse();
+			this.Adherent.Adresse.Libelle = string.Empty;
+
+			this.Adherent.Adresse.Ville = new Ville();
+			this.Adherent.Adresse.Ville.Libelle = string.Empty;
+			this.Adherent.Adresse.Ville.CodePostal = string.Empty;
+
 			this.Adherent.Contact = new Contact();
+			this.Adherent.Contact.Telephone1 = string.Empty;
+			this.Adherent.Contact.Telephone2 = string.Empty;
+			this.Adherent.Contact.Telephone3 = string.Empty;
+			this.Adherent.Contact.Mail1 = string.Empty;
+			this.Adherent.Contact.Mail2 = string.Empty;
+			this.Adherent.Contact.Mail3 = string.Empty;
+			this.Adherent.Contact.SiteWeb = string.Empty;
+
+			this.Adherent.DateNaissance = DateTime.Now;
+			this.Adherent.Commentaire = string.Empty;
+
 			this.InitialisationListeVilles();
 			this.InitialisationListeSexes();
 			base.CreateAnnulerCommand();
@@ -51,8 +70,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				&& AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)) {
 				
 				AdherentDao.GetInstance(ViewModelLocator.Context).Update(this.Adherent);
-				Messenger.Default.Send<NotificationMessage<string>>(
-					new NotificationMessage<string>("ConsultationAdherents", "ChangementUserControl")
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(CodesUC.ConsultationAdherents)
 				);
 			}
 			else if (this.VerifierSaisie() 
@@ -60,8 +79,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				&& !AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)) {
 
 				AdherentDao.GetInstance(ViewModelLocator.Context).Create(this.Adherent);
-				Messenger.Default.Send<NotificationMessage<string>>(
-					new NotificationMessage<string>("ConsultationAdherents", "ChangementUserControl")
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(CodesUC.ConsultationAdherents)
 				);
 			}
 			else {
@@ -134,6 +153,18 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			if (this.Adherent.DateNaissance == null) {
 				this.mErreurs.Add(ResErreurs.Adherent_DateNaissanceObligatoire);
+			}
+
+			if (this.Adherent.Sexe == null) {
+				this.mErreurs.Add(ResErreurs.Adherent_SexeObligatoire);
+			}
+
+			if (string.IsNullOrWhiteSpace(this.Adherent.Adresse.Libelle)) {
+				this.mErreurs.Add(ResErreurs.Adherent_AdresseObligatoire);
+			}
+
+			if (this.Adherent.Adresse.Ville == null) {
+				this.mErreurs.Add(ResErreurs.Adherent_VilleObligatoire);
 			}
 
 			if (!this.EstEdition 

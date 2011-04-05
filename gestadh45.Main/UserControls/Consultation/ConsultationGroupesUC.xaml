@@ -25,12 +25,12 @@
 					<Button ToolTip="Ajouter un nouveau groupe" Width="35" Height="35" Margin="0,0,0,10" 
 						CommandParameter="{x:Static ihm:CodesUC.FormulaireGroupe}" 
 						Command="{Binding Path=CreerCommand}">
-						<Image Source="/GestAdh45.Main;component/Images/btn_plus.png" />
+						<Image Source="/gestadh45.Main;component/Images/btn_plus.png" />
 					</Button>
 					<Button ToolTip="Supprimer le groupe sélectionné" Width="35" Height="35" Margin="0,10,0,0" 
 						Command="{Binding Path=SupprimerGroupeCommand}" 
 						CommandParameter="{Binding ElementName=lbxGroupes, Path=SelectedItem}">
-						<Image Source="/GestAdh45.Main;component/Images/btn_moins.png" />
+						<Image Source="/gestadh45.Main;component/Images/btn_moins.png" />
 					</Button>
 				</StackPanel.Children>
 			</StackPanel>

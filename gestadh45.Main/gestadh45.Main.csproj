@@ -44,6 +44,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\Libs\System.Windows.Interactivity.dll</HintPath>
@@ -91,6 +92,9 @@
     </Compile>
     <Compile Include="UserControls\Consultation\GraphsSaisonCouranteUC.xaml.cs">
       <DependentUpon>GraphsSaisonCouranteUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireAdherentUC.xaml.cs">
+      <DependentUpon>FormulaireAdherentUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Formulaire\FormulaireGroupeUC.xaml.cs">
       <DependentUpon>FormulaireGroupeUC.xaml</DependentUpon>
@@ -144,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Formulaire\FormulaireAdherentUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Formulaire\FormulaireGroupeUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -190,6 +198,10 @@
     <ProjectReference Include="..\gestadh45.Ihm\gestadh45.Ihm.csproj">
       <Project>{7D1DAFDD-8A59-4F52-9B5F-9D01AF975565}</Project>
       <Name>gestadh45.Ihm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.Model\gestadh45.Model.csproj">
+      <Project>{30A7733E-EAFD-4469-BDC8-7332A92E6585}</Project>
+      <Name>gestadh45.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

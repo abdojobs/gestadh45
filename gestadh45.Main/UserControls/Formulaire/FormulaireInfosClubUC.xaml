@@ -14,56 +14,67 @@
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
 						<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox Width="250" Text="{Binding InfosClub.Nom}" />
+						<TextBox Width="250" MaxLength="50"
+								 Text="{Binding InfosClub.Nom}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
 						<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox TextWrapping="Wrap" Width="250" Text="{Binding InfosClub.Adresse.Libelle}" />
+						<TextBox TextWrapping="Wrap" Width="250" MaxLength="100"
+								 Text="{Binding InfosClub.Adresse.Libelle}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
 						<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox Width="250" Text="{Binding InfosClub.Adresse.Ville}" />
+						<ComboBox Width="250"
+							ItemsSource="{Binding Path=Villes}" 
+							SelectedItem="{Binding Path=InfosClub.Adresse.Ville}" />
+						<!--TODO prévoir d'ajouter le bouton d'ajout rapide de ville-->
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
 						<TextBlock Text="Tel. : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox Width="250" Text="{Binding InfosClub.Contact.Telephone1}" />
+						<TextBox Width="250" MaxLength="10"
+								 Text="{Binding InfosClub.Contact.Telephone1}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
 						<TextBlock Text="Email : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox Width="250" Text="{Binding InfosClub.Contact.Mail1}" />
+						<TextBox Width="250" MaxLength="100"
+								 Text="{Binding InfosClub.Contact.Mail1}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
 						<TextBlock Text="Web : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox Width="250" Text="{Binding InfosClub.Contact.SiteWeb}" />
+						<TextBox Width="250" MaxLength="100"
+								 Text="{Binding InfosClub.Contact.SiteWeb}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
 						<TextBlock Text="N° association : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox Width="250" Text="{Binding InfosClub.Numero}" />
+						<TextBox Width="250" MaxLength="20"
+								 Text="{Binding InfosClub.Numero}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
 						<TextBlock Text="SIREN : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox Width="250" Text="{Binding InfosClub.Siren}" />
+						<TextBox Width="250" MaxLength="9"
+								 Text="{Binding InfosClub.Siren}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
 						<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="150" />
 						<TextBlock FontSize="14" Text="{Binding InfosClub.Siren, StringFormat='{}{0} - '}" />
-						<TextBox Width="50" Text="{Binding InfosClub.NIC}" />
+						<TextBox Width="50" MaxLength="4"
+								 Text="{Binding InfosClub.NIC}" />
 					</StackPanel.Children>
 				</StackPanel>
 				
@@ -74,13 +85,13 @@
 						CommandParameter="{x:Static ihm:CodesUC.ConsultationInfosClub}" 
 						Command="{Binding Path=AnnulerCommand}"
 						Margin="0,0,10,0">
-						<Image Source="/GestAdh45.Main;component/Images/btn_annuler.png" />
+						<Image Source="/gestadh45.Main;component/Images/btn_annuler.png" />
 					</Button>
 					
 					<Button Name="btnEnregistrer" ToolTip="Enregistrer les informations" HorizontalAlignment="Center" Width="35" Height="35" 
 						Command="{Binding Path=EnregistrerCommand}"
 						Margin="10,0,0,0">
-						<Image Source="/GestAdh45.Main;component/Images/btn_enregistrer.png" />
+						<Image Source="/gestadh45.Main;component/Images/btn_enregistrer.png" />
 					</Button>
 				</StackPanel>
 				
