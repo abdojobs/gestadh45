@@ -27,7 +27,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.CreateGenererDocumentCommand();
 		}
 
-		public bool CanExecuteEditerCommand(string pCodeUC) {
+		public bool CanExecuteEditerCommand() {
 			return (this.Inscription != null);
 		}
 
@@ -49,7 +49,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		protected void CreateEditerCommand() {
-			this.EditerCommand = new RelayCommand<string>(
+			this.EditerCommand = new RelayCommand(
 				this.ExecuteEditerCommand, 
 				this.CanExecuteEditerCommand
 			);
@@ -75,7 +75,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public void ExecuteEditerCommand(string pCodeUC) {
+		public void ExecuteEditerCommand() {
 			Messenger.Default.Send<NotificationMessageChangementUC<Inscription>>(
 				new NotificationMessageChangementUC<Inscription>(
 					CodesUC.FormulaireInscription,
@@ -84,8 +84,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		public void ExecuteGenererDocumentCommand(string pCodeDocument)
-		{
+		public void ExecuteGenererDocumentCommand(string pCodeDocument)	{
 			if (this.Inscription != null) {
 				NotificationMessageActionFileDialog<string> message =
 					new NotificationMessageActionFileDialog<string>(
