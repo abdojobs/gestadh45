@@ -61,6 +61,15 @@ namespace gestadh45.Ihm.ViewModel.Formulaire {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;adresse est obligatoire.
+        /// </summary>
+        internal static string Adherent_AdresseObligatoire {
+            get {
+                return ResourceManager.GetString("Adherent_AdresseObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à La date de naissance est obligatoire.
         /// </summary>
         internal static string Adherent_DateNaissanceObligatoire {
@@ -93,6 +102,24 @@ namespace gestadh45.Ihm.ViewModel.Formulaire {
         internal static string Adherent_PrenomObligatoire {
             get {
                 return ResourceManager.GetString("Adherent_PrenomObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le sexe est obligatoire.
+        /// </summary>
+        internal static string Adherent_SexeObligatoire {
+            get {
+                return ResourceManager.GetString("Adherent_SexeObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à La ville est obligatoire.
+        /// </summary>
+        internal static string Adherent_VilleObligatoire {
+            get {
+                return ResourceManager.GetString("Adherent_VilleObligatoire", resourceCulture);
             }
         }
         

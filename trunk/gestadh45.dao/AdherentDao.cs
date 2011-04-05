@@ -28,7 +28,6 @@ namespace gestadh45.dao
 			Instance.Context.Attach(pAdherent);
 			Instance.Context.DeleteObject(pAdherent.Adresse);
 			Instance.Context.DeleteObject(pAdherent.Contact);
-			Instance.Context.DeleteObject(pAdherent.Inscriptions);
 			Instance.Context.DeleteObject(pAdherent);
 			Instance.Context.SaveChanges();
 		}

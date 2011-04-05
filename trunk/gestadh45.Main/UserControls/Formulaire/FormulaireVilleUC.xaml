@@ -15,11 +15,11 @@
 					<Button ToolTip="Annuler" Width="32" Height="32" Margin="0,0,10,0" 
 							CommandParameter="{x:Static ihm:CodesUC.ConsultationVilles}" 
 							Command="{Binding AnnulerCommand}">
-						<Image Source="/GestAdh45.Main;component/Images/btn_annuler.png" />
+						<Image Source="/gestadh45.Main;component/Images/btn_annuler.png" />
 					</Button>
 					<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="32" Height="32" Margin="10,0,0,0" 
 							Command="{Binding EnregistrerCommand}">
-						<Image Source="/GestAdh45.Main;component/Images/btn_enregistrer.png" />
+						<Image Source="/gestadh45.Main;component/Images/btn_enregistrer.png" />
 					</Button>
 				</StackPanel.Children>
 			</StackPanel>
