@@ -54,7 +54,7 @@
 							</Grid.RowDefinitions>
 							<Grid.Children>
 								<TextBlock Grid.Row="0" Grid.Column="0" Text="Nom : " VerticalAlignment="Center" />
-								<TextBox Grid.Row="0" Grid.Column="1" MaxLength="50"
+								<TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" CharacterCasing="Upper"
 										 Text="{Binding Path=Adherent.Nom}" />
 								<TextBlock Grid.Row="1" Grid.Column="0" Text="Prénom : " VerticalAlignment="Center" />
 								<TextBox Grid.Row="1" Grid.Column="1" MaxLength="50"

@@ -7,7 +7,7 @@
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm" 
              mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireInscriptionVMStatic, Source={StaticResource Locator}}" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="600">
 	<DockPanel>
 		<DockPanel.Children>
 			<TextBlock Text="Inscription" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
@@ -80,15 +80,15 @@
 								<RowDefinition Height="auto" />
 								<RowDefinition Height="auto" />
 							</Grid.RowDefinitions>
-							<Grid.Children>
-								<TextBlock Grid.Row="0" Grid.Column="0" Text="Saison : " VerticalAlignment="Center" />
-								<TextBlock Name="valSaison" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" 
-										   Text="{Binding ElementName=cmbGroupes, Path=SelectedItem.Saison}" />
-								<TextBlock Grid.Row="1" Grid.Column="0" Text="Groupe : " VerticalAlignment="Center" />
-								<ComboBox Name="cmbGroupes" Grid.Row="1" Grid.Column="1" Margin="0,5,0,5" 
+							<Grid.Children>								
+								<TextBlock Grid.Row="0" Grid.Column="0" Text="Groupe : " VerticalAlignment="Center" />
+								<ComboBox Name="cmbGroupes" Grid.Row="0" Grid.Column="1" Margin="0,5,0,5" 
 										  ItemsSource="{Binding Path=GroupesSaisonCourante}" 
 										  SelectedItem="{Binding Path=Inscription.Groupe}" />
-								<TextBlock Grid.Row="2" Grid.Column="0" Text="Certificat : " VerticalAlignment="Center" />
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Saison : " VerticalAlignment="Center" />
+                                <TextBlock Name="valSaison" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" 
+										   Text="{Binding ElementName=cmbGroupes, Path=SelectedItem.Saison}" />
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Certificat : " VerticalAlignment="Center" />
 								<CheckBox Grid.Row="2" Grid.Column="1" Margin="10,5,0,5" 
 										  IsChecked="{Binding Path=Inscription.CertificatMedicalRemisBool}" />
 								<TextBlock Text="Montant : " Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" />
@@ -108,10 +108,9 @@
 								<RowDefinition />
 							</Grid.RowDefinitions>
 							<Grid.Children>
-								<TextBlock Name="txtCommentaire" Grid.Row="0" Grid.Column="0" Text="Divers : " />
-								<TextBox Name="tbxCommentaire" Grid.Row="1" Grid.Column="0" AcceptsReturn="True">
-									<Binding Path="Inscription.Commentaire" />
-								</TextBox>
+								<TextBlock Grid.Row="0" Grid.Column="0" Text="Divers : " />
+                                <TextBox Grid.Row="1" Grid.Column="0" AcceptsReturn="True" 
+										 Text="{Binding Path=Inscription.Commentaire}" />
 							</Grid.Children>
 						</Grid>
 					</GroupBox>
