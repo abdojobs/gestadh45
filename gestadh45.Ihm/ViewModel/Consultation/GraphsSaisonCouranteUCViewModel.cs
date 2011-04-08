@@ -12,6 +12,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private List<StructCodesGraphs> mListeGraphs;
 		private Graphique mGraphique;
 
+		/// <summary>
+		/// Obtient/Définit le graphique à afficher
+		/// </summary>
 		public Graphique Graphique {
 			get {
 				return this.mGraphique;
@@ -24,6 +27,23 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				}
 			}
 		}
+
+		/// <summary>
+		/// Obtient/Définit la liste des graphs
+		/// </summary>
+		public List<StructCodesGraphs> ListeGraphs {
+			get {
+				return this.mListeGraphs;
+			}
+			set {
+				if (this.mListeGraphs != value) {
+					this.mListeGraphs = value;
+					this.RaisePropertyChanged("ListeGraphs");
+				}
+			}
+		}
+
+		public ICommand AfficherGraphCommand { get; set; }
 
 		public GraphsSaisonCouranteUCViewModel()
 		{
@@ -96,24 +116,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				Code = CodesGraphs.RepartitionAges,
 				Libelle = ResGraphs.Titre_RepartitionAges
 			});
-		}
-
-		public ICommand AfficherGraphCommand { get; set; }
-
-		public List<StructCodesGraphs> ListeGraphs
-		{
-			get
-			{
-				return this.mListeGraphs;
-			}
-			set
-			{
-				if (this.mListeGraphs != value)
-				{
-					this.mListeGraphs = value;
-					this.RaisePropertyChanged("ListeGraphs");
-				}
-			}
 		}
 
 		public override void ExecuteCreerCommand() {

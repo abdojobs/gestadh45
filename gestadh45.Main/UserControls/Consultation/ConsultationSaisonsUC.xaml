@@ -7,7 +7,7 @@
 			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
              mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationSaisonsVMStatic, Source={StaticResource Locator}}" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="600">
 	<DockPanel Margin="5,5,5,5">
 		<DockPanel.Children>
 			<TextBlock Text="Saisons" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
@@ -25,7 +25,7 @@
 						<Image Source="/gestadh45.Main;component/Images/btn_plus.png" />
 					</Button>
 					<Button ToolTip="Supprimer la saison sélectionnée" Width="35" Height="35" Margin="0,10,0,0" 
-							Command="{Binding Path=SupprimerSaisonCommand}">
+							Command="{Binding Path=SupprimerCommand}">
 						<Image Source="/gestadh45.Main;component/Images/btn_moins.png" />
 					</Button>
 				</StackPanel.Children>

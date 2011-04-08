@@ -70,6 +70,12 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 		}
 
+		public override void ExecuteFenetreCommand(string pCodeUC) {
+			base.ExecuteFenetreCommand(pCodeUC);
+
+			this.InitialisationListeVilles();
+		}
+
 		private void InitialisationListeVilles() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(VilleDao.GetInstance(ViewModelLocator.Context).List());
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));

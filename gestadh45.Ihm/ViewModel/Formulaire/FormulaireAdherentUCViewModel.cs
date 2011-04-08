@@ -113,6 +113,12 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 		}
 
+		public override void ExecuteFenetreCommand(string pCodeUC) {
+			base.ExecuteFenetreCommand(pCodeUC);
+
+			this.InitialisationListeVilles();
+		}
+
 		private void InitialisationListeSexes() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(SexeDao.GetInstance(ViewModelLocator.Context).List());
 			defaultView.SortDescriptions.Add(new SortDescription("LibelleCourt", ListSortDirection.Descending));

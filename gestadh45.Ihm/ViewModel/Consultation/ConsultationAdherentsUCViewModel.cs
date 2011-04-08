@@ -15,29 +15,60 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Adherent mAdherent;
 		private ICollectionView mAdherents;
 
+		/// <summary>
+		/// Obtient/Définit l'adhérent à afficher
+		/// </summary>
+		public Adherent Adherent {
+			get {
+				return this.mAdherent;
+			}
+			set {
+				if (this.mAdherent != value) {
+					this.mAdherent = value;
+					this.RaisePropertyChanged("Adherent");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit la liste des adhérents
+		/// </summary>
+		public ICollectionView Adherents {
+			get {
+				return this.mAdherents;
+			}
+			set {
+				if (this.mAdherents != value) {
+					this.mAdherents = value;
+					this.RaisePropertyChanged("Adherents");
+				}
+			}
+		}
+
+		public ICommand AfficherDetailsAdherentCommand { get; set; }
+		public ICommand InscrireCommand { get; set; }
+
 		public ConsultationAdherentsUCViewModel() {
 			this.InitialisationListeAdherents();
+
 			this.CreateAfficherDetailsAdherentCommand();
-			this.CreateSupprimerAdherentCommand();
-			base.CreateCreerCommand();
-			this.CreateEditerCommand();
 			this.CreateInscrireCommand();
 		}
 
-		public bool CanExecuteEditerCommand() {
+		public override bool CanExecuteEditerCommand() {
 			return (this.Adherent != null);
+		}
+
+		public override bool CanExecuteSupprimerCommand() {
+			return (
+				this.Adherent != null
+				&& AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)
+				&& !AdherentDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Adherent)
+				);
 		}
 
 		public bool CanExecuteInscrireCommand() {
 			return (this.Adherent != null);
-		}
-
-		public bool CanExecuteSupprimerAdherentCommand() {
-			return (
-				this.Adherent != null 
-				&& AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent) 
-				&& !AdherentDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Adherent)
-				);
 		}
 
 		private void CreateAfficherDetailsAdherentCommand() {
@@ -46,24 +77,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		private void CreateEditerCommand() {
-			this.EditerCommand = new RelayCommand(
-				this.ExecuteEditerCommand, 
-				this.CanExecuteEditerCommand
-			);
-		}
-
 		private void CreateInscrireCommand() {
 			this.InscrireCommand = new RelayCommand(
 				this.ExecuteInscrireCommand, 
 				this.CanExecuteInscrireCommand
-			);
-		}
-
-		private void CreateSupprimerAdherentCommand() {
-			this.SupprimerAdherentCommand = new RelayCommand(
-				this.ExecuteSupprimerAdherentCommand, 
-				this.CanExecuteSupprimerAdherentCommand
 			);
 		}
 
@@ -79,13 +96,25 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		public void ExecuteEditerCommand() {
+		public override void ExecuteEditerCommand() {
 			Messenger.Default.Send<NotificationMessageChangementUC<Adherent>>(
 				new NotificationMessageChangementUC<Adherent>(
 					CodesUC.FormulaireAdherent, 
 					this.Adherent
 				)
 			);
+		}
+
+		public override void ExecuteSupprimerCommand() {
+			if (this.Adherent != null) {
+				DialogMessageConfirmation message = new DialogMessageConfirmation(
+					ResMessages.MessageConfirmSupprAdherent,
+					this.ExecuteSupprimerAdherentCommandCallBack
+				);
+
+				Messenger.Default.Send<DialogMessageConfirmation>(message);
+				this.CreateSupprimerCommand();
+			}
 		}
 
 		public void ExecuteInscrireCommand() {
@@ -97,18 +126,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		public void ExecuteSupprimerAdherentCommand() {
-			if (this.Adherent != null) {
-				DialogMessageConfirmation message = new DialogMessageConfirmation(
-					ResMessages.MessageConfirmSupprAdherent, 
-					this.ExecuteSupprimerAdherentCommandCallBack
-				);
-
-				Messenger.Default.Send<DialogMessageConfirmation>(message);
-				this.CreateSupprimerAdherentCommand();
-			}
-		}
-
+		/// <summary>
+		/// Méthode appellée à la réception de la réponse au message de confirmation de suppression
+		/// </summary>
+		/// <param name="pResult">Résultat de la demande de confirmation</param>
 		private void ExecuteSupprimerAdherentCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
 				AdherentDao.GetInstance(ViewModelLocator.Context).Delete(this.Adherent);
@@ -123,37 +144,5 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
 			this.Adherents = defaultView;
 		}
-
-		public Adherent Adherent {
-			get {
-				return this.mAdherent;
-			}
-			set {
-				if (this.mAdherent != value) {
-					this.mAdherent = value;
-					this.RaisePropertyChanged("Adherent");
-				}
-			}
-		}
-
-		public ICollectionView Adherents {
-			get {
-				return this.mAdherents;
-			}
-			set {
-				if (this.mAdherents != value) {
-					this.mAdherents = value;
-					this.RaisePropertyChanged("Adherents");
-				}
-			}
-		}
-
-		public ICommand AfficherDetailsAdherentCommand { get; set; }
-
-		public ICommand EditerCommand { get; set; }
-
-		public ICommand InscrireCommand { get; set; }
-
-		public ICommand SupprimerAdherentCommand { get; set; }
 	}
 }

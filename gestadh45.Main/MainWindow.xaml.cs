@@ -185,7 +185,9 @@ namespace gestadh45.Main
 		private void OuvrirFenetreUC(NotificationMessageOuvertureFenetre pMessage) {
 			switch (pMessage.CodeUC) {
 				case CodesUC.FormulaireVille:
-					UCWindow lWindow = new UCWindow(new FormulaireVilleUC());
+					FormulaireVilleUC lUC = new FormulaireVilleUC();
+					((FormulaireVilleUCViewModel)lUC.DataContext).ModeFenetre = true;
+					UCWindow lWindow = new UCWindow(lUC);
 					lWindow.ShowDialog();
 					break;
 			}
