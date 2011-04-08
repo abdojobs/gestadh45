@@ -14,10 +14,45 @@ namespace gestadh45.Ihm.ViewModel
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
 
+		/// <summary>
+		/// Obtient/Définit l'information sur le datasource actuel
+		/// </summary>
+		public string InfosDataSource {
+			get {
+				return this.mInfosDataSource;
+			}
+			set {
+				if (this.mInfosDataSource != value) {
+					this.mInfosDataSource = value;
+					this.RaisePropertyChanged("InfosDataSource");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit l'information sur la saison courante
+		/// </summary>
+		public string InfosSaisonCourante {
+			get {
+				return this.mInfosSaisonCourante;
+			}
+			set {
+				if (this.mInfosSaisonCourante != value) {
+					this.mInfosSaisonCourante = value;
+					this.RaisePropertyChanged("InfosSaisonCourante");
+				}
+			}
+		}
+
+		public ICommand AboutBoxCommand { get; set; }
+		public ICommand AfficherUCCommand { get; internal set; }
+		public ICommand ChangerDataSourceCommand { get; internal set; }
+
 		public MainViewModel() {
 			this.CreateAfficherUCCommand();
 			this.CreateChangerDataSourceCommand();
 			this.CreateAboutBoxCommand();
+
 			Messenger.Default.Register<NotificationMessage<Saison>>(
 				this, 
 				this.NotificationChangementSaisonCourante
@@ -67,8 +102,8 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public void ExecuteAboutBoxCommand() {
-			Messenger.Default.Send<NotificationMessage>(
-				new NotificationMessage(TypesNotification.AboutBox)
+			Messenger.Default.Send<NotificationMessageAboutBox>(
+				new NotificationMessageAboutBox()
 			);
 		}
 
@@ -92,36 +127,6 @@ namespace gestadh45.Ihm.ViewModel
 		private void NotificationChangementSaisonCourante(NotificationMessage<Saison> msg) {
 			if (msg.Notification.Equals(TypesNotification.ChangementSaisonCourante)) {
 				this.InfosSaisonCourante = msg.Content.ToShortString();
-			}
-		}
-
-		public ICommand AboutBoxCommand { get; set; }
-
-		public ICommand AfficherUCCommand { get; internal set; }
-
-		public ICommand ChangerDataSourceCommand { get; internal set; }
-
-		public string InfosDataSource {
-			get {
-				return this.mInfosDataSource;
-			}
-			set {
-				if (this.mInfosDataSource != value) {
-					this.mInfosDataSource = value;
-					this.RaisePropertyChanged("InfosDataSource");
-				}
-			}
-		}
-
-		public string InfosSaisonCourante {
-			get {
-				return this.mInfosSaisonCourante;
-			}
-			set {
-				if (this.mInfosSaisonCourante != value) {
-					this.mInfosSaisonCourante = value;
-					this.RaisePropertyChanged("InfosSaisonCourante");
-				}
 			}
 		}
 	}

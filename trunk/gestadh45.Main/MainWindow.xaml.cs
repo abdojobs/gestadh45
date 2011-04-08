@@ -52,11 +52,15 @@ namespace gestadh45.Main
 				this,
 				this.OuvrirFenetreUC
 			);
+
+			Messenger.Default.Register<NotificationMessageAboutBox>(
+				this,
+				this.AfficherAboutBox
+			);
 		}
 
-		private void AfficherAboutBox() {
-			// TODO télécharge about box et ajouter au projet
-			//new WPFAboutBox(this).ShowDialog();
+		private void AfficherAboutBox(NotificationMessageAboutBox pMessage) {
+			new WPFAboutBox(this).ShowDialog();
 		}
 
 		private void AfficherNotificationUtilisateur(NotificationMessageUtilisateur pMessage) {
