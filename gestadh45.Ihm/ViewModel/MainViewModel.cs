@@ -73,7 +73,6 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
-			// TODO faire un refresh dans chaque constructeur de VM
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(pCodeUC)
 			);

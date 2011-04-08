@@ -6,6 +6,7 @@ using gestadh45.Main.UserControls.Consultation;
 using gestadh45.Main.UserControls.Formulaire;
 using gestadh45.Model;
 using Microsoft.Win32;
+using gestadh45.Ihm.ViewModel.Formulaire;
 
 namespace gestadh45.Main
 {

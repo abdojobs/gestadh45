@@ -20,7 +20,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			this.InfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
 			InfosClubDao.GetInstance(ViewModelLocator.Context).Refresh(this.InfosClub);
-
+			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
 			base.CreateAnnulerCommand();
 			this.CreateEnregistrerCommand();
 		}
@@ -46,9 +46,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie()) {
 				InfosClubDao.GetInstance(ViewModelLocator.Context).Update(this.InfosClub);
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(CodesUC.ConsultationInfosClub)
-				);
+
+				this.SuiteEnregistrementOk();
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(

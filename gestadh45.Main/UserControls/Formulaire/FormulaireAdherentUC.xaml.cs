@@ -15,9 +15,9 @@ namespace gestadh45.Main.UserControls.Formulaire
 
 		public FormulaireAdherentUC(Adherent pAdherent) {
 			InitializeComponent();
-			FormulaireAdherentUCViewModel formulaireAdherentUCViewModel = base.DataContext as FormulaireAdherentUCViewModel;
-			formulaireAdherentUCViewModel.Adherent = pAdherent;
-			formulaireAdherentUCViewModel.EstEdition = true;
+			FormulaireAdherentUCViewModel lVm = base.DataContext as FormulaireAdherentUCViewModel;
+			lVm.Adherent = pAdherent;
+			lVm.EstEdition = true;
 		}
 	}
 }
