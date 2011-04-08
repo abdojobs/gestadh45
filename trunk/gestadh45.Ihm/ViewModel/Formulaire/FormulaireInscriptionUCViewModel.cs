@@ -17,7 +17,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private Inscription mInscription;
 
 		public FormulaireInscriptionUCViewModel() {
-			this.Inscription = new Inscription();
+            this.Inscription = new Inscription();
+			this.Inscription.Commentaire = string.Empty;
+
 			this.InitialisationListeAdherents();
 			this.InitialisationListeGroupes();
 			base.CreateAnnulerCommand();
@@ -44,6 +46,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public void ExecuteEnregistrerCommand() {
+			if (this.Inscription.Commentaire == null) {
+				this.Inscription.Commentaire = string.Empty;
+			}
+
 			if (this.VerifierSaisie() 
 				&& base.EstEdition 
 				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {

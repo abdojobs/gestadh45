@@ -21,11 +21,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.Adherent = new Adherent();
 
 			this.Adherent.Adresse = new Adresse();
-			this.Adherent.Adresse.Libelle = string.Empty;
-
-			this.Adherent.Adresse.Ville = new Ville();
-			this.Adherent.Adresse.Ville.Libelle = string.Empty;
-			this.Adherent.Adresse.Ville.CodePostal = string.Empty;
 
 			this.Adherent.Contact = new Contact();
 			this.Adherent.Contact.Telephone1 = string.Empty;
@@ -159,11 +154,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				this.mErreurs.Add(ResErreurs.Adherent_SexeObligatoire);
 			}
 
-			if (string.IsNullOrWhiteSpace(this.Adherent.Adresse.Libelle)) {
+			if (this.Adherent.Adresse == null || string.IsNullOrWhiteSpace(this.Adherent.Adresse.Libelle)) {
 				this.mErreurs.Add(ResErreurs.Adherent_AdresseObligatoire);
 			}
 
-			if (this.Adherent.Adresse.Ville == null) {
+			if (this.Adherent.Adresse != null && this.Adherent.Adresse.Ville == null) {
 				this.mErreurs.Add(ResErreurs.Adherent_VilleObligatoire);
 			}
 
