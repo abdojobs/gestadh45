@@ -15,12 +15,44 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Saison mSaison;
 		private ICollectionView mSaisons;
 
+		/// <summary>
+		/// Obtient/Définit la saison à afficher
+		/// </summary>
+		public Saison Saison {
+			get {
+				return this.mSaison;
+			}
+			set {
+				if (this.mSaison != value) {
+					this.mSaison = value;
+					this.RaisePropertyChanged("Saison");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit la liste des saisons
+		/// </summary>
+		public ICollectionView Saisons {
+			get {
+				return this.mSaisons;
+			}
+			set {
+				if (this.mSaisons != value) {
+					this.mSaisons = value;
+					this.RaisePropertyChanged("Saisons");
+				}
+			}
+		}
+
+		public ICommand AfficherDetailsSaisonCommand { get; set; }
+		public ICommand DefinirSaisonCouranteCommand { get; set; }
+
 		public ConsultationSaisonsUCViewModel() {
 			this.InitialisationListeSaisons();
+
 			this.CreateDefinirSaisonCouranteCommand();
 			this.CreateAfficherDetailsSaisonCommand();
-			this.CreateSupprimerSaisonCommand();
-			this.CreateCreerCommand();
 		}
 
 		public bool CanExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
@@ -30,7 +62,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				);
 		}
 
-		public bool CanExecuteSupprimerSaisonCommand() {
+		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Saison != null 
 				&& SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison) 
@@ -48,13 +80,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.DefinirSaisonCouranteCommand = new RelayCommand<Saison>(
 				this.ExecuteDefinirSaisonCouranteCommand, 
 				this.CanExecuteDefinirSaisonCouranteCommand
-			);
-		}
-
-		private void CreateSupprimerSaisonCommand() {
-			this.SupprimerSaisonCommand = new RelayCommand(
-				this.ExecuteSupprimerSaisonCommand, 
-				this.CanExecuteSupprimerSaisonCommand
 			);
 		}
 
@@ -90,7 +115,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public void ExecuteSupprimerSaisonCommand() {
+		public override void ExecuteSupprimerCommand() {
 			if (this.Saison != null) {
 				DialogMessageConfirmation message = new DialogMessageConfirmation(
 					ResMessages.MessageConfirmSupprSaison, 
@@ -99,7 +124,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
-			this.CreateSupprimerSaisonCommand();
+			this.CreateSupprimerCommand();
 		}
 
 		private void ExecuteSupprimerSaisonCommandCallBack(MessageBoxResult pResult) {
@@ -122,35 +147,5 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			defaultView.SortDescriptions.Add(new SortDescription("AnneeDebut", ListSortDirection.Ascending));
 			this.Saisons = defaultView;
 		}
-
-		public ICommand AfficherDetailsSaisonCommand { get; set; }
-
-		public ICommand DefinirSaisonCouranteCommand { get; set; }
-
-		public Saison Saison {
-			get {
-				return this.mSaison;
-			}
-			set {
-				if (this.mSaison != value) {
-					this.mSaison = value;
-					this.RaisePropertyChanged("Saison");
-				}
-			}
-		}
-
-		public ICollectionView Saisons {
-			get {
-				return this.mSaisons;
-			}
-			set {
-				if (this.mSaisons != value) {
-					this.mSaisons = value;
-					this.RaisePropertyChanged("Saisons");
-				}
-			}
-		}
-
-		public ICommand SupprimerSaisonCommand { get; set; }
 	}
 }

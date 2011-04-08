@@ -8,7 +8,7 @@
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
              mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationGroupesVMStatic, Source={StaticResource Locator}}" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="400" d:DesignWidth="600">
 	<DockPanel Margin="5,5,5,5">
 		<DockPanel.Children>
 			<TextBlock Text="Groupes pour la saison courante" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
@@ -28,8 +28,7 @@
 						<Image Source="/gestadh45.Main;component/Images/btn_plus.png" />
 					</Button>
 					<Button ToolTip="Supprimer le groupe sélectionné" Width="35" Height="35" Margin="0,10,0,0" 
-						Command="{Binding Path=SupprimerGroupeCommand}" 
-						CommandParameter="{Binding ElementName=lbxGroupes, Path=SelectedItem}">
+						Command="{Binding Path=SupprimerCommand}">
 						<Image Source="/gestadh45.Main;component/Images/btn_moins.png" />
 					</Button>
 				</StackPanel.Children>

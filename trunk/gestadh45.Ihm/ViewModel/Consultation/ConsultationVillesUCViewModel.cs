@@ -15,14 +15,45 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Ville mVille;
 		private ICollectionView mVilles;
 
-		public ConsultationVillesUCViewModel() {
-			this.InitialisationListeVilles();
-			this.CreateAfficherDetailsVilleCommand();
-			this.CreateSupprimerVilleCommand();
-			base.CreateCreerCommand();
+		/// <summary>
+		/// Obtient/Définit la ville à afficher
+		/// </summary>
+		public Ville Ville {
+			get {
+				return this.mVille;
+			}
+			set {
+				if (this.mVille != value) {
+					this.mVille = value;
+					this.RaisePropertyChanged("Ville");
+				}
+			}
 		}
 
-		public bool CanExecuteSupprimerVilleCommand() {
+		/// <summary>
+		/// Obtient/Définit la liste des villes
+		/// </summary>
+		public ICollectionView Villes {
+			get {
+				return this.mVilles;
+			}
+			set {
+				if (this.mVilles != value) {
+					this.mVilles = value;
+					this.RaisePropertyChanged("Villes");
+				}
+			}
+		}
+
+		public ICommand AfficherDetailsVilleCommand { get; set; }
+
+		public ConsultationVillesUCViewModel() {
+			this.InitialisationListeVilles();
+
+			this.CreateAfficherDetailsVilleCommand();
+		}
+
+		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Ville != null
 				&& VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)
@@ -36,20 +67,13 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		private void CreateSupprimerVilleCommand() {
-			this.SupprimerVilleCommand = new RelayCommand(
-				this.ExecuteSupprimerVilleCommand, 
-				this.CanExecuteSupprimerVilleCommand
-			);
-		}
-
 		public void ExecuteAfficherDetailsVilleCommand(Ville pVille) {
 			if (pVille != null) {
 				this.Ville = pVille;
 			}
 		}
 
-		public void ExecuteSupprimerVilleCommand() {
+		public override void ExecuteSupprimerCommand() {
 			if (this.Ville != null) {
 				DialogMessageConfirmation message = new DialogMessageConfirmation(
 					ResMessages.MessageConfirmSupprVille, 
@@ -58,7 +82,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
-			this.CreateSupprimerVilleCommand();
+			this.CreateSupprimerCommand();
 		}
 
 		private void ExecuteSupprimerVilleCommandCallBack(MessageBoxResult pResult) {
@@ -80,34 +104,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
-		}
-
-		public ICommand AfficherDetailsVilleCommand { get; set; }
-
-		public ICommand SupprimerVilleCommand { get; set; }
-
-		public Ville Ville {
-			get {
-				return this.mVille;
-			}
-			set {
-				if (this.mVille != value) {
-					this.mVille = value;
-					this.RaisePropertyChanged("Ville");
-				}
-			}
-		}
-
-		public ICollectionView Villes {
-			get {
-				return this.mVilles;
-			}
-			set {
-				if (this.mVilles != value) {
-					this.mVilles = value;
-					this.RaisePropertyChanged("Villes");
-				}
-			}
 		}
 
 		public override void ExecuteCreerCommand() {

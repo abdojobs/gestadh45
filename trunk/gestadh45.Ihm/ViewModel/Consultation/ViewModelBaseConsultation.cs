@@ -1,12 +1,18 @@
 ﻿using System.Windows.Input;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public abstract class ViewModelBaseConsultation : ViewModelBaseUC
 	{
+		public ICommand CreerCommand { get; set; }
+		public ICommand EditerCommand { get; set; }
+		public ICommand SupprimerCommand { get; set; }
+		
 		protected ViewModelBaseConsultation() {
+			this.CreateCreerCommand();
+			this.CreateEditerCommand();
+			this.CreateSupprimerCommand();
 		}
 
 		protected void CreateCreerCommand() {
@@ -15,8 +21,30 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		public abstract void ExecuteCreerCommand();
+		protected void CreateEditerCommand() {
+			this.EditerCommand = new RelayCommand(
+				this.ExecuteEditerCommand,
+				this.CanExecuteEditerCommand
+			);
+		}
 
-		public ICommand CreerCommand { get; set; }
+		protected void CreateSupprimerCommand() {
+			this.SupprimerCommand = new RelayCommand(
+				this.ExecuteSupprimerCommand,
+				this.CanExecuteSupprimerCommand
+			);
+		}
+
+		public virtual bool CanExecuteEditerCommand() {
+			return false;
+		}
+
+		public virtual bool CanExecuteSupprimerCommand() {
+			return true;
+		}
+
+		public virtual void ExecuteCreerCommand() { }
+		public virtual void ExecuteEditerCommand() { }
+		public virtual void ExecuteSupprimerCommand() { }
 	}
 }

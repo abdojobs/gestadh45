@@ -15,14 +15,46 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Groupe mGroupe;
 		private ICollectionView mGroupesSaisonCourante;
 
-		public ConsultationGroupesUCViewModel() {
-			this.InitialisationListeGroupes();
-			this.CreateAfficherDetailsGroupeCommand();
-			this.CreateSupprimerGroupeCommand();
-			base.CreateCreerCommand();
+		/// <summary>
+		/// Obtient/Définit le groupe à afficher
+		/// </summary>
+		public Groupe Groupe {
+			get {
+				return this.mGroupe;
+			}
+			set {
+				if (this.mGroupe != value) {
+					this.mGroupe = value;
+					this.RaisePropertyChanged("Groupe");
+				}
+			}
 		}
 
-		public bool CanExecuteSupprimerGroupeCommand() {
+		/// <summary>
+		/// Obtient/Définit la liste des groupes de la saison courante
+		/// </summary>
+		public ICollectionView GroupesSaisonCourante {
+			get {
+				return this.mGroupesSaisonCourante;
+			}
+			set {
+				if (this.mGroupesSaisonCourante != value) {
+					this.mGroupesSaisonCourante = value;
+					this.RaisePropertyChanged("GroupesSaisonCourante");
+				}
+			}
+		}
+
+		public ICommand AfficherDetailsGroupeCommand { get; set; }
+		public ICommand SupprimerGroupeCommand { get; set; }
+
+		public ConsultationGroupesUCViewModel() {
+			this.InitialisationListeGroupes();
+
+			this.CreateAfficherDetailsGroupeCommand();
+		}
+
+		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Groupe != null 
 				&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe) 
@@ -36,20 +68,13 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		private void CreateSupprimerGroupeCommand() {
-			this.SupprimerGroupeCommand = new RelayCommand(
-				this.ExecuteSupprimerGroupeCommand, 
-				this.CanExecuteSupprimerGroupeCommand
-			);
-		}
-
 		public void ExecuteAfficherDetailsGroupeCommand(Groupe pGroupe) {
 			if (pGroupe != null) {
 				this.Groupe = pGroupe;
 			}
 		}
 
-		public void ExecuteSupprimerGroupeCommand() {
+		public override void ExecuteSupprimerCommand() {
 			if (this.Groupe != null) {
 				DialogMessageConfirmation message = new DialogMessageConfirmation(
 					ResMessages.MessageConfirmSupprGroupe, 
@@ -58,7 +83,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
-			this.CreateSupprimerGroupeCommand();
+			this.CreateSupprimerCommand();
 		}
 
 		private void ExecuteSupprimerGroupeCommandCallBack(MessageBoxResult pResult) {
@@ -82,34 +107,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
 			this.GroupesSaisonCourante = defaultView;
 		}
-
-		public ICommand AfficherDetailsGroupeCommand { get; set; }
-
-		public Groupe Groupe {
-			get {
-				return this.mGroupe;
-			}
-			set {
-				if (this.mGroupe != value) {
-					this.mGroupe = value;
-					this.RaisePropertyChanged("Groupe");
-				}
-			}
-		}
-
-		public ICollectionView GroupesSaisonCourante {
-			get {
-				return this.mGroupesSaisonCourante;
-			}
-			set {
-				if (this.mGroupesSaisonCourante != value) {
-					this.mGroupesSaisonCourante = value;
-					this.RaisePropertyChanged("GroupesSaisonCourante");
-				}
-			}
-		}
-
-		public ICommand SupprimerGroupeCommand { get; set; }
 
 		public override void ExecuteCreerCommand() {
 			Messenger.Default.Send<NotificationMessageChangementUC>(

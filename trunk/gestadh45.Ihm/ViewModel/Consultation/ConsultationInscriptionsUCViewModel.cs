@@ -18,16 +18,47 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Inscription mInscription;
 		private ICollectionView mInscriptionsSaisonCourante;
 
+		/// <summary>
+		/// Obtient/Définit l'inscription à afficher
+		/// </summary>
+		public Inscription Inscription {
+			get {
+				return this.mInscription;
+			}
+			set {
+				if (this.mInscription != value) {
+					this.mInscription = value;
+					this.RaisePropertyChanged("Inscription");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit la liste des inscriptions de la saison courante
+		/// </summary>
+		public ICollectionView InscriptionsSaisonCourante {
+			get {
+				return this.mInscriptionsSaisonCourante;
+			}
+			set {
+				if (this.mInscriptionsSaisonCourante != value) {
+					this.mInscriptionsSaisonCourante = value;
+					this.RaisePropertyChanged("InscriptionsSaisonCourante");
+				}
+			}
+		}
+
+		public ICommand AfficherDetailsInscriptionCommand { get; set; }
+		public ICommand GenererDocumentCommand { get; set; }
+
 		public ConsultationInscriptionsUCViewModel() {
 			this.InitialisationListeInscriptions();
 			this.CreateAfficherDetailsInscriptionCommand();
-			this.CreateSupprimerInscriptionCommand();
-			this.CreateEditerCommand();
-			base.CreateCreerCommand();
+
 			this.CreateGenererDocumentCommand();
 		}
 
-		public bool CanExecuteEditerCommand() {
+		public override bool CanExecuteEditerCommand() {
 			return (this.Inscription != null);
 		}
 
@@ -35,7 +66,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			return (this.Inscription != null);
 		}
 
-		public bool CanExecuteSupprimerInscriptionCommand() {
+		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Inscription != null 
 				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)
@@ -48,24 +79,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		protected void CreateEditerCommand() {
-			this.EditerCommand = new RelayCommand(
-				this.ExecuteEditerCommand, 
-				this.CanExecuteEditerCommand
-			);
-		}
-
 		private void CreateGenererDocumentCommand() {
 			this.GenererDocumentCommand = new RelayCommand<string>(
 				this.ExecuteGenererDocumentCommand, 
 				this.CanExecuteGenererDocumentCommand
-			);
-		}
-
-		private void CreateSupprimerInscriptionCommand() {
-			this.SupprimerInscriptionCommand = new RelayCommand(
-				this.ExecuteSupprimerInscriptionCommand, 
-				this.CanExecuteSupprimerInscriptionCommand
 			);
 		}
 
@@ -75,7 +92,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public void ExecuteEditerCommand() {
+		public override void ExecuteEditerCommand() {
 			Messenger.Default.Send<NotificationMessageChangementUC<Inscription>>(
 				new NotificationMessageChangementUC<Inscription>(
 					CodesUC.FormulaireInscription,
@@ -130,7 +147,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public void ExecuteSupprimerInscriptionCommand() {
+		public override void ExecuteSupprimerCommand() {
 			if (this.Inscription != null) {
 				DialogMessageConfirmation message = 
 					new DialogMessageConfirmation(
@@ -140,7 +157,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
-			this.CreateSupprimerInscriptionCommand();
+			this.CreateSupprimerCommand();
 		}
 
 		private void ExecuteSupprimerInscriptionCommandCallBack(MessageBoxResult pResult) {
@@ -161,38 +178,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			defaultView.SortDescriptions.Add(new SortDescription("Adherent.Prenom", ListSortDirection.Ascending));
 			this.InscriptionsSaisonCourante = defaultView;
 		}
-
-		public ICommand AfficherDetailsInscriptionCommand { get; set; }
-
-		public ICommand EditerCommand { get; set; }
-
-		public ICommand GenererDocumentCommand { get; set; }
-
-		public Inscription Inscription {
-			get {
-				return this.mInscription;
-			}
-			set {
-				if (this.mInscription != value) {
-					this.mInscription = value;
-					this.RaisePropertyChanged("Inscription");
-				}
-			}
-		}
-
-		public ICollectionView InscriptionsSaisonCourante {
-			get {
-				return this.mInscriptionsSaisonCourante;
-			}
-			set {
-				if (this.mInscriptionsSaisonCourante != value) {
-					this.mInscriptionsSaisonCourante = value;
-					this.RaisePropertyChanged("InscriptionsSaisonCourante");
-				}
-			}
-		}
-
-		public ICommand SupprimerInscriptionCommand { get; set; }
 
 		private string CreerNomFichierDocument(string pCodeDocument) {
 			string lRetour = string.Empty;
