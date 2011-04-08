@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
-      <HintPath>..\..\..\sharedlibs\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+      <HintPath>..\Libs\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
     </Reference>
     <Reference Include="GalaSoft.MvvmLight.WPF4">
-      <HintPath>..\..\..\sharedlibs\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+      <HintPath>..\Libs\GalaSoft.MvvmLight.WPF4.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
