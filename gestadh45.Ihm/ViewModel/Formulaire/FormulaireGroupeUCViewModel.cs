@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -15,34 +13,51 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private Groupe mGroupe;
 		private ICollectionView mJoursSemaine;
 
+		/// <summary>
+		/// Obtient/Définit l'objet du formulaire
+		/// </summary>
+		public Groupe Groupe {
+			get {
+				return this.mGroupe;
+			}
+			set {
+				if (this.mGroupe != value) {
+					this.mGroupe = value;
+					this.RaisePropertyChanged("Groupe");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit la liste des jours de la semaine
+		/// </summary>
+		public ICollectionView JoursSemaine {
+			get {
+				return this.mJoursSemaine;
+			}
+			set {
+				if (this.mJoursSemaine != value) {
+					this.mJoursSemaine = value;
+					this.RaisePropertyChanged("JoursSemaine");
+				}
+			}
+		}
+
 		public FormulaireGroupeUCViewModel() {
 			this.Groupe = new Groupe();
 			this.Groupe.Commentaire = string.Empty;
 			this.Groupe.Saison = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante();
 			this.InitialisationListeJoursSemaine();
-			base.CreateAnnulerCommand();
-			this.CreateEnregistrerCommand();
 			this.CodeUCOrigine = CodesUC.ConsultationGroupes;
 		}
 
-		public bool CanExecuteEnregistrerCommand() {
-			return true;
-		}
-
-		private void CreateEnregistrerCommand() {
-			this.EnregistrerCommand = new RelayCommand(
-				this.ExecuteEnregistrerCommand, 
-				this.CanExecuteEnregistrerCommand
-			);
-		}
-
-		public void ExecuteEnregistrerCommand() {
+		public override void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie() 
 				&& !GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)) {
 				
 				GroupeDao.GetInstance(ViewModelLocator.Context).Create(this.Groupe);
 
-				this.SuiteEnregistrementOk();
+				base.ExecuteEnregistrerCommand();
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(
@@ -57,33 +72,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.JoursSemaine = defaultView;
 		}
 
-		public ICommand EnregistrerCommand { get; set; }
-
-		public Groupe Groupe {
-			get {
-				return this.mGroupe;
-			}
-			set {
-				if (this.mGroupe != value) {
-					this.mGroupe = value;
-					this.RaisePropertyChanged("Groupe");
-				}
-			}
-		}
-
-		public ICollectionView JoursSemaine {
-			get {
-				return this.mJoursSemaine;
-			}
-			set {
-				if (this.mJoursSemaine != value) {
-					this.mJoursSemaine = value;
-					this.RaisePropertyChanged("JoursSemaine");
-				}
-			}
-		}
-
-		private bool VerifierSaisie() {
+		protected override bool VerifierSaisie() {
 			this.mErreurs = new List<string>();
 
 			if (string.IsNullOrWhiteSpace(this.Groupe.Libelle)) {

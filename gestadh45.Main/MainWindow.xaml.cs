@@ -47,6 +47,11 @@ namespace gestadh45.Main
 				this,
 				this.ChangerUCAvecParametre
 			);
+
+			Messenger.Default.Register<NotificationMessageOuvertureFenetre>(
+				this,
+				this.OuvrirFenetreUC
+			);
 		}
 
 		private void AfficherAboutBox() {
@@ -175,6 +180,15 @@ namespace gestadh45.Main
 
 		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Inscription> pMessage) {
 			this.contenu.Child = new FormulaireInscriptionUC((Inscription)pMessage.Element);
+		}
+
+		private void OuvrirFenetreUC(NotificationMessageOuvertureFenetre pMessage) {
+			switch (pMessage.CodeUC) {
+				case CodesUC.FormulaireVille:
+					UCWindow lWindow = new UCWindow(new FormulaireVilleUC());
+					lWindow.ShowDialog();
+					break;
+			}
 		}
 	}
 }

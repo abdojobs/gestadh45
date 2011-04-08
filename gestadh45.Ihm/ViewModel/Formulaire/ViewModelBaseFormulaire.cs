@@ -18,48 +18,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public string CodeUCOrigine { get; set; }
 
-		public ICommand AnnulerCommand { get; set; }
-
-		protected ViewModelBaseFormulaire() {
-			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
-		}
-
-		protected void CreateAnnulerCommand() {
-			this.AnnulerCommand = new RelayCommand<string>(
-				this.ExecuteAnnulerCommand
-			);
-		}
-
-		public virtual void ExecuteAnnulerCommand(string pCodeUc) {
-			if (this.ModeFenetre) {
-				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
-					new NotificationMessageFermetureFenetre()
-				);
-			}
-			else {
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(pCodeUc)
-				);
-			}
-		}
-
 		/// <summary>
-		/// Méthode appellee une fois l'enregistrement terminé avec succes
-		/// Envoie le message de fermeture de fenetre ou de changement UC en fonction du cas d'utilisation
+		/// Obtient/Définit un booléen indiquant si on est en mode édition (True) ou création (False)
 		/// </summary>
-		protected void SuiteEnregistrementOk() {
-			if (this.ModeFenetre) {
-				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
-					new NotificationMessageFermetureFenetre()
-				);
-			}
-			else {
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(this.CodeUCOrigine)
-				);
-			}
-		}
-
 		public bool EstEdition {
 			get {
 				return this.mEstEdition;
@@ -84,6 +45,90 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				}
 
 				return lSb.ToString();
+			}
+		}
+
+		public ICommand AnnulerCommand { get; set; }
+		public ICommand EnregistrerCommand { get; set; }
+		public ICommand FenetreCommand { get; set; }
+
+		public ViewModelBaseFormulaire() {
+			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
+
+			this.CreateAnnulerCommand();
+			this.CreateEnregistrerCommand();
+			this.CreateFenetreCommand();
+		}
+
+		protected void CreateAnnulerCommand() {
+			this.AnnulerCommand = new RelayCommand<string>(
+				this.ExecuteAnnulerCommand
+			);
+		}
+
+		protected void CreateEnregistrerCommand() {
+			this.EnregistrerCommand = new RelayCommand(
+				this.ExecuteEnregistrerCommand,
+				this.CanExecuteEnregistrerCommand
+			);
+		}
+
+		protected void CreateFenetreCommand() {
+			this.FenetreCommand = new RelayCommand<string>(
+				this.ExecuteFenetreCommand,
+				this.CanExecuteFenetreCommand
+			);
+		}
+
+		public virtual void ExecuteAnnulerCommand(string pCodeUc) {
+			if (this.ModeFenetre) {
+				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
+					new NotificationMessageFermetureFenetre()
+				);
+			}
+			else {
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(pCodeUc)
+				);
+			}
+		}
+
+		public virtual bool CanExecuteEnregistrerCommand() {
+			return true;
+		}
+
+		public virtual void ExecuteEnregistrerCommand() {
+			this.SuiteEnregistrementOk();
+		}
+
+		public virtual bool CanExecuteFenetreCommand(string pCodeUC) {
+			return true;
+		}
+
+		public virtual void ExecuteFenetreCommand(string pCodeUC) {
+			Messenger.Default.Send<NotificationMessageOuvertureFenetre>(
+				new NotificationMessageOuvertureFenetre(pCodeUC)
+			);
+		}
+
+		protected virtual bool VerifierSaisie() {
+			return true;
+		}
+
+		/// <summary>
+		/// Méthode appellee une fois l'enregistrement terminé avec succes
+		/// Envoie le message de fermeture de fenetre ou de changement UC en fonction du cas d'utilisation
+		/// </summary>
+		private void SuiteEnregistrementOk() {
+			if (this.ModeFenetre) {
+				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
+					new NotificationMessageFermetureFenetre()
+				);
+			}
+			else {
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(this.CodeUCOrigine)
+				);
 			}
 		}
 	}

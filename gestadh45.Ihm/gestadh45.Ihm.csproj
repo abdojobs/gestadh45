@@ -61,6 +61,7 @@
     <Compile Include="SpecialMessages\NotificationMessageActionFileDialog.cs" />
     <Compile Include="SpecialMessages\NotificationMessageChangementUC.cs" />
     <Compile Include="SpecialMessages\NotificationMessageFermetureFenetre.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageOuvertureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageUtilisateur.cs" />
     <Compile Include="SpecialMessages\ResMessages.Designer.cs">
       <AutoGen>True</AutoGen>
