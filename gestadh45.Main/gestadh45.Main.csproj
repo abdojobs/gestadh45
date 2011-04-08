@@ -117,6 +117,9 @@
     <Compile Include="UserControls\Formulaire\FormulaireVilleUC.xaml.cs">
       <DependentUpon>FormulaireVilleUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WPFAboutBox.xaml.cs">
+      <DependentUpon>WPFAboutBox.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -186,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Formulaire\FormulaireVilleUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFAboutBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,6 +307,11 @@
       <Project>{F965A907-9B56-412D-AF80-69BDDD9B3AF8}</Project>
       <Name>gestadh45.service</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AboutLogo.png">
+      <SubType>Image</SubType>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
