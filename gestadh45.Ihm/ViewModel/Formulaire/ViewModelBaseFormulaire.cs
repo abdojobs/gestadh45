@@ -98,7 +98,16 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public virtual void ExecuteEnregistrerCommand() {
-			this.SuiteEnregistrementOk();
+			if (this.ModeFenetre) {
+				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
+					new NotificationMessageFermetureFenetre()
+				);
+			}
+			else {
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(this.CodeUCOrigine)
+				);
+			}
 		}
 
 		public virtual bool CanExecuteFenetreCommand(string pCodeUC) {
@@ -116,20 +125,12 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		/// <summary>
-		/// Méthode appellee une fois l'enregistrement terminé avec succes
-		/// Envoie le message de fermeture de fenetre ou de changement UC en fonction du cas d'utilisation
+		/// Envoie un message d'erreur avec le contenu de la propriété ChaineErreurs
 		/// </summary>
-		private void SuiteEnregistrementOk() {
-			if (this.ModeFenetre) {
-				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
-					new NotificationMessageFermetureFenetre()
-				);
-			}
-			else {
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(this.CodeUCOrigine)
-				);
-			}
+		protected void EnvoyerMessageErreur() {
+			Messenger.Default.Send<NotificationMessageUtilisateur>(
+				new NotificationMessageUtilisateur(TypesNotification.Erreur, this.ChaineErreurs)
+			);
 		}
 	}
 }
