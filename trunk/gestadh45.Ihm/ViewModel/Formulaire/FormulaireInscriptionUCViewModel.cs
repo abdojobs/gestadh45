@@ -100,9 +100,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
-				Messenger.Default.Send<NotificationMessageUtilisateur>(
-					new NotificationMessageUtilisateur(TypesNotification.Erreur, this.ChaineErreurs)
-				);
+				this.EnvoyerMessageErreur();
 			}
 		}
 
