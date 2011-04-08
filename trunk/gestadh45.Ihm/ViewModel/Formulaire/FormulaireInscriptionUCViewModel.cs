@@ -22,6 +22,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			this.InitialisationListeAdherents();
 			this.InitialisationListeGroupes();
+
+			this.CodeUCOrigine = CodesUC.ConsultationInscriptions;
 			base.CreateAnnulerCommand();
 			this.CreateEnregistrerCommand();
 			base.EstEdition = false;
@@ -55,18 +57,16 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {
 
 				InscriptionDao.GetInstance(ViewModelLocator.Context).Update(this.Inscription);
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(CodesUC.ConsultationInscriptions)
-				);
+
+				this.SuiteEnregistrementOk();
 			}
 			else if (this.VerifierSaisie() 
 				&& !base.EstEdition 
 				&& !InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {
 
 				InscriptionDao.GetInstance(ViewModelLocator.Context).Create(this.Inscription);
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(CodesUC.ConsultationInscriptions)
-				);
+
+				this.SuiteEnregistrementOk();
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(

@@ -15,17 +15,17 @@ namespace gestadh45.Main.UserControls.Formulaire
 
 		public FormulaireInscriptionUC(Inscription pInscription) {
 			this.InitializeComponent();
-			FormulaireInscriptionUCViewModel formulaireInscriptionUCViewModel = base.DataContext as FormulaireInscriptionUCViewModel;
-			formulaireInscriptionUCViewModel.Inscription = pInscription;
-			formulaireInscriptionUCViewModel.EstEdition = true;
+			FormulaireInscriptionUCViewModel lVm = base.DataContext as FormulaireInscriptionUCViewModel;
+			lVm.Inscription = pInscription;
+			lVm.EstEdition = true;
 		}
 
 		public FormulaireInscriptionUC(Adherent pAdherent) {
 			this.InitializeComponent();
-			FormulaireInscriptionUCViewModel formulaireInscriptionUCViewModel = base.DataContext as FormulaireInscriptionUCViewModel;
+			FormulaireInscriptionUCViewModel lVm = base.DataContext as FormulaireInscriptionUCViewModel;
 			Inscription inscription = new Inscription();
 			inscription.Adherent = pAdherent;
-			formulaireInscriptionUCViewModel.Inscription = inscription;
+			lVm.Inscription = inscription;
 		}
 	}
 }

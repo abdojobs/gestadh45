@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm.SpecialMessages;
@@ -14,7 +13,15 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		protected List<string> mErreurs;
 
+		/// <summary>
+		/// Obtient/Définit le code de l'UC "parent" de ce formulaire
+		/// </summary>
+		public string CodeUCOrigine { get; set; }
+
+		public ICommand AnnulerCommand { get; set; }
+
 		protected ViewModelBaseFormulaire() {
+			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
 		}
 
 		protected void CreateAnnulerCommand() {
@@ -25,9 +32,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public virtual void ExecuteAnnulerCommand(string pCodeUc) {
 			if (this.ModeFenetre) {
-				// TODO remplacer par un message de fermeture de la fenetre
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(pCodeUc)
+				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
+					new NotificationMessageFermetureFenetre()
 				);
 			}
 			else {
@@ -37,7 +43,22 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 		}
 
-		public ICommand AnnulerCommand { get; set; }
+		/// <summary>
+		/// Méthode appellee une fois l'enregistrement terminé avec succes
+		/// Envoie le message de fermeture de fenetre ou de changement UC en fonction du cas d'utilisation
+		/// </summary>
+		protected void SuiteEnregistrementOk() {
+			if (this.ModeFenetre) {
+				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
+					new NotificationMessageFermetureFenetre()
+				);
+			}
+			else {
+				Messenger.Default.Send<NotificationMessageChangementUC>(
+					new NotificationMessageChangementUC(this.CodeUCOrigine)
+				);
+			}
+		}
 
 		public bool EstEdition {
 			get {

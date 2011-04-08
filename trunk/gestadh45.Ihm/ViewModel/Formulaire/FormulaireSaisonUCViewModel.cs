@@ -22,6 +22,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				EstSaisonCourante = 0L
 			};
 			this.Saison = saison;
+
+			this.CodeUCOrigine = CodesUC.ConsultationSaisons;
 			base.CreateAnnulerCommand();
 			this.CreateEnregistrerCommand();
 		}
@@ -40,9 +42,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie() && !SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison)) {
 				SaisonDao.GetInstance(ViewModelLocator.Context).Create(this.Saison);
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(CodesUC.ConsultationSaisons)
-				);
+
+				this.SuiteEnregistrementOk();
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(

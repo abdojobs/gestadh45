@@ -22,6 +22,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.InitialisationListeJoursSemaine();
 			base.CreateAnnulerCommand();
 			this.CreateEnregistrerCommand();
+			this.CodeUCOrigine = CodesUC.ConsultationGroupes;
 		}
 
 		public bool CanExecuteEnregistrerCommand() {
@@ -40,9 +41,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				&& !GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)) {
 				
 				GroupeDao.GetInstance(ViewModelLocator.Context).Create(this.Groupe);
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(CodesUC.ConsultationGroupes)
-				);
+
+				this.SuiteEnregistrementOk();
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(

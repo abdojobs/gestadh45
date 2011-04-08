@@ -38,6 +38,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.InitialisationListeSexes();
 			base.CreateAnnulerCommand();
 			this.CreateEnregistrerCommand();
+			this.CodeUCOrigine = CodesUC.ConsultationAdherents;
 			base.EstEdition = false;
 		}
 
@@ -65,18 +66,16 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				&& AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)) {
 				
 				AdherentDao.GetInstance(ViewModelLocator.Context).Update(this.Adherent);
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(CodesUC.ConsultationAdherents)
-				);
+
+				this.SuiteEnregistrementOk();
 			}
 			else if (this.VerifierSaisie() 
 				&& !base.EstEdition 
 				&& !AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)) {
 
 				AdherentDao.GetInstance(ViewModelLocator.Context).Create(this.Adherent);
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(CodesUC.ConsultationAdherents)
-				);
+
+				this.SuiteEnregistrementOk();
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(

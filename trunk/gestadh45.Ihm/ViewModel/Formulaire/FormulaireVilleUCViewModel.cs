@@ -16,6 +16,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.Ville = new Ville();
 			base.CreateAnnulerCommand();
 			this.CreateEnregistrerCommand();
+
+			this.CodeUCOrigine = CodesUC.ConsultationVilles;
 		}
 
 		public bool CanExecuteEnregistrerCommand() {
@@ -32,9 +34,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie() && !VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)) {
 				VilleDao.GetInstance(ViewModelLocator.Context).Create(this.Ville);
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(CodesUC.ConsultationVilles)
-				);
+
+				this.SuiteEnregistrementOk();
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(
