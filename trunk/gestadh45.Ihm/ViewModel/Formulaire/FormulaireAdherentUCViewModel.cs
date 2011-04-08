@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -16,6 +14,51 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private Adherent mAdherent;
 		private ICollectionView mSexes;
 		private ICollectionView mVilles;
+
+		/// <summary>
+		/// Obtient/Définit l'objet du formulaire
+		/// </summary>
+		public Adherent Adherent {
+			get {
+				return this.mAdherent;
+			}
+			set {
+				if (this.mAdherent != value) {
+					this.mAdherent = value;
+					this.RaisePropertyChanged("Adherent");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit la liste des sexes
+		/// </summary>
+		public ICollectionView Sexes {
+			get {
+				return this.mSexes;
+			}
+			set {
+				if (this.mSexes != value) {
+					this.mSexes = value;
+					this.RaisePropertyChanged("Sexes");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit la liste des villes
+		/// </summary>
+		public ICollectionView Villes {
+			get {
+				return this.mVilles;
+			}
+			set {
+				if (this.mVilles != value) {
+					this.mVilles = value;
+					this.RaisePropertyChanged("Villes");
+				}
+			}
+		}
 
 		public FormulaireAdherentUCViewModel() {
 			this.Adherent = new Adherent();
@@ -36,21 +79,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			this.InitialisationListeVilles();
 			this.InitialisationListeSexes();
-			base.CreateAnnulerCommand();
-			this.CreateEnregistrerCommand();
+
 			this.CodeUCOrigine = CodesUC.ConsultationAdherents;
 			base.EstEdition = false;
-		}
-
-		public bool CanExecuteEnregistrerCommand() {
-			return true;
-		}
-
-		private void CreateEnregistrerCommand() {
-			this.EnregistrerCommand = new RelayCommand(
-				this.ExecuteEnregistrerCommand, 
-				this.CanExecuteEnregistrerCommand
-			);
 		}
 
 		public override void ExecuteAnnulerCommand(string pCodeUc) {
@@ -60,14 +91,14 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			base.ExecuteAnnulerCommand(pCodeUc);
 		}
 
-		public void ExecuteEnregistrerCommand() {
+		public override void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie() 
 				&& base.EstEdition 
 				&& AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)) {
 				
 				AdherentDao.GetInstance(ViewModelLocator.Context).Update(this.Adherent);
 
-				this.SuiteEnregistrementOk();
+				base.ExecuteEnregistrerCommand();
 			}
 			else if (this.VerifierSaisie() 
 				&& !base.EstEdition 
@@ -75,7 +106,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 				AdherentDao.GetInstance(ViewModelLocator.Context).Create(this.Adherent);
 
-				this.SuiteEnregistrementOk();
+				base.ExecuteEnregistrerCommand();
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(
@@ -96,45 +127,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.Villes = defaultView;
 		}
 
-		public Adherent Adherent {
-			get {
-				return this.mAdherent;
-			}
-			set {
-				if (this.mAdherent != value) {
-					this.mAdherent = value;
-					this.RaisePropertyChanged("Adherent");
-				}
-			}
-		}
-
-		public ICommand EnregistrerCommand { get; set; }
-
-		public ICollectionView Sexes {
-			get {
-				return this.mSexes;
-			}
-			set {
-				if (this.mSexes != value) {
-					this.mSexes = value;
-					this.RaisePropertyChanged("Sexes");
-				}
-			}
-		}
-
-		public ICollectionView Villes {
-			get {
-				return this.mVilles;
-			}
-			set {
-				if (this.mVilles != value) {
-					this.mVilles = value;
-					this.RaisePropertyChanged("Villes");
-				}
-			}
-		}
-
-		private bool VerifierSaisie() {
+		protected override bool VerifierSaisie() {
 			this.mErreurs = new List<string>();
 
 			if(string.IsNullOrWhiteSpace(this.Adherent.Nom)) {

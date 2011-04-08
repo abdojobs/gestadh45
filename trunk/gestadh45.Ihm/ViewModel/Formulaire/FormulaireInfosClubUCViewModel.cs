@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -15,39 +13,57 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private InfosClub mInfosClub;
 		private ICollectionView mVilles;
 
+		/// <summary>
+		/// Obtient/Définit l'objet Infos club du formulaire
+		/// </summary>
+		public InfosClub InfosClub {
+			get {
+				return this.mInfosClub;
+			}
+			set {
+				if (this.mInfosClub != value) {
+					this.mInfosClub = value;
+					this.RaisePropertyChanged("InfosClub");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit la liste des villes
+		/// </summary>
+		public ICollectionView Villes {
+			get {
+				return this.mVilles;
+			}
+			set {
+				if (this.mVilles != value) {
+					this.mVilles = value;
+					this.RaisePropertyChanged("Villes");
+				}
+			}
+		}
+
 		public FormulaireInfosClubUCViewModel() {
 			this.InitialisationListeVilles();
 
 			this.InfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
 			InfosClubDao.GetInstance(ViewModelLocator.Context).Refresh(this.InfosClub);
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
-			base.CreateAnnulerCommand();
-			this.CreateEnregistrerCommand();
-		}
-
-		public bool CanExecuteEnregistrerCommand() {
-			return true;
-		}
-
-		private void CreateEnregistrerCommand() {
-			this.EnregistrerCommand = new RelayCommand(
-				this.ExecuteEnregistrerCommand, 
-				this.CanExecuteEnregistrerCommand
-			);
 		}
 
 		public override void ExecuteAnnulerCommand(string pCodeUc) {
 			if (this.InfosClub != null) {
 				InfosClubDao.GetInstance(ViewModelLocator.Context).Refresh(this.InfosClub);
 			}
+
 			base.ExecuteAnnulerCommand(pCodeUc);
 		}
 
-		public void ExecuteEnregistrerCommand() {
+		public override void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie()) {
 				InfosClubDao.GetInstance(ViewModelLocator.Context).Update(this.InfosClub);
 
-				this.SuiteEnregistrementOk();
+				base.ExecuteEnregistrerCommand();
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(
@@ -62,33 +78,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.Villes = defaultView;
 		}
 
-		public ICommand EnregistrerCommand { get; set; }
-
-		public InfosClub InfosClub {
-			get {
-				return this.mInfosClub;
-			}
-			set {
-				if (this.mInfosClub != value) {
-					this.mInfosClub = value;
-					this.RaisePropertyChanged("InfosClub");
-				}
-			}
-		}
-
-		public ICollectionView Villes {
-			get {
-				return this.mVilles;
-			}
-			set {
-				if (this.mVilles != value) {
-					this.mVilles = value;
-					this.RaisePropertyChanged("Villes");
-				}
-			}
-		}
-
-		private bool VerifierSaisie() {
+		protected override bool VerifierSaisie() {
 			this.mErreurs = new List<string>();
 
 			if (string.IsNullOrWhiteSpace(this.InfosClub.Nom)) {

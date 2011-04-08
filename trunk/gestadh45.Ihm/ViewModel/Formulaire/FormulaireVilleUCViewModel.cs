@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -12,40 +10,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 	{
 		private Ville mVille;
 
-		public FormulaireVilleUCViewModel() {
-			this.Ville = new Ville();
-			base.CreateAnnulerCommand();
-			this.CreateEnregistrerCommand();
-
-			this.CodeUCOrigine = CodesUC.ConsultationVilles;
-		}
-
-		public bool CanExecuteEnregistrerCommand() {
-			return true;
-		}
-
-		private void CreateEnregistrerCommand() {
-			this.EnregistrerCommand = new RelayCommand(
-				this.ExecuteEnregistrerCommand, 
-				this.CanExecuteEnregistrerCommand
-			);
-		}
-
-		public void ExecuteEnregistrerCommand() {
-			if (this.VerifierSaisie() && !VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)) {
-				VilleDao.GetInstance(ViewModelLocator.Context).Create(this.Ville);
-
-				this.SuiteEnregistrementOk();
-			}
-			else {
-				Messenger.Default.Send<NotificationMessageUtilisateur>(
-					new NotificationMessageUtilisateur(TypesNotification.Erreur, this.ChaineErreurs)
-				);
-			}
-		}
-
-		public ICommand EnregistrerCommand { get; set; }
-
+		/// <summary>
+		/// Obtient/Définit l'objet du formulaire
+		/// </summary>
 		public Ville Ville {
 			get {
 				return this.mVille;
@@ -58,7 +25,25 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 		}
 
-		private bool VerifierSaisie() {
+		public FormulaireVilleUCViewModel() {
+			this.Ville = new Ville();
+			this.CodeUCOrigine = CodesUC.ConsultationVilles;
+		}
+
+		public override void ExecuteEnregistrerCommand() {
+			if (this.VerifierSaisie() && !VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)) {
+				VilleDao.GetInstance(ViewModelLocator.Context).Create(this.Ville);
+
+				base.ExecuteEnregistrerCommand();
+			}
+			else {
+				Messenger.Default.Send<NotificationMessageUtilisateur>(
+					new NotificationMessageUtilisateur(TypesNotification.Erreur, this.ChaineErreurs)
+				);
+			}
+		}
+
+		protected override bool VerifierSaisie() {
 			this.mErreurs = new List<string>();
 
 			if (string.IsNullOrWhiteSpace(this.Ville.Libelle)) {

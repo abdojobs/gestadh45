@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -12,49 +10,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 	public class FormulaireSaisonUCViewModel : ViewModelBaseFormulaire
 	{
 		private Saison mSaison;
-		private const int DureeSaison = 1;
 
-		public FormulaireSaisonUCViewModel() {
-			Saison saison = new Saison
-			{
-				AnneeDebut = DateTime.Now.Year,
-				AnneeFin = DateTime.Now.Year + DureeSaison,
-				EstSaisonCourante = 0L
-			};
-			this.Saison = saison;
-
-			this.CodeUCOrigine = CodesUC.ConsultationSaisons;
-			base.CreateAnnulerCommand();
-			this.CreateEnregistrerCommand();
-		}
-
-		public bool CanExecuteEnregistrerCommand() {
-			return true;
-		}
-
-		private void CreateEnregistrerCommand() {
-			this.EnregistrerCommand = new RelayCommand(
-				this.ExecuteEnregistrerCommand, 
-				this.CanExecuteEnregistrerCommand
-			);
-		}
-
-		public void ExecuteEnregistrerCommand() {
-			if (this.VerifierSaisie() && !SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison)) {
-				SaisonDao.GetInstance(ViewModelLocator.Context).Create(this.Saison);
-
-				this.SuiteEnregistrementOk();
-			}
-			else {
-				Messenger.Default.Send<NotificationMessageUtilisateur>(
-					new NotificationMessageUtilisateur(
-						TypesNotification.Erreur, 
-						this.ChaineErreurs
-					)
-				);
-			}
-		}
-
+		/// <summary>
+		/// Obtient/Définit l'année de début de la saison
+		/// </summary>
 		public double AnneeDebutIhm {
 			get {
 				return (double)this.Saison.AnneeDebut;
@@ -68,8 +27,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 		}
 
-		public ICommand EnregistrerCommand { get; set; }
-
+		/// <summary>
+		/// Obtient/Définit l'objet du formulaire
+		/// </summary>
 		public Saison Saison {
 			get {
 				return this.mSaison;
@@ -82,7 +42,37 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 		}
 
-		private bool VerifierSaisie() {
+		private const int DureeSaison = 1;
+
+		public FormulaireSaisonUCViewModel() {
+			Saison saison = new Saison
+			{
+				AnneeDebut = DateTime.Now.Year,
+				AnneeFin = DateTime.Now.Year + DureeSaison,
+				EstSaisonCourante = 0L
+			};
+			this.Saison = saison;
+
+			this.CodeUCOrigine = CodesUC.ConsultationSaisons;
+		}
+
+		public override void ExecuteEnregistrerCommand() {
+			if (this.VerifierSaisie() && !SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison)) {
+				SaisonDao.GetInstance(ViewModelLocator.Context).Create(this.Saison);
+
+				base.ExecuteEnregistrerCommand();
+			}
+			else {
+				Messenger.Default.Send<NotificationMessageUtilisateur>(
+					new NotificationMessageUtilisateur(
+						TypesNotification.Erreur, 
+						this.ChaineErreurs
+					)
+				);
+			}
+		}
+
+		protected override bool VerifierSaisie() {
 			this.mErreurs = new List<string>();
 
 			if (this.Saison.AnneeDebut == 0) {

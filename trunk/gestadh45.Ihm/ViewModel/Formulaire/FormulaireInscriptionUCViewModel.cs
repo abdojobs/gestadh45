@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -16,6 +14,52 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private ICollectionView mGroupesSaisonCourante;
 		private Inscription mInscription;
 
+		/// <summary>
+		/// Obtient/Définit la liste des adhérents
+		/// </summary>
+		public ICollectionView Adherents {
+			get {
+				return this.mAdherents;
+			}
+			set {
+				if (this.mAdherents != value) {
+					this.mAdherents = value;
+					this.RaisePropertyChanged("Adherents");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit la liste des groupes de la saison courante
+		/// </summary>
+		public ICollectionView GroupesSaisonCourante {
+			get {
+				return this.mGroupesSaisonCourante;
+			}
+			set {
+				if (this.mGroupesSaisonCourante != value) {
+					this.mGroupesSaisonCourante = value;
+					this.RaisePropertyChanged("GroupesSaisonCourante");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit l'objet du formulaire
+		/// </summary>
+		public Inscription Inscription {
+			get {
+				return this.mInscription;
+			}
+			set {
+				if (this.mInscription != value) {
+					this.mInscription = value;
+					this.RaisePropertyChanged("Inscription");
+					this.RaisePropertyChanged("CertificatRemis");
+				}
+			}
+		}
+
 		public FormulaireInscriptionUCViewModel() {
             this.Inscription = new Inscription();
 			this.Inscription.Commentaire = string.Empty;
@@ -24,20 +68,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.InitialisationListeGroupes();
 
 			this.CodeUCOrigine = CodesUC.ConsultationInscriptions;
-			base.CreateAnnulerCommand();
-			this.CreateEnregistrerCommand();
 			base.EstEdition = false;
-		}
-
-		public bool CanExecuteEnregistrerCommand() {
-			return true;
-		}
-
-		private void CreateEnregistrerCommand() {
-			this.EnregistrerCommand = new RelayCommand(
-				this.ExecuteEnregistrerCommand, 
-				this.CanExecuteEnregistrerCommand
-			);
 		}
 
 		public override void ExecuteAnnulerCommand(string pCodeUc) {
@@ -47,7 +78,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			base.ExecuteAnnulerCommand(pCodeUc);
 		}
 
-		public void ExecuteEnregistrerCommand() {
+		public override void ExecuteEnregistrerCommand() {
 			if (this.Inscription.Commentaire == null) {
 				this.Inscription.Commentaire = string.Empty;
 			}
@@ -58,7 +89,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 				InscriptionDao.GetInstance(ViewModelLocator.Context).Update(this.Inscription);
 
-				this.SuiteEnregistrementOk();
+				base.ExecuteEnregistrerCommand();
 			}
 			else if (this.VerifierSaisie() 
 				&& !base.EstEdition 
@@ -66,7 +97,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 				InscriptionDao.GetInstance(ViewModelLocator.Context).Create(this.Inscription);
 
-				this.SuiteEnregistrementOk();
+				base.ExecuteEnregistrerCommand();
 			}
 			else {
 				Messenger.Default.Send<NotificationMessageUtilisateur>(
@@ -89,59 +120,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.GroupesSaisonCourante = defaultView;
 		}
 
-		public ICollectionView Adherents {
-			get {
-				return this.mAdherents;
-			}
-			set {
-				if (this.mAdherents != value) {
-					this.mAdherents = value;
-					this.RaisePropertyChanged("Adherents");
-				}
-			}
-		}
-
-		public bool CertificatRemis {
-			get {
-				return (this.Inscription.CertificatMedicalRemis == 1L);
-			}
-			set {
-				if ((this.Inscription.CertificatMedicalRemis == 1L) != value) {
-					this.Inscription.CertificatMedicalRemis = 1L;
-					this.RaisePropertyChanged("CertificatRemis");
-					this.RaisePropertyChanged("Inscription");
-				}
-			}
-		}
-
-		public ICommand EnregistrerCommand { get; set; }
-
-		public ICollectionView GroupesSaisonCourante {
-			get {
-				return this.mGroupesSaisonCourante;
-			}
-			set {
-				if (this.mGroupesSaisonCourante != value) {
-					this.mGroupesSaisonCourante = value;
-					this.RaisePropertyChanged("GroupesSaisonCourante");
-				}
-			}
-		}
-
-		public Inscription Inscription {
-			get {
-				return this.mInscription;
-			}
-			set {
-				if (this.mInscription != value) {
-					this.mInscription = value;
-					this.RaisePropertyChanged("Inscription");
-					this.RaisePropertyChanged("CertificatRemis");
-				}
-			}
-		}
-
-		private bool VerifierSaisie() {
+		protected override bool VerifierSaisie() {
 			this.mErreurs = new List<string>();
 
 			if (this.Inscription.Adherent == null) {
