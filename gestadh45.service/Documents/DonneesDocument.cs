@@ -17,7 +17,7 @@ namespace gestadh45.service.Documents
 		public string MailClub { get; set; }
 		public string SiteWebClub { get; set; }
 		public string NumeroClub { get; set; }
-		public string SirenClub { get; set; }
+		public string SiretClub { get; set; }
 
 		// infos adherent
 		public string NomAdherent { get; set; }

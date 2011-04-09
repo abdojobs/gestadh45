@@ -55,7 +55,7 @@ namespace gestadh45.service.Documents.Templates
 			{
 				Alignment = 0
 			};
-			Paragraph paragraph9 = new Paragraph(ResDocuments.PrefixeSiren + " : " + this.mDonnees.SirenClub, fontCoordonneesClub)
+			Paragraph paragraph9 = new Paragraph(ResDocuments.PrefixeSiret + " : " + this.mDonnees.SiretClub, fontCoordonneesClub)
 			{
 				Alignment = 0
 			};
@@ -87,6 +87,7 @@ namespace gestadh45.service.Documents.Templates
 			cell3.AddElement(paragraph6);
 			cell3.AddElement(paragraph7);
 			cell3.AddElement(paragraph8);
+			cell3.AddElement(paragraph9);
 			table.AddCell(cell3, 1, 0);
 			this.mContenuDocument.AddCell(new Cell(table));
 		}
