@@ -9,12 +9,14 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public ICommand EditerCommand { get; set; }
 		public ICommand SupprimerCommand { get; set; }
 		public ICommand AfficherDetailsCommand { get; set; }
+		public ICommand FiltrerListeCommand { get; set; }
 		
 		protected ViewModelBaseConsultation() {
 			this.CreateCreerCommand();
 			this.CreateEditerCommand();
 			this.CreateSupprimerCommand();
 			this.CreateAfficherDetailsCommand();
+			this.CreateFiltrerListeCommand();
 		}
 
 		protected void CreateCreerCommand() {
@@ -43,6 +45,12 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
+		protected void CreateFiltrerListeCommand() {
+			this.FiltrerListeCommand = new RelayCommand<string>(
+				this.ExecuteFiltrerListeCommand
+			);
+		}
+
 		public virtual bool CanExecuteEditerCommand() {
 			return false;
 		}
@@ -56,5 +64,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public virtual void ExecuteEditerCommand() { }
 		public virtual void ExecuteSupprimerCommand() { }
 		public virtual void ExecuteAfficherDetailsCommand(object pObjet) { }
+		public virtual void ExecuteFiltrerListeCommand(string pFiltre) { }
 	}
 }

@@ -109,6 +109,15 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
+		public override void ExecuteFiltrerListeCommand(string pFiltre) {
+			if (string.IsNullOrEmpty(pFiltre)) {
+				this.Adherents.Filter = null;
+			}
+			else {
+				this.Adherents.Filter = (p) => ((Adherent)p).ToString().ToUpper().Contains(pFiltre.ToUpper());
+			}
+		}
+
 		public void ExecuteInscrireCommand() {
 			Messenger.Default.Send<NotificationMessageChangementUC<Adherent>>(
 				new NotificationMessageChangementUC<Adherent>(
