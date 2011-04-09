@@ -2,12 +2,12 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<Style x:Key="StylePrincipal">
-		<Setter Property="Panel.Background" Value="#FFFFDEAD" />
+		<Setter Property="Panel.Background" Value="NavajoWhite" />
 	</Style>
 	<Style x:Key="StyleEnfant">
-		<Setter Property="Panel.Background" Value="#FFFFF8DC" />
+		<Setter Property="Panel.Background" Value="Cornsilk" />
 	</Style>
 	<Style x:Key="StyleGroupBox">
-		<Setter Property="Panel.Background" Value="#FFFFDEAD" />
+		<Setter Property="Panel.Background" Value="NavajoWhite" />
 	</Style>
 </ResourceDictionary>

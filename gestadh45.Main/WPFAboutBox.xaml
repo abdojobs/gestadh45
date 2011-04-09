@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     Title="{Binding RelativeSource={RelativeSource Self}, Mode=OneTime, Path=ProductTitle}" 
     x:Uid="idAboutBox"
-    Style="{DynamicResource AboutDialogStyle}" WindowStartupLocation="CenterOwner">
+    Style="{DynamicResource AboutDialogStyle}" WindowStartupLocation="CenterOwner" Icon="/gestadh45.Main;component/gestadh45.ico">
     <Window.Resources>
         <XmlDataProvider x:Key="aboutProvider" XPath="ApplicationInfo" IsAsynchronous="False" IsInitialLoadEnabled="True">
             <x:XData>
@@ -28,10 +28,10 @@
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush EndPoint="0,1">
-                        <GradientStop Offset="0" Color="LightBlue" />
+                        <GradientStop Offset="0" Color="NavajoWhite" />
                         <GradientStop Offset="0.55" Color="White" />
                         <GradientStop Offset="0.85" Color="White" />
-                        <GradientStop Offset="1" Color="LightBlue" />
+						<GradientStop Offset="1" Color="NavajoWhite" />
                     </LinearGradientBrush>
                 </Setter.Value>
             </Setter>
