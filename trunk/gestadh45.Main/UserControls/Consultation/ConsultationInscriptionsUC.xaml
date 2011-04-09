@@ -26,7 +26,7 @@
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="SelectionChanged">
 						<cmd:EventToCommand 
-							Command="{Binding AfficherDetailsInscriptionCommand, Mode=OneWay}" 
+							Command="{Binding Path=AfficherDetailsCommand, Mode=OneWay}" 
 							CommandParameter="{Binding ElementName=lbxInscriptions, Path=SelectedItem}" />
 					</i:EventTrigger>
 				</i:Interaction.Triggers>

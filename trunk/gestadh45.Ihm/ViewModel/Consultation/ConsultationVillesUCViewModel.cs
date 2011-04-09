@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -45,12 +43,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public ICommand AfficherDetailsVilleCommand { get; set; }
-
 		public ConsultationVillesUCViewModel() {
 			this.InitialisationListeVilles();
-
-			this.CreateAfficherDetailsVilleCommand();
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
@@ -61,15 +55,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				);
 		}
 
-		private void CreateAfficherDetailsVilleCommand() {
-			this.AfficherDetailsVilleCommand = new RelayCommand<Ville>(
-				this.ExecuteAfficherDetailsVilleCommand
-			);
-		}
-
-		public void ExecuteAfficherDetailsVilleCommand(Ville pVille) {
-			if (pVille != null) {
-				this.Ville = pVille;
+		public override void ExecuteAfficherDetailsCommand(object pVille) {
+			if (pVille != null && pVille is Ville) {
+				this.Ville = pVille as Ville;
 			}
 		}
 

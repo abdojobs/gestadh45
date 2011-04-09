@@ -8,11 +8,13 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public ICommand CreerCommand { get; set; }
 		public ICommand EditerCommand { get; set; }
 		public ICommand SupprimerCommand { get; set; }
+		public ICommand AfficherDetailsCommand { get; set; }
 		
 		protected ViewModelBaseConsultation() {
 			this.CreateCreerCommand();
 			this.CreateEditerCommand();
 			this.CreateSupprimerCommand();
+			this.CreateAfficherDetailsCommand();
 		}
 
 		protected void CreateCreerCommand() {
@@ -35,6 +37,12 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
+		protected void CreateAfficherDetailsCommand() {
+			this.AfficherDetailsCommand = new RelayCommand<object>(
+				this.ExecuteAfficherDetailsCommand
+			);
+		}
+
 		public virtual bool CanExecuteEditerCommand() {
 			return false;
 		}
@@ -43,8 +51,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			return true;
 		}
 
+		// méthodes à redéfinir dans les VM qui les utilisent
 		public virtual void ExecuteCreerCommand() { }
 		public virtual void ExecuteEditerCommand() { }
 		public virtual void ExecuteSupprimerCommand() { }
+		public virtual void ExecuteAfficherDetailsCommand(object pObjet) { }
 	}
 }

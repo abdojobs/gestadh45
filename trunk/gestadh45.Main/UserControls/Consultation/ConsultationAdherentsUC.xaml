@@ -15,7 +15,9 @@
 			<ListBox Name="lbxAdherents" Width="300" DockPanel.Dock="Left" ItemsSource="{Binding Adherents}">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="SelectionChanged">
-						<cmd:EventToCommand Command="{Binding AfficherDetailsAdherentCommand, Mode=OneWay}" CommandParameter="{Binding ElementName=lbxAdherents, Path=SelectedItem}" />
+						<cmd:EventToCommand 
+							Command="{Binding Path=AfficherDetailsCommand, Mode=OneWay}" 
+							CommandParameter="{Binding ElementName=lbxAdherents, Path=SelectedItem}" />
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
 			</ListBox>

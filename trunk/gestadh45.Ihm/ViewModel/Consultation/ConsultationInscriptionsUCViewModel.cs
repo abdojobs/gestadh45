@@ -14,6 +14,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class ConsultationInscriptionsUCViewModel : ViewModelBaseConsultation
 	{
+		public ICommand GenererDocumentCommand { get; set; }
+		
 		private long mIdVilleClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read().Adresse.ID_Ville;
 		private Inscription mInscription;
 		private ICollectionView mInscriptionsSaisonCourante;
@@ -48,12 +50,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public ICommand AfficherDetailsInscriptionCommand { get; set; }
-		public ICommand GenererDocumentCommand { get; set; }
-
 		public ConsultationInscriptionsUCViewModel() {
 			this.InitialisationListeInscriptions();
-			this.CreateAfficherDetailsInscriptionCommand();
 
 			this.CreateGenererDocumentCommand();
 		}
@@ -73,12 +71,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				);
 		}
 
-		private void CreateAfficherDetailsInscriptionCommand() {
-			this.AfficherDetailsInscriptionCommand = new RelayCommand<Inscription>(
-				this.ExecuteAfficherDetailsInscriptionCommand
-			);
-		}
-
 		private void CreateGenererDocumentCommand() {
 			this.GenererDocumentCommand = new RelayCommand<string>(
 				this.ExecuteGenererDocumentCommand, 
@@ -86,9 +78,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		public void ExecuteAfficherDetailsInscriptionCommand(Inscription pInscription) {
-			if (pInscription != null) {
-				this.Inscription = pInscription;
+		public override void ExecuteAfficherDetailsCommand(object pInscription) {
+			if (pInscription != null && pInscription is Inscription) {
+				this.Inscription = pInscription as Inscription;
 			}
 		}
 

@@ -15,7 +15,8 @@
 			<ListBox Name="lbxGroupes" Width="300" DockPanel.Dock="Left" ItemsSource="{Binding GroupesSaisonCourante}">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="SelectionChanged">
-						<cmd:EventToCommand Command="{Binding AfficherDetailsGroupeCommand, Mode=OneWay}" 
+						<cmd:EventToCommand 
+							Command="{Binding Path=AfficherDetailsCommand, Mode=OneWay}" 
 							CommandParameter="{Binding ElementName=lbxGroupes, Path=SelectedItem}" />
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
