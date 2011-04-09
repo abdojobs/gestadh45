@@ -289,7 +289,9 @@
     <Resource Include="Images\btn_saisons.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Icones\gestadh45.ico" />
+    <Resource Include="Icones\gestadh45.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
