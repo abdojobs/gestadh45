@@ -204,8 +204,8 @@
   <data name="PrefixeNumeroClub" xml:space="preserve">
     <value>N° asso.</value>
   </data>
-  <data name="PrefixeSiren" xml:space="preserve">
-    <value>SIREN</value>
+  <data name="PrefixeSiret" xml:space="preserve">
+    <value>SIRET</value>
   </data>
   <data name="PrefixeSiteWeb" xml:space="preserve">
     <value>Web</value>
