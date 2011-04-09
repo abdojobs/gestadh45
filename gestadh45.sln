@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.service", "gestad
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.Main", "gestadh45.Main\gestadh45.Main.csproj", "{2B20AE09-1106-4640-819C-2B3E65BB3D67}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "gestadh45.Setup", "gestadh45.Setup\gestadh45.Setup.vdproj", "{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -75,6 +77,12 @@ Global
 		{2B20AE09-1106-4640-819C-2B3E65BB3D67}.Release|Mixed Platforms.Build.0 = Release|x86
 		{2B20AE09-1106-4640-819C-2B3E65BB3D67}.Release|x86.ActiveCfg = Release|x86
 		{2B20AE09-1106-4640-819C-2B3E65BB3D67}.Release|x86.Build.0 = Release|x86
+		{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}.Debug|Any CPU.ActiveCfg = Debug
+		{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}.Debug|x86.ActiveCfg = Debug
+		{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}.Release|Any CPU.ActiveCfg = Release
+		{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}.Release|Mixed Platforms.ActiveCfg = Release
+		{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
