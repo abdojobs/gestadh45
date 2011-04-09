@@ -8,7 +8,7 @@ namespace gestadh45.Model
 		/// </summary>
 		public string Siret {
 			get {
-				return string.Format("{0} {1}", this.Siren, this.NIC);
+				return string.Format("{0} - {1}", this.Siren, this.NIC);
 			}
 		}
 	}

@@ -4,7 +4,7 @@
 		xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
 		Title="GestAdh45" MinHeight="500" MinWidth="705"
 		Background="#FFFFDEAD" 
-		DataContext="{Binding MainStatic, Source={StaticResource Locator}}" Icon="/gestadh45.Main;component/Icones/gestadh45.ico">
+		DataContext="{Binding MainStatic, Source={StaticResource Locator}}" Icon="/gestadh45.Main;component/Icones/gestadh45.ico" WindowState="Maximized">
 	
 	<Window.Resources>
 		<ResourceDictionary>

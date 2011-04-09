@@ -68,18 +68,14 @@
 								 Text="{Binding InfosClub.Numero}" />
 					</StackPanel.Children>
 				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<StackPanel.Children>
-						<TextBlock Text="SIREN : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox Width="250" MaxLength="9"
-								 Text="{Binding InfosClub.Siren}" />
-					</StackPanel.Children>
-				</StackPanel>
+
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
 						<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBlock FontSize="14" Text="{Binding InfosClub.Siren, StringFormat='{}{0} - '}" />
-						<TextBox Width="50" MaxLength="4"
+						<TextBox Width="250" MaxLength="9" ToolTip="N° SIREN"
+								 Text="{Binding InfosClub.Siren}" />
+						<TextBlock Text=" - " />
+						<TextBox Width="50" MaxLength="5" ToolTip="NIC"
 								 Text="{Binding InfosClub.NIC}" />
 					</StackPanel.Children>
 				</StackPanel>
