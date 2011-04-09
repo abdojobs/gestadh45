@@ -35,6 +35,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>gestadh45.Main.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>gestadh45.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
       <HintPath>..\Libs\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
@@ -314,6 +320,9 @@
     <Resource Include="AboutLogo.png">
       <SubType>Image</SubType>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="gestadh45.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
