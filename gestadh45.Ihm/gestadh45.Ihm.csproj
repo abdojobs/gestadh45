@@ -60,6 +60,7 @@
     <Compile Include="SpecialMessages\DialogMessageConfirmation.cs" />
     <Compile Include="SpecialMessages\NotificationMessageAboutBox.cs" />
     <Compile Include="SpecialMessages\NotificationMessageActionFileDialog.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageActionFolderDialog.cs" />
     <Compile Include="SpecialMessages\NotificationMessageChangementUC.cs" />
     <Compile Include="SpecialMessages\NotificationMessageFermetureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageOuvertureFenetre.cs" />

@@ -135,6 +135,9 @@
   <data name="MessageInfoGenerationDocument" xml:space="preserve">
     <value>Le document a correctement été généré</value>
   </data>
+  <data name="MessageInfoGenerationDocumentsGroupe" xml:space="preserve">
+    <value>Les documents ont correctement été générés</value>
+  </data>
   <data name="TitreConfirmation" xml:space="preserve">
     <value>Confirmation</value>
   </data>

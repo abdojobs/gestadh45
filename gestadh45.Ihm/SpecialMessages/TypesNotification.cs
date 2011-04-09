@@ -8,6 +8,7 @@ namespace gestadh45.Ihm.SpecialMessages
 		public const string AboutBox = "aboutBox";
 		public const string OpenFileDialog = "openFileDialog";
 		public const string SaveFileDialog = "saveFileDialog";
+		public const string FolderBrowserDialog = "FolderBrowserDialog";
 		public const string ChangementSaisonCourante = "changementSaisonCourante";
 		public const string ChangementUC = "changementUC";
 		public const string FermetureFenetre = "FermetureFenetre";
