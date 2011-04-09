@@ -12,15 +12,29 @@
 	<DockPanel Margin="5,5,5,5">
 		<DockPanel.Children>
 			<TextBlock Text="Adhérents" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
-			<ListBox Name="lbxAdherents" Width="300" DockPanel.Dock="Left" ItemsSource="{Binding Adherents}">
-				<i:Interaction.Triggers>
-					<i:EventTrigger EventName="SelectionChanged">
-						<cmd:EventToCommand 
-							Command="{Binding Path=AfficherDetailsCommand, Mode=OneWay}" 
-							CommandParameter="{Binding ElementName=lbxAdherents, Path=SelectedItem}" />
-					</i:EventTrigger>
-				</i:Interaction.Triggers>
-			</ListBox>
+			
+			<DockPanel DockPanel.Dock="Left" Width="300">
+				<TextBox Name="tbxFiltre" DockPanel.Dock="Top" Margin="0,0,0,10" ToolTip="Saisissez une partie du nom ou du prénom pour filtrer la liste">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="TextChanged">
+							<cmd:EventToCommand
+								Command="{Binding Path=FiltrerListeCommand, Mode=OneWay}"
+								CommandParameter="{Binding ElementName=tbxFiltre, Path=Text}" />
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+				</TextBox>
+
+				<ListBox Name="lbxAdherents" ItemsSource="{Binding Adherents}">
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="SelectionChanged">
+							<cmd:EventToCommand 
+								Command="{Binding Path=AfficherDetailsCommand, Mode=OneWay}" 
+								CommandParameter="{Binding ElementName=lbxAdherents, Path=SelectedItem}" />
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+				</ListBox>
+			</DockPanel>			
+			
 			<StackPanel Orientation="Vertical" DockPanel.Dock="Right" Margin="10,10,10,10" VerticalAlignment="Center">
 				<StackPanel.Children>
 					<Button ToolTip="Ajouter un nouvel adhérent" Width="35" Height="35" Margin="0,0,0,10" 
