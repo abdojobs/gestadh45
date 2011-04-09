@@ -63,33 +63,35 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
-				this.EnvoyerMessageErreur();
+				this.ErreursVisibles = true;
 			}
 		}
 
 		protected override bool VerifierSaisie() {
-			this.mErreurs = new List<string>();
+			List<string> lErreurs = new List<string>();
 
 			if (this.Saison.AnneeDebut == 0) {
-				this.mErreurs.Add(ResErreurs.Saison_AnneeDebutObligatoire);
+				lErreurs.Add(ResErreurs.Saison_AnneeDebutObligatoire);
 			}
 
 			if (this.Saison.AnneeFin == 0) {
-				this.mErreurs.Add(ResErreurs.Saison_AnneeFinObligatoire);
+				lErreurs.Add(ResErreurs.Saison_AnneeFinObligatoire);
 			}
 
-			if (this.mErreurs.Count != 0 && this.Saison.AnneeDebut >= this.Saison.AnneeFin) {
-				this.mErreurs.Add(ResErreurs.Saison_AnneeFinSupAnneeDebut);
+			if (lErreurs.Count != 0 && this.Saison.AnneeDebut >= this.Saison.AnneeFin) {
+				lErreurs.Add(ResErreurs.Saison_AnneeFinSupAnneeDebut);
 			}
 
 			if (!this.EstEdition
-				&& this.mErreurs.Count == 0
+				&& lErreurs.Count == 0
 				&& SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison)) {
 
-				this.mErreurs.Add(ResErreurs.Saison_Existe);
+					lErreurs.Add(ResErreurs.Saison_Existe);
 			}
 
-			return this.mErreurs.Count == 0;
+			this.Erreurs = new List<string>(lErreurs);
+
+			return this.Erreurs.Count == 0;
 		}
 	}
 }

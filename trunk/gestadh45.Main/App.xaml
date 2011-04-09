@@ -8,6 +8,7 @@
 		<vm:ViewModelLocator x:Key="Locator" />
 		<BooleanToVisibilityConverter x:Key="VisibilityOfBool" />
 		<ihmtools:BooleanInversionConverter x:Key="BooleanInversionConverter" />
+		<ihmtools:ListToStringConverter x:Key="ListToString" />
 
 		<Style x:Key="inscriptionGroupe" TargetType="{x:Type GroupItem}">
 			<Setter Property="Control.Template">

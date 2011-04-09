@@ -49,6 +49,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.InfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
 			InfosClubDao.GetInstance(ViewModelLocator.Context).Refresh(this.InfosClub);
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
+			this.ErreursVisibles = false;
 		}
 
 		public override void ExecuteAnnulerCommand(string pCodeUc) {
@@ -66,7 +67,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
-				this.EnvoyerMessageErreur();
+				this.ErreursVisibles = true;
 			}
 		}
 
@@ -83,21 +84,23 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		protected override bool VerifierSaisie() {
-			this.mErreurs = new List<string>();
+			List<string> lErreurs = new List<string>();
 
 			if (string.IsNullOrWhiteSpace(this.InfosClub.Nom)) {
-				this.mErreurs.Add(ResErreurs.Groupe_LibelleObligatoire);
+				lErreurs.Add(ResErreurs.Groupe_LibelleObligatoire);
 			}
 
 			if (this.InfosClub.Adresse == null || string.IsNullOrWhiteSpace(this.InfosClub.Adresse.Libelle)) {
-				this.mErreurs.Add(ResErreurs.InfosClub_AdresseObligatoire);
+				lErreurs.Add(ResErreurs.InfosClub_AdresseObligatoire);
 			}
 
 			if (this.InfosClub.Adresse != null && this.InfosClub.Adresse.Ville == null) {
-				this.mErreurs.Add(ResErreurs.InfosClub_VilleObligatoire);
+				lErreurs.Add(ResErreurs.InfosClub_VilleObligatoire);
 			}
 
-			return this.mErreurs.Count == 0;
+			this.Erreurs = new List<string>(lErreurs);
+
+			return this.Erreurs.Count == 0;
 		}
 	}
 }

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
+			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireInfosClubVMStatic, Source={StaticResource Locator}}" 
              d:DesignHeight="400" d:DesignWidth="600">
@@ -81,7 +82,14 @@
 				</StackPanel>
 				
 				<Separator Margin="0,20,0,20" />
-				
+
+				<StackPanel HorizontalAlignment="Center" Margin="0,0,0,20" 
+							Visibility="{Binding Path=ErreursVisibles, Converter={StaticResource ResourceKey=VisibilityOfBool}}">
+					<uc:AffichageNotificationUC 
+						Header="Erreurs" 
+						Message="{Binding Path=Erreurs, Converter={StaticResource ResourceKey=ListToString}}" />
+				</StackPanel>
+
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 					<Button Name="btnAnnuler" ToolTip="Annuler" HorizontalAlignment="Center" Width="35" Height="35" 
 						CommandParameter="{x:Static ihm:CodesUC.ConsultationInfosClub}" 

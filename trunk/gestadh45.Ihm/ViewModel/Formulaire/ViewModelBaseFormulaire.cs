@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -9,14 +8,13 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public abstract class ViewModelBaseFormulaire : ViewModelBaseUC
 	{
+		public ICommand AnnulerCommand { get; set; }
+		public ICommand EnregistrerCommand { get; set; }
+		public ICommand FenetreCommand { get; set; }
+		
 		private bool mEstEdition;
-
-		protected List<string> mErreurs;
-
-		/// <summary>
-		/// Obtient/Définit le code de l'UC "parent" de ce formulaire
-		/// </summary>
-		public string CodeUCOrigine { get; set; }
+		private bool mErreursVisibles;
+		private List<string> mErreurs;
 
 		/// <summary>
 		/// Obtient/Définit un booléen indiquant si on est en mode édition (True) ou création (False)
@@ -34,23 +32,35 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		/// <summary>
-		/// Obtient la liste des erreurs sous forme d'une chaine unique
+		/// Obtient/Définit un booléen indiquant si les erreurs doivent êtres visibles
 		/// </summary>
-		public string ChaineErreurs {
-			get {
-				StringBuilder lSb = new StringBuilder();
-
-				foreach (string lErreur in this.mErreurs) {
-					lSb.Append(lErreur + "\r\n");
+		public bool ErreursVisibles {
+			get { return this.mErreursVisibles; }
+			set {
+				if (this.mErreursVisibles != value) {
+					this.mErreursVisibles = value;
+					this.RaisePropertyChanged("ErreursVisibles");
 				}
-
-				return lSb.ToString();
 			}
 		}
 
-		public ICommand AnnulerCommand { get; set; }
-		public ICommand EnregistrerCommand { get; set; }
-		public ICommand FenetreCommand { get; set; }
+		/// <summary>
+		/// Obtient/Définit la liste des erreurs
+		/// </summary>
+		public List<string> Erreurs {
+			get { return this.mErreurs; }
+			set {
+				if (this.mErreurs != value) {
+					this.mErreurs = value;
+					this.RaisePropertyChanged("Erreurs");
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit le code de l'UC "parent" de ce formulaire
+		/// </summary>
+		public string CodeUCOrigine { get; set; }
 
 		public ViewModelBaseFormulaire() {
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
@@ -122,15 +132,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		protected virtual bool VerifierSaisie() {
 			return true;
-		}
-
-		/// <summary>
-		/// Envoie un message d'erreur avec le contenu de la propriété ChaineErreurs
-		/// </summary>
-		protected void EnvoyerMessageErreur() {
-			Messenger.Default.Send<NotificationMessageUtilisateur>(
-				new NotificationMessageUtilisateur(TypesNotification.Erreur, this.ChaineErreurs)
-			);
 		}
 	}
 }

@@ -5,12 +5,38 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
+			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireSaisonVMStatic, Source={StaticResource Locator}}" 
              d:DesignHeight="300" d:DesignWidth="300">
 	<DockPanel>
 		<DockPanel.Children>
 			<TextBlock Text="Saison" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+
+			<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+				<StackPanel.Children>
+					<Button ToolTip="Annuler" Width="32" Height="32" Margin="0,0,10,0" 
+									CommandParameter="{x:Static ihm:CodesUC.ConsultationSaisons}" 
+									Command="{Binding AnnulerCommand}">
+						<Image Source="/gestadh45.Main;component/Images/btn_annuler.png" />
+					</Button>
+					<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="32" Height="32" Margin="10,0,0,0" Command="{Binding EnregistrerCommand}">
+						<Image Source="/gestadh45.Main;component/Images/btn_enregistrer.png" />
+					</Button>
+				</StackPanel.Children>
+			</StackPanel>
+
+			<StackPanel HorizontalAlignment="Center" Margin="0,0,0,20" 
+								DockPanel.Dock="Bottom" 
+								Visibility="{Binding Path=ErreursVisibles, Converter={StaticResource ResourceKey=VisibilityOfBool}}">
+				<uc:AffichageNotificationUC 
+								Header="Erreurs" 
+								Message="{Binding Path=Erreurs, Converter={StaticResource ResourceKey=ListToString}}" />
+			</StackPanel>
+
+			<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
+
+
 			<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 				<StackPanel.Children>
 					<Grid HorizontalAlignment="Center">
@@ -29,19 +55,6 @@
 							<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Saison.AnneeFin}" />
 						</Grid.Children>
 					</Grid>
-					<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
-					<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-						<StackPanel.Children>
-							<Button ToolTip="Annuler" Width="32" Height="32" Margin="0,0,10,0" 
-									CommandParameter="{x:Static ihm:CodesUC.ConsultationSaisons}" 
-									Command="{Binding AnnulerCommand}">
-								<Image Source="/gestadh45.Main;component/Images/btn_annuler.png" />
-							</Button>
-							<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="32" Height="32" Margin="10,0,0,0" Command="{Binding EnregistrerCommand}">
-								<Image Source="/gestadh45.Main;component/Images/btn_enregistrer.png" />
-							</Button>
-						</StackPanel.Children>
-					</StackPanel>
 				</StackPanel.Children>
 			</StackPanel>
 		</DockPanel.Children>

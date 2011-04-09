@@ -109,7 +109,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
-				this.EnvoyerMessageErreur();
+				this.ErreursVisibles = true;
 			}
 		}
 
@@ -132,40 +132,42 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		protected override bool VerifierSaisie() {
-			this.mErreurs = new List<string>();
+			List<string> lErreurs = new List<string>();
 
 			if(string.IsNullOrWhiteSpace(this.Adherent.Nom)) {
-				this.mErreurs.Add(ResErreurs.Adherent_NomObligatoire);
+				lErreurs.Add(ResErreurs.Adherent_NomObligatoire);
 			}
 
 			if(string.IsNullOrWhiteSpace(this.Adherent.Prenom)) {
-				this.mErreurs.Add(ResErreurs.Adherent_PrenomObligatoire);
+				lErreurs.Add(ResErreurs.Adherent_PrenomObligatoire);
 			}
 
 			if (this.Adherent.DateNaissance == null) {
-				this.mErreurs.Add(ResErreurs.Adherent_DateNaissanceObligatoire);
+				lErreurs.Add(ResErreurs.Adherent_DateNaissanceObligatoire);
 			}
 
 			if (this.Adherent.Sexe == null) {
-				this.mErreurs.Add(ResErreurs.Adherent_SexeObligatoire);
+				lErreurs.Add(ResErreurs.Adherent_SexeObligatoire);
 			}
 
 			if (this.Adherent.Adresse == null || string.IsNullOrWhiteSpace(this.Adherent.Adresse.Libelle)) {
-				this.mErreurs.Add(ResErreurs.Adherent_AdresseObligatoire);
+				lErreurs.Add(ResErreurs.Adherent_AdresseObligatoire);
 			}
 
 			if (this.Adherent.Adresse != null && this.Adherent.Adresse.Ville == null) {
-				this.mErreurs.Add(ResErreurs.Adherent_VilleObligatoire);
+				lErreurs.Add(ResErreurs.Adherent_VilleObligatoire);
 			}
 
-			if (!this.EstEdition 
-				&& this.mErreurs.Count == 0 
+			if (!this.EstEdition
+				&& lErreurs.Count == 0 
 				&& AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)) {
 
-				this.mErreurs.Add(ResErreurs.Adherent_Existe);
+					lErreurs.Add(ResErreurs.Adherent_Existe);
 			}
 
-			return this.mErreurs.Count == 0;
+			this.Erreurs = new List<string>(lErreurs);
+
+			return this.Erreurs.Count == 0;
 		}
 	}
 }

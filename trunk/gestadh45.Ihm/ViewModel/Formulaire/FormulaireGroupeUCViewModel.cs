@@ -60,7 +60,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
-				this.EnvoyerMessageErreur();
+				this.ErreursVisibles = true;
 			}
 		}
 
@@ -71,29 +71,31 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		protected override bool VerifierSaisie() {
-			this.mErreurs = new List<string>();
+			List<string> lErreurs = new List<string>();
 
 			if (string.IsNullOrWhiteSpace(this.Groupe.Libelle)) {
-				this.mErreurs.Add(ResErreurs.Groupe_LibelleObligatoire);
+				lErreurs.Add(ResErreurs.Groupe_LibelleObligatoire);
 			}
 
 			if (this.Groupe.JourSemaine == null) {
-				this.mErreurs.Add(ResErreurs.Groupe_JourObligatoire);
+				lErreurs.Add(ResErreurs.Groupe_JourObligatoire);
 			}
 
 			if (this.Groupe.HeureDebut > this.Groupe.HeureFin
 				|| (this.Groupe.HeureDebut == this.Groupe.HeureFin && this.Groupe.MinuteDebut >= this.Groupe.MinuteFin)) {
-					this.mErreurs.Add(ResErreurs.Groupe_HeureFinSupHeureDebut);
+					lErreurs.Add(ResErreurs.Groupe_HeureFinSupHeureDebut);
 			}
 
-			if (!this.EstEdition 
-				&& this.mErreurs.Count == 0
+			if (!this.EstEdition
+				&& lErreurs.Count == 0
 				&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)) {
 
-				this.mErreurs.Add(ResErreurs.Groupe_Existe);
+					lErreurs.Add(ResErreurs.Groupe_Existe);
 			}
 
-			return this.mErreurs.Count == 0;
+			this.Erreurs = new List<string>(lErreurs);
+
+			return this.Erreurs.Count == 0;
 		}
 	}
 }

@@ -37,29 +37,31 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
-				this.EnvoyerMessageErreur();
+				this.ErreursVisibles = true;
 			}
 		}
 
 		protected override bool VerifierSaisie() {
-			this.mErreurs = new List<string>();
+			List<string> lErreurs = new List<string>();
 
 			if (string.IsNullOrWhiteSpace(this.Ville.Libelle)) {
-				this.mErreurs.Add(ResErreurs.Ville_LibelleObligatoire);
+				lErreurs.Add(ResErreurs.Ville_LibelleObligatoire);
 			}
 
 			if (string.IsNullOrWhiteSpace(this.Ville.CodePostal)) {
-				this.mErreurs.Add(ResErreurs.Ville_CodePostalObligatoire);
+				lErreurs.Add(ResErreurs.Ville_CodePostalObligatoire);
 			}
 
 			if (!this.EstEdition
-				&& this.mErreurs.Count == 0
+				&& lErreurs.Count == 0
 				&& VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)) {
 
-					this.mErreurs.Add(ResErreurs.Ville_Existe);
+					lErreurs.Add(ResErreurs.Ville_Existe);
 			}
 
-			return this.mErreurs.Count == 0;
+			this.Erreurs = new List<string>(lErreurs);
+
+			return this.Erreurs.Count == 0;
 		}
 	}
 }
