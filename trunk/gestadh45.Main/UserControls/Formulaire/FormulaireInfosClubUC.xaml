@@ -87,7 +87,8 @@
 							Visibility="{Binding Path=ErreursVisibles, Converter={StaticResource ResourceKey=VisibilityOfBool}}">
 					<uc:AffichageNotificationUC 
 						Header="Erreurs" 
-						Message="{Binding Path=Erreurs, Converter={StaticResource ResourceKey=ListToString}}" />
+						Message="{Binding Path=Erreurs, Converter={StaticResource ResourceKey=ListToString}}"
+						CouleurTexte="Red" />
 				</StackPanel>
 
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

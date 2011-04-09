@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace gestadh45.Main.UserControls
 {
@@ -34,6 +34,19 @@ namespace gestadh45.Main.UserControls
 				SetValue(HeaderProperty, value);
 			}
 		}
+
+		/// <summary>
+		/// Obtient/Définit la couleur du texte
+		/// </summary>
+		public Brush CouleurTexte {
+			get {
+				return (Brush)GetValue(CouleurTexteProperty);
+			}
+
+			set {
+				SetValue(CouleurTexteProperty, value);
+			}
+		}
 		
 		public AffichageNotificationUC() {
 			InitializeComponent();
@@ -48,6 +61,12 @@ namespace gestadh45.Main.UserControls
 		public static DependencyProperty HeaderProperty = DependencyProperty.Register(
 			"Header",
 			typeof(string),
+			typeof(AffichageNotificationUC)
+		);
+
+		public static DependencyProperty CouleurTexteProperty = DependencyProperty.Register(
+			"CouleurTexte",
+			typeof(Brush),
 			typeof(AffichageNotificationUC)
 		);
 	}

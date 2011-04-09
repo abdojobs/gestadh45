@@ -30,6 +30,7 @@
 						DockPanel.Dock="Bottom" 
 						Visibility="{Binding Path=ErreursVisibles, Converter={StaticResource ResourceKey=VisibilityOfBool}}">
 				<uc:AffichageNotificationUC 
+						CouleurTexte="Red"
 						Header="Erreurs" 
 						Message="{Binding Path=Erreurs, Converter={StaticResource ResourceKey=ListToString}}" />
 			</StackPanel>
