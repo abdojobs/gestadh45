@@ -14,6 +14,17 @@ namespace gestadh45.service.Documents
 			this.mSavePath = pSavePath;
 		}
 
+		public void CreerDocument(string pCodeDocument) {
+			switch (pCodeDocument) {
+				case CodeAttestationPdf:
+					this.CreerDocumentAttestation();
+					break;
+
+				case CodeInscriptionPdf:
+					this.CreerDocumentInscription();
+					break;
+			}
+		}
 		public abstract void CreerDocumentAttestation();
 		public abstract void CreerDocumentInscription();
 	}

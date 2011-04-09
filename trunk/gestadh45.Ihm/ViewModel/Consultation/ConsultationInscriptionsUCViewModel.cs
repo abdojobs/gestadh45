@@ -117,15 +117,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				GenerateurDocumentPDF lGenerateur = new GenerateurDocumentPDF(lDonnees, pSaveFilePath);
 
 				try {
-					switch (pCodeDocument) {
-						case GenerateurDocumentBase.CodeInscriptionPdf:
-							lGenerateur.CreerDocumentInscription();
-							break;
-
-						case GenerateurDocumentBase.CodeAttestationPdf:
-							lGenerateur.CreerDocumentAttestation();
-							break;
-					}
+					lGenerateur.CreerDocument(pCodeDocument);
 
 					Messenger.Default.Send(
 						new NotificationMessageUtilisateur(
