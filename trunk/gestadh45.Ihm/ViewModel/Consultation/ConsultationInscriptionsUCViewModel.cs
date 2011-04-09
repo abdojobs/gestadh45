@@ -126,7 +126,12 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 						break;
 				}
 
-				Messenger.Default.Send(new NotificationMessage(ResMessages.MessageInfoGenerationDocument));
+				Messenger.Default.Send(
+					new NotificationMessageUtilisateur(
+						TypesNotification.Information,
+						ResMessages.MessageInfoGenerationDocument
+					)
+				);
 			}
 			catch (Exception lEx) {
 				NotificationMessageUtilisateur message =

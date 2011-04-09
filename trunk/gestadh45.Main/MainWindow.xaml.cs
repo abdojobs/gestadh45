@@ -2,11 +2,12 @@
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm;
 using gestadh45.Ihm.SpecialMessages;
+using gestadh45.Ihm.ViewModel.Formulaire;
 using gestadh45.Main.UserControls.Consultation;
 using gestadh45.Main.UserControls.Formulaire;
 using gestadh45.Model;
 using Microsoft.Win32;
-using gestadh45.Ihm.ViewModel.Formulaire;
+using forms = System.Windows.Forms;
 
 namespace gestadh45.Main
 {
@@ -31,6 +32,11 @@ namespace gestadh45.Main
 			Messenger.Default.Register<NotificationMessageActionFileDialog<string>>(
 				this,
 				this.AfficherFileDialog
+			);
+
+			Messenger.Default.Register<NotificationMessageActionFolderDialog<string>>(
+				this,
+				this.AfficherFolderDialog
 			);
 
 			Messenger.Default.Register<NotificationMessageChangementUC>(
@@ -82,6 +88,18 @@ namespace gestadh45.Main
 		private void AfficherDialogConfirmation(DialogMessageConfirmation pDialog) {
 			var lResult = MessageBox.Show(pDialog.Content, pDialog.Caption, pDialog.Button);
 			pDialog.ProcessCallback(lResult);
+		}
+
+		private void AfficherFolderDialog(NotificationMessageActionFolderDialog<string> pMessage) {
+			forms.FolderBrowserDialog lBrowser = new forms.FolderBrowserDialog();
+			lBrowser.ShowNewFolderButton = true;
+
+			string lFolder = null;
+			if (lBrowser.ShowDialog() == forms.DialogResult.OK) {
+				lFolder = lBrowser.SelectedPath;
+			}
+
+			pMessage.Execute(lFolder);
 		}
 
 		private void AfficherFileDialog(NotificationMessageActionFileDialog<string> pMessage) {
