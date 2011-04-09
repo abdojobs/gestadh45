@@ -1,8 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -45,13 +43,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public ICommand AfficherDetailsGroupeCommand { get; set; }
-		public ICommand SupprimerGroupeCommand { get; set; }
-
 		public ConsultationGroupesUCViewModel() {
 			this.InitialisationListeGroupes();
-
-			this.CreateAfficherDetailsGroupeCommand();
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
@@ -62,15 +55,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		private void CreateAfficherDetailsGroupeCommand() {
-			this.AfficherDetailsGroupeCommand = new RelayCommand<Groupe>(
-				this.ExecuteAfficherDetailsGroupeCommand
-			);
-		}
-
-		public void ExecuteAfficherDetailsGroupeCommand(Groupe pGroupe) {
-			if (pGroupe != null) {
-				this.Groupe = pGroupe;
+		public override void ExecuteAfficherDetailsCommand(object pGroupe) {
+			if (pGroupe != null && pGroupe is Groupe) {
+				this.Groupe = pGroupe as Groupe;
 			}
 		}
 

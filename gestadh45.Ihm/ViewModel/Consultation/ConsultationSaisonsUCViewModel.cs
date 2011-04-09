@@ -12,6 +12,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class ConsultationSaisonsUCViewModel : ViewModelBaseConsultation
 	{
+		public ICommand DefinirSaisonCouranteCommand { get; set; }
+
 		private Saison mSaison;
 		private ICollectionView mSaisons;
 
@@ -45,14 +47,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public ICommand AfficherDetailsSaisonCommand { get; set; }
-		public ICommand DefinirSaisonCouranteCommand { get; set; }
-
 		public ConsultationSaisonsUCViewModel() {
 			this.InitialisationListeSaisons();
 
 			this.CreateDefinirSaisonCouranteCommand();
-			this.CreateAfficherDetailsSaisonCommand();
 		}
 
 		public bool CanExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
@@ -70,12 +68,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		private void CreateAfficherDetailsSaisonCommand() {
-			this.AfficherDetailsSaisonCommand = new RelayCommand<Saison>(
-				this.ExecuteAfficherDetailsSaisonCommand
-			);
-		}
-
 		private void CreateDefinirSaisonCouranteCommand() {
 			this.DefinirSaisonCouranteCommand = new RelayCommand<Saison>(
 				this.ExecuteDefinirSaisonCouranteCommand, 
@@ -83,9 +75,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		public void ExecuteAfficherDetailsSaisonCommand(Saison pSaison) {
-			if (pSaison != null) {
-				this.Saison = pSaison;
+		public override void ExecuteAfficherDetailsCommand(object pSaison) {
+			if (pSaison != null && pSaison is Saison) {
+				this.Saison = pSaison as Saison;
 			}
 		}
 

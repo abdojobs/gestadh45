@@ -15,7 +15,9 @@
 			<ListBox Name="lbxVilles" Width="300" DockPanel.Dock="Left" ItemsSource="{Binding Villes}">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="SelectionChanged">
-						<cmd:EventToCommand Command="{Binding AfficherDetailsVilleCommand, Mode=OneWay}" CommandParameter="{Binding ElementName=lbxVilles, Path=SelectedItem}" />
+						<cmd:EventToCommand 
+							Command="{Binding Path=AfficherDetailsCommand, Mode=OneWay}" 
+							CommandParameter="{Binding ElementName=lbxVilles, Path=SelectedItem}" />
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
 			</ListBox>

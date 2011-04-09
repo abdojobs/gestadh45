@@ -12,6 +12,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class ConsultationAdherentsUCViewModel : ViewModelBaseConsultation
 	{
+		public ICommand InscrireCommand { get; set; }
+		
 		private Adherent mAdherent;
 		private ICollectionView mAdherents;
 
@@ -45,13 +47,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public ICommand AfficherDetailsAdherentCommand { get; set; }
-		public ICommand InscrireCommand { get; set; }
-
 		public ConsultationAdherentsUCViewModel() {
 			this.InitialisationListeAdherents();
 
-			this.CreateAfficherDetailsAdherentCommand();
 			this.CreateInscrireCommand();
 		}
 
@@ -71,12 +69,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			return (this.Adherent != null);
 		}
 
-		private void CreateAfficherDetailsAdherentCommand() {
-			this.AfficherDetailsAdherentCommand = new RelayCommand<Adherent>(
-				this.ExecuteAfficherDetailsAdherentCommand
-			);
-		}
-
 		private void CreateInscrireCommand() {
 			this.InscrireCommand = new RelayCommand(
 				this.ExecuteInscrireCommand, 
@@ -84,9 +76,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		public void ExecuteAfficherDetailsAdherentCommand(Adherent pAdherent) {
-			if (pAdherent != null) {
-				this.Adherent = pAdherent;
+		public override void ExecuteAfficherDetailsCommand(object pAdherent) {
+			if (pAdherent != null && pAdherent is Adherent) {
+				this.Adherent = pAdherent as Adherent;
 			}
 		}
 
