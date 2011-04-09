@@ -7,6 +7,8 @@
 			 x:Name="AffichageNotification"
              d:DesignHeight="100" d:DesignWidth="300">
 	<GroupBox Header="{Binding ElementName=AffichageNotification, Path=Header}" FontWeight="Bold">
-		<TextBlock Text="{Binding ElementName=AffichageNotification, Path=Message}" />
+		<TextBlock
+			Text="{Binding ElementName=AffichageNotification, Path=Message}"
+			Foreground="{Binding ElementName=AffichageNotification, Path=CouleurTexte}" />
 	</GroupBox>
 </UserControl>
