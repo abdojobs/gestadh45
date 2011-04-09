@@ -111,36 +111,38 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
-			InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
-			DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, this.Inscription);
-			GenerateurDocumentPDF lGenerateur = new GenerateurDocumentPDF(lDonnees, pSaveFilePath);
+			if (pSaveFilePath != null) {
+				InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
+				DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, this.Inscription);
+				GenerateurDocumentPDF lGenerateur = new GenerateurDocumentPDF(lDonnees, pSaveFilePath);
 
-			try {
-				switch (pCodeDocument) {
-					case GenerateurDocumentBase.CodeInscriptionPdf:
-						lGenerateur.CreerDocumentInscription();
-						break;
+				try {
+					switch (pCodeDocument) {
+						case GenerateurDocumentBase.CodeInscriptionPdf:
+							lGenerateur.CreerDocumentInscription();
+							break;
 
-					case GenerateurDocumentBase.CodeAttestationPdf:
-						lGenerateur.CreerDocumentAttestation();
-						break;
-				}
+						case GenerateurDocumentBase.CodeAttestationPdf:
+							lGenerateur.CreerDocumentAttestation();
+							break;
+					}
 
-				Messenger.Default.Send(
-					new NotificationMessageUtilisateur(
-						TypesNotification.Information,
-						ResMessages.MessageInfoGenerationDocument
-					)
-				);
-			}
-			catch (Exception lEx) {
-				NotificationMessageUtilisateur message =
-					new NotificationMessageUtilisateur(
-						TypesNotification.Erreur,
-						lEx.Message
+					Messenger.Default.Send(
+						new NotificationMessageUtilisateur(
+							TypesNotification.Information,
+							ResMessages.MessageInfoGenerationDocument
+						)
 					);
+				}
+				catch (Exception lEx) {
+					NotificationMessageUtilisateur message =
+						new NotificationMessageUtilisateur(
+							TypesNotification.Erreur,
+							lEx.Message
+						);
 
-				Messenger.Default.Send<NotificationMessageUtilisateur>(message);
+					Messenger.Default.Send<NotificationMessageUtilisateur>(message);
+				}
 			}
 		}
 

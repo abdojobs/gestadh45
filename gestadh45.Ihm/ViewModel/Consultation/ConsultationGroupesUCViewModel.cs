@@ -135,59 +135,61 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		private void GenererDocumentsGroupe(string pSaveFolder, string pCodeDocument) {
-			InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();			
+			if (pSaveFolder != null) {
+				InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
 
-			try {
-				foreach (Inscription lInscription in this.Groupe.Inscriptions) {
-					DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, lInscription);
+				try {
+					foreach (Inscription lInscription in this.Groupe.Inscriptions) {
+						DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, lInscription);
 
-					string lSaveFilePath;
-					GenerateurDocumentBase lGenerateur;
+						string lSaveFilePath;
+						GenerateurDocumentBase lGenerateur;
 
-					switch (pCodeDocument) {
-						case GenerateurDocumentBase.CodeInscriptionPdf:
-							lSaveFilePath = string.Format(
-								"{0}\\{1} - {2}{3}",
-								pSaveFolder,
-								ResDocuments.PrefixeNomFichierInscription,
-								lInscription.Adherent.ToString(),
-								ResDocuments.ExtensionFichierPdf
-							);
+						switch (pCodeDocument) {
+							case GenerateurDocumentBase.CodeInscriptionPdf:
+								lSaveFilePath = string.Format(
+									"{0}\\{1} - {2}{3}",
+									pSaveFolder,
+									ResDocuments.PrefixeNomFichierInscription,
+									lInscription.Adherent.ToString(),
+									ResDocuments.ExtensionFichierPdf
+								);
 
-							lGenerateur = new GenerateurDocumentPDF(lDonnees, lSaveFilePath);
-							lGenerateur.CreerDocumentInscription();
-							break;
+								lGenerateur = new GenerateurDocumentPDF(lDonnees, lSaveFilePath);
+								lGenerateur.CreerDocumentInscription();
+								break;
 
-						case GenerateurDocumentBase.CodeAttestationPdf:
-							lSaveFilePath = string.Format(
-								"{0}\\{1} - {2}{3}",
-								pSaveFolder,
-								ResDocuments.PrefixeNomFichierAttestation,
-								lInscription.Adherent.ToString(),
-								ResDocuments.ExtensionFichierPdf
-							);
+							case GenerateurDocumentBase.CodeAttestationPdf:
+								lSaveFilePath = string.Format(
+									"{0}\\{1} - {2}{3}",
+									pSaveFolder,
+									ResDocuments.PrefixeNomFichierAttestation,
+									lInscription.Adherent.ToString(),
+									ResDocuments.ExtensionFichierPdf
+								);
 
-							lGenerateur = new GenerateurDocumentPDF(lDonnees, lSaveFilePath);
-							lGenerateur.CreerDocumentAttestation();
-							break;
+								lGenerateur = new GenerateurDocumentPDF(lDonnees, lSaveFilePath);
+								lGenerateur.CreerDocumentAttestation();
+								break;
+						}
 					}
-				}				
 
-				Messenger.Default.Send(
-					new NotificationMessageUtilisateur(
-						TypesNotification.Information,
-						ResMessages.MessageInfoGenerationDocumentsGroupe
-					)
-				);
-			}
-			catch (Exception lEx) {
-				NotificationMessageUtilisateur message =
-					new NotificationMessageUtilisateur(
-						TypesNotification.Erreur,
-						lEx.Message
+					Messenger.Default.Send(
+						new NotificationMessageUtilisateur(
+							TypesNotification.Information,
+							ResMessages.MessageInfoGenerationDocumentsGroupe
+						)
 					);
+				}
+				catch (Exception lEx) {
+					NotificationMessageUtilisateur message =
+						new NotificationMessageUtilisateur(
+							TypesNotification.Erreur,
+							lEx.Message
+						);
 
-				Messenger.Default.Send<NotificationMessageUtilisateur>(message);
+					Messenger.Default.Send<NotificationMessageUtilisateur>(message);
+				}
 			}
 		}
 	}
