@@ -100,7 +100,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
-				this.EnvoyerMessageErreur();
+				this.ErreursVisibles = true;
 			}
 		}
 
@@ -119,24 +119,26 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		protected override bool VerifierSaisie() {
-			this.mErreurs = new List<string>();
+			List<string> lErreurs = new List<string>();
 
 			if (this.Inscription.Adherent == null) {
-				this.mErreurs.Add(ResErreurs.Inscription_AdherentObligatoire);
+				lErreurs.Add(ResErreurs.Inscription_AdherentObligatoire);
 			}
 
 			if (this.Inscription.Groupe == null) {
-				this.mErreurs.Add(ResErreurs.Inscription_GroupeObligatoire);
+				lErreurs.Add(ResErreurs.Inscription_GroupeObligatoire);
 			}
 
 			if (!this.EstEdition
-				&& this.mErreurs.Count == 0
+				&& lErreurs.Count == 0
 				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {
 
-				this.mErreurs.Add(ResErreurs.Inscription_Existe);
+					lErreurs.Add(ResErreurs.Inscription_Existe);
 			}
 
-			return this.mErreurs.Count == 0;
+			this.Erreurs = new List<string>(lErreurs);
+
+			return this.Erreurs.Count == 0;
 		}
 	}
 }

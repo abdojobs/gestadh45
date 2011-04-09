@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="SpecialMessages\TypesNotification.cs" />
     <Compile Include="Tools\BooleanInversionConverter.cs" />
+    <Compile Include="Tools\ListToStringConverter.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationAdherentsUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationGroupesUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationInfosClubUCViewModel.cs" />
