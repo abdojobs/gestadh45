@@ -8,7 +8,7 @@
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
              mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationVillesVMStatic, Source={StaticResource Locator}}"
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
 	<DockPanel Margin="5,5,5,5">
 		<DockPanel.Children>
 			<TextBlock Text="Villes" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
