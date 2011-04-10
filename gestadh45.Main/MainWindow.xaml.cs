@@ -71,15 +71,12 @@ namespace gestadh45.Main
 
 		private void AfficherNotificationUtilisateur(NotificationMessageUtilisateur pMessage) {
 			string lTitre = string.Empty;
-			
-			switch (pMessage.Notification) {
-				case TypesNotification.Erreur:
-					lTitre = ResMessages.TitreErreur;
-					break;
 
-				case TypesNotification.Information:
-					lTitre = ResMessages.TitreInformation;
-					break;
+			if (pMessage.Notification.Equals(TypesNotification.Erreur)) {
+				lTitre = ResMessages.TitreErreur;
+			}
+			else {
+				lTitre = ResMessages.TitreInformation;
 			}
 
 			MessageBox.Show(pMessage.Message, lTitre);
@@ -107,18 +104,14 @@ namespace gestadh45.Main
 
 			FileDialog lDialog;
 
-			switch (pMessage.Notification) {
-				case TypesNotification.OpenFileDialog:
-					lDialog = new OpenFileDialog();
-					break;
-
-				case TypesNotification.SaveFileDialog:
-				default:
-					lDialog = new SaveFileDialog
-					{
-						FileName = pMessage.NomFichier
-					};
-					break;
+			if (pMessage.Notification.Equals(TypesNotification.OpenFileDialog)) {
+				lDialog = new OpenFileDialog();
+			}
+			else {
+				lDialog = new SaveFileDialog
+				{
+					FileName = pMessage.NomFichier
+				};
 			}
 
 			lDialog.Filter = string.Format("fichiers {0} (*{0})|*{0}", pMessage.ExtensionFichier);
@@ -132,71 +125,59 @@ namespace gestadh45.Main
 		}
 
 		private void ChangerUC(NotificationMessageChangementUC pMessage) {
-			switch (pMessage.CodeUC) {
-				case CodesUC.ConsultationInfosClub:
-				default:
-					this.contenu.Content = new ConsultationInfosClubUC();
-					break;
-
-				case CodesUC.FormulaireInfosClub:
-					this.contenu.Content = new FormulaireInfosClubUC();
-					break;
-
-				case CodesUC.ConsultationSaisons:
-					this.contenu.Content = new ConsultationSaisonsUC();
-					break;
-
-				case CodesUC.FormulaireSaison:
-					this.contenu.Content = new FormulaireSaisonUC();
-					break;
-
-				case CodesUC.ConsultationVilles:
-					this.contenu.Content = new ConsultationVillesUC();
-					break;
-
-				case CodesUC.FormulaireVille:
-					this.contenu.Content = new FormulaireVilleUC();
-					break;
-
-				case CodesUC.ConsultationAdherents:
-					this.contenu.Content = new ConsultationAdherentsUC();
-					break;
-
-				case CodesUC.FormulaireAdherent:
-					this.contenu.Content = new FormulaireAdherentUC();
-					break;
-
-				case CodesUC.ConsultationInscriptions:
-					this.contenu.Content = new ConsultationInscriptionsUC();
-					break;
-
-				case CodesUC.FormulaireInscription:
-					this.contenu.Content = new FormulaireInscriptionUC();
-					break;
-
-				case CodesUC.ConsultationGroupes:
-					this.contenu.Content = new ConsultationGroupesUC();
-					break;
-
-				case CodesUC.FormulaireGroupe:
-					this.contenu.Content = new FormulaireGroupeUC();
-					break;
-
-				case CodesUC.GraphsSaisonCourante:
-					this.contenu.Content = new GraphsSaisonCouranteUC();
-					break;
+			if (pMessage.CodeUC.Equals(CodesUC.ConsultationInfosClub)) {
+				this.contenu.Content = new ConsultationInfosClubUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireInfosClub)) {
+				this.contenu.Content = new FormulaireInfosClubUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.ConsultationSaisons)) {
+				this.contenu.Content = new ConsultationSaisonsUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireSaison)) {
+				this.contenu.Content = new FormulaireSaisonUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.ConsultationVilles)) {
+				this.contenu.Content = new ConsultationVillesUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireVille)) {
+				this.contenu.Content = new FormulaireVilleUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.ConsultationAdherents)) {
+				this.contenu.Content = new ConsultationAdherentsUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireAdherent)) {
+				this.contenu.Content = new FormulaireAdherentUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.ConsultationInscriptions)) {
+				this.contenu.Content = new ConsultationInscriptionsUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireInscription)) {
+				this.contenu.Content = new FormulaireInscriptionUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.ConsultationGroupes)) {
+				this.contenu.Content = new ConsultationGroupesUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireGroupe)) {
+				this.contenu.Content = new FormulaireGroupeUC();
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.GraphsSaisonCourante)) {
+				this.contenu.Content = new GraphsSaisonCouranteUC();
+			}
+			else {
+				this.contenu.Content = new ConsultationInfosClubUC();
 			}
 		}
 
 		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Adherent> pMessage) {
-			switch (pMessage.CodeUC) {
-				case CodesUC.FormulaireAdherent:
-					this.contenu.Content = new FormulaireAdherentUC((Adherent)pMessage.Element);
-					break;
-
-				case CodesUC.FormulaireInscription:
-					this.contenu.Content = new FormulaireInscriptionUC((Adherent)pMessage.Element);
-					break;
+			if (pMessage.CodeUC.Equals(CodesUC.FormulaireAdherent)) {
+				this.contenu.Content = new FormulaireAdherentUC((Adherent)pMessage.Element);
+			}
+			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireInscription)) {
+				this.contenu.Content = new FormulaireInscriptionUC((Adherent)pMessage.Element);
+			}
+			else {
+				this.contenu.Content = new ConsultationInfosClubUC();
 			}
 		}
 
@@ -205,13 +186,11 @@ namespace gestadh45.Main
 		}
 
 		private void OuvrirFenetreUC(NotificationMessageOuvertureFenetre pMessage) {
-			switch (pMessage.CodeUC) {
-				case CodesUC.FormulaireVille:
-					FormulaireVilleUC lUC = new FormulaireVilleUC();
-					((FormulaireVilleUCViewModel)lUC.DataContext).ModeFenetre = true;
-					UCWindow lWindow = new UCWindow(lUC);
-					lWindow.ShowDialog();
-					break;
+			if (pMessage.CodeUC.Equals(CodesUC.FormulaireVille)) {
+				FormulaireVilleUC lUC = new FormulaireVilleUC();
+				((FormulaireVilleUCViewModel)lUC.DataContext).ModeFenetre = true;
+				UCWindow lWindow = new UCWindow(lUC);
+				lWindow.ShowDialog();
 			}
 		}
 	}
