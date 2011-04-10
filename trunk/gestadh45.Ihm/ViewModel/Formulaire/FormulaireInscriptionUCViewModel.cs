@@ -55,7 +55,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				if (this.mInscription != value) {
 					this.mInscription = value;
 					this.RaisePropertyChanged("Inscription");
-					this.RaisePropertyChanged("CertificatRemis");
 				}
 			}
 		}

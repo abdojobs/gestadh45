@@ -135,55 +135,55 @@ namespace gestadh45.Main
 			switch (pMessage.CodeUC) {
 				case CodesUC.ConsultationInfosClub:
 				default:
-					this.contenu.Child = new ConsultationInfosClubUC();
+					this.contenu.Content = new ConsultationInfosClubUC();
 					break;
 
 				case CodesUC.FormulaireInfosClub:
-					this.contenu.Child = new FormulaireInfosClubUC();
+					this.contenu.Content = new FormulaireInfosClubUC();
 					break;
 
 				case CodesUC.ConsultationSaisons:
-					this.contenu.Child = new ConsultationSaisonsUC();
+					this.contenu.Content = new ConsultationSaisonsUC();
 					break;
 
 				case CodesUC.FormulaireSaison:
-					this.contenu.Child = new FormulaireSaisonUC();
+					this.contenu.Content = new FormulaireSaisonUC();
 					break;
 
 				case CodesUC.ConsultationVilles:
-					this.contenu.Child = new ConsultationVillesUC();
+					this.contenu.Content = new ConsultationVillesUC();
 					break;
 
 				case CodesUC.FormulaireVille:
-					this.contenu.Child = new FormulaireVilleUC();
+					this.contenu.Content = new FormulaireVilleUC();
 					break;
 
 				case CodesUC.ConsultationAdherents:
-					this.contenu.Child = new ConsultationAdherentsUC();
+					this.contenu.Content = new ConsultationAdherentsUC();
 					break;
 
 				case CodesUC.FormulaireAdherent:
-					this.contenu.Child = new FormulaireAdherentUC();
+					this.contenu.Content = new FormulaireAdherentUC();
 					break;
 
 				case CodesUC.ConsultationInscriptions:
-					this.contenu.Child = new ConsultationInscriptionsUC();
+					this.contenu.Content = new ConsultationInscriptionsUC();
 					break;
 
 				case CodesUC.FormulaireInscription:
-					this.contenu.Child = new FormulaireInscriptionUC();
+					this.contenu.Content = new FormulaireInscriptionUC();
 					break;
 
 				case CodesUC.ConsultationGroupes:
-					this.contenu.Child = new ConsultationGroupesUC();
+					this.contenu.Content = new ConsultationGroupesUC();
 					break;
 
 				case CodesUC.FormulaireGroupe:
-					this.contenu.Child = new FormulaireGroupeUC();
+					this.contenu.Content = new FormulaireGroupeUC();
 					break;
 
 				case CodesUC.GraphsSaisonCourante:
-					this.contenu.Child = new GraphsSaisonCouranteUC();
+					this.contenu.Content = new GraphsSaisonCouranteUC();
 					break;
 			}
 		}
@@ -191,17 +191,17 @@ namespace gestadh45.Main
 		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Adherent> pMessage) {
 			switch (pMessage.CodeUC) {
 				case CodesUC.FormulaireAdherent:
-					this.contenu.Child = new FormulaireAdherentUC((Adherent)pMessage.Element);
+					this.contenu.Content = new FormulaireAdherentUC((Adherent)pMessage.Element);
 					break;
 
 				case CodesUC.FormulaireInscription:
-					this.contenu.Child = new FormulaireInscriptionUC((Adherent)pMessage.Element);
+					this.contenu.Content = new FormulaireInscriptionUC((Adherent)pMessage.Element);
 					break;
 			}
 		}
 
 		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Inscription> pMessage) {
-			this.contenu.Child = new FormulaireInscriptionUC((Inscription)pMessage.Element);
+			this.contenu.Content = new FormulaireInscriptionUC((Inscription)pMessage.Element);
 		}
 
 		private void OuvrirFenetreUC(NotificationMessageOuvertureFenetre pMessage) {
