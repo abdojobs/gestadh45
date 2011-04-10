@@ -9,6 +9,7 @@ namespace gestadh45.Ihm
 		public const string ConsultationInscriptions = "ConsultationInscriptions";
 		public const string ConsultationSaisons = "ConsultationSaisons";
 		public const string ConsultationVilles = "ConsultationVilles";
+		public const string ConsultationExtractions = "ConsultationExtractions";
 		public const string FormulaireAdherent = "FormulaireAdherent";
 		public const string FormulaireGroupe = "FormulaireGroupe";
 		public const string FormulaireInfosClub = "FormulaireInfosClub";

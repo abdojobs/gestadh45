@@ -8,9 +8,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public abstract class ViewModelBaseFormulaire : ViewModelBaseUC
 	{
-		public ICommand AnnulerCommand { get; set; }
 		public ICommand EnregistrerCommand { get; set; }
-		public ICommand FenetreCommand { get; set; }
 		
 		private bool mEstEdition;
 		private bool mErreursVisibles;
@@ -57,23 +55,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 		}
 
-		/// <summary>
-		/// Obtient/Définit le code de l'UC "parent" de ce formulaire
-		/// </summary>
-		public string CodeUCOrigine { get; set; }
-
 		public ViewModelBaseFormulaire() {
-			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
-
-			this.CreateAnnulerCommand();
 			this.CreateEnregistrerCommand();
-			this.CreateFenetreCommand();
-		}
-
-		protected void CreateAnnulerCommand() {
-			this.AnnulerCommand = new RelayCommand<string>(
-				this.ExecuteAnnulerCommand
-			);
 		}
 
 		protected void CreateEnregistrerCommand() {
@@ -81,26 +64,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				this.ExecuteEnregistrerCommand,
 				this.CanExecuteEnregistrerCommand
 			);
-		}
-
-		protected void CreateFenetreCommand() {
-			this.FenetreCommand = new RelayCommand<string>(
-				this.ExecuteFenetreCommand,
-				this.CanExecuteFenetreCommand
-			);
-		}
-
-		public virtual void ExecuteAnnulerCommand(string pCodeUc) {
-			if (this.ModeFenetre) {
-				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
-					new NotificationMessageFermetureFenetre()
-				);
-			}
-			else {
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(pCodeUc)
-				);
-			}
 		}
 
 		public virtual bool CanExecuteEnregistrerCommand() {
@@ -118,16 +81,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 					new NotificationMessageChangementUC(this.CodeUCOrigine)
 				);
 			}
-		}
-
-		public virtual bool CanExecuteFenetreCommand(string pCodeUC) {
-			return true;
-		}
-
-		public virtual void ExecuteFenetreCommand(string pCodeUC) {
-			Messenger.Default.Send<NotificationMessageOuvertureFenetre>(
-				new NotificationMessageOuvertureFenetre(pCodeUC)
-			);
 		}
 
 		protected virtual bool VerifierSaisie() {

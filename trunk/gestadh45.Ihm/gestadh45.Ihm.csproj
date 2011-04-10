@@ -62,6 +62,7 @@
     <Compile Include="SpecialMessages\NotificationMessageActionFileDialog.cs" />
     <Compile Include="SpecialMessages\NotificationMessageActionFolderDialog.cs" />
     <Compile Include="SpecialMessages\NotificationMessageChangementUC.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageConsultationExtractions.cs" />
     <Compile Include="SpecialMessages\NotificationMessageFermetureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageOuvertureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageUtilisateur.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Tools\BooleanInversionConverter.cs" />
     <Compile Include="Tools\ListToStringConverter.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationAdherentsUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\ConsultationExtractionsUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationGroupesUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationInfosClubUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationInscriptionsUCViewModel.cs" />
