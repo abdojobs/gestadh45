@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm;
 using gestadh45.Ihm.SpecialMessages;
+using gestadh45.Ihm.ViewModel.Consultation;
 using gestadh45.Ihm.ViewModel.Formulaire;
 using gestadh45.Main.UserControls.Consultation;
 using gestadh45.Main.UserControls.Formulaire;
@@ -62,6 +63,11 @@ namespace gestadh45.Main
 			Messenger.Default.Register<NotificationMessageAboutBox>(
 				this,
 				this.AfficherAboutBox
+			);
+
+			Messenger.Default.Register<NotificationMessageConsultationExtractions>(
+				this,
+				this.OuvrirFenetreUC
 			);
 		}
 
@@ -192,6 +198,14 @@ namespace gestadh45.Main
 				UCWindow lWindow = new UCWindow(lUC);
 				lWindow.ShowDialog();
 			}
+		}
+
+		private void OuvrirFenetreUC(NotificationMessageConsultationExtractions pMessage) {
+			ConsultationExtractionsUC lUC = new ConsultationExtractionsUC();
+			((ConsultationExtractionsUCViewModel)lUC.DataContext).ModeFenetre = true;
+			((ConsultationExtractionsUCViewModel)lUC.DataContext).ResultatExtraction = pMessage.ResultatExtraction;
+			UCWindow lWindow = new UCWindow(lUC);
+			lWindow.ShowDialog();
 		}
 	}
 }

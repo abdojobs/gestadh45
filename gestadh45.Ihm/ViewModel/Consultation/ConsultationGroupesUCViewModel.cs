@@ -9,12 +9,14 @@ using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 using gestadh45.service.Documents;
+using System.Text;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class ConsultationGroupesUCViewModel : ViewModelBaseConsultation
 	{
 		public ICommand GenererDocumentsGroupeCommand { get; set; }
+		public ICommand ExtraireMailsCommand { get; set; }
 		
 		private Groupe mGroupe;
 		private ICollectionView mGroupesSaisonCourante;
@@ -53,6 +55,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.InitialisationListeGroupes();
 
 			this.CreateGenererDocumentsGroupeCommand();
+			this.CreateExtraireMailsCommand();
 		}
 
 		private void CreateGenererDocumentsGroupeCommand() {
@@ -62,7 +65,18 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
+		private void CreateExtraireMailsCommand() {
+			this.ExtraireMailsCommand = new RelayCommand(
+				this.ExecuteExtraireMailsCommand,
+				this.CanExecuteExtraireMailsCommand
+			);
+		}
+
 		public bool CanExecuteGenererDocumentsGroupeCommand(string pCodeDocument) {
+			return (this.Groupe != null);
+		}
+
+		public bool CanExecuteExtraireMailsCommand() {
 			return (this.Groupe != null);
 		}
 
@@ -78,6 +92,18 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 				Messenger.Default.Send<NotificationMessageActionFolderDialog<string>>(message);
 			}
+		}
+
+		public void ExecuteExtraireMailsCommand() {
+			StringBuilder lSb = new StringBuilder();
+
+			foreach (Inscription lInscription in this.Groupe.Inscriptions) {
+				lSb.Append(lInscription.Adherent.Contact.ChaineMails);
+			}
+
+			Messenger.Default.Send<NotificationMessageConsultationExtractions>(
+				new NotificationMessageConsultationExtractions(lSb.ToString())
+			);
 		}
 
 		public override bool CanExecuteSupprimerCommand() {

@@ -82,6 +82,7 @@
 					<GroupBox Header="Outils" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
 						<StackPanel Orientation="Vertical" Margin="0,5,0,5">
 							<StackPanel.Children>
+								
 								<StackPanel Orientation="Horizontal">
 									<StackPanel.Children>
 										<Button Height="16" Width="16" ToolTip="Générer les fiches d'inscription du groupe au format PDF" 
@@ -92,6 +93,7 @@
 										<TextBlock Text=" : Fiches d'inscription (pdf)" />
 									</StackPanel.Children>
 								</StackPanel>
+								
 								<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 									<StackPanel.Children>
 										<Button Height="16" Width="16" ToolTip="Générer les attestations du grope au format PDF" 
@@ -100,6 +102,16 @@
 											<Image Source="/GestAdh45.Main;component/Images/btn_pdf16.png" />
 										</Button>
 										<TextBlock Text=" : Attestations (pdf)" />
+									</StackPanel.Children>
+								</StackPanel>
+
+								<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+									<StackPanel.Children>
+										<Button Height="16" Width="16" ToolTip="Extraire les adresses email du groupe" 
+												Command="{Binding Path=ExtraireMailsCommand}">
+											<Image Source="/GestAdh45.Main;component/Images/btn_mails16.png" />
+										</Button>
+										<TextBlock Text=" : Extraction des e-mails" />
 									</StackPanel.Children>
 								</StackPanel>
 							</StackPanel.Children>
