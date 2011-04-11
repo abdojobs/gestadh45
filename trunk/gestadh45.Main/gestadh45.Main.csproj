@@ -54,7 +54,8 @@
     <StartupObject>gestadh45.Main.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>gestadh45.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
@@ -245,96 +246,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_ouvrir.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_about.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_add16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_addgroup.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_adduser.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_adherents.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_annuler.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_city.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_deletegroup.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_deleteuser.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_edit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_edituser.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_enregistrer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_graphs.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_groupes.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_home.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_inscriptions.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_inscrire.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_moins.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_pdf16.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_plus.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_saisons.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Icones\gestadh45.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\gestadh45.Ihm\gestadh45.Ihm.csproj">
       <Project>{7D1DAFDD-8A59-4F52-9B5F-9D01AF975565}</Project>
@@ -348,14 +267,6 @@
       <Project>{F965A907-9B56-412D-AF80-69BDDD9B3AF8}</Project>
       <Name>gestadh45.service</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="AboutLogo.png">
-      <SubType>Image</SubType>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="gestadh45.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -378,9 +289,6 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\btn_mails16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
