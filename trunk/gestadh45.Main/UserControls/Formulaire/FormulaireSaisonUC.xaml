@@ -37,7 +37,6 @@
 
 			<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 
-
 			<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 				<StackPanel.Children>
 					<Grid HorizontalAlignment="Center">

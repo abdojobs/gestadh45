@@ -6,7 +6,7 @@
 		xmlns:Transitions="clr-namespace:Transitionals.Transitions;assembly=Transitionals"
 		Title="GestAdh45" MinHeight="500" MinWidth="705"
 		Background="#FFFFDEAD" 
-		DataContext="{Binding MainStatic, Source={StaticResource Locator}}" Icon="/gestadh45.Main;component/Icones/gestadh45.ico" WindowState="Maximized">
+		DataContext="{Binding MainStatic, Source={StaticResource Locator}}" Icon="/gestadh45.Main;component/Images/gestadh45.ico" WindowState="Maximized">
 	
 	<Window.Resources>
 		<ResourceDictionary>
