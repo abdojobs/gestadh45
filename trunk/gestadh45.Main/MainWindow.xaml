@@ -19,7 +19,10 @@
 	<DockPanel>
 		<Border DockPanel.Dock="Top" Width="auto" HorizontalAlignment="Center" Margin="0,5,0,0" BorderThickness="0.5" BorderBrush="#FF000000" CornerRadius="10" Style="{StaticResource StyleEnfant}">
 			<StackPanel Orientation="Horizontal">
-				<Button Name="btnOuvrir" ToolTip="Ouvrir une base" Height="30" Width="30" Margin="10,5,15,5" Command="{Binding Path=ChangerDataSourceCommand}">
+				<Button Name="btnNouveau" ToolTip="Créer une base" Height="30" Width="30" Margin="10,5,5,5" Command="{Binding Path=CreerDatabaseCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_creerDatabase.png" />
+				</Button>
+				<Button Name="btnOuvrir" ToolTip="Ouvrir une base" Height="30" Width="30" Margin="5,5,15,5" Command="{Binding Path=ChangerDataSourceCommand}">
 					<Image Source="/gestadh45.Main;component/Images/btn_ouvrir.png" />
 				</Button>
 				<Button Name="btnAccueil" ToolTip="Informations sur le club" Height="30" Width="30" Margin="15,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationInfosClub}" Command="{Binding Path=AfficherUCCommand}">
