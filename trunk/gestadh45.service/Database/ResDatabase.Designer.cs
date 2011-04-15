@@ -61,23 +61,73 @@ namespace gestadh45.service.Database {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à BEGIN TRANSACTION;
-        ///CREATE TABLE [Adherent] (        ///
-        ///    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,        ///
-        ///    [Nom] nvarchar(50) NOT NULL,        ///
-        ///    [Prenom] nvarchar(50) NOT NULL,        ///
-        ///    [DateNaissance] datetime NOT NULL,        ///
-        ///    [DateCreation] datetime NOT NULL,        ///
-        ///    [DateModification] datetime NOT NULL,        ///
-        ///    [ID_Sexe] integer NOT NULL,        ///
-        ///    [Commentaire] ntext NOT NULL,        ///
-        ///    [ID_Adresse] integer NOT NULL,        ///
-        ///    [ID_Contact] integer NOT NULL,        ///
-        ///    CONSTRAINT [FK_Adherent_0] FOREIGN KEY ([ID_Sexe]) REFERENCES [ [le reste de la chaîne a été tronqué]&quot;;.
+        ///   Recherche une chaîne localisée semblable à CREATE TABLE [Adherent] (
+        ///
+        ///    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+        ///
+        ///    [Nom] nvarchar(50) NOT NULL,
+        ///
+        ///    [Prenom] nvarchar(50) NOT NULL,
+        ///
+        ///    [DateNaissance] datetime NOT NULL,
+        ///
+        ///    [DateCreation] datetime NOT NULL,
+        ///
+        ///    [DateModification] datetime NOT NULL,
+        ///
+        ///    [ID_Sexe] integer NOT NULL,
+        ///
+        ///    [Commentaire] ntext NOT NULL,
+        ///
+        ///    [ID_Adresse] integer NOT NULL,
+        ///
+        ///    [ID_Contact] integer NOT NULL,
+        ///
+        ///    CONSTRAINT [FK_Adherent_0] FOREIGN KEY ([ID_Sexe]) REFERENCES [Sexe] ([I [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        public static string SQL_Initialisation {
+        public static string SQL_CreateTables {
             get {
-                return ResourceManager.GetString("SQL_Initialisation", resourceCulture);
+                return ResourceManager.GetString("SQL_CreateTables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à DROP TABLE IF EXISTS [Adherent];
+        ///DROP TABLE IF EXISTS [Adresse];
+        ///DROP TABLE IF EXISTS [Contact];
+        ///DROP TABLE IF EXISTS [Groupe];
+        ///DROP TABLE IF EXISTS [InfosClub];
+        ///DROP TABLE IF EXISTS [Inscription];
+        ///DROP TABLE IF EXISTS [JourSemaine];
+        ///DROP TABLE IF EXISTS [Saison];
+        ///DROP TABLE IF EXISTS [Sexe];
+        ///DROP TABLE IF EXISTS [TarifConseille];
+        ///DROP TABLE IF EXISTS [Ville];.
+        /// </summary>
+        public static string SQL_DropTables {
+            get {
+                return ResourceManager.GetString("SQL_DropTables", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à -- Alimentation des tables de reference
+        ///INSERT INTO JourSemaine VALUES(1,1,&apos;Lundi&apos;);
+        ///INSERT INTO JourSemaine VALUES(2,2,&apos;Mardi&apos;);
+        ///INSERT INTO JourSemaine VALUES(3,3,&apos;Mercredi&apos;);
+        ///INSERT INTO JourSemaine VALUES(4,4,&apos;Jeudi&apos;);
+        ///INSERT INTO JourSemaine VALUES(5,5,&apos;Vendredi&apos;);
+        ///INSERT INTO JourSemaine VALUES(6,6,&apos;Samedi&apos;);
+        ///INSERT INTO JourSemaine VALUES(7,7,&apos;Dimanche&apos;);
+        ///
+        ///INSERT INTO Sexe VALUES(1,&apos;M&apos;,&apos;Masculin&apos;);
+        ///INSERT INTO Sexe VALUES(2,&apos;F&apos;,&apos;Féminin&apos;);
+        ///
+        ///-- Insertion des donnees indispensable pour lanc [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        public static string SQL_InsertData {
+            get {
+                return ResourceManager.GetString("SQL_InsertData", resourceCulture);
             }
         }
     }

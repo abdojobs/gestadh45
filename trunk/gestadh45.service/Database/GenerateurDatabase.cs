@@ -19,10 +19,24 @@ namespace gestadh45.service.Database
 			if (!string.IsNullOrWhiteSpace(this.ConnectionString)) {
 				using (SQLiteConnection lConnection = new SQLiteConnection(this.ConnectionString)) {
 					lConnection.Open();
-					using (SQLiteCommand lCommand = new SQLiteCommand(ResDatabase.SQL_Initialisation, lConnection)) {
-						lCommand.ExecuteNonQuery();
-						lConnection.Close();
+
+					using (SQLiteTransaction lTransaction = lConnection.BeginTransaction()) {
+						using (SQLiteCommand lCommand = new SQLiteCommand(ResDatabase.SQL_DropTables, lConnection, lTransaction)) {
+							lCommand.ExecuteNonQuery();
+						}
+
+						using (SQLiteCommand lCommand = new SQLiteCommand(ResDatabase.SQL_CreateTables, lConnection, lTransaction)) {
+							lCommand.ExecuteNonQuery();
+						}
+
+						using (SQLiteCommand lCommand = new SQLiteCommand(ResDatabase.SQL_InsertData, lConnection, lTransaction)) {
+							lCommand.ExecuteNonQuery();
+						}
+
+						lTransaction.Commit();
 					}
+					
+					lConnection.Close();
 				}
 			}
 		}
