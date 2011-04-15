@@ -117,116 +117,214 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SQL_Initialisation" xml:space="preserve">
-    <value>BEGIN TRANSACTION;
-CREATE TABLE [Adherent] (
-    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    [Nom] nvarchar(50) NOT NULL,
-    [Prenom] nvarchar(50) NOT NULL,
-    [DateNaissance] datetime NOT NULL,
-    [DateCreation] datetime NOT NULL,
-    [DateModification] datetime NOT NULL,
-    [ID_Sexe] integer NOT NULL,
-    [Commentaire] ntext NOT NULL,
-    [ID_Adresse] integer NOT NULL,
-    [ID_Contact] integer NOT NULL,
-    CONSTRAINT [FK_Adherent_0] FOREIGN KEY ([ID_Sexe]) REFERENCES [Sexe] ([ID]),
-    CONSTRAINT [FK_Adherent_1] FOREIGN KEY ([ID_Adresse]) REFERENCES [Adresse] ([ID]),
-    CONSTRAINT [FK_Adherent_ID_Contact_Contact_ID] FOREIGN KEY ([ID_Contact]) REFERENCES [Contact] ([ID])
+  <data name="SQL_CreateTables" xml:space="preserve">
+    <value>CREATE TABLE [Adherent] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Nom] nvarchar(50) NOT NULL,
+
+    [Prenom] nvarchar(50) NOT NULL,
+
+    [DateNaissance] datetime NOT NULL,
+
+    [DateCreation] datetime NOT NULL,
+
+    [DateModification] datetime NOT NULL,
+
+    [ID_Sexe] integer NOT NULL,
+
+    [Commentaire] ntext NOT NULL,
+
+    [ID_Adresse] integer NOT NULL,
+
+    [ID_Contact] integer NOT NULL,
+
+    CONSTRAINT [FK_Adherent_0] FOREIGN KEY ([ID_Sexe]) REFERENCES [Sexe] ([ID]),
+
+    CONSTRAINT [FK_Adherent_1] FOREIGN KEY ([ID_Adresse]) REFERENCES [Adresse] ([ID]),
+
+    CONSTRAINT [FK_Adherent_ID_Contact_Contact_ID] FOREIGN KEY ([ID_Contact]) REFERENCES [Contact] ([ID])
+
 );
 
-CREATE TABLE [Adresse] (
-    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    [Libelle] nvarchar(100) NOT NULL,
-    [ID_Ville] integer NOT NULL,
-    CONSTRAINT [FK_Adresse_ID_Ville_Ville_ID] FOREIGN KEY ([ID_Ville]) REFERENCES [Ville] ([ID])
+CREATE TABLE [Adresse] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Libelle] nvarchar(100) NOT NULL,
+
+    [ID_Ville] integer NOT NULL,
+
+    CONSTRAINT [FK_Adresse_ID_Ville_Ville_ID] FOREIGN KEY ([ID_Ville]) REFERENCES [Ville] ([ID])
+
 );
 
-CREATE TABLE [Contact] (
-    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    [Telephone1] nvarchar(10) NOT NULL,
-    [Telephone2] nvarchar(10) NOT NULL,
-    [Telephone3] nvarchar(10) NOT NULL,
-    [Mail1] nvarchar(100) NOT NULL,
-    [Mail2] nvarchar(100) NOT NULL,
-    [Mail3] nvarchar(100) NOT NULL,
-    [SiteWeb] nvarchar(100) NOT NULL
+CREATE TABLE [Contact] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Telephone1] nvarchar(10) NOT NULL,
+
+    [Telephone2] nvarchar(10) NOT NULL,
+
+    [Telephone3] nvarchar(10) NOT NULL,
+
+    [Mail1] nvarchar(100) NOT NULL,
+
+    [Mail2] nvarchar(100) NOT NULL,
+
+    [Mail3] nvarchar(100) NOT NULL,
+
+    [SiteWeb] nvarchar(100) NOT NULL
+
 );
 
-CREATE TABLE [Groupe] (
-    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    [Libelle] nvarchar(50) NOT NULL,
-    [ID_JourSemaine] integer NOT NULL,
-    [HeureDebut] integer NOT NULL,
-    [HeureFin] integer NOT NULL,
-    [NbPlaces] integer NOT NULL,
-    [Commentaire] ntext NOT NULL,
-    [ID_Saison] integer NOT NULL,
-    [MinuteDebut] integer NOT NULL,
-    [MinuteFin] integer NOT NULL,
-    CONSTRAINT [FK_Groupe_0] FOREIGN KEY ([ID_Saison]) REFERENCES [Saison] ([ID]),
-    CONSTRAINT [FK_Groupe_1] FOREIGN KEY ([ID_JourSemaine]) REFERENCES [JourSemaine] ([ID])
+CREATE TABLE [Groupe] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Libelle] nvarchar(50) NOT NULL,
+
+    [ID_JourSemaine] integer NOT NULL,
+
+    [HeureDebut] integer NOT NULL,
+
+    [HeureFin] integer NOT NULL,
+
+    [NbPlaces] integer NOT NULL,
+
+    [Commentaire] ntext NOT NULL,
+
+    [ID_Saison] integer NOT NULL,
+
+    [MinuteDebut] integer NOT NULL,
+
+    [MinuteFin] integer NOT NULL,
+
+    CONSTRAINT [FK_Groupe_0] FOREIGN KEY ([ID_Saison]) REFERENCES [Saison] ([ID]),
+
+    CONSTRAINT [FK_Groupe_1] FOREIGN KEY ([ID_JourSemaine]) REFERENCES [JourSemaine] ([ID])
+
 );
 
-CREATE TABLE [InfosClub] (
-    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    [Nom] nvarchar(50) NOT NULL,
-    [ID_Adresse] integer NOT NULL,
-    [ID_Contact] integer NOT NULL,
-    [Numero] nvarchar(20) NOT NULL,
-    [Siren] nvarchar(9) NOT NULL,
-    [NIC] nvarchar(5) NOT NULL,
-    CONSTRAINT [FK_InfosClub_0] FOREIGN KEY ([ID_Adresse]) REFERENCES [Adresse] ([ID]),
-    CONSTRAINT [FK_InfosClub_1] FOREIGN KEY ([ID_Contact]) REFERENCES [Contact] ([ID])
+CREATE TABLE [InfosClub] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Nom] nvarchar(50) NOT NULL,
+
+    [ID_Adresse] integer NOT NULL,
+
+    [ID_Contact] integer NOT NULL,
+
+    [Numero] nvarchar(20) NOT NULL,
+
+    [Siren] nvarchar(9) NOT NULL,
+
+    [NIC] nvarchar(5) NOT NULL,
+
+    CONSTRAINT [FK_InfosClub_0] FOREIGN KEY ([ID_Adresse]) REFERENCES [Adresse] ([ID]),
+
+    CONSTRAINT [FK_InfosClub_1] FOREIGN KEY ([ID_Contact]) REFERENCES [Contact] ([ID])
+
 );
 
-CREATE TABLE [Inscription] (
-    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    [ID_Adherent] integer NOT NULL,
-    [ID_Groupe] integer NOT NULL,
-    [CertificatMedicalRemis] integer NOT NULL DEFAULT 0,
-    [Cotisation] money NOT NULL DEFAULT 0,
-    [DateCreation] datetime NOT NULL,
-    [DateModification] datetime NOT NULL,
-    [Commentaire] ntext NOT NULL,
-    CONSTRAINT [FK_Inscription_0] FOREIGN KEY ([ID_Adherent]) REFERENCES [Adherent] ([ID]),
-    CONSTRAINT [FK_Inscription_2] FOREIGN KEY ([ID_Groupe]) REFERENCES [Groupe] ([ID])
+CREATE TABLE [Inscription] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [ID_Adherent] integer NOT NULL,
+
+    [ID_Groupe] integer NOT NULL,
+
+    [CertificatMedicalRemis] integer NOT NULL DEFAULT 0,
+
+    [Cotisation] money NOT NULL DEFAULT 0,
+
+    [DateCreation] datetime NOT NULL,
+
+    [DateModification] datetime NOT NULL,
+
+    [Commentaire] ntext NOT NULL,
+
+    CONSTRAINT [FK_Inscription_0] FOREIGN KEY ([ID_Adherent]) REFERENCES [Adherent] ([ID]),
+
+    CONSTRAINT [FK_Inscription_2] FOREIGN KEY ([ID_Groupe]) REFERENCES [Groupe] ([ID])
+
 );
 
-CREATE TABLE [JourSemaine] (
-    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    [Numero] integer NOT NULL,
-    [Libelle] nvarchar(50) NOT NULL
+CREATE TABLE [JourSemaine] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Numero] integer NOT NULL,
+
+    [Libelle] nvarchar(50) NOT NULL
+
 );
 
-CREATE TABLE [Saison] (
-    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    [EstSaisonCourante] integer NOT NULL DEFAULT 0,
-    [AnneeDebut] integer NOT NULL,
-    [AnneeFin] integer NOT NULL
+CREATE TABLE [Saison] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [EstSaisonCourante] integer NOT NULL DEFAULT 0,
+
+    [AnneeDebut] integer NOT NULL,
+
+    [AnneeFin] integer NOT NULL
+
 );
 
-CREATE TABLE [Sexe] (
-    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    [LibelleCourt] nvarchar(1) NOT NULL,
-    [LibelleLong] nvarchar(50) NOT NULL
+CREATE TABLE [Sexe] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [LibelleCourt] nvarchar(1) NOT NULL,
+
+    [LibelleLong] nvarchar(50) NOT NULL
+
 );
 
-CREATE TABLE [TarifConseille] (
-    [ID] integer PRIMARY KEY NOT NULL,
-    [AgeDebut] integer NOT NULL,
-    [AgeFin] integer NOT NULL,
-    [EstResident] integer NOT NULL,
-    [Montant] money NOT NULL
+CREATE TABLE [TarifConseille] (
+
+    [ID] integer PRIMARY KEY NOT NULL,
+
+    [AgeDebut] integer NOT NULL,
+
+    [AgeFin] integer NOT NULL,
+
+    [EstResident] integer NOT NULL,
+
+    [Montant] money NOT NULL
+
 );
 
-CREATE TABLE [Ville] (
-    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    [Libelle] nvarchar(50) NOT NULL,
-    [CodePostal] nvarchar(5) NOT NULL
-);
+CREATE TABLE [Ville] (
 
--- Alimentation des tables de reference
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Libelle] nvarchar(50) NOT NULL,
+
+    [CodePostal] nvarchar(5) NOT NULL
+
+);</value>
+  </data>
+  <data name="SQL_DropTables" xml:space="preserve">
+    <value>DROP TABLE IF EXISTS [Adherent];
+DROP TABLE IF EXISTS [Adresse];
+DROP TABLE IF EXISTS [Contact];
+DROP TABLE IF EXISTS [Groupe];
+DROP TABLE IF EXISTS [InfosClub];
+DROP TABLE IF EXISTS [Inscription];
+DROP TABLE IF EXISTS [JourSemaine];
+DROP TABLE IF EXISTS [Saison];
+DROP TABLE IF EXISTS [Sexe];
+DROP TABLE IF EXISTS [TarifConseille];
+DROP TABLE IF EXISTS [Ville];</value>
+  </data>
+  <data name="SQL_InsertData" xml:space="preserve">
+    <value>-- Alimentation des tables de reference
 INSERT INTO JourSemaine VALUES(1,1,'Lundi');
 INSERT INTO JourSemaine VALUES(2,2,'Mardi');
 INSERT INTO JourSemaine VALUES(3,3,'Mercredi');
@@ -243,8 +341,6 @@ INSERT INTO Ville VALUES(1,'&lt;VILLE CLUB&gt;','00000');
 INSERT INTO Adresse VALUES(1,'&lt;ADRESSE_CLUB&gt;',1);
 INSERT INTO Contact VALUES(1,'','','','','','','');
 INSERT INTO InfosClub VALUES(1,'&lt;NOM CLUB&gt;',1,1,'','','');
-INSERT INTO Saison VALUES(1, 1, 2010, 2011);
-
-COMMIT;</value>
+INSERT INTO Saison VALUES(1, 1, 2010, 2011);</value>
   </data>
 </root>
