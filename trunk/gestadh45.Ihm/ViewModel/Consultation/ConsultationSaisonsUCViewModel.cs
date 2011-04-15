@@ -65,6 +65,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.Saison != null 
 				&& SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison) 
 				&& !SaisonDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Saison)
+				&& !this.Saison.EstSaisonCouranteBool	// on ne peut pas supprimer la saison courante
 			);
 		}
 
