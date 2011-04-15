@@ -29,7 +29,7 @@ namespace gestadh45.dao
 
 		public bool Exist(Inscription pInscription) {
 			return ((from i in Instance.Context.Inscriptions
-					 where (i.ID_Adherent == pInscription.ID_Adherent) && (i.ID_Groupe == pInscription.ID_Groupe)
+					 where (i.ID_Adherent == pInscription.ID_Adherent) && (i.Groupe.ID_Saison == pInscription.Groupe.ID_Saison)
 					 select i).Count<Inscription>() > 0);
 		}
 
