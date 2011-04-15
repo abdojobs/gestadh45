@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DonneesBase.cs" />
     <Compile Include="Database\GenerateurDatabase.cs" />
     <Compile Include="Database\ResDatabase.Designer.cs">
       <AutoGen>True</AutoGen>

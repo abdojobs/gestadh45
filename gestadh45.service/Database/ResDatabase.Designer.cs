@@ -61,6 +61,42 @@ namespace gestadh45.service.Database {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à 00000.
+        /// </summary>
+        public static string Defaut_CodePostalVilleClub {
+            get {
+                return ResourceManager.GetString("Defaut_CodePostalVilleClub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;ADRESSE CLUB&gt;.
+        /// </summary>
+        public static string Defaut_LibelleAdresseClub {
+            get {
+                return ResourceManager.GetString("Defaut_LibelleAdresseClub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;VILLECLUB&gt;.
+        /// </summary>
+        public static string Defaut_LibelleVilleClub {
+            get {
+                return ResourceManager.GetString("Defaut_LibelleVilleClub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;NOMCLUB&gt;.
+        /// </summary>
+        public static string Defaut_NomClub {
+            get {
+                return ResourceManager.GetString("Defaut_NomClub", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à CREATE TABLE [Adherent] (
         ///
         ///    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
