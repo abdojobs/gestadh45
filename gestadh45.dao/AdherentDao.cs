@@ -59,8 +59,9 @@ namespace gestadh45.dao
 		public List<Adherent> List()
 		{
 			return (from a in Instance.Context.Adherents
-				orderby a.Nom
-				orderby a.Prenom
+				orderby 
+					a.Nom ascending,
+					a.Prenom ascending
 				select a).ToList<Adherent>();
 		}
 

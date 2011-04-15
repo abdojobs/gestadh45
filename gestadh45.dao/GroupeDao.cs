@@ -48,16 +48,20 @@ namespace gestadh45.dao
 
 		public List<Groupe> List() {
 			return (from g in Instance.Context.Groupes
-					orderby g.JourSemaine.Numero
-					orderby g.HeureDebut
+					orderby
+						g.JourSemaine.Numero ascending,
+						g.HeureDebut ascending,
+						g.MinuteDebut ascending
 					select g).ToList<Groupe>();
 		}
 
 		public List<Groupe> ListSaisonCourante() {
 			return (from g in Instance.Context.Groupes
 					where g.Saison.EstSaisonCourante == 1L
-					orderby g.JourSemaine.Numero
-					orderby g.HeureDebut
+					orderby
+						g.JourSemaine.Numero ascending,
+						g.HeureDebut ascending,
+						g.MinuteDebut ascending
 					select g).ToList<Groupe>();
 		}
 

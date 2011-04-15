@@ -43,17 +43,19 @@ namespace gestadh45.dao
 
 		public List<Inscription> List() {
 			return (from i in Instance.Context.Inscriptions
-					orderby i.Groupe.Saison.ID
-					orderby i.Adherent.Nom
-					orderby i.Adherent.Prenom
+					orderby 
+						i.Groupe.Saison.ID,
+						i.Adherent.Nom,
+						i.Adherent.Prenom
 					select i).ToList<Inscription>();
 		}
 
 		public List<Inscription> ListSaisonCourante() {
 			return (from i in Instance.Context.Inscriptions
 					where i.Groupe.Saison.EstSaisonCourante == 1L
-					orderby i.Adherent.Nom
-					orderby i.Adherent.Prenom
+					orderby
+						i.Adherent.Nom,
+						i.Adherent.Prenom
 					select i).ToList<Inscription>();
 		}
 
