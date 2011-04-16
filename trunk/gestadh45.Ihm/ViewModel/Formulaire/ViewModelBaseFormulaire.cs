@@ -6,7 +6,7 @@ using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
-	public abstract class ViewModelBaseFormulaire : ViewModelBaseUC
+	public abstract class ViewModelBaseFormulaire : ViewModelBaseApplication
 	{
 		public ICommand EnregistrerCommand { get; set; }
 		

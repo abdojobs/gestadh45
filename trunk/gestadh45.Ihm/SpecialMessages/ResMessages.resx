@@ -132,6 +132,12 @@
   <data name="MessageConfirmSupprVille" xml:space="preserve">
     <value>Etes-vous sûr de vouloir supprimer cette ville?</value>
   </data>
+  <data name="MessageException_Debut" xml:space="preserve">
+    <value>L'application a rencontré l'erreur suivante : </value>
+  </data>
+  <data name="MessageException_QuitterApplication" xml:space="preserve">
+    <value>Cette erreur étant irrécupérable, l'application va maintenant se fermer.</value>
+  </data>
   <data name="MessageInfoGenerationDocument" xml:space="preserve">
     <value>Le document a correctement été généré</value>
   </data>
@@ -143,6 +149,9 @@
   </data>
   <data name="TitreErreur" xml:space="preserve">
     <value>Erreur</value>
+  </data>
+  <data name="TitreException" xml:space="preserve">
+    <value>Exception</value>
   </data>
   <data name="TitreInformation" xml:space="preserve">
     <value>Information</value>

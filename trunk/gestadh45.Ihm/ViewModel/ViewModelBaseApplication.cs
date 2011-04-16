@@ -3,10 +3,11 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm.SpecialMessages;
+using System;
 
 namespace gestadh45.Ihm.ViewModel
 {
-	public abstract class ViewModelBaseUC : ViewModelBase
+	public abstract class ViewModelBaseApplication : ViewModelBase
 	{
 		public ICommand AnnulerCommand { get; set; }
 		public ICommand FenetreCommand { get; set; }
@@ -21,7 +22,7 @@ namespace gestadh45.Ihm.ViewModel
 		/// </summary>
 		public bool ModeFenetre { get; set; }
 
-		public ViewModelBaseUC() {
+		public ViewModelBaseApplication() {
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
 
 			this.CreateAnnulerCommand();
@@ -61,6 +62,17 @@ namespace gestadh45.Ihm.ViewModel
 		public virtual void ExecuteFenetreCommand(string pCodeUC) {
 			Messenger.Default.Send<NotificationMessageOuvertureFenetre>(
 				new NotificationMessageOuvertureFenetre(pCodeUC)
+			);
+		}
+
+		/// <summary>
+		/// Envoie une notification utilisateur contenant le message de l'exception et éventuellement quitte l'application
+		/// </summary>
+		/// <param name="pMessage">Message de l'exception</param>
+		/// <param name="pEstCritique">Booléen indiquant si il faut quitter l'application ou non</param>
+		protected void AfficherException(Exception pException, bool pQuitterApplication) {
+			Messenger.Default.Send<NotificationMessageException>(
+				new NotificationMessageException(pException, pQuitterApplication)
 			);
 		}
 	}
