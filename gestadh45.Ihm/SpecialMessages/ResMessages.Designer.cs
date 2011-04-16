@@ -106,6 +106,24 @@ namespace gestadh45.Ihm.SpecialMessages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;application a rencontré l&apos;erreur suivante : .
+        /// </summary>
+        public static string MessageException_Debut {
+            get {
+                return ResourceManager.GetString("MessageException_Debut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cette erreur étant irrécupérable, l&apos;application va maintenant se fermer..
+        /// </summary>
+        public static string MessageException_QuitterApplication {
+            get {
+                return ResourceManager.GetString("MessageException_QuitterApplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Le document a correctement été généré.
         /// </summary>
         public static string MessageInfoGenerationDocument {
@@ -138,6 +156,15 @@ namespace gestadh45.Ihm.SpecialMessages {
         public static string TitreErreur {
             get {
                 return ResourceManager.GetString("TitreErreur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Exception.
+        /// </summary>
+        public static string TitreException {
+            get {
+                return ResourceManager.GetString("TitreException", resourceCulture);
             }
         }
         

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Text;
+using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm;
 using gestadh45.Ihm.SpecialMessages;
@@ -23,6 +24,11 @@ namespace gestadh45.Main
 			Messenger.Default.Register<NotificationMessageUtilisateur>(
 				this, 
 				this.AfficherNotificationUtilisateur
+			);
+
+			Messenger.Default.Register<NotificationMessageException>(
+				this,
+				this.AfficherNotificationException
 			);
 
 			Messenger.Default.Register<DialogMessageConfirmation>(
@@ -86,6 +92,21 @@ namespace gestadh45.Main
 			}
 
 			MessageBox.Show(pMessage.Message, lTitre);
+		}
+
+		private void AfficherNotificationException(NotificationMessageException pMessage) {
+			StringBuilder lSb = new StringBuilder(ResMessages.MessageException_Debut + "\r\n");
+			lSb.Append(pMessage.Exception.Message + "\r\n");
+
+			if (pMessage.QuitterApplication) {
+				lSb.Append(ResMessages.MessageException_QuitterApplication);
+			}
+
+			MessageBox.Show(lSb.ToString(), ResMessages.TitreException);
+
+			if (pMessage.QuitterApplication) {
+				Application.Current.Shutdown();
+			}
 		}
 
 		private void AfficherDialogConfirmation(DialogMessageConfirmation pDialog) {

@@ -63,6 +63,7 @@
     <Compile Include="SpecialMessages\NotificationMessageActionFolderDialog.cs" />
     <Compile Include="SpecialMessages\NotificationMessageChangementUC.cs" />
     <Compile Include="SpecialMessages\NotificationMessageConsultationExtractions.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageException.cs" />
     <Compile Include="SpecialMessages\NotificationMessageFermetureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageOuvertureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageUtilisateur.cs" />
@@ -96,7 +97,7 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ViewModelBaseConsultation.cs" />
     <Compile Include="ViewModel\Formulaire\ViewModelBaseFormulaire.cs" />
-    <Compile Include="ViewModel\ViewModelBaseUC.cs" />
+    <Compile Include="ViewModel\ViewModelBaseApplication.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Command;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
-	public abstract class ViewModelBaseConsultation : ViewModelBaseUC
+	public abstract class ViewModelBaseConsultation : ViewModelBaseApplication
 	{
 		public ICommand CreerCommand { get; set; }
 		public ICommand EditerCommand { get; set; }
