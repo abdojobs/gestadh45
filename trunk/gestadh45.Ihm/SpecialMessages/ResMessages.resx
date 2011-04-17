@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErreurFataleDebut" xml:space="preserve">
+    <value>L'application a rencontré l'erreur fatale suivante : </value>
+  </data>
+  <data name="ErreurFataleInfoQuitter" xml:space="preserve">
+    <value>Pour éviter tout problème d'instabilité, l'application va maintenant se fermer.</value>
+  </data>
   <data name="MessageConfirmSupprAdherent" xml:space="preserve">
     <value>Etes-vous sûr de vouloir supprimer cet adhérent?</value>
   </data>
@@ -131,12 +137,6 @@
   </data>
   <data name="MessageConfirmSupprVille" xml:space="preserve">
     <value>Etes-vous sûr de vouloir supprimer cette ville?</value>
-  </data>
-  <data name="MessageException_Debut" xml:space="preserve">
-    <value>L'application a rencontré l'erreur suivante : </value>
-  </data>
-  <data name="MessageException_QuitterApplication" xml:space="preserve">
-    <value>Cette erreur étant irrécupérable, l'application va maintenant se fermer.</value>
   </data>
   <data name="MessageInfoGenerationDocument" xml:space="preserve">
     <value>Le document a correctement été généré</value>

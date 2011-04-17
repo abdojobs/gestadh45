@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -61,12 +62,18 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
-			return (
-				this.Saison != null 
-				&& SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison) 
-				&& !SaisonDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Saison)
-				&& !this.Saison.EstSaisonCouranteBool	// on ne peut pas supprimer la saison courante
-			);
+			try {
+				return (
+					this.Saison != null
+					&& SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison)
+					&& !SaisonDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Saison)
+					&& !this.Saison.EstSaisonCouranteBool	// on ne peut pas supprimer la saison courante
+				);
+			}
+			catch (Exception lEx) {
+				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+				return false;
+			}
 		}
 
 		private void CreateDefinirSaisonCouranteCommand() {
@@ -90,21 +97,26 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public void ExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
 			if (pSaison != null) {
-				Saison lOldSaisonCourante = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante();
-				lOldSaisonCourante.EstSaisonCouranteBool = false;
-				SaisonDao.GetInstance(ViewModelLocator.Context).Update(lOldSaisonCourante);
+				try {
+					Saison lOldSaisonCourante = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante();
+					lOldSaisonCourante.EstSaisonCouranteBool = false;
+					SaisonDao.GetInstance(ViewModelLocator.Context).Update(lOldSaisonCourante);
 
-				pSaison.EstSaisonCouranteBool = true;
+					pSaison.EstSaisonCouranteBool = true;
 
-				SaisonDao.GetInstance(ViewModelLocator.Context).Update(pSaison);
-				this.InitialisationListeSaisons();
+					SaisonDao.GetInstance(ViewModelLocator.Context).Update(pSaison);
+					this.InitialisationListeSaisons();
 
-				this.Saison = null;
-				this.Saison = pSaison;
+					this.Saison = null;
+					this.Saison = pSaison;
 
-				Messenger.Default.Send<NotificationMessage<Saison>>(
-					new NotificationMessage<Saison>(pSaison, TypesNotification.ChangementSaisonCourante)
-				);
+					Messenger.Default.Send<NotificationMessage<Saison>>(
+						new NotificationMessage<Saison>(pSaison, TypesNotification.ChangementSaisonCourante)
+					);
+				}
+				catch (Exception lEx) {
+					this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+				}
 			}
 		}
 
@@ -122,23 +134,33 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerSaisonCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				SaisonDao.GetInstance(ViewModelLocator.Context).Delete(this.Saison);
-				this.InitialisationListeSaisons();
-				this.Saison = null;
+				try {
+					SaisonDao.GetInstance(ViewModelLocator.Context).Delete(this.Saison);
+					this.InitialisationListeSaisons();
+					this.Saison = null;
+				}
+				catch (Exception lEx) {
+					this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+				}
 			}
 		}
 
 		private void InitialisationListeSaisons() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-				SaisonDao.GetInstance(ViewModelLocator.Context).List()
-			);
+			try {
+				ICollectionView defaultView = CollectionViewSource.GetDefaultView(
+					SaisonDao.GetInstance(ViewModelLocator.Context).List()
+				);
 
-			foreach (Saison lSaison in defaultView) {
-				SaisonDao.GetInstance(ViewModelLocator.Context).Refresh(lSaison);
+				foreach (Saison lSaison in defaultView) {
+					SaisonDao.GetInstance(ViewModelLocator.Context).Refresh(lSaison);
+				}
+
+				defaultView.SortDescriptions.Add(new SortDescription("AnneeDebut", ListSortDirection.Ascending));
+				this.Saisons = defaultView;
 			}
-
-			defaultView.SortDescriptions.Add(new SortDescription("AnneeDebut", ListSortDirection.Ascending));
-			this.Saisons = defaultView;
+			catch (Exception lEx) {
+				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+			}
 		}
 	}
 }

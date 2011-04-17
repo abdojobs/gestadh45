@@ -61,6 +61,24 @@ namespace gestadh45.Ihm.SpecialMessages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;application a rencontré l&apos;erreur fatale suivante : .
+        /// </summary>
+        public static string ErreurFataleDebut {
+            get {
+                return ResourceManager.GetString("ErreurFataleDebut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pour éviter tout problème d&apos;instabilité, l&apos;application va maintenant se fermer..
+        /// </summary>
+        public static string ErreurFataleInfoQuitter {
+            get {
+                return ResourceManager.GetString("ErreurFataleInfoQuitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Etes-vous sûr de vouloir supprimer cet adhérent?.
         /// </summary>
         public static string MessageConfirmSupprAdherent {
@@ -102,24 +120,6 @@ namespace gestadh45.Ihm.SpecialMessages {
         public static string MessageConfirmSupprVille {
             get {
                 return ResourceManager.GetString("MessageConfirmSupprVille", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à L&apos;application a rencontré l&apos;erreur suivante : .
-        /// </summary>
-        public static string MessageException_Debut {
-            get {
-                return ResourceManager.GetString("MessageException_Debut", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Cette erreur étant irrécupérable, l&apos;application va maintenant se fermer..
-        /// </summary>
-        public static string MessageException_QuitterApplication {
-            get {
-                return ResourceManager.GetString("MessageException_QuitterApplication", resourceCulture);
             }
         }
         

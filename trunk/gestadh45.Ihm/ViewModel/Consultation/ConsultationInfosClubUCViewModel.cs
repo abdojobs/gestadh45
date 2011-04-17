@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using System;
+using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
@@ -25,8 +26,13 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationInfosClubUCViewModel() {
-			this.InfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
-			InfosClubDao.GetInstance(ViewModelLocator.Context).Refresh(this.InfosClub);
+			try {
+				this.InfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
+				InfosClubDao.GetInstance(ViewModelLocator.Context).Refresh(this.InfosClub);
+			}
+			catch (Exception lEx) {
+				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+			}
 
 			this.CreateEditerCommand();
 		}

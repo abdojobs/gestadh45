@@ -4,6 +4,7 @@ namespace gestadh45.Ihm.SpecialMessages
 	public static class TypesNotification
 	{
 		public const string Erreur = "erreur";
+		public const string ErreurFatale = "erreurFatale";
 		public const string Exception = "exception";
 		public const string Information = "information";
 		public const string AboutBox = "aboutBox";
