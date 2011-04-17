@@ -107,11 +107,18 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
-			return (
-				this.Groupe != null 
-				&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe) 
-				&& !GroupeDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Groupe)
-			);
+			try {
+				return (
+					this.Groupe != null
+					&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)
+					&& !GroupeDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Groupe)
+				);
+			}
+			catch (Exception lEx) {
+				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+
+				return false;
+			}
 		}
 
 		public override void ExecuteAfficherDetailsCommand(object pGroupe) {
@@ -134,24 +141,34 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerGroupeCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				GroupeDao.GetInstance(ViewModelLocator.Context).Delete(this.Groupe);
-				this.InitialisationListeGroupes();
-				this.Groupe = null;
+				try {
+					GroupeDao.GetInstance(ViewModelLocator.Context).Delete(this.Groupe);
+					this.InitialisationListeGroupes();
+					this.Groupe = null;
+				}
+				catch (Exception lEx) {
+					this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+				}
 			}
 		}
 
 		private void InitialisationListeGroupes() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-				GroupeDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante()
-			);
+			try {
+				ICollectionView defaultView = CollectionViewSource.GetDefaultView(
+					GroupeDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante()
+				);
 
-			foreach (Groupe lGroupe in defaultView) {
-				GroupeDao.GetInstance(ViewModelLocator.Context).Refresh(lGroupe);
+				foreach (Groupe lGroupe in defaultView) {
+					GroupeDao.GetInstance(ViewModelLocator.Context).Refresh(lGroupe);
+				}
+
+				defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
+				defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
+				this.GroupesSaisonCourante = defaultView;
 			}
-
-			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
-			this.GroupesSaisonCourante = defaultView;
+			catch (Exception lEx) {
+				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+			}
 		}
 
 		public override void ExecuteCreerCommand() {
@@ -162,9 +179,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void GenererDocumentsGroupe(string pSaveFolder, string pCodeDocument) {
 			if (pSaveFolder != null) {
-				InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
 
 				try {
+					InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
+
 					foreach (Inscription lInscription in this.Groupe.Inscriptions) {
 						DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, lInscription);
 
@@ -208,13 +226,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 					);
 				}
 				catch (Exception lEx) {
-					NotificationMessageUtilisateur message =
-						new NotificationMessageUtilisateur(
-							TypesNotification.Erreur,
-							lEx.Message
-						);
-
-					Messenger.Default.Send<NotificationMessageUtilisateur>(message);
+					this.EnvoyerNotificationUtilisateur(TypesNotification.Erreur, lEx.Message);
 				}
 			}
 		}

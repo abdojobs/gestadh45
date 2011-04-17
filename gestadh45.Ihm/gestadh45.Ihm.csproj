@@ -63,7 +63,6 @@
     <Compile Include="SpecialMessages\NotificationMessageActionFolderDialog.cs" />
     <Compile Include="SpecialMessages\NotificationMessageChangementUC.cs" />
     <Compile Include="SpecialMessages\NotificationMessageConsultationExtractions.cs" />
-    <Compile Include="SpecialMessages\NotificationMessageException.cs" />
     <Compile Include="SpecialMessages\NotificationMessageFermetureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageOuvertureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageUtilisateur.cs" />

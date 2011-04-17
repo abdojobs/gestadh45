@@ -26,11 +26,6 @@ namespace gestadh45.Main
 				this.AfficherNotificationUtilisateur
 			);
 
-			Messenger.Default.Register<NotificationMessageException>(
-				this,
-				this.AfficherNotificationException
-			);
-
 			Messenger.Default.Register<DialogMessageConfirmation>(
 				this,
 				this.AfficherDialogConfirmation
@@ -83,28 +78,29 @@ namespace gestadh45.Main
 
 		private void AfficherNotificationUtilisateur(NotificationMessageUtilisateur pMessage) {
 			string lTitre = string.Empty;
+			string lTexte = string.Empty;
 
 			if (pMessage.Notification.Equals(TypesNotification.Erreur)) {
 				lTitre = ResMessages.TitreErreur;
+				lTexte = pMessage.Message;
+			}
+			else if(pMessage.Notification.Equals(TypesNotification.ErreurFatale)) {
+				StringBuilder lSb = new StringBuilder();
+				lSb.AppendLine(ResMessages.ErreurFataleDebut);
+				lSb.AppendLine(pMessage.Message);
+				lSb.AppendLine();
+				lSb.AppendLine(ResMessages.ErreurFataleInfoQuitter);
+
+				lTexte = lSb.ToString();
 			}
 			else {
 				lTitre = ResMessages.TitreInformation;
+				lTexte = pMessage.Message;
 			}
 
-			MessageBox.Show(pMessage.Message, lTitre);
-		}
+			MessageBox.Show(lTexte, lTitre);
 
-		private void AfficherNotificationException(NotificationMessageException pMessage) {
-			StringBuilder lSb = new StringBuilder(ResMessages.MessageException_Debut + "\r\n");
-			lSb.Append(pMessage.Exception.Message + "\r\n");
-
-			if (pMessage.QuitterApplication) {
-				lSb.Append(ResMessages.MessageException_QuitterApplication);
-			}
-
-			MessageBox.Show(lSb.ToString(), ResMessages.TitreException);
-
-			if (pMessage.QuitterApplication) {
+			if(pMessage.Notification.Equals(TypesNotification.ErreurFatale)) {
 				Application.Current.Shutdown();
 			}
 		}

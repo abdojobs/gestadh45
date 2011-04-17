@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm.SpecialMessages;
-using System;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -13,12 +12,12 @@ namespace gestadh45.Ihm.ViewModel
 		public ICommand FenetreCommand { get; set; }
 
 		/// <summary>
-		/// Obtient/Définit le code de l'UC "parent" de ce formulaire
+		/// Obtient/Définit le code de l'UC "parent" de cet élément
 		/// </summary>
 		public string CodeUCOrigine { get; set; }
 		
 		/// <summary>
-		/// Obtient/Définit un booléen indiquant si l'UC est dans sa propre fenêtre (True) ou dans l'écran principal (False)
+		/// Obtient/Définit un booléen indiquant si l'élément est dans sa propre fenêtre (True) ou dans l'écran principal (False)
 		/// </summary>
 		public bool ModeFenetre { get; set; }
 
@@ -66,13 +65,13 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		/// <summary>
-		/// Envoie une notification utilisateur contenant le message de l'exception et éventuellement quitte l'application
+		/// Envoie une notification à l'utilisateur
 		/// </summary>
-		/// <param name="pMessage">Message de l'exception</param>
-		/// <param name="pEstCritique">Booléen indiquant si il faut quitter l'application ou non</param>
-		protected void AfficherException(Exception pException, bool pQuitterApplication) {
-			Messenger.Default.Send<NotificationMessageException>(
-				new NotificationMessageException(pException, pQuitterApplication)
+		/// <param name="pType">Type de notification</param>
+		/// <param name="pMessage">Message</param>
+		protected void EnvoyerNotificationUtilisateur(string pType, string pMessage) {
+			Messenger.Default.Send<NotificationMessageUtilisateur>(
+				new NotificationMessageUtilisateur(pType, pMessage)
 			);
 		}
 	}

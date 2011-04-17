@@ -16,7 +16,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 	{
 		public ICommand GenererDocumentCommand { get; set; }
 		
-		private long mIdVilleClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read().Adresse.ID_Ville;
 		private Inscription mInscription;
 		private ICollectionView mInscriptionsSaisonCourante;
 
@@ -65,10 +64,17 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
-			return (
-				this.Inscription != null 
-				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)
-				);
+			try {
+				return (
+					this.Inscription != null
+					&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)
+					);
+			}
+			catch (Exception lEx) {
+				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+				
+				return false;
+			}
 		}
 
 		private void CreateGenererDocumentCommand() {
@@ -112,11 +118,12 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
 			if (pSaveFilePath != null) {
-				InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
-				DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, this.Inscription);
-				GenerateurDocumentPDF lGenerateur = new GenerateurDocumentPDF(lDonnees, pSaveFilePath);
 
 				try {
+					InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
+					DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, this.Inscription);
+					GenerateurDocumentPDF lGenerateur = new GenerateurDocumentPDF(lDonnees, pSaveFilePath);
+
 					lGenerateur.CreerDocument(pCodeDocument);
 
 					Messenger.Default.Send(
@@ -127,13 +134,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 					);
 				}
 				catch (Exception lEx) {
-					NotificationMessageUtilisateur message =
-						new NotificationMessageUtilisateur(
-							TypesNotification.Erreur,
-							lEx.Message
-						);
-
-					Messenger.Default.Send<NotificationMessageUtilisateur>(message);
+					this.EnvoyerNotificationUtilisateur(TypesNotification.Erreur, lEx.Message);
 				}
 			}
 		}
@@ -153,21 +154,31 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerInscriptionCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				InscriptionDao.GetInstance(ViewModelLocator.Context).Delete(this.Inscription);
-				this.InitialisationListeInscriptions();
-				this.Inscription = null;
+				try {
+					InscriptionDao.GetInstance(ViewModelLocator.Context).Delete(this.Inscription);
+					this.InitialisationListeInscriptions();
+					this.Inscription = null;
+				}
+				catch (Exception lEx) {
+					this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+				}
 			}
 		}
 
 		private void InitialisationListeInscriptions() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(InscriptionDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante());
-			defaultView.GroupDescriptions.Add(new PropertyGroupDescription("Groupe"));
-			defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine.Numero", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("Groupe.HeureDebut", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("Adherent.Nom", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("Adherent.Prenom", ListSortDirection.Ascending));
-			this.InscriptionsSaisonCourante = defaultView;
+			try {
+				ICollectionView defaultView = CollectionViewSource.GetDefaultView(InscriptionDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante());
+				defaultView.GroupDescriptions.Add(new PropertyGroupDescription("Groupe"));
+				defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine.Numero", ListSortDirection.Ascending));
+				defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine", ListSortDirection.Ascending));
+				defaultView.SortDescriptions.Add(new SortDescription("Groupe.HeureDebut", ListSortDirection.Ascending));
+				defaultView.SortDescriptions.Add(new SortDescription("Adherent.Nom", ListSortDirection.Ascending));
+				defaultView.SortDescriptions.Add(new SortDescription("Adherent.Prenom", ListSortDirection.Ascending));
+				this.InscriptionsSaisonCourante = defaultView;
+			}
+			catch (Exception lEx) {
+				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
+			}
 		}
 
 		private string CreerNomFichierDocument(string pCodeDocument) {
