@@ -1,5 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -9,7 +9,6 @@ using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 using gestadh45.service.Documents;
-using System.Text;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
@@ -107,18 +106,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
-			try {
-				return (
-					this.Groupe != null
-					&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)
-					&& !GroupeDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Groupe)
-				);
-			}
-			catch (Exception lEx) {
-				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
-
-				return false;
-			}
+			return (
+				this.Groupe != null
+				&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)
+				&& !GroupeDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Groupe)
+			);
 		}
 
 		public override void ExecuteAfficherDetailsCommand(object pGroupe) {
@@ -141,34 +133,24 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerGroupeCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				try {
-					GroupeDao.GetInstance(ViewModelLocator.Context).Delete(this.Groupe);
-					this.InitialisationListeGroupes();
-					this.Groupe = null;
-				}
-				catch (Exception lEx) {
-					this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
-				}
+				GroupeDao.GetInstance(ViewModelLocator.Context).Delete(this.Groupe);
+				this.InitialisationListeGroupes();
+				this.Groupe = null;
 			}
 		}
 
 		private void InitialisationListeGroupes() {
-			try {
-				ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-					GroupeDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante()
-				);
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
+				GroupeDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante()
+			);
 
-				foreach (Groupe lGroupe in defaultView) {
-					GroupeDao.GetInstance(ViewModelLocator.Context).Refresh(lGroupe);
-				}
+			foreach (Groupe lGroupe in defaultView) {
+				GroupeDao.GetInstance(ViewModelLocator.Context).Refresh(lGroupe);
+			}
 
-				defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
-				defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
-				this.GroupesSaisonCourante = defaultView;
-			}
-			catch (Exception lEx) {
-				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
-			}
+			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
+			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
+			this.GroupesSaisonCourante = defaultView;
 		}
 
 		public override void ExecuteCreerCommand() {
@@ -179,55 +161,49 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void GenererDocumentsGroupe(string pSaveFolder, string pCodeDocument) {
 			if (pSaveFolder != null) {
+				InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
 
-				try {
-					InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
+				foreach (Inscription lInscription in this.Groupe.Inscriptions) {
+					DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, lInscription);
 
-					foreach (Inscription lInscription in this.Groupe.Inscriptions) {
-						DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, lInscription);
+					string lSaveFilePath;
+					GenerateurDocumentBase lGenerateur;
 
-						string lSaveFilePath;
-						GenerateurDocumentBase lGenerateur;
+					switch (pCodeDocument) {
+						case GenerateurDocumentBase.CodeInscriptionPdf:
+							lSaveFilePath = string.Format(
+								"{0}\\{1} - {2}{3}",
+								pSaveFolder,
+								ResDocuments.PrefixeNomFichierInscription,
+								lInscription.Adherent.ToString(),
+								ResDocuments.ExtensionFichierPdf
+							);
 
-						switch (pCodeDocument) {
-							case GenerateurDocumentBase.CodeInscriptionPdf:
-								lSaveFilePath = string.Format(
-									"{0}\\{1} - {2}{3}",
-									pSaveFolder,
-									ResDocuments.PrefixeNomFichierInscription,
-									lInscription.Adherent.ToString(),
-									ResDocuments.ExtensionFichierPdf
-								);
+							lGenerateur = new GenerateurDocumentPDF(lDonnees, lSaveFilePath);
+							lGenerateur.CreerDocumentInscription();
+							break;
 
-								lGenerateur = new GenerateurDocumentPDF(lDonnees, lSaveFilePath);
-								lGenerateur.CreerDocumentInscription();
-								break;
+						case GenerateurDocumentBase.CodeAttestationPdf:
+							lSaveFilePath = string.Format(
+								"{0}\\{1} - {2}{3}",
+								pSaveFolder,
+								ResDocuments.PrefixeNomFichierAttestation,
+								lInscription.Adherent.ToString(),
+								ResDocuments.ExtensionFichierPdf
+							);
 
-							case GenerateurDocumentBase.CodeAttestationPdf:
-								lSaveFilePath = string.Format(
-									"{0}\\{1} - {2}{3}",
-									pSaveFolder,
-									ResDocuments.PrefixeNomFichierAttestation,
-									lInscription.Adherent.ToString(),
-									ResDocuments.ExtensionFichierPdf
-								);
-
-								lGenerateur = new GenerateurDocumentPDF(lDonnees, lSaveFilePath);
-								lGenerateur.CreerDocumentAttestation();
-								break;
-						}
+							lGenerateur = new GenerateurDocumentPDF(lDonnees, lSaveFilePath);
+							lGenerateur.CreerDocumentAttestation();
+							break;
 					}
+				}
 
-					Messenger.Default.Send(
-						new NotificationMessageUtilisateur(
-							TypesNotification.Information,
-							ResMessages.MessageInfoGenerationDocumentsGroupe
-						)
-					);
-				}
-				catch (Exception lEx) {
-					this.EnvoyerNotificationUtilisateur(TypesNotification.Erreur, lEx.Message);
-				}
+				Messenger.Default.Send(
+					new NotificationMessageUtilisateur(
+						TypesNotification.Information,
+						ResMessages.MessageInfoGenerationDocumentsGroupe
+					)
+				);
 			}
 		}
 	}
