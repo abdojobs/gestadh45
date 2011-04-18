@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="SpecialMessages\TypesNotification.cs" />
     <Compile Include="Tools\BooleanInversionConverter.cs" />
+    <Compile Include="Tools\ChampNonNullValidateur.cs" />
     <Compile Include="Tools\ChampTexteObligatoireValidateur.cs" />
     <Compile Include="Tools\ListToStringConverter.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationAdherentsUCViewModel.cs" />

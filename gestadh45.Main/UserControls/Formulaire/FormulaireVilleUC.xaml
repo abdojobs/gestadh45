@@ -4,63 +4,66 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
+			 xmlns:ihmTools="clr-namespace:gestadh45.Ihm.Tools;assembly=gestadh45.Ihm"
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireVilleVMStatic, Source={StaticResource Locator}}" 
              d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
 	<DockPanel>
-		<DockPanel.Children>
-			<TextBlock Text="Ville" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+		<TextBlock Text="Ville" DockPanel.Dock="Top" HorizontalAlignment="Stretch" 
+					Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
 
-			<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,10">
-				<StackPanel.Children>
-					<Button ToolTip="Annuler" Width="32" Height="32" Margin="0,0,10,0" 
-							CommandParameter="{x:Static ihm:CodesUC.ConsultationVilles}" 
-							Command="{Binding AnnulerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_annuler.png" />
-					</Button>
-					<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="32" Height="32" Margin="10,0,0,0" 
-							Command="{Binding EnregistrerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_enregistrer.png" />
-					</Button>
-				</StackPanel.Children>
+		<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" 
+					VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,10">
+			<Button ToolTip="Annuler" Width="32" Height="32" Margin="0,0,10,0" 
+					CommandParameter="{x:Static ihm:CodesUC.ConsultationVilles}" 
+					Command="{Binding AnnulerCommand}">
+				<Image Source="/gestadh45.Main;component/Images/btn_annuler.png" />
+			</Button>
+			<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="32" Height="32" Margin="10,0,0,0" 
+					Command="{Binding EnregistrerCommand}">
+				<Image Source="/gestadh45.Main;component/Images/btn_enregistrer.png" />
+			</Button>
+		</StackPanel>
+
+		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
+			
+		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+				
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="CodePostal : " Width="100" />
+				<TextBox Width="200" MaxLength="5">
+					<TextBox.Text>
+						<Binding Path="Ville.CodePostal">
+							<Binding.ValidationRules>
+								<ihmTools:ChampTexteObligatoireValidateur />
+							</Binding.ValidationRules>
+						</Binding>
+					</TextBox.Text>
+				</TextBox>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Libellé : " Width="100" />
+				<TextBox Width="200" MaxLength="5">
+					<TextBox.Text>
+						<Binding Path="Ville.Libelle">
+							<Binding.ValidationRules>
+								<ihmTools:ChampTexteObligatoireValidateur />
+							</Binding.ValidationRules>
+						</Binding>
+					</TextBox.Text>
+				</TextBox>
 			</StackPanel>
 
 			<StackPanel HorizontalAlignment="Center" Margin="0,20,0,20" 
-						DockPanel.Dock="Bottom" 
-						Visibility="{Binding Path=ErreursVisibles, Converter={StaticResource ResourceKey=VisibilityOfBool}}">
+					Visibility="{Binding Path=ErreursVisibles, Converter={StaticResource ResourceKey=VisibilityOfBool}}">
 				<uc:AffichageNotificationUC 
-						CouleurTexte="Red"
-						Header="Erreurs" 
-						Message="{Binding Path=Erreurs, Converter={StaticResource ResourceKey=ListToString}}" />
+					CouleurTexte="Red"
+					Header="Erreurs" 
+					Message="{Binding Path=Erreurs, Converter={StaticResource ResourceKey=ListToString}}" />
 			</StackPanel>
-
-			<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
-			
-			<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-				<StackPanel.Children>
-					<Grid HorizontalAlignment="Center">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="100" />
-							<ColumnDefinition />
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition />
-							<RowDefinition />
-						</Grid.RowDefinitions>
-						<Grid.Children>
-							<TextBlock Grid.Row="0" Grid.Column="0" Text="CodePostal : " />
-							<TextBox Width="150" Grid.Row="0" Grid.Column="1" MaxLength="5">
-								<Binding Path="Ville.CodePostal" />
-							</TextBox>
-							<TextBlock Grid.Row="1" Grid.Column="0" Text="Libellé : " />
-							<TextBox Width="150" Grid.Row="1" Grid.Column="1" MaxLength="50" CharacterCasing="Upper">
-								<Binding Path="Ville.Libelle" />
-							</TextBox>
-						</Grid.Children>
-					</Grid>
-				</StackPanel.Children>
-			</StackPanel>
-		</DockPanel.Children>
+				
+		</StackPanel>
 	</DockPanel>
 </UserControl>

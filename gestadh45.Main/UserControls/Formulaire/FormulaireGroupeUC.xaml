@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
+			 xmlns:ihmTools="clr-namespace:gestadh45.Ihm.Tools;assembly=gestadh45.Ihm"
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireGroupeVMStatic, Source={StaticResource Locator}}" 
@@ -45,7 +46,13 @@
 						<StackPanel.Children>
 							<TextBlock Text="Libellé : " Width="100" />
 							<TextBox MaxLength="50" Width="150" CharacterCasing="Upper">
-								<Binding Path="Groupe.Libelle" />
+								<TextBox.Text>
+									<Binding Path="Groupe.Libelle">
+										<Binding.ValidationRules>
+											<ihmTools:ChampTexteObligatoireValidateur />
+										</Binding.ValidationRules>
+									</Binding>
+								</TextBox.Text>								
 							</TextBox>
 						</StackPanel.Children>
 					</StackPanel>
