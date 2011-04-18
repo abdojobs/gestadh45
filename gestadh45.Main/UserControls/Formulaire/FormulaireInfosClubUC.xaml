@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
+			 xmlns:ihmTools="clr-namespace:gestadh45.Ihm.Tools;assembly=gestadh45.Ihm"
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireInfosClubVMStatic, Source={StaticResource Locator}}" 
@@ -12,21 +13,38 @@
 		<TextBlock Text="Informations sur le club" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
 		<StackPanel Name="stkInfosClub" Orientation="Vertical" HorizontalAlignment="Center">
 			<StackPanel.Children>
-				<StackPanel Orientation="Horizontal">
+				
+				<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 					<StackPanel.Children>
 						<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox Width="250" MaxLength="50"
-								 Text="{Binding InfosClub.Nom}" />
+						<TextBox Width="250" MaxLength="50">
+							<TextBox.Text>
+								<Binding Path="InfosClub.Nom" UpdateSourceTrigger="PropertyChanged">
+									<Binding.ValidationRules>
+										<ihmTools:ChampTexteObligatoireValidateur />
+									</Binding.ValidationRules>
+								</Binding>
+							</TextBox.Text>
+						</TextBox>
 					</StackPanel.Children>
 				</StackPanel>
-				<StackPanel Orientation="Horizontal">
+
+				<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 					<StackPanel.Children>
 						<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="150" />
-						<TextBox TextWrapping="Wrap" Width="250" MaxLength="100"
-								 Text="{Binding InfosClub.Adresse.Libelle}" />
+						<TextBox TextWrapping="Wrap" Width="250" MaxLength="100">
+							<TextBox.Text>
+								<Binding Path="InfosClub.Adresse.Libelle" UpdateSourceTrigger="PropertyChanged">
+									<Binding.ValidationRules>
+										<ihmTools:ChampTexteObligatoireValidateur />
+									</Binding.ValidationRules>
+								</Binding>
+							</TextBox.Text>
+						</TextBox>
 					</StackPanel.Children>
 				</StackPanel>
-				<StackPanel Orientation="Horizontal">
+
+				<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 					<StackPanel.Children>
 						<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="150" />
 						<ComboBox Width="250"
@@ -41,28 +59,32 @@
 						</Button>
 					</StackPanel.Children>
 				</StackPanel>
-				<StackPanel Orientation="Horizontal">
+
+				<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 					<StackPanel.Children>
 						<TextBlock Text="Tel. : " FontSize="14" FontWeight="Bold" Width="150" />
 						<TextBox Width="250" MaxLength="10"
 								 Text="{Binding InfosClub.Contact.Telephone1}" />
 					</StackPanel.Children>
 				</StackPanel>
-				<StackPanel Orientation="Horizontal">
+
+				<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 					<StackPanel.Children>
 						<TextBlock Text="Email : " FontSize="14" FontWeight="Bold" Width="150" />
 						<TextBox Width="250" MaxLength="100"
 								 Text="{Binding InfosClub.Contact.Mail1}" />
 					</StackPanel.Children>
 				</StackPanel>
-				<StackPanel Orientation="Horizontal">
+
+				<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 					<StackPanel.Children>
 						<TextBlock Text="Web : " FontSize="14" FontWeight="Bold" Width="150" />
 						<TextBox Width="250" MaxLength="100"
 								 Text="{Binding InfosClub.Contact.SiteWeb}" />
 					</StackPanel.Children>
 				</StackPanel>
-				<StackPanel Orientation="Horizontal">
+
+				<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 					<StackPanel.Children>
 						<TextBlock Text="N° association : " FontSize="14" FontWeight="Bold" Width="150" />
 						<TextBox Width="250" MaxLength="20"
@@ -70,7 +92,7 @@
 					</StackPanel.Children>
 				</StackPanel>
 
-				<StackPanel Orientation="Horizontal">
+				<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 					<StackPanel.Children>
 						<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="150" />
 						<TextBox Width="250" MaxLength="9" ToolTip="N° SIREN"

@@ -138,6 +138,9 @@
   <data name="Adherent_VilleObligatoire" xml:space="preserve">
     <value>La ville est obligatoire</value>
   </data>
+  <data name="ChampObligatoire" xml:space="preserve">
+    <value>Champ obligatoire</value>
+  </data>
   <data name="Groupe_Existe" xml:space="preserve">
     <value>Ce groupe existe déjà (nom + jour + heure début)</value>
   </data>

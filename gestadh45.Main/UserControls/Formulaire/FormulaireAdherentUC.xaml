@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm" 
+			 xmlns:ihmTools="clr-namespace:gestadh45.Ihm.Tools;assembly=gestadh45.Ihm"
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireAdherentVMStatic, Source={StaticResource Locator}}" 
@@ -64,16 +65,33 @@
 							</Grid.RowDefinitions>
 							<Grid.Children>
 								<TextBlock Grid.Row="0" Grid.Column="0" Text="Nom : " VerticalAlignment="Center" />
-								<TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" CharacterCasing="Upper"
-										 Text="{Binding Path=Adherent.Nom}" />
+								<TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" CharacterCasing="Upper">
+									<TextBox.Text>
+										<Binding Path="Adherent.Nom" UpdateSourceTrigger="PropertyChanged">
+											<Binding.ValidationRules>
+												<ihmTools:ChampTexteObligatoireValidateur />
+											</Binding.ValidationRules>
+										</Binding>
+									</TextBox.Text>
+								</TextBox>
+								
 								<TextBlock Grid.Row="1" Grid.Column="0" Text="Prénom : " VerticalAlignment="Center" />
-								<TextBox Grid.Row="1" Grid.Column="1" MaxLength="50"
-										 Text="{Binding Path=Adherent.Prenom}" />
+								<TextBox Grid.Row="1" Grid.Column="1" MaxLength="50">
+									<TextBox.Text>
+										<Binding Path="Adherent.Prenom" UpdateSourceTrigger="PropertyChanged">
+											<Binding.ValidationRules>
+												<ihmTools:ChampTexteObligatoireValidateur />
+											</Binding.ValidationRules>
+										</Binding>
+									</TextBox.Text>
+								</TextBox>
+
 								<TextBlock Grid.Row="2" Grid.Column="0" Text="Né(e) le : " VerticalAlignment="Center" />
 								<DatePicker Grid.Row="2" Grid.Column="1" 
 											DisplayDate="{Binding Path=Adherent.DateNaissance}" 
 											SelectedDate="{Binding Path=Adherent.DateNaissance}"
 											SelectedDateFormat="Short" />
+								
 								<TextBlock Grid.Row="3" Grid.Column="0" Text="Sexe : " VerticalAlignment="Center" />
 								<ComboBox Grid.Row="3" Grid.Column="1"
 										  ItemsSource="{Binding Path=Sexes}" 
@@ -95,12 +113,20 @@
 							</Grid.RowDefinitions>
 							<Grid.Children>
 								<TextBlock Grid.Row="0" Grid.Column="0" Text="Adresse : " VerticalAlignment="Center" />
-								<TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" AcceptsReturn="True" MaxLength="100"
-										 Text="{Binding Path=Adherent.Adresse.Libelle}" />
+								<TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" AcceptsReturn="True" MaxLength="100">
+									<TextBox.Text>
+										<Binding Path="Adherent.Adresse.Libelle" UpdateSourceTrigger="PropertyChanged">
+											<Binding.ValidationRules>
+												<ihmTools:ChampTexteObligatoireValidateur />
+											</Binding.ValidationRules>
+										</Binding>
+									</TextBox.Text>
+								</TextBox>
+
 								<TextBlock Grid.Row="1" Grid.Column="0" Text="Ville : " VerticalAlignment="Center" />
 								<ComboBox Grid.Row="1" Grid.Column="1"
 										  ItemsSource="{Binding Path=Villes}" 
-										  SelectedItem="{Binding Path=Adherent.Adresse.Ville}" />
+										  SelectedItem="{Binding Path=Adherent.Adresse.Ville}" />								
 								<Button Grid.Row="1" Grid.Column="2" ToolTip="Ajouter une ville" HorizontalAlignment="Center" 
 										Width="18" Height="18" 
 										Command="{Binding Path=FenetreCommand}"
@@ -108,6 +134,7 @@
 										Margin="5,0,0,0">
 									<Image Source="/gestadh45.Main;component/Images/btn_add16.png" />
 								</Button>
+								
 							</Grid.Children>
 						</Grid>
 					</GroupBox>
