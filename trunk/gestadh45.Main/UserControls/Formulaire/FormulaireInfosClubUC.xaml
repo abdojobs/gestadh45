@@ -19,7 +19,7 @@
 						<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="150" />
 						<TextBox Width="250" MaxLength="50">
 							<TextBox.Text>
-								<Binding Path="InfosClub.Nom" UpdateSourceTrigger="PropertyChanged">
+								<Binding Path="InfosClub.Nom">
 									<Binding.ValidationRules>
 										<ihmTools:ChampTexteObligatoireValidateur />
 									</Binding.ValidationRules>
@@ -34,7 +34,7 @@
 						<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="150" />
 						<TextBox TextWrapping="Wrap" Width="250" MaxLength="100">
 							<TextBox.Text>
-								<Binding Path="InfosClub.Adresse.Libelle" UpdateSourceTrigger="PropertyChanged">
+								<Binding Path="InfosClub.Adresse.Libelle">
 									<Binding.ValidationRules>
 										<ihmTools:ChampTexteObligatoireValidateur />
 									</Binding.ValidationRules>
@@ -47,9 +47,10 @@
 				<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 					<StackPanel.Children>
 						<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="150" />
-						<ComboBox Width="250"
-							ItemsSource="{Binding Path=Villes}" 
-							SelectedItem="{Binding Path=InfosClub.Adresse.Ville}" />
+						<ComboBox Width="250" 
+								  ItemsSource="{Binding Path=Villes}"
+								  SelectedItem="{Binding InfosClub.Adresse.Ville}" />							
+
 						<Button ToolTip="Ajouter une ville" HorizontalAlignment="Center" 
 								Width="18" Height="18" 
 								Command="{Binding Path=FenetreCommand}"

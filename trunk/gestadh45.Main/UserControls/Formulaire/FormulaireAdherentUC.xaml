@@ -67,7 +67,7 @@
 								<TextBlock Grid.Row="0" Grid.Column="0" Text="Nom : " VerticalAlignment="Center" />
 								<TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" CharacterCasing="Upper">
 									<TextBox.Text>
-										<Binding Path="Adherent.Nom" UpdateSourceTrigger="PropertyChanged">
+										<Binding Path="Adherent.Nom">
 											<Binding.ValidationRules>
 												<ihmTools:ChampTexteObligatoireValidateur />
 											</Binding.ValidationRules>
@@ -78,7 +78,7 @@
 								<TextBlock Grid.Row="1" Grid.Column="0" Text="Prénom : " VerticalAlignment="Center" />
 								<TextBox Grid.Row="1" Grid.Column="1" MaxLength="50">
 									<TextBox.Text>
-										<Binding Path="Adherent.Prenom" UpdateSourceTrigger="PropertyChanged">
+										<Binding Path="Adherent.Prenom">
 											<Binding.ValidationRules>
 												<ihmTools:ChampTexteObligatoireValidateur />
 											</Binding.ValidationRules>
@@ -93,8 +93,8 @@
 											SelectedDateFormat="Short" />
 								
 								<TextBlock Grid.Row="3" Grid.Column="0" Text="Sexe : " VerticalAlignment="Center" />
-								<ComboBox Grid.Row="3" Grid.Column="1"
-										  ItemsSource="{Binding Path=Sexes}" 
+								<ComboBox Grid.Row="3" Grid.Column="1" 
+										  ItemsSource="{Binding Path=Sexes}"
 										  SelectedItem="{Binding Path=Adherent.Sexe}" />
 							</Grid.Children>
 						</Grid>
@@ -115,7 +115,7 @@
 								<TextBlock Grid.Row="0" Grid.Column="0" Text="Adresse : " VerticalAlignment="Center" />
 								<TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" AcceptsReturn="True" MaxLength="100">
 									<TextBox.Text>
-										<Binding Path="Adherent.Adresse.Libelle" UpdateSourceTrigger="PropertyChanged">
+										<Binding Path="Adherent.Adresse.Libelle">
 											<Binding.ValidationRules>
 												<ihmTools:ChampTexteObligatoireValidateur />
 											</Binding.ValidationRules>

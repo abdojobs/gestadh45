@@ -45,5 +45,29 @@
 				</Trigger>
 			</Style.Triggers>
 		</Style>
+
+		<Style TargetType="{x:Type DatePicker}">
+			<Setter Property="Validation.ErrorTemplate">
+				<Setter.Value>
+					<ControlTemplate>
+						<DockPanel LastChildFill="True">
+							<TextBlock DockPanel.Dock="Right" Foreground="red" FontSize="12pt" Margin="5,0,0,0"
+									   FontWeight="ExtraBold" Text="!" />
+							<Border BorderBrush="Red" BorderThickness="1">
+								<AdornedElementPlaceholder />
+							</Border>
+						</DockPanel>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+
+			<Style.Triggers>
+				<Trigger Property="Validation.HasError" Value="true">
+					<Setter Property="ToolTip" 
+							Value="{Binding RelativeSource={RelativeSource Self}, 
+							Path=(Validation.Errors)[0].ErrorContent}"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
 	</Application.Resources>
 </Application>
