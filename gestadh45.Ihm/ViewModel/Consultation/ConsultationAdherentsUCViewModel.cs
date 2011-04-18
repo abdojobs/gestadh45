@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -59,18 +58,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
-			try {
-				return (
-					this.Adherent != null
-					&& AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)
-					&& !AdherentDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Adherent)
-					);
-			}
-			catch (Exception lEx) {
-				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
-
-				return false;
-			}
+			return (
+				this.Adherent != null
+				&& AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)
+				&& !AdherentDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Adherent)
+				);
 		}
 
 		public bool CanExecuteInscrireCommand() {
@@ -141,25 +133,15 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		/// <param name="pResult">Résultat de la demande de confirmation</param>
 		private void ExecuteSupprimerAdherentCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				try {
-					AdherentDao.GetInstance(ViewModelLocator.Context).Delete(this.Adherent);
-				}
-				catch (Exception lEx) {
-					this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
-				}
+				AdherentDao.GetInstance(ViewModelLocator.Context).Delete(this.Adherent);
 			}
 		}
 
 		private void InitialisationListeAdherents() {
-			try {
-				ICollectionView defaultView = CollectionViewSource.GetDefaultView(AdherentDao.GetInstance(ViewModelLocator.Context).List());
-				defaultView.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
-				defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
-				this.Adherents = defaultView;
-			}
-			catch (Exception lEx) {
-				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
-			}
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(AdherentDao.GetInstance(ViewModelLocator.Context).List());
+			defaultView.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
+			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
+			this.Adherents = defaultView;
 		}
 	}
 }

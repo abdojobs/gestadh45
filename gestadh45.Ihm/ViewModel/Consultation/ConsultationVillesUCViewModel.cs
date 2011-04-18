@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
@@ -49,17 +48,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
-			try {
-				return (
-					this.Ville != null
-					&& VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)
-					&& !VilleDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Ville)
-					);
-			}
-			catch (Exception lEx) {
-				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
-				return false;
-			}
+			return (
+				this.Ville != null
+				&& VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)
+				&& !VilleDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Ville)
+				);
 		}
 
 		public override void ExecuteAfficherDetailsCommand(object pVille) {
@@ -82,33 +75,23 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerVilleCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				try {
-					VilleDao.GetInstance(ViewModelLocator.Context).Delete(this.Ville);
-					this.InitialisationListeVilles();
-					this.Ville = null;
-				}
-				catch (Exception lEx) {
-					this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
-				}
+				VilleDao.GetInstance(ViewModelLocator.Context).Delete(this.Ville);
+				this.InitialisationListeVilles();
+				this.Ville = null;
 			}
 		}
 
 		private void InitialisationListeVilles() {
-			try {
-				ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-					VilleDao.GetInstance(ViewModelLocator.Context).List()
-				);
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
+				VilleDao.GetInstance(ViewModelLocator.Context).List()
+			);
 
-				foreach (Ville lVille in defaultView) {
-					VilleDao.GetInstance(ViewModelLocator.Context).Refresh(lVille);
-				}
+			foreach (Ville lVille in defaultView) {
+				VilleDao.GetInstance(ViewModelLocator.Context).Refresh(lVille);
+			}
 
-				defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
-				this.Villes = defaultView;
-			}
-			catch (Exception lEx) {
-				this.EnvoyerNotificationUtilisateur(TypesNotification.ErreurFatale, lEx.Message);
-			}
+			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
+			this.Villes = defaultView;
 		}
 
 		public override void ExecuteCreerCommand() {
