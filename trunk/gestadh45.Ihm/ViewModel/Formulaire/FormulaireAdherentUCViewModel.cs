@@ -62,20 +62,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public FormulaireAdherentUCViewModel() {
 			this.Adherent = new Adherent();
-
 			this.Adherent.Adresse = new Adresse();
-
 			this.Adherent.Contact = new Contact();
-			this.Adherent.Contact.Telephone1 = string.Empty;
-			this.Adherent.Contact.Telephone2 = string.Empty;
-			this.Adherent.Contact.Telephone3 = string.Empty;
-			this.Adherent.Contact.Mail1 = string.Empty;
-			this.Adherent.Contact.Mail2 = string.Empty;
-			this.Adherent.Contact.Mail3 = string.Empty;
-			this.Adherent.Contact.SiteWeb = string.Empty;
-
 			this.Adherent.DateNaissance = DateTime.Now;
-			this.Adherent.Commentaire = string.Empty;
 
 			this.InitialisationListeVilles();
 			this.InitialisationListeSexes();
