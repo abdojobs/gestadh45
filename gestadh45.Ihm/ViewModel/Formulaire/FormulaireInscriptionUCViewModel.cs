@@ -61,7 +61,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public FormulaireInscriptionUCViewModel() {
             this.Inscription = new Inscription();
-			this.Inscription.Commentaire = string.Empty;
 
 			this.InitialisationListeAdherents();
 			this.InitialisationListeGroupes();

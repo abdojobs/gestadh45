@@ -49,7 +49,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			{
 				AnneeDebut = DateTime.Now.Year,
 				AnneeFin = DateTime.Now.Year + DureeSaison,
-				EstSaisonCourante = 0L
+				EstSaisonCouranteBool = false
 			};
 			this.Saison = saison;
 

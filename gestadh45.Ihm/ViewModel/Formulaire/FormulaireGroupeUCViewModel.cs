@@ -45,7 +45,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public FormulaireGroupeUCViewModel() {
 			this.Groupe = new Groupe();
-			this.Groupe.Commentaire = string.Empty;
 			this.Groupe.Saison = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante();
 			this.InitialisationListeJoursSemaine();
 			this.CodeUCOrigine = CodesUC.ConsultationGroupes;
