@@ -146,7 +146,7 @@
 
     [ID_Sexe] integer NOT NULL,
 
-    [Commentaire] ntext NOT NULL,
+    [Commentaire] ntext,
 
     [ID_Adresse] integer NOT NULL,
 
@@ -176,19 +176,19 @@ CREATE TABLE [Contact] (
 
     [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 
-    [Telephone1] nvarchar(10) NOT NULL,
+    [Telephone1] nvarchar(10),
 
-    [Telephone2] nvarchar(10) NOT NULL,
+    [Telephone2] nvarchar(10),
 
-    [Telephone3] nvarchar(10) NOT NULL,
+    [Telephone3] nvarchar(10),
 
-    [Mail1] nvarchar(100) NOT NULL,
+    [Mail1] nvarchar(100),
 
-    [Mail2] nvarchar(100) NOT NULL,
+    [Mail2] nvarchar(100),
 
-    [Mail3] nvarchar(100) NOT NULL,
+    [Mail3] nvarchar(100),
 
-    [SiteWeb] nvarchar(100) NOT NULL
+    [SiteWeb] nvarchar(100)
 
 );
 
@@ -206,7 +206,7 @@ CREATE TABLE [Groupe] (
 
     [NbPlaces] integer NOT NULL,
 
-    [Commentaire] ntext NOT NULL,
+    [Commentaire] ntext,
 
     [ID_Saison] integer NOT NULL,
 
@@ -230,11 +230,11 @@ CREATE TABLE [InfosClub] (
 
     [ID_Contact] integer NOT NULL,
 
-    [Numero] nvarchar(20) NOT NULL,
+    [Numero] nvarchar(20),
 
-    [Siren] nvarchar(9) NOT NULL,
+    [Siren] nvarchar(9),
 
-    [NIC] nvarchar(5) NOT NULL,
+    [NIC] nvarchar(5),
 
     CONSTRAINT [FK_InfosClub_0] FOREIGN KEY ([ID_Adresse]) REFERENCES [Adresse] ([ID]),
 
@@ -252,13 +252,13 @@ CREATE TABLE [Inscription] (
 
     [CertificatMedicalRemis] integer NOT NULL DEFAULT 0,
 
-    [Cotisation] money NOT NULL DEFAULT 0,
+    [Cotisation] money DEFAULT 0,
 
     [DateCreation] datetime NOT NULL,
 
     [DateModification] datetime NOT NULL,
 
-    [Commentaire] ntext NOT NULL,
+    [Commentaire] ntext,
 
     CONSTRAINT [FK_Inscription_0] FOREIGN KEY ([ID_Adherent]) REFERENCES [Adherent] ([ID]),
 

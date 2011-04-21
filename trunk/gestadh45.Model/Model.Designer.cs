@@ -374,10 +374,9 @@ namespace gestadh45.Model
         /// <param name="dateCreation">Valeur initiale de la propriété DateCreation.</param>
         /// <param name="dateModification">Valeur initiale de la propriété DateModification.</param>
         /// <param name="iD_Sexe">Valeur initiale de la propriété ID_Sexe.</param>
-        /// <param name="commentaire">Valeur initiale de la propriété Commentaire.</param>
         /// <param name="iD_Adresse">Valeur initiale de la propriété ID_Adresse.</param>
         /// <param name="iD_Contact">Valeur initiale de la propriété ID_Contact.</param>
-        public static Adherent CreateAdherent(global::System.Int64 id, global::System.String nom, global::System.String prenom, global::System.DateTime dateNaissance, global::System.DateTime dateCreation, global::System.DateTime dateModification, global::System.Int64 iD_Sexe, global::System.String commentaire, global::System.Int64 iD_Adresse, global::System.Int64 iD_Contact)
+        public static Adherent CreateAdherent(global::System.Int64 id, global::System.String nom, global::System.String prenom, global::System.DateTime dateNaissance, global::System.DateTime dateCreation, global::System.DateTime dateModification, global::System.Int64 iD_Sexe, global::System.Int64 iD_Adresse, global::System.Int64 iD_Contact)
         {
             Adherent adherent = new Adherent();
             adherent.ID = id;
@@ -387,7 +386,6 @@ namespace gestadh45.Model
             adherent.DateCreation = dateCreation;
             adherent.DateModification = dateModification;
             adherent.ID_Sexe = iD_Sexe;
-            adherent.Commentaire = commentaire;
             adherent.ID_Adresse = iD_Adresse;
             adherent.ID_Contact = iD_Contact;
             return adherent;
@@ -570,7 +568,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Commentaire
         {
@@ -582,7 +580,7 @@ namespace gestadh45.Model
             {
                 OnCommentaireChanging(value);
                 ReportPropertyChanging("Commentaire");
-                _Commentaire = StructuralObject.SetValidValue(value, false);
+                _Commentaire = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Commentaire");
                 OnCommentaireChanged();
             }
@@ -988,24 +986,10 @@ namespace gestadh45.Model
         /// Créez un nouvel objet Contact.
         /// </summary>
         /// <param name="id">Valeur initiale de la propriété ID.</param>
-        /// <param name="telephone1">Valeur initiale de la propriété Telephone1.</param>
-        /// <param name="telephone2">Valeur initiale de la propriété Telephone2.</param>
-        /// <param name="telephone3">Valeur initiale de la propriété Telephone3.</param>
-        /// <param name="mail1">Valeur initiale de la propriété Mail1.</param>
-        /// <param name="mail2">Valeur initiale de la propriété Mail2.</param>
-        /// <param name="mail3">Valeur initiale de la propriété Mail3.</param>
-        /// <param name="siteWeb">Valeur initiale de la propriété SiteWeb.</param>
-        public static Contact CreateContact(global::System.Int64 id, global::System.String telephone1, global::System.String telephone2, global::System.String telephone3, global::System.String mail1, global::System.String mail2, global::System.String mail3, global::System.String siteWeb)
+        public static Contact CreateContact(global::System.Int64 id)
         {
             Contact contact = new Contact();
             contact.ID = id;
-            contact.Telephone1 = telephone1;
-            contact.Telephone2 = telephone2;
-            contact.Telephone3 = telephone3;
-            contact.Mail1 = mail1;
-            contact.Mail2 = mail2;
-            contact.Mail3 = mail3;
-            contact.SiteWeb = siteWeb;
             return contact;
         }
 
@@ -1042,7 +1026,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Telephone1
         {
@@ -1054,7 +1038,7 @@ namespace gestadh45.Model
             {
                 OnTelephone1Changing(value);
                 ReportPropertyChanging("Telephone1");
-                _Telephone1 = StructuralObject.SetValidValue(value, false);
+                _Telephone1 = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Telephone1");
                 OnTelephone1Changed();
             }
@@ -1066,7 +1050,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Telephone2
         {
@@ -1078,7 +1062,7 @@ namespace gestadh45.Model
             {
                 OnTelephone2Changing(value);
                 ReportPropertyChanging("Telephone2");
-                _Telephone2 = StructuralObject.SetValidValue(value, false);
+                _Telephone2 = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Telephone2");
                 OnTelephone2Changed();
             }
@@ -1090,7 +1074,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Telephone3
         {
@@ -1102,7 +1086,7 @@ namespace gestadh45.Model
             {
                 OnTelephone3Changing(value);
                 ReportPropertyChanging("Telephone3");
-                _Telephone3 = StructuralObject.SetValidValue(value, false);
+                _Telephone3 = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Telephone3");
                 OnTelephone3Changed();
             }
@@ -1114,7 +1098,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Mail1
         {
@@ -1126,7 +1110,7 @@ namespace gestadh45.Model
             {
                 OnMail1Changing(value);
                 ReportPropertyChanging("Mail1");
-                _Mail1 = StructuralObject.SetValidValue(value, false);
+                _Mail1 = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Mail1");
                 OnMail1Changed();
             }
@@ -1138,7 +1122,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Mail2
         {
@@ -1150,7 +1134,7 @@ namespace gestadh45.Model
             {
                 OnMail2Changing(value);
                 ReportPropertyChanging("Mail2");
-                _Mail2 = StructuralObject.SetValidValue(value, false);
+                _Mail2 = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Mail2");
                 OnMail2Changed();
             }
@@ -1162,7 +1146,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Mail3
         {
@@ -1174,7 +1158,7 @@ namespace gestadh45.Model
             {
                 OnMail3Changing(value);
                 ReportPropertyChanging("Mail3");
-                _Mail3 = StructuralObject.SetValidValue(value, false);
+                _Mail3 = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Mail3");
                 OnMail3Changed();
             }
@@ -1186,7 +1170,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String SiteWeb
         {
@@ -1198,7 +1182,7 @@ namespace gestadh45.Model
             {
                 OnSiteWebChanging(value);
                 ReportPropertyChanging("SiteWeb");
-                _SiteWeb = StructuralObject.SetValidValue(value, false);
+                _SiteWeb = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("SiteWeb");
                 OnSiteWebChanged();
             }
@@ -1277,11 +1261,10 @@ namespace gestadh45.Model
         /// <param name="heureDebut">Valeur initiale de la propriété HeureDebut.</param>
         /// <param name="heureFin">Valeur initiale de la propriété HeureFin.</param>
         /// <param name="nbPlaces">Valeur initiale de la propriété NbPlaces.</param>
-        /// <param name="commentaire">Valeur initiale de la propriété Commentaire.</param>
         /// <param name="iD_Saison">Valeur initiale de la propriété ID_Saison.</param>
         /// <param name="minuteDebut">Valeur initiale de la propriété MinuteDebut.</param>
         /// <param name="minuteFin">Valeur initiale de la propriété MinuteFin.</param>
-        public static Groupe CreateGroupe(global::System.Int64 id, global::System.String libelle, global::System.Int64 iD_JourSemaine, global::System.Int64 heureDebut, global::System.Int64 heureFin, global::System.Int64 nbPlaces, global::System.String commentaire, global::System.Int64 iD_Saison, global::System.Int64 minuteDebut, global::System.Int64 minuteFin)
+        public static Groupe CreateGroupe(global::System.Int64 id, global::System.String libelle, global::System.Int64 iD_JourSemaine, global::System.Int64 heureDebut, global::System.Int64 heureFin, global::System.Int64 nbPlaces, global::System.Int64 iD_Saison, global::System.Int64 minuteDebut, global::System.Int64 minuteFin)
         {
             Groupe groupe = new Groupe();
             groupe.ID = id;
@@ -1290,7 +1273,6 @@ namespace gestadh45.Model
             groupe.HeureDebut = heureDebut;
             groupe.HeureFin = heureFin;
             groupe.NbPlaces = nbPlaces;
-            groupe.Commentaire = commentaire;
             groupe.ID_Saison = iD_Saison;
             groupe.MinuteDebut = minuteDebut;
             groupe.MinuteFin = minuteFin;
@@ -1450,7 +1432,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Commentaire
         {
@@ -1462,7 +1444,7 @@ namespace gestadh45.Model
             {
                 OnCommentaireChanging(value);
                 ReportPropertyChanging("Commentaire");
-                _Commentaire = StructuralObject.SetValidValue(value, false);
+                _Commentaire = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Commentaire");
                 OnCommentaireChanged();
             }
@@ -1665,19 +1647,13 @@ namespace gestadh45.Model
         /// <param name="nom">Valeur initiale de la propriété Nom.</param>
         /// <param name="iD_Adresse">Valeur initiale de la propriété ID_Adresse.</param>
         /// <param name="iD_Contact">Valeur initiale de la propriété ID_Contact.</param>
-        /// <param name="numero">Valeur initiale de la propriété Numero.</param>
-        /// <param name="siren">Valeur initiale de la propriété Siren.</param>
-        /// <param name="nIC">Valeur initiale de la propriété NIC.</param>
-        public static InfosClub CreateInfosClub(global::System.Int64 id, global::System.String nom, global::System.Int64 iD_Adresse, global::System.Int64 iD_Contact, global::System.String numero, global::System.String siren, global::System.String nIC)
+        public static InfosClub CreateInfosClub(global::System.Int64 id, global::System.String nom, global::System.Int64 iD_Adresse, global::System.Int64 iD_Contact)
         {
             InfosClub infosClub = new InfosClub();
             infosClub.ID = id;
             infosClub.Nom = nom;
             infosClub.ID_Adresse = iD_Adresse;
             infosClub.ID_Contact = iD_Contact;
-            infosClub.Numero = numero;
-            infosClub.Siren = siren;
-            infosClub.NIC = nIC;
             return infosClub;
         }
 
@@ -1786,7 +1762,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Numero
         {
@@ -1798,7 +1774,7 @@ namespace gestadh45.Model
             {
                 OnNumeroChanging(value);
                 ReportPropertyChanging("Numero");
-                _Numero = StructuralObject.SetValidValue(value, false);
+                _Numero = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Numero");
                 OnNumeroChanged();
             }
@@ -1810,7 +1786,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Siren
         {
@@ -1822,7 +1798,7 @@ namespace gestadh45.Model
             {
                 OnSirenChanging(value);
                 ReportPropertyChanging("Siren");
-                _Siren = StructuralObject.SetValidValue(value, false);
+                _Siren = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Siren");
                 OnSirenChanged();
             }
@@ -1834,7 +1810,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String NIC
         {
@@ -1846,7 +1822,7 @@ namespace gestadh45.Model
             {
                 OnNICChanging(value);
                 ReportPropertyChanging("NIC");
-                _NIC = StructuralObject.SetValidValue(value, false);
+                _NIC = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("NIC");
                 OnNICChanged();
             }
@@ -1955,21 +1931,17 @@ namespace gestadh45.Model
         /// <param name="iD_Adherent">Valeur initiale de la propriété ID_Adherent.</param>
         /// <param name="iD_Groupe">Valeur initiale de la propriété ID_Groupe.</param>
         /// <param name="certificatMedicalRemis">Valeur initiale de la propriété CertificatMedicalRemis.</param>
-        /// <param name="cotisation">Valeur initiale de la propriété Cotisation.</param>
         /// <param name="dateCreation">Valeur initiale de la propriété DateCreation.</param>
         /// <param name="dateModification">Valeur initiale de la propriété DateModification.</param>
-        /// <param name="commentaire">Valeur initiale de la propriété Commentaire.</param>
-        public static Inscription CreateInscription(global::System.Int64 id, global::System.Int64 iD_Adherent, global::System.Int64 iD_Groupe, global::System.Int64 certificatMedicalRemis, global::System.Decimal cotisation, global::System.DateTime dateCreation, global::System.DateTime dateModification, global::System.String commentaire)
+        public static Inscription CreateInscription(global::System.Int64 id, global::System.Int64 iD_Adherent, global::System.Int64 iD_Groupe, global::System.Int64 certificatMedicalRemis, global::System.DateTime dateCreation, global::System.DateTime dateModification)
         {
             Inscription inscription = new Inscription();
             inscription.ID = id;
             inscription.ID_Adherent = iD_Adherent;
             inscription.ID_Groupe = iD_Groupe;
             inscription.CertificatMedicalRemis = certificatMedicalRemis;
-            inscription.Cotisation = cotisation;
             inscription.DateCreation = dateCreation;
             inscription.DateModification = dateModification;
-            inscription.Commentaire = commentaire;
             return inscription;
         }
 
@@ -2078,9 +2050,9 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Decimal Cotisation
+        public Nullable<global::System.Decimal> Cotisation
         {
             get
             {
@@ -2095,8 +2067,8 @@ namespace gestadh45.Model
                 OnCotisationChanged();
             }
         }
-        private global::System.Decimal _Cotisation;
-        partial void OnCotisationChanging(global::System.Decimal value);
+        private Nullable<global::System.Decimal> _Cotisation;
+        partial void OnCotisationChanging(Nullable<global::System.Decimal> value);
         partial void OnCotisationChanged();
     
         /// <summary>
@@ -2150,7 +2122,7 @@ namespace gestadh45.Model
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String Commentaire
         {
@@ -2162,7 +2134,7 @@ namespace gestadh45.Model
             {
                 OnCommentaireChanging(value);
                 ReportPropertyChanging("Commentaire");
-                _Commentaire = StructuralObject.SetValidValue(value, false);
+                _Commentaire = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("Commentaire");
                 OnCommentaireChanged();
             }

@@ -113,13 +113,15 @@ namespace gestadh45.service.Database {
         ///
         ///    [ID_Sexe] integer NOT NULL,
         ///
-        ///    [Commentaire] ntext NOT NULL,
+        ///    [Commentaire] ntext,
         ///
         ///    [ID_Adresse] integer NOT NULL,
         ///
         ///    [ID_Contact] integer NOT NULL,
         ///
-        ///    CONSTRAINT [FK_Adherent_0] FOREIGN KEY ([ID_Sexe]) REFERENCES [Sexe] ([I [le reste de la chaîne a été tronqué]&quot;;.
+        ///    CONSTRAINT [FK_Adherent_0] FOREIGN KEY ([ID_Sexe]) REFERENCES [Sexe] ([ID]),
+        ///
+        ///  [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         public static string SQL_CreateTables {
             get {
