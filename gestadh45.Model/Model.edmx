@@ -18,7 +18,7 @@
           <EntitySet Name="TarifConseille" EntityType="gestadh45.Model.Store.TarifConseille" store:Type="Tables" />
           <EntitySet Name="Ville" EntityType="gestadh45.Model.Store.Ville" store:Type="Tables" />
           <AssociationSet Name="FK_Adherent_0" Association="gestadh45.Model.Store.FK_Adherent_0">
-            <End Role="Contact" EntitySet="Contact" />
+            <End Role="Sexe" EntitySet="Sexe" />
             <End Role="Adherent" EntitySet="Adherent" />
           </AssociationSet>
           <AssociationSet Name="FK_Adherent_1" Association="gestadh45.Model.Store.FK_Adherent_1">
@@ -26,7 +26,7 @@
             <End Role="Adherent" EntitySet="Adherent" />
           </AssociationSet>
           <AssociationSet Name="FK_Adherent_2" Association="gestadh45.Model.Store.FK_Adherent_2">
-            <End Role="Sexe" EntitySet="Sexe" />
+            <End Role="Contact" EntitySet="Contact" />
             <End Role="Adherent" EntitySet="Adherent" />
           </AssociationSet>
           <AssociationSet Name="FK_Adresse_0" Association="gestadh45.Model.Store.FK_Adresse_0">
@@ -34,11 +34,11 @@
             <End Role="Adresse" EntitySet="Adresse" />
           </AssociationSet>
           <AssociationSet Name="FK_Groupe_0" Association="gestadh45.Model.Store.FK_Groupe_0">
-            <End Role="JourSemaine" EntitySet="JourSemaine" />
+            <End Role="Saison" EntitySet="Saison" />
             <End Role="Groupe" EntitySet="Groupe" />
           </AssociationSet>
           <AssociationSet Name="FK_Groupe_1" Association="gestadh45.Model.Store.FK_Groupe_1">
-            <End Role="Saison" EntitySet="Saison" />
+            <End Role="JourSemaine" EntitySet="JourSemaine" />
             <End Role="Groupe" EntitySet="Groupe" />
           </AssociationSet>
           <AssociationSet Name="FK_InfosClub_0" Association="gestadh45.Model.Store.FK_InfosClub_0">
@@ -50,11 +50,11 @@
             <End Role="InfosClub" EntitySet="InfosClub" />
           </AssociationSet>
           <AssociationSet Name="FK_Inscription_0" Association="gestadh45.Model.Store.FK_Inscription_0">
-            <End Role="Groupe" EntitySet="Groupe" />
+            <End Role="Adherent" EntitySet="Adherent" />
             <End Role="Inscription" EntitySet="Inscription" />
           </AssociationSet>
           <AssociationSet Name="FK_Inscription_1" Association="gestadh45.Model.Store.FK_Inscription_1">
-            <End Role="Adherent" EntitySet="Adherent" />
+            <End Role="Groupe" EntitySet="Groupe" />
             <End Role="Inscription" EntitySet="Inscription" />
           </AssociationSet>
         </EntityContainer>
@@ -69,7 +69,7 @@
           <Property Name="DateCreation" Type="datetime" Nullable="false" />
           <Property Name="DateModification" Type="datetime" Nullable="false" />
           <Property Name="ID_Sexe" Type="integer" Nullable="false" />
-          <Property Name="Commentaire" Type="nvarchar" Nullable="false" />
+          <Property Name="Commentaire" Type="nvarchar" />
           <Property Name="ID_Adresse" Type="integer" Nullable="false" />
           <Property Name="ID_Contact" Type="integer" Nullable="false" />
         </EntityType>
@@ -86,13 +86,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Telephone1" Type="nvarchar" Nullable="false" MaxLength="10" />
-          <Property Name="Telephone2" Type="nvarchar" Nullable="false" MaxLength="10" />
-          <Property Name="Telephone3" Type="nvarchar" Nullable="false" MaxLength="10" />
-          <Property Name="Mail1" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="Mail2" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="Mail3" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="SiteWeb" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Telephone1" Type="nvarchar" MaxLength="10" />
+          <Property Name="Telephone2" Type="nvarchar" MaxLength="10" />
+          <Property Name="Telephone3" Type="nvarchar" MaxLength="10" />
+          <Property Name="Mail1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mail2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mail3" Type="nvarchar" MaxLength="100" />
+          <Property Name="SiteWeb" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Groupe">
           <Key>
@@ -104,7 +104,7 @@
           <Property Name="HeureDebut" Type="integer" Nullable="false" />
           <Property Name="HeureFin" Type="integer" Nullable="false" />
           <Property Name="NbPlaces" Type="integer" Nullable="false" />
-          <Property Name="Commentaire" Type="nvarchar" Nullable="false" />
+          <Property Name="Commentaire" Type="nvarchar" />
           <Property Name="ID_Saison" Type="integer" Nullable="false" />
           <Property Name="MinuteDebut" Type="integer" Nullable="false" />
           <Property Name="MinuteFin" Type="integer" Nullable="false" />
@@ -117,9 +117,9 @@
           <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="ID_Adresse" Type="integer" Nullable="false" />
           <Property Name="ID_Contact" Type="integer" Nullable="false" />
-          <Property Name="Numero" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="Siren" Type="nvarchar" Nullable="false" MaxLength="9" />
-          <Property Name="NIC" Type="nvarchar" Nullable="false" MaxLength="4" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="20" />
+          <Property Name="Siren" Type="nvarchar" MaxLength="9" />
+          <Property Name="NIC" Type="nvarchar" MaxLength="5" />
         </EntityType>
         <EntityType Name="Inscription">
           <Key>
@@ -129,10 +129,10 @@
           <Property Name="ID_Adherent" Type="integer" Nullable="false" />
           <Property Name="ID_Groupe" Type="integer" Nullable="false" />
           <Property Name="CertificatMedicalRemis" Type="integer" Nullable="false" />
-          <Property Name="Cotisation" Type="decimal" Nullable="false" Precision="53" />
+          <Property Name="Cotisation" Type="decimal" Precision="53" />
           <Property Name="DateCreation" Type="datetime" Nullable="false" />
           <Property Name="DateModification" Type="datetime" Nullable="false" />
-          <Property Name="Commentaire" Type="nvarchar" Nullable="false" />
+          <Property Name="Commentaire" Type="nvarchar" />
         </EntityType>
         <EntityType Name="JourSemaine">
           <Key>
@@ -178,14 +178,14 @@
           <Property Name="CodePostal" Type="nvarchar" Nullable="false" MaxLength="5" />
         </EntityType>
         <Association Name="FK_Adherent_0">
-          <End Role="Contact" Type="gestadh45.Model.Store.Contact" Multiplicity="1" />
+          <End Role="Sexe" Type="gestadh45.Model.Store.Sexe" Multiplicity="1" />
           <End Role="Adherent" Type="gestadh45.Model.Store.Adherent" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Contact">
+            <Principal Role="Sexe">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Adherent">
-              <PropertyRef Name="ID_Contact" />
+              <PropertyRef Name="ID_Sexe" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -202,14 +202,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Adherent_2">
-          <End Role="Sexe" Type="gestadh45.Model.Store.Sexe" Multiplicity="1" />
+          <End Role="Contact" Type="gestadh45.Model.Store.Contact" Multiplicity="1" />
           <End Role="Adherent" Type="gestadh45.Model.Store.Adherent" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Sexe">
+            <Principal Role="Contact">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Adherent">
-              <PropertyRef Name="ID_Sexe" />
+              <PropertyRef Name="ID_Contact" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -226,18 +226,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Groupe_0">
-          <End Role="JourSemaine" Type="gestadh45.Model.Store.JourSemaine" Multiplicity="1" />
-          <End Role="Groupe" Type="gestadh45.Model.Store.Groupe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="JourSemaine">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Groupe">
-              <PropertyRef Name="ID_JourSemaine" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Groupe_1">
           <End Role="Saison" Type="gestadh45.Model.Store.Saison" Multiplicity="1" />
           <End Role="Groupe" Type="gestadh45.Model.Store.Groupe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -246,6 +234,18 @@
             </Principal>
             <Dependent Role="Groupe">
               <PropertyRef Name="ID_Saison" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groupe_1">
+          <End Role="JourSemaine" Type="gestadh45.Model.Store.JourSemaine" Multiplicity="1" />
+          <End Role="Groupe" Type="gestadh45.Model.Store.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JourSemaine">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="ID_JourSemaine" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -274,18 +274,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Inscription_0">
-          <End Role="Groupe" Type="gestadh45.Model.Store.Groupe" Multiplicity="1" />
-          <End Role="Inscription" Type="gestadh45.Model.Store.Inscription" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Groupe">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Inscription">
-              <PropertyRef Name="ID_Groupe" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inscription_1">
           <End Role="Adherent" Type="gestadh45.Model.Store.Adherent" Multiplicity="1" />
           <End Role="Inscription" Type="gestadh45.Model.Store.Inscription" Multiplicity="*" />
           <ReferentialConstraint>
@@ -294,6 +282,18 @@
             </Principal>
             <Dependent Role="Inscription">
               <PropertyRef Name="ID_Adherent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inscription_1">
+          <End Role="Groupe" Type="gestadh45.Model.Store.Groupe" Multiplicity="1" />
+          <End Role="Inscription" Type="gestadh45.Model.Store.Inscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inscription">
+              <PropertyRef Name="ID_Groupe" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -365,7 +365,7 @@
           <Property Name="DateCreation" Type="DateTime" Nullable="false" />
           <Property Name="DateModification" Type="DateTime" Nullable="false" />
           <Property Name="ID_Sexe" Type="Int64" Nullable="false" />
-          <Property Name="Commentaire" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="ID_Adresse" Type="Int64" Nullable="false" />
           <Property Name="ID_Contact" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Contact" Relationship="gestadh45.Model.FK_Adherent_0" FromRole="Adherent" ToRole="Contact" />
@@ -389,13 +389,13 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Telephone1" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="Telephone2" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="Telephone3" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="Mail1" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Mail2" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Mail3" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="SiteWeb" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Telephone1" Type="String" MaxLength="10" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="Telephone2" Type="String" MaxLength="10" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="Telephone3" Type="String" MaxLength="10" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="Mail1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="Mail2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="Mail3" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="true" />
+          <Property Name="SiteWeb" Type="String" MaxLength="100" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Adherents" Relationship="gestadh45.Model.FK_Adherent_0" FromRole="Contact" ToRole="Adherent" />
           <NavigationProperty Name="InfosClubs" Relationship="gestadh45.Model.FK_InfosClub_1" FromRole="Contact" ToRole="InfosClub" />
         </EntityType>
@@ -409,7 +409,7 @@
           <Property Name="HeureDebut" Type="Int64" Nullable="false" />
           <Property Name="HeureFin" Type="Int64" Nullable="false" />
           <Property Name="NbPlaces" Type="Int64" Nullable="false" />
-          <Property Name="Commentaire" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="ID_Saison" Type="Int64" Nullable="false" />
           <Property Name="MinuteDebut" Type="Int64" Nullable="false" />
           <Property Name="MinuteFin" Type="Int64" Nullable="false" />
@@ -425,11 +425,11 @@
           <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="ID_Adresse" Type="Int64" Nullable="false" />
           <Property Name="ID_Contact" Type="Int64" Nullable="false" />
-          <Property Name="Numero" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Numero" Type="String" MaxLength="20" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Adresse" Relationship="gestadh45.Model.FK_InfosClub_0" FromRole="InfosClub" ToRole="Adresse" />
           <NavigationProperty Name="Contact" Relationship="gestadh45.Model.FK_InfosClub_1" FromRole="InfosClub" ToRole="Contact" />
-          <Property Type="String" Name="Siren" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="NIC" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Siren" MaxLength="9" FixedLength="false" Unicode="true" a:SetterAccess="Public" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Nullable="true" />
+          <Property Type="String" Name="NIC" MaxLength="4" FixedLength="false" Unicode="true" Nullable="true" />
         </EntityType>
         <EntityType Name="Inscription">
           <Key>
@@ -439,10 +439,10 @@
           <Property Name="ID_Adherent" Type="Int64" Nullable="false" />
           <Property Name="ID_Groupe" Type="Int64" Nullable="false" />
           <Property Name="CertificatMedicalRemis" Type="Int64" Nullable="false" />
-          <Property Name="Cotisation" Type="Decimal" Nullable="false" Precision="53" Scale="0" />
+          <Property Name="Cotisation" Type="Decimal" Precision="53" Scale="0" Nullable="true" />
           <Property Name="DateCreation" Type="DateTime" Nullable="false" />
           <Property Name="DateModification" Type="DateTime" Nullable="false" />
-          <Property Name="Commentaire" Type="String" Nullable="false" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Adherent" Relationship="gestadh45.Model.FK_Inscription_1" FromRole="Inscription" ToRole="Adherent" />
           <NavigationProperty Name="Groupe" Relationship="gestadh45.Model.FK_Inscription_0" FromRole="Inscription" ToRole="Groupe" />
         </EntityType>
