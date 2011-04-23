@@ -61,6 +61,23 @@ namespace gestadh45.Ihm {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Utilisation des éléments tierces suivants : 
+        ///- MVVM Light Toolkit (http://mvvmlight.codeplex.com/)
+        ///- iTextSharp (http://sourceforge.net/projects/itextsharp/)
+        ///- System.Data.SQLite (http://sqlite.phxsoftware.com/)
+        ///- Transitionnals (http://transitionals.codeplex.com/)
+        ///- WPF Toolkit (http://wpf.codeplex.com/)
+        ///- Extended WPF Toolkit (http://wpftoolkit.codeplex.com/)
+        ///- Visifire (http://www.visifire.com/)
+        ///- Craig&apos;s Utility Library (http://cul.codeplex.com/).
+        /// </summary>
+        public static string ElementsTierces {
+            get {
+                return ResourceManager.GetString("ElementsTierces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à .eyb.
         /// </summary>
         public static string ExtensionBase {

@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Data;
 using System.Xml;
+using gestadh45.Ihm;
 
 namespace gestadh45.Main
 {
@@ -100,7 +101,8 @@ namespace gestadh45.Main
 		/// Gets the description about the application.
 		/// </summary>
 		public string Description {
-			get { return CalculatePropertyValue<AssemblyDescriptionAttribute>(propertyNameDescription, xPathDescription); }
+			//get { return CalculatePropertyValue<AssemblyDescriptionAttribute>(propertyNameDescription, xPathDescription); }
+			get { return MainRessources.ElementsTierces; }
 		}
 
 		/// <summary>
