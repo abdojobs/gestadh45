@@ -142,6 +142,24 @@ namespace gestadh45.Ihm.SpecialMessages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à La VCard a correctement été générée.
+        /// </summary>
+        public static string MessageInfoGenerationVCard {
+            get {
+                return ResourceManager.GetString("MessageInfoGenerationVCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Les VCards ont correctement été générées.
+        /// </summary>
+        public static string MessageInfoGenerationVCardsGroupe {
+            get {
+                return ResourceManager.GetString("MessageInfoGenerationVCardsGroupe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Confirmation.
         /// </summary>
         public static string TitreConfirmation {

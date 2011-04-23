@@ -8,13 +8,12 @@ using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 using gestadh45.service.Documents;
+using gestadh45.service.VCards;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class ConsultationInscriptionsUCViewModel : ViewModelBaseConsultation
-	{
-		public ICommand GenererDocumentCommand { get; set; }
-		
+	{	
 		private Inscription mInscription;
 		private ICollectionView mInscriptionsSaisonCourante;
 
@@ -52,34 +51,20 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.InitialisationListeInscriptions();
 
 			this.CreateGenererDocumentCommand();
+			this.CreateGenererVCardCommand();
 		}
 
-		public override bool CanExecuteEditerCommand() {
-			return (this.Inscription != null);
-		}
-
-		public bool CanExecuteGenererDocumentCommand(string pCodeDocument) {
-			return (this.Inscription != null);
-		}
-
-		public override bool CanExecuteSupprimerCommand() {
-			return (
-				this.Inscription != null
-				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)
-				);
-		}
-
-		private void CreateGenererDocumentCommand() {
-			this.GenererDocumentCommand = new RelayCommand<string>(
-				this.ExecuteGenererDocumentCommand, 
-				this.CanExecuteGenererDocumentCommand
+		#region CreerCommand
+		public override void ExecuteCreerCommand() {
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(CodesUC.FormulaireInscription)
 			);
 		}
+		#endregion
 
-		public override void ExecuteAfficherDetailsCommand(object pInscription) {
-			if (pInscription != null && pInscription is Inscription) {
-				this.Inscription = pInscription as Inscription;
-			}
+		#region EditerCommand
+		public override bool CanExecuteEditerCommand() {
+			return (this.Inscription != null);
 		}
 
 		public override void ExecuteEditerCommand() {
@@ -90,8 +75,61 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				)
 			);
 		}
+		#endregion
 
-		public void ExecuteGenererDocumentCommand(string pCodeDocument)	{
+		#region SupprimerCommand
+		public override bool CanExecuteSupprimerCommand() {
+			return (
+				this.Inscription != null
+				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)
+				);
+		}
+
+		public override void ExecuteSupprimerCommand() {
+			if (this.Inscription != null) {
+				DialogMessageConfirmation message =
+					new DialogMessageConfirmation(
+						ResMessages.MessageConfirmSupprInscription,
+						this.ExecuteSupprimerInscriptionCommandCallBack
+					);
+
+				Messenger.Default.Send<DialogMessageConfirmation>(message);
+			}
+			this.CreateSupprimerCommand();
+		}
+
+		private void ExecuteSupprimerInscriptionCommandCallBack(MessageBoxResult pResult) {
+			if (pResult == MessageBoxResult.OK) {
+				InscriptionDao.GetInstance(ViewModelLocator.Context).Delete(this.Inscription);
+				this.InitialisationListeInscriptions();
+				this.Inscription = null;
+			}
+		}
+		#endregion
+
+		#region AfficherDetailsCommand
+		public override void ExecuteAfficherDetailsCommand(object pInscription) {
+			if (pInscription != null && pInscription is Inscription) {
+				this.Inscription = pInscription as Inscription;
+			}
+		}
+		#endregion
+
+		#region GenererDocumentCommand
+		public ICommand GenererDocumentCommand { get; set; }
+
+		private void CreateGenererDocumentCommand() {
+			this.GenererDocumentCommand = new RelayCommand<string>(
+				this.ExecuteGenererDocumentCommand,
+				this.CanExecuteGenererDocumentCommand
+			);
+		}
+
+		public bool CanExecuteGenererDocumentCommand(string pCodeDocument) {
+			return (this.Inscription != null);
+		}
+
+		public void ExecuteGenererDocumentCommand(string pCodeDocument) {
 			if (this.Inscription != null) {
 				NotificationMessageActionFileDialog<string> message =
 					new NotificationMessageActionFileDialog<string>(
@@ -107,9 +145,43 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				Messenger.Default.Send<NotificationMessageActionFileDialog<string>>(message);
 			}
 		}
+		#endregion
 
+		#region GenererVCardCommand
+		public ICommand GenererVCardCommand { get; set; }
+
+		private void CreateGenererVCardCommand() {
+			this.GenererVCardCommand = new RelayCommand<string>(
+				this.ExecuteGenererVCardCommand,
+				this.CanExecuteGenererVCardCommand
+			);
+		}
+
+		public bool CanExecuteGenererVCardCommand(string pCodeDocument) {
+			return (this.Inscription != null);
+		}
+
+		public void ExecuteGenererVCardCommand(string pCodeDocument) {
+			if (this.Inscription != null) {
+				NotificationMessageActionFileDialog<string> message =
+					new NotificationMessageActionFileDialog<string>(
+						TypesNotification.SaveFileDialog,
+						ResVCards.Extension,
+						this.Inscription.Adherent.ToString(),
+						callbackmessage =>
+						{
+							this.GenererVCard(callbackmessage);
+						}
+					);
+
+				Messenger.Default.Send<NotificationMessageActionFileDialog<string>>(message);
+			}
+		}
+		#endregion
+
+		#region methodes privees
 		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
-			if (pSaveFilePath != null) {
+			if (!string.IsNullOrWhiteSpace(pSaveFilePath)) {
 				InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
 				DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, this.Inscription);
 				GenerateurDocumentPDF lGenerateur = new GenerateurDocumentPDF(lDonnees, pSaveFilePath);
@@ -125,24 +197,19 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		public override void ExecuteSupprimerCommand() {
-			if (this.Inscription != null) {
-				DialogMessageConfirmation message = 
-					new DialogMessageConfirmation(
-						ResMessages.MessageConfirmSupprInscription, 
-						this.ExecuteSupprimerInscriptionCommandCallBack
-					);
+		private void GenererVCard(string pSaveFilePath) {
+			if(!string.IsNullOrWhiteSpace(pSaveFilePath)) {
+				DonneesVCard lDonnees = DonneesVCardAdaptateur.CreerDonneesVCard(this.Inscription);
 
-				Messenger.Default.Send<DialogMessageConfirmation>(message);
-			}
-			this.CreateSupprimerCommand();
-		}
+				VCardGenerateur lGenerateur = new VCardGenerateur(lDonnees, pSaveFilePath);
+				lGenerateur.CreerVCard();
 
-		private void ExecuteSupprimerInscriptionCommandCallBack(MessageBoxResult pResult) {
-			if (pResult == MessageBoxResult.OK) {
-				InscriptionDao.GetInstance(ViewModelLocator.Context).Delete(this.Inscription);
-				this.InitialisationListeInscriptions();
-				this.Inscription = null;
+				Messenger.Default.Send(
+					new NotificationMessageUtilisateur(
+						TypesNotification.Information,
+						ResMessages.MessageInfoGenerationVCard
+					)
+				);
 			}
 		}
 
@@ -162,25 +229,20 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 			switch (pCodeDocument) {
 				case GenerateurDocumentBase.CodeInscriptionPdf:
-					lRetour =  string.Format(
-						"{0} - {1}", 
+					lRetour = string.Format(
+						"{0} - {1}",
 						ResDocuments.PrefixeNomFichierInscription, this.Inscription.Adherent.ToString());
 					break;
 
 				case GenerateurDocumentBase.CodeAttestationPdf:
-					lRetour =  string.Format(
-						"{0} - {1}", 
+					lRetour = string.Format(
+						"{0} - {1}",
 						ResDocuments.PrefixeNomFichierAttestation, this.Inscription.Adherent.ToString());
 					break;
 			}
 
 			return lRetour;
 		}
-
-		public override void ExecuteCreerCommand() {
-			Messenger.Default.Send<NotificationMessageChangementUC>(
-				new NotificationMessageChangementUC(CodesUC.FormulaireInscription)
-			);
-		}
+		#endregion		
 	}
 }

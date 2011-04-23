@@ -117,49 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ErreurFataleDebut" xml:space="preserve">
-    <value>L'application a rencontré l'erreur fatale suivante : </value>
-  </data>
-  <data name="ErreurFataleInfoQuitter" xml:space="preserve">
-    <value>Pour éviter tout problème d'instabilité, l'application va maintenant se fermer.</value>
-  </data>
-  <data name="MessageConfirmSupprAdherent" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir supprimer cet adhérent?</value>
-  </data>
-  <data name="MessageConfirmSupprGroupe" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir supprimer ce groupe?</value>
-  </data>
-  <data name="MessageConfirmSupprInscription" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir supprimer cette inscription?</value>
-  </data>
-  <data name="MessageConfirmSupprSaison" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir supprimer cette saison?</value>
-  </data>
-  <data name="MessageConfirmSupprVille" xml:space="preserve">
-    <value>Etes-vous sûr de vouloir supprimer cette ville?</value>
-  </data>
-  <data name="MessageInfoGenerationDocument" xml:space="preserve">
-    <value>Le document a correctement été généré</value>
-  </data>
-  <data name="MessageInfoGenerationDocumentsGroupe" xml:space="preserve">
-    <value>Les documents ont correctement été générés</value>
-  </data>
-  <data name="MessageInfoGenerationVCard" xml:space="preserve">
-    <value>La VCard a correctement été générée</value>
-  </data>
-  <data name="MessageInfoGenerationVCardsGroupe" xml:space="preserve">
-    <value>Les VCards ont correctement été générées</value>
-  </data>
-  <data name="TitreConfirmation" xml:space="preserve">
-    <value>Confirmation</value>
-  </data>
-  <data name="TitreErreur" xml:space="preserve">
-    <value>Erreur</value>
-  </data>
-  <data name="TitreException" xml:space="preserve">
-    <value>Exception</value>
-  </data>
-  <data name="TitreInformation" xml:space="preserve">
-    <value>Information</value>
+  <data name="Extension" xml:space="preserve">
+    <value>.vcf</value>
   </data>
 </root>
