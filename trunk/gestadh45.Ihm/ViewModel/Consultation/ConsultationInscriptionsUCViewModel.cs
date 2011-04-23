@@ -151,17 +151,17 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public ICommand GenererVCardCommand { get; set; }
 
 		private void CreateGenererVCardCommand() {
-			this.GenererVCardCommand = new RelayCommand<string>(
+			this.GenererVCardCommand = new RelayCommand(
 				this.ExecuteGenererVCardCommand,
 				this.CanExecuteGenererVCardCommand
 			);
 		}
 
-		public bool CanExecuteGenererVCardCommand(string pCodeDocument) {
+		public bool CanExecuteGenererVCardCommand() {
 			return (this.Inscription != null);
 		}
 
-		public void ExecuteGenererVCardCommand(string pCodeDocument) {
+		public void ExecuteGenererVCardCommand() {
 			if (this.Inscription != null) {
 				NotificationMessageActionFileDialog<string> message =
 					new NotificationMessageActionFileDialog<string>(

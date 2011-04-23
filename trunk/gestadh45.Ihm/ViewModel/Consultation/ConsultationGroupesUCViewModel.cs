@@ -9,14 +9,12 @@ using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 using gestadh45.service.Documents;
+using gestadh45.service.VCards;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class ConsultationGroupesUCViewModel : ViewModelBaseConsultation
-	{
-		public ICommand GenererDocumentsGroupeCommand { get; set; }
-		public ICommand ExtraireMailsCommand { get; set; }
-		
+	{		
 		private Groupe mGroupe;
 		private ICollectionView mGroupesSaisonCourante;
 
@@ -54,8 +52,58 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.InitialisationListeGroupes();
 
 			this.CreateGenererDocumentsGroupeCommand();
+			this.CreateGenererVCardsGroupeCommand();
 			this.CreateExtraireMailsCommand();
 		}
+
+		#region CreerCommand
+		public override void ExecuteCreerCommand() {
+			Messenger.Default.Send<NotificationMessageChangementUC>(
+				new NotificationMessageChangementUC(CodesUC.FormulaireGroupe)
+			);
+		}
+		#endregion
+
+		#region SupprimerCommand
+		public override bool CanExecuteSupprimerCommand() {
+			return (
+				this.Groupe != null
+				&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)
+				&& !GroupeDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Groupe)
+			);
+		}
+
+		public override void ExecuteSupprimerCommand() {
+			if (this.Groupe != null) {
+				DialogMessageConfirmation message = new DialogMessageConfirmation(
+					ResMessages.MessageConfirmSupprGroupe,
+					this.ExecuteSupprimerGroupeCommandCallBack
+				);
+
+				Messenger.Default.Send<DialogMessageConfirmation>(message);
+			}
+			this.CreateSupprimerCommand();
+		}
+
+		private void ExecuteSupprimerGroupeCommandCallBack(MessageBoxResult pResult) {
+			if (pResult == MessageBoxResult.OK) {
+				GroupeDao.GetInstance(ViewModelLocator.Context).Delete(this.Groupe);
+				this.InitialisationListeGroupes();
+				this.Groupe = null;
+			}
+		}
+		#endregion
+
+		#region AfficherDetailsCommand
+		public override void ExecuteAfficherDetailsCommand(object pGroupe) {
+			if (pGroupe != null && pGroupe is Groupe) {
+				this.Groupe = pGroupe as Groupe;
+			}
+		}
+		#endregion
+
+		#region GenererDocumentsGroupeCommand
+		public ICommand GenererDocumentsGroupeCommand { get; set; }
 
 		private void CreateGenererDocumentsGroupeCommand() {
 			this.GenererDocumentsGroupeCommand = new RelayCommand<string>(
@@ -64,18 +112,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 		}
 
-		private void CreateExtraireMailsCommand() {
-			this.ExtraireMailsCommand = new RelayCommand(
-				this.ExecuteExtraireMailsCommand,
-				this.CanExecuteExtraireMailsCommand
-			);
-		}
-
 		public bool CanExecuteGenererDocumentsGroupeCommand(string pCodeDocument) {
-			return (this.Groupe != null);
-		}
-
-		public bool CanExecuteExtraireMailsCommand() {
 			return (this.Groupe != null);
 		}
 
@@ -92,6 +129,50 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				Messenger.Default.Send<NotificationMessageActionFolderDialog<string>>(message);
 			}
 		}
+		#endregion
+
+		#region GenererVCardsGroupeCommand
+		public ICommand GenererVCardsGroupeCommand { get; set; }
+
+		private void CreateGenererVCardsGroupeCommand() {
+			this.GenererVCardsGroupeCommand = new RelayCommand(
+				this.ExecuteGenererVCardsGroupeCommand,
+				this.CanExecuteGenererVCardsGroupeCommand
+			);
+		}
+
+		public bool CanExecuteGenererVCardsGroupeCommand() {
+			return (this.Groupe != null);
+		}
+
+		public void ExecuteGenererVCardsGroupeCommand() {
+			if (this.Groupe != null) {
+				NotificationMessageActionFolderDialog<string> message =
+					new NotificationMessageActionFolderDialog<string>(
+						callbackmessage =>
+						{
+							this.GenererVCardsGroupe(callbackmessage);
+						}
+					);
+
+				Messenger.Default.Send<NotificationMessageActionFolderDialog<string>>(message);
+			}
+		}
+		#endregion
+
+		#region ExtraireMailsCommand
+		public ICommand ExtraireMailsCommand { get; set; }
+
+		private void CreateExtraireMailsCommand() {
+			this.ExtraireMailsCommand = new RelayCommand(
+				this.ExecuteExtraireMailsCommand,
+				this.CanExecuteExtraireMailsCommand
+			);
+		}
+
+		public bool CanExecuteExtraireMailsCommand() {
+			return (this.Groupe != null);
+		}
 
 		public void ExecuteExtraireMailsCommand() {
 			StringBuilder lSb = new StringBuilder();
@@ -104,41 +185,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				new NotificationMessageConsultationExtractions(lSb.ToString())
 			);
 		}
+		#endregion
 
-		public override bool CanExecuteSupprimerCommand() {
-			return (
-				this.Groupe != null
-				&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)
-				&& !GroupeDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Groupe)
-			);
-		}
-
-		public override void ExecuteAfficherDetailsCommand(object pGroupe) {
-			if (pGroupe != null && pGroupe is Groupe) {
-				this.Groupe = pGroupe as Groupe;
-			}
-		}
-
-		public override void ExecuteSupprimerCommand() {
-			if (this.Groupe != null) {
-				DialogMessageConfirmation message = new DialogMessageConfirmation(
-					ResMessages.MessageConfirmSupprGroupe, 
-					this.ExecuteSupprimerGroupeCommandCallBack
-				);
-
-				Messenger.Default.Send<DialogMessageConfirmation>(message);
-			}
-			this.CreateSupprimerCommand();
-		}
-
-		private void ExecuteSupprimerGroupeCommandCallBack(MessageBoxResult pResult) {
-			if (pResult == MessageBoxResult.OK) {
-				GroupeDao.GetInstance(ViewModelLocator.Context).Delete(this.Groupe);
-				this.InitialisationListeGroupes();
-				this.Groupe = null;
-			}
-		}
-
+		#region methodes privees
 		private void InitialisationListeGroupes() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
 				GroupeDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante()
@@ -151,12 +200,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
 			this.GroupesSaisonCourante = defaultView;
-		}
-
-		public override void ExecuteCreerCommand() {
-			Messenger.Default.Send<NotificationMessageChangementUC>(
-				new NotificationMessageChangementUC(CodesUC.FormulaireGroupe)
-			);
 		}
 
 		private void GenererDocumentsGroupe(string pSaveFolder, string pCodeDocument) {
@@ -206,5 +249,25 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				);
 			}
 		}
+
+		private void GenererVCardsGroupe(string pSaveFolder) {
+			if (pSaveFolder != null) {
+				foreach (Inscription lInscription in this.Groupe.Inscriptions) {
+					DonneesVCard lDonnees = DonneesVCardAdaptateur.CreerDonneesVCard(lInscription);
+					string lSaveFilePath = pSaveFolder + "\\" + lInscription.Adherent.ToString() + ResVCards.Extension;
+
+					VCardGenerateur lGenerateur = new VCardGenerateur(lDonnees, lSaveFilePath);
+					lGenerateur.CreerVCard();
+				}
+
+				Messenger.Default.Send(
+					new NotificationMessageUtilisateur(
+						TypesNotification.Information,
+						ResMessages.MessageInfoGenerationVCardsGroupe
+					)
+				);
+			}
+		}
+		#endregion		
 	}
 }
