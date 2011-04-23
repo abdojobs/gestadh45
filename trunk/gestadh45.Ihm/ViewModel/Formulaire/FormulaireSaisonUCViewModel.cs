@@ -10,6 +10,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 	public class FormulaireSaisonUCViewModel : ViewModelBaseFormulaire
 	{
 		private Saison mSaison;
+		private const int DureeSaison = 1;
 
 		/// <summary>
 		/// Obtient/Définit l'année de début de la saison
@@ -41,8 +42,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				}
 			}
 		}
-
-		private const int DureeSaison = 1;
 
 		public FormulaireSaisonUCViewModel() {
 			Saison saison = new Saison
