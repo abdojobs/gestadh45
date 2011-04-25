@@ -1,5 +1,7 @@
 ﻿
 using System.IO;
+using System.Text;
+using System.Globalization;
 namespace gestadh45.service.VCards
 {
 	public class VCardGenerateur : VCard
@@ -22,7 +24,7 @@ namespace gestadh45.service.VCards
 			base.Organization = this.mDonnees.LibelleGroupe;
 
 			// ecriture du fichier
-			StreamWriter lWriter = new StreamWriter(this.mSaveFilePath);
+			StreamWriter lWriter = new StreamWriter(this.mSaveFilePath, false, Encoding.Default);
 			lWriter.Write(this.GetVCard());
 			lWriter.Close();
 		}
