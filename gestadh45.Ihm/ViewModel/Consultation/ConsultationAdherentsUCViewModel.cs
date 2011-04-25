@@ -134,6 +134,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private void ExecuteSupprimerAdherentCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
 				AdherentDao.GetInstance(ViewModelLocator.Context).Delete(this.Adherent);
+				this.InitialisationListeAdherents();
+				this.Adherent = null;
 			}
 		}
 
