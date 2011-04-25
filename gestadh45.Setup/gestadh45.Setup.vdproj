@@ -861,7 +861,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:GestAdh45 1.1.0"
         "ProductCode" = "8:{CCB14237-62E3-4999-AD3F-0CD58DB69F94}"
-        "PackageCode" = "8:{F66FD1C0-7286-4EEB-AE69-CE292C695729}"
+        "PackageCode" = "8:{A9210B3E-F838-45BB-B8FB-9F9590659DCA}"
         "UpgradeCode" = "8:{08A9ADE4-7450-4304-ACFC-C2ABD8376476}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1410,7 +1410,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_084F535118174C3E89A93DA1A1D5BC4D"
             {
-            "SourcePath" = "8:"
+            "SourcePath" = "8:..\\gestadh45.Main\\obj\\x86\\Release\\gestadh45.Main.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_379CAB2A77654C41BF8D06B6317F5409"
