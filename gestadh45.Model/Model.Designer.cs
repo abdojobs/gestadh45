@@ -1258,24 +1258,20 @@ namespace gestadh45.Model
         /// <param name="id">Valeur initiale de la propriété ID.</param>
         /// <param name="libelle">Valeur initiale de la propriété Libelle.</param>
         /// <param name="iD_JourSemaine">Valeur initiale de la propriété ID_JourSemaine.</param>
-        /// <param name="heureDebut">Valeur initiale de la propriété HeureDebut.</param>
-        /// <param name="heureFin">Valeur initiale de la propriété HeureFin.</param>
         /// <param name="nbPlaces">Valeur initiale de la propriété NbPlaces.</param>
         /// <param name="iD_Saison">Valeur initiale de la propriété ID_Saison.</param>
-        /// <param name="minuteDebut">Valeur initiale de la propriété MinuteDebut.</param>
-        /// <param name="minuteFin">Valeur initiale de la propriété MinuteFin.</param>
-        public static Groupe CreateGroupe(global::System.Int64 id, global::System.String libelle, global::System.Int64 iD_JourSemaine, global::System.Int64 heureDebut, global::System.Int64 heureFin, global::System.Int64 nbPlaces, global::System.Int64 iD_Saison, global::System.Int64 minuteDebut, global::System.Int64 minuteFin)
+        /// <param name="heureDebutDT">Valeur initiale de la propriété HeureDebutDT.</param>
+        /// <param name="heureFinDT">Valeur initiale de la propriété HeureFinDT.</param>
+        public static Groupe CreateGroupe(global::System.Int64 id, global::System.String libelle, global::System.Int64 iD_JourSemaine, global::System.Int64 nbPlaces, global::System.Int64 iD_Saison, global::System.DateTime heureDebutDT, global::System.DateTime heureFinDT)
         {
             Groupe groupe = new Groupe();
             groupe.ID = id;
             groupe.Libelle = libelle;
             groupe.ID_JourSemaine = iD_JourSemaine;
-            groupe.HeureDebut = heureDebut;
-            groupe.HeureFin = heureFin;
             groupe.NbPlaces = nbPlaces;
             groupe.ID_Saison = iD_Saison;
-            groupe.MinuteDebut = minuteDebut;
-            groupe.MinuteFin = minuteFin;
+            groupe.HeureDebutDT = heureDebutDT;
+            groupe.HeureFinDT = heureFinDT;
             return groupe;
         }
 
@@ -1362,54 +1358,6 @@ namespace gestadh45.Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 HeureDebut
-        {
-            get
-            {
-                return _HeureDebut;
-            }
-            set
-            {
-                OnHeureDebutChanging(value);
-                ReportPropertyChanging("HeureDebut");
-                _HeureDebut = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("HeureDebut");
-                OnHeureDebutChanged();
-            }
-        }
-        private global::System.Int64 _HeureDebut;
-        partial void OnHeureDebutChanging(global::System.Int64 value);
-        partial void OnHeureDebutChanged();
-    
-        /// <summary>
-        /// Aucune documentation sur les métadonnées n'est disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 HeureFin
-        {
-            get
-            {
-                return _HeureFin;
-            }
-            set
-            {
-                OnHeureFinChanging(value);
-                ReportPropertyChanging("HeureFin");
-                _HeureFin = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("HeureFin");
-                OnHeureFinChanged();
-            }
-        }
-        private global::System.Int64 _HeureFin;
-        partial void OnHeureFinChanging(global::System.Int64 value);
-        partial void OnHeureFinChanged();
-    
-        /// <summary>
-        /// Aucune documentation sur les métadonnées n'est disponible.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
         public global::System.Int64 NbPlaces
         {
             get
@@ -1482,48 +1430,48 @@ namespace gestadh45.Model
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 MinuteDebut
+        public global::System.DateTime HeureDebutDT
         {
             get
             {
-                return _MinuteDebut;
+                return _HeureDebutDT;
             }
             set
             {
-                OnMinuteDebutChanging(value);
-                ReportPropertyChanging("MinuteDebut");
-                _MinuteDebut = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("MinuteDebut");
-                OnMinuteDebutChanged();
+                OnHeureDebutDTChanging(value);
+                ReportPropertyChanging("HeureDebutDT");
+                _HeureDebutDT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HeureDebutDT");
+                OnHeureDebutDTChanged();
             }
         }
-        private global::System.Int64 _MinuteDebut;
-        partial void OnMinuteDebutChanging(global::System.Int64 value);
-        partial void OnMinuteDebutChanged();
+        private global::System.DateTime _HeureDebutDT;
+        partial void OnHeureDebutDTChanging(global::System.DateTime value);
+        partial void OnHeureDebutDTChanged();
     
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 MinuteFin
+        public global::System.DateTime HeureFinDT
         {
             get
             {
-                return _MinuteFin;
+                return _HeureFinDT;
             }
             set
             {
-                OnMinuteFinChanging(value);
-                ReportPropertyChanging("MinuteFin");
-                _MinuteFin = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("MinuteFin");
-                OnMinuteFinChanged();
+                OnHeureFinDTChanging(value);
+                ReportPropertyChanging("HeureFinDT");
+                _HeureFinDT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HeureFinDT");
+                OnHeureFinDTChanged();
             }
         }
-        private global::System.Int64 _MinuteFin;
-        partial void OnMinuteFinChanging(global::System.Int64 value);
-        partial void OnMinuteFinChanged();
+        private global::System.DateTime _HeureFinDT;
+        partial void OnHeureFinDTChanging(global::System.DateTime value);
+        partial void OnHeureFinDTChanged();
 
         #endregion
     

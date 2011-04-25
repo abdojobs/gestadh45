@@ -56,40 +56,41 @@
 							</TextBox>
 						</StackPanel.Children>
 					</StackPanel>
-					<StackPanel Orientation="Horizontal">
-						<StackPanel.Children>
-							<TextBlock Text="Jour : " Width="100" />
-							<ComboBox Width="100" ItemsSource="{Binding Path=JoursSemaine}" SelectedItem="{Binding Path=Groupe.JourSemaine}" />
-						</StackPanel.Children>
+					
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+						<TextBlock Text="Jour : " Width="100" />
+						<ComboBox Width="100" 
+								  ItemsSource="{Binding Path=JoursSemaine}" 
+								  SelectedItem="{Binding Path=Groupe.JourSemaine}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal">
-						<StackPanel.Children>
-							<TextBlock Text="Heure de début : " Width="100" />
-							<extToolkit1:NumericUpDown IsEditable="True" Minimum="0" Maximum="23" Increment="1" Value="{Binding Path=Groupe.HeureDebut}" Text="{Binding Path=Groupe.HeureDebut}" xmlns:extToolkit1="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended" />
-							<TextBlock Text=" H " />
-							<extToolkit1:NumericUpDown IsEditable="True" Minimum="0" Maximum="59" Increment="1" Value="{Binding Path=Groupe.MinuteDebut}" Text="{Binding Path=Groupe.MinuteDebut}" xmlns:extToolkit1="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended" />
-						</StackPanel.Children>
+					
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+						<TextBlock Text="Heure de début : " Width="100" />
+						<extToolkit:TimePicker Width="100" Name="test"
+											   Value="{Binding Path=Groupe.HeureDebutDT}" 
+											   Format="LongTime" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal">
-						<StackPanel.Children>
-							<TextBlock Text="Heure de fin : " Width="100" />
-							<extToolkit1:NumericUpDown IsEditable="True" Minimum="0" Maximum="23" Increment="1" Value="{Binding Path=Groupe.HeureFin}" Text="{Binding Path=Groupe.HeureFin}" xmlns:extToolkit1="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended" />
-							<TextBlock Text=" H " />
-							<extToolkit1:NumericUpDown IsEditable="True" Minimum="0" Maximum="59" Increment="1" Value="{Binding Path=Groupe.MinuteFin}" Text="{Binding Path=Groupe.MinuteFin}" xmlns:extToolkit1="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended" />
-						</StackPanel.Children>
+
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+						<TextBlock Text="Heure de fin : " Width="100" />
+						<extToolkit:TimePicker Width="100"
+											Value="{Binding Path=Groupe.HeureFinDT}" 
+											Format="LongTime" />						
 					</StackPanel>
-					<StackPanel Orientation="Horizontal">
-						<StackPanel.Children>
-							<TextBlock Text="Nb. de places : " Width="100" />
-							<extToolkit1:NumericUpDown IsEditable="True" Minimum="0" Maximum="30" Increment="1" Value="{Binding Path=Groupe.NbPlaces}" Text="{Binding Path=Groupe.NbPlaces}" xmlns:extToolkit1="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended" />
-						</StackPanel.Children>
+
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+						<TextBlock Text="Nb. de places : " Width="100" />
+						<extToolkit:IntegerUpDown Width="100"
+												  Minimum="0" Maximum="50"
+												  Value="{Binding Path=Groupe.NbPlaces}" 
+												  Text="{Binding Path=Groupe.NbPlaces}" />
 					</StackPanel>
-					<StackPanel Orientation="Horizontal">
-						<StackPanel.Children>
-							<TextBlock Text="Saison : " Width="100" />
-							<TextBlock Text="{Binding Path=Groupe.Saison}" />
-						</StackPanel.Children>
+
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+						<TextBlock Text="Saison : " Width="100" />
+						<TextBlock Text="{Binding Path=Groupe.Saison}" />
 					</StackPanel>
+					
 					<TextBlock Text="Commentaire : " />
 					<TextBox AcceptsReturn="True" Height="50">
 						<Binding Path="Groupe.Commentaire" />

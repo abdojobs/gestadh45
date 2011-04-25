@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
+using System;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -80,9 +81,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				lErreurs.Add(ResErreurs.Groupe_JourObligatoire);
 			}
 
-			if (this.Groupe.HeureDebut > this.Groupe.HeureFin
-				|| (this.Groupe.HeureDebut == this.Groupe.HeureFin && this.Groupe.MinuteDebut >= this.Groupe.MinuteFin)) {
-					lErreurs.Add(ResErreurs.Groupe_HeureFinSupHeureDebut);
+			if (this.Groupe.HeureDebutDT.Hour > this.Groupe.HeureFinDT.Hour
+				|| (this.Groupe.HeureDebutDT.Hour == this.Groupe.HeureFinDT.Hour && this.Groupe.HeureDebutDT.Minute >= this.Groupe.HeureFinDT.Minute)) {
+			        lErreurs.Add(ResErreurs.Groupe_HeureFinSupHeureDebut);
 			}
 
 			if (!this.EstEdition
