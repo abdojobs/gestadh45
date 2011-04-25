@@ -15,14 +15,14 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// <summary>
 		/// Obtient/Définit l'année de début de la saison
 		/// </summary>
-		public double AnneeDebutIhm {
+		public int AnneeDebutIhm {
 			get {
-				return (double)this.Saison.AnneeDebut;
+				return (int)this.Saison.AnneeDebut;
 			}
 			set {
-				if (this.Saison.AnneeDebut != ((int)value)) {
-					this.Saison.AnneeDebut = (int)value;
-					this.Saison.AnneeFin = ((int)value) + DureeSaison;
+				if (this.Saison.AnneeDebut != value) {
+					this.Saison.AnneeDebut = value;
+					this.Saison.AnneeFin = value + DureeSaison;
 					this.RaisePropertyChanged("Saison");
 				}
 			}

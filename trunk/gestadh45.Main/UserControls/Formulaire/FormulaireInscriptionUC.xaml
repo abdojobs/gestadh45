@@ -105,9 +105,10 @@
 								<CheckBox Grid.Row="2" Grid.Column="1" Margin="10,5,0,5" 
 										  IsChecked="{Binding Path=Inscription.CertificatMedicalRemisBool}" />
 								<TextBlock Text="Montant : " Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" />
-								<extToolkit:NumericUpDown Name="nupdCotisation" Grid.Row="3" Grid.Column="1" IsEditable="True" Minimum="0" Increment="1" Width="75" HorizontalAlignment="Left" Margin="5,5,0,5" 
-														   Value="{Binding Path=Inscription.Cotisation}" 
-														   Text="{Binding Path=Inscription.Cotisation}" />
+								<extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="1" Width="75" HorizontalAlignment="Left" Margin="5,5,0,5"
+													  Minimum="0"
+													  Value="{Binding Path=Inscription.Cotisation}" 
+													  Text="{Binding Path=Inscription.Cotisation}" />
 							</Grid.Children>
 						</Grid>
 					</GroupBox>

@@ -101,13 +101,11 @@
           <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="ID_JourSemaine" Type="integer" Nullable="false" />
-          <Property Name="HeureDebut" Type="integer" Nullable="false" />
-          <Property Name="HeureFin" Type="integer" Nullable="false" />
           <Property Name="NbPlaces" Type="integer" Nullable="false" />
           <Property Name="Commentaire" Type="nvarchar" />
           <Property Name="ID_Saison" Type="integer" Nullable="false" />
-          <Property Name="MinuteDebut" Type="integer" Nullable="false" />
-          <Property Name="MinuteFin" Type="integer" Nullable="false" />
+          <Property Name="HeureDebutDT" Type="datetime" Nullable="false" />
+          <Property Name="HeureFinDT" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="InfosClub">
           <Key>
@@ -406,16 +404,14 @@
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="ID_JourSemaine" Type="Int64" Nullable="false" />
-          <Property Name="HeureDebut" Type="Int64" Nullable="false" />
-          <Property Name="HeureFin" Type="Int64" Nullable="false" />
           <Property Name="NbPlaces" Type="Int64" Nullable="false" />
           <Property Name="Commentaire" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" Nullable="true" />
           <Property Name="ID_Saison" Type="Int64" Nullable="false" />
-          <Property Name="MinuteDebut" Type="Int64" Nullable="false" />
-          <Property Name="MinuteFin" Type="Int64" Nullable="false" />
           <NavigationProperty Name="JourSemaine" Relationship="gestadh45.Model.FK_Groupe_0" FromRole="Groupe" ToRole="JourSemaine" />
           <NavigationProperty Name="Saison" Relationship="gestadh45.Model.FK_Groupe_1" FromRole="Groupe" ToRole="Saison" />
           <NavigationProperty Name="Inscriptions" Relationship="gestadh45.Model.FK_Inscription_0" FromRole="Groupe" ToRole="Inscription" />
+          <Property Type="DateTime" Name="HeureDebutDT" Nullable="false" />
+          <Property Type="DateTime" Name="HeureFinDT" Nullable="false" />
         </EntityType>
         <EntityType Name="InfosClub">
           <Key>
@@ -647,16 +643,14 @@
             <ScalarProperty Name="SiteWeb" ColumnName="SiteWeb" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Groupes"><EntityTypeMapping TypeName="gestadh45.Model.Groupe"><MappingFragment StoreEntitySet="Groupe">
-            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="HeureFinDT" ColumnName="HeureFinDT" />
+                <ScalarProperty Name="HeureDebutDT" ColumnName="HeureDebutDT" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="Libelle" ColumnName="Libelle" />
             <ScalarProperty Name="ID_JourSemaine" ColumnName="ID_JourSemaine" />
-            <ScalarProperty Name="HeureDebut" ColumnName="HeureDebut" />
-            <ScalarProperty Name="HeureFin" ColumnName="HeureFin" />
             <ScalarProperty Name="NbPlaces" ColumnName="NbPlaces" />
             <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
             <ScalarProperty Name="ID_Saison" ColumnName="ID_Saison" />
-            <ScalarProperty Name="MinuteDebut" ColumnName="MinuteDebut" />
-            <ScalarProperty Name="MinuteFin" ColumnName="MinuteFin" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="InfosClubs"><EntityTypeMapping TypeName="gestadh45.Model.InfosClub"><MappingFragment StoreEntitySet="InfosClub">
             <ScalarProperty Name="NIC" ColumnName="NIC" />
@@ -729,7 +723,7 @@
         <EntityTypeShape EntityType="gestadh45.Model.Adherent" Width="1.5" PointX="3" PointY="3.25" Height="3.2357796223958335" IsExpanded="true" />
         <EntityTypeShape EntityType="gestadh45.Model.Adresse" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="gestadh45.Model.Contact" Width="1.5" PointX="0.75" PointY="3.625" Height="2.5783902994791656" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestadh45.Model.Groupe" Width="1.5" PointX="6" PointY="9.375" Height="3.0714322916666639" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45.Model.Groupe" Width="1.5" PointX="6" PointY="9.375" Height="3.1340950520833335" IsExpanded="true" />
         <EntityTypeShape EntityType="gestadh45.Model.InfosClub" Width="1.5" PointX="6" PointY="3.875" Height="2.0853483072916656" IsExpanded="true" />
         <EntityTypeShape EntityType="gestadh45.Model.Inscription" Width="1.5" PointX="8.25" PointY="3.625" Height="2.5783902994791674" IsExpanded="true" />
         <EntityTypeShape EntityType="gestadh45.Model.JourSemaine" Width="1.5" PointX="3.75" PointY="8.875" Height="1.5923063151041674" IsExpanded="true" />
@@ -781,17 +775,17 @@
           <ConnectorPoint PointX="6" PointY="4.9176741536458328" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.Model.FK_Groupe_0" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="9.9211531575520837" />
-          <ConnectorPoint PointX="6" PointY="9.9211531575520837" />
+          <ConnectorPoint PointX="5.25" PointY="10.018992513020834" />
+          <ConnectorPoint PointX="6" PointY="10.018992513020834" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.Model.FK_Groupe_1" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.25" PointY="11.785716145833332" />
-          <ConnectorPoint PointX="6" PointY="11.785716145833332" />
+          <ConnectorPoint PointX="5.25" PointY="11.817047526041666" />
+          <ConnectorPoint PointX="6" PointY="11.817047526041666" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.Model.FK_Inscription_0" ManuallyRouted="false">
-          <ConnectorPoint PointX="7.5" PointY="10.910716145833332" />
-          <ConnectorPoint PointX="8.46875" PointY="10.910716145833332" />
-          <ConnectorPoint PointX="8.46875" PointY="6.2033902994791674" />
+          <ConnectorPoint PointX="7.5" PointY="11.025940755208332" />
+          <ConnectorPoint PointX="8.46875" PointY="11.025940755208332" />
+          <ConnectorPoint PointX="8.46875" PointY="6.5667936197916656" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

@@ -50,8 +50,12 @@
 						</Grid.RowDefinitions>
 						<Grid.Children>
 							<TextBlock Grid.Row="0" Grid.Column="0" Text="Année de début : " />
-							<extToolkit1:NumericUpDown Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Left" Minimum="1950" Maximum="2999" Increment="1" IsEditable="False" Value="{Binding AnneeDebutIhm}" Text="{Binding AnneeDebutIhm}" xmlns:extToolkit1="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended" />
-							<TextBlock Grid.Row="1" Grid.Column="0" Text="Année de fin : " />
+							<extToolkit:IntegerUpDown Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Left" 
+													  Minimum="1950" Maximum="2999"
+													  Value="{Binding Path=AnneeDebutIhm}" 
+													  Text="{Binding Path=AnneeDebutIhm}" />
+
+								<TextBlock Grid.Row="1" Grid.Column="0" Text="Année de fin : " />
 							<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Saison.AnneeFin}" />
 						</Grid.Children>
 					</Grid>

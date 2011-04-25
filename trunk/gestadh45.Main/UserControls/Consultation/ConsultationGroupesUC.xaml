@@ -52,11 +52,9 @@
 										<TextBlock Text="Horaire : " />
 										<TextBlock>
 											<TextBlock.Text>
-												<MultiBinding StringFormat="{}{0:00}H{1:00} - {2:00}H{3:00}">
-													<Binding Path="Groupe.HeureDebut" />
-													<Binding Path="Groupe.MinuteDebut" />
-													<Binding Path="Groupe.HeureFin" />
-													<Binding Path="Groupe.MinuteFin" />
+												<MultiBinding StringFormat="{}{0:t} - {1:t}">
+													<Binding Path="Groupe.HeureDebutDT" />
+													<Binding Path="Groupe.HeureFinDT" />
 												</MultiBinding>
 											</TextBlock.Text>
 										</TextBlock>

@@ -50,8 +50,7 @@ namespace gestadh45.dao
 			return (from g in Instance.Context.Groupes
 					orderby
 						g.JourSemaine.Numero ascending,
-						g.HeureDebut ascending,
-						g.MinuteDebut ascending
+						g.HeureDebutDT ascending
 					select g).ToList<Groupe>();
 		}
 
@@ -60,8 +59,7 @@ namespace gestadh45.dao
 					where g.Saison.EstSaisonCourante == 1L
 					orderby
 						g.JourSemaine.Numero ascending,
-						g.HeureDebut ascending,
-						g.MinuteDebut ascending
+						g.HeureDebutDT ascending
 					select g).ToList<Groupe>();
 		}
 
