@@ -200,19 +200,15 @@ CREATE TABLE [Groupe] (
 
     [ID_JourSemaine] integer NOT NULL,
 
-    [HeureDebut] integer NOT NULL,
+    [HeureDebutDT] datetime NOT NULL,
 
-    [HeureFin] integer NOT NULL,
+    [HeureFinDT] datetime NOT NULL,
 
     [NbPlaces] integer NOT NULL,
 
     [Commentaire] ntext,
 
     [ID_Saison] integer NOT NULL,
-
-    [MinuteDebut] integer NOT NULL,
-
-    [MinuteFin] integer NOT NULL,
 
     CONSTRAINT [FK_Groupe_0] FOREIGN KEY ([ID_Saison]) REFERENCES [Saison] ([ID]),
 
