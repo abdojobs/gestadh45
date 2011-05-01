@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdherentDao.cs" />
-    <Compile Include="ContextManager.cs" />
+    <Compile Include="ObjectContextManager.cs" />
     <Compile Include="DaoFactory.cs" />
     <Compile Include="EntityDao.cs" />
     <Compile Include="GroupeDao.cs" />

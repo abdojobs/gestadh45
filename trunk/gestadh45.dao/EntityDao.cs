@@ -10,7 +10,7 @@ namespace gestadh45.dao
 		#region Helper methods
 		protected Entities Context {
 			get {
-				return ContextManager.Context;
+				return ObjectContextManager.Context;
 			}
 		}
 

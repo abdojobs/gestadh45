@@ -62,23 +62,23 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		{
 			switch (pCodeGraph.Code) {
 				case CodesGraphs.RemplissageGroupes:
-					this.Graphique = GenerateurGraph.CreerGraphRemplissageGroupe(ViewModelLocator.Context);
+					this.Graphique = GenerateurGraph.CreerGraphRemplissageGroupe();
 					break;
 
 				case CodesGraphs.RepartitionSexes:
-					this.Graphique = GenerateurGraph.CreerGraphRepartitionSexe(ViewModelLocator.Context);
+					this.Graphique = GenerateurGraph.CreerGraphRepartitionSexe();
 					break;
 
 				case CodesGraphs.RepartitionAges:
-					this.Graphique = GenerateurGraph.CreerGraphRepartitionAge(ViewModelLocator.Context);
+					this.Graphique = GenerateurGraph.CreerGraphRepartitionAge();
 					break;
 
 				case CodesGraphs.RepartitionMajeursMineurs:
-					this.Graphique = GenerateurGraph.CreerGraphRepartitionMajeursMineurs(ViewModelLocator.Context);
+					this.Graphique = GenerateurGraph.CreerGraphRepartitionMajeursMineurs();
 					break;
 
 				case CodesGraphs.RepartitionResidentsExterieurs:
-					this.Graphique = GenerateurGraph.CreerGraphRepartitionResidentsExterieurs(ViewModelLocator.Context);
+					this.Graphique = GenerateurGraph.CreerGraphRepartitionResidentsExterieurs();
 					break;
 			}
 		}
