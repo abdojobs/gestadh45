@@ -66,7 +66,7 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public bool CanExecuteAfficherUCCommand(string pCodeUC) {
-			return (ViewModelLocator.Context != null);
+			return (ObjectContextManager.Context != null);
 		}
 
 		#region création des commandes
@@ -162,17 +162,15 @@ namespace gestadh45.Ihm.ViewModel
 		private void ChangeDataSource(string pFilePath) {
 			try {
 				if (!string.IsNullOrWhiteSpace(pFilePath)) {
-					ViewModelLocator.Context = new Entities(EntitySQLiteHelper.GetConnectionString(pFilePath));
+					ObjectContextManager.CreateContext(EntitySQLiteHelper.GetConnectionString(pFilePath));
 
-					ContextManager.CreateContext(EntitySQLiteHelper.GetConnectionString(pFilePath));
-
-					this.InfosDataSource = EntitySQLiteHelper.GetFilePathFromContext(ViewModelLocator.Context);
+					this.InfosDataSource = EntitySQLiteHelper.GetFilePathFromContext(ObjectContextManager.Context);
 					this.InfosSaisonCourante = this.mDaoSaison.ReadSaisonCourante().ToShortString();
 					this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
 				}
 			}
 			catch (Exception exception) {
-				ViewModelLocator.Context = null;
+				ObjectContextManager.DestroyContext();
 				NotificationMessageUtilisateur message = new NotificationMessageUtilisateur(
 					TypesNotification.Erreur,
 					exception.Message

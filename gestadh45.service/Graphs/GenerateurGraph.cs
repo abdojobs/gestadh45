@@ -12,9 +12,8 @@ namespace gestadh45.service.Graphs
 		/// <summary>
 		/// Créé le graph de remplissage des groupes
 		/// </summary>
-		/// <param name="pContexte">Contexte de l'application</param>
 		/// <returns>Objet Graph</returns>
-		public static Graphique CreerGraphRemplissageGroupe(Entities pContexte) {
+		public static Graphique CreerGraphRemplissageGroupe() {
 			IInscriptionDao lDaoInscription = new InscriptionDao();
 			IGroupeDao lDaoGroupe = new GroupeDao();
 
@@ -45,9 +44,8 @@ namespace gestadh45.service.Graphs
 		/// <summary>
 		/// Créé le graph de remplissage de répartition des adhérents par sexe
 		/// </summary>
-		/// <param name="pContexte">Contexte de l'application</param>
 		/// <returns>Objet Graph</returns>
-		public static Graphique CreerGraphRepartitionSexe(Entities pContexte) {
+		public static Graphique CreerGraphRepartitionSexe() {
 			ISexeDao lDaoSexe = new SexeDao();
 			IInscriptionDao lDaoInscription = new InscriptionDao();
 			
@@ -77,9 +75,8 @@ namespace gestadh45.service.Graphs
 		/// <summary>
 		/// Créé le graph de remplissage de répartition des adhérents par âge
 		/// </summary>
-		/// <param name="pContexte">Contexte de l'application</param>
 		/// <returns>Objet Graph</returns>
-		public static Graphique CreerGraphRepartitionAge(Entities pContexte) {
+		public static Graphique CreerGraphRepartitionAge() {
 			IInscriptionDao lDaoInscription = new InscriptionDao();
 
 			Graphique lGraph = new Graphique();
@@ -114,9 +111,8 @@ namespace gestadh45.service.Graphs
 		/// <summary>
 		/// Créé le graph de remplissage de répartition des adhérents majeurs / mineurs
 		/// </summary>
-		/// <param name="pContexte">Contexte de l'application</param>
 		/// <returns>Objet Graph</returns>
-		public static Graphique CreerGraphRepartitionMajeursMineurs(Entities pContexte) {
+		public static Graphique CreerGraphRepartitionMajeursMineurs() {
 			IInscriptionDao lDaoInscription = new InscriptionDao();
 			
 			Graphique lGraph = new Graphique();
@@ -154,9 +150,8 @@ namespace gestadh45.service.Graphs
 		/// <summary>
 		/// Créé le graph de remplissage de répartition des adhérents résidents / extérieurs
 		/// </summary>
-		/// <param name="pContexte">Contexte de l'application</param>
 		/// <returns>Objet Graph</returns>
-		public static Graphique CreerGraphRepartitionResidentsExterieurs(Entities pContexte) {
+		public static Graphique CreerGraphRepartitionResidentsExterieurs() {
 			IInscriptionDao lDaoInscription = new InscriptionDao();
 			IInfosClubDao lDaoInfosClub = new InfosClubDao();
 			

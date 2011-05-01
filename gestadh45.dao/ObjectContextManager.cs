@@ -2,16 +2,23 @@
 
 namespace gestadh45.dao
 {
-	public static class ContextManager
+	public static class ObjectContextManager
 	{
 		private static Entities context;
 
 		/// <summary>
-		/// Créé le contexte de l'application
+		/// Créé la connexion au contexte
 		/// </summary>
 		/// <param name="connectionString">Chaîne de connexion à Entity</param>
 		public static void CreateContext(string connectionString) {
 			context = new Entities(connectionString);
+		}
+
+		/// <summary>
+		/// Détruit la connexion au contexte
+		/// </summary>
+		public static void DestroyContext() {
+			context = null;
 		}
 
 		/// <summary>

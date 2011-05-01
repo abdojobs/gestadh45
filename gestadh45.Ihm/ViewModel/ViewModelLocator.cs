@@ -279,11 +279,6 @@ namespace gestadh45.Ihm.ViewModel
 			}
 		}
 
-		/// <summary>
-		/// Obtient/Définit le contexte de l'application (données)
-		/// </summary>
-		public static Entities Context { get; set; }
-
 		public static FormulaireAdherentUCViewModel FormulaireAdherentVMStatic {
 			get {
 				ClearFormulaireAdherentVMStatic();
