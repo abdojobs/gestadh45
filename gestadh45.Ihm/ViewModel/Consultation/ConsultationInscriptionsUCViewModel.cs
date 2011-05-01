@@ -17,6 +17,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Inscription mInscription;
 		private ICollectionView mInscriptionsSaisonCourante;
 
+		private IInscriptionDao mDaoInscription;
+		private IInfosClubDao mDaoInfosClub;
+
 		/// <summary>
 		/// Obtient/Définit l'inscription à afficher
 		/// </summary>
@@ -48,6 +51,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationInscriptionsUCViewModel() {
+			this.mDaoInscription = this.mDaoFactory.GetInscriptionDao();
+			this.mDaoInfosClub = this.mDaoFactory.GetInfosClubDao();
+
 			this.InitialisationListeInscriptions();
 
 			this.CreateGenererDocumentCommand();
@@ -81,7 +87,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Inscription != null
-				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)
+				&& this.mDaoInscription.Exists(this.Inscription)
 				);
 		}
 
@@ -100,7 +106,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerInscriptionCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				InscriptionDao.GetInstance(ViewModelLocator.Context).Delete(this.Inscription);
+				this.mDaoInscription.Delete(this.Inscription);
 				this.InitialisationListeInscriptions();
 				this.Inscription = null;
 			}
@@ -182,7 +188,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		#region methodes privees
 		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
 			if (!string.IsNullOrWhiteSpace(pSaveFilePath)) {
-				InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
+				InfosClub lInfosClub = mDaoInfosClub.Read();
 				DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, this.Inscription);
 				GenerateurDocumentPDF lGenerateur = new GenerateurDocumentPDF(lDonnees, pSaveFilePath);
 
@@ -214,7 +220,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		private void InitialisationListeInscriptions() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(InscriptionDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoInscription.ListSaisonCourante());
 			defaultView.GroupDescriptions.Add(new PropertyGroupDescription("Groupe"));
 			defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine.Numero", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine", ListSortDirection.Ascending));

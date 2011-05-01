@@ -17,6 +17,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Adherent mAdherent;
 		private ICollectionView mAdherents;
 
+		private IAdherentDao mDaoAdherent;
+
 		/// <summary>
 		/// Obtient/Définit l'adhérent à afficher
 		/// </summary>
@@ -48,6 +50,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationAdherentsUCViewModel() {
+			this.mDaoAdherent = this.mDaoFactory.GetAdherentDao();
+
 			this.InitialisationListeAdherents();
 
 			this.CreateInscrireCommand();
@@ -60,8 +64,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Adherent != null
-				&& AdherentDao.GetInstance(ViewModelLocator.Context).Exist(this.Adherent)
-				&& !AdherentDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Adherent)
+				&& this.mDaoAdherent.Exists(this.Adherent)
+				&& !this.mDaoAdherent.IsUsed(this.Adherent)
 				);
 		}
 
@@ -133,14 +137,14 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		/// <param name="pResult">Résultat de la demande de confirmation</param>
 		private void ExecuteSupprimerAdherentCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				AdherentDao.GetInstance(ViewModelLocator.Context).Delete(this.Adherent);
+				this.mDaoAdherent.Delete(this.Adherent);
 				this.InitialisationListeAdherents();
 				this.Adherent = null;
 			}
 		}
 
 		private void InitialisationListeAdherents() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(AdherentDao.GetInstance(ViewModelLocator.Context).List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoAdherent.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
 			this.Adherents = defaultView;

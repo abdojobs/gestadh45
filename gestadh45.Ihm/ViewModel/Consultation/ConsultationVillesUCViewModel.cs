@@ -12,6 +12,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 	{
 		private Ville mVille;
 		private ICollectionView mVilles;
+		private IVilleDao mDaoVille;
 
 		/// <summary>
 		/// Obtient/Définit la ville à afficher
@@ -44,14 +45,15 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationVillesUCViewModel() {
+			this.mDaoVille = this.mDaoFactory.GetVilleDao();
 			this.InitialisationListeVilles();
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Ville != null
-				&& VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)
-				&& !VilleDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Ville)
+				&& this.mDaoVille.Exists(this.Ville)
+				&& !this.mDaoVille.IsUsed(this.Ville)
 				);
 		}
 
@@ -75,7 +77,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerVilleCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				VilleDao.GetInstance(ViewModelLocator.Context).Delete(this.Ville);
+				this.mDaoVille.Delete(this.Ville);
 				this.InitialisationListeVilles();
 				this.Ville = null;
 			}
@@ -83,11 +85,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void InitialisationListeVilles() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-				VilleDao.GetInstance(ViewModelLocator.Context).List()
+				this.mDaoVille.List()
 			);
 
 			foreach (Ville lVille in defaultView) {
-				VilleDao.GetInstance(ViewModelLocator.Context).Refresh(lVille);
+				this.mDaoVille.Refresh(lVille);
 			}
 
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));

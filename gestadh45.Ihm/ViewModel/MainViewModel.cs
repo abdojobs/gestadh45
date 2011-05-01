@@ -15,7 +15,9 @@ namespace gestadh45.Ihm.ViewModel
 		public ICommand AfficherUCCommand { get; internal set; }
 		public ICommand ChangerDataSourceCommand { get; internal set; }
 		public ICommand CreerDatabaseCommand { get; set; }
-		
+
+		private ISaisonDao mDaoSaison;
+
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
 
@@ -50,6 +52,8 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public MainViewModel() {
+			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
+
 			this.CreateAfficherUCCommand();
 			this.CreateChangerDataSourceCommand();
 			this.CreateAboutBoxCommand();
@@ -159,8 +163,11 @@ namespace gestadh45.Ihm.ViewModel
 			try {
 				if (!string.IsNullOrWhiteSpace(pFilePath)) {
 					ViewModelLocator.Context = new Entities(EntitySQLiteHelper.GetConnectionString(pFilePath));
+
+					ContextManager.CreateContext(EntitySQLiteHelper.GetConnectionString(pFilePath));
+
 					this.InfosDataSource = EntitySQLiteHelper.GetFilePathFromContext(ViewModelLocator.Context);
-					this.InfosSaisonCourante = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante().ToShortString();
+					this.InfosSaisonCourante = this.mDaoSaison.ReadSaisonCourante().ToShortString();
 					this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
 				}
 			}

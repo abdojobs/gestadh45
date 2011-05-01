@@ -46,10 +46,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdherentDao.cs" />
+    <Compile Include="ContextManager.cs" />
+    <Compile Include="DaoFactory.cs" />
+    <Compile Include="EntityDao.cs" />
     <Compile Include="GroupeDao.cs" />
+    <Compile Include="IAdherentDao.cs" />
+    <Compile Include="IDao.cs" />
+    <Compile Include="IDaoFactory.cs" />
+    <Compile Include="IGroupeDao.cs" />
+    <Compile Include="IInfosClubDao.cs" />
+    <Compile Include="IInscriptionDao.cs" />
+    <Compile Include="IJourSemaineDao.cs" />
     <Compile Include="InfosClubDao.cs" />
     <Compile Include="InscriptionDao.cs" />
+    <Compile Include="ISaisonDao.cs" />
+    <Compile Include="ISexeDao.cs" />
+    <Compile Include="IVilleDao.cs" />
     <Compile Include="JourSemaineDao.cs" />
+    <Compile Include="ObjectContextExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaisonDao.cs" />
     <Compile Include="SexeDao.cs" />

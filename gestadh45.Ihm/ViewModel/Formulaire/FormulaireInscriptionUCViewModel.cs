@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
-using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
-using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
@@ -13,6 +11,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private ICollectionView mAdherents;
 		private ICollectionView mGroupesSaisonCourante;
 		private Inscription mInscription;
+
+		private IInscriptionDao mDaoInscription;
+		private IGroupeDao mDaoGroupe;
+		private IAdherentDao mDaoAdherent;
 
 		/// <summary>
 		/// Obtient/Définit la liste des adhérents
@@ -60,6 +62,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireInscriptionUCViewModel() {
+			this.mDaoInscription = this.mDaoFactory.GetInscriptionDao();
+			this.mDaoGroupe = this.mDaoFactory.GetGroupeDao();
+			this.mDaoAdherent = this.mDaoFactory.GetAdherentDao();
+
             this.Inscription = new Inscription();
 
 			this.InitialisationListeAdherents();
@@ -71,7 +77,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public override void ExecuteAnnulerCommand(string pCodeUc) {
 			if (this.Inscription != null && base.EstEdition) {
-				InscriptionDao.GetInstance(ViewModelLocator.Context).Refresh(this.Inscription);
+				this.mDaoInscription.Refresh(this.Inscription);
 			}
 			base.ExecuteAnnulerCommand(pCodeUc);
 		}
@@ -82,18 +88,16 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 
 			if (this.VerifierSaisie() 
-				&& base.EstEdition 
-				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {
-
-				InscriptionDao.GetInstance(ViewModelLocator.Context).Update(this.Inscription);
-
+				&& base.EstEdition
+				&& this.mDaoInscription.Exists(this.Inscription)) {
+					this.mDaoInscription.Update(this.Inscription);
 				base.ExecuteEnregistrerCommand();
 			}
 			else if (this.VerifierSaisie() 
-				&& !base.EstEdition 
-				&& !InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {
+				&& !base.EstEdition
+				&& !this.mDaoInscription.Exists(this.Inscription)) {
 
-				InscriptionDao.GetInstance(ViewModelLocator.Context).Create(this.Inscription);
+					this.mDaoInscription.Create(this.Inscription);
 
 				base.ExecuteEnregistrerCommand();
 			}
@@ -103,14 +107,14 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		private void InitialisationListeAdherents() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(AdherentDao.GetInstance(ViewModelLocator.Context).List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoAdherent.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
 			this.Adherents = defaultView;
 		}
 
 		private void InitialisationListeGroupes() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(GroupeDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoGroupe.ListSaisonCourante());
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
 			this.GroupesSaisonCourante = defaultView;
@@ -129,7 +133,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			if (!this.EstEdition
 				&& lErreurs.Count == 0
-				&& InscriptionDao.GetInstance(ViewModelLocator.Context).Exist(this.Inscription)) {
+				&& this.mDaoInscription.Exists(this.Inscription)) {
 
 					lErreurs.Add(ResErreurs.Inscription_Existe);
 			}

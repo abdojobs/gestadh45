@@ -1,87 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Objects;
+﻿using System.Collections.Generic;
 using System.Linq;
 using gestadh45.Model;
 
 namespace gestadh45.dao
 {
-	public class InscriptionDao
+	public class InscriptionDao : EntityDao<Inscription>, IInscriptionDao
 	{
-		private static InscriptionDao Instance;
-
-		private InscriptionDao() {
+		public Inscription Create(Inscription inscription) {
+			return this.Save(inscription);
 		}
 
-		public void Create(Inscription pInscription) {
-			pInscription.DateCreation = DateTime.Now;
-			pInscription.DateModification = DateTime.Now;
-			Instance.Context.Inscriptions.AddObject(pInscription);
-			Instance.Context.SaveChanges();
+		public Inscription Read(int id) {
+			return (from i in Context.Inscriptions
+					where i.ID == id
+					select i).First();
 		}
 
-		public void Delete(Inscription pInscription) {
-			Instance.Context.Attach(pInscription);
-			Instance.Context.DeleteObject(pInscription);
-			Instance.Context.SaveChanges();
-		}
-
-		public bool Exist(Inscription pInscription) {
-			return ((from i in Instance.Context.Inscriptions
-					 where (i.ID_Adherent == pInscription.ID_Adherent) && (i.Groupe.ID_Saison == pInscription.Groupe.ID_Saison)
-					 select i).Count<Inscription>() > 0);
-		}
-
-		public static InscriptionDao GetInstance(Entities pContexte) {
-			if (Instance == null) {
-				Instance = new InscriptionDao();
-			}
-			Instance.Context = pContexte;
-			return Instance;
+		public Inscription Update(Inscription inscription) {
+			inscription.SetAllModified(Context);
+			return this.Save(inscription);
 		}
 
 		public List<Inscription> List() {
-			return (from i in Instance.Context.Inscriptions
-					orderby 
-						i.Groupe.Saison.ID,
-						i.Adherent.Nom,
-						i.Adherent.Prenom
-					select i).ToList<Inscription>();
-		}
-
-		public List<Inscription> ListSaisonCourante() {
-			return (from i in Instance.Context.Inscriptions
-					where i.Groupe.Saison.EstSaisonCourante == 1L
+			return (from i in Context.Inscriptions
 					orderby
 						i.Adherent.Nom,
 						i.Adherent.Prenom
 					select i).ToList<Inscription>();
 		}
 
-		public Inscription Read(int pInscriptionId) {
-			return (from i in Instance.Context.Inscriptions
-					where i.ID == pInscriptionId
-					select i).First<Inscription>();
+		public List<Inscription> ListSaisonCourante() {
+			return (from i in Context.Inscriptions
+					where i.Groupe.Saison.EstSaisonCourante == 1
+					orderby
+						i.Adherent.Nom,
+						i.Adherent.Prenom
+					select i).ToList<Inscription>();
 		}
 
-		public void Refresh(Inscription pInscription) {
-			this.Context.Refresh(RefreshMode.StoreWins, pInscription);
-			this.Context.Refresh(RefreshMode.StoreWins, pInscription.Adherent);
-			this.Context.Refresh(RefreshMode.StoreWins, pInscription.Groupe);
+		public bool Exists(Inscription inscription) {
+			return ((from i in Context.Inscriptions
+					 where (i.ID_Adherent == inscription.ID_Adherent) 
+					 && (i.Groupe.ID_Saison == inscription.Groupe.ID_Saison)
+					 select i).Count<Inscription>() > 0);
 		}
-
-		public void Update(Inscription pInscription) {
-			pInscription.DateModification = DateTime.Now;
-			pInscription.SetAllModified<Inscription>(Instance.Context);
-			try {
-				Instance.Context.SaveChanges();
-			}
-			catch (OptimisticConcurrencyException exception) {
-				throw exception;
-			}
-		}
-
-		private Entities Context { get; set; }
 	}
 }

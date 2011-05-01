@@ -1,41 +1,22 @@
 ﻿using System.Collections.Generic;
-using System.Data.Objects;
 using System.Linq;
 using gestadh45.Model;
 
 namespace gestadh45.dao
 {
-	public class JourSemaineDao
+	public class JourSemaineDao : EntityDao<JourSemaine>, IJourSemaineDao
 	{
-		private static JourSemaineDao Instance;
 
-		private JourSemaineDao() {
-		}
-
-		public static JourSemaineDao GetInstance(Entities pContexte) {
-			if (Instance == null) {
-				Instance = new JourSemaineDao();
-			}
-			Instance.Context = pContexte;
-			return Instance;
+		public Sexe Read(int id) {
+			return (from s in Context.Sexes
+					where s.ID == id
+					select s).First();
 		}
 
 		public List<JourSemaine> List() {
-			return (from j in Instance.Context.JourSemaines
-					orderby j.Numero
-					select j).ToList<JourSemaine>();
+			return (from j in Context.JourSemaines
+					orderby j.Numero ascending
+					select j).ToList();
 		}
-
-		public JourSemaine Read(int pJourId) {
-			return (from j in Instance.Context.JourSemaines
-					where j.ID == pJourId
-					select j).First<JourSemaine>();
-		}
-
-		public void Refresh(JourSemaine pJourSemaine) {
-			this.Context.Refresh(RefreshMode.StoreWins, pJourSemaine);
-		}
-
-		private Entities Context { get; set; }
 	}
 }

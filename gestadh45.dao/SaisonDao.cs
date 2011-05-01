@@ -1,81 +1,49 @@
 ﻿using System.Collections.Generic;
-using System.Data;
-using System.Data.Objects;
 using System.Linq;
 using gestadh45.Model;
 
 namespace gestadh45.dao
 {
-	public class SaisonDao
+	public class SaisonDao : EntityDao<Saison>, ISaisonDao
 	{
-		private static SaisonDao Instance;
-
-		private SaisonDao() {
+		public Saison Create(Saison saison) {
+			return this.Save(saison);
 		}
 
-		public void Create(Saison pSaison) {
-			Instance.Context.Saisons.AddObject(pSaison);
-			Instance.Context.SaveChanges();
+		public Saison Read(int id) {
+			return (from s in Context.Saisons
+					where s.ID == id
+					select s).First();
 		}
 
-		public void Delete(Saison pSaison) {
-			Instance.Context.Attach(pSaison);
-			Instance.Context.DeleteObject(pSaison);
-			Instance.Context.SaveChanges();
-		}
-
-		public bool Exist(Saison pSaison) {
-			return ((from s in Instance.Context.Saisons
-					 where ((s.AnneeDebut <= pSaison.AnneeDebut) && (pSaison.AnneeDebut < s.AnneeFin)) || ((s.AnneeDebut < pSaison.AnneeFin) && (pSaison.AnneeFin <= s.AnneeFin))
-					 select s).Count<Saison>() > 0);
-		}
-
-		public static SaisonDao GetInstance(Entities pContexte) {
-			if (Instance == null) {
-				Instance = new SaisonDao();
-			}
-			Instance.Context = pContexte;
-			return Instance;
-		}
-
-		public bool IsUsed(Saison pSaison) {
-			return ((from g in Instance.Context.Groupes
-					 where g.ID_Saison == pSaison.ID
-					 select g).Count<Groupe>() > 0);
+		public Saison Update(Saison saison) {
+			saison.SetAllModified(Context);
+			return this.Save(saison);
 		}
 
 		public List<Saison> List() {
-			return (from s in Instance.Context.Saisons
-					orderby s.AnneeDebut
-					select s).ToList<Saison>();
-		}
-
-		public Saison Read(int pSaisonId) {
-			return (from s in Instance.Context.Saisons
-					where s.ID == pSaisonId
-					select s).First<Saison>();
+			return (from s in Context.Saisons
+					orderby s.AnneeDebut ascending
+					select s).ToList();
 		}
 
 		public Saison ReadSaisonCourante() {
-			return (from s in Instance.Context.Saisons
-					where s.EstSaisonCourante == 1L
-					select s).First<Saison>();
+			return (from s in Context.Saisons
+				   where s.EstSaisonCourante == 1
+				   select s).First();
 		}
 
-		public void Refresh(Saison pSaison) {
-			this.Context.Refresh(RefreshMode.StoreWins, pSaison);
+		public bool Exists(Saison saison) {
+			return ((from s in Context.Saisons
+					 where ((s.AnneeDebut <= saison.AnneeDebut) && (saison.AnneeDebut < s.AnneeFin))
+					 || ((s.AnneeDebut < saison.AnneeFin) && (saison.AnneeFin <= s.AnneeFin))
+					 select s).Count() > 0);
 		}
 
-		public void Update(Saison pSaison) {
-			pSaison.SetAllModified<Saison>(Instance.Context);
-			try {
-				Instance.Context.SaveChanges();
-			}
-			catch (OptimisticConcurrencyException exception) {
-				throw exception;
-			}
+		public bool IsUsed(Saison saison) {
+			return ((from g in Context.Groupes
+					 where g.ID_Saison == saison.ID
+					 select g).Count<Groupe>() > 0);
 		}
-
-		private Entities Context { get; set; }
 	}
 }

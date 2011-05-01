@@ -1,89 +1,55 @@
 ﻿using System.Collections.Generic;
-using System.Data;
-using System.Data.Objects;
 using System.Linq;
 using gestadh45.Model;
 
 namespace gestadh45.dao
 {
-	public class GroupeDao
+	public class GroupeDao : EntityDao<Groupe>, IGroupeDao
 	{
-		private static GroupeDao Instance;
-
-		private GroupeDao() {
+		public Groupe Create(Groupe groupe) {
+			return this.Save(groupe);
 		}
 
-		public void Create(Groupe pGroupe) {
-			Instance.Context.Groupes.AddObject(pGroupe);
-			Instance.Context.SaveChanges();
+		public Groupe Read(int id) {
+			return (from g in Context.Groupes
+					where g.ID == id
+					select g).First();
 		}
 
-		public void Delete(Groupe pGroupe) {
-			Instance.Context.Attach(pGroupe);
-			Instance.Context.DeleteObject(pGroupe);
-			Instance.Context.SaveChanges();
-		}
-
-		public bool Exist(Groupe pGroupe) {
-			return (from g in Instance.Context.Groupes
-					 where g.Saison.ID == pGroupe.Saison.ID
-						&& g.JourSemaine.ID == pGroupe.JourSemaine.ID 
-						&& g.Libelle.Equals(pGroupe.Libelle)
-					 select g).Count<Groupe>() > 0;
-		}
-
-		public static GroupeDao GetInstance(Entities pContexte) {
-			if (Instance == null) {
-				Instance = new GroupeDao();
-			}
-			Instance.Context = pContexte;
-			return Instance;
-		}
-
-		public bool IsUsed(Groupe pGroupe) {
-			return ((from i in Instance.Context.Inscriptions
-					 where i.ID_Groupe == pGroupe.ID
-					 select i).Count<Inscription>() > 0);
+		public Groupe Update(Groupe groupe) {
+			groupe.SetAllModified(Context);
+			return this.Save(groupe);
 		}
 
 		public List<Groupe> List() {
-			return (from g in Instance.Context.Groupes
+			return (from g in Context.Groupes
 					orderby
 						g.JourSemaine.Numero ascending,
 						g.HeureDebutDT ascending
-					select g).ToList<Groupe>();
+					select g).ToList();
 		}
 
 		public List<Groupe> ListSaisonCourante() {
-			return (from g in Instance.Context.Groupes
-					where g.Saison.EstSaisonCourante == 1L
+			return (from g in Context.Groupes
+					where g.Saison.EstSaisonCourante == 1
 					orderby
 						g.JourSemaine.Numero ascending,
 						g.HeureDebutDT ascending
-					select g).ToList<Groupe>();
+					select g).ToList();
 		}
 
-		public Groupe Read(int pGroupeId) {
-			return (from g in Instance.Context.Groupes
-					where g.ID == pGroupeId
-					select g).First<Groupe>();
+		public bool Exists(Groupe groupe) {
+			return (from g in Context.Groupes
+					where g.Saison.ID == groupe.Saison.ID
+					   && g.JourSemaine.ID == groupe.JourSemaine.ID
+					   && g.Libelle.Equals(groupe.Libelle)
+					select g).Count<Groupe>() > 0;
 		}
 
-		public void Refresh(Groupe pGroupe) {
-			this.Context.Refresh(RefreshMode.StoreWins, pGroupe);
-			this.Context.Refresh(RefreshMode.StoreWins, pGroupe.Saison);
+		public bool IsUsed(Groupe groupe) {
+			return ((from i in Context.Inscriptions
+					 where i.ID_Groupe == groupe.ID
+					 select i).Count<Inscription>() > 0);
 		}
-
-		public void Update(Groupe pGroupe) {
-			pGroupe.SetAllModified<Groupe>(Instance.Context);
-			try {
-				Instance.Context.SaveChanges();
-			}
-			catch (OptimisticConcurrencyException exception) {
-				throw exception;
-			}
-		}
-
-		private Entities Context { get; set; }
 	}
 }

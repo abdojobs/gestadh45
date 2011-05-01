@@ -17,6 +17,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Saison mSaison;
 		private ICollectionView mSaisons;
 
+		private ISaisonDao mSaisonDao;
+
 		/// <summary>
 		/// Obtient/Définit la saison à afficher
 		/// </summary>
@@ -48,6 +50,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationSaisonsUCViewModel() {
+			this.mSaisonDao = this.mDaoFactory.GetSaisonDao();
+
 			this.InitialisationListeSaisons();
 
 			this.CreateDefinirSaisonCouranteCommand();
@@ -63,8 +67,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Saison != null
-				&& SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison)
-				&& !SaisonDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Saison)
+				&& this.mSaisonDao.Exists(this.Saison)
+				&& !this.mSaisonDao.IsUsed(this.Saison)
 				&& !this.Saison.EstSaisonCouranteBool	// on ne peut pas supprimer la saison courante
 			);
 		}
@@ -90,13 +94,13 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public void ExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
 			if (pSaison != null) {
-				Saison lOldSaisonCourante = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante();
+				Saison lOldSaisonCourante = this.mSaisonDao.ReadSaisonCourante();
 				lOldSaisonCourante.EstSaisonCouranteBool = false;
-				SaisonDao.GetInstance(ViewModelLocator.Context).Update(lOldSaisonCourante);
+				this.mSaisonDao.Update(lOldSaisonCourante);
 
 				pSaison.EstSaisonCouranteBool = true;
 
-				SaisonDao.GetInstance(ViewModelLocator.Context).Update(pSaison);
+				this.mSaisonDao.Update(pSaison);
 				this.InitialisationListeSaisons();
 
 				this.Saison = null;
@@ -122,7 +126,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerSaisonCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				SaisonDao.GetInstance(ViewModelLocator.Context).Delete(this.Saison);
+				this.mSaisonDao.Delete(this.Saison);
 				this.InitialisationListeSaisons();
 				this.Saison = null;
 			}
@@ -130,11 +134,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void InitialisationListeSaisons() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-				SaisonDao.GetInstance(ViewModelLocator.Context).List()
+				this.mSaisonDao.List()
 			);
 
 			foreach (Saison lSaison in defaultView) {
-				SaisonDao.GetInstance(ViewModelLocator.Context).Refresh(lSaison);
+				this.mSaisonDao.Refresh(lSaison);
 			}
 
 			defaultView.SortDescriptions.Add(new SortDescription("AnneeDebut", ListSortDirection.Ascending));

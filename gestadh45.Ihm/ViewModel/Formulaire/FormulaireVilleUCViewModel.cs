@@ -9,6 +9,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 	public class FormulaireVilleUCViewModel : ViewModelBaseFormulaire
 	{
 		private Ville mVille;
+		private IVilleDao mDaoVille;
 
 		/// <summary>
 		/// Obtient/Définit l'objet du formulaire
@@ -26,13 +27,14 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireVilleUCViewModel() {
+			this.mDaoVille = this.mDaoFactory.GetVilleDao();
 			this.Ville = new Ville();
 			this.CodeUCOrigine = CodesUC.ConsultationVilles;
 		}
 
 		public override void ExecuteEnregistrerCommand() {
-			if (this.VerifierSaisie() && !VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)) {
-				VilleDao.GetInstance(ViewModelLocator.Context).Create(this.Ville);
+			if (this.VerifierSaisie() && !this.mDaoVille.Exists(this.Ville)) {
+				this.mDaoVille.Create(this.Ville);
 
 				base.ExecuteEnregistrerCommand();
 			}
@@ -54,7 +56,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			if (!this.EstEdition
 				&& lErreurs.Count == 0
-				&& VilleDao.GetInstance(ViewModelLocator.Context).Exist(this.Ville)) {
+				&& this.mDaoVille.Exists(this.Ville)) {
 
 					lErreurs.Add(ResErreurs.Ville_Existe);
 			}

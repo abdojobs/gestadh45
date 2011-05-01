@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
-using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
@@ -11,6 +9,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 	{
 		private Saison mSaison;
 		private const int DureeSaison = 1;
+		private ISaisonDao mDaoSaison;
 
 		/// <summary>
 		/// Obtient/Définit l'année de début de la saison
@@ -44,20 +43,21 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireSaisonUCViewModel() {
-			Saison saison = new Saison
+			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
+
+			this.Saison = new Saison
 			{
 				AnneeDebut = DateTime.Now.Year,
 				AnneeFin = DateTime.Now.Year + DureeSaison,
 				EstSaisonCouranteBool = false
 			};
-			this.Saison = saison;
 
 			this.CodeUCOrigine = CodesUC.ConsultationSaisons;
 		}
 
 		public override void ExecuteEnregistrerCommand() {
-			if (this.VerifierSaisie() && !SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison)) {
-				SaisonDao.GetInstance(ViewModelLocator.Context).Create(this.Saison);
+			if (this.VerifierSaisie() && !this.mDaoSaison.Exists(this.Saison)) {
+				this.mDaoSaison.Create(this.Saison);
 
 				base.ExecuteEnregistrerCommand();
 			}
@@ -83,7 +83,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			if (!this.EstEdition
 				&& lErreurs.Count == 0
-				&& SaisonDao.GetInstance(ViewModelLocator.Context).Exist(this.Saison)) {
+				&& this.mDaoSaison.Exists(this.Saison)) {
 
 					lErreurs.Add(ResErreurs.Saison_Existe);
 			}
