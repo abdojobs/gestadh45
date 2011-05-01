@@ -15,13 +15,16 @@ namespace gestadh45.service.Graphs
 		/// <param name="pContexte">Contexte de l'application</param>
 		/// <returns>Objet Graph</returns>
 		public static Graphique CreerGraphRemplissageGroupe(Entities pContexte) {
+			IInscriptionDao lDaoInscription = new InscriptionDao();
+			IGroupeDao lDaoGroupe = new GroupeDao();
+
 		    Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RemplissageGroupes;
 			lGraph.Type = RenderAs.Column;
 			lGraph.Donnees = new ObservableCollection<DonneeGraph>();
 			
-		    List<Groupe> lGroupes = GroupeDao.GetInstance(pContexte).ListSaisonCourante();
-		    List<Inscription> lInscriptions = InscriptionDao.GetInstance(pContexte).ListSaisonCourante();
+		    List<Groupe> lGroupes = lDaoGroupe.ListSaisonCourante();
+			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
 		    
 			foreach(Groupe lGroupe in lGroupes) {
 				DonneeGraph lDonnee = new DonneeGraph();
@@ -45,13 +48,16 @@ namespace gestadh45.service.Graphs
 		/// <param name="pContexte">Contexte de l'application</param>
 		/// <returns>Objet Graph</returns>
 		public static Graphique CreerGraphRepartitionSexe(Entities pContexte) {
+			ISexeDao lDaoSexe = new SexeDao();
+			IInscriptionDao lDaoInscription = new InscriptionDao();
+			
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionSexes;
 			lGraph.Type = RenderAs.Column;
 			lGraph.Donnees = new ObservableCollection<DonneeGraph>();
 
-			List<Sexe> lSexes = SexeDao.GetInstance(pContexte).List();
-			List<Inscription> lInscriptions = InscriptionDao.GetInstance(pContexte).ListSaisonCourante();
+			List<Sexe> lSexes = lDaoSexe.List();
+			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
 
 			foreach (Sexe lSexe in lSexes) {
 				DonneeGraph lDonnee = new DonneeGraph();
@@ -74,12 +80,14 @@ namespace gestadh45.service.Graphs
 		/// <param name="pContexte">Contexte de l'application</param>
 		/// <returns>Objet Graph</returns>
 		public static Graphique CreerGraphRepartitionAge(Entities pContexte) {
+			IInscriptionDao lDaoInscription = new InscriptionDao();
+
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionAges;
 			lGraph.Type = RenderAs.Column;
 			lGraph.Donnees = new ObservableCollection<DonneeGraph>();
 
-			List<Inscription> lInscriptions = InscriptionDao.GetInstance(pContexte).ListSaisonCourante();
+			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
 
 			var qAge = from Inscription i in lInscriptions
 					   orderby i.Adherent.Age ascending
@@ -109,12 +117,14 @@ namespace gestadh45.service.Graphs
 		/// <param name="pContexte">Contexte de l'application</param>
 		/// <returns>Objet Graph</returns>
 		public static Graphique CreerGraphRepartitionMajeursMineurs(Entities pContexte) {
+			IInscriptionDao lDaoInscription = new InscriptionDao();
+			
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionMajeursMineurs;
 			lGraph.Type = RenderAs.Column;
 			lGraph.Donnees = new ObservableCollection<DonneeGraph>();
 
-			List<Inscription> lInscriptions = InscriptionDao.GetInstance(pContexte).ListSaisonCourante();
+			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
 
 			// Nombre de majeurs
 			DonneeGraph lDonneesMajeurs = new DonneeGraph();
@@ -147,13 +157,16 @@ namespace gestadh45.service.Graphs
 		/// <param name="pContexte">Contexte de l'application</param>
 		/// <returns>Objet Graph</returns>
 		public static Graphique CreerGraphRepartitionResidentsExterieurs(Entities pContexte) {
+			IInscriptionDao lDaoInscription = new InscriptionDao();
+			IInfosClubDao lDaoInfosClub = new InfosClubDao();
+			
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionResidentsExterieurs;
 			lGraph.Type = RenderAs.Column;
 			lGraph.Donnees = new ObservableCollection<DonneeGraph>();
 
-			List<Inscription> lInscriptions = InscriptionDao.GetInstance(pContexte).ListSaisonCourante();
-			InfosClub lInfosClub = InfosClubDao.GetInstance(pContexte).Read();
+			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
+			InfosClub lInfosClub = lDaoInfosClub.Read();
 
 			// Nombre de résidents
 			DonneeGraph lDonneesResidents = new DonneeGraph();

@@ -1,75 +1,41 @@
 ﻿using System.Collections.Generic;
-using System.Data;
-using System.Data.Objects;
 using System.Linq;
 using gestadh45.Model;
 
 namespace gestadh45.dao
 {
-	public class VilleDao
+	public class VilleDao : EntityDao<Ville>, IVilleDao
 	{
-		private static VilleDao Instance;
-
-		private VilleDao() {
+		public Ville Create(Ville ville) {
+			return this.Save(ville);
 		}
 
-		public void Create(Ville pVille) {
-			Instance.Context.Villes.AddObject(pVille);
-			Instance.Context.SaveChanges();
+		public Ville Read(int id) {
+			return (from v in Context.Villes
+				   where v.ID == id
+				   select v).First();
 		}
 
-		public void Delete(Ville pVille) {
-			Instance.Context.Attach(pVille);
-			Instance.Context.DeleteObject(pVille);
-			Instance.Context.SaveChanges();
-		}
-
-		public bool Exist(Ville pVille) {
-			return ((from v in Instance.Context.Villes
-					 where v.CodePostal.Equals(pVille.CodePostal) && v.Libelle.Equals(pVille.Libelle)
-					 select v).Count<Ville>() > 0);
-		}
-
-		public static VilleDao GetInstance(Entities pContexte) {
-			if (Instance == null) {
-				Instance = new VilleDao();
-			}
-			Instance.Context = pContexte;
-			return Instance;
-		}
-
-		public bool IsUsed(Ville pVille) {
-			return ((from a in Instance.Context.Adresses
-					 where a.ID_Ville == pVille.ID
-					 select a).Count<Adresse>() > 0);
+		public Ville Update(Ville ville) {
+			ville.SetAllModified(Context);
+			return this.Save(ville);
 		}
 
 		public List<Ville> List() {
-			return (from v in Instance.Context.Villes
-					orderby v.Libelle
-					select v).ToList<Ville>();
+			return Context.Villes.ToList();
 		}
 
-		public Ville Read(int pVilleId) {
-			return (from v in Instance.Context.Villes
-					where v.ID == pVilleId
-					select v).First<Ville>();
+		public bool Exists(Ville ville) {
+			return (from v in Context.Villes
+						where v.CodePostal.Equals(ville.CodePostal)
+						&& v.Libelle.Equals(ville.Libelle)
+						select v).Count() > 0;
 		}
 
-		public void Refresh(Ville pVille) {
-			this.Context.Refresh(RefreshMode.StoreWins, pVille);
+		public bool IsUsed(Ville ville) {
+			return ((from a in Context.Adresses
+					 where a.ID_Ville == ville.ID
+					 select a).Count() > 0);
 		}
-
-		public void Update(Ville pVille) {
-			pVille.SetAllModified<Ville>(Instance.Context);
-			try {
-				Instance.Context.SaveChanges();
-			}
-			catch (OptimisticConcurrencyException exception) {
-				throw exception;
-			}
-		}
-
-		private Entities Context { get; set; }
 	}
 }

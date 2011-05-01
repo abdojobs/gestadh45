@@ -9,6 +9,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 	{
 		private InfosClub mInfosClub;
 
+		private IInfosClubDao mDaoInfosClub;
+
 		/// <summary>
 		/// Obtient/Définit l'objet à afficher
 		/// </summary>
@@ -25,8 +27,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationInfosClubUCViewModel() {
-			this.InfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
-			InfosClubDao.GetInstance(ViewModelLocator.Context).Refresh(this.InfosClub);
+			this.mDaoInfosClub = this.mDaoFactory.GetInfosClubDao();
+
+			this.InfosClub = this.mDaoInfosClub.Read();
+			this.mDaoInfosClub.Refresh(this.InfosClub);
 
 			this.CreateEditerCommand();
 		}

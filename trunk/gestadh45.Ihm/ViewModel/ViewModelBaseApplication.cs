@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm.SpecialMessages;
+using gestadh45.dao;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -10,6 +11,8 @@ namespace gestadh45.Ihm.ViewModel
 	{
 		public ICommand AnnulerCommand { get; set; }
 		public ICommand FenetreCommand { get; set; }
+
+		protected IDaoFactory mDaoFactory;
 
 		/// <summary>
 		/// Obtient/Définit le code de l'UC "parent" de cet élément
@@ -22,6 +25,8 @@ namespace gestadh45.Ihm.ViewModel
 		public bool ModeFenetre { get; set; }
 
 		public ViewModelBaseApplication() {
+			this.mDaoFactory = new DaoFactory();
+
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
 
 			this.CreateAnnulerCommand();

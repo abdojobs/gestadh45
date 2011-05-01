@@ -18,6 +18,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Groupe mGroupe;
 		private ICollectionView mGroupesSaisonCourante;
 
+		private IInfosClubDao mDaoInfosCLub;
+		private IGroupeDao mDaoGroupe;
+
 		/// <summary>
 		/// Obtient/Définit le groupe à afficher
 		/// </summary>
@@ -49,6 +52,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationGroupesUCViewModel() {
+			this.mDaoInfosCLub = this.mDaoFactory.GetInfosClubDao();
+			this.mDaoGroupe = this.mDaoFactory.GetGroupeDao();
+
 			this.InitialisationListeGroupes();
 
 			this.CreateGenererDocumentsGroupeCommand();
@@ -68,8 +74,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Groupe != null
-				&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)
-				&& !GroupeDao.GetInstance(ViewModelLocator.Context).IsUsed(this.Groupe)
+				&& this.mDaoGroupe.Exists(this.Groupe)
+				&& !this.mDaoGroupe.IsUsed(this.Groupe)
 			);
 		}
 
@@ -87,7 +93,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerGroupeCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				GroupeDao.GetInstance(ViewModelLocator.Context).Delete(this.Groupe);
+				this.mDaoGroupe.Delete(this.Groupe);
 				this.InitialisationListeGroupes();
 				this.Groupe = null;
 			}
@@ -190,11 +196,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		#region methodes privees
 		private void InitialisationListeGroupes() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-				GroupeDao.GetInstance(ViewModelLocator.Context).ListSaisonCourante()
+				this.mDaoGroupe.ListSaisonCourante()
 			);
 
 			foreach (Groupe lGroupe in defaultView) {
-				GroupeDao.GetInstance(ViewModelLocator.Context).Refresh(lGroupe);
+				this.mDaoGroupe.Refresh(lGroupe);
 			}
 
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
@@ -204,7 +210,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void GenererDocumentsGroupe(string pSaveFolder, string pCodeDocument) {
 			if (pSaveFolder != null) {
-				InfosClub lInfosClub = InfosClubDao.GetInstance(ViewModelLocator.Context).Read();
+				InfosClub lInfosClub = this.mDaoInfosCLub.Read();
 
 				foreach (Inscription lInscription in this.Groupe.Inscriptions) {
 					DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, lInscription);

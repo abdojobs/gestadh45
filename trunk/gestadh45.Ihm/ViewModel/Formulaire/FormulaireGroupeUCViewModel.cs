@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
-using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
-using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
-using System;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -13,6 +10,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 	{
 		private Groupe mGroupe;
 		private ICollectionView mJoursSemaine;
+
+		private IJourSemaineDao mDaoJoursSemaine;
+		private ISaisonDao mDaoSaison;
+		private IGroupeDao mDaoGroupe;
 
 		/// <summary>
 		/// Obtient/Définit l'objet du formulaire
@@ -45,18 +46,21 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireGroupeUCViewModel() {
+			this.mDaoJoursSemaine = this.mDaoFactory.GetJourSemaineDao();
+			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
+			this.mDaoGroupe = this.mDaoFactory.GetGroupeDao();
+
 			this.Groupe = new Groupe();
-			this.Groupe.Saison = SaisonDao.GetInstance(ViewModelLocator.Context).ReadSaisonCourante();
+			this.Groupe.Saison = this.mDaoSaison.ReadSaisonCourante();
 			this.InitialisationListeJoursSemaine();
 			this.CodeUCOrigine = CodesUC.ConsultationGroupes;
 		}
 
 		public override void ExecuteEnregistrerCommand() {
-			if (this.VerifierSaisie() 
-				&& !GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)) {
-				
-				GroupeDao.GetInstance(ViewModelLocator.Context).Create(this.Groupe);
-
+			if (this.VerifierSaisie()
+				&& !this.mDaoGroupe.Exists(this.Groupe)) {
+					
+				this.mDaoGroupe.Create(this.Groupe);
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
@@ -65,7 +69,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		private void InitialisationListeJoursSemaine() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(JourSemaineDao.GetInstance(ViewModelLocator.Context).List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoJoursSemaine.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Numero", ListSortDirection.Ascending));
 			this.JoursSemaine = defaultView;
 		}
@@ -88,7 +92,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			if (!this.EstEdition
 				&& lErreurs.Count == 0
-				&& GroupeDao.GetInstance(ViewModelLocator.Context).Exist(this.Groupe)) {
+				&& this.mDaoGroupe.Exists(this.Groupe)) {
 
 					lErreurs.Add(ResErreurs.Groupe_Existe);
 			}

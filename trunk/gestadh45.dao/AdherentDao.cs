@@ -1,98 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Objects;
+﻿using System.Collections.Generic;
 using System.Linq;
 using gestadh45.Model;
 
 namespace gestadh45.dao
 {
-	public class AdherentDao
+	public class AdherentDao : EntityDao<Adherent>, IAdherentDao
 	{
-		private static AdherentDao Instance;
-
-		private AdherentDao()
-		{
+		public Adherent Create(Adherent adherent) {
+			return this.Save(adherent);
 		}
 
-		public void Create(Adherent pAdherent)
-		{
-			pAdherent.DateCreation = DateTime.Now;
-			pAdherent.DateModification = DateTime.Now;
-			Instance.Context.Adherents.AddObject(pAdherent);
-			Instance.Context.SaveChanges();
+		public Adherent Read(int id) {
+			return (from a in Context.Adherents
+					where a.ID == id
+					select a).First();
 		}
 
-		public void Delete(Adherent pAdherent)
-		{
-			Instance.Context.Attach(pAdherent);
-			Instance.Context.DeleteObject(pAdherent.Adresse);
-			Instance.Context.DeleteObject(pAdherent.Contact);
-			Instance.Context.DeleteObject(pAdherent);
-			Instance.Context.SaveChanges();
+		public Adherent Update(Adherent adherent) {
+			adherent.SetAllModified(Context);
+			return this.Save(adherent);
 		}
 
-		public bool Exist(Adherent pAdherent)
-		{
-			return ((from a in Instance.Context.Adherents
-				where (a.Nom.ToUpper().Equals(pAdherent.Nom.ToUpper()) && a.Prenom.ToUpper().Equals(pAdherent.Prenom.ToUpper())) && a.DateNaissance.Equals(pAdherent.DateNaissance)
-				select a).Count<Adherent>() > 0);
+		public List<Adherent> List() {
+			return (from a in Context.Adherents
+					orderby
+						a.Nom ascending,
+						a.Prenom ascending
+					select a).ToList();
 		}
 
-		public static AdherentDao GetInstance(Entities pContexte)
-		{
-			if (Instance == null)
-			{
-				Instance = new AdherentDao();
-			}
-			Instance.Context = pContexte;
-			return Instance;
+		public bool Exists(Adherent adherent) {
+			return ((from a in Context.Adherents
+					 where (a.Nom.ToUpper().Equals(adherent.Nom.ToUpper()) 
+					 && a.Prenom.ToUpper().Equals(adherent.Prenom.ToUpper()))
+					 && a.DateNaissance.Equals(adherent.DateNaissance)
+					 select a).Count<Adherent>() > 0);
 		}
 
-		public bool IsUsed(Adherent pAdherent)
-		{
-			return ((from i in Instance.Context.Inscriptions
-				where i.ID_Adherent == pAdherent.ID
-				select i).Count<Inscription>() > 0);
+		public bool IsUsed(Adherent adherent) {
+			return ((from i in Context.Inscriptions
+					 where i.ID_Adherent == adherent.ID
+					 select i).Count<Inscription>() > 0);
 		}
-
-		public List<Adherent> List()
-		{
-			return (from a in Instance.Context.Adherents
-				orderby 
-					a.Nom ascending,
-					a.Prenom ascending
-				select a).ToList<Adherent>();
-		}
-
-		public Adherent Read(int pAdherentId)
-		{
-			return (from a in Instance.Context.Adherents
-				where a.ID == pAdherentId
-				select a).First<Adherent>();
-		}
-
-		public void Refresh(Adherent pAdherent)
-		{
-			this.Context.Refresh(RefreshMode.StoreWins, pAdherent);
-			this.Context.Refresh(RefreshMode.StoreWins, pAdherent.Adresse);
-			this.Context.Refresh(RefreshMode.StoreWins, pAdherent.Contact);
-		}
-
-		public void Update(Adherent pAdherent)
-		{
-			pAdherent.DateModification = DateTime.Now;
-			pAdherent.SetAllModified<Adherent>(Instance.Context);
-			try
-			{
-				Instance.Context.SaveChanges();
-			}
-			catch (OptimisticConcurrencyException exception)
-			{
-				throw exception;
-			}
-		}
-
-		private Entities Context { get; set; }
 	}
 }
