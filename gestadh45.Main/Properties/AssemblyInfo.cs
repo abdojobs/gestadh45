@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyDescription("Gestion d'une association sportive")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Guillaume Porte")]
-[assembly: AssemblyProduct("gestadh45.Main")]
+[assembly: AssemblyProduct("GestAdh45")]
 [assembly: AssemblyCopyright("Copyright ©  2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -51,6 +51,6 @@ using System.Windows;
 // Vous pouvez spécifier toutes les valeurs ou indiquer les numéros de build et de révision par défaut 
 // en utilisant '*', comme indiqué ci-dessous :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.1.1.0")]
+[assembly: AssemblyFileVersion("1.1.1.0")]
 [assembly: NeutralResourcesLanguageAttribute("fr-FR")]
