@@ -88,7 +88,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
-			this.CreateSupprimerCommand();
 		}
 
 		private void ExecuteSupprimerGroupeCommandCallBack(MessageBoxResult pResult) {
