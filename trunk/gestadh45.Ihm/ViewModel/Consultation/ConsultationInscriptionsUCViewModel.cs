@@ -5,6 +5,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
+using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 using gestadh45.service.Documents;
@@ -187,11 +188,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		#region methodes privees
 		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
 			if (!string.IsNullOrWhiteSpace(pSaveFilePath)) {
-				InfosClub lInfosClub = mDaoInfosClub.Read();
-				DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, this.Inscription);
-				GenerateurDocumentPDF lGenerateur = new GenerateurDocumentPDF(lDonnees, pSaveFilePath);
+				InfosClub infosClub = mDaoInfosClub.Read();
+				DonneesDocument donnees = ServiceDocumentAdaptateur.InscriptionToDonneesDocument(infosClub, this.Inscription);
+				GenerateurDocumentPDF generateur = new GenerateurDocumentPDF(donnees, pSaveFilePath);
 
-				lGenerateur.CreerDocument(pCodeDocument);
+				generateur.CreerDocument(pCodeDocument);
 
 				Messenger.Default.Send(
 					new NotificationMessageUtilisateur(
@@ -204,10 +205,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void GenererVCard(string pSaveFilePath) {
 			if(!string.IsNullOrWhiteSpace(pSaveFilePath)) {
-				DonneesVCard lDonnees = DonneesVCardAdaptateur.CreerDonneesVCard(this.Inscription);
+				DonneesVCard donnees = ServiceVCardAdaptateur.InscriptionToDonneesVCard(this.Inscription);
 
-				VCardGenerateur lGenerateur = new VCardGenerateur(lDonnees, pSaveFilePath);
-				lGenerateur.CreerVCard();
+				VCardGenerateur generateur = new VCardGenerateur(donnees, pSaveFilePath);
+				generateur.CreerVCard();
 
 				Messenger.Default.Send(
 					new NotificationMessageUtilisateur(

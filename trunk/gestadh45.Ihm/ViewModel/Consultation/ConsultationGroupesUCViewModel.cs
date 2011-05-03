@@ -6,6 +6,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
+using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 using gestadh45.service.Documents;
@@ -209,38 +210,38 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void GenererDocumentsGroupe(string pSaveFolder, string pCodeDocument) {
 			if (pSaveFolder != null) {
-				InfosClub lInfosClub = this.mDaoInfosCLub.Read();
+				InfosClub infosClub = this.mDaoInfosCLub.Read();
 
-				foreach (Inscription lInscription in this.Groupe.Inscriptions) {
-					DonneesDocument lDonnees = DonneesDocumentAdaptateur.CreerDonneesDocument(lInfosClub, lInscription);
+				foreach (Inscription inscription in this.Groupe.Inscriptions) {
+					DonneesDocument donnees = ServiceDocumentAdaptateur.InscriptionToDonneesDocument(infosClub, inscription);
 
-					string lSaveFilePath;
+					string saveFilePath;
 					GenerateurDocumentBase lGenerateur;
 
 					switch (pCodeDocument) {
 						case GenerateurDocumentBase.CodeInscriptionPdf:
-							lSaveFilePath = string.Format(
+							saveFilePath = string.Format(
 								"{0}\\{1} - {2}{3}",
 								pSaveFolder,
 								ResDocuments.PrefixeNomFichierInscription,
-								lInscription.Adherent.ToString(),
+								inscription.Adherent.ToString(),
 								ResDocuments.ExtensionFichierPdf
 							);
 
-							lGenerateur = new GenerateurDocumentPDF(lDonnees, lSaveFilePath);
+							lGenerateur = new GenerateurDocumentPDF(donnees, saveFilePath);
 							lGenerateur.CreerDocumentInscription();
 							break;
 
 						case GenerateurDocumentBase.CodeAttestationPdf:
-							lSaveFilePath = string.Format(
+							saveFilePath = string.Format(
 								"{0}\\{1} - {2}{3}",
 								pSaveFolder,
 								ResDocuments.PrefixeNomFichierAttestation,
-								lInscription.Adherent.ToString(),
+								inscription.Adherent.ToString(),
 								ResDocuments.ExtensionFichierPdf
 							);
 
-							lGenerateur = new GenerateurDocumentPDF(lDonnees, lSaveFilePath);
+							lGenerateur = new GenerateurDocumentPDF(donnees, saveFilePath);
 							lGenerateur.CreerDocumentAttestation();
 							break;
 					}
@@ -257,12 +258,12 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void GenererVCardsGroupe(string pSaveFolder) {
 			if (pSaveFolder != null) {
-				foreach (Inscription lInscription in this.Groupe.Inscriptions) {
-					DonneesVCard lDonnees = DonneesVCardAdaptateur.CreerDonneesVCard(lInscription);
-					string lSaveFilePath = pSaveFolder + "\\" + lInscription.Adherent.ToString() + ResVCards.Extension;
+				foreach (Inscription inscription in this.Groupe.Inscriptions) {
+					DonneesVCard donnees = ServiceVCardAdaptateur.InscriptionToDonneesVCard(inscription);
+					string saveFilePath = pSaveFolder + "\\" + inscription.Adherent.ToString() + ResVCards.Extension;
 
-					VCardGenerateur lGenerateur = new VCardGenerateur(lDonnees, lSaveFilePath);
-					lGenerateur.CreerVCard();
+					VCardGenerateur generateur = new VCardGenerateur(donnees, saveFilePath);
+					generateur.CreerVCard();
 				}
 
 				Messenger.Default.Send(

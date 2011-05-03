@@ -1,8 +1,9 @@
 ﻿using gestadh45.Model;
+using gestadh45.service.Documents;
 
-namespace gestadh45.service.Documents
+namespace gestadh45.Ihm.ServiceAdaptateurs
 {
-	public class DonneesDocumentAdaptateur
+	public static class ServiceDocumentAdaptateur
 	{
 		/// <summary>
 		/// Créé un objet document
@@ -10,7 +11,7 @@ namespace gestadh45.service.Documents
 		/// <param name="pInfosClub">Infos du club</param>
 		/// <param name="pInscription">Inscription</param>
 		/// <returns>Données du document</returns>
-		public static DonneesDocument CreerDonneesDocument(InfosClub pInfosClub, Inscription pInscription) {
+		public static DonneesDocument InscriptionToDonneesDocument(InfosClub pInfosClub, Inscription pInscription) {
 			DonneesDocument lDonnees = new DonneesDocument()
 			{
 				AdresseAdherent = pInscription.Adherent.Adresse.Libelle,
