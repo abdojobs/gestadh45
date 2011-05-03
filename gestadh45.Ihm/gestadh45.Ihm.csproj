@@ -61,6 +61,8 @@
       <DependentUpon>MainRessources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceAdaptateurs\ServiceDocumentAdaptateur.cs" />
+    <Compile Include="ServiceAdaptateurs\ServiceVCardAdaptateur.cs" />
     <Compile Include="SpecialMessages\DialogMessageConfirmation.cs" />
     <Compile Include="SpecialMessages\NotificationMessageAboutBox.cs" />
     <Compile Include="SpecialMessages\NotificationMessageActionFileDialog.cs" />

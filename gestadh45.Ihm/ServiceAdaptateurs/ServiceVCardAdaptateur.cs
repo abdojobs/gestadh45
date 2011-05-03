@@ -1,10 +1,11 @@
 ﻿using gestadh45.Model;
+using gestadh45.service.VCards;
 
-namespace gestadh45.service.VCards
+namespace gestadh45.Ihm.ServiceAdaptateurs
 {
-	public class DonneesVCardAdaptateur
+	public static class ServiceVCardAdaptateur
 	{
-		public static DonneesVCard CreerDonneesVCard(Inscription pInscription) {
+		public static DonneesVCard InscriptionToDonneesVCard(Inscription pInscription) {
 			DonneesVCard lDonnees = new DonneesVCard()
 			{
 				Nom = pInscription.Adherent.Nom,
