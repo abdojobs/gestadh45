@@ -68,7 +68,6 @@ namespace gestadh45.Ihm {
         ///- Transitionnals (http://transitionals.codeplex.com/)
         ///- WPF Toolkit (http://wpf.codeplex.com/)
         ///- Extended WPF Toolkit (http://wpftoolkit.codeplex.com/)
-        ///- Visifire (http://www.visifire.com/)
         ///- Craig&apos;s Utility Library (http://cul.codeplex.com/).
         /// </summary>
         public static string ElementsTierces {
