@@ -16,13 +16,13 @@
 			</Button>
 		</StackPanel>
 
-		<charts:Chart>
-			<charts:ColumnSeries
-				Title="{Binding Path=Graphique.NomDonnees}"
-				ItemsSource="{Binding Path=Graphique.Donnees}"
-				IndependentValueBinding="{Binding Path=Key}"
-                DependentValueBinding="{Binding Path=Value}">
-			</charts:ColumnSeries>
-		</charts:Chart>
+			<charts:Chart BorderBrush="Transparent">
+				<charts:ColumnSeries
+					Title="{Binding Path=Graphique.NomDonnees}"		
+					ItemsSource="{Binding Path=Graphique.Donnees}"
+					IndependentValueBinding="{Binding Path=Key}"
+					DependentValueBinding="{Binding Path=Value}">
+				</charts:ColumnSeries>
+			</charts:Chart>
 	</DockPanel>
 </UserControl>
