@@ -1,9 +1,11 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Linq.Expressions;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using gestadh45.Ihm.SpecialMessages;
 using gestadh45.dao;
+using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -31,6 +33,20 @@ namespace gestadh45.Ihm.ViewModel
 
 			this.CreateAnnulerCommand();
 			this.CreateFenetreCommand();
+		}
+
+		/// <summary>
+		/// Methode permettant d'appeller RaisePropertyChanged en passant la propriété au lieu de son nom
+		/// </summary>
+		/// <remarks>Implémentation tirée de <a href="http://mfelicio.wordpress.com/2010/01/10/safe-usage-of-inotifypropertychanged-in-mvvm-scenarios/">http://mfelicio.wordpress.com/2010/01/10/safe-usage-of-inotifypropertychanged-in-mvvm-scenarios/</a></remarks>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="propertyExpression"></param>
+		protected void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression) {
+			if (propertyExpression.Body.NodeType == ExpressionType.MemberAccess) {
+				var memberExpr = propertyExpression.Body as MemberExpression;
+				string propertyName = memberExpr.Member.Name;
+				this.RaisePropertyChanged(propertyName);
+			}
 		}
 
 		protected void CreateAnnulerCommand() {

@@ -23,7 +23,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if(this.mGraphique != value) {
 					this.mGraphique = value;
-					RaisePropertyChanged("Graphique");
+					this.RaisePropertyChanged(() => this.Graphique);
 				}
 			}
 		}
@@ -38,7 +38,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if (this.mListeGraphs != value) {
 					this.mListeGraphs = value;
-					this.RaisePropertyChanged("ListeGraphs");
+					this.RaisePropertyChanged(() => this.ListeGraphs);
 				}
 			}
 		}

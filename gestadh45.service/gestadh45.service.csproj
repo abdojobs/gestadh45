@@ -49,9 +49,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WPFVisifire.Charts">
-      <HintPath>..\Libs\WPFVisifire.Charts.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\DonneesBase.cs" />
@@ -76,7 +73,6 @@
     <Compile Include="Graphs\CodesGraphs.cs" />
     <Compile Include="Graphs\GenerateurGraph.cs" />
     <Compile Include="Graphs\Graphique.cs" />
-    <Compile Include="Graphs\DonneeGraph.cs" />
     <Compile Include="Graphs\ResGraphs.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

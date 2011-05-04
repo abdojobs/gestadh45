@@ -126,6 +126,9 @@
   <data name="Libelle_Mineurs" xml:space="preserve">
     <value>Mineurs</value>
   </data>
+  <data name="Libelle_NbAdherents" xml:space="preserve">
+    <value>Nb. Adhérents</value>
+  </data>
   <data name="Libelle_Residents" xml:space="preserve">
     <value>Résidents</value>
   </data>

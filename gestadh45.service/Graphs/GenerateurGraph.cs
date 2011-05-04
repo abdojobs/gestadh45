@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using gestadh45.dao;
 using gestadh45.Model;
-using Visifire.Charts;
 
 namespace gestadh45.service.Graphs
 {
@@ -19,23 +17,18 @@ namespace gestadh45.service.Graphs
 
 		    Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RemplissageGroupes;
-			lGraph.Type = RenderAs.Column;
-			lGraph.Donnees = new ObservableCollection<DonneeGraph>();
+			lGraph.NomDonnees = ResGraphs.Libelle_NbAdherents;
+			lGraph.Donnees = new Dictionary<string, long>();
 			
 		    List<Groupe> lGroupes = lDaoGroupe.ListSaisonCourante();
 			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
 		    
 			foreach(Groupe lGroupe in lGroupes) {
-				DonneeGraph lDonnee = new DonneeGraph();
-				lDonnee.Label = lGroupe.Libelle;
-
 				var q = from Inscription i in lInscriptions
 						where i.Groupe.ID == lGroupe.ID
 						select i;
 
-				lDonnee.YValue = q.Count();
-
-				lGraph.Donnees.Add(lDonnee);
+				lGraph.Donnees.Add(lGroupe.Libelle, q.LongCount());
 			}
 
 			return lGraph;
@@ -51,22 +44,18 @@ namespace gestadh45.service.Graphs
 			
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionSexes;
-			lGraph.Type = RenderAs.Column;
-			lGraph.Donnees = new ObservableCollection<DonneeGraph>();
+			lGraph.NomDonnees = ResGraphs.Libelle_NbAdherents;
+			lGraph.Donnees = new Dictionary<string, long>();
 
 			List<Sexe> lSexes = lDaoSexe.List();
 			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
 
 			foreach (Sexe lSexe in lSexes) {
-				DonneeGraph lDonnee = new DonneeGraph();
-				lDonnee.Label = lSexe.LibelleCourt;
-
 				var q = from Inscription i in lInscriptions
 						where i.Adherent.Sexe.ID == lSexe.ID
 						select i;
 
-				lDonnee.YValue = q.Count();
-				lGraph.Donnees.Add(lDonnee);
+				lGraph.Donnees.Add(lSexe.LibelleCourt, q.LongCount());
 			}
 
 			return lGraph;
@@ -81,8 +70,8 @@ namespace gestadh45.service.Graphs
 
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionAges;
-			lGraph.Type = RenderAs.Column;
-			lGraph.Donnees = new ObservableCollection<DonneeGraph>();
+			lGraph.NomDonnees = ResGraphs.Libelle_NbAdherents;
+			lGraph.Donnees = new Dictionary<string, long>();
 
 			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
 
@@ -93,16 +82,11 @@ namespace gestadh45.service.Graphs
 			List<int> lAges = qAge.Distinct().ToList();
 
 			foreach (int lAge in lAges) {
-				DonneeGraph lDonnee = new DonneeGraph();
-				lDonnee.Label = lAge.ToString();
-
 				var qNb = from Inscription i in lInscriptions
 						  where i.Adherent.Age == lAge
 						  select i;
 
-				lDonnee.YValue = qNb.Count();
-
-				lGraph.Donnees.Add(lDonnee);
+				lGraph.Donnees.Add(lAge.ToString(), qNb.LongCount());
 			}
 
 			return lGraph;
@@ -117,32 +101,24 @@ namespace gestadh45.service.Graphs
 			
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionMajeursMineurs;
-			lGraph.Type = RenderAs.Column;
-			lGraph.Donnees = new ObservableCollection<DonneeGraph>();
+			lGraph.NomDonnees = ResGraphs.Libelle_NbAdherents;
+			lGraph.Donnees = new Dictionary<string, long>();
 
 			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
 
 			// Nombre de majeurs
-			DonneeGraph lDonneesMajeurs = new DonneeGraph();
-			lDonneesMajeurs.Label = ResGraphs.Libelle_Majeurs;
-
 			var qMajeurs = from Inscription i in lInscriptions
 						   where i.Adherent.Age >= 18
 						   select i;
 
-			lDonneesMajeurs.YValue = qMajeurs.Count();
-			lGraph.Donnees.Add(lDonneesMajeurs);
+			lGraph.Donnees.Add(ResGraphs.Libelle_Majeurs, qMajeurs.LongCount());
 
 			// Nombre de mineurs
-			DonneeGraph lDonneesMineurs = new DonneeGraph();
-			lDonneesMineurs.Label = ResGraphs.Libelle_Mineurs;
-
 			var qMineurs = from Inscription i in lInscriptions
 						   where i.Adherent.Age < 18
 						   select i;
 
-			lDonneesMineurs.YValue = qMineurs.Count();
-			lGraph.Donnees.Add(lDonneesMineurs);
+			lGraph.Donnees.Add(ResGraphs.Libelle_Mineurs, qMineurs.LongCount());
 
 			return lGraph;
 		}
@@ -157,33 +133,25 @@ namespace gestadh45.service.Graphs
 			
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionResidentsExterieurs;
-			lGraph.Type = RenderAs.Column;
-			lGraph.Donnees = new ObservableCollection<DonneeGraph>();
+			lGraph.NomDonnees = ResGraphs.Libelle_NbAdherents;
+			lGraph.Donnees = new Dictionary<string, long>();
 
 			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
 			InfosClub lInfosClub = lDaoInfosClub.Read();
 
 			// Nombre de résidents
-			DonneeGraph lDonneesResidents = new DonneeGraph();
-			lDonneesResidents.Label = ResGraphs.Libelle_Residents;
-
 			var qResidents = from Inscription i in lInscriptions
 						   where i.Adherent.Adresse.ID_Ville == lInfosClub.Adresse.ID_Ville
 						   select i;
 
-			lDonneesResidents.YValue = qResidents.Count();
-			lGraph.Donnees.Add(lDonneesResidents);
+			lGraph.Donnees.Add(ResGraphs.Libelle_Residents, qResidents.LongCount());
 
 			// Nombre d'extérieurs
-			DonneeGraph lDonneesExterieurs = new DonneeGraph();
-			lDonneesExterieurs.Label = ResGraphs.Libelle_Exterieurs;
-
 			var qExterieurs = from Inscription i in lInscriptions
 							 where i.Adherent.Adresse.ID_Ville != lInfosClub.Adresse.ID_Ville
 							 select i;
 
-			lDonneesExterieurs.YValue = qExterieurs.Count();
-			lGraph.Donnees.Add(lDonneesExterieurs);
+			lGraph.Donnees.Add(ResGraphs.Libelle_Exterieurs, qExterieurs.LongCount());
 
 			return lGraph;
 		}

@@ -3,36 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-			 xmlns:vc="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts" 
+			 xmlns:charts="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
              mc:Ignorable="d" 
 			 DataContext="{Binding GraphsSaisonCouranteVMStatic, Source={StaticResource Locator}}" 
              d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
 	<DockPanel>
-		<DockPanel.Children>
-			<TextBlock Text="Graphiques pour la saison courante" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
-			<StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
-				<StackPanel.Children>
-					<ComboBox Name="cmbGraphs" Width="250" Margin="0,0,10,0" ItemsSource="{Binding Path=ListeGraphs}" />
-					<Button Width="75" Height="25" Margin="10,0,0,0" Command="{Binding AfficherGraphCommand}" CommandParameter="{Binding ElementName=cmbGraphs, Path=SelectedItem}">
-						<TextBlock Text="OK" />
-					</Button>
-				</StackPanel.Children>
-			</StackPanel>
-			<vc:Chart Name="Graph" CornerRadius="12" AnimatedUpdate="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10">
-				<vc:Chart.Titles>
-					<vc:Title Text="{Binding TitreGraph}" />
-				</vc:Chart.Titles>
-				<vc:Chart.Series>
-					<vc:DataSeries 
-						RenderAs="{Binding Path=Graphique.Type}" 
-						DataSource="{Binding Path=Graphique.Donnees}">
-						<vc:DataSeries.DataMappings>
-							<vc:DataMapping MemberName="AxisXLabel" Path="Label" />
-							<vc:DataMapping MemberName="YValue" Path="YValue" />
-						</vc:DataSeries.DataMappings>
-					</vc:DataSeries>
-				</vc:Chart.Series>
-			</vc:Chart>
-		</DockPanel.Children>
+		<TextBlock Text="Graphiques pour la saison courante" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+		<StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
+			<ComboBox Name="cmbGraphs" Width="350" Margin="0,0,10,0" ItemsSource="{Binding Path=ListeGraphs}" />
+			<Button Width="75" Height="25" Margin="10,0,0,0" Command="{Binding AfficherGraphCommand}" CommandParameter="{Binding ElementName=cmbGraphs, Path=SelectedItem}">
+				<TextBlock Text="OK" />
+			</Button>
+		</StackPanel>
+
+		<charts:Chart>
+			<charts:ColumnSeries
+				Title="{Binding Path=Graphique.NomDonnees}"
+				ItemsSource="{Binding Path=Graphique.Donnees}"
+				IndependentValueBinding="{Binding Path=Key}"
+                DependentValueBinding="{Binding Path=Value}">
+			</charts:ColumnSeries>
+		</charts:Chart>
 	</DockPanel>
 </UserControl>
