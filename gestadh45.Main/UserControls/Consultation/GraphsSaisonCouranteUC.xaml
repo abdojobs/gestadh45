@@ -16,7 +16,7 @@
 			</Button>
 		</StackPanel>
 
-			<charts:Chart BorderBrush="Transparent">
+		<charts:Chart BorderBrush="Transparent" Visibility="{Binding Path=GraphVisible, Converter={StaticResource ResourceKey=VisibilityOfBool}}">
 				<charts:ColumnSeries
 					Title="{Binding Path=Graphique.NomDonnees}"		
 					ItemsSource="{Binding Path=Graphique.Donnees}"

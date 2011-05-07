@@ -24,6 +24,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				if(this.mGraphique != value) {
 					this.mGraphique = value;
 					this.RaisePropertyChanged(() => this.Graphique);
+					this.RaisePropertyChanged(() => this.GraphVisible);
 				}
 			}
 		}
@@ -41,6 +42,13 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 					this.RaisePropertyChanged(() => this.ListeGraphs);
 				}
 			}
+		}
+
+		/// <summary>
+		/// Obtient un booléen indiquant si le conteneur de graph doit être visible
+		/// </summary>
+		public bool GraphVisible {
+			get { return this.Graphique != null; }
 		}
 
 		public ICommand AfficherGraphCommand { get; set; }
