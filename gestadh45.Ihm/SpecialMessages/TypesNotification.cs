@@ -16,5 +16,6 @@ namespace gestadh45.Ihm.SpecialMessages
 		public const string FermetureFenetre = "FermetureFenetre";
 		public const string OuvertureFenetre = "OuvertureFenetre";
 		public const string AfficherExtraction = "AfficherExtraction";
+		public const string SelectionElement = "SelectionElement";
 	}
 }

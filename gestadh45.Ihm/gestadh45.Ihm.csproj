@@ -71,6 +71,7 @@
     <Compile Include="SpecialMessages\NotificationMessageConsultationExtractions.cs" />
     <Compile Include="SpecialMessages\NotificationMessageFermetureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageOuvertureFenetre.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageSelectionElement.cs" />
     <Compile Include="SpecialMessages\NotificationMessageUtilisateur.cs" />
     <Compile Include="SpecialMessages\ResMessages.Designer.cs">
       <AutoGen>True</AutoGen>

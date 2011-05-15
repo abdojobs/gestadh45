@@ -12,7 +12,8 @@ namespace gestadh45.dao
 
 		public InfosClub Update(InfosClub infosClub) {
 			infosClub.SetAllModified(Context);
-			return this.Save(infosClub);
+			this.SaveChanges();
+			return infosClub;
 		}
 	}
 }

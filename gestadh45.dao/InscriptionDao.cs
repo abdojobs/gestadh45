@@ -18,7 +18,8 @@ namespace gestadh45.dao
 
 		public Inscription Update(Inscription inscription) {
 			inscription.SetAllModified(Context);
-			return this.Save(inscription);
+			this.SaveChanges();
+			return inscription;
 		}
 
 		public List<Inscription> List() {

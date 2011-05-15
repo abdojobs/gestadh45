@@ -37,6 +37,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				this.mDaoVille.Create(this.Ville);
 
 				base.ExecuteEnregistrerCommand();
+
+				if (this.ModeFenetre) {
+					var msg = new NotificationMessageSelectionElement<Ville>(this.Ville);
+					Messenger.Default.Send(msg);
+				}
 			}
 			else {
 				this.ErreursVisibles = true;

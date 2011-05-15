@@ -18,7 +18,8 @@ namespace gestadh45.dao
 
 		public Groupe Update(Groupe groupe) {
 			groupe.SetAllModified(Context);
-			return this.Save(groupe);
+			this.SaveChanges();
+			return groupe;
 		}
 
 		public List<Groupe> List() {
