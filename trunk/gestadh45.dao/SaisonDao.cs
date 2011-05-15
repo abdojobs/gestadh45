@@ -18,7 +18,8 @@ namespace gestadh45.dao
 
 		public Saison Update(Saison saison) {
 			saison.SetAllModified(Context);
-			return this.Save(saison);
+			this.SaveChanges();
+			return saison;
 		}
 
 		public List<Saison> List() {

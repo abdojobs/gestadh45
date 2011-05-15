@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
+using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
+using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
@@ -27,7 +29,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			set {
 				if (this.mAdherent != value) {
 					this.mAdherent = value;
-					this.RaisePropertyChanged("Adherent");
+					this.RaisePropertyChanged(() => this.Adherent);
 				}
 			}
 		}
@@ -42,7 +44,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			set {
 				if (this.mSexes != value) {
 					this.mSexes = value;
-					this.RaisePropertyChanged("Sexes");
+					this.RaisePropertyChanged(() => this.Sexes);
 				}
 			}
 		}
@@ -57,7 +59,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			set {
 				if (this.mVilles != value) {
 					this.mVilles = value;
-					this.RaisePropertyChanged("Villes");
+					this.RaisePropertyChanged(() => this.Villes);
 				}
 			}
 		}
@@ -77,6 +79,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			this.CodeUCOrigine = CodesUC.ConsultationAdherents;
 			base.EstEdition = false;
+
+			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
 		}
 
 		public override void ExecuteAnnulerCommand(string pCodeUc) {
@@ -124,6 +128,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoVille.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
+		}
+
+		private void SelectionnerVille(NotificationMessageSelectionElement<Ville> msg) {
+			this.Adherent.Adresse.Ville = msg.Content;
+			this.RaisePropertyChanged(() => this.Adherent);
 		}
 
 		protected override bool VerifierSaisie() {

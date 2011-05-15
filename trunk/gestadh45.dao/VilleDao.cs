@@ -18,7 +18,8 @@ namespace gestadh45.dao
 
 		public Ville Update(Ville ville) {
 			ville.SetAllModified(Context);
-			return this.Save(ville);
+			this.SaveChanges();
+			return ville;
 		}
 
 		public List<Ville> List() {

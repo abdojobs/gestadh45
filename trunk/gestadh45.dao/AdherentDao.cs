@@ -18,7 +18,8 @@ namespace gestadh45.dao
 
 		public Adherent Update(Adherent adherent) {
 			adherent.SetAllModified(Context);
-			return this.Save(adherent);
+			this.SaveChanges();
+			return adherent;
 		}
 
 		public List<Adherent> List() {
