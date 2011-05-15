@@ -38,10 +38,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 				base.ExecuteEnregistrerCommand();
 
-				if (this.ModeFenetre) {
-					var msg = new NotificationMessageSelectionElement<Ville>(this.Ville);
-					Messenger.Default.Send(msg);
-				}
+				var msg = new NotificationMessageSelectionElement<Ville>(this.Ville);
+				Messenger.Default.Send(msg);
 			}
 			else {
 				this.ErreursVisibles = true;

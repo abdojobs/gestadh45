@@ -11,7 +11,9 @@
 	<DockPanel Margin="5,5,5,5">
 		<DockPanel.Children>
 			<TextBlock Text="Saisons" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
-			<ListBox Name="lbxSaisons" Width="300" DockPanel.Dock="Left" ItemsSource="{Binding Saisons}">
+			<ListBox Name="lbxSaisons" Width="300" DockPanel.Dock="Left" 
+					 ItemsSource="{Binding Path=Saisons}"
+					 SelectedItem="{Binding Path=Saison}">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="SelectionChanged">
 						<cmd:EventToCommand 

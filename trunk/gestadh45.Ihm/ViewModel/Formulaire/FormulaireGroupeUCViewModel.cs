@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
+using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
+using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
@@ -62,6 +64,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 					
 				this.mDaoGroupe.Create(this.Groupe);
 				base.ExecuteEnregistrerCommand();
+
+				var msg = new NotificationMessageSelectionElement<Groupe>(this.Groupe);
+				Messenger.Default.Send(msg);
 			}
 			else {
 				this.ErreursVisibles = true;

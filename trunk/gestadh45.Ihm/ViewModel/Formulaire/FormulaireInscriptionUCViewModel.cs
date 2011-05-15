@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
+using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
+using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
@@ -83,15 +85,14 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public override void ExecuteEnregistrerCommand() {
-			if (this.Inscription.Commentaire == null) {
-				this.Inscription.Commentaire = string.Empty;
-			}
-
+			var msg = new NotificationMessageSelectionElement<Inscription>(this.Inscription);
+	
 			if (this.VerifierSaisie() 
 				&& base.EstEdition
 				&& this.mDaoInscription.Exists(this.Inscription)) {
 					this.mDaoInscription.Update(this.Inscription);
 				base.ExecuteEnregistrerCommand();
+				Messenger.Default.Send(msg);
 			}
 			else if (this.VerifierSaisie() 
 				&& !base.EstEdition
@@ -100,6 +101,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 					this.mDaoInscription.Create(this.Inscription);
 
 				base.ExecuteEnregistrerCommand();
+				Messenger.Default.Send(msg);
 			}
 			else {
 				this.ErreursVisibles = true;

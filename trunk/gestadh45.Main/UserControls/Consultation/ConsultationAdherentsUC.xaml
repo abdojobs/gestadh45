@@ -24,7 +24,9 @@
 					</i:Interaction.Triggers>
 				</TextBox>
 
-				<ListBox Name="lbxAdherents" ItemsSource="{Binding Adherents}">
+				<ListBox Name="lbxAdherents" 
+						 ItemsSource="{Binding Path=Adherents}"
+						 SelectedItem="{Binding Path=Adherent}">
 					<i:Interaction.Triggers>
 						<i:EventTrigger EventName="SelectionChanged">
 							<cmd:EventToCommand 
