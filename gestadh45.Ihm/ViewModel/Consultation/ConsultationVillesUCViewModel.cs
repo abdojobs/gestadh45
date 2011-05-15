@@ -24,7 +24,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if (this.mVille != value) {
 					this.mVille = value;
-					this.RaisePropertyChanged("Ville");
+					this.RaisePropertyChanged(() => this.Ville);
 				}
 			}
 		}
@@ -39,7 +39,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if (this.mVilles != value) {
 					this.mVilles = value;
-					this.RaisePropertyChanged("Villes");
+					this.RaisePropertyChanged(() => this.Villes);
 				}
 			}
 		}
@@ -47,6 +47,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public ConsultationVillesUCViewModel() {
 			this.mDaoVille = this.mDaoFactory.GetVilleDao();
 			this.InitialisationListeVilles();
+
+			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
@@ -99,6 +101,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(CodesUC.FormulaireVille)
 			);
+		}
+
+		private void SelectionnerVille(NotificationMessageSelectionElement<Ville> msg) {
+			this.Ville = msg.Content;
+			this.RaisePropertyChanged(() => this.Ville);
 		}
 	}
 }

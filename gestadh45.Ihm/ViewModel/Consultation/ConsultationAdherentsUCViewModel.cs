@@ -29,7 +29,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if (this.mAdherent != value) {
 					this.mAdherent = value;
-					this.RaisePropertyChanged("Adherent");
+					this.RaisePropertyChanged(()=>this.Adherent);
 				}
 			}
 		}
@@ -44,7 +44,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if (this.mAdherents != value) {
 					this.mAdherents = value;
-					this.RaisePropertyChanged("Adherents");
+					this.RaisePropertyChanged(()=>this.Adherents);
 				}
 			}
 		}
@@ -55,6 +55,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.InitialisationListeAdherents();
 
 			this.CreateInscrireCommand();
+
+			Messenger.Default.Register<NotificationMessageSelectionElement<Adherent>>(this, this.SelectionnerAdherent);
 		}
 
 		public override bool CanExecuteEditerCommand() {
@@ -147,6 +149,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			defaultView.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
 			this.Adherents = defaultView;
+		}
+
+		private void SelectionnerAdherent(NotificationMessageSelectionElement<Adherent> msg) {
+			this.Adherent = msg.Content;
+			this.RaisePropertyChanged(() => this.Adherent);
 		}
 	}
 }

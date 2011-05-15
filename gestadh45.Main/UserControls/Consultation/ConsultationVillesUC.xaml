@@ -12,7 +12,9 @@
 	<DockPanel Margin="5,5,5,5">
 		<DockPanel.Children>
 			<TextBlock Text="Villes" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
-			<ListBox Name="lbxVilles" Width="300" DockPanel.Dock="Left" ItemsSource="{Binding Villes}">
+			<ListBox Name="lbxVilles" Width="300" DockPanel.Dock="Left" 
+					 ItemsSource="{Binding Path=Villes}"
+					 SelectedItem="{Binding Path=Ville}">
 				<i:Interaction.Triggers>
 					<i:EventTrigger EventName="SelectionChanged">
 						<cmd:EventToCommand 

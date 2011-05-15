@@ -14,7 +14,8 @@
 		<DockPanel.Children>
 			<TextBlock Text="Inscriptions pour la saison courante" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
 			<ListBox Name="lbxInscriptions" Width="300" DockPanel.Dock="Left" 
-					 ItemsSource="{Binding InscriptionsSaisonCourante}">
+					 ItemsSource="{Binding Path=InscriptionsSaisonCourante}"
+					 SelectedItem="{Binding Path=Inscription}">
 				<ListBox.GroupStyle>
 					<GroupStyle ContainerStyle="{StaticResource inscriptionGroupe}" />
 				</ListBox.GroupStyle>

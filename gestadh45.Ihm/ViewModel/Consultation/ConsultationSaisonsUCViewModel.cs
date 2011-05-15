@@ -29,7 +29,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if (this.mSaison != value) {
 					this.mSaison = value;
-					this.RaisePropertyChanged("Saison");
+					this.RaisePropertyChanged(() => this.Saison);
 				}
 			}
 		}
@@ -44,7 +44,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if (this.mSaisons != value) {
 					this.mSaisons = value;
-					this.RaisePropertyChanged("Saisons");
+					this.RaisePropertyChanged(() => this.Saisons);
 				}
 			}
 		}
@@ -55,6 +55,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.InitialisationListeSaisons();
 
 			this.CreateDefinirSaisonCouranteCommand();
+
+			Messenger.Default.Register<NotificationMessageSelectionElement<Saison>>(this, this.SelectionnerSaison);
 		}
 
 		public bool CanExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
@@ -142,6 +144,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 			defaultView.SortDescriptions.Add(new SortDescription("AnneeDebut", ListSortDirection.Ascending));
 			this.Saisons = defaultView;
+		}
+
+		private void SelectionnerSaison(NotificationMessageSelectionElement<Saison> msg) {
+			this.Saison = msg.Content;
+			this.RaisePropertyChanged(() => this.Saison);
 		}
 	}
 }

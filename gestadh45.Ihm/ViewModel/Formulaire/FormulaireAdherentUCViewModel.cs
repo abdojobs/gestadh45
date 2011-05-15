@@ -91,6 +91,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public override void ExecuteEnregistrerCommand() {
+			var msg = new NotificationMessageSelectionElement<Adherent>(this.Adherent);
+
 			if (this.VerifierSaisie() 
 				&& base.EstEdition
 				&& this.mDaoAdherent.Exists(this.Adherent)) {
@@ -98,6 +100,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 					this.mDaoAdherent.Update(this.Adherent);
 
 				base.ExecuteEnregistrerCommand();
+				Messenger.Default.Send(msg);
 			}
 			else if (this.VerifierSaisie() 
 				&& !base.EstEdition
@@ -106,6 +109,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 					this.mDaoAdherent.Create(this.Adherent);
 
 				base.ExecuteEnregistrerCommand();
+				MessengerInstance.Send(msg);
 			}
 			else {
 				this.ErreursVisibles = true;

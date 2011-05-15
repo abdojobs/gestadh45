@@ -31,7 +31,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if (this.mInscription != value) {
 					this.mInscription = value;
-					this.RaisePropertyChanged("Inscription");
+					this.RaisePropertyChanged(() => this.Inscription);
 				}
 			}
 		}
@@ -46,7 +46,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if (this.mInscriptionsSaisonCourante != value) {
 					this.mInscriptionsSaisonCourante = value;
-					this.RaisePropertyChanged("InscriptionsSaisonCourante");
+					this.RaisePropertyChanged(() => this.InscriptionsSaisonCourante);
 				}
 			}
 		}
@@ -59,6 +59,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 			this.CreateGenererDocumentCommand();
 			this.CreateGenererVCardCommand();
+
+			Messenger.Default.Register<NotificationMessageSelectionElement<Inscription>>(this, this.SelectionnerInscription);
 		}
 
 		#region CreerCommand
@@ -248,6 +250,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 
 			return lRetour;
+		}
+
+		private void SelectionnerInscription(NotificationMessageSelectionElement<Inscription> msg) {
+			this.Inscription = msg.Content;
+			this.RaisePropertyChanged(() => this.Inscription);
 		}
 		#endregion		
 	}
