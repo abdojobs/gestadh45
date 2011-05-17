@@ -72,6 +72,7 @@
     <Compile Include="SpecialMessages\NotificationMessageFermetureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageOuvertureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageSelectionElement.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageTransition.cs" />
     <Compile Include="SpecialMessages\NotificationMessageUtilisateur.cs" />
     <Compile Include="SpecialMessages\ResMessages.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -83,6 +84,7 @@
     <Compile Include="Tools\ChampNonNullValidateur.cs" />
     <Compile Include="Tools\ChampTexteObligatoireValidateur.cs" />
     <Compile Include="Tools\ListToStringConverter.cs" />
+    <Compile Include="Tools\TransitionHelper.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationAdherentsUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationExtractionsUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationGroupesUCViewModel.cs" />
