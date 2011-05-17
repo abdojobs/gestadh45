@@ -10,6 +10,7 @@ using gestadh45.Main.UserControls.Formulaire;
 using gestadh45.Model;
 using Microsoft.Win32;
 using forms = System.Windows.Forms;
+using Transitionals.Transitions;
 
 namespace gestadh45.Main
 {
@@ -69,6 +70,11 @@ namespace gestadh45.Main
 			Messenger.Default.Register<NotificationMessageConsultationExtractions>(
 				this,
 				this.OuvrirFenetreUC
+			);
+
+			Messenger.Default.Register<NotificationMessageTransition>(
+				this,
+				this.ModifierTransition
 			);
 		}
 
@@ -223,6 +229,10 @@ namespace gestadh45.Main
 			((ConsultationExtractionsUCViewModel)lUC.DataContext).ResultatExtraction = pMessage.ResultatExtraction;
 			UCWindow lWindow = new UCWindow(lUC);
 			lWindow.ShowDialog();
+		}
+
+		private void ModifierTransition(NotificationMessageTransition msg) {
+			((TranslateTransition)this.contenu.Transition).StartPoint = msg.SensTransition;
 		}
 	}
 }

@@ -31,7 +31,7 @@ namespace gestadh45.Ihm.ViewModel
 			set {
 				if (this.mInfosDataSource != value) {
 					this.mInfosDataSource = value;
-					this.RaisePropertyChanged("InfosDataSource");
+					this.RaisePropertyChanged(() => this.InfosDataSource);
 				}
 			}
 		}
@@ -46,7 +46,7 @@ namespace gestadh45.Ihm.ViewModel
 			set {
 				if (this.mInfosSaisonCourante != value) {
 					this.mInfosSaisonCourante = value;
-					this.RaisePropertyChanged("InfosSaisonCourante");
+					this.RaisePropertyChanged(() => this.InfosSaisonCourante);
 				}
 			}
 		}
