@@ -130,6 +130,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.mSaisonDao.Delete(this.Saison);
 				this.InitialisationListeSaisons();
 				this.Saison = null;
+
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionSaison);
 			}
 		}
 

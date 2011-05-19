@@ -5,10 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
 			 x:Name="AffichageNotification"
-             d:DesignHeight="100" d:DesignWidth="300">
-	<GroupBox Header="{Binding ElementName=AffichageNotification, Path=Header}" FontWeight="Bold">
-		<TextBlock
-			Text="{Binding ElementName=AffichageNotification, Path=Message}"
-			Foreground="{Binding ElementName=AffichageNotification, Path=CouleurTexte}" />
-	</GroupBox>
+             d:DesignHeight="50" d:DesignWidth="300">
+	<StackPanel>
+			<TextBox IsReadOnlyCaretVisible="True" IsReadOnly="True" Height="50"
+					Text="{Binding ElementName=AffichageNotification, Path=Message}"
+					Foreground="{Binding ElementName=AffichageNotification, Path=CouleurTexte}" 
+					VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
+	</StackPanel>
 </UserControl>

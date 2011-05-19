@@ -4,6 +4,7 @@
 		xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
 		xmlns:Controls="clr-namespace:Transitionals.Controls;assembly=Transitionals"
 		xmlns:Transitions="clr-namespace:Transitionals.Transitions;assembly=Transitionals"
+		xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
 		Title="GestAdh45" MinHeight="500" MinWidth="705"
 		Background="#FFFFDEAD" 
 		DataContext="{Binding MainStatic, Source={StaticResource Locator}}" Icon="/gestadh45.Main;component/Images/gestadh45.ico" WindowState="Maximized">
@@ -68,6 +69,13 @@
 			</StatusBar>
 		</Border>
 
+		<Border Margin="5,5,5,5" DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">
+			<uc:AffichageNotificationUC x:Name="UCNotifications"
+				Height="50" 
+				Background="Cornsilk"
+				CouleurTexte="Red" />
+		</Border>
+
 		<Border Margin="5,5,5,5" BorderThickness="1" BorderBrush="Black" Background="Cornsilk">
 			<Controls:TransitionElement x:Name="contenu">
 				<Controls:TransitionElement.Transition>
@@ -75,6 +83,5 @@
 				</Controls:TransitionElement.Transition>			
 			</Controls:TransitionElement>
 		</Border>
-		
 	</DockPanel>
 </Window>

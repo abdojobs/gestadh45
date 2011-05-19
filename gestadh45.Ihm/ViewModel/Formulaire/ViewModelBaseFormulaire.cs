@@ -12,7 +12,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public ICommand EnregistrerCommand { get; set; }
 		
 		private bool mEstEdition;
-		private bool mErreursVisibles;
 		private List<string> mErreurs;
 
 		/// <summary>
@@ -26,19 +25,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				if (this.mEstEdition != value) {
 					this.mEstEdition = value;
 					this.RaisePropertyChanged("EstEdition");
-				}
-			}
-		}
-
-		/// <summary>
-		/// Obtient/Définit un booléen indiquant si les erreurs doivent êtres visibles
-		/// </summary>
-		public bool ErreursVisibles {
-			get { return this.mErreursVisibles; }
-			set {
-				if (this.mErreursVisibles != value) {
-					this.mErreursVisibles = value;
-					this.RaisePropertyChanged("ErreursVisibles");
 				}
 			}
 		}

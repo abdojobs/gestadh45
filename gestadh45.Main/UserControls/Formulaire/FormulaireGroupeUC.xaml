@@ -5,98 +5,70 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
-			 xmlns:ihmTools="clr-namespace:gestadh45.Ihm.Tools;assembly=gestadh45.Ihm"
-			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireGroupeVMStatic, Source={StaticResource Locator}}" 
              d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
 	<DockPanel>
-		<DockPanel.Children>
+		<TextBlock Text="Groupe" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
 
-			<TextBlock Text="Groupe" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+		<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,10">
+			<Button ToolTip="Annuler" Width="32" Height="32" Margin="0,0,10,0" 
+					CommandParameter="{x:Static ihm:CodesUC.ConsultationGroupes}" 
+					Command="{Binding AnnulerCommand}">
+				<Image Source="/gestadh45.Main;component/Images/btn_annuler.png" />
+			</Button>
+			<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="32" Height="32" Margin="10,0,0,0" 
+					Command="{Binding EnregistrerCommand}">
+				<Image Source="/gestadh45.Main;component/Images/btn_enregistrer.png" />
+			</Button>
+		</StackPanel>
 
-			<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,10,0,10">
-				<StackPanel.Children>
-					<Button ToolTip="Annuler" Width="32" Height="32" Margin="0,0,10,0" 
-							CommandParameter="{x:Static ihm:CodesUC.ConsultationGroupes}" 
-							Command="{Binding AnnulerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_annuler.png" />
-					</Button>
-					<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="32" Height="32" Margin="10,0,0,0" 
-							Command="{Binding EnregistrerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_enregistrer.png" />
-					</Button>
-				</StackPanel.Children>
-			</StackPanel>
-
-			<StackPanel HorizontalAlignment="Center" Margin="0,0,0,20" 
-						DockPanel.Dock="Bottom" 
-						Visibility="{Binding Path=ErreursVisibles, Converter={StaticResource ResourceKey=VisibilityOfBool}}">
-				<uc:AffichageNotificationUC 
-						CouleurTexte="Red"
-						Header="Erreurs" 
-						Message="{Binding Path=Erreurs, Converter={StaticResource ResourceKey=ListToString}}" />
-			</StackPanel>
-
-			<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
+		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 			
-			<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-				<StackPanel.Children>
-					<StackPanel Orientation="Horizontal">
-						<StackPanel.Children>
-							<TextBlock Text="Libellé : " Width="100" />
-							<TextBox MaxLength="50" Width="150" CharacterCasing="Upper">
-								<TextBox.Text>
-									<Binding Path="Groupe.Libelle">
-										<Binding.ValidationRules>
-											<ihmTools:ChampTexteObligatoireValidateur />
-										</Binding.ValidationRules>
-									</Binding>
-								</TextBox.Text>								
-							</TextBox>
-						</StackPanel.Children>
-					</StackPanel>
-					
-					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-						<TextBlock Text="Jour : " Width="100" />
-						<ComboBox Width="100" 
-								  ItemsSource="{Binding Path=JoursSemaine}" 
-								  SelectedItem="{Binding Path=Groupe.JourSemaine}" />
-					</StackPanel>
-					
-					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-						<TextBlock Text="Heure de début : " Width="100" />
-						<extToolkit:TimePicker Width="100" Name="test"
-											   Value="{Binding Path=Groupe.HeureDebutDT}" 
-											   Format="LongTime" />
-					</StackPanel>
-
-					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-						<TextBlock Text="Heure de fin : " Width="100" />
-						<extToolkit:TimePicker Width="100"
-											Value="{Binding Path=Groupe.HeureFinDT}" 
-											Format="LongTime" />						
-					</StackPanel>
-
-					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-						<TextBlock Text="Nb. de places : " Width="100" />
-						<extToolkit:IntegerUpDown Width="100"
-												  Minimum="0" Maximum="50"
-												  Value="{Binding Path=Groupe.NbPlaces}" 
-												  Text="{Binding Path=Groupe.NbPlaces}" />
-					</StackPanel>
-
-					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-						<TextBlock Text="Saison : " Width="100" />
-						<TextBlock Text="{Binding Path=Groupe.Saison}" />
-					</StackPanel>
-					
-					<TextBlock Text="Commentaire : " />
-					<TextBox AcceptsReturn="True" Height="50">
-						<Binding Path="Groupe.Commentaire" />
-					</TextBox>
-				</StackPanel.Children>
+		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Libellé : " Width="100" />
+				<TextBox MaxLength="50" Width="150" CharacterCasing="Upper" Text="{Binding Path=Groupe.Libelle}" />
 			</StackPanel>
-		</DockPanel.Children>
+					
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Jour : " Width="100" />
+				<ComboBox Width="100" 
+							ItemsSource="{Binding Path=JoursSemaine}" 
+							SelectedItem="{Binding Path=Groupe.JourSemaine}" />
+			</StackPanel>
+					
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Heure de début : " Width="100" />
+				<extToolkit:TimePicker Width="100" Name="test"
+										Value="{Binding Path=Groupe.HeureDebutDT}" 
+										Format="LongTime" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Heure de fin : " Width="100" />
+				<extToolkit:TimePicker Width="100"
+									Value="{Binding Path=Groupe.HeureFinDT}" 
+									Format="LongTime" />						
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Nb. de places : " Width="100" />
+				<extToolkit:IntegerUpDown Width="100"
+											Minimum="0" Maximum="50"
+											Value="{Binding Path=Groupe.NbPlaces}" 
+											Text="{Binding Path=Groupe.NbPlaces}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Saison : " Width="100" />
+				<TextBlock Text="{Binding Path=Groupe.Saison}" />
+			</StackPanel>
+					
+			<TextBlock Text="Commentaire : " />
+			<TextBox AcceptsReturn="True" Height="50">
+				<Binding Path="Groupe.Commentaire" />
+			</TextBox>
+		</StackPanel>
 	</DockPanel>
 </UserControl>

@@ -111,6 +111,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.mDaoInscription.Delete(this.Inscription);
 				this.InitialisationListeInscriptions();
 				this.Inscription = null;
+
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionInscription);
 			}
 		}
 		#endregion
@@ -196,12 +198,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 				generateur.CreerDocument(pCodeDocument);
 
-				Messenger.Default.Send(
-					new NotificationMessageUtilisateur(
-						TypesNotification.Information,
-						ResMessages.MessageInfoGenerationDocument
-					)
-				);
+				this.AfficherErreurIhm(ResMessages.MessageInfoGenerationDocument);
 			}
 		}
 
@@ -212,12 +209,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				VCardGenerateur generateur = new VCardGenerateur(donnees, pSaveFilePath);
 				generateur.CreerVCard();
 
-				Messenger.Default.Send(
-					new NotificationMessageUtilisateur(
-						TypesNotification.Information,
-						ResMessages.MessageInfoGenerationVCard
-					)
-				);
+				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCard);
 			}
 		}
 

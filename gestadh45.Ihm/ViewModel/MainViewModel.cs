@@ -151,11 +151,7 @@ namespace gestadh45.Ihm.ViewModel
 				}
 			}
 			catch (Exception exception) {
-				NotificationMessageUtilisateur message = new NotificationMessageUtilisateur(
-					TypesNotification.Erreur,
-					exception.Message
-				);
-				Messenger.Default.Send<NotificationMessageUtilisateur>(message);
+				this.AfficherErreurIhm(exception.Message);
 			}
 		}
 
@@ -170,12 +166,7 @@ namespace gestadh45.Ihm.ViewModel
 				}
 			}
 			catch (Exception exception) {
-				ObjectContextManager.DestroyContext();
-				NotificationMessageUtilisateur message = new NotificationMessageUtilisateur(
-					TypesNotification.Erreur,
-					exception.Message
-				);
-				Messenger.Default.Send<NotificationMessageUtilisateur>(message);
+				this.AfficherErreurIhm(exception.Message);
 			}
 		}
 		#endregion
