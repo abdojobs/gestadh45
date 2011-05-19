@@ -112,7 +112,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				MessengerInstance.Send(msg);
 			}
 			else {
-				this.ErreursVisibles = true;
+				this.AfficherErreursIhm(this.Erreurs);
 			}
 		}
 

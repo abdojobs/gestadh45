@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -49,16 +51,10 @@ namespace gestadh45.Ihm.ViewModel
 			}
 		}
 
+		#region AnnulerCommand
 		protected void CreateAnnulerCommand() {
 			this.AnnulerCommand = new RelayCommand<string>(
 				this.ExecuteAnnulerCommand
-			);
-		}
-
-		protected void CreateFenetreCommand() {
-			this.FenetreCommand = new RelayCommand<string>(
-				this.ExecuteFenetreCommand,
-				this.CanExecuteFenetreCommand
 			);
 		}
 
@@ -74,6 +70,15 @@ namespace gestadh45.Ihm.ViewModel
 				);
 			}
 		}
+		#endregion
+
+		#region FenetreCommand
+		protected void CreateFenetreCommand() {
+			this.FenetreCommand = new RelayCommand<string>(
+				this.ExecuteFenetreCommand,
+				this.CanExecuteFenetreCommand
+			);
+		}
 
 		public virtual bool CanExecuteFenetreCommand(string pCodeUC) {
 			return true;
@@ -84,16 +89,42 @@ namespace gestadh45.Ihm.ViewModel
 				new NotificationMessageOuvertureFenetre(pCodeUC)
 			);
 		}
+		#endregion
 
-		/// <summary>
-		/// Envoie une notification à l'utilisateur
-		/// </summary>
-		/// <param name="pType">Type de notification</param>
-		/// <param name="pMessage">Message</param>
-		protected void EnvoyerNotificationUtilisateur(string pType, string pMessage) {
-			Messenger.Default.Send<NotificationMessageUtilisateur>(
-				new NotificationMessageUtilisateur(pType, pMessage)
-			);
+		#region affichage des notifications ihm
+		private void AfficherNotificationIhm(string pType, string pNotification) {
+			var msg = new NotificationMessageIhm(pType, pNotification);
+			Messenger.Default.Send(msg);
 		}
+
+		protected void AfficherErreurIhm(string pErreur) {
+			this.AfficherNotificationIhm(TypesNotification.Erreur, pErreur);
+		}
+
+		protected void AfficherInformationIhm(string pInformation) {
+			this.AfficherNotificationIhm(TypesNotification.Information, pInformation);
+		}
+
+		protected void AfficherErreursIhm(List<string> pErreurs) {
+			StringBuilder sb = new StringBuilder();
+
+			foreach (string err in pErreurs) {
+				sb.AppendLine(err);
+			}
+
+			this.AfficherErreurIhm(sb.ToString());
+		}
+
+		protected void AfficherInformationsIhm(List<string> pInformations) {
+			StringBuilder sb = new StringBuilder();
+
+			foreach (string info in pInformations) {
+				sb.AppendLine(info);
+			}
+
+			this.AfficherInformationIhm(sb.ToString());
+		}
+
+		#endregion
 	}
 }

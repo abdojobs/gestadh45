@@ -150,6 +150,21 @@
   <data name="MessageInfoGenerationVCardsGroupe" xml:space="preserve">
     <value>Les VCards ont correctement été générées</value>
   </data>
+  <data name="MessageInfoSuppressionAdherent" xml:space="preserve">
+    <value>L'adhérent a correctement été supprimé</value>
+  </data>
+  <data name="MessageInfoSuppressionGroupe" xml:space="preserve">
+    <value>Le groupe a correctement été supprimé</value>
+  </data>
+  <data name="MessageInfoSuppressionInscription" xml:space="preserve">
+    <value>L'inscription a correctement été supprimé</value>
+  </data>
+  <data name="MessageInfoSuppressionSaison" xml:space="preserve">
+    <value>La saison a correctement été supprimée</value>
+  </data>
+  <data name="MessageInfoSuppressionVille" xml:space="preserve">
+    <value>La ville a correctement été supprimée</value>
+  </data>
   <data name="TitreConfirmation" xml:space="preserve">
     <value>Confirmation</value>
   </data>

@@ -1,5 +1,5 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
+using System.Windows.Media;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm;
 using gestadh45.Ihm.SpecialMessages;
@@ -9,8 +9,8 @@ using gestadh45.Main.UserControls.Consultation;
 using gestadh45.Main.UserControls.Formulaire;
 using gestadh45.Model;
 using Microsoft.Win32;
-using forms = System.Windows.Forms;
 using Transitionals.Transitions;
+using forms = System.Windows.Forms;
 
 namespace gestadh45.Main
 {
@@ -22,11 +22,11 @@ namespace gestadh45.Main
 		public MainWindow() {
 			InitializeComponent();
 
-			Messenger.Default.Register<NotificationMessageUtilisateur>(
-				this, 
-				this.AfficherNotificationUtilisateur
+			Messenger.Default.Register<NotificationMessageIhm>(
+				this,
+				this.AfficherNotificationsIhm
 			);
-
+			
 			Messenger.Default.Register<DialogMessageConfirmation>(
 				this,
 				this.AfficherDialogConfirmation
@@ -82,35 +82,6 @@ namespace gestadh45.Main
 			new WPFAboutBox(this).ShowDialog();
 		}
 
-		private void AfficherNotificationUtilisateur(NotificationMessageUtilisateur pMessage) {
-			string lTitre = string.Empty;
-			string lTexte = string.Empty;
-
-			if (pMessage.Notification.Equals(TypesNotification.Erreur)) {
-				lTitre = ResMessages.TitreErreur;
-				lTexte = pMessage.Message;
-			}
-			else if(pMessage.Notification.Equals(TypesNotification.ErreurFatale)) {
-				StringBuilder lSb = new StringBuilder();
-				lSb.AppendLine(ResMessages.ErreurFataleDebut);
-				lSb.AppendLine(pMessage.Message);
-				lSb.AppendLine();
-				lSb.AppendLine(ResMessages.ErreurFataleInfoQuitter);
-
-				lTexte = lSb.ToString();
-			}
-			else {
-				lTitre = ResMessages.TitreInformation;
-				lTexte = pMessage.Message;
-			}
-
-			MessageBox.Show(lTexte, lTitre);
-
-			if(pMessage.Notification.Equals(TypesNotification.ErreurFatale)) {
-				Application.Current.Shutdown();
-			}
-		}
-
 		private void AfficherDialogConfirmation(DialogMessageConfirmation pDialog) {
 			var lResult = MessageBox.Show(pDialog.Content, pDialog.Caption, pDialog.Button);
 			pDialog.ProcessCallback(lResult);
@@ -154,6 +125,8 @@ namespace gestadh45.Main
 		}
 
 		private void ChangerUC(NotificationMessageChangementUC pMessage) {
+			this.RazUCNotification();
+
 			if (pMessage.CodeUC.Equals(CodesUC.ConsultationInfosClub)) {
 				this.contenu.Content = new ConsultationInfosClubUC();
 			}
@@ -199,6 +172,8 @@ namespace gestadh45.Main
 		}
 
 		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Adherent> pMessage) {
+			this.RazUCNotification();
+
 			if (pMessage.CodeUC.Equals(CodesUC.FormulaireAdherent)) {
 				this.contenu.Content = new FormulaireAdherentUC((Adherent)pMessage.Element);
 			}
@@ -211,6 +186,8 @@ namespace gestadh45.Main
 		}
 
 		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Inscription> pMessage) {
+			this.RazUCNotification();
+
 			this.contenu.Content = new FormulaireInscriptionUC((Inscription)pMessage.Element);
 		}
 
@@ -233,6 +210,21 @@ namespace gestadh45.Main
 
 		private void ModifierTransition(NotificationMessageTransition msg) {
 			((TranslateTransition)this.contenu.Transition).StartPoint = msg.SensTransition;
+		}
+
+		private void AfficherNotificationsIhm(NotificationMessageIhm msg) {
+			if (msg.TypeNotificationIhm.Equals(TypesNotification.Information)) {
+				this.UCNotifications.CouleurTexte = Brushes.Blue;
+			}
+			else if (msg.Notification.Equals(TypesNotification.Erreur)) {
+				this.UCNotifications.CouleurTexte = Brushes.Red;
+			}
+
+			this.UCNotifications.Message = msg.Notification;
+		}
+
+		private void RazUCNotification() {
+			this.UCNotifications.Message = string.Empty;
 		}
 	}
 }

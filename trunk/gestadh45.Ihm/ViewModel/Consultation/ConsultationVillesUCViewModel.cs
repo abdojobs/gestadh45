@@ -81,6 +81,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.mDaoVille.Delete(this.Ville);
 				this.InitialisationListeVilles();
 				this.Ville = null;
+
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionVille);
 			}
 		}
 

@@ -42,7 +42,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				Messenger.Default.Send(msg);
 			}
 			else {
-				this.ErreursVisibles = true;
+				this.AfficherErreursIhm(this.Erreurs);
 			}
 		}
 

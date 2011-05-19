@@ -55,7 +55,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.InfosClub = this.mDaoInfosClub.Read();
 			this.mDaoInfosClub.Refresh(this.InfosClub);
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
-			this.ErreursVisibles = false;
 
 			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
 		}
@@ -75,7 +74,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
-				this.ErreursVisibles = true;
+				this.AfficherErreursIhm(this.Erreurs);
 			}
 		}
 
@@ -100,7 +99,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			List<string> lErreurs = new List<string>();
 
 			if (string.IsNullOrWhiteSpace(this.InfosClub.Nom)) {
-				lErreurs.Add(ResErreurs.Groupe_LibelleObligatoire);
+				lErreurs.Add(ResErreurs.InfosClub_NomObligatoire);
 			}
 
 			if (this.InfosClub.Adresse == null || string.IsNullOrWhiteSpace(this.InfosClub.Adresse.Libelle)) {

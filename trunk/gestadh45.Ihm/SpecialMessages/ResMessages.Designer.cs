@@ -160,6 +160,51 @@ namespace gestadh45.Ihm.SpecialMessages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;adhérent a correctement été supprimé.
+        /// </summary>
+        public static string MessageInfoSuppressionAdherent {
+            get {
+                return ResourceManager.GetString("MessageInfoSuppressionAdherent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le groupe a correctement été supprimé.
+        /// </summary>
+        public static string MessageInfoSuppressionGroupe {
+            get {
+                return ResourceManager.GetString("MessageInfoSuppressionGroupe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;inscription a correctement été supprimé.
+        /// </summary>
+        public static string MessageInfoSuppressionInscription {
+            get {
+                return ResourceManager.GetString("MessageInfoSuppressionInscription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à La saison a correctement été supprimée.
+        /// </summary>
+        public static string MessageInfoSuppressionSaison {
+            get {
+                return ResourceManager.GetString("MessageInfoSuppressionSaison", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à La ville a correctement été supprimée.
+        /// </summary>
+        public static string MessageInfoSuppressionVille {
+            get {
+                return ResourceManager.GetString("MessageInfoSuppressionVille", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Confirmation.
         /// </summary>
         public static string TitreConfirmation {

@@ -141,6 +141,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.mDaoAdherent.Delete(this.Adherent);
 				this.InitialisationListeAdherents();
 				this.Adherent = null;
+
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionAdherent);
 			}
 		}
 

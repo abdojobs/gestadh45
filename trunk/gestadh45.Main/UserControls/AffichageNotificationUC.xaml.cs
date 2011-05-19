@@ -23,19 +23,6 @@ namespace gestadh45.Main.UserControls
 		}
 
 		/// <summary>
-		/// Obtient/Définit le header
-		/// </summary>
-		public string Header {
-			get {
-				return (string)GetValue(HeaderProperty);
-			}
-
-			set {
-				SetValue(HeaderProperty, value);
-			}
-		}
-
-		/// <summary>
 		/// Obtient/Définit la couleur du texte
 		/// </summary>
 		public Brush CouleurTexte {
@@ -54,12 +41,6 @@ namespace gestadh45.Main.UserControls
 
 		public static DependencyProperty MessageProperty = DependencyProperty.Register(
 			"Message",
-			typeof(string),
-			typeof(AffichageNotificationUC)
-		);
-
-		public static DependencyProperty HeaderProperty = DependencyProperty.Register(
-			"Header",
 			typeof(string),
 			typeof(AffichageNotificationUC)
 		);
