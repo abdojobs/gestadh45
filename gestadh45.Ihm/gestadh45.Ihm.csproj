@@ -60,6 +60,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MainRessources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ObjetsIhm\NotificationIhm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAdaptateurs\ServiceDocumentAdaptateur.cs" />
     <Compile Include="ServiceAdaptateurs\ServiceVCardAdaptateur.cs" />

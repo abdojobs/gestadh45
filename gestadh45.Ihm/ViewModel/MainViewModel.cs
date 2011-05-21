@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Input;
-using System.Windows.Media;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
+using gestadh45.Ihm.ObjetsIhm;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 using gestadh45.service.Database;
@@ -21,8 +21,7 @@ namespace gestadh45.Ihm.ViewModel
 
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
-		private string mNotificationsIhm;
-		private SolidColorBrush mCouleurNotificationsIhm;
+		public NotificationIhm mNotification;
 
 		/// <summary>
 		/// Obtient/Définit l'information sur le datasource actuel
@@ -55,27 +54,14 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		/// <summary>
-		/// Obtient/Définit les notifications à afficher sur l'IHM
+		/// Obtient/Définit la notification à afficher sur l'IHM
 		/// </summary>
-		public string NotificationsIhm {
-			get { return this.mNotificationsIhm; }
+		public NotificationIhm Notification {
+			get { return this.mNotification; }
 			set {
-				if (this.mNotificationsIhm != value) {
-					this.mNotificationsIhm = value;
-					this.RaisePropertyChanged(() => this.NotificationsIhm);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Obtient/Définit la couleur des notifications IHM
-		/// </summary>
-		public SolidColorBrush CouleurNotificationsIhm {
-			get { return this.mCouleurNotificationsIhm; }
-			set {
-				if (this.mCouleurNotificationsIhm != value) {
-					this.mCouleurNotificationsIhm = value;
-					this.RaisePropertyChanged(() => this.CouleurNotificationsIhm);
+				if (this.mNotification != value) {
+					this.mNotification = value;
+					this.RaisePropertyChanged(() => this.Notification);
 				}
 			}
 		}
@@ -138,7 +124,7 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
-			this.NotificationsIhm = string.Empty;
+			this.Notification = new NotificationIhm();
 
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(pCodeUC)
@@ -177,21 +163,7 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		private void MajNotificationsIhm(NotificationMessageIhm msg) {
-			this.NotificationsIhm = msg.Notification;
-
-			switch (msg.TypeNotificationIhm) {
-				case TypesNotification.Erreur:
-					this.CouleurNotificationsIhm = Brushes.Red;
-					break;
-
-				case TypesNotification.Information:
-					this.CouleurNotificationsIhm = Brushes.Blue;
-					break;
-
-				default:
-					this.CouleurNotificationsIhm = Brushes.Black;
-					break;
-			}
+			this.Notification = new NotificationIhm(msg.Notification, msg.TypeNotificationIhm);
 		}
 
 		private void CreerDatabase(string pFilePath) {
