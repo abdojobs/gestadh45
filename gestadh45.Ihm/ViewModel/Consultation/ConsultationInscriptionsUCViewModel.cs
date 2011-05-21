@@ -65,6 +65,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		#region CreerCommand
 		public override void ExecuteCreerCommand() {
+			base.ExecuteCreerCommand();
+
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(CodesUC.FormulaireInscription)
 			);
@@ -77,6 +79,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public override void ExecuteEditerCommand() {
+			base.ExecuteEditerCommand();
+
 			Messenger.Default.Send<NotificationMessageChangementUC<Inscription>>(
 				new NotificationMessageChangementUC<Inscription>(
 					CodesUC.FormulaireInscription,

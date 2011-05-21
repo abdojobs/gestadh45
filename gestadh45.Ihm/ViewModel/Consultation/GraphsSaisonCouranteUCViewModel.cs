@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using gestadh45.Ihm.SpecialMessages;
 using gestadh45.service.Graphs;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
@@ -124,12 +122,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				Code = CodesGraphs.RepartitionAges,
 				Libelle = ResGraphs.Titre_RepartitionAges
 			});
-		}
-
-		public override void ExecuteCreerCommand() {
-			Messenger.Default.Send<NotificationMessageChangementUC>(
-				new NotificationMessageChangementUC(CodesUC.GraphsSaisonCourante)
-			);
 		}
 	}
 }

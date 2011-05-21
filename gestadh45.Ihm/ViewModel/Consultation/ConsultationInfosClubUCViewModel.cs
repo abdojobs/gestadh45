@@ -40,6 +40,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public override void ExecuteEditerCommand() {
+			base.ExecuteEditerCommand();
+
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(CodesUC.FormulaireInfosClub)
 			);

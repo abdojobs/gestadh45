@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Ihm.Tools;
+using gestadh45.Ihm.ObjetsIhm;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
@@ -65,8 +66,14 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		// méthodes à redéfinir dans les VM qui les utilisent
-		public virtual void ExecuteCreerCommand() { }
-		public virtual void ExecuteEditerCommand() { }
+		public virtual void ExecuteCreerCommand() {
+			this.RazNotificationIhm();
+		}
+
+		public virtual void ExecuteEditerCommand() {
+			this.RazNotificationIhm();
+		}
+
 		public virtual void ExecuteSupprimerCommand() { }
 		public virtual void ExecuteAfficherDetailsCommand(object pObjet) { }
 		public virtual void ExecuteFiltrerListeCommand(string pFiltre) { }

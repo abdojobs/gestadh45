@@ -100,6 +100,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public override void ExecuteCreerCommand() {
+			base.ExecuteCreerCommand();
+
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(CodesUC.FormulaireVille)
 			);
