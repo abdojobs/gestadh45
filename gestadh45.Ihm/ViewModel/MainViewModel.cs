@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using System.Windows.Media;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
@@ -20,6 +21,8 @@ namespace gestadh45.Ihm.ViewModel
 
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
+		private string mNotificationsIhm;
+		private SolidColorBrush mCouleurNotificationsIhm;
 
 		/// <summary>
 		/// Obtient/Définit l'information sur le datasource actuel
@@ -51,6 +54,32 @@ namespace gestadh45.Ihm.ViewModel
 			}
 		}
 
+		/// <summary>
+		/// Obtient/Définit les notifications à afficher sur l'IHM
+		/// </summary>
+		public string NotificationsIhm {
+			get { return this.mNotificationsIhm; }
+			set {
+				if (this.mNotificationsIhm != value) {
+					this.mNotificationsIhm = value;
+					this.RaisePropertyChanged(() => this.NotificationsIhm);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit la couleur des notifications IHM
+		/// </summary>
+		public SolidColorBrush CouleurNotificationsIhm {
+			get { return this.mCouleurNotificationsIhm; }
+			set {
+				if (this.mCouleurNotificationsIhm != value) {
+					this.mCouleurNotificationsIhm = value;
+					this.RaisePropertyChanged(() => this.CouleurNotificationsIhm);
+				}
+			}
+		}
+
 		public MainViewModel() {
 			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
 
@@ -61,7 +90,12 @@ namespace gestadh45.Ihm.ViewModel
 
 			Messenger.Default.Register<NotificationMessage<Saison>>(
 				this, 
-				this.NotificationChangementSaisonCourante
+				this.MajInfosSaisonCourante
+			);
+
+			Messenger.Default.Register<NotificationMessageIhm>(
+				this,
+				this.MajNotificationsIhm
 			);
 		}
 
@@ -104,6 +138,8 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
+			this.NotificationsIhm = string.Empty;
+
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(pCodeUC)
 			);
@@ -134,9 +170,27 @@ namespace gestadh45.Ihm.ViewModel
 		#endregion
 
 		#region méthodes privees
-		private void NotificationChangementSaisonCourante(NotificationMessage<Saison> msg) {
+		private void MajInfosSaisonCourante(NotificationMessage<Saison> msg) {
 			if (msg.Notification.Equals(TypesNotification.ChangementSaisonCourante)) {
 				this.InfosSaisonCourante = msg.Content.ToShortString();
+			}
+		}
+
+		private void MajNotificationsIhm(NotificationMessageIhm msg) {
+			this.NotificationsIhm = msg.Notification;
+
+			switch (msg.TypeNotificationIhm) {
+				case TypesNotification.Erreur:
+					this.CouleurNotificationsIhm = Brushes.Red;
+					break;
+
+				case TypesNotification.Information:
+					this.CouleurNotificationsIhm = Brushes.Blue;
+					break;
+
+				default:
+					this.CouleurNotificationsIhm = Brushes.Black;
+					break;
 			}
 		}
 
