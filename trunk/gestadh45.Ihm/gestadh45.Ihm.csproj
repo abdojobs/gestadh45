@@ -71,7 +71,7 @@
     <Compile Include="SpecialMessages\NotificationMessageChangementUC.cs" />
     <Compile Include="SpecialMessages\NotificationMessageConsultationExtractions.cs" />
     <Compile Include="SpecialMessages\NotificationMessageFermetureFenetre.cs" />
-    <Compile Include="SpecialMessages\NotificationMessageIhm.cs" />
+    <Compile Include="SpecialMessages\MsgNotificationIhm.cs" />
     <Compile Include="SpecialMessages\NotificationMessageOuvertureFenetre.cs" />
     <Compile Include="SpecialMessages\NotificationMessageSelectionElement.cs" />
     <Compile Include="SpecialMessages\NotificationMessageTransition.cs" />

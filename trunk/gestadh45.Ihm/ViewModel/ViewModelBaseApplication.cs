@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
+using gestadh45.Ihm.ObjetsIhm;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -59,6 +60,8 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public virtual void ExecuteAnnulerCommand(string pCodeUc) {
+			this.RazNotificationIhm();
+
 			if (this.ModeFenetre) {
 				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
 					new NotificationMessageFermetureFenetre()
@@ -92,17 +95,25 @@ namespace gestadh45.Ihm.ViewModel
 		#endregion
 
 		#region affichage des notifications ihm
-		private void AfficherNotificationIhm(string pType, string pNotification) {
-			var msg = new NotificationMessageIhm(pType, pNotification);
-			Messenger.Default.Send(msg);
+		private void AfficherNotificationIhm(NotificationIhm pNotification) {
+			Messenger.Default.Send(new MsgNotificationIhm(pNotification));
+		}
+
+		/// <summary>
+		/// Envoie une demande d'effacement de la zonne de notification
+		/// </summary>
+		protected void RazNotificationIhm() {
+			this.AfficherNotificationIhm(new NotificationIhm());
 		}
 
 		protected void AfficherErreurIhm(string pErreur) {
-			this.AfficherNotificationIhm(TypesNotification.Erreur, pErreur);
+			NotificationIhm notification = new NotificationIhm(pErreur, TypesNotification.Erreur);
+			this.AfficherNotificationIhm(notification);
 		}
 
 		protected void AfficherInformationIhm(string pInformation) {
-			this.AfficherNotificationIhm(TypesNotification.Information, pInformation);
+			NotificationIhm notification = new NotificationIhm(pInformation, TypesNotification.Information);
+			this.AfficherNotificationIhm(notification);
 		}
 
 		protected void AfficherErreursIhm(List<string> pErreurs) {
@@ -124,7 +135,6 @@ namespace gestadh45.Ihm.ViewModel
 
 			this.AfficherInformationIhm(sb.ToString());
 		}
-
 		#endregion
 	}
 }

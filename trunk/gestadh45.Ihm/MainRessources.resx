@@ -130,6 +130,9 @@
   <data name="ExtensionBase" xml:space="preserve">
     <value>.eyb</value>
   </data>
+  <data name="NotificationOuvertureBase" xml:space="preserve">
+    <value>Ouverture de la base : </value>
+  </data>
   <data name="SymboleDevise" xml:space="preserve">
     <value>€</value>
   </data>

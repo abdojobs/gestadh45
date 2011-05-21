@@ -86,6 +86,15 @@ namespace gestadh45.Ihm {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ouverture de la base : .
+        /// </summary>
+        public static string NotificationOuvertureBase {
+            get {
+                return ResourceManager.GetString("NotificationOuvertureBase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à €.
         /// </summary>
         public static string SymboleDevise {

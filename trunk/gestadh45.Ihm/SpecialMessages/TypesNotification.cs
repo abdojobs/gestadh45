@@ -18,5 +18,7 @@ namespace gestadh45.Ihm.SpecialMessages
 		public const string AfficherExtraction = "AfficherExtraction";
 		public const string SelectionElement = "SelectionElement";
 		public const string ModificationTransition = "ModificationTransition";
+
+		public const string NotificationIhm = "NotificationIhm";
 	}
 }

@@ -16,7 +16,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		private IInscriptionDao mDaoInscription;
 		private IGroupeDao mDaoGroupe;
+		private ISaisonDao mDaoSaison;
 		private IAdherentDao mDaoAdherent;
+		private IVilleDao mDaoVille;
+		private IContactDao mDaoContact;
+		private IAdresseDao mDaoAdresse;
 
 		/// <summary>
 		/// Obtient/Définit la liste des adhérents
@@ -66,7 +70,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public FormulaireInscriptionUCViewModel() {
 			this.mDaoInscription = this.mDaoFactory.GetInscriptionDao();
 			this.mDaoGroupe = this.mDaoFactory.GetGroupeDao();
+			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
 			this.mDaoAdherent = this.mDaoFactory.GetAdherentDao();
+			this.mDaoVille = this.mDaoFactory.GetVilleDao();
+			this.mDaoContact = this.mDaoFactory.GetContactDao();
+			this.mDaoAdresse = this.mDaoFactory.GetAdresseDao();
 
             this.Inscription = new Inscription();
 
@@ -79,6 +87,13 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public override void ExecuteAnnulerCommand(string pCodeUc) {
 			if (this.Inscription != null && base.EstEdition) {
+				this.mDaoSaison.Refresh(this.Inscription.Groupe.Saison);
+				this.mDaoGroupe.Refresh(this.Inscription.Groupe);
+				this.mDaoVille.Refresh(this.Inscription.Adherent.Adresse.Ville);
+				this.mDaoAdresse.Refresh(this.mInscription.Adherent.Adresse);
+				this.mDaoContact.Refresh(this.Inscription.Adherent.Contact);
+				this.mDaoAdherent.Refresh(this.Inscription.Adherent);
+
 				this.mDaoInscription.Refresh(this.Inscription);
 			}
 			base.ExecuteAnnulerCommand(pCodeUc);

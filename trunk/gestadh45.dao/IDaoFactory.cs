@@ -11,5 +11,7 @@ namespace gestadh45.dao
 		IInfosClubDao GetInfosClubDao();
 		IGroupeDao GetGroupeDao();
 		IAdherentDao GetAdherentDao();
+		IContactDao GetContactDao();
+		IAdresseDao GetAdresseDao();
 	}
 }

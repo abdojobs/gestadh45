@@ -46,6 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdherentDao.cs" />
+    <Compile Include="AdresseDao.cs" />
+    <Compile Include="ContactDao.cs" />
+    <Compile Include="IAdresseDao.cs" />
+    <Compile Include="IContactDao.cs" />
     <Compile Include="ObjectContextManager.cs" />
     <Compile Include="DaoFactory.cs" />
     <Compile Include="EntityDao.cs" />

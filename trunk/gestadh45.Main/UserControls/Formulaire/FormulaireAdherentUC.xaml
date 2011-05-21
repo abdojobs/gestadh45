@@ -54,7 +54,7 @@
 							<TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" CharacterCasing="Upper" Text="{Binding Path=Adherent.Nom}" />
 								
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="Prénom : " VerticalAlignment="Center" />
-							<TextBox Grid.Row="1" Grid.Column="1" MaxLength="50" Text="{Binding Path=Adherent.Nom}" />
+							<TextBox Grid.Row="1" Grid.Column="1" MaxLength="50" Text="{Binding Path=Adherent.Prenom}" />
 
 							<TextBlock Grid.Row="2" Grid.Column="0" Text="Né(e) le : " VerticalAlignment="Center" />
 							<DatePicker Grid.Row="2" Grid.Column="1" 
@@ -63,7 +63,7 @@
 										SelectedDateFormat="Short" />
 								
 							<TextBlock Grid.Row="3" Grid.Column="0" Text="Sexe : " VerticalAlignment="Center" />
-							<ComboBox Grid.Row="3" Grid.Column="1" 
+							<ComboBox Grid.Row="3" Grid.Column="1" Width="50" HorizontalAlignment="Left"
 										ItemsSource="{Binding Path=Sexes}"
 										SelectedItem="{Binding Path=Adherent.Sexe}" />
 						</Grid.Children>

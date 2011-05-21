@@ -67,6 +67,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		#region CreerCommand
 		public override void ExecuteCreerCommand() {
+			base.ExecuteCreerCommand();
+
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(CodesUC.FormulaireGroupe)
 			);

@@ -22,7 +22,7 @@ namespace gestadh45.Ihm.ViewModel
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
 		public NotificationIhm mNotification;
-
+		
 		/// <summary>
 		/// Obtient/Définit l'information sur le datasource actuel
 		/// </summary>
@@ -79,9 +79,9 @@ namespace gestadh45.Ihm.ViewModel
 				this.MajInfosSaisonCourante
 			);
 
-			Messenger.Default.Register<NotificationMessageIhm>(
+			Messenger.Default.Register<MsgNotificationIhm>(
 				this,
-				this.MajNotificationsIhm
+				(msg) => this.AfficherNotificationIhm(msg.Contenu)
 			);
 		}
 
@@ -124,7 +124,7 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
-			this.Notification = new NotificationIhm();
+			this.AfficherNotificationIhm(new NotificationIhm());
 
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(pCodeUC)
@@ -162,10 +162,6 @@ namespace gestadh45.Ihm.ViewModel
 			}
 		}
 
-		private void MajNotificationsIhm(NotificationMessageIhm msg) {
-			this.Notification = new NotificationIhm(msg.Notification, msg.TypeNotificationIhm);
-		}
-
 		private void CreerDatabase(string pFilePath) {
 			try {
 				if (!string.IsNullOrWhiteSpace(pFilePath)) {
@@ -189,11 +185,18 @@ namespace gestadh45.Ihm.ViewModel
 					this.InfosDataSource = EntitySQLiteHelper.GetFilePathFromContext(ObjectContextManager.Context);
 					this.InfosSaisonCourante = this.mDaoSaison.ReadSaisonCourante().ToShortString();
 					this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
+
+					NotificationIhm notification = new NotificationIhm(MainRessources.NotificationOuvertureBase + pFilePath, TypesNotification.Information);
+					this.AfficherNotificationIhm(notification);
 				}
 			}
 			catch (Exception exception) {
 				this.AfficherErreurIhm(exception.Message);
 			}
+		}
+
+		private void AfficherNotificationIhm(NotificationIhm pNotification) {
+			this.Notification = pNotification;
 		}
 		#endregion
 	}

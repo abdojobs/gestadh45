@@ -89,12 +89,16 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public override void ExecuteCreerCommand() {
+			base.ExecuteCreerCommand();
+
 			Messenger.Default.Send<NotificationMessageChangementUC>(
 				new NotificationMessageChangementUC(CodesUC.FormulaireAdherent)
 			);
 		}
 
 		public override void ExecuteEditerCommand() {
+			base.ExecuteEditerCommand();
+
 			Messenger.Default.Send<NotificationMessageChangementUC<Adherent>>(
 				new NotificationMessageChangementUC<Adherent>(
 					CodesUC.FormulaireAdherent, 

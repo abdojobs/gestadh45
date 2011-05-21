@@ -15,6 +15,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		private IVilleDao mDaoVille;
 		private IInfosClubDao mDaoInfosClub;
+		private IContactDao mDaoContact;
+		private IAdresseDao mDaoAdresse;
 
 		/// <summary>
 		/// Obtient/Définit l'objet Infos club du formulaire
@@ -49,6 +51,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public FormulaireInfosClubUCViewModel() {
 			this.mDaoVille = this.mDaoFactory.GetVilleDao();
 			this.mDaoInfosClub = this.mDaoFactory.GetInfosClubDao();
+			this.mDaoContact = this.mDaoFactory.GetContactDao();
+			this.mDaoAdresse = this.mDaoFactory.GetAdresseDao();
 
 			this.InitialisationListeVilles();
 
@@ -61,6 +65,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public override void ExecuteAnnulerCommand(string pCodeUc) {
 			if (this.InfosClub != null) {
+				this.mDaoVille.Refresh(this.InfosClub.Adresse.Ville);
+				this.mDaoAdresse.Refresh(this.InfosClub.Adresse);
+				this.mDaoContact.Refresh(this.InfosClub.Contact);
 				this.mDaoInfosClub.Refresh(this.InfosClub);
 			}
 

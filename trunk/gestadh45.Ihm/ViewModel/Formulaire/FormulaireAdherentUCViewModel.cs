@@ -18,6 +18,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private IVilleDao mDaoVille;
 		private ISexeDao mDaoSexe;
 		private IAdherentDao mDaoAdherent;
+		private IContactDao mDaoContact;
+		private IAdresseDao mDaoAdresse;
 
 		/// <summary>
 		/// Obtient/Définit l'objet du formulaire
@@ -68,6 +70,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.mDaoVille = this.mDaoFactory.GetVilleDao();
 			this.mDaoSexe = this.mDaoFactory.GetSexeDao();
 			this.mDaoAdherent = this.mDaoFactory.GetAdherentDao();
+			this.mDaoContact = this.mDaoFactory.GetContactDao();
+			this.mDaoAdresse = this.mDaoFactory.GetAdresseDao();
 
 			this.Adherent = new Adherent();
 			this.Adherent.Adresse = new Adresse();
@@ -85,6 +89,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public override void ExecuteAnnulerCommand(string pCodeUc) {
 			if ((this.Adherent != null) && base.EstEdition) {
+				this.mDaoVille.Refresh(this.Adherent.Adresse.Ville);
+				this.mDaoAdresse.Refresh(this.Adherent.Adresse);
+				this.mDaoContact.Refresh(this.Adherent.Contact);
 				this.mDaoAdherent.Refresh(this.Adherent);
 			}
 			base.ExecuteAnnulerCommand(pCodeUc);
@@ -109,7 +116,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 					this.mDaoAdherent.Create(this.Adherent);
 
 				base.ExecuteEnregistrerCommand();
-				MessengerInstance.Send(msg);
+				Messenger.Default.Send(msg);
 			}
 			else {
 				this.AfficherErreursIhm(this.Erreurs);
