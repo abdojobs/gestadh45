@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Media;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm;
 using gestadh45.Ihm.SpecialMessages;
@@ -21,11 +20,6 @@ namespace gestadh45.Main
 	{
 		public MainWindow() {
 			InitializeComponent();
-
-			Messenger.Default.Register<NotificationMessageIhm>(
-				this,
-				this.AfficherNotificationsIhm
-			);
 			
 			Messenger.Default.Register<DialogMessageConfirmation>(
 				this,
@@ -125,8 +119,6 @@ namespace gestadh45.Main
 		}
 
 		private void ChangerUC(NotificationMessageChangementUC pMessage) {
-			this.RazUCNotification();
-
 			if (pMessage.CodeUC.Equals(CodesUC.ConsultationInfosClub)) {
 				this.contenu.Content = new ConsultationInfosClubUC();
 			}
@@ -172,8 +164,6 @@ namespace gestadh45.Main
 		}
 
 		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Adherent> pMessage) {
-			this.RazUCNotification();
-
 			if (pMessage.CodeUC.Equals(CodesUC.FormulaireAdherent)) {
 				this.contenu.Content = new FormulaireAdherentUC((Adherent)pMessage.Element);
 			}
@@ -186,8 +176,6 @@ namespace gestadh45.Main
 		}
 
 		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Inscription> pMessage) {
-			this.RazUCNotification();
-
 			this.contenu.Content = new FormulaireInscriptionUC((Inscription)pMessage.Element);
 		}
 
@@ -210,21 +198,6 @@ namespace gestadh45.Main
 
 		private void ModifierTransition(NotificationMessageTransition msg) {
 			((TranslateTransition)this.contenu.Transition).StartPoint = msg.SensTransition;
-		}
-
-		private void AfficherNotificationsIhm(NotificationMessageIhm msg) {
-			if (msg.TypeNotificationIhm.Equals(TypesNotification.Information)) {
-				this.UCNotifications.CouleurTexte = Brushes.Blue;
-			}
-			else if (msg.Notification.Equals(TypesNotification.Erreur)) {
-				this.UCNotifications.CouleurTexte = Brushes.Red;
-			}
-
-			this.UCNotifications.Message = msg.Notification;
-		}
-
-		private void RazUCNotification() {
-			this.UCNotifications.Message = string.Empty;
 		}
 	}
 }

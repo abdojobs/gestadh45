@@ -8,7 +8,7 @@
              d:DesignHeight="50" d:DesignWidth="300">
 	<StackPanel>
 			<TextBox IsReadOnlyCaretVisible="True" IsReadOnly="True" Height="50"
-					Text="{Binding ElementName=AffichageNotification, Path=Message}"
+					Text="{Binding ElementName=AffichageNotification, Path=Message}" 
 					Foreground="{Binding ElementName=AffichageNotification, Path=CouleurTexte}" 
 					VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" />
 	</StackPanel>
