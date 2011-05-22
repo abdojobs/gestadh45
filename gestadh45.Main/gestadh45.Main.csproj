@@ -112,6 +112,9 @@
     <Compile Include="UserControls\AffichageNotificationUC.xaml.cs">
       <DependentUpon>AffichageNotificationUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\BtnAnnulerEnregistrerUC.xaml.cs">
+      <DependentUpon>BtnAnnulerEnregistrerUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Consultation\ConsultationAdherentsUC.xaml.cs">
       <DependentUpon>ConsultationAdherentsUC.xaml</DependentUpon>
     </Compile>
@@ -181,6 +184,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\AffichageNotificationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BtnAnnulerEnregistrerUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
