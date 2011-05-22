@@ -154,6 +154,9 @@
     <Compile Include="UserControls\Formulaire\FormulaireVilleUC.xaml.cs">
       <DependentUpon>FormulaireVilleUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MenuPrincipalUC.xaml.cs">
+      <DependentUpon>MenuPrincipalUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPFAboutBox.xaml.cs">
       <DependentUpon>WPFAboutBox.xaml</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Formulaire\FormulaireVilleUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MenuPrincipalUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
