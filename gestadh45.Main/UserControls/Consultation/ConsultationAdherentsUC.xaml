@@ -6,6 +6,7 @@
 			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm" 
+			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationAdherentsVMStatic, Source={StaticResource Locator}}" 
              d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
@@ -35,29 +36,27 @@
 						</i:EventTrigger>
 					</i:Interaction.Triggers>
 				</ListBox>
-			</DockPanel>			
-			
+			</DockPanel>
+
 			<StackPanel Orientation="Vertical" DockPanel.Dock="Right" Margin="10,10,10,10" VerticalAlignment="Center">
-				<StackPanel.Children>
-					<Button ToolTip="Ajouter un nouvel adhérent" Width="35" Height="35" Margin="0,0,0,10" 
-							Command="{Binding Path=CreerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_plus.png" />
-					</Button>
-					<Button ToolTip="Modifier l'adhérent sélectionné" Width="35" Height="35" Margin="0,10,0,10" 
-							Command="{Binding Path=EditerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_edit.png" />
-					</Button>
-					<Button ToolTip="Supprimer l'adhérent sélectionné" Width="35" Height="35" Margin="0,10,0,10" 
-							Command="{Binding Path=SupprimerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_moins.png" />
-					</Button>
-					<Separator />
-					<Button ToolTip="Inscrire cet adhérent" Width="32" Height="32" Margin="0,10,0,0" 
-							Command="{Binding Path=InscrireCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_inscrire.png" />
-					</Button>
-				</StackPanel.Children>
+				<uc:BtnAjouterEditerSupprimerUC 
+					OrientationUC="Vertical"
+					BtnAjouterVisibilite="Visible"
+					BtnModifierVisibilite="Visible"
+					BtnSupprimerVisibilite="Visible"
+					CmdAjouter="{Binding Path=CreerCommand}"
+					CmdModifier="{Binding Path=EditerCommand}"
+					CmdSupprimer="{Binding Path=SupprimerCommand}"
+				/>
+
+				<Separator Margin="0,10,0,10" />
+
+				<Button ToolTip="Inscrire cet adhérent" Width="30" Height="30"
+						Command="{Binding Path=InscrireCommand}">
+					<Image Source="/gestadh45.Main;component/Images/btn_inscrire.png" />
+				</Button>
 			</StackPanel>
+							
 			<StackPanel Name="stkDetailsAdherent" DockPanel.Dock="Right" Margin="20,0,0,0">
 				<StackPanel.Children>
 					<GroupBox Name="gbxIdentite" Header="Identité" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">

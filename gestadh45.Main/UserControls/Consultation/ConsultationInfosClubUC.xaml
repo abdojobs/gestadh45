@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
+			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationInfosClubVMStatic, Source={StaticResource Locator}}" 
              d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
@@ -62,11 +63,14 @@
 				</StackPanel>
 				
 				<Separator Margin="0,20,0,20" />
-				
-				<Button Name="btnModifier" ToolTip="Modifier les informations" HorizontalAlignment="Center" Width="35" Height="35" 
-						Command="{Binding Path=EditerCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_edit.png" />
-				</Button>
+
+				<uc:BtnAjouterEditerSupprimerUC HorizontalAlignment="Center" Margin="10,10,10,10"
+					OrientationUC="Horizontal"
+					BtnAjouterVisibilite="Collapsed"
+					BtnModifierVisibilite="Visible"
+					BtnSupprimerVisibilite="Collapsed"
+					CmdModifier="{Binding Path=EditerCommand}"
+				/>
 			</StackPanel.Children>
 		</StackPanel>
 	</DockPanel>
