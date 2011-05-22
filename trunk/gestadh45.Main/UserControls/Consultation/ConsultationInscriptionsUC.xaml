@@ -7,6 +7,7 @@
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm" 
 			 xmlns:doc="clr-namespace:gestadh45.service.Documents;assembly=gestadh45.service" 
+			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationInscriptionsVMStatic, Source={StaticResource Locator}}" 
              d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
@@ -32,22 +33,18 @@
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
 			</ListBox>
-			<StackPanel Orientation="Vertical" DockPanel.Dock="Right" Margin="10,10,10,10" VerticalAlignment="Center">
-				<StackPanel.Children>
-					<Button Name="btnNouveau" ToolTip="Ajouter une nouvelle inscriptiont" Width="35" Height="35" Margin="0,0,0,10" 
-							Command="{Binding Path=CreerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_plus.png" />
-					</Button>
-					<Button Name="btnModifier" ToolTip="Modifier l'inscription sélectionnée" Width="35" Height="35" Margin="0,10,0,10" 
-							Command="{Binding Path=EditerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_edit.png" />
-					</Button>
-					<Button Name="btnSupprimer" ToolTip="Supprimer l'inscription sélectionnée" Width="35" Height="35" Margin="0,10,0,0" 
-							Command="{Binding Path=SupprimerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_moins.png" />
-					</Button>
-				</StackPanel.Children>
-			</StackPanel>
+
+			<uc:BtnAjouterEditerSupprimerUC 
+				DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,10,10,10"
+				OrientationUC="Vertical"
+				BtnAjouterVisibilite="Visible"
+				BtnModifierVisibilite="Visible"
+				BtnSupprimerVisibilite="Visible"
+				CmdAjouter="{Binding Path=CreerCommand}"
+				CmdModifier="{Binding Path=EditerCommand}"
+				CmdSupprimer="{Binding Path=SupprimerCommand}"
+				/>
+
 			<StackPanel Name="stkDetailsInscription" DockPanel.Dock="Right" Margin="20,0,0,0">
 				<StackPanel.Children>
 					<GroupBox Name="gbxAdherent" Header="Adhérent" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">

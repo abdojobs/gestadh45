@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
              mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationSaisonsVMStatic, Source={StaticResource Locator}}" 
              d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
@@ -22,18 +23,17 @@
 					</i:EventTrigger>
 				</i:Interaction.Triggers>
 			</ListBox>
-			<StackPanel Orientation="Vertical" DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,10,10,10">
-				<StackPanel.Children>
-					<Button ToolTip="Ajouter une nouvelle saison" Width="35" Height="35" Margin="0,0,0,10" 
-							Command="{Binding Path=CreerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_plus.png" />
-					</Button>
-					<Button ToolTip="Supprimer la saison sélectionnée" Width="35" Height="35" Margin="0,10,0,0" 
-							Command="{Binding Path=SupprimerCommand}">
-						<Image Source="/gestadh45.Main;component/Images/btn_moins.png" />
-					</Button>
-				</StackPanel.Children>
-			</StackPanel>
+
+			<uc:BtnAjouterEditerSupprimerUC 
+				DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,10,10,10"
+				OrientationUC="Vertical"
+				BtnAjouterVisibilite="Visible"
+				BtnModifierVisibilite="Collapsed"
+				BtnSupprimerVisibilite="Visible"
+				CmdAjouter="{Binding Path=CreerCommand}"
+				CmdSupprimer="{Binding Path=SupprimerCommand}"
+				/>
+
 			<StackPanel DockPanel.Dock="Right" Margin="20,0,0,0">
 				<StackPanel.Children>
 					<GroupBox Name="gbxInfos" Header="Informations" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
