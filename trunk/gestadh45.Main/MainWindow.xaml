@@ -19,41 +19,12 @@
 	
 	<DockPanel>
 		<Border DockPanel.Dock="Top" Width="auto" HorizontalAlignment="Center" Margin="0,5,0,0" BorderThickness="0.5" BorderBrush="#FF000000" CornerRadius="10" Style="{StaticResource StyleEnfant}">
-			<StackPanel Orientation="Horizontal">
-				<Button Name="btnNouveau" ToolTip="Créer une base" Height="30" Width="30" Margin="10,5,5,5" Command="{Binding Path=CreerDatabaseCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_creerDatabase.png" />
-				</Button>
-				<Button Name="btnOuvrir" ToolTip="Ouvrir une base" Height="30" Width="30" Margin="5,5,15,5" Command="{Binding Path=ChangerDataSourceCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_ouvrir.png" />
-				</Button>
-				<Button Name="btnAccueil" ToolTip="Informations sur le club" Height="30" Width="30" Margin="15,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationInfosClub}" Command="{Binding Path=AfficherUCCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_home.png" />
-				</Button>
-				<Button Name="btnConsultationSaisons" ToolTip="Parcourir les saisons" Height="30" Width="30" Margin="5,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationSaisons}" Command="{Binding Path=AfficherUCCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_saisons.png" />
-				</Button>
-				<Button Name="btnConsultationVilles" ToolTip="Parcourir les villes" Height="30" Width="30" Margin="5,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationVilles}" Command="{Binding Path=AfficherUCCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_city.png" />
-				</Button>
-				<Button Name="btnConsultAdherents" ToolTip="Parcourir les adhérents" Height="30" Width="30" Margin="5,5,15,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationAdherents}" Command="{Binding Path=AfficherUCCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_adherents.png" />
-				</Button>
-				<Button Name="btnConsulInscriptions" ToolTip="Parcourir les inscriptions de la saison courante" Height="30" Width="30" Margin="15,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationInscriptions}" Command="{Binding Path=AfficherUCCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_inscriptions.png" />
-				</Button>
-				<Button Name="btnConsultationGroupes" ToolTip="Parcourir les groupes de la saison courante" Height="30" Width="30" Margin="5,5,5,5" CommandParameter="{x:Static ihm:CodesUC.ConsultationGroupes}" Command="{Binding Path=AfficherUCCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_groupes.png" />
-				</Button>
-				<Button Name="btnGraphs" ToolTip="Graphiques pour la saison courante" Height="30" Width="30" Margin="5,5,5,5" 
-						CommandParameter="{x:Static ihm:CodesUC.GraphsSaisonCourante}" 
-						Command="{Binding Path=AfficherUCCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_graphs.png" />
-				</Button>
-				<Button Name="btnAbout" ToolTip="A propos" Height="30" Width="30" Margin="20,5,5,5" 
-						Command="{Binding Path=AboutBoxCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_about.png" />
-				</Button>
-			</StackPanel>
+			<uc:MenuPrincipalUC 
+				CmdCreerDatabase="{Binding Path=CreerDatabaseCommand}"
+				CmdChangerDataSource="{Binding Path=ChangerDataSourceCommand}"
+				CmdAfficherUC="{Binding Path=AfficherUCCommand}"
+				CmdAboutBox="{Binding Path=AboutBoxCommand}"
+				/>
 		</Border>
 		
 		<Border DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">
