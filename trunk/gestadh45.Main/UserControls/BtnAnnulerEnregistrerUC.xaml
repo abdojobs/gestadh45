@@ -6,15 +6,17 @@
              mc:Ignorable="d" 
 			 x:Name="BtnEnregistrerAnnuler"
              d:DesignHeight="40" d:DesignWidth="90">
-	<StackPanel Orientation="Horizontal">
-		<Button ToolTip="Annuler" Width="30" Height="30" Margin="10,5,5,5" 
-					CommandParameter="{Binding ElementName=BtnEnregistrerAnnuler, Path=CodeUCParent}"
-					Command="{Binding ElementName=BtnEnregistrerAnnuler, Path=CmdAnnuler}">
-			<Image Source="/gestadh45.Main;component/Images/btn_annuler.png" />
-		</Button>
-		<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="30" Height="30" Margin="5,5,10,5" 
-					Command="{Binding ElementName=BtnEnregistrerAnnuler, Path=CmdEnregistrer}">
-			<Image Source="/gestadh45.Main;component/Images/btn_enregistrer.png" />
-		</Button>
-	</StackPanel>
+	<Border BorderThickness="0.5" BorderBrush="#FF000000" CornerRadius="10">
+		<StackPanel Orientation="Horizontal">
+			<Button ToolTip="Annuler" Width="30" Height="30" Margin="10,5,5,5" 
+						CommandParameter="{Binding ElementName=BtnEnregistrerAnnuler, Path=CodeUCParent}"
+						Command="{Binding ElementName=BtnEnregistrerAnnuler, Path=CmdAnnuler}">
+				<Image Source="/gestadh45.Main;component/Images/btn_annuler.png" />
+			</Button>
+			<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="30" Height="30" Margin="5,5,10,5" 
+						Command="{Binding ElementName=BtnEnregistrerAnnuler, Path=CmdEnregistrer}">
+				<Image Source="/gestadh45.Main;component/Images/btn_enregistrer.png" />
+			</Button>
+		</StackPanel>
+	</Border>
 </UserControl>
