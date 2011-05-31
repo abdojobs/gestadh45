@@ -54,7 +54,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodesUC.cs" />
     <Compile Include="MainRessources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -64,11 +63,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAdaptateurs\ServiceDocumentAdaptateur.cs" />
     <Compile Include="ServiceAdaptateurs\ServiceVCardAdaptateur.cs" />
+    <Compile Include="CodesUC.cs" />
     <Compile Include="SpecialMessages\DialogMessageConfirmation.cs" />
+    <Compile Include="SpecialMessages\MsgAfficherUC.cs" />
     <Compile Include="SpecialMessages\NotificationMessageAboutBox.cs" />
     <Compile Include="SpecialMessages\NotificationMessageActionFileDialog.cs" />
     <Compile Include="SpecialMessages\NotificationMessageActionFolderDialog.cs" />
-    <Compile Include="SpecialMessages\NotificationMessageChangementUC.cs" />
     <Compile Include="SpecialMessages\NotificationMessageConsultationExtractions.cs" />
     <Compile Include="SpecialMessages\NotificationMessageFermetureFenetre.cs" />
     <Compile Include="SpecialMessages\MsgNotificationIhm.cs" />
@@ -109,6 +109,7 @@
     <Compile Include="ViewModel\Consultation\ViewModelBaseConsultation.cs" />
     <Compile Include="ViewModel\Formulaire\ViewModelBaseFormulaire.cs" />
     <Compile Include="ViewModel\ViewModelBaseApplication.cs" />
+    <Compile Include="ViewModel\ViewModelBaseUC.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>

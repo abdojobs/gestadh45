@@ -7,6 +7,8 @@ using gestadh45.Ihm.ObjetsIhm;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 using gestadh45.service.Database;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -21,7 +23,7 @@ namespace gestadh45.Ihm.ViewModel
 
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
-		public NotificationIhm mNotification;
+		private ObservableCollection<NotificationIhm> mNotificationsIhm;
 		
 		/// <summary>
 		/// Obtient/Définit l'information sur le datasource actuel
@@ -54,14 +56,14 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		/// <summary>
-		/// Obtient/Définit la notification à afficher sur l'IHM
+		/// Obtient/Définit la liste des notification à afficher sur l'IHM
 		/// </summary>
-		public NotificationIhm Notification {
-			get { return this.mNotification; }
+		public ObservableCollection<NotificationIhm> NotificationsIhm {
+			get { return this.mNotificationsIhm; }
 			set {
-				if (this.mNotification != value) {
-					this.mNotification = value;
-					this.RaisePropertyChanged(() => this.Notification);
+				if (this.mNotificationsIhm != value) {
+					this.mNotificationsIhm = value;
+					this.RaisePropertyChanged(() => this.NotificationsIhm);
 				}
 			}
 		}
@@ -81,7 +83,7 @@ namespace gestadh45.Ihm.ViewModel
 
 			Messenger.Default.Register<MsgNotificationIhm>(
 				this,
-				(msg) => this.AfficherNotificationIhm(msg.Contenu)
+				(msg) => this.AjouterNotificationIhm(msg.Contenu)
 			);
 		}
 
@@ -124,11 +126,8 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public void ExecuteAfficherUCCommand(string pCodeUC) {
-			this.AfficherNotificationIhm(new NotificationIhm());
-
-			Messenger.Default.Send<NotificationMessageChangementUC>(
-				new NotificationMessageChangementUC(pCodeUC)
-			);
+			this.RazNotificationIhm();
+			this.AfficherEcran(pCodeUC);
 		}
 
 		public void ExecuteChangerDataSourceCommand() {
@@ -155,6 +154,16 @@ namespace gestadh45.Ihm.ViewModel
 		}
 		#endregion
 
+		#region gestion des notifications IHM
+		private void EffacerNotificationsIhm() {
+			this.NotificationsIhm.Clear();
+		}
+
+		private void AjouterNotificationIhm(NotificationIhm pNotification) {
+			this.NotificationsIhm.Add(pNotification);
+		}
+		#endregion
+
 		#region méthodes privees
 		private void MajInfosSaisonCourante(NotificationMessage<Saison> msg) {
 			if (msg.Notification.Equals(TypesNotification.ChangementSaisonCourante)) {
@@ -173,7 +182,7 @@ namespace gestadh45.Ihm.ViewModel
 				}
 			}
 			catch (Exception exception) {
-				this.AfficherErreurIhm(exception.Message);
+				this.AfficherErreurIhm(exception.Message, MsgNotificationIhm.ModeAffichage.Remplacement);
 			}
 		}
 
@@ -187,16 +196,12 @@ namespace gestadh45.Ihm.ViewModel
 					this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
 
 					NotificationIhm notification = new NotificationIhm(MainRessources.NotificationOuvertureBase + pFilePath, TypesNotification.Information);
-					this.AfficherNotificationIhm(notification);
+					this.AjouterNotificationIhm(notification);
 				}
 			}
 			catch (Exception exception) {
-				this.AfficherErreurIhm(exception.Message);
+				this.AfficherErreurIhm(exception.Message, MsgNotificationIhm.ModeAffichage.Remplacement);
 			}
-		}
-
-		private void AfficherNotificationIhm(NotificationIhm pNotification) {
-			this.Notification = pNotification;
 		}
 		#endregion
 	}
