@@ -81,7 +81,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
-				this.AfficherErreursIhm(this.Erreurs, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherErreursIhm(this.Erreurs);
 			}
 		}
 

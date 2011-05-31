@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -7,8 +8,7 @@ using gestadh45.Ihm.ObjetsIhm;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 using gestadh45.service.Database;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -23,7 +23,7 @@ namespace gestadh45.Ihm.ViewModel
 
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
-		private ObservableCollection<NotificationIhm> mNotificationsIhm;
+		private List<NotificationIhm> mNotificationsIhm;
 		
 		/// <summary>
 		/// Obtient/Définit l'information sur le datasource actuel
@@ -58,8 +58,11 @@ namespace gestadh45.Ihm.ViewModel
 		/// <summary>
 		/// Obtient/Définit la liste des notification à afficher sur l'IHM
 		/// </summary>
-		public ObservableCollection<NotificationIhm> NotificationsIhm {
-			get { return this.mNotificationsIhm; }
+		public List<NotificationIhm> NotificationsIhm {
+			get { 
+				return this.mNotificationsIhm; 
+			}
+
 			set {
 				if (this.mNotificationsIhm != value) {
 					this.mNotificationsIhm = value;
@@ -70,6 +73,7 @@ namespace gestadh45.Ihm.ViewModel
 
 		public MainViewModel() {
 			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
+			this.mNotificationsIhm = new List<NotificationIhm>();
 
 			this.CreateAfficherUCCommand();
 			this.CreateChangerDataSourceCommand();
@@ -83,7 +87,7 @@ namespace gestadh45.Ihm.ViewModel
 
 			Messenger.Default.Register<MsgNotificationIhm>(
 				this,
-				(msg) => this.AjouterNotificationIhm(msg.Contenu)
+				(msg) => this.MajNotificationsIhm(msg.Contenu)
 			);
 		}
 
@@ -155,12 +159,8 @@ namespace gestadh45.Ihm.ViewModel
 		#endregion
 
 		#region gestion des notifications IHM
-		private void EffacerNotificationsIhm() {
-			this.NotificationsIhm.Clear();
-		}
-
-		private void AjouterNotificationIhm(NotificationIhm pNotification) {
-			this.NotificationsIhm.Add(pNotification);
+		private void MajNotificationsIhm(List<NotificationIhm> pNotifications) {
+			this.NotificationsIhm = pNotifications;		
 		}
 		#endregion
 
@@ -182,7 +182,7 @@ namespace gestadh45.Ihm.ViewModel
 				}
 			}
 			catch (Exception exception) {
-				this.AfficherErreurIhm(exception.Message, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherErreurIhm(exception.Message);
 			}
 		}
 
@@ -195,12 +195,11 @@ namespace gestadh45.Ihm.ViewModel
 					this.InfosSaisonCourante = this.mDaoSaison.ReadSaisonCourante().ToShortString();
 					this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
 
-					NotificationIhm notification = new NotificationIhm(MainRessources.NotificationOuvertureBase + pFilePath, TypesNotification.Information);
-					this.AjouterNotificationIhm(notification);
+					this.AfficherInformationIhm(MainRessources.NotificationOuvertureBase + pFilePath);
 				}
 			}
 			catch (Exception exception) {
-				this.AfficherErreurIhm(exception.Message, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherErreurIhm(exception.Message);
 			}
 		}
 		#endregion

@@ -131,7 +131,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.InitialisationListeSaisons();
 				this.Saison = null;
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionSaison, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionSaison);
 			}
 		}
 

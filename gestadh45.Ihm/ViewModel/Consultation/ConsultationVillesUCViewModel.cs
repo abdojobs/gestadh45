@@ -82,7 +82,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.InitialisationListeVilles();
 				this.Ville = null;
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionVille, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionVille);
 			}
 		}
 

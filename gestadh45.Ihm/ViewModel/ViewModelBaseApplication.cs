@@ -72,37 +72,49 @@ namespace gestadh45.Ihm.ViewModel
 		#endregion
 
 		#region affichage des notifications ihm
-		private void EnvoyerMsgNotificationIhm(NotificationIhm pNotification, MsgNotificationIhm.ModeAffichage pModeAffichage) {
-			Messenger.Default.Send(new MsgNotificationIhm(pNotification), pModeAffichage);
+		private void EnvoyerMsgNotificationIhm(List<NotificationIhm> pNotifications) {
+			Messenger.Default.Send(new MsgNotificationIhm(pNotifications));
 		}
 
 		/// <summary>
 		/// Envoie une demande d'effacement de la zonne de notification
 		/// </summary>
 		protected void RazNotificationIhm() {
-			this.EnvoyerMsgNotificationIhm(new NotificationIhm(), MsgNotificationIhm.ModeAffichage.Remplacement);
+			this.EnvoyerMsgNotificationIhm(new List<NotificationIhm>());
 		}
 
-		protected void AfficherErreurIhm(string pErreur, MsgNotificationIhm.ModeAffichage pModeAffichage) {
-			NotificationIhm notification = new NotificationIhm(pErreur, TypesNotification.Erreur);
-			this.EnvoyerMsgNotificationIhm(notification, pModeAffichage);
+		protected void AfficherErreurIhm(string pErreur) {
+			List<NotificationIhm> liste = new List<NotificationIhm>();
+			liste.Add(new NotificationIhm(pErreur, TypesNotification.Erreur));
+
+			this.EnvoyerMsgNotificationIhm(liste);
 		}
 
-		protected void AfficherErreursIhm(List<string> pErreurs, MsgNotificationIhm.ModeAffichage pModeAffichage) {
+		protected void AfficherErreursIhm(List<string> pErreurs) {
+			List<NotificationIhm> liste = new List<NotificationIhm>();
+			
 			foreach (string err in pErreurs) {
-				this.AfficherErreurIhm(err, pModeAffichage);
+				liste.Add(new NotificationIhm(err, TypesNotification.Erreur));
 			}
+
+			this.EnvoyerMsgNotificationIhm(liste);
 		}
 
-		protected void AfficherInformationIhm(string pInformation, MsgNotificationIhm.ModeAffichage pModeAffichage) {
-			NotificationIhm notification = new NotificationIhm(pInformation, TypesNotification.Information);
-			this.EnvoyerMsgNotificationIhm(notification, pModeAffichage);
+		protected void AfficherInformationIhm(string pInformation) {
+			List<NotificationIhm> liste = new List<NotificationIhm>();
+			liste.Add(new NotificationIhm(pInformation, TypesNotification.Information));
+
+			this.EnvoyerMsgNotificationIhm(liste);
 		}
 
-		protected void AfficherInformationsIhm(List<string> pInformations, MsgNotificationIhm.ModeAffichage pModeAffichage) {
+		protected void AfficherInformationsIhm(List<string> pInformations) {
+			List<NotificationIhm> liste = new List<NotificationIhm>();
+
 			foreach (string info in pInformations) {
-				this.AfficherInformationIhm(info, pModeAffichage);
+				liste.Add(new NotificationIhm(info, TypesNotification.Information));
 			}
+
+			this.EnvoyerMsgNotificationIhm(liste);
 		}
 		#endregion
 	}

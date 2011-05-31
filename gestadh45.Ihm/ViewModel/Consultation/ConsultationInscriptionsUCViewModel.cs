@@ -115,7 +115,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.InitialisationListeInscriptions();
 				this.Inscription = null;
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionInscription, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionInscription);
 			}
 		}
 		#endregion
@@ -201,7 +201,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 				generateur.CreerDocument(pCodeDocument);
 
-				this.AfficherErreurIhm(ResMessages.MessageInfoGenerationDocument, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherErreurIhm(ResMessages.MessageInfoGenerationDocument);
 			}
 		}
 
@@ -212,7 +212,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				VCardGenerateur generateur = new VCardGenerateur(donnees, pSaveFilePath);
 				generateur.CreerVCard();
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCard, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCard);
 			}
 		}
 
