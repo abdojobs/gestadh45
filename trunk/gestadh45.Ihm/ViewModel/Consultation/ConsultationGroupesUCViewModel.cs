@@ -69,9 +69,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public override void ExecuteCreerCommand() {
 			base.ExecuteCreerCommand();
 
-			Messenger.Default.Send<NotificationMessageChangementUC>(
-				new NotificationMessageChangementUC(CodesUC.FormulaireGroupe)
-			);
+			this.AfficherEcran(CodesUC.FormulaireGroupe);
 		}
 		#endregion
 
@@ -101,7 +99,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.InitialisationListeGroupes();
 				this.Groupe = null;
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionGroupe);
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionGroupe, MsgNotificationIhm.ModeAffichage.Remplacement);
 			}
 		}
 		#endregion
@@ -253,7 +251,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 					}
 				}
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationDocumentsGroupe);
+				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationDocumentsGroupe, MsgNotificationIhm.ModeAffichage.Remplacement);
 			}
 		}
 
@@ -267,7 +265,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 					generateur.CreerVCard();
 				}
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCardsGroupe);
+				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCardsGroupe, MsgNotificationIhm.ModeAffichage.Remplacement);
 			}
 		}
 

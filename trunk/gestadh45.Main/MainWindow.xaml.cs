@@ -36,19 +36,19 @@ namespace gestadh45.Main
 				this.AfficherFolderDialog
 			);
 
-			Messenger.Default.Register<NotificationMessageChangementUC>(
+			Messenger.Default.Register<MsgAfficherUC>(
 				this,
-				this.ChangerUC
+				(msg) => this.AfficherUC(msg.Notification)
 			);
 
-			Messenger.Default.Register<NotificationMessageChangementUC<Adherent>>(
+			Messenger.Default.Register<MsgAfficherUC<Adherent>>(
 			    this,
-			    this.ChangerUCAvecParametre
+			    (msg) => this.AfficherUCAvecParametre(msg.Notification, msg.Element)
 			);
 
-			Messenger.Default.Register<NotificationMessageChangementUC<Inscription>>(
+			Messenger.Default.Register<MsgAfficherUC<Inscription>>(
 				this,
-				this.ChangerUCAvecParametre
+				(msg) => this.AfficherUCAvecParametre(msg.Notification, msg.Element)
 			);
 
 			Messenger.Default.Register<NotificationMessageOuvertureFenetre>(
@@ -118,65 +118,77 @@ namespace gestadh45.Main
 			pMessage.Execute(lFileName);
 		}
 
-		private void ChangerUC(NotificationMessageChangementUC pMessage) {
-			if (pMessage.CodeUC.Equals(CodesUC.ConsultationInfosClub)) {
-				this.contenu.Content = new ConsultationInfosClubUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireInfosClub)) {
-				this.contenu.Content = new FormulaireInfosClubUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.ConsultationSaisons)) {
-				this.contenu.Content = new ConsultationSaisonsUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireSaison)) {
-				this.contenu.Content = new FormulaireSaisonUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.ConsultationVilles)) {
-				this.contenu.Content = new ConsultationVillesUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireVille)) {
-				this.contenu.Content = new FormulaireVilleUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.ConsultationAdherents)) {
-				this.contenu.Content = new ConsultationAdherentsUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireAdherent)) {
-				this.contenu.Content = new FormulaireAdherentUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.ConsultationInscriptions)) {
-				this.contenu.Content = new ConsultationInscriptionsUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireInscription)) {
-				this.contenu.Content = new FormulaireInscriptionUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.ConsultationGroupes)) {
-				this.contenu.Content = new ConsultationGroupesUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireGroupe)) {
-				this.contenu.Content = new FormulaireGroupeUC();
-			}
-			else if (pMessage.CodeUC.Equals(CodesUC.GraphsSaisonCourante)) {
-				this.contenu.Content = new GraphsSaisonCouranteUC();
-			}
-			else {
-				this.contenu.Content = new ConsultationInfosClubUC();
+		private void AfficherUC(string pCodeUC) {
+			switch (pCodeUC) {
+				case CodesUC.FormulaireInfosClub:
+					this.contenu.Content = new FormulaireInfosClubUC();
+					break;
+
+				case CodesUC.ConsultationSaisons:
+					this.contenu.Content = new ConsultationSaisonsUC();
+					break;
+
+				case CodesUC.FormulaireSaison:
+					this.contenu.Content = new FormulaireSaisonUC();
+					break;
+
+				case CodesUC.ConsultationVilles:
+					this.contenu.Content = new ConsultationVillesUC();
+					break;
+
+				case CodesUC.FormulaireVille:
+					this.contenu.Content = new FormulaireVilleUC();
+					break;
+
+				case CodesUC.ConsultationAdherents:
+					this.contenu.Content = new ConsultationAdherentsUC();
+					break;
+
+				case CodesUC.FormulaireAdherent:
+					this.contenu.Content = new FormulaireAdherentUC();
+					break;
+
+				case CodesUC.ConsultationInscriptions:
+					this.contenu.Content = new ConsultationInscriptionsUC();
+					break;
+
+				case CodesUC.FormulaireInscription:
+					this.contenu.Content = new FormulaireInscriptionUC();
+					break;
+
+				case CodesUC.ConsultationGroupes:
+					this.contenu.Content = new ConsultationGroupesUC();
+					break;
+
+				case CodesUC.FormulaireGroupe:
+					this.contenu.Content = new FormulaireGroupeUC();
+					break;
+
+				case CodesUC.GraphsSaisonCourante:
+					this.contenu.Content = new GraphsSaisonCouranteUC();
+					break;
+
+				case CodesUC.ConsultationInfosClub:
+				default:
+					this.contenu.Content = new ConsultationInfosClubUC();
+					break;
 			}
 		}
 
-		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Adherent> pMessage) {
-			if (pMessage.CodeUC.Equals(CodesUC.FormulaireAdherent)) {
-				this.contenu.Content = new FormulaireAdherentUC((Adherent)pMessage.Element);
+		private void AfficherUCAvecParametre(string pCodeUC, object pObjetUC) {
+			if (pObjetUC is Inscription) {
+				this.contenu.Content = new FormulaireInscriptionUC((Inscription)pObjetUC);
 			}
-			else if (pMessage.CodeUC.Equals(CodesUC.FormulaireInscription)) {
-				this.contenu.Content = new FormulaireInscriptionUC((Adherent)pMessage.Element);
+			else if (pObjetUC is Adherent && pCodeUC.Equals(CodesUC.FormulaireAdherent)) {
+				this.contenu.Content = new FormulaireAdherentUC((Adherent)pObjetUC);
 			}
-			else {
-				this.contenu.Content = new ConsultationInfosClubUC();
+			else if (pObjetUC is Adherent && pCodeUC.Equals(CodesUC.FormulaireInscription)) {
+				this.contenu.Content = new FormulaireInscriptionUC((Adherent)pObjetUC);
 			}
 		}
 
-		private void ChangerUCAvecParametre(NotificationMessageChangementUC<Inscription> pMessage) {
-			this.contenu.Content = new FormulaireInscriptionUC((Inscription)pMessage.Element);
+		private void OuvrirFenetreUC(string pCodeUC) {
+
 		}
 
 		private void OuvrirFenetreUC(NotificationMessageOuvertureFenetre pMessage) {

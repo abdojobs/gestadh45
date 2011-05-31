@@ -2,13 +2,12 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using gestadh45.Ihm.ObjetsIhm;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Ihm.Tools;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
-	public abstract class ViewModelBaseFormulaire : ViewModelBaseApplication
+	public abstract class ViewModelBaseFormulaire : ViewModelBaseUC
 	{
 		public ICommand EnregistrerCommand { get; set; }
 		
@@ -69,8 +68,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				);
 			}
 			else {
-				Messenger.Default.Send<NotificationMessageChangementUC>(
-					new NotificationMessageChangementUC(this.CodeUCOrigine)
+				Messenger.Default.Send<MsgAfficherUC>(
+					new MsgAfficherUC(this.CodeUCOrigine, MsgAfficherUC.TypeAffichage.Interne)
 				);
 			}
 		}

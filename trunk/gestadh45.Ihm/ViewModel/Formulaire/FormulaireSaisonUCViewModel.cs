@@ -67,7 +67,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				Messenger.Default.Send(msg);
 			}
 			else {
-				this.AfficherErreursIhm(this.Erreurs);
+				this.AfficherErreursIhm(this.Erreurs, MsgNotificationIhm.ModeAffichage.Remplacement);
 			}
 		}
 

@@ -76,7 +76,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.mDaoContact = this.mDaoFactory.GetContactDao();
 			this.mDaoAdresse = this.mDaoFactory.GetAdresseDao();
 
-            this.Inscription = new Inscription();
+			this.Inscription = new Inscription();
 
 			this.InitialisationListeAdherents();
 			this.InitialisationListeGroupes();
@@ -85,7 +85,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			base.EstEdition = false;
 		}
 
-		public override void ExecuteAnnulerCommand(string pCodeUc) {
+		public override void ExecuteAnnulerCommand() {
 			if (this.Inscription != null && base.EstEdition) {
 				this.mDaoSaison.Refresh(this.Inscription.Groupe.Saison);
 				this.mDaoGroupe.Refresh(this.Inscription.Groupe);
@@ -96,7 +96,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 				this.mDaoInscription.Refresh(this.Inscription);
 			}
-			base.ExecuteAnnulerCommand(pCodeUc);
+			base.ExecuteAnnulerCommand();
 		}
 
 		public override void ExecuteEnregistrerCommand() {
@@ -119,7 +119,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				Messenger.Default.Send(msg);
 			}
 			else {
-				this.AfficherErreursIhm(this.Erreurs);
+				this.AfficherErreursIhm(this.Erreurs, MsgNotificationIhm.ModeAffichage.Remplacement);
 			}
 		}
 

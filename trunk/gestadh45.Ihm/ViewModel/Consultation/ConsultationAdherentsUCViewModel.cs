@@ -91,17 +91,16 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public override void ExecuteCreerCommand() {
 			base.ExecuteCreerCommand();
 
-			Messenger.Default.Send<NotificationMessageChangementUC>(
-				new NotificationMessageChangementUC(CodesUC.FormulaireAdherent)
-			);
+			this.AfficherEcran(CodesUC.FormulaireAdherent);
 		}
 
 		public override void ExecuteEditerCommand() {
 			base.ExecuteEditerCommand();
 
-			Messenger.Default.Send<NotificationMessageChangementUC<Adherent>>(
-				new NotificationMessageChangementUC<Adherent>(
-					CodesUC.FormulaireAdherent, 
+			Messenger.Default.Send<MsgAfficherUC<Adherent>>(
+				new MsgAfficherUC<Adherent>(
+					CodesUC.FormulaireAdherent,
+					MsgAfficherUC.TypeAffichage.Interne,
 					this.Adherent
 				)
 			);
@@ -128,9 +127,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public void ExecuteInscrireCommand() {
-			Messenger.Default.Send<NotificationMessageChangementUC<Adherent>>(
-				new NotificationMessageChangementUC<Adherent>(
-					CodesUC.FormulaireInscription,
+			Messenger.Default.Send<MsgAfficherUC<Adherent>>(
+				new MsgAfficherUC<Adherent>(
+					CodesUC.FormulaireInscription, 
+					MsgAfficherUC.TypeAffichage.Interne,
 					this.Adherent
 				)
 			);
@@ -146,7 +146,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.InitialisationListeAdherents();
 				this.Adherent = null;
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionAdherent);
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionAdherent, MsgNotificationIhm.ModeAffichage.Remplacement);
 			}
 		}
 

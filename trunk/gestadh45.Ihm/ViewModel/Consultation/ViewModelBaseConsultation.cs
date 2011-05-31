@@ -3,11 +3,10 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Ihm.Tools;
-using gestadh45.Ihm.ObjetsIhm;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
-	public abstract class ViewModelBaseConsultation : ViewModelBaseApplication
+	public abstract class ViewModelBaseConsultation : ViewModelBaseUC
 	{
 		public ICommand CreerCommand { get; set; }
 		public ICommand EditerCommand { get; set; }

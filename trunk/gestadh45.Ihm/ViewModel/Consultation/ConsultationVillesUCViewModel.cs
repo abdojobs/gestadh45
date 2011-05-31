@@ -82,7 +82,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.InitialisationListeVilles();
 				this.Ville = null;
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionVille);
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionVille, MsgNotificationIhm.ModeAffichage.Remplacement);
 			}
 		}
 
@@ -102,9 +102,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public override void ExecuteCreerCommand() {
 			base.ExecuteCreerCommand();
 
-			Messenger.Default.Send<NotificationMessageChangementUC>(
-				new NotificationMessageChangementUC(CodesUC.FormulaireVille)
-			);
+			this.AfficherEcran(CodesUC.FormulaireVille);
 		}
 
 		private void SelectionnerVille(NotificationMessageSelectionElement<Ville> msg) {

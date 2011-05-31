@@ -87,14 +87,14 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
 		}
 
-		public override void ExecuteAnnulerCommand(string pCodeUc) {
+		public override void ExecuteAnnulerCommand() {
 			if ((this.Adherent != null) && base.EstEdition) {
 				this.mDaoVille.Refresh(this.Adherent.Adresse.Ville);
 				this.mDaoAdresse.Refresh(this.Adherent.Adresse);
 				this.mDaoContact.Refresh(this.Adherent.Contact);
 				this.mDaoAdherent.Refresh(this.Adherent);
 			}
-			base.ExecuteAnnulerCommand(pCodeUc);
+			base.ExecuteAnnulerCommand();
 		}
 
 		public override void ExecuteEnregistrerCommand() {
@@ -119,7 +119,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				Messenger.Default.Send(msg);
 			}
 			else {
-				this.AfficherErreursIhm(this.Erreurs);
+				this.AfficherErreursIhm(this.Erreurs, MsgNotificationIhm.ModeAffichage.Remplacement);
 			}
 		}
 
