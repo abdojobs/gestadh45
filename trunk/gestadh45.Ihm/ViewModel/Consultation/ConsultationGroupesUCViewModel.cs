@@ -99,7 +99,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.InitialisationListeGroupes();
 				this.Groupe = null;
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionGroupe, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionGroupe);
 			}
 		}
 		#endregion
@@ -251,7 +251,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 					}
 				}
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationDocumentsGroupe, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationDocumentsGroupe);
 			}
 		}
 
@@ -265,7 +265,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 					generateur.CreerVCard();
 				}
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCardsGroupe, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCardsGroupe);
 			}
 		}
 

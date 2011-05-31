@@ -51,6 +51,10 @@ namespace gestadh45.Ihm.ObjetsIhm
 		}
 		#endregion
 
+		public override string ToString() {
+			return this.Texte;
+		}
+
 		private void DefinirCouleur(string pTypeNotification) {
 		switch (pTypeNotification) {
 				case TypesNotification.Erreur:

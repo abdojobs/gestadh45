@@ -44,9 +44,8 @@
 
 		<Border Margin="5,5,5,5" DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">
 			<uc:AffichageNotificationUC
-				Message="{Binding Path=Notification.Texte}"
-				Height="50" 
-				CouleurTexte="{Binding Path=Notification.Couleur}" />
+				Notifications="{Binding Path=NotificationsIhm}"
+				Height="50" />
 		</Border>
 
 		<Border Margin="5,5,5,5" BorderThickness="1" BorderBrush="Black" Background="Cornsilk">

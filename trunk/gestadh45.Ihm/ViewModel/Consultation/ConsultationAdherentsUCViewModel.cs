@@ -146,7 +146,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.InitialisationListeAdherents();
 				this.Adherent = null;
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionAdherent, MsgNotificationIhm.ModeAffichage.Remplacement);
+				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionAdherent);
 			}
 		}
 

@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using gestadh45.Ihm.ObjetsIhm;
 
 namespace gestadh45.Main.UserControls
 {
@@ -10,28 +11,15 @@ namespace gestadh45.Main.UserControls
 	public partial class AffichageNotificationUC : UserControl
 	{
 		/// <summary>
-		/// Obtient/Définit le message à afficher
+		/// Obtient/Définit la liste des notifications à afficher
 		/// </summary>
-		public string Message {
+		public List<NotificationIhm> Notifications {
 			get {
-				return (string)GetValue(MessageProperty); 
+				return (List<NotificationIhm>)GetValue(NotificationsProperty);
 			}
 
 			set {
-				SetValue(MessageProperty, value);
-			}
-		}
-
-		/// <summary>
-		/// Obtient/Définit la couleur du texte
-		/// </summary>
-		public Brush CouleurTexte {
-			get {
-				return (Brush)GetValue(CouleurTexteProperty);
-			}
-
-			set {
-				SetValue(CouleurTexteProperty, value);
+				SetValue(NotificationsProperty, value);
 			}
 		}
 		
@@ -39,15 +27,9 @@ namespace gestadh45.Main.UserControls
 			InitializeComponent();
 		}
 
-		public static DependencyProperty MessageProperty = DependencyProperty.Register(
-			"Message",
-			typeof(string),
-			typeof(AffichageNotificationUC)
-		);
-
-		public static DependencyProperty CouleurTexteProperty = DependencyProperty.Register(
-			"CouleurTexte",
-			typeof(Brush),
+		public static DependencyProperty NotificationsProperty = DependencyProperty.Register(
+			"Notifications",
+			typeof(List<NotificationIhm>),
 			typeof(AffichageNotificationUC)
 		);
 	}
