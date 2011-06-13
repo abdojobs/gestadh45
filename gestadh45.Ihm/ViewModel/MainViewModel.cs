@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -8,7 +7,6 @@ using gestadh45.Ihm.ObjetsIhm;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
 using gestadh45.service.Database;
-using System.Collections.Generic;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -23,7 +21,7 @@ namespace gestadh45.Ihm.ViewModel
 
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
-		private List<NotificationIhm> mNotificationsIhm;
+		private NotificationIhm mNotificationIhm;
 		
 		/// <summary>
 		/// Obtient/Définit l'information sur le datasource actuel
@@ -56,24 +54,24 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		/// <summary>
-		/// Obtient/Définit la liste des notification à afficher sur l'IHM
+		/// Obtient/Définit la liste notification à afficher sur l'IHM
 		/// </summary>
-		public List<NotificationIhm> NotificationsIhm {
+		public NotificationIhm NotificationIhm {
 			get { 
-				return this.mNotificationsIhm; 
+				return this.mNotificationIhm; 
 			}
 
 			set {
-				if (this.mNotificationsIhm != value) {
-					this.mNotificationsIhm = value;
-					this.RaisePropertyChanged(() => this.NotificationsIhm);
+				if (this.mNotificationIhm != value) {
+					this.mNotificationIhm = value;
+					this.RaisePropertyChanged(() => this.NotificationIhm);
 				}
 			}
 		}
 
 		public MainViewModel() {
 			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
-			this.mNotificationsIhm = new List<NotificationIhm>();
+			this.mNotificationIhm = new NotificationIhm();
 
 			this.CreateAfficherUCCommand();
 			this.CreateChangerDataSourceCommand();
@@ -159,8 +157,8 @@ namespace gestadh45.Ihm.ViewModel
 		#endregion
 
 		#region gestion des notifications IHM
-		private void MajNotificationsIhm(List<NotificationIhm> pNotifications) {
-			this.NotificationsIhm = pNotifications;		
+		private void MajNotificationsIhm(NotificationIhm pNotification) {
+			this.NotificationIhm = pNotification;		
 		}
 		#endregion
 
