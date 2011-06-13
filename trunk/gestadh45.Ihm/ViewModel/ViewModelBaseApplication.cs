@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -72,49 +73,39 @@ namespace gestadh45.Ihm.ViewModel
 		#endregion
 
 		#region affichage des notifications ihm
-		private void EnvoyerMsgNotificationIhm(List<NotificationIhm> pNotifications) {
-			Messenger.Default.Send(new MsgNotificationIhm(pNotifications));
+		private void EnvoyerMsgNotificationIhm(NotificationIhm pNotification) {
+			Messenger.Default.Send(new MsgNotificationIhm(pNotification));
 		}
 
 		/// <summary>
 		/// Envoie une demande d'effacement de la zonne de notification
 		/// </summary>
 		protected void RazNotificationIhm() {
-			this.EnvoyerMsgNotificationIhm(new List<NotificationIhm>());
+			this.EnvoyerMsgNotificationIhm(new NotificationIhm());
 		}
 
 		protected void AfficherErreurIhm(string pErreur) {
-			List<NotificationIhm> liste = new List<NotificationIhm>();
-			liste.Add(new NotificationIhm(pErreur, TypesNotification.Erreur));
-
-			this.EnvoyerMsgNotificationIhm(liste);
+			this.EnvoyerMsgNotificationIhm(new NotificationIhm(pErreur, TypesNotification.Erreur));
 		}
 
 		protected void AfficherErreursIhm(List<string> pErreurs) {
-			List<NotificationIhm> liste = new List<NotificationIhm>();
-			
+			StringBuilder sb = new StringBuilder();
 			foreach (string err in pErreurs) {
-				liste.Add(new NotificationIhm(err, TypesNotification.Erreur));
+				sb.Append(err);
 			}
-
-			this.EnvoyerMsgNotificationIhm(liste);
+			this.EnvoyerMsgNotificationIhm(new NotificationIhm(sb.ToString(), TypesNotification.Erreur));
 		}
 
 		protected void AfficherInformationIhm(string pInformation) {
-			List<NotificationIhm> liste = new List<NotificationIhm>();
-			liste.Add(new NotificationIhm(pInformation, TypesNotification.Information));
-
-			this.EnvoyerMsgNotificationIhm(liste);
+			this.EnvoyerMsgNotificationIhm(new NotificationIhm(pInformation, TypesNotification.Information));
 		}
 
 		protected void AfficherInformationsIhm(List<string> pInformations) {
-			List<NotificationIhm> liste = new List<NotificationIhm>();
-
+			StringBuilder sb = new StringBuilder();
 			foreach (string info in pInformations) {
-				liste.Add(new NotificationIhm(info, TypesNotification.Information));
+				sb.Append(info);
 			}
-
-			this.EnvoyerMsgNotificationIhm(liste);
+			this.EnvoyerMsgNotificationIhm(new NotificationIhm(sb.ToString(), TypesNotification.Information));
 		}
 		#endregion
 	}

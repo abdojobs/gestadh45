@@ -8,9 +8,7 @@ using gestadh45.Ihm.Tools;
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public abstract class ViewModelBaseFormulaire : ViewModelBaseUC
-	{
-		public ICommand EnregistrerCommand { get; set; }
-		
+	{		
 		private bool mEstEdition;
 		private List<string> mErreurs;
 
@@ -44,9 +42,17 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public ViewModelBaseFormulaire() {
 			this.CreateEnregistrerCommand();
+			this.CreateAnnulerCommand();
 
 			Messenger.Default.Send(new NotificationMessageTransition(TransitionHelper.TranslationGaucheDroite));
 		}
+
+		protected virtual bool VerifierSaisie() {
+			return true;
+		}
+
+		#region EnregistrerCommand
+		public ICommand EnregistrerCommand { get; set; }
 
 		protected void CreateEnregistrerCommand() {
 			this.EnregistrerCommand = new RelayCommand(
@@ -73,9 +79,29 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				);
 			}
 		}
+		#endregion
 
-		protected virtual bool VerifierSaisie() {
-			return true;
+		#region AnnulerCommand
+		public ICommand AnnulerCommand { get; set; }
+
+		protected void CreateAnnulerCommand() {
+			this.AnnulerCommand = new RelayCommand(
+				this.ExecuteAnnulerCommand
+			);
 		}
+
+		public virtual void ExecuteAnnulerCommand() {
+			this.RazNotificationIhm();
+
+			if (this.ModeFenetre) {
+				Messenger.Default.Send<NotificationMessageFermetureFenetre>(
+					new NotificationMessageFermetureFenetre()
+				);
+			}
+			else {
+				this.AfficherEcran(this.CodeUCOrigine);
+			}
+		}
+		#endregion
 	}
 }

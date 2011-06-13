@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using gestadh45.Ihm.ObjetsIhm;
 
@@ -11,15 +10,15 @@ namespace gestadh45.Main.UserControls
 	public partial class AffichageNotificationUC : UserControl
 	{
 		/// <summary>
-		/// Obtient/Définit la liste des notifications à afficher
+		/// Obtient/Définit la notification à afficher
 		/// </summary>
-		public List<NotificationIhm> Notifications {
+		public NotificationIhm Notification {
 			get {
-				return (List<NotificationIhm>)GetValue(NotificationsProperty);
+				return (NotificationIhm)GetValue(NotificationProperty);
 			}
 
 			set {
-				SetValue(NotificationsProperty, value);
+				SetValue(NotificationProperty, value);
 			}
 		}
 		
@@ -27,9 +26,9 @@ namespace gestadh45.Main.UserControls
 			InitializeComponent();
 		}
 
-		public static DependencyProperty NotificationsProperty = DependencyProperty.Register(
-			"Notifications",
-			typeof(List<NotificationIhm>),
+		public static DependencyProperty NotificationProperty = DependencyProperty.Register(
+			"Notification",
+			typeof(NotificationIhm),
 			typeof(AffichageNotificationUC)
 		);
 	}
