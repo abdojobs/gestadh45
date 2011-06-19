@@ -9,6 +9,7 @@
 		<BooleanToVisibilityConverter x:Key="VisibilityOfBool" />
 		<ihmtools:BooleanInversionConverter x:Key="BooleanInversionConverter" />
 		<ihmtools:ListToStringConverter x:Key="ListToString" />
+		<ihmtools:HexaColorStringToBrushCOnverter x:Key="HexaToBrush" />
 
 		<Style x:Key="inscriptionGroupe" TargetType="{x:Type GroupItem}">
 			<Setter Property="Control.Template">
@@ -20,54 +21,10 @@
 					</ControlTemplate>
 				</Setter.Value>
 			</Setter>
-		</Style>
 
-		<Style TargetType="{x:Type TextBox}">
-			<Setter Property="Validation.ErrorTemplate">
-				<Setter.Value>
-					<ControlTemplate>
-						<DockPanel LastChildFill="True">
-							<TextBlock DockPanel.Dock="Right" Foreground="red" FontSize="12pt" Margin="5,0,0,0"
-									   FontWeight="ExtraBold" Text="!" />
-							<Border BorderBrush="Red" BorderThickness="1">
-								<AdornedElementPlaceholder />
-							</Border>
-						</DockPanel>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-
-			<Style.Triggers>
-				<Trigger Property="Validation.HasError" Value="true">
-					<Setter Property="ToolTip" 
-							Value="{Binding RelativeSource={RelativeSource Self}, 
-							Path=(Validation.Errors)[0].ErrorContent}"/>
-				</Trigger>
-			</Style.Triggers>
-		</Style>
-
-		<Style TargetType="{x:Type DatePicker}">
-			<Setter Property="Validation.ErrorTemplate">
-				<Setter.Value>
-					<ControlTemplate>
-						<DockPanel LastChildFill="True">
-							<TextBlock DockPanel.Dock="Right" Foreground="red" FontSize="12pt" Margin="5,0,0,0"
-									   FontWeight="ExtraBold" Text="!" />
-							<Border BorderBrush="Red" BorderThickness="1">
-								<AdornedElementPlaceholder />
-							</Border>
-						</DockPanel>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-
-			<Style.Triggers>
-				<Trigger Property="Validation.HasError" Value="true">
-					<Setter Property="ToolTip" 
-							Value="{Binding RelativeSource={RelativeSource Self}, 
-							Path=(Validation.Errors)[0].ErrorContent}"/>
-				</Trigger>
-			</Style.Triggers>
+			<Style.Resources>
+				<SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightGoldenrodYellow" />
+			</Style.Resources>
 		</Style>
 	</Application.Resources>
 </Application>

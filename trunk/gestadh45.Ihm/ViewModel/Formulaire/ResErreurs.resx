@@ -177,6 +177,9 @@
   <data name="Inscription_GroupeObligatoire" xml:space="preserve">
     <value>Le groupe est obligatoire</value>
   </data>
+  <data name="Inscription_StatutObligatoire" xml:space="preserve">
+    <value>Le statut est obligatoire</value>
+  </data>
   <data name="Saison_AnneeDebutObligatoire" xml:space="preserve">
     <value>L'année de début est obligatoire</value>
   </data>

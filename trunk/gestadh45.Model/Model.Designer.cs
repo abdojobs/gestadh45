@@ -28,6 +28,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("gestadh45.Model", "FK_Groupe_0", "JourSemaine", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(gestadh45.Model.JourSemaine), "Groupe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(gestadh45.Model.Groupe), true)]
 [assembly: EdmRelationshipAttribute("gestadh45.Model", "FK_Groupe_1", "Saison", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(gestadh45.Model.Saison), "Groupe", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(gestadh45.Model.Groupe), true)]
 [assembly: EdmRelationshipAttribute("gestadh45.Model", "FK_Inscription_0", "Groupe", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(gestadh45.Model.Groupe), "Inscription", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(gestadh45.Model.Inscription), true)]
+[assembly: EdmRelationshipAttribute("gestadh45.Model", "FK_Inscription_01", "StatutInscription", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(gestadh45.Model.StatutInscription), "Inscription", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(gestadh45.Model.Inscription), true)]
 
 #endregion
 
@@ -254,6 +255,22 @@ namespace gestadh45.Model
             }
         }
         private ObjectSet<Ville> _Villes;
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        public ObjectSet<StatutInscription> StatutInscriptions
+        {
+            get
+            {
+                if ((_StatutInscriptions == null))
+                {
+                    _StatutInscriptions = base.CreateObjectSet<StatutInscription>("StatutInscriptions");
+                }
+                return _StatutInscriptions;
+            }
+        }
+        private ObjectSet<StatutInscription> _StatutInscriptions;
 
         #endregion
         #region Méthodes AddTo
@@ -344,6 +361,14 @@ namespace gestadh45.Model
         public void AddToVilles(Ville ville)
         {
             base.AddObject("Villes", ville);
+        }
+    
+        /// <summary>
+        /// Méthode déconseillée pour ajouter un nouvel objet à l'EntitySet StatutInscriptions. Utilisez la méthode .Add de la propriété ObjectSet&lt;T&gt; associée à la place.
+        /// </summary>
+        public void AddToStatutInscriptions(StatutInscription statutInscription)
+        {
+            base.AddObject("StatutInscriptions", statutInscription);
         }
 
         #endregion
@@ -1881,7 +1906,8 @@ namespace gestadh45.Model
         /// <param name="certificatMedicalRemis">Valeur initiale de la propriété CertificatMedicalRemis.</param>
         /// <param name="dateCreation">Valeur initiale de la propriété DateCreation.</param>
         /// <param name="dateModification">Valeur initiale de la propriété DateModification.</param>
-        public static Inscription CreateInscription(global::System.Int64 id, global::System.Int64 iD_Adherent, global::System.Int64 iD_Groupe, global::System.Int64 certificatMedicalRemis, global::System.DateTime dateCreation, global::System.DateTime dateModification)
+        /// <param name="iD_StatutInscription">Valeur initiale de la propriété ID_StatutInscription.</param>
+        public static Inscription CreateInscription(global::System.Int64 id, global::System.Int64 iD_Adherent, global::System.Int64 iD_Groupe, global::System.Int64 certificatMedicalRemis, global::System.DateTime dateCreation, global::System.DateTime dateModification, global::System.Int64 iD_StatutInscription)
         {
             Inscription inscription = new Inscription();
             inscription.ID = id;
@@ -1890,6 +1916,7 @@ namespace gestadh45.Model
             inscription.CertificatMedicalRemis = certificatMedicalRemis;
             inscription.DateCreation = dateCreation;
             inscription.DateModification = dateModification;
+            inscription.ID_StatutInscription = iD_StatutInscription;
             return inscription;
         }
 
@@ -2090,6 +2117,30 @@ namespace gestadh45.Model
         private global::System.String _Commentaire;
         partial void OnCommentaireChanging(global::System.String value);
         partial void OnCommentaireChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 ID_StatutInscription
+        {
+            get
+            {
+                return _ID_StatutInscription;
+            }
+            set
+            {
+                OnID_StatutInscriptionChanging(value);
+                ReportPropertyChanging("ID_StatutInscription");
+                _ID_StatutInscription = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ID_StatutInscription");
+                OnID_StatutInscriptionChanged();
+            }
+        }
+        private global::System.Int64 _ID_StatutInscription;
+        partial void OnID_StatutInscriptionChanging(global::System.Int64 value);
+        partial void OnID_StatutInscriptionChanged();
 
         #endregion
     
@@ -2167,6 +2218,44 @@ namespace gestadh45.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Groupe>("gestadh45.Model.FK_Inscription_0", "Groupe", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gestadh45.Model", "FK_Inscription_01", "StatutInscription")]
+        public StatutInscription StatutInscription
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StatutInscription>("gestadh45.Model.FK_Inscription_01", "StatutInscription").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StatutInscription>("gestadh45.Model.FK_Inscription_01", "StatutInscription").Value = value;
+            }
+        }
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<StatutInscription> StatutInscriptionReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StatutInscription>("gestadh45.Model.FK_Inscription_01", "StatutInscription");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StatutInscription>("gestadh45.Model.FK_Inscription_01", "StatutInscription", value);
                 }
             }
         }
@@ -2589,6 +2678,164 @@ namespace gestadh45.Model
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Adherent>("gestadh45.Model.FK_Adherent_2", "Adherent", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// Aucune documentation sur les métadonnées n'est disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="gestadh45.Model", Name="StatutInscription")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class StatutInscription : EntityObject
+    {
+        #region Méthode de fabrique
+    
+        /// <summary>
+        /// Créez un nouvel objet StatutInscription.
+        /// </summary>
+        /// <param name="id">Valeur initiale de la propriété ID.</param>
+        /// <param name="libelle">Valeur initiale de la propriété Libelle.</param>
+        /// <param name="codeCouleur">Valeur initiale de la propriété CodeCouleur.</param>
+        /// <param name="ordre">Valeur initiale de la propriété Ordre.</param>
+        public static StatutInscription CreateStatutInscription(global::System.Int64 id, global::System.String libelle, global::System.String codeCouleur, global::System.Int64 ordre)
+        {
+            StatutInscription statutInscription = new StatutInscription();
+            statutInscription.ID = id;
+            statutInscription.Libelle = libelle;
+            statutInscription.CodeCouleur = codeCouleur;
+            statutInscription.Ordre = ordre;
+            return statutInscription;
+        }
+
+        #endregion
+        #region Propriétés primitives
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _ID;
+        partial void OnIDChanging(global::System.Int64 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Libelle
+        {
+            get
+            {
+                return _Libelle;
+            }
+            set
+            {
+                OnLibelleChanging(value);
+                ReportPropertyChanging("Libelle");
+                _Libelle = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Libelle");
+                OnLibelleChanged();
+            }
+        }
+        private global::System.String _Libelle;
+        partial void OnLibelleChanging(global::System.String value);
+        partial void OnLibelleChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CodeCouleur
+        {
+            get
+            {
+                return _CodeCouleur;
+            }
+            set
+            {
+                OnCodeCouleurChanging(value);
+                ReportPropertyChanging("CodeCouleur");
+                _CodeCouleur = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CodeCouleur");
+                OnCodeCouleurChanged();
+            }
+        }
+        private global::System.String _CodeCouleur;
+        partial void OnCodeCouleurChanging(global::System.String value);
+        partial void OnCodeCouleurChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Ordre
+        {
+            get
+            {
+                return _Ordre;
+            }
+            set
+            {
+                OnOrdreChanging(value);
+                ReportPropertyChanging("Ordre");
+                _Ordre = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Ordre");
+                OnOrdreChanged();
+            }
+        }
+        private global::System.Int64 _Ordre;
+        partial void OnOrdreChanging(global::System.Int64 value);
+        partial void OnOrdreChanged();
+
+        #endregion
+    
+        #region Propriétés de navigation
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("gestadh45.Model", "FK_Inscription_01", "Inscription")]
+        public EntityCollection<Inscription> Inscriptions
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Inscription>("gestadh45.Model.FK_Inscription_01", "Inscription");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Inscription>("gestadh45.Model.FK_Inscription_01", "Inscription", value);
                 }
             }
         }

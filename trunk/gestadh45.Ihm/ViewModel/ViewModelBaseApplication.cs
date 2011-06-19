@@ -91,7 +91,7 @@ namespace gestadh45.Ihm.ViewModel
 		protected void AfficherErreursIhm(List<string> pErreurs) {
 			StringBuilder sb = new StringBuilder();
 			foreach (string err in pErreurs) {
-				sb.Append(err);
+				sb.AppendLine(err);
 			}
 			this.EnvoyerMsgNotificationIhm(new NotificationIhm(sb.ToString(), TypesNotification.Erreur));
 		}
@@ -103,7 +103,7 @@ namespace gestadh45.Ihm.ViewModel
 		protected void AfficherInformationsIhm(List<string> pInformations) {
 			StringBuilder sb = new StringBuilder();
 			foreach (string info in pInformations) {
-				sb.Append(info);
+				sb.AppendLine(info);
 			}
 			this.EnvoyerMsgNotificationIhm(new NotificationIhm(sb.ToString(), TypesNotification.Information));
 		}

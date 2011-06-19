@@ -13,5 +13,6 @@ namespace gestadh45.dao
 		IAdherentDao GetAdherentDao();
 		IContactDao GetContactDao();
 		IAdresseDao GetAdresseDao();
+		IStatutInscriptionDao GetStatutInscriptionDao();
 	}
 }
