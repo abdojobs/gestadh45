@@ -9,6 +9,7 @@
 	<StackPanel>
 		<TextBox Height="50" 
 				 Text="{Binding ElementName=AffichageNotification, Path=Notification.Texte}"
-				 Foreground="{Binding ElementName=AffichageNotification, Path=Notification.Couleur}" />
+				 Foreground="{Binding ElementName=AffichageNotification, Path=Notification.Couleur}" 
+				 VerticalScrollBarVisibility="Auto"/>
 	</StackPanel>
 </UserControl>

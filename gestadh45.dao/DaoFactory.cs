@@ -42,5 +42,9 @@ namespace gestadh45.dao
 		public IAdresseDao GetAdresseDao() {
 			return new AdresseDao();
 		}
+
+		public IStatutInscriptionDao GetStatutInscriptionDao() {
+			return new StatutInscriptionDao();
+		}
 	}
 }

@@ -15,6 +15,7 @@
           <EntitySet Name="JourSemaine" EntityType="gestadh45.Model.Store.JourSemaine" store:Type="Tables" />
           <EntitySet Name="Saison" EntityType="gestadh45.Model.Store.Saison" store:Type="Tables" />
           <EntitySet Name="Sexe" EntityType="gestadh45.Model.Store.Sexe" store:Type="Tables" />
+          <EntitySet Name="StatutInscription" EntityType="gestadh45.Model.Store.StatutInscription" store:Type="Tables" />
           <EntitySet Name="TarifConseille" EntityType="gestadh45.Model.Store.TarifConseille" store:Type="Tables" />
           <EntitySet Name="Ville" EntityType="gestadh45.Model.Store.Ville" store:Type="Tables" />
           <AssociationSet Name="FK_Adherent_0" Association="gestadh45.Model.Store.FK_Adherent_0">
@@ -50,11 +51,15 @@
             <End Role="InfosClub" EntitySet="InfosClub" />
           </AssociationSet>
           <AssociationSet Name="FK_Inscription_0" Association="gestadh45.Model.Store.FK_Inscription_0">
-            <End Role="Adherent" EntitySet="Adherent" />
+            <End Role="StatutInscription" EntitySet="StatutInscription" />
             <End Role="Inscription" EntitySet="Inscription" />
           </AssociationSet>
           <AssociationSet Name="FK_Inscription_1" Association="gestadh45.Model.Store.FK_Inscription_1">
             <End Role="Groupe" EntitySet="Groupe" />
+            <End Role="Inscription" EntitySet="Inscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inscription_2" Association="gestadh45.Model.Store.FK_Inscription_2">
+            <End Role="Adherent" EntitySet="Adherent" />
             <End Role="Inscription" EntitySet="Inscription" />
           </AssociationSet>
         </EntityContainer>
@@ -131,6 +136,7 @@
           <Property Name="DateCreation" Type="datetime" Nullable="false" />
           <Property Name="DateModification" Type="datetime" Nullable="false" />
           <Property Name="Commentaire" Type="nvarchar" />
+          <Property Name="ID_StatutInscription" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="JourSemaine">
           <Key>
@@ -156,6 +162,15 @@
           <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="LibelleCourt" Type="nvarchar" Nullable="false" MaxLength="1" />
           <Property Name="LibelleLong" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StatutInscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CodeCouleur" Type="nvarchar" Nullable="false" MaxLength="7" />
+          <Property Name="Ordre" Type="integer" Nullable="false" />
         </EntityType>
         <EntityType Name="TarifConseille">
           <Key>
@@ -272,14 +287,14 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Inscription_0">
-          <End Role="Adherent" Type="gestadh45.Model.Store.Adherent" Multiplicity="1" />
+          <End Role="StatutInscription" Type="gestadh45.Model.Store.StatutInscription" Multiplicity="1" />
           <End Role="Inscription" Type="gestadh45.Model.Store.Inscription" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Adherent">
+            <Principal Role="StatutInscription">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Inscription">
-              <PropertyRef Name="ID_Adherent" />
+              <PropertyRef Name="ID_StatutInscription" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -292,6 +307,18 @@
             </Principal>
             <Dependent Role="Inscription">
               <PropertyRef Name="ID_Groupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inscription_2">
+          <End Role="Adherent" Type="gestadh45.Model.Store.Adherent" Multiplicity="1" />
+          <End Role="Inscription" Type="gestadh45.Model.Store.Inscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adherent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inscription">
+              <PropertyRef Name="ID_Adherent" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -349,6 +376,11 @@
           </AssociationSet>
           <AssociationSet Name="FK_Inscription_0" Association="gestadh45.Model.FK_Inscription_0">
             <End Role="Groupe" EntitySet="Groupes" />
+            <End Role="Inscription" EntitySet="Inscriptions" />
+          </AssociationSet>
+          <EntitySet Name="StatutInscriptions" EntityType="gestadh45.Model.StatutInscription" />
+          <AssociationSet Name="FK_Inscription_01" Association="gestadh45.Model.FK_Inscription_01">
+            <End Role="StatutInscription" EntitySet="StatutInscriptions" />
             <End Role="Inscription" EntitySet="Inscriptions" />
           </AssociationSet>
         </EntityContainer>
@@ -441,6 +473,8 @@
           <Property Name="Commentaire" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Adherent" Relationship="gestadh45.Model.FK_Inscription_1" FromRole="Inscription" ToRole="Adherent" />
           <NavigationProperty Name="Groupe" Relationship="gestadh45.Model.FK_Inscription_0" FromRole="Inscription" ToRole="Groupe" />
+          <Property Type="Int64" Name="ID_StatutInscription" Nullable="false" />
+          <NavigationProperty Name="StatutInscription" Relationship="gestadh45.Model.FK_Inscription_01" FromRole="Inscription" ToRole="StatutInscription" />
         </EntityType>
         <EntityType Name="JourSemaine">
           <Key>
@@ -609,6 +643,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="StatutInscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CodeCouleur" Nullable="false" MaxLength="7" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Inscriptions" Relationship="gestadh45.Model.FK_Inscription_01" FromRole="StatutInscription" ToRole="Inscription" />
+          <Property Type="Int64" Name="Ordre" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Inscription_01">
+          <End Type="gestadh45.Model.StatutInscription" Role="StatutInscription" Multiplicity="1" />
+          <End Type="gestadh45.Model.Inscription" Role="Inscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatutInscription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inscription">
+              <PropertyRef Name="ID_StatutInscription" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -662,7 +718,8 @@
             <ScalarProperty Name="Numero" ColumnName="Numero" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Inscriptions"><EntityTypeMapping TypeName="gestadh45.Model.Inscription"><MappingFragment StoreEntitySet="Inscription">
-            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="ID_StatutInscription" ColumnName="ID_StatutInscription" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="ID_Adherent" ColumnName="ID_Adherent" />
             <ScalarProperty Name="ID_Groupe" ColumnName="ID_Groupe" />
             <ScalarProperty Name="CertificatMedicalRemis" ColumnName="CertificatMedicalRemis" />
@@ -699,6 +756,16 @@
             <ScalarProperty Name="Libelle" ColumnName="Libelle" />
             <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="StatutInscriptions">
+            <EntityTypeMapping TypeName="gestadh45.Model.StatutInscription">
+              <MappingFragment StoreEntitySet="StatutInscription">
+                <ScalarProperty Name="Ordre" ColumnName="Ordre" />
+                <ScalarProperty Name="CodeCouleur" ColumnName="CodeCouleur" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -748,10 +815,10 @@
           <ConnectorPoint PointX="3.375" PointY="6.4857796223958335" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.Model.FK_Inscription_1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="3.71875" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="3.7187499999999996" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="3.71875" />
-          <ConnectorPoint PointX="8.25" PointY="3.71875" />
+          <ConnectorPoint PointX="4.5" PointY="6.8191943359375" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="6.8191943359374987" />
+          <ConnectorPoint PointX="5.708333333333333" PointY="6.8191943359375" />
+          <ConnectorPoint PointX="8.25" PointY="6.8191943359375" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.Model.FK_Adresse_0" ManuallyRouted="false">
           <ConnectorPoint PointX="2.6250025" PointY="8" />
@@ -759,20 +826,20 @@
           <ConnectorPoint PointX="2.25" PointY="2.2220032324218746" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.Model.FK_InfosClub_0" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="1.198997744140625" />
-          <ConnectorPoint PointX="6.75" PointY="1.198997744140625" />
+          <ConnectorPoint PointX="2.25" PointY="1.2001189344728935" />
+          <ConnectorPoint PointX="6.75" PointY="1.2001189344728935" />
           <ConnectorPoint PointX="6.75" PointY="3.875" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.Model.FK_InfosClub_1" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="6.2033902994791656" />
-          <ConnectorPoint PointX="1.5" PointY="6.7357796223958335" />
-          <ConnectorPoint PointX="2.5416691666666664" PointY="6.7357796223958326" />
-          <ConnectorPoint PointX="2.7083358333333334" PointY="6.7357796223958335" />
-          <ConnectorPoint PointX="3.2916666666666665" PointY="6.7357796223958326" />
-          <ConnectorPoint PointX="3.4583333333333335" PointY="6.7357796223958335" />
-          <ConnectorPoint PointX="5.625" PointY="6.7357796223958335" />
-          <ConnectorPoint PointX="5.625" PointY="4.9176741536458328" />
-          <ConnectorPoint PointX="6" PointY="4.9176741536458328" />
+          <ConnectorPoint PointX="1.5" PointY="6.5667936197916656" />
+          <ConnectorPoint PointX="1.5" PointY="7.2109993489583317" />
+          <ConnectorPoint PointX="2.5416691666666664" PointY="7.2109993489583308" />
+          <ConnectorPoint PointX="2.7083358333333334" PointY="7.2109993489583317" />
+          <ConnectorPoint PointX="3.2916666666666665" PointY="7.2109993489583308" />
+          <ConnectorPoint PointX="3.4583333333333335" PointY="7.2109993489583317" />
+          <ConnectorPoint PointX="5.625" PointY="7.2109993489583317" />
+          <ConnectorPoint PointX="5.625" PointY="5.24974609375" />
+          <ConnectorPoint PointX="6" PointY="5.24974609375" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.Model.FK_Groupe_0" ManuallyRouted="false">
           <ConnectorPoint PointX="5.25" PointY="10.018992513020834" />
@@ -785,7 +852,13 @@
         <AssociationConnector Association="gestadh45.Model.FK_Inscription_0" ManuallyRouted="false">
           <ConnectorPoint PointX="7.5" PointY="11.025940755208332" />
           <ConnectorPoint PointX="8.46875" PointY="11.025940755208332" />
-          <ConnectorPoint PointX="8.46875" PointY="6.5667936197916656" />
+          <ConnectorPoint PointX="8.46875" PointY="6.951396484375" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="gestadh45.Model.StatutInscription" Width="1.5" PointX="10.375" PointY="0.875" Height="1.9802864583333339" />
+        <AssociationConnector Association="gestadh45.Model.FK_Inscription_01" >
+          <ConnectorPoint PointX="11.125" PointY="2.8552864583333339" />
+          <ConnectorPoint PointX="11.125" PointY="5.2881982421875" />
+          <ConnectorPoint PointX="9.75" PointY="5.2881982421875" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

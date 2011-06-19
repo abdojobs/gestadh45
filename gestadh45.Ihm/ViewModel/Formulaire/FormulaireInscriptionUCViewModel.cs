@@ -12,6 +12,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 	{
 		private ICollectionView mAdherents;
 		private ICollectionView mGroupesSaisonCourante;
+		private ICollectionView mStatutsInscription;
 		private Inscription mInscription;
 
 		private IInscriptionDao mDaoInscription;
@@ -21,6 +22,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private IVilleDao mDaoVille;
 		private IContactDao mDaoContact;
 		private IAdresseDao mDaoAdresse;
+		private IStatutInscriptionDao mDaoStatutInscription;
 
 		/// <summary>
 		/// Obtient/Définit la liste des adhérents
@@ -32,7 +34,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			set {
 				if (this.mAdherents != value) {
 					this.mAdherents = value;
-					this.RaisePropertyChanged("Adherents");
+					this.RaisePropertyChanged(() => this.Adherents);
 				}
 			}
 		}
@@ -47,7 +49,22 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			set {
 				if (this.mGroupesSaisonCourante != value) {
 					this.mGroupesSaisonCourante = value;
-					this.RaisePropertyChanged("GroupesSaisonCourante");
+					this.RaisePropertyChanged(() => this.GroupesSaisonCourante);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit la liste des statuts d'inscription
+		/// </summary>
+		public ICollectionView StatutsInscription {
+			get {
+				return this.mStatutsInscription;
+			}
+			set {
+				if (this.mStatutsInscription != value) {
+					this.mStatutsInscription = value;
+					this.RaisePropertyChanged(() => this.StatutsInscription);
 				}
 			}
 		}
@@ -62,7 +79,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			set {
 				if (this.mInscription != value) {
 					this.mInscription = value;
-					this.RaisePropertyChanged("Inscription");
+					this.RaisePropertyChanged(() => this.Inscription);
 				}
 			}
 		}
@@ -75,11 +92,13 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.mDaoVille = this.mDaoFactory.GetVilleDao();
 			this.mDaoContact = this.mDaoFactory.GetContactDao();
 			this.mDaoAdresse = this.mDaoFactory.GetAdresseDao();
+			this.mDaoStatutInscription = this.mDaoFactory.GetStatutInscriptionDao();
 
 			this.Inscription = new Inscription();
 
 			this.InitialisationListeAdherents();
 			this.InitialisationListeGroupes();
+			this.InitialisationListeStatutsInscription();
 
 			this.CodeUCOrigine = CodesUC.ConsultationInscriptions;
 			base.EstEdition = false;
@@ -137,6 +156,12 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.GroupesSaisonCourante = defaultView;
 		}
 
+		private void InitialisationListeStatutsInscription() {
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoStatutInscription.List());
+			defaultView.SortDescriptions.Add(new SortDescription("Ordre", ListSortDirection.Ascending));
+			this.StatutsInscription = defaultView;
+		}
+
 		protected override bool VerifierSaisie() {
 			List<string> lErreurs = new List<string>();
 
@@ -146,6 +171,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			if (this.Inscription.Groupe == null) {
 				lErreurs.Add(ResErreurs.Inscription_GroupeObligatoire);
+			}
+
+			if (this.Inscription.StatutInscription == null) {
+				lErreurs.Add(ResErreurs.Inscription_StatutObligatoire);
 			}
 
 			if (!this.EstEdition

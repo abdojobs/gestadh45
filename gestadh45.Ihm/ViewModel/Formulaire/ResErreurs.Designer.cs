@@ -241,6 +241,15 @@ namespace gestadh45.Ihm.ViewModel.Formulaire {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le statut est obligatoire.
+        /// </summary>
+        internal static string Inscription_StatutObligatoire {
+            get {
+                return ResourceManager.GetString("Inscription_StatutObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à L&apos;année de début est obligatoire.
         /// </summary>
         internal static string Saison_AnneeDebutObligatoire {
