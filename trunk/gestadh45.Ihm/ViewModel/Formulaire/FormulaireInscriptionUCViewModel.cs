@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Model;
+using System.Configuration;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -102,6 +103,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			this.CodeUCOrigine = CodesUC.ConsultationInscriptions;
 			base.EstEdition = false;
+
+			// initialisation du statut par défaut de l'inscription (dans App.config)
+			int defaultStatudId = 0;
+			bool recupStatut = int.TryParse(ConfigurationManager.AppSettings["DefaultStatutInscription"], out defaultStatudId);
+			this.Inscription.StatutInscription = this.mDaoStatutInscription.Read(defaultStatudId);
 		}
 
 		public override void ExecuteAnnulerCommand() {

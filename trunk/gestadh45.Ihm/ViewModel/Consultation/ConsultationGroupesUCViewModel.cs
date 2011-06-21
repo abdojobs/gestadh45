@@ -208,7 +208,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
+			defaultView.SortDescriptions.Add(new SortDescription("HeureDebutDT", ListSortDirection.Ascending));
 			this.GroupesSaisonCourante = defaultView;
 		}
 
