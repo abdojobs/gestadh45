@@ -12,6 +12,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class ConsultationAdherentsUCViewModel : ViewModelBaseConsultation
 	{
+		public ICommand InscrireCommand { get; set; }
+		
 		private Adherent mAdherent;
 		private ICollectionView mAdherents;
 
@@ -53,14 +55,43 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.InitialisationListeAdherents();
 
 			this.CreateInscrireCommand();
-			this.CreateDupliquerCommand();
 
 			Messenger.Default.Register<NotificationMessageSelectionElement<Adherent>>(this, this.SelectionnerAdherent);
 		}
 
-		#region EditerCommand
 		public override bool CanExecuteEditerCommand() {
 			return (this.Adherent != null);
+		}
+
+		public override bool CanExecuteSupprimerCommand() {
+			return (
+				this.Adherent != null
+				&& this.mDaoAdherent.Exists(this.Adherent)
+				&& !this.mDaoAdherent.IsUsed(this.Adherent)
+				);
+		}
+
+		public bool CanExecuteInscrireCommand() {
+			return (this.Adherent != null);
+		}
+
+		private void CreateInscrireCommand() {
+			this.InscrireCommand = new RelayCommand(
+				this.ExecuteInscrireCommand, 
+				this.CanExecuteInscrireCommand
+			);
+		}
+
+		public override void ExecuteAfficherDetailsCommand(object pAdherent) {
+			if (pAdherent != null && pAdherent is Adherent) {
+				this.Adherent = pAdherent as Adherent;
+			}
+		}
+
+		public override void ExecuteCreerCommand() {
+			base.ExecuteCreerCommand();
+
+			this.AfficherEcran(CodesUC.FormulaireAdherent);
 		}
 
 		public override void ExecuteEditerCommand() {
@@ -74,41 +105,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				)
 			);
 		}
-		#endregion
-
-		#region InscrireCommand
-		public ICommand InscrireCommand { get; set; }
-		
-		public bool CanExecuteInscrireCommand() {
-			return (this.Adherent != null);
-		}
-
-		public void ExecuteInscrireCommand() {
-			Messenger.Default.Send<MsgAfficherUC<Adherent>>(
-				new MsgAfficherUC<Adherent>(
-					CodesUC.FormulaireInscription,
-					MsgAfficherUC.TypeAffichage.Interne,
-					this.Adherent
-				)
-			);
-		}
-
-		private void CreateInscrireCommand() {
-			this.InscrireCommand = new RelayCommand(
-				this.ExecuteInscrireCommand,
-				this.CanExecuteInscrireCommand
-			);
-		}
-		#endregion
-
-		#region SupprimerCommand
-		public override bool CanExecuteSupprimerCommand() {
-			return (
-				this.Adherent != null
-				&& this.mDaoAdherent.Exists(this.Adherent)
-				&& !this.mDaoAdherent.IsUsed(this.Adherent)
-				);
-		}
 
 		public override void ExecuteSupprimerCommand() {
 			if (this.Adherent != null) {
@@ -119,6 +115,25 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
+		}
+
+		public override void ExecuteFiltrerListeCommand(string pFiltre) {
+			if (string.IsNullOrEmpty(pFiltre)) {
+				this.Adherents.Filter = null;
+			}
+			else {
+				this.Adherents.Filter = (p) => ((Adherent)p).ToString().ToUpper().Contains(pFiltre.ToUpper());
+			}
+		}
+
+		public void ExecuteInscrireCommand() {
+			Messenger.Default.Send<MsgAfficherUC<Adherent>>(
+				new MsgAfficherUC<Adherent>(
+					CodesUC.FormulaireInscription, 
+					MsgAfficherUC.TypeAffichage.Interne,
+					this.Adherent
+				)
+			);
 		}
 
 		/// <summary>
@@ -134,55 +149,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionAdherent);
 			}
 		}
-		#endregion
-
-		#region AfficherDetailsCommand
-		public override void ExecuteAfficherDetailsCommand(object pAdherent) {
-			if (pAdherent != null && pAdherent is Adherent) {
-				this.Adherent = pAdherent as Adherent;
-			}
-		}
-		#endregion
-
-		#region CreerCommand
-		public override void ExecuteCreerCommand() {
-			base.ExecuteCreerCommand();
-
-			this.AfficherEcran(CodesUC.FormulaireAdherent);
-		}
-		#endregion
-
-		#region FiltrerListeCommand
-		public override void ExecuteFiltrerListeCommand(string pFiltre) {
-			if (string.IsNullOrEmpty(pFiltre)) {
-				this.Adherents.Filter = null;
-			}
-			else {
-				this.Adherents.Filter = (p) => ((Adherent)p).ToString().ToUpper().Contains(pFiltre.ToUpper());
-			}
-		}
-		#endregion		
-
-		#region DupliquerCommand
-		public ICommand DupliquerCommand { get; set; }
-
-		public bool CanExecuteDupliquerCommand() {
-			return true;
-		}
-
-		public void ExecuteDupliquerCommand() {
-			// TODO Envoyer un message contenant les infos de l'adhérent
-		}
-
-		private void CreateDupliquerCommand() {
-			this.DupliquerCommand = new RelayCommand(
-				this.ExecuteDupliquerCommand,
-				this.CanExecuteDupliquerCommand
-			);
-		}
-		#endregion
-
-		
 
 		private void InitialisationListeAdherents() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoAdherent.List());
