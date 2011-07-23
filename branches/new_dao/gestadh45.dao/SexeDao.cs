@@ -12,7 +12,7 @@ namespace gestadh45.dao
 			Sexe result = null;
 
 			var param = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value=pId };
-			var cmd = new SQLiteCommand("SELECT Id, LibelleCourt, LibelleLong FROM Sexe WHERE Id=@Id", this.Connection);
+			var cmd = new SQLiteCommand("SELECT Id, LibelleCourt, LibelleLong FROM Sexe WHERE ID=@Id;", this.Connection);
 			cmd.Parameters.Add(param);
 
 			var reader = cmd.ExecuteReader();
@@ -36,7 +36,7 @@ namespace gestadh45.dao
 			this.Connection.Open();
 			List<Sexe> result = null;
 
-			var cmd = new SQLiteCommand("SELECT Id, LibelleCourt, LibelleLong FROM Sexe ORDER BY LibelleCourt DESC", this.Connection);
+			var cmd = new SQLiteCommand("SELECT Id, LibelleCourt, LibelleLong FROM Sexe ORDER BY LibelleCourt DESC;", this.Connection);
 
 			var reader = cmd.ExecuteReader();
 
