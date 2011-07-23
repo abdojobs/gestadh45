@@ -19,5 +19,20 @@ namespace gestadh45.dao
 
 			this.Connection = new SQLiteConnection(scb.ToString());
 		}
+
+		/// <summary>
+		/// Retourne le dernier ID inséré dans la base
+		/// </summary>
+		/// <returns>Dernier ID inséré dans la base</returns>
+		protected int GetLastInsertId() {
+			this.Connection.Open();
+
+			var cmd = new SQLiteCommand("SELECT last_insert_rowid();", this.Connection);
+			int result = (int)cmd.ExecuteScalar();
+
+			this.Connection.Close();
+
+			return result;
+		}
 	}
 }

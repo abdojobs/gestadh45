@@ -9,7 +9,5 @@ namespace gestadh45.dao
 				
 		bool Exists(T pDonnee);
 		bool IsUsed(T pDonnee);
-
-		void Refresh(T pDonnee);
 	}
 }
