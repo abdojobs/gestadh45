@@ -75,12 +75,6 @@
     <Compile Include="StatutInscriptionDao.cs" />
     <Compile Include="VilleDao.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\gestadh45.Model\gestadh45.Model.csproj">
-      <Project>{30A7733E-EAFD-4469-BDC8-7332A92E6585}</Project>
-      <Name>gestadh45.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
