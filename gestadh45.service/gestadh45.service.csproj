@@ -112,10 +112,6 @@
       <Project>{5121D3C9-6745-405D-9374-DE1833907A07}</Project>
       <Name>gestadh45.dao</Name>
     </ProjectReference>
-    <ProjectReference Include="..\gestadh45.Model\gestadh45.Model.csproj">
-      <Project>{30A7733E-EAFD-4469-BDC8-7332A92E6585}</Project>
-      <Name>gestadh45.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
