@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using gestadh45.Model;
+using gestadh45.model;
 
 namespace gestadh45.dao
 {
