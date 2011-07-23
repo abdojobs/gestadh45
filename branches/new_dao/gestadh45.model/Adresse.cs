@@ -20,7 +20,7 @@ namespace gestadh45.model
 		/// </summary>
 		/// <returns>adresse ville</returns>
 		public override string ToString() {
-			return string.Format("{0} {1}", this.Libelle, this.Ville)
+			return string.Format("{0} {1}", this.Libelle, this.Ville);
 		}
 	}
 }

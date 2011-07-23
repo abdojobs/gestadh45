@@ -1,0 +1,61 @@
+﻿using System.Collections.Generic;
+using System.Data.SQLite;
+using gestadh45.model;
+
+namespace gestadh45.dao
+{
+	public class JourSemaineDao : DaoBase, IReadOnlyDao<JourSemaine>
+	{
+		public JourSemaineDao(string pFilePath) : base(pFilePath) { }
+		
+		public JourSemaine Read(int pId) {
+			this.Connection.Open();
+			JourSemaine result = null;
+
+			var param = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pId };
+			var cmd = new SQLiteCommand("SELECT Id, Libelle, Ordre FROM JourSemaine WHERE Id=@Id", this.Connection);
+			cmd.Parameters.Add(param);
+
+			var reader = cmd.ExecuteReader();
+
+			if (reader.HasRows) {
+				reader.Read();
+
+				result = new JourSemaine()
+				{
+					Id = reader.GetInt32(0),
+					Libelle = reader.GetString(1),
+					Numero = reader.GetInt32(2)
+				};
+			}
+
+			this.Connection.Close();
+			return result;
+		}
+
+		public List<JourSemaine> List() {
+			this.Connection.Open();
+			List<JourSemaine> result = null;
+
+			var cmd = new SQLiteCommand("SELECT Id, Libelle, Ordre FROM JourSemaine ORDER BY Ordre", this.Connection);
+
+			var reader = cmd.ExecuteReader();
+
+			if (reader.HasRows) {
+				while (reader.Read()) {
+					var donnee = new JourSemaine()
+					{
+						Id = reader.GetInt32(0),
+						Libelle = reader.GetString(1),
+						Numero = reader.GetInt32(2)
+					};
+
+					result.Add(donnee);
+				}
+			}
+
+			this.Connection.Close();
+			return result;
+		}
+	}
+}

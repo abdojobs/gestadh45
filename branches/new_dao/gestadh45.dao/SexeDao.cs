@@ -1,43 +1,60 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Data.SQLite;
 using gestadh45.model;
 
 namespace gestadh45.dao
 {
-	public class SexeDao : IDao<Sexe>
-	{
-		public Sexe Create(Sexe pDonnee) {
-			throw new NotImplementedException();
-		}
-
-		public Sexe Update(Sexe pDonnee) {
-			throw new NotImplementedException();
-		}
-
-		public void Delete(Sexe pDonnee) {
-			throw new NotImplementedException();
-		}
-
-		public bool Exists(Sexe pDonnee) {
-			throw new NotImplementedException();
-		}
-
-		public bool IsUsed(Sexe pDonnee) {
-			throw new NotImplementedException();
-		}
-
-		public void Refresh(Sexe pDonnee) {
-			throw new NotImplementedException();
-		}
+	public class SexeDao : DaoBase, IReadOnlyDao<Sexe> {
+		public SexeDao(string pFilePath) : base(pFilePath) { }
 
 		public Sexe Read(int pId) {
-			throw new NotImplementedException();
+			this.Connection.Open();
+			Sexe result = null;
+
+			var param = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value=pId };
+			var cmd = new SQLiteCommand("SELECT Id, LibelleCourt, LibelleLong FROM Sexe WHERE Id=@Id", this.Connection);
+			cmd.Parameters.Add(param);
+
+			var reader = cmd.ExecuteReader();
+
+			if (reader.HasRows) {
+				reader.Read();
+
+				result = new Sexe()
+				{
+					Id = reader.GetInt32(0),
+					LibelleCourt = reader.GetString(1),
+					LibelleLong = reader.GetString(2)
+				};
+			}
+
+			this.Connection.Close();
+			return result;
 		}
 
 		public List<Sexe> List() {
-			throw new NotImplementedException();
+			this.Connection.Open();
+			List<Sexe> result = null;
+
+			var cmd = new SQLiteCommand("SELECT Id, LibelleCourt, LibelleLong FROM Sexe ORDER BY LibelleCourt DESC", this.Connection);
+
+			var reader = cmd.ExecuteReader();
+
+			if (reader.HasRows) {
+				while (reader.Read()) {
+					var donnee = new Sexe()
+					{
+						Id = reader.GetInt32(0),
+						LibelleCourt = reader.GetString(1),
+						LibelleLong = reader.GetString(2)
+					};
+
+					result.Add(donnee);
+				}
+			}
+
+			this.Connection.Close();
+			return result;
 		}
 	}
 }
