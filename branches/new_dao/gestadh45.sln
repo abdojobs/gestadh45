@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.Main", "gestadh45
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "gestadh45.Setup", "gestadh45.Setup\gestadh45.Setup.vdproj", "{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.model", "gestadh45.model\gestadh45.model.csproj", "{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -72,6 +74,16 @@ Global
 		{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}.Release|Mixed Platforms.ActiveCfg = Release
 		{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}.Release|Mixed Platforms.Build.0 = Release
 		{8F82E38C-A4F6-44B6-8739-4F158DC3F9B6}.Release|x86.ActiveCfg = Release
+		{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
