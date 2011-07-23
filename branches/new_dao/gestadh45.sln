@@ -11,7 +11,7 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "gestadh45.Setup", "gestadh4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.model", "gestadh45.model\gestadh45.model.csproj", "{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.dao1", "gestadh45.dao1\gestadh45.dao1.csproj", "{5306E71F-E368-4890-83DD-A86E9850896B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.dao", "gestadh45.dao1\gestadh45.dao.csproj", "{5306E71F-E368-4890-83DD-A86E9850896B}"
 EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
