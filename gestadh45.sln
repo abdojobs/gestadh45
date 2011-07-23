@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.dao", "gestadh45.dao\gestadh45.dao.csproj", "{5121D3C9-6745-405D-9374-DE1833907A07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.dao_", "gestadh45.dao\gestadh45.dao_.csproj", "{5121D3C9-6745-405D-9374-DE1833907A07}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.Ihm", "gestadh45.Ihm\gestadh45.Ihm.csproj", "{7D1DAFDD-8A59-4F52-9B5F-9D01AF975565}"
 EndProject
