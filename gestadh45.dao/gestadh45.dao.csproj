@@ -8,8 +8,8 @@
     <ProjectGuid>{5306E71F-E368-4890-83DD-A86E9850896B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>gestadh45.dao1</RootNamespace>
-    <AssemblyName>gestadh45.dao1</AssemblyName>
+    <RootNamespace>gestadh45.dao</RootNamespace>
+    <AssemblyName>gestadh45.dao</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,6 +43,13 @@
     <Compile Include="IDao.cs" />
     <Compile Include="IReadOnlyDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SexeDao.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gestadh45.model\gestadh45.model.csproj">
+      <Project>{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}</Project>
+      <Name>gestadh45.model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
