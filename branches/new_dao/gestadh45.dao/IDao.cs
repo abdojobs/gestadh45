@@ -1,5 +1,5 @@
 ﻿
-namespace gestadh45.dao1
+namespace gestadh45.dao
 {
 	public interface IDao<T> : IReadOnlyDao<T>
 	{

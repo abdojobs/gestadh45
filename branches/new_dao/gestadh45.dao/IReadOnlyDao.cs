@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace gestadh45.dao1
+namespace gestadh45.dao
 {
 	public interface IReadOnlyDao<T>
 	{
