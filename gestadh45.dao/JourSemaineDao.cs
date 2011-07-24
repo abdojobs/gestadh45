@@ -13,7 +13,7 @@ namespace gestadh45.dao
 			JourSemaine result = null;
 
 			var param = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pId };
-			var cmd = new SQLiteCommand("SELECT Id, Libelle, Numero FROM JourSemaine WHERE ID=@Id;", this.Connection);
+			var cmd = new SQLiteCommand("SELECT Id, UPPER(Libelle), Numero FROM JourSemaine WHERE ID=@Id;", this.Connection);
 			cmd.Parameters.Add(param);
 
 			var reader = cmd.ExecuteReader();
@@ -37,7 +37,7 @@ namespace gestadh45.dao
 			this.Connection.Open();
 			List<JourSemaine> result = new List<JourSemaine>();
 
-			var cmd = new SQLiteCommand("SELECT Id, Libelle, Numero FROM JourSemaine ORDER BY Numero;", this.Connection);
+			var cmd = new SQLiteCommand("SELECT Id, UPPER(Libelle), Numero FROM JourSemaine ORDER BY Numero;", this.Connection);
 
 			var reader = cmd.ExecuteReader();
 

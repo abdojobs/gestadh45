@@ -13,12 +13,12 @@ namespace gestadh45.dao
 
 			// Contact
 			var cmdContact = new SQLiteCommand("INSERT INTO Contact(Telephone1, Telephone2, Telephone3, Mail1, Mail2, Mail3) VALUES @ContactTelephone1, @ContactTelephone2, @ContactTelephone3, @ContactMail1, @ContactMail2, @ContactMail3;", this.Connection);
-			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1 };
-			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2 };
-			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3 };
-			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1 };
-			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2 };
-			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3 };
+			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1.ToUpper() };
+			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2.ToUpper() };
+			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3.ToUpper() };
+			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1.ToLower() };
+			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2.ToLower() };
+			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3.ToLower() };
 			cmdContact.Parameters.Add(paramContactTelephone1);
 			cmdContact.Parameters.Add(paramContactTelephone2);
 			cmdContact.Parameters.Add(paramContactTelephone3);
@@ -35,7 +35,7 @@ namespace gestadh45.dao
 			
 			// Adhérent
 			var cmdAdherent = new SQLiteCommand("INSERT INTO Adherent(Nom, Prenom, DateNaissance, DateCreation, DateModification, Commentaire, ID_Sexe, ID_Contact, ID_Adresse) Values(@Nom, @Prenom, @DateNaissance, @DateCreation, @DateModification, @Commentaire, @IdSexe, @IdContact, @IdAdresse);", this.Connection);
-			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom };
+			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToUpper() };
 			var paramPrenom = new SQLiteParameter("@Prenom", System.Data.DbType.String) { Value = pDonnee.Prenom };
 			var paramDateNaissance = new SQLiteParameter("@DateNaissance", System.Data.DbType.DateTime) { Value = pDonnee.DateNaissance };
 			var paramDateCreation = new SQLiteParameter("@DateCreation", System.Data.DbType.DateTime) { Value = pDonnee.DateCreation };
@@ -78,12 +78,12 @@ namespace gestadh45.dao
 			// Contact
 			var cmdContact = new SQLiteCommand("UPDATE Contact SET Telephone1=@ContactTelephone1, Telephone2=@ContactTelephone2, Telephone3=@ContactTelephone3, Mail1=@ContactMail1, Mail2=@ContactMail2, Mail3=@ContactMail3 WHERE ID=@IdContact;", this.Connection, trans);
 			var paramIdContact = new SQLiteParameter("@IdContact", System.Data.DbType.Int32) { Value = pDonnee.Contact.Id };
-			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1 };
-			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2 };
-			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3 };
-			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1 };
-			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2 };
-			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3 };
+			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1.ToUpper() };
+			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2.ToUpper() };
+			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3.ToUpper() };
+			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1.ToLower() };
+			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2.ToLower() };
+			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3.ToLower() };
 			cmdContact.Parameters.Add(paramIdContact);
 			cmdContact.Parameters.Add(paramContactTelephone1);
 			cmdContact.Parameters.Add(paramContactTelephone2);
@@ -104,7 +104,7 @@ namespace gestadh45.dao
 			// Adhérent (la date de création ne peut être modifiée)
 			var cmdAdherent = new SQLiteCommand("UPDATE Adherent SET Nom=@Nom, Prenom=@Prenom, DateNaissance=@DateNaissance, DateModification=@DateModification, Commentaire=@Commentaire, ID_Sexe=@IdSexe WHERE ID = @Id);", this.Connection, trans);
 			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
-			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom };
+			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToUpper() };
 			var paramPrenom = new SQLiteParameter("@Prenom", System.Data.DbType.String) { Value = pDonnee.Prenom };
 			var paramDateNaissance = new SQLiteParameter("@DateNaissance", System.Data.DbType.DateTime) { Value = pDonnee.DateNaissance };
 			var paramDateModification = new SQLiteParameter("@DateModification", System.Data.DbType.DateTime) { Value = pDonnee.DateModification };
@@ -169,9 +169,13 @@ namespace gestadh45.dao
 		public bool Exists(Adherent pDonnee) {
 			this.Connection.Open();
 
-			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
-			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Adherent WHERE ID=@Id;", this.Connection);
-			cmd.Parameters.Add(paramId);
+			// la vérification s'effectuera sur le nom et le prénom
+			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Adherent WHERE UPPER(Nom)=@Nom AND UPPER(Prenom)=@Prenom;", this.Connection);
+			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToUpper() };
+			var paramPrenom = new SQLiteParameter("@Prenom", System.Data.DbType.String) { Value = pDonnee.Prenom.ToUpper() };
+
+			cmd.Parameters.Add(paramNom);
+			cmd.Parameters.Add(paramPrenom);
 
 			try {
 				var result = (int)cmd.ExecuteScalar();

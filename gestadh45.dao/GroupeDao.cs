@@ -11,7 +11,7 @@ namespace gestadh45.dao
 		public int Create(Groupe pDonnee) {
 			this.Connection.Open();
 
-			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle };
+			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle.ToUpper() };
 			var paramIdJourSemaine = new SQLiteParameter("@IdJourSemaine", System.Data.DbType.Int32) { Value = pDonnee.JourSemaine.Id };
 			var paramNbPlaces = new SQLiteParameter("@NbPlaces", System.Data.DbType.Int32) { Value = pDonnee.NbPlaces };
 			var paramCommentaire = new SQLiteParameter("@Commentaire", System.Data.DbType.String) { Value = pDonnee.Commentaire };
@@ -44,7 +44,7 @@ namespace gestadh45.dao
 			this.Connection.Open();
 
 			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
-			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle };
+			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle.ToUpper() };
 			var paramIdJourSemaine = new SQLiteParameter("@IdJourSemaine", System.Data.DbType.Int32) { Value = pDonnee.JourSemaine.Id };
 			var paramNbPlaces = new SQLiteParameter("@NbPlaces", System.Data.DbType.Int32) { Value = pDonnee.NbPlaces };
 			var paramCommentaire = new SQLiteParameter("@Commentaire", System.Data.DbType.String) { Value = pDonnee.Commentaire };
@@ -95,9 +95,14 @@ namespace gestadh45.dao
 		public bool Exists(Groupe pDonnee) {
 			this.Connection.Open();
 
-			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
-			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Groupe WHERE ID=@Id;", this.Connection);
-			cmd.Parameters.Add(paramId);
+			// La vérification s'effectuera sur la saison, le jour et le libellé
+			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Groupe WHERE ID_Saison=@IdSaison AND ID_JourSemaine=@IdJourSemaine AND UPPER(Libelle)=@Libelle;", this.Connection);
+			var paramIdSaison = new SQLiteParameter("@IdSaison", System.Data.DbType.Int32) { Value = pDonnee.Saison.Id };
+			var paramIdJourSemaine = new SQLiteParameter("@IdJourSemaine", System.Data.DbType.Int32) { Value = pDonnee.JourSemaine.Id };
+			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle.ToUpper() };
+			cmd.Parameters.Add(paramIdSaison);
+			cmd.Parameters.Add(paramIdJourSemaine);
+			cmd.Parameters.Add(paramLibelle);
 
 			try {
 				var result = (int)cmd.ExecuteScalar();
