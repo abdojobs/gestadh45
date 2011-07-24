@@ -34,7 +34,8 @@ namespace gestadh45.dao
 
 		public List<Sexe> List() {
 			this.Connection.Open();
-			List<Sexe> result = null;
+
+			List<Sexe> result = new List<Sexe>();
 
 			var cmd = new SQLiteCommand("SELECT Id, LibelleCourt, LibelleLong FROM Sexe ORDER BY LibelleCourt DESC;", this.Connection);
 

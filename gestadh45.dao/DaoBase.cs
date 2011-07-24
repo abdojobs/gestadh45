@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite;
+using System.Collections.Generic;
 
 namespace gestadh45.dao
 {
@@ -17,7 +18,7 @@ namespace gestadh45.dao
 			var scb = new SQLiteConnectionStringBuilder();
 			scb.DataSource = pFilePath;
 
-			this.Connection = new SQLiteConnection(scb.ToString());
+			this.Connection = new SQLiteConnection(scb.ConnectionString);
 		}
 
 		/// <summary>
@@ -33,6 +34,10 @@ namespace gestadh45.dao
 			this.Connection.Close();
 
 			return result;
+		}
+
+		public override string ToString() {
+			return string.Format("{0} - {1}", this.Connection.ConnectionString, this.Connection.Database);
 		}
 	}
 }
