@@ -81,6 +81,18 @@ namespace gestadh45.tests.dao
 			Console.WriteLine("####################################################################################################");
 
 			Console.WriteLine();
+
+			Console.WriteLine("####################################################################################################");
+			Console.WriteLine(string.Format("Test de {0}...", typeof(GroupeDao).ToString()));
+			Console.WriteLine();
+			TestGroupeDao.InfosConnection(this._filePath);
+			TestGroupeDao.TestRead(this._filePath, 0);
+			TestGroupeDao.TestRead(this._filePath, 12);
+			TestGroupeDao.TestList(this._filePath);
+			Console.WriteLine(string.Format("Fin du test de {0}...", typeof(GroupeDao).ToString()));
+			Console.WriteLine("####################################################################################################");
+
+			Console.WriteLine();
 		}
 	}
 }

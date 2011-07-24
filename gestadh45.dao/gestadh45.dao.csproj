@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DaoBase.cs" />
+    <Compile Include="GroupeDao.cs" />
     <Compile Include="IDao.cs" />
     <Compile Include="InfosClubDao.cs" />
     <Compile Include="IReadOnlyDao.cs" />
