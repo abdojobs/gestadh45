@@ -21,7 +21,7 @@ namespace gestadh45.tests.dao
 				Adherent s = dao.Read(pId);
 				if (s != null) {
 					Console.WriteLine(
-						string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{12}\t{13}\t{14}\t{15}\t{16}\t{17}\t{18}\t{19}\t{20}\t{21}\t{22}", 
+						string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{12}\t{13}\t{14}\t{15}\t{16}\t{17}\t{18}\t{19}\t{20}", 
 							s.Id, 
 							s.Nom, 
 							s.Prenom, 
@@ -29,9 +29,7 @@ namespace gestadh45.tests.dao
 							s.DateCreation.ToShortDateString(),
 							s.DateModification.ToShortDateString(),
 							s.Commentaire, 
-							s.Sexe.Id,
-							s.Sexe.LibelleCourt, 
-							s.Sexe.LibelleLong,
+							s.Sexe.ToString(),
 							s.Contact.Id,
 							s.Contact.Telephone1,
 							s.Contact.Telephone2,
@@ -72,32 +70,30 @@ namespace gestadh45.tests.dao
 				if (list.Count != 0) {
 					foreach (Adherent s in list) {
 						Console.WriteLine(
-							string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{12}\t{13}\t{14}\t{15}\t{16}\t{17}\t{18}\t{19}\t{20}\t{21}\t{22}",
-								s.Id,
-								s.Nom,
-								s.Prenom,
-								s.DateNaissance.ToShortDateString(),
-								s.DateCreation.ToShortDateString(),
-								s.DateModification.ToShortDateString(),
-								s.Commentaire,
-								s.Sexe.Id,
-								s.Sexe.LibelleCourt,
-								s.Sexe.LibelleLong,
-								s.Contact.Id,
-								s.Contact.Telephone1,
-								s.Contact.Telephone2,
-								s.Contact.Telephone3,
-								s.Contact.Mail1,
-								s.Contact.Mail2,
-								s.Contact.Mail3,
-								s.Contact.SiteWeb,
-								s.Adresse.Id,
-								s.Adresse.Libelle,
-								s.Adresse.Ville.Id,
-								s.Adresse.Ville.CodePostal,
-								s.Adresse.Ville.Libelle
-							)
-						);
+						string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{12}\t{13}\t{14}\t{15}\t{16}\t{17}\t{18}\t{19}\t{20}",
+							s.Id,
+							s.Nom,
+							s.Prenom,
+							s.DateNaissance.ToShortDateString(),
+							s.DateCreation.ToShortDateString(),
+							s.DateModification.ToShortDateString(),
+							s.Commentaire,
+							s.Sexe.ToString(),
+							s.Contact.Id,
+							s.Contact.Telephone1,
+							s.Contact.Telephone2,
+							s.Contact.Telephone3,
+							s.Contact.Mail1,
+							s.Contact.Mail2,
+							s.Contact.Mail3,
+							s.Contact.SiteWeb,
+							s.Adresse.Id,
+							s.Adresse.Libelle,
+							s.Adresse.Ville.Id,
+							s.Adresse.Ville.CodePostal,
+							s.Adresse.Ville.Libelle
+						)
+					);
 					}
 				}
 				else {

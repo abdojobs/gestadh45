@@ -63,6 +63,7 @@
     <Compile Include="dao\TestAdherentDao.cs" />
     <Compile Include="dao\TestGroupeDao.cs" />
     <Compile Include="dao\TestInfosClubDao.cs" />
+    <Compile Include="dao\TestInscription.cs" />
     <Compile Include="dao\TestJourSemaineDao.cs" />
     <Compile Include="dao\TestSaisonDao.cs" />
     <Compile Include="dao\TestSexeDao.cs" />
