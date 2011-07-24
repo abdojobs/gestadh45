@@ -36,7 +36,7 @@ namespace gestadh45.dao
 
 		public List<StatutInscription> List() {
 			this.Connection.Open();
-			List<StatutInscription> result = null;
+			List<StatutInscription> result = new List<StatutInscription>();
 
 			var cmd = new SQLiteCommand("SELECT Id, Libelle, CodeCouleur, Ordre FROM StatutInscription ORDER BY Ordre;", this.Connection);
 

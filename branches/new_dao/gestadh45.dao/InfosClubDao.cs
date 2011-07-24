@@ -13,7 +13,8 @@ namespace gestadh45.dao
 		/// Lève une exception car ne doit pas être appellée
 		/// </summary>
 		/// <param name="pDonnee"></param>
-		public void Create(InfosClub pDonnee) {
+		/// <returns></returns>
+		public int Create(InfosClub pDonnee) {
 			throw new NotImplementedException("La méthode InfosClubDao.Create ne doit pas être appellée");
 		}
 
@@ -36,11 +37,25 @@ namespace gestadh45.dao
 			var paramContactSiteWeb = new SQLiteParameter("@ContactSiteWeb", System.Data.DbType.String) { Value = pDonnee.Contact.SiteWeb };
 
 			// on cree une transaction pour regrouper les 3 requetes de maj (adresse, contact, infosclub)
-			var trans = new SQLiteTransaction();
+			var trans = this.Connection.BeginTransaction();
 
 			var cmdAdresse = new SQLiteCommand("UPDATE Adresse SET Libelle=@AdresseLibelle, ID_Ville=@AdresseIdVille WHERE ID=@IdAdresse;", this.Connection, trans);
+			cmdAdresse.Parameters.Add(paramIdAdresse);
+			cmdAdresse.Parameters.Add(paramAdresseLibelle);
+			cmdAdresse.Parameters.Add(paramAdresseIdVille);
+
 			var cmdContact = new SQLiteCommand("UPDATE Contact SET Telephone1=@ContactTelephone, Mail1=@ContactMail, @SiteWeb=ContactSiteWeb WHERE ID=@IdContact;", this.Connection, trans);
+			cmdContact.Parameters.Add(paramIdContact);
+			cmdContact.Parameters.Add(paramContactTelephone);
+			cmdContact.Parameters.Add(paramContactMail);
+			cmdContact.Parameters.Add(paramContactSiteWeb);
+
 			var cmdInfosClub = new SQLiteCommand("UPDATE InfosClub SET Nom=@Nom, Numero=@Numero, Siren=@Siren, NIC=@NIC WHERE ID=@Id;", this.Connection, trans);
+			cmdInfosClub.Parameters.Add(paramId);
+			cmdInfosClub.Parameters.Add(paramNom);
+			cmdInfosClub.Parameters.Add(paramNumero);
+			cmdInfosClub.Parameters.Add(paramSiren);
+			cmdInfosClub.Parameters.Add(paramNIC);
 
 			try {
 				cmdAdresse.ExecuteNonQuery();
@@ -49,7 +64,7 @@ namespace gestadh45.dao
 
 				trans.Commit();
 			}
-			catch (SQLiteException ex) {
+			catch (SQLiteException) {
 				// si un problème survient, on annule la transaction et on remonte l'exception
 				trans.Rollback();
 				throw;
