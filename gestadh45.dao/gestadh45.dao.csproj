@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdherentDao.cs" />
     <Compile Include="DaoBase.cs" />
     <Compile Include="GroupeDao.cs" />
     <Compile Include="IDao.cs" />
