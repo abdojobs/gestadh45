@@ -33,6 +33,15 @@ namespace gestadh45.model
 		/// Obtient/Définit le NIC
 		/// </summary>
 		public string NIC { get; set; }
+
+		/// <summary>
+		/// Obtient le code SIRET (composé du SIREN et du NIC)
+		/// </summary>
+		public string Siret {
+			get {
+				return string.Format("{0} - {1}", this.Siren, this.NIC);
+			}
+		}
 		#endregion
 	}
 }

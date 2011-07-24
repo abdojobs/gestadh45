@@ -6,7 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.model;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
@@ -17,7 +17,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Saison mSaison;
 		private ICollectionView mSaisons;
 
-		private ISaisonDao mSaisonDao;
+		private SaisonDao _daoSaison;
 
 		/// <summary>
 		/// Obtient/Définit la saison à afficher
@@ -50,7 +50,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationSaisonsUCViewModel() {
-			this.mSaisonDao = this.mDaoFactory.GetSaisonDao();
+			this._daoSaison = new SaisonDao(ViewModelLocator.DataSource);
 
 			this.InitialisationListeSaisons();
 
@@ -62,16 +62,16 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public bool CanExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
 			return (
 				pSaison != null 
-				&& !pSaison.EstSaisonCouranteBool
+				&& !pSaison.EstSaisonCourante
 				);
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Saison != null
-				&& this.mSaisonDao.Exists(this.Saison)
-				&& !this.mSaisonDao.IsUsed(this.Saison)
-				&& !this.Saison.EstSaisonCouranteBool	// on ne peut pas supprimer la saison courante
+				&& this._daoSaison.Exists(this.Saison)
+				&& !this._daoSaison.IsUsed(this.Saison)
+				&& !this.Saison.EstSaisonCourante	// on ne peut pas supprimer la saison courante
 			);
 		}
 
@@ -96,13 +96,13 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public void ExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
 			if (pSaison != null) {
-				Saison lOldSaisonCourante = this.mSaisonDao.ReadSaisonCourante();
-				lOldSaisonCourante.EstSaisonCouranteBool = false;
-				this.mSaisonDao.Update(lOldSaisonCourante);
+				Saison oldSaisonCourante = this._daoSaison.ReadSaisonCourante();
+				oldSaisonCourante.EstSaisonCourante = false;
+				this._daoSaison.Update(oldSaisonCourante);
 
-				pSaison.EstSaisonCouranteBool = true;
+				pSaison.EstSaisonCourante = true;
 
-				this.mSaisonDao.Update(pSaison);
+				this._daoSaison.Update(pSaison);
 				this.InitialisationListeSaisons();
 
 				this.Saison = null;
@@ -127,7 +127,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerSaisonCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				this.mSaisonDao.Delete(this.Saison);
+				this._daoSaison.Delete(this.Saison);
 				this.InitialisationListeSaisons();
 				this.Saison = null;
 
@@ -137,12 +137,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void InitialisationListeSaisons() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-				this.mSaisonDao.List()
+				this._daoSaison.List()
 			);
-
-			foreach (Saison lSaison in defaultView) {
-				this.mSaisonDao.Refresh(lSaison);
-			}
 
 			defaultView.SortDescriptions.Add(new SortDescription("AnneeDebut", ListSortDirection.Ascending));
 			this.Saisons = defaultView;

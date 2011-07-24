@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.ObjetsIhm;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.model;
 using gestadh45.service.Database;
 
 namespace gestadh45.Ihm.ViewModel
@@ -17,7 +17,7 @@ namespace gestadh45.Ihm.ViewModel
 		public ICommand ChangerDataSourceCommand { get; internal set; }
 		public ICommand CreerDatabaseCommand { get; set; }
 
-		private ISaisonDao mDaoSaison;
+		private SaisonDao _daoSaison;
 
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
@@ -70,7 +70,6 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public MainViewModel() {
-			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
 			this.mNotificationIhm = new NotificationIhm();
 
 			this.CreateAfficherUCCommand();
@@ -90,7 +89,7 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public bool CanExecuteAfficherUCCommand(string pCodeUC) {
-			return (ObjectContextManager.Context != null);
+			return !string.IsNullOrWhiteSpace(this.InfosDataSource);
 		}
 
 		#region création des commandes
@@ -165,7 +164,7 @@ namespace gestadh45.Ihm.ViewModel
 		#region méthodes privees
 		private void MajInfosSaisonCourante(NotificationMessage<Saison> msg) {
 			if (msg.Notification.Equals(TypesNotification.ChangementSaisonCourante)) {
-				this.InfosSaisonCourante = msg.Content.ToShortString();
+				this.InfosSaisonCourante = msg.Content.ToString();
 			}
 		}
 
@@ -187,10 +186,11 @@ namespace gestadh45.Ihm.ViewModel
 		private void ChangeDataSource(string pFilePath) {
 			try {
 				if (!string.IsNullOrWhiteSpace(pFilePath)) {
-					ObjectContextManager.CreateContext(EntitySQLiteHelper.GetConnectionString(pFilePath));
+					ViewModelLocator.DataSource = pFilePath;
 
-					this.InfosDataSource = EntitySQLiteHelper.GetFilePathFromContext(ObjectContextManager.Context);
-					this.InfosSaisonCourante = this.mDaoSaison.ReadSaisonCourante().ToShortString();
+					this.InfosDataSource = pFilePath;
+					this._daoSaison = new SaisonDao(pFilePath);
+					this.InfosSaisonCourante = this._daoSaison.ReadSaisonCourante().ToString();
 					this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
 
 					this.AfficherInformationIhm(MainRessources.NotificationOuvertureBase + pFilePath);

@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.model;
 using gestadh45.service.Documents;
 using gestadh45.service.VCards;
 
@@ -18,8 +18,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Inscription mInscription;
 		private ICollectionView mInscriptionsSaisonCourante;
 
-		private IInscriptionDao mDaoInscription;
-		private IInfosClubDao mDaoInfosClub;
+		private InscriptionDao _daoInscription;
+		private InfosClubDao _daoInfosClub;
 
 		/// <summary>
 		/// Obtient/Définit l'inscription à afficher
@@ -52,8 +52,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationInscriptionsUCViewModel() {
-			this.mDaoInscription = this.mDaoFactory.GetInscriptionDao();
-			this.mDaoInfosClub = this.mDaoFactory.GetInfosClubDao();
+			this._daoInscription = new InscriptionDao(ViewModelLocator.DataSource);
+			this._daoInfosClub = new InfosClubDao(ViewModelLocator.DataSource);
 
 			this.InitialisationListeInscriptions();
 
@@ -93,7 +93,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Inscription != null
-				&& this.mDaoInscription.Exists(this.Inscription)
+				&& this._daoInscription.Exists(this.Inscription)
 				);
 		}
 
@@ -111,7 +111,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerInscriptionCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				this.mDaoInscription.Delete(this.Inscription);
+				this._daoInscription.Delete(this.Inscription);
 				this.InitialisationListeInscriptions();
 				this.Inscription = null;
 
@@ -195,7 +195,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		#region methodes privees
 		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
 			if (!string.IsNullOrWhiteSpace(pSaveFilePath)) {
-				InfosClub infosClub = mDaoInfosClub.Read();
+				InfosClub infosClub = _daoInfosClub.Read(0);
 				DonneesDocument donnees = ServiceDocumentAdaptateur.InscriptionToDonneesDocument(infosClub, this.Inscription);
 				GenerateurDocumentPDF generateur = new GenerateurDocumentPDF(donnees, pSaveFilePath);
 
@@ -217,7 +217,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		private void InitialisationListeInscriptions() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoInscription.ListSaisonCourante());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoInscription.ListSaisonCourante());
 			defaultView.GroupDescriptions.Add(new PropertyGroupDescription("Groupe"));
 			defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine.Numero", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine", ListSortDirection.Ascending));

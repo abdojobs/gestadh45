@@ -6,7 +6,6 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using gestadh45.dao;
 using gestadh45.Ihm.ObjetsIhm;
 using gestadh45.Ihm.SpecialMessages;
 
@@ -16,11 +15,7 @@ namespace gestadh45.Ihm.ViewModel
 	{
 		public ICommand FenetreCommand { get; set; }
 
-		protected IDaoFactory mDaoFactory;		
-
 		public ViewModelBaseApplication() {
-			this.mDaoFactory = new DaoFactory();
-
 			this.CreateFenetreCommand();
 		}
 

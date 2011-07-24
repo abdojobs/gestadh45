@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
-using System.Configuration;
+using gestadh45.model;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -16,14 +16,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private ICollectionView mStatutsInscription;
 		private Inscription mInscription;
 
-		private IInscriptionDao mDaoInscription;
-		private IGroupeDao mDaoGroupe;
-		private ISaisonDao mDaoSaison;
-		private IAdherentDao mDaoAdherent;
-		private IVilleDao mDaoVille;
-		private IContactDao mDaoContact;
-		private IAdresseDao mDaoAdresse;
-		private IStatutInscriptionDao mDaoStatutInscription;
+		private InscriptionDao _daoInscription;
+		private GroupeDao _daoGroupe;
+		private AdherentDao _daoAdherent;
+		private StatutInscriptionDao _daoStatutInscription;
 
 		/// <summary>
 		/// Obtient/Définit la liste des adhérents
@@ -86,14 +82,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireInscriptionUCViewModel() {
-			this.mDaoInscription = this.mDaoFactory.GetInscriptionDao();
-			this.mDaoGroupe = this.mDaoFactory.GetGroupeDao();
-			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
-			this.mDaoAdherent = this.mDaoFactory.GetAdherentDao();
-			this.mDaoVille = this.mDaoFactory.GetVilleDao();
-			this.mDaoContact = this.mDaoFactory.GetContactDao();
-			this.mDaoAdresse = this.mDaoFactory.GetAdresseDao();
-			this.mDaoStatutInscription = this.mDaoFactory.GetStatutInscriptionDao();
+			this._daoInscription = new InscriptionDao(ViewModelLocator.DataSource);
+			this._daoGroupe = new GroupeDao(ViewModelLocator.DataSource);
+			this._daoAdherent = new AdherentDao(ViewModelLocator.DataSource);
+			this._daoStatutInscription = new StatutInscriptionDao(ViewModelLocator.DataSource);
 
 			this.Inscription = new Inscription();
 
@@ -107,21 +99,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			// initialisation du statut par défaut de l'inscription (dans App.config)
 			int defaultStatudId = 0;
 			bool recupStatut = int.TryParse(ConfigurationManager.AppSettings["DefaultStatutInscription"], out defaultStatudId);
-			this.Inscription.StatutInscription = this.mDaoStatutInscription.Read(defaultStatudId);
-		}
-
-		public override void ExecuteAnnulerCommand() {
-			if (this.Inscription != null && base.EstEdition) {
-				this.mDaoSaison.Refresh(this.Inscription.Groupe.Saison);
-				this.mDaoGroupe.Refresh(this.Inscription.Groupe);
-				this.mDaoVille.Refresh(this.Inscription.Adherent.Adresse.Ville);
-				this.mDaoAdresse.Refresh(this.mInscription.Adherent.Adresse);
-				this.mDaoContact.Refresh(this.Inscription.Adherent.Contact);
-				this.mDaoAdherent.Refresh(this.Inscription.Adherent);
-
-				this.mDaoInscription.Refresh(this.Inscription);
-			}
-			base.ExecuteAnnulerCommand();
+			this.Inscription.StatutInscription = this._daoStatutInscription.Read(defaultStatudId);
 		}
 
 		public override void ExecuteEnregistrerCommand() {
@@ -129,16 +107,16 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 	
 			if (this.VerifierSaisie() 
 				&& base.EstEdition
-				&& this.mDaoInscription.Exists(this.Inscription)) {
-					this.mDaoInscription.Update(this.Inscription);
+				&& this._daoInscription.Exists(this.Inscription)) {
+					this._daoInscription.Update(this.Inscription);
 				base.ExecuteEnregistrerCommand();
 				Messenger.Default.Send(msg);
 			}
 			else if (this.VerifierSaisie() 
 				&& !base.EstEdition
-				&& !this.mDaoInscription.Exists(this.Inscription)) {
+				&& !this._daoInscription.Exists(this.Inscription)) {
 
-					this.mDaoInscription.Create(this.Inscription);
+					this._daoInscription.Create(this.Inscription);
 
 				base.ExecuteEnregistrerCommand();
 				Messenger.Default.Send(msg);
@@ -149,21 +127,21 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		private void InitialisationListeAdherents() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoAdherent.List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoAdherent.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
 			this.Adherents = defaultView;
 		}
 
 		private void InitialisationListeGroupes() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoGroupe.ListSaisonCourante());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoGroupe.ListSaisonCourante());
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("HeureDebutDT", ListSortDirection.Ascending));
 			this.GroupesSaisonCourante = defaultView;
 		}
 
 		private void InitialisationListeStatutsInscription() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoStatutInscription.List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoStatutInscription.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Ordre", ListSortDirection.Ascending));
 			this.StatutsInscription = defaultView;
 		}
@@ -185,7 +163,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			if (!this.EstEdition
 				&& lErreurs.Count == 0
-				&& this.mDaoInscription.Exists(this.Inscription)) {
+				&& this._daoInscription.Exists(this.Inscription)) {
 
 					lErreurs.Add(ResErreurs.Inscription_Existe);
 			}

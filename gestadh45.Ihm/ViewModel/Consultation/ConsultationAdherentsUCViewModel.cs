@@ -6,7 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.model;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
@@ -17,7 +17,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Adherent mAdherent;
 		private ICollectionView mAdherents;
 
-		private IAdherentDao mDaoAdherent;
+		private AdherentDao _daoAdherent;
 
 		/// <summary>
 		/// Obtient/Définit l'adhérent à afficher
@@ -50,7 +50,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationAdherentsUCViewModel() {
-			this.mDaoAdherent = this.mDaoFactory.GetAdherentDao();
+			this._daoAdherent = new AdherentDao(ViewModelLocator.DataSource);
 
 			this.InitialisationListeAdherents();
 
@@ -66,8 +66,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Adherent != null
-				&& this.mDaoAdherent.Exists(this.Adherent)
-				&& !this.mDaoAdherent.IsUsed(this.Adherent)
+				&& this._daoAdherent.Exists(this.Adherent)
+				&& !this._daoAdherent.IsUsed(this.Adherent)
 				);
 		}
 
@@ -142,7 +142,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		/// <param name="pResult">Résultat de la demande de confirmation</param>
 		private void ExecuteSupprimerAdherentCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				this.mDaoAdherent.Delete(this.Adherent);
+				this._daoAdherent.Delete(this.Adherent);
 				this.InitialisationListeAdherents();
 				this.Adherent = null;
 
@@ -151,7 +151,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		private void InitialisationListeAdherents() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoAdherent.List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoAdherent.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
 			this.Adherents = defaultView;

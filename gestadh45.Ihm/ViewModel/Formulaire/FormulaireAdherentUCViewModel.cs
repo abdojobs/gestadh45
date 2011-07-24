@@ -5,7 +5,7 @@ using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.model;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -15,11 +15,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private ICollectionView mSexes;
 		private ICollectionView mVilles;
 
-		private IVilleDao mDaoVille;
-		private ISexeDao mDaoSexe;
-		private IAdherentDao mDaoAdherent;
-		private IContactDao mDaoContact;
-		private IAdresseDao mDaoAdresse;
+		private VilleDao _daoVille;
+		private SexeDao _daoSexe;
+		private AdherentDao _daoAdherent;
 
 		/// <summary>
 		/// Obtient/Définit l'objet du formulaire
@@ -67,11 +65,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireAdherentUCViewModel() {
-			this.mDaoVille = this.mDaoFactory.GetVilleDao();
-			this.mDaoSexe = this.mDaoFactory.GetSexeDao();
-			this.mDaoAdherent = this.mDaoFactory.GetAdherentDao();
-			this.mDaoContact = this.mDaoFactory.GetContactDao();
-			this.mDaoAdresse = this.mDaoFactory.GetAdresseDao();
+			this._daoVille = new VilleDao(ViewModelLocator.DataSource);
+			this._daoSexe = new SexeDao(ViewModelLocator.DataSource);
+			this._daoAdherent = new AdherentDao(ViewModelLocator.DataSource);
 
 			this.Adherent = new Adherent();
 			this.Adherent.Adresse = new Adresse();
@@ -87,33 +83,23 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
 		}
 
-		public override void ExecuteAnnulerCommand() {
-			if ((this.Adherent != null) && base.EstEdition) {
-				this.mDaoVille.Refresh(this.Adherent.Adresse.Ville);
-				this.mDaoAdresse.Refresh(this.Adherent.Adresse);
-				this.mDaoContact.Refresh(this.Adherent.Contact);
-				this.mDaoAdherent.Refresh(this.Adherent);
-			}
-			base.ExecuteAnnulerCommand();
-		}
-
 		public override void ExecuteEnregistrerCommand() {
 			var msg = new NotificationMessageSelectionElement<Adherent>(this.Adherent);
 
 			if (this.VerifierSaisie() 
 				&& base.EstEdition
-				&& this.mDaoAdherent.Exists(this.Adherent)) {
+				&& this._daoAdherent.Exists(this.Adherent)) {
 
-					this.mDaoAdherent.Update(this.Adherent);
+					this._daoAdherent.Update(this.Adherent);
 
 				base.ExecuteEnregistrerCommand();
 				Messenger.Default.Send(msg);
 			}
 			else if (this.VerifierSaisie() 
 				&& !base.EstEdition
-				&& !this.mDaoAdherent.Exists(this.Adherent)) {
+				&& !this._daoAdherent.Exists(this.Adherent)) {
 
-					this.mDaoAdherent.Create(this.Adherent);
+					this._daoAdherent.Create(this.Adherent);
 
 				base.ExecuteEnregistrerCommand();
 				Messenger.Default.Send(msg);
@@ -130,13 +116,13 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		private void InitialisationListeSexes() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoSexe.List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoSexe.List());
 			defaultView.SortDescriptions.Add(new SortDescription("LibelleCourt", ListSortDirection.Descending));
 			this.Sexes = defaultView;
 		}
 
 		private void InitialisationListeVilles() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoVille.List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoVille.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
 		}
@@ -175,7 +161,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			if (!this.EstEdition
 				&& lErreurs.Count == 0
-				&& this.mDaoAdherent.Exists(this.Adherent)) {
+				&& this._daoAdherent.Exists(this.Adherent)) {
 
 					lErreurs.Add(ResErreurs.Adherent_Existe);
 			}

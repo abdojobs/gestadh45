@@ -2,14 +2,14 @@
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.model;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public class FormulaireVilleUCViewModel : ViewModelBaseFormulaire
 	{
 		private Ville mVille;
-		private IVilleDao mDaoVille;
+		private VilleDao _daoVille;
 
 		/// <summary>
 		/// Obtient/Définit l'objet du formulaire
@@ -27,14 +27,14 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireVilleUCViewModel() {
-			this.mDaoVille = this.mDaoFactory.GetVilleDao();
+			this._daoVille = new VilleDao(ViewModelLocator.DataSource);
 			this.Ville = new Ville();
 			this.CodeUCOrigine = CodesUC.ConsultationVilles;
 		}
 
 		public override void ExecuteEnregistrerCommand() {
-			if (this.VerifierSaisie() && !this.mDaoVille.Exists(this.Ville)) {
-				this.mDaoVille.Create(this.Ville);
+			if (this.VerifierSaisie() && !this._daoVille.Exists(this.Ville)) {
+				this._daoVille.Create(this.Ville);
 
 				base.ExecuteEnregistrerCommand();
 
@@ -59,7 +59,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			if (!this.EstEdition
 				&& lErreurs.Count == 0
-				&& this.mDaoVille.Exists(this.Ville)) {
+				&& this._daoVille.Exists(this.Ville)) {
 
 					lErreurs.Add(ResErreurs.Ville_Existe);
 			}

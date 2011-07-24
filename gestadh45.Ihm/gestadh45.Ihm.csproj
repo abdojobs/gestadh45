@@ -146,6 +146,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\gestadh45.dao\gestadh45.dao.csproj">
+      <Project>{5306E71F-E368-4890-83DD-A86E9850896B}</Project>
+      <Name>gestadh45.dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.model\gestadh45.model.csproj">
+      <Project>{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}</Project>
+      <Name>gestadh45.model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\gestadh45.service\gestadh45.service.csproj">
       <Project>{F965A907-9B56-412D-AF80-69BDDD9B3AF8}</Project>
       <Name>gestadh45.service</Name>
