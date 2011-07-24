@@ -79,9 +79,13 @@ namespace gestadh45.dao
 		public bool Exists(Saison pDonnee) {
 			this.Connection.Open();
 
-			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
-			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Saison WHERE ID=@Id;", this.Connection);
-			cmd.Parameters.Add(paramId);
+			// une saison existe si son année de début est comprise entre l'année de début et l'année de fin d'une saison existante
+			// ou si son année de fin est comprise entre l'année de début et l'année de fin d'une saison existante
+			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Saison WHERE (AnneeDebut<=@AnneeDebut AND @AnneeDebut<AnneeFin) OR (AnneeDebut<@AnneeFin AND @AnneeFin<=AnneeFin);", this.Connection);
+			var paramAnneeDebut = new SQLiteParameter("@AnneeDebut", System.Data.DbType.Int32) { Value = pDonnee.AnneeDebut };
+			var paramAnneeFin = new SQLiteParameter("@AnneeFin", System.Data.DbType.Int32) { Value = pDonnee.AnneeFin };
+			cmd.Parameters.Add(paramAnneeDebut);
+			cmd.Parameters.Add(paramAnneeFin);
 
 			try {
 				var result = (int)cmd.ExecuteScalar();

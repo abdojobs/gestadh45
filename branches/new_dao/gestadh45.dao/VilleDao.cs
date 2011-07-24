@@ -11,8 +11,8 @@ namespace gestadh45.dao
 		public int Create(Ville pDonnee) {
 			this.Connection.Open();
 
-			var paramCodePostal = new SQLiteParameter("@CodePostal", System.Data.DbType.String) { Value = pDonnee.CodePostal };
-			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle };
+			var paramCodePostal = new SQLiteParameter("@CodePostal", System.Data.DbType.String) { Value = pDonnee.CodePostal.ToUpper() };
+			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle.ToUpper() };
 
 			var cmd = new SQLiteCommand("INSERT INTO Ville(CodePostal, Libelle) Values(@CodePostal, @Libelle);", this.Connection);
 			cmd.Parameters.Add(paramCodePostal);
@@ -34,8 +34,8 @@ namespace gestadh45.dao
 			this.Connection.Open();
 
 			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
-			var paramCodePostal = new SQLiteParameter("@CodePostal", System.Data.DbType.String) { Value = pDonnee.CodePostal };
-			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle };
+			var paramCodePostal = new SQLiteParameter("@CodePostal", System.Data.DbType.String) { Value = pDonnee.CodePostal.ToUpper() };
+			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle.ToUpper() };
 
 			var cmd = new SQLiteCommand("UPDATE Ville SET CodePostal=@CodePostal, Libelle=@Libelle WHERE ID=@Id;", this.Connection);
 			cmd.Parameters.Add(paramId);
@@ -75,9 +75,12 @@ namespace gestadh45.dao
 		public bool Exists(Ville pDonnee) {
 			this.Connection.Open();
 
-			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
-			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Ville WHERE ID=@Id;", this.Connection);
-			cmd.Parameters.Add(paramId);
+			// la vérification s'effectuera sur le couple code postal/libellé
+			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Ville WHERE UPPER(CodePostal)=@CodePostal AND UPPER(Libelle)=@Libelle;", this.Connection);
+			var paramCodePostal = new SQLiteParameter("@CodePostal", System.Data.DbType.String) { Value = pDonnee.CodePostal.ToUpper() };
+			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle.ToUpper() };
+			cmd.Parameters.Add(paramCodePostal);
+			cmd.Parameters.Add(paramLibelle);
 
 			try {
 				var result = (int)cmd.ExecuteScalar();
@@ -115,7 +118,7 @@ namespace gestadh45.dao
 			Ville result = null;
 
 			var param = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pId };
-			var cmd = new SQLiteCommand("SELECT Id, CodePostal, Libelle FROM Ville WHERE ID=@Id;", this.Connection);
+			var cmd = new SQLiteCommand("SELECT Id, UPPER(CodePostal), UPPER(Libelle) FROM Ville WHERE ID=@Id;", this.Connection);
 			cmd.Parameters.Add(param);
 
 			var reader = cmd.ExecuteReader();
@@ -140,7 +143,7 @@ namespace gestadh45.dao
 
 			List<Ville> result = new List<Ville>();
 
-			var cmd = new SQLiteCommand("SELECT Id, CodePostal, Libelle FROM Ville ORDER BY Libelle;", this.Connection);
+			var cmd = new SQLiteCommand("SELECT Id, UPPER(CodePostal), UPPER(Libelle) FROM Ville ORDER BY Libelle;", this.Connection);
 
 			var reader = cmd.ExecuteReader();
 
