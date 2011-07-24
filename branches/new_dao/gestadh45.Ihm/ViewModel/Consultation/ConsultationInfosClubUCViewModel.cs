@@ -1,7 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using gestadh45.dao;
-using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+﻿using gestadh45.dao;
+using gestadh45.model;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
@@ -9,7 +7,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 	{
 		private InfosClub mInfosClub;
 
-		private IInfosClubDao mDaoInfosClub;
+		private InfosClubDao mDaoInfosClub;
 
 		/// <summary>
 		/// Obtient/Définit l'objet à afficher
@@ -27,11 +25,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationInfosClubUCViewModel() {
-			this.mDaoInfosClub = this.mDaoFactory.GetInfosClubDao();
-
-			this.InfosClub = this.mDaoInfosClub.Read();
-			this.mDaoInfosClub.Refresh(this.InfosClub);
-
+			this.mDaoInfosClub = new InfosClubDao(ViewModelLocator.DataSource);
+			this.InfosClub = this.mDaoInfosClub.Read(0);
 			this.CreateEditerCommand();
 		}
 

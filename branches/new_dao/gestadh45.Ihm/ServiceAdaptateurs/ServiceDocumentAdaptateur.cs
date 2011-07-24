@@ -1,4 +1,4 @@
-﻿using gestadh45.Model;
+﻿using gestadh45.model;
 using gestadh45.service.Documents;
 
 namespace gestadh45.Ihm.ServiceAdaptateurs
@@ -29,7 +29,7 @@ namespace gestadh45.Ihm.ServiceAdaptateurs
 				NomClub = pInfosClub.Nom,
 				NumeroClub = pInfosClub.Numero,
 				PrenomAdherent = pInscription.Adherent.Prenom,
-				Saison = pInscription.Groupe.Saison.ToShortString(),
+				Saison = pInscription.Groupe.Saison.ToString(),
 				SiretClub = pInfosClub.Siret,
 				SiteWebClub = pInfosClub.Contact.SiteWeb,
 				Telephone1Adherent = pInscription.Adherent.Contact.Telephone1,

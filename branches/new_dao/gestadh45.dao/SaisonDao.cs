@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Linq;
 using gestadh45.model;
 
 namespace gestadh45.dao
@@ -169,6 +170,19 @@ namespace gestadh45.dao
 
 			this.Connection.Close();
 			return result;
+		}
+
+		/// <summary>
+		/// Récupère la saison courante
+		/// </summary>
+		/// <returns>Saison courante</returns>
+		public Saison ReadSaisonCourante() {
+			// TODO faire des test pour voir si linq est assez performant
+			var rq = from Saison s in this.List()
+					 where s.EstSaisonCourante
+					 select s;
+
+			return rq.First();
 		}
 	}
 }

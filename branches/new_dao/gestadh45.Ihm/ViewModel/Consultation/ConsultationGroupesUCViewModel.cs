@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.model;
 using gestadh45.service.Documents;
 using gestadh45.service.VCards;
 
@@ -19,8 +19,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Groupe mGroupe;
 		private ICollectionView mGroupesSaisonCourante;
 
-		private IInfosClubDao mDaoInfosCLub;
-		private IGroupeDao mDaoGroupe;
+		private InfosClubDao _daoInfosCLub;
+		private GroupeDao _daoGroupe;
+		private InscriptionDao _daoInscription;
 
 		/// <summary>
 		/// Obtient/Définit le groupe à afficher
@@ -53,8 +54,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationGroupesUCViewModel() {
-			this.mDaoInfosCLub = this.mDaoFactory.GetInfosClubDao();
-			this.mDaoGroupe = this.mDaoFactory.GetGroupeDao();
+			this._daoInfosCLub = new InfosClubDao(ViewModelLocator.DataSource);
+			this._daoGroupe = new GroupeDao(ViewModelLocator.DataSource);
+			this._daoInscription = new InscriptionDao(ViewModelLocator.DataSource);
 
 			this.InitialisationListeGroupes();
 
@@ -77,8 +79,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Groupe != null
-				&& this.mDaoGroupe.Exists(this.Groupe)
-				&& !this.mDaoGroupe.IsUsed(this.Groupe)
+				&& this._daoGroupe.Exists(this.Groupe)
+				&& !this._daoGroupe.IsUsed(this.Groupe)
 			);
 		}
 
@@ -95,7 +97,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void ExecuteSupprimerGroupeCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				this.mDaoGroupe.Delete(this.Groupe);
+				this._daoGroupe.Delete(this.Groupe);
 				this.InitialisationListeGroupes();
 				this.Groupe = null;
 
@@ -187,7 +189,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public void ExecuteExtraireMailsCommand() {
 			StringBuilder lSb = new StringBuilder();
 
-			foreach (Inscription lInscription in this.Groupe.Inscriptions) {
+			foreach (Inscription lInscription in this._daoInscription.ListGroupe(this.Groupe)) {
 				lSb.Append(lInscription.Adherent.Contact.ChaineMails);
 			}
 
@@ -200,12 +202,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		#region methodes privees
 		private void InitialisationListeGroupes() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-				this.mDaoGroupe.ListSaisonCourante()
+				this._daoGroupe.ListSaisonCourante()
 			);
-
-			foreach (Groupe lGroupe in defaultView) {
-				this.mDaoGroupe.Refresh(lGroupe);
-			}
 
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("HeureDebutDT", ListSortDirection.Ascending));
@@ -214,9 +212,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void GenererDocumentsGroupe(string pSaveFolder, string pCodeDocument) {
 			if (pSaveFolder != null) {
-				InfosClub infosClub = this.mDaoInfosCLub.Read();
+				InfosClub infosClub = this._daoInfosCLub.Read(0);
 
-				foreach (Inscription inscription in this.Groupe.Inscriptions) {
+				foreach (Inscription inscription in this._daoInscription.ListGroupe(this.Groupe)) {
 					DonneesDocument donnees = ServiceDocumentAdaptateur.InscriptionToDonneesDocument(infosClub, inscription);
 
 					string saveFilePath;
@@ -257,7 +255,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void GenererVCardsGroupe(string pSaveFolder) {
 			if (pSaveFolder != null) {
-				foreach (Inscription inscription in this.Groupe.Inscriptions) {
+				foreach (Inscription inscription in this._daoInscription.ListGroupe(this.Groupe)) {
 					DonneesVCard donnees = ServiceVCardAdaptateur.InscriptionToDonneesVCard(inscription);
 					string saveFilePath = pSaveFolder + "\\" + inscription.Adherent.ToString() + ResVCards.Extension;
 

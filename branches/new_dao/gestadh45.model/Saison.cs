@@ -27,5 +27,18 @@ namespace gestadh45.model
 		public override string ToString() {
 			return string.Format("{0} - {1}", this.AnneeDebut, this.AnneeFin);
 		}
+
+		/// <summary>
+		/// Renvoit année début - année fin plus l'information si la saison est la saison courante
+		/// </summary>
+		/// <returns>Année début - Année fin [(courante)]</returns>
+		public string ToLongString() {
+			if (this.EstSaisonCourante) {
+				return string.Format("{0} (courante)", this.ToString());
+			}
+			else {
+				return this.ToString();
+			}
+		}
 	}
 }

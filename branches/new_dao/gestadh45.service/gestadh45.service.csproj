@@ -123,7 +123,16 @@
       <LastGenOutput>ResVCards.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\gestadh45.dao\gestadh45.dao.csproj">
+      <Project>{5306E71F-E368-4890-83DD-A86E9850896B}</Project>
+      <Name>gestadh45.dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.model\gestadh45.model.csproj">
+      <Project>{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}</Project>
+      <Name>gestadh45.model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,4 @@
-﻿using gestadh45.Model;
+﻿using gestadh45.model;
 using gestadh45.service.VCards;
 
 namespace gestadh45.Ihm.ServiceAdaptateurs

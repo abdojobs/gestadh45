@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using gestadh45.dao;
-using gestadh45.Model;
+using gestadh45.model;
 
 namespace gestadh45.service.Graphs
 {
@@ -10,10 +10,11 @@ namespace gestadh45.service.Graphs
 		/// <summary>
 		/// Créé le graph de remplissage des groupes
 		/// </summary>
+		/// <param name="pDataSource">DataSource</param>
 		/// <returns>Objet Graph</returns>
-		public static Graphique CreerGraphRemplissageGroupe() {
-			IInscriptionDao lDaoInscription = new InscriptionDao();
-			IGroupeDao lDaoGroupe = new GroupeDao();
+		public static Graphique CreerGraphRemplissageGroupe(string pDataSource) {
+			InscriptionDao lDaoInscription = new InscriptionDao(pDataSource);
+			GroupeDao lDaoGroupe = new GroupeDao(pDataSource);
 
 		    Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RemplissageGroupes;
@@ -25,7 +26,7 @@ namespace gestadh45.service.Graphs
 		    
 			foreach(Groupe lGroupe in lGroupes) {
 				var q = from Inscription i in lInscriptions
-						where i.Groupe.ID == lGroupe.ID
+						where i.Groupe.Id == lGroupe.Id
 						select i;
 
 				lGraph.Donnees.Add(lGroupe.Libelle, q.LongCount());
@@ -37,10 +38,11 @@ namespace gestadh45.service.Graphs
 		/// <summary>
 		/// Créé le graph de remplissage de répartition des adhérents par sexe
 		/// </summary>
+		/// <param name="pDataSource">DataSource</param>
 		/// <returns>Objet Graph</returns>
-		public static Graphique CreerGraphRepartitionSexe() {
-			ISexeDao lDaoSexe = new SexeDao();
-			IInscriptionDao lDaoInscription = new InscriptionDao();
+		public static Graphique CreerGraphRepartitionSexe(string pDataSource) {
+			SexeDao lDaoSexe = new SexeDao(pDataSource);
+			InscriptionDao lDaoInscription = new InscriptionDao(pDataSource);
 			
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionSexes;
@@ -52,7 +54,7 @@ namespace gestadh45.service.Graphs
 
 			foreach (Sexe lSexe in lSexes) {
 				var q = from Inscription i in lInscriptions
-						where i.Adherent.Sexe.ID == lSexe.ID
+						where i.Adherent.Sexe.Id == lSexe.Id
 						select i;
 
 				lGraph.Donnees.Add(lSexe.LibelleCourt, q.LongCount());
@@ -64,9 +66,10 @@ namespace gestadh45.service.Graphs
 		/// <summary>
 		/// Créé le graph de remplissage de répartition des adhérents par âge
 		/// </summary>
+		/// <param name="pDataSource">DataSource</param>
 		/// <returns>Objet Graph</returns>
-		public static Graphique CreerGraphRepartitionAge() {
-			IInscriptionDao lDaoInscription = new InscriptionDao();
+		public static Graphique CreerGraphRepartitionAge(string pDataSource) {
+			InscriptionDao lDaoInscription = new InscriptionDao(pDataSource);
 
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionAges;
@@ -95,9 +98,10 @@ namespace gestadh45.service.Graphs
 		/// <summary>
 		/// Créé le graph de remplissage de répartition des adhérents majeurs / mineurs
 		/// </summary>
+		/// <param name="pDataSource">DataSource</param>
 		/// <returns>Objet Graph</returns>
-		public static Graphique CreerGraphRepartitionMajeursMineurs() {
-			IInscriptionDao lDaoInscription = new InscriptionDao();
+		public static Graphique CreerGraphRepartitionMajeursMineurs(string pDataSource) {
+			InscriptionDao lDaoInscription = new InscriptionDao(pDataSource);
 			
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionMajeursMineurs;
@@ -126,10 +130,11 @@ namespace gestadh45.service.Graphs
 		/// <summary>
 		/// Créé le graph de remplissage de répartition des adhérents résidents / extérieurs
 		/// </summary>
+		/// <param name="pDataSource">DataSource</param>
 		/// <returns>Objet Graph</returns>
-		public static Graphique CreerGraphRepartitionResidentsExterieurs() {
-			IInscriptionDao lDaoInscription = new InscriptionDao();
-			IInfosClubDao lDaoInfosClub = new InfosClubDao();
+		public static Graphique CreerGraphRepartitionResidentsExterieurs(string pDataSource) {
+			InscriptionDao lDaoInscription = new InscriptionDao(pDataSource);
+			InfosClubDao lDaoInfosClub = new InfosClubDao(pDataSource);
 			
 			Graphique lGraph = new Graphique();
 			lGraph.Titre = ResGraphs.Titre_RepartitionResidentsExterieurs;
@@ -137,18 +142,18 @@ namespace gestadh45.service.Graphs
 			lGraph.Donnees = new Dictionary<string, long>();
 
 			List<Inscription> lInscriptions = lDaoInscription.ListSaisonCourante();
-			InfosClub lInfosClub = lDaoInfosClub.Read();
+			InfosClub lInfosClub = lDaoInfosClub.Read(0);
 
 			// Nombre de résidents
 			var qResidents = from Inscription i in lInscriptions
-						   where i.Adherent.Adresse.ID_Ville == lInfosClub.Adresse.ID_Ville
+						   where i.Adherent.Adresse.Ville.Id == lInfosClub.Adresse.Ville.Id
 						   select i;
 
 			lGraph.Donnees.Add(ResGraphs.Libelle_Residents, qResidents.LongCount());
 
 			// Nombre d'extérieurs
 			var qExterieurs = from Inscription i in lInscriptions
-							 where i.Adherent.Adresse.ID_Ville != lInfosClub.Adresse.ID_Ville
+							 where i.Adherent.Adresse.Ville.Id != lInfosClub.Adresse.Ville.Id
 							 select i;
 
 			lGraph.Donnees.Add(ResGraphs.Libelle_Exterieurs, qExterieurs.LongCount());

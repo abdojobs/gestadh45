@@ -335,9 +335,22 @@ namespace gestadh45.dao
 		/// <returns>Liste des inscriptions pour la saison courante</returns>
 		public List<Inscription> ListSaisonCourante() {
 			// TODO faire des tests de perf pour voir si linq est assez performant pour le filtre ou si il faut passer par une nouvelle vue
-			var listeComplete = this.List();
-			var rq = from Inscription i in listeComplete
+			var rq = from Inscription i in this.List()
 					 where i.Groupe.Saison.EstSaisonCourante
+					 select i;
+
+			return rq.ToList();
+		}
+
+		/// <summary>
+		/// Récupère la liste des inscriptions pour un groupe donné
+		/// </summary>
+		/// <param name="pGroupe">Groupe</param>
+		/// <returns>Liste des inscriptions du groupe</returns>
+		public List<Inscription> ListGroupe(Groupe pGroupe) {
+			// Faire des tests de perf
+			var rq = from Inscription i in this.List()
+					 where i.Groupe.Id == pGroupe.Id
 					 select i;
 
 			return rq.ToList();

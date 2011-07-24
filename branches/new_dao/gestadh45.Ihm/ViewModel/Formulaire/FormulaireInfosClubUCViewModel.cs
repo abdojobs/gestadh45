@@ -4,7 +4,7 @@ using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.model;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -13,10 +13,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private InfosClub mInfosClub;
 		private ICollectionView mVilles;
 
-		private IVilleDao mDaoVille;
-		private IInfosClubDao mDaoInfosClub;
-		private IContactDao mDaoContact;
-		private IAdresseDao mDaoAdresse;
+		private VilleDao _daoVille;
+		private InfosClubDao _daoInfosClub;
 
 		/// <summary>
 		/// Obtient/Définit l'objet Infos club du formulaire
@@ -49,34 +47,20 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireInfosClubUCViewModel() {
-			this.mDaoVille = this.mDaoFactory.GetVilleDao();
-			this.mDaoInfosClub = this.mDaoFactory.GetInfosClubDao();
-			this.mDaoContact = this.mDaoFactory.GetContactDao();
-			this.mDaoAdresse = this.mDaoFactory.GetAdresseDao();
+			this._daoVille = new VilleDao(ViewModelLocator.DataSource);
+			this._daoInfosClub = new InfosClubDao(ViewModelLocator.DataSource);
 
 			this.InitialisationListeVilles();
 
-			this.InfosClub = this.mDaoInfosClub.Read();
-			this.mDaoInfosClub.Refresh(this.InfosClub);
+			this.InfosClub = this._daoInfosClub.Read(0);
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
 
 			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
 		}
 
-		public override void ExecuteAnnulerCommand() {
-			if (this.InfosClub != null) {
-				this.mDaoVille.Refresh(this.InfosClub.Adresse.Ville);
-				this.mDaoAdresse.Refresh(this.InfosClub.Adresse);
-				this.mDaoContact.Refresh(this.InfosClub.Contact);
-				this.mDaoInfosClub.Refresh(this.InfosClub);
-			}
-
-			base.ExecuteAnnulerCommand();
-		}
-
 		public override void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie()) {
-				this.mDaoInfosClub.Update(this.InfosClub);
+				this._daoInfosClub.Update(this.InfosClub);
 
 				base.ExecuteEnregistrerCommand();
 			}
@@ -92,7 +76,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		private void InitialisationListeVilles() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoVille.List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoVille.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
 		}

@@ -1,8 +1,11 @@
 ﻿
+using System.Text;
 namespace gestadh45.model
 {
 	public class Contact : BaseClass
 	{
+		private const string SeparateurAdressesMail = ",";
+		
 		#region properties
 		/// <summary>
 		/// Obtient/Définit le téléphone1
@@ -38,6 +41,29 @@ namespace gestadh45.model
 		/// Obtient/Définit le site web
 		/// </summary>
 		public string SiteWeb { get; set; }
+
+		/// <summary>
+		/// Obtient la liste des adresses emails sous forme d'une chaîne, avec un séparateur standard
+		/// </summary>
+		public string ChaineMails {
+			get {
+				StringBuilder lSb = new StringBuilder();
+
+				if (!string.IsNullOrWhiteSpace(this.Mail1)) {
+					lSb.Append(this.Mail1 + SeparateurAdressesMail);
+				}
+
+				if (!string.IsNullOrWhiteSpace(this.Mail2)) {
+					lSb.Append(this.Mail2 + SeparateurAdressesMail);
+				}
+
+				if (!string.IsNullOrWhiteSpace(this.Mail3)) {
+					lSb.Append(this.Mail3 + SeparateurAdressesMail);
+				}
+
+				return lSb.ToString();
+			}
+		}
 		#endregion
 	}
 }
