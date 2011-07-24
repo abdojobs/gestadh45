@@ -60,9 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dao\RunTestsDao.cs" />
+    <Compile Include="dao\TestInfosClubDao.cs" />
     <Compile Include="dao\TestJourSemaineDao.cs" />
+    <Compile Include="dao\TestSaisonDao.cs" />
     <Compile Include="dao\TestSexeDao.cs" />
     <Compile Include="dao\TestStatutInscriptionDao.cs" />
+    <Compile Include="dao\TestVilleDao.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
