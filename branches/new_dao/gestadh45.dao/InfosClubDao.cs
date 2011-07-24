@@ -113,9 +113,9 @@ namespace gestadh45.dao
 				{
 					Id = reader.GetInt32(0),
 					Nom = reader.GetString(1),
-					Numero = reader.GetString(2),
-					Siren = reader.GetString(3),
-					NIC = reader.GetString(4),
+					Numero = reader.IsDBNull(2) ? string.Empty : reader.GetString(2), // gestion du NULL
+					Siren = reader.IsDBNull(3) ? string.Empty : reader.GetString(3), // gestion du NULL
+					NIC = reader.IsDBNull(4) ? string.Empty : reader.GetString(4), // gestion du NULL
 
 					Adresse = new Adresse()
 					{

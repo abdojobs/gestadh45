@@ -37,7 +37,7 @@ namespace gestadh45.tests.dao
 		}
 
 		public static void TestList(string pFilePath) {
-			Console.WriteLine(string.Format("Test de SexeDao.List : ", typeof(SaisonDao).ToString()));
+			Console.WriteLine(string.Format("Test de {0}.List : ", typeof(SaisonDao).ToString()));
 
 			try {
 				SaisonDao dao = new SaisonDao(pFilePath);
