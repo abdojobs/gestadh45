@@ -17,7 +17,7 @@ namespace gestadh45.tests.dao
 			Console.WriteLine(string.Format("Test de {0}.Read (ID = {1}) : ", typeof(AdherentDao).ToString(), pId));
 
 			try {
-				AdherentDao dao = new AdherentDao(pFilePath);
+				IDao<Adherent> dao = new AdherentDao(pFilePath);
 				Adherent s = dao.Read(pId);
 				if (s != null) {
 					Console.WriteLine(

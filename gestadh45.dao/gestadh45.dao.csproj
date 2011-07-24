@@ -62,6 +62,7 @@
     <Compile Include="GroupeDao.cs" />
     <Compile Include="IDao.cs" />
     <Compile Include="InfosClubDao.cs" />
+    <Compile Include="InscriptionDao.cs" />
     <Compile Include="IReadOnlyDao.cs" />
     <Compile Include="JourSemaineDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
