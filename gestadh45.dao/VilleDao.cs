@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using gestadh45.model;
+﻿using System.Collections.Generic;
 using System.Data.SQLite;
+using gestadh45.model;
 
 namespace gestadh45.dao
 {
@@ -17,12 +14,12 @@ namespace gestadh45.dao
 			var paramCodePostal = new SQLiteParameter("@CodePostal", System.Data.DbType.String) { Value = pDonnee.CodePostal };
 			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle };
 
-			var cmdInsert = new SQLiteCommand("INSERT INTO Ville(CodePostal, Libelle) Values('@CodePostal', '@Libelle');", this.Connection);
-			cmdInsert.Parameters.Add(paramCodePostal);
-			cmdInsert.Parameters.Add(paramLibelle);
+			var cmd = new SQLiteCommand("INSERT INTO Ville(CodePostal, Libelle) Values(@CodePostal, @Libelle);", this.Connection);
+			cmd.Parameters.Add(paramCodePostal);
+			cmd.Parameters.Add(paramLibelle);
 
 			try {
-				cmdInsert.ExecuteNonQuery();
+				cmd.ExecuteNonQuery();
 				return this.GetLastInsertId();
 			}
 			catch (SQLiteException) {
@@ -30,31 +27,138 @@ namespace gestadh45.dao
 			}
 			finally {
 				this.Connection.Close();
-			}			
+			}
 		}
 
 		public void Update(Ville pDonnee) {
-			throw new NotImplementedException();
+			this.Connection.Open();
+
+			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
+			var paramCodePostal = new SQLiteParameter("@CodePostal", System.Data.DbType.String) { Value = pDonnee.CodePostal };
+			var paramLibelle = new SQLiteParameter("@Libelle", System.Data.DbType.String) { Value = pDonnee.Libelle };
+
+			var cmd = new SQLiteCommand("UPDATE Ville SET CodePostal=@CodePostal, Libelle=@Libelle WHERE ID=@Id;", this.Connection);
+			cmd.Parameters.Add(paramId);
+			cmd.Parameters.Add(paramCodePostal);
+			cmd.Parameters.Add(paramLibelle);
+
+			try {
+				cmd.ExecuteNonQuery();
+			}
+			catch (SQLiteException) {
+				throw;
+			}
+			finally {
+				this.Connection.Close();
+			}
 		}
 
 		public void Delete(Ville pDonnee) {
-			throw new NotImplementedException();
+			this.Connection.Open();
+
+			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
+
+			var cmd = new SQLiteCommand("DELETE FROM Ville WHERE ID=@Id;", this.Connection);
+			cmd.Parameters.Add(paramId);
+
+			try {
+				cmd.ExecuteNonQuery();
+			}
+			catch (SQLiteException) {
+				throw;
+			}
+			finally {
+				this.Connection.Close();
+			}
 		}
 
 		public bool Exists(Ville pDonnee) {
-			throw new NotImplementedException();
+			this.Connection.Open();
+
+			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
+			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Ville WHERE ID=@Id;", this.Connection);
+			cmd.Parameters.Add(paramId);
+
+			try {
+				var result = (int)cmd.ExecuteScalar();
+				return result > 0;
+			}
+			catch (SQLiteException) {
+				throw;
+			}
+			finally {
+				this.Connection.Close();
+			}
 		}
 
 		public bool IsUsed(Ville pDonnee) {
-			throw new NotImplementedException();
+			this.Connection.Open();
+
+			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
+			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Adresse WHERE ID_Ville=@Id;", this.Connection);
+			cmd.Parameters.Add(paramId);
+
+			try {
+				var result = (int)cmd.ExecuteScalar();
+				return result > 0;
+			}
+			catch (SQLiteException) {
+				throw;
+			}
+			finally {
+				this.Connection.Close();
+			}
 		}
 
 		public Ville Read(int pId) {
-			throw new NotImplementedException();
+			this.Connection.Open();
+			Ville result = null;
+
+			var param = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pId };
+			var cmd = new SQLiteCommand("SELECT Id, CodePostal, Libelle FROM Ville WHERE ID=@Id;", this.Connection);
+			cmd.Parameters.Add(param);
+
+			var reader = cmd.ExecuteReader();
+
+			if (reader.HasRows) {
+				reader.Read();
+
+				result = new Ville()
+				{
+					Id = reader.GetInt32(0),
+					CodePostal = reader.GetString(1),
+					Libelle = reader.GetString(2)
+				};
+			}
+
+			this.Connection.Close();
+			return result;
 		}
 
 		public List<Ville> List() {
-			throw new NotImplementedException();
+			this.Connection.Open();
+
+			List<Ville> result = new List<Ville>();
+
+			var cmd = new SQLiteCommand("SELECT Id, CodePostal, Libelle FROM Ville ORDER BY Libelle;", this.Connection);
+
+			var reader = cmd.ExecuteReader();
+
+			if (reader.HasRows) {
+				while (reader.Read()) {
+					var donnee = new Ville()
+					{
+						Id = reader.GetInt32(0),
+						CodePostal = reader.GetString(1),
+						Libelle = reader.GetString(2)
+					};
+
+					result.Add(donnee);
+				}
+			}
+
+			this.Connection.Close();
+			return result;
 		}
 	}
 }

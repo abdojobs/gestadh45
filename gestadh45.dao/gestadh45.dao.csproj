@@ -63,6 +63,7 @@
     <Compile Include="IReadOnlyDao.cs" />
     <Compile Include="JourSemaineDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaisonDao.cs" />
     <Compile Include="SexeDao.cs" />
     <Compile Include="StatutInscriptionDao.cs" />
     <Compile Include="VilleDao.cs" />
