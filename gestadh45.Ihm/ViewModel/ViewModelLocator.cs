@@ -15,7 +15,6 @@ namespace gestadh45.Ihm.ViewModel
 		private static ConsultationInscriptionsUCViewModel mConsultationInscriptionsVM;
 		private static ConsultationSaisonsUCViewModel mConsultationSaisonsVM;
 		private static ConsultationVillesUCViewModel mConsultationVillesVM;
-		private static ConsultationExtractionsUCViewModel mConsultationExtractionsVM;
 		private static FormulaireAdherentUCViewModel mFormulaireAdherentVM;
 		private static FormulaireGroupeUCViewModel mFormulaireGroupeVM;
 		private static FormulaireInfosClubUCViewModel mFormulaireInfosClubVM;
@@ -71,13 +70,6 @@ namespace gestadh45.Ihm.ViewModel
 			if (mConsultationVillesVM != null) {
 				mConsultationVillesVM.Cleanup();
 				mConsultationVillesVM = null;
-			}
-		}
-
-		public static void ClearConsultationExtractionsVMStatic() {
-			if (mConsultationExtractionsVM != null) {
-				mConsultationExtractionsVM.Cleanup();
-				mConsultationExtractionsVM = null;
 			}
 		}
 
@@ -168,12 +160,6 @@ namespace gestadh45.Ihm.ViewModel
 		public static void CreateConsultationVillesVMStatic() {
 			if (mConsultationVillesVM == null) {
 				mConsultationVillesVM = new ConsultationVillesUCViewModel();
-			}
-		}
-
-		public static void CreateConsultationExtractionsVMStatic() {
-			if (mConsultationExtractionsVM == null) {
-				mConsultationExtractionsVM = new ConsultationExtractionsUCViewModel();
 			}
 		}
 
@@ -270,14 +256,6 @@ namespace gestadh45.Ihm.ViewModel
 				ClearConsultationVillesVMStatic();
 				CreateConsultationVillesVMStatic();
 				return mConsultationVillesVM;
-			}
-		}
-
-		public static ConsultationExtractionsUCViewModel ConsultationExtractionsVMStatic {
-			get {
-				ClearConsultationExtractionsVMStatic();
-				CreateConsultationExtractionsVMStatic();
-				return mConsultationExtractionsVM;
 			}
 		}
 
