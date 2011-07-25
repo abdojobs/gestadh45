@@ -79,7 +79,7 @@ namespace gestadh45.Ihm.ViewModel
 
 			Messenger.Default.Register<NotificationMessage<Saison>>(
 				this, 
-				this.MajInfosSaisonCourante
+				(msg)=> this.MajInfosSaisonCourante(msg.Content)
 			);
 
 			Messenger.Default.Register<MsgNotificationIhm>(
@@ -162,10 +162,8 @@ namespace gestadh45.Ihm.ViewModel
 		#endregion
 
 		#region méthodes privees
-		private void MajInfosSaisonCourante(NotificationMessage<Saison> msg) {
-			if (msg.Notification.Equals(TypesNotification.ChangementSaisonCourante)) {
-				this.InfosSaisonCourante = msg.Content.ToString();
-			}
+		private void MajInfosSaisonCourante(Saison pSaison) {
+			this.InfosSaisonCourante = pSaison.ToShortString();
 		}
 
 		private void CreerDatabase(string pFilePath) {
@@ -190,7 +188,7 @@ namespace gestadh45.Ihm.ViewModel
 
 					this.InfosDataSource = pFilePath;
 					this._daoSaison = new SaisonDao(pFilePath);
-					this.InfosSaisonCourante = this._daoSaison.ReadSaisonCourante().ToString();
+					this.InfosSaisonCourante = this._daoSaison.ReadSaisonCourante().ToShortString();
 					this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
 
 					this.AfficherInformationIhm(MainRessources.NotificationOuvertureBase + pFilePath);

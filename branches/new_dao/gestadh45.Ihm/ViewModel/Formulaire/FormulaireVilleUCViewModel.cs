@@ -43,7 +43,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				Messenger.Default.Send(msg);
 			}
 			else {
-				this.AfficherErreurIhm(this.Erreurs.ToString());
+				this.AfficherErreursIhm(this.Erreurs);
 			}
 		}
 

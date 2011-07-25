@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Text;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -62,7 +61,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 			this.CreateGenererDocumentsGroupeCommand();
 			this.CreateGenererVCardsGroupeCommand();
-			this.CreateExtraireMailsCommand();
 
 			Messenger.Default.Register<NotificationMessageSelectionElement<Groupe>>(this, this.SelectionnerGroupe);
 		}
@@ -172,33 +170,6 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 		#endregion
 
-		#region ExtraireMailsCommand
-		public ICommand ExtraireMailsCommand { get; set; }
-
-		private void CreateExtraireMailsCommand() {
-			this.ExtraireMailsCommand = new RelayCommand(
-				this.ExecuteExtraireMailsCommand,
-				this.CanExecuteExtraireMailsCommand
-			);
-		}
-
-		public bool CanExecuteExtraireMailsCommand() {
-			return (this.Groupe != null);
-		}
-
-		public void ExecuteExtraireMailsCommand() {
-			StringBuilder lSb = new StringBuilder();
-
-			foreach (Inscription lInscription in this._daoInscription.ListGroupe(this.Groupe)) {
-				lSb.Append(lInscription.Adherent.Contact.ChaineMails);
-			}
-
-			Messenger.Default.Send<NotificationMessageConsultationExtractions>(
-				new NotificationMessageConsultationExtractions(lSb.ToString())
-			);
-		}
-		#endregion
-
 		#region methodes privees
 		private void InitialisationListeGroupes() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
@@ -206,7 +177,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			);
 
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("HeureDebutDT", ListSortDirection.Ascending));
+			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
 			this.GroupesSaisonCourante = defaultView;
 		}
 

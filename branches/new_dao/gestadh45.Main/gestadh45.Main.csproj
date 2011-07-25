@@ -137,9 +137,6 @@
     <Compile Include="UserControls\Consultation\ConsultationAdherentsUC.xaml.cs">
       <DependentUpon>ConsultationAdherentsUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Consultation\ConsultationExtractionsUC.xaml.cs">
-      <DependentUpon>ConsultationExtractionsUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\Consultation\ConsultationGroupesUC.xaml.cs">
       <DependentUpon>ConsultationGroupesUC.xaml</DependentUpon>
     </Compile>
@@ -215,10 +212,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Consultation\ConsultationAdherentsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Consultation\ConsultationExtractionsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

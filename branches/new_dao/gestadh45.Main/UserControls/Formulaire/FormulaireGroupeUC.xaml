@@ -1,14 +1,14 @@
 ﻿<UserControl x:Class="gestadh45.Main.UserControls.Formulaire.FormulaireGroupeUC"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
-             mc:Ignorable="d" 
+			 mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireGroupeVMStatic, Source={StaticResource Locator}}" 
-             d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
+			 d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
 	<DockPanel>
 		<TextBlock Text="Groupe" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
 
@@ -35,16 +35,16 @@
 					
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 				<TextBlock Text="Heure de début : " Width="100" />
-				<extToolkit:TimePicker Width="100" Name="test"
-										Value="{Binding Path=Groupe.HeureDebutDT}" 
-										Format="LongTime" />
+				<extToolkit:TimePicker Width="100"
+										Value="{Binding Path=Groupe.HeureDebut}" 
+										Format="ShortTime" />
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 				<TextBlock Text="Heure de fin : " Width="100" />
 				<extToolkit:TimePicker Width="100"
-									Value="{Binding Path=Groupe.HeureFinDT}" 
-									Format="LongTime" />						
+									Value="{Binding Path=Groupe.HeureFin}" 
+									Format="ShortTime" />						
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">

@@ -29,7 +29,7 @@ namespace gestadh45.Ihm.ServiceAdaptateurs
 				NomClub = pInfosClub.Nom,
 				NumeroClub = pInfosClub.Numero,
 				PrenomAdherent = pInscription.Adherent.Prenom,
-				Saison = pInscription.Groupe.Saison.ToString(),
+				Saison = pInscription.Groupe.Saison.ToShortString(),
 				SiretClub = pInfosClub.Siret,
 				SiteWebClub = pInfosClub.Contact.SiteWeb,
 				Telephone1Adherent = pInscription.Adherent.Contact.Telephone1,

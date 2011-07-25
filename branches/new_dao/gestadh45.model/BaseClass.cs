@@ -10,13 +10,5 @@ namespace gestadh45.model
 		/// Obtient/Définit l'identifiant
 		/// </summary>
 		public int Id { get; set; }
-
-		public int ValuePath {
-			get { return this.Id; }
-		}
-
-		public string DisplayMemberPath {
-			get { return this.ToString(); }
-		}
 	}
 }
