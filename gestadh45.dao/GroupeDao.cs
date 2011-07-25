@@ -106,7 +106,7 @@ namespace gestadh45.dao
 			cmd.Parameters.Add(paramLibelle);
 
 			try {
-				var result = (int)cmd.ExecuteScalar();
+				var result = (long)cmd.ExecuteScalar();
 				return result > 0;
 			}
 			catch (SQLiteException) {
@@ -125,7 +125,7 @@ namespace gestadh45.dao
 			cmd.Parameters.Add(paramId);
 
 			try {
-				var result = (int)cmd.ExecuteScalar();
+				var result = (long)cmd.ExecuteScalar();
 				return result > 0;
 			}
 			catch (SQLiteException) {

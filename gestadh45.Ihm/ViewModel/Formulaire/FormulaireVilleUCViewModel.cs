@@ -34,7 +34,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public override void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie() && !this._daoVille.Exists(this.Ville)) {
-				this._daoVille.Create(this.Ville);
+				int id = this._daoVille.Create(this.Ville);
+				this.Ville.Id = id;
 
 				base.ExecuteEnregistrerCommand();
 

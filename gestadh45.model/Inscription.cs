@@ -44,6 +44,13 @@ namespace gestadh45.model
 		/// Obtient/Définit le statut de l'inscription
 		/// </summary>
 		public StatutInscription StatutInscription { get; set; }
+
+		/// <summary>
+		/// Obtient la propriété servant au regroupement des inscriptions dans l'affichage
+		/// </summary>
+		public string Regroupement {
+			get { return this.Groupe.ToString(); }
+		}
 		#endregion
 
 		/// <summary>

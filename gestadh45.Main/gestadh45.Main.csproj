@@ -294,6 +294,10 @@
       <Project>{7D1DAFDD-8A59-4F52-9B5F-9D01AF975565}</Project>
       <Name>gestadh45.Ihm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\gestadh45.model\gestadh45.model.csproj">
+      <Project>{1B28FD5C-32E3-4397-ACE0-7CEA20E4B160}</Project>
+      <Name>gestadh45.model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\gestadh45.service\gestadh45.service.csproj">
       <Project>{F965A907-9B56-412D-AF80-69BDDD9B3AF8}</Project>
       <Name>gestadh45.service</Name>
