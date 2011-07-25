@@ -21,36 +21,33 @@ namespace gestadh45.dao
 		public void Update(InfosClub pDonnee) {
 			this.Connection.Open();
 
-			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
-			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToUpper() };
-			var paramNumero = new SQLiteParameter("@Numero", System.Data.DbType.String) { Value = pDonnee.Numero.ToUpper() };
-			var paramSiren = new SQLiteParameter("@Siren", System.Data.DbType.String) { Value = pDonnee.Siren.ToUpper() };
-			var paramNIC = new SQLiteParameter("@NIC", System.Data.DbType.String) { Value = pDonnee.NIC.ToUpper() };
-
-			var paramIdAdresse = new SQLiteParameter("@IdAdresse", System.Data.DbType.Int32) { Value = pDonnee.Adresse.Id };
-			var paramAdresseLibelle = new SQLiteParameter("@AdresseLibelle", System.Data.DbType.String) { Value = pDonnee.Adresse.Libelle };
-			var paramAdresseIdVille = new SQLiteParameter("@AdresseIdVille", System.Data.DbType.Int32) { Value = pDonnee.Adresse.Ville.Id };
-
-			var paramIdContact = new SQLiteParameter("@IdContact", System.Data.DbType.Int32) { Value = pDonnee.Contact.Id };
-			var paramContactTelephone = new SQLiteParameter("@ContactTelephone", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1.ToUpper() };
-			var paramContactMail = new SQLiteParameter("@ContactMail", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1.ToLower() };	// toujours en minuscule
-			var paramContactSiteWeb = new SQLiteParameter("@ContactSiteWeb", System.Data.DbType.String) { Value = pDonnee.Contact.SiteWeb.ToLower() };	// toujours en minuscule
-
 			// on cree une transaction pour regrouper les 3 requetes de maj (adresse, contact, infosclub)
 			var trans = this.Connection.BeginTransaction();
 
 			var cmdAdresse = new SQLiteCommand("UPDATE Adresse SET Libelle=@AdresseLibelle, ID_Ville=@AdresseIdVille WHERE ID=@IdAdresse;", this.Connection, trans);
+			var paramIdAdresse = new SQLiteParameter("@IdAdresse", System.Data.DbType.Int32) { Value = pDonnee.Adresse.Id };
+			var paramAdresseLibelle = new SQLiteParameter("@AdresseLibelle", System.Data.DbType.String) { Value = pDonnee.Adresse.Libelle };
+			var paramAdresseIdVille = new SQLiteParameter("@AdresseIdVille", System.Data.DbType.Int32) { Value = pDonnee.Adresse.Ville.Id };
 			cmdAdresse.Parameters.Add(paramIdAdresse);
 			cmdAdresse.Parameters.Add(paramAdresseLibelle);
 			cmdAdresse.Parameters.Add(paramAdresseIdVille);
 
-			var cmdContact = new SQLiteCommand("UPDATE Contact SET Telephone1=@ContactTelephone, Mail1=@ContactMail, @SiteWeb=ContactSiteWeb WHERE ID=@IdContact;", this.Connection, trans);
+			var cmdContact = new SQLiteCommand("UPDATE Contact SET Telephone1=@ContactTelephone, Mail1=@ContactMail, SiteWeb=@ContactSiteWeb WHERE ID=@IdContact;", this.Connection, trans);
+			var paramIdContact = new SQLiteParameter("@IdContact", System.Data.DbType.Int32) { Value = pDonnee.Contact.Id };
+			var paramContactTelephone = new SQLiteParameter("@ContactTelephone", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1.ToUpper() };
+			var paramContactMail = new SQLiteParameter("@ContactMail", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1.ToLower() };	// toujours en minuscule
+			var paramContactSiteWeb = new SQLiteParameter("@ContactSiteWeb", System.Data.DbType.String) { Value = pDonnee.Contact.SiteWeb.ToLower() };	// toujours en minuscule
 			cmdContact.Parameters.Add(paramIdContact);
 			cmdContact.Parameters.Add(paramContactTelephone);
 			cmdContact.Parameters.Add(paramContactMail);
 			cmdContact.Parameters.Add(paramContactSiteWeb);
 
 			var cmdInfosClub = new SQLiteCommand("UPDATE InfosClub SET Nom=@Nom, Numero=@Numero, Siren=@Siren, NIC=@NIC WHERE ID=@Id;", this.Connection, trans);
+			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
+			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToUpper() };
+			var paramNumero = new SQLiteParameter("@Numero", System.Data.DbType.String) { Value = pDonnee.Numero.ToUpper() };
+			var paramSiren = new SQLiteParameter("@Siren", System.Data.DbType.String) { Value = pDonnee.Siren.ToUpper() };
+			var paramNIC = new SQLiteParameter("@NIC", System.Data.DbType.String) { Value = pDonnee.NIC.ToUpper() };
 			cmdInfosClub.Parameters.Add(paramId);
 			cmdInfosClub.Parameters.Add(paramNom);
 			cmdInfosClub.Parameters.Add(paramNumero);

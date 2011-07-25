@@ -218,9 +218,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void InitialisationListeInscriptions() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoInscription.ListSaisonCourante());
-			defaultView.GroupDescriptions.Add(new PropertyGroupDescription("Groupe"));
+			defaultView.GroupDescriptions.Add(new PropertyGroupDescription("Regroupement"));
 			defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine.Numero", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Groupe.HeureDebut", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Adherent.Nom", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Adherent.Prenom", ListSortDirection.Ascending));

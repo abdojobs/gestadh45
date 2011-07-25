@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
@@ -50,18 +51,19 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this._daoVille = new VilleDao(ViewModelLocator.DataSource);
 			this._daoInfosClub = new InfosClubDao(ViewModelLocator.DataSource);
 
-			this.InitialisationListeVilles();
-
-			this.InfosClub = this._daoInfosClub.Read(0);
+			this.InitialisationFormulaire();
+			
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
+			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(
+				this, 
+				(msg) => this.SelectionnerVille(msg.Content)
+			);
 		}
 
 		public override void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie()) {
 				this._daoInfosClub.Update(this.InfosClub);
-
 				base.ExecuteEnregistrerCommand();
 			}
 			else {
@@ -71,19 +73,36 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public override void ExecuteFenetreCommand(string pCodeUC) {
 			base.ExecuteFenetreCommand(pCodeUC);
-
-			this.InitialisationListeVilles();
 		}
 
-		private void InitialisationListeVilles() {
+		private void InitialisationFormulaire() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoVille.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
+
+			this.InfosClub = this._daoInfosClub.Read(0);
+
+			var rq = from Ville v in this.Villes.SourceCollection
+					 where v.Id == this.InfosClub.Adresse.Ville.Id
+					 select v;
+
+			if (rq.Count() > 0) {
+				this.InfosClub.Adresse.Ville = rq.First();
+				this.RaisePropertyChanged(() => this.InfosClub);
+			}
 		}
 
-		private void SelectionnerVille(NotificationMessageSelectionElement<Ville> msg) {
-			this.InfosClub.Adresse.Ville = msg.Content;
-			this.RaisePropertyChanged(() => this.InfosClub);
+		private void SelectionnerVille(Ville pVille) {
+			this.InitialisationFormulaire();
+			
+			var rq = from Ville v in this.Villes.SourceCollection
+					 where v.Id == pVille.Id
+					 select v;
+
+			if (rq.Count() > 0) {
+				this.InfosClub.Adresse.Ville = rq.First();
+				this.RaisePropertyChanged(() => this.InfosClub);
+			}
 		}
 
 		protected override bool VerifierSaisie() {

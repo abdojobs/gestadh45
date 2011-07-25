@@ -26,14 +26,21 @@ namespace gestadh45.dao
 		/// </summary>
 		/// <returns>Dernier ID inséré dans la base</returns>
 		protected int GetLastInsertId() {
-			this.Connection.Open();
+			bool connectionFlag = false;
+
+			if (this.Connection.State != System.Data.ConnectionState.Open) {
+				this.Connection.Open();
+				connectionFlag = true;
+			}
 
 			var cmd = new SQLiteCommand("SELECT last_insert_rowid();", this.Connection);
-			int result = (int)cmd.ExecuteScalar();
+			long result = (long)cmd.ExecuteScalar();
 
-			this.Connection.Close();
+			if (connectionFlag) {
+				this.Connection.Close();
+			}
 
-			return result;
+			return (int)result;
 		}
 
 		public override string ToString() {
