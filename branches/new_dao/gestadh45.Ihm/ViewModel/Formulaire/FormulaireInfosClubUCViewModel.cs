@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
@@ -11,8 +10,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public class FormulaireInfosClubUCViewModel : ViewModelBaseFormulaire
 	{
-		private InfosClub mInfosClub;
-		private ICollectionView mVilles;
+		private InfosClub _infosClub;
+		private ICollectionView _villes;
+		private int _idVilleSelectionnee;
 
 		private VilleDao _daoVille;
 		private InfosClubDao _daoInfosClub;
@@ -22,12 +22,16 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public InfosClub InfosClub {
 			get {
-				return this.mInfosClub;
+				return this._infosClub;
 			}
 			set {
-				if (this.mInfosClub != value) {
-					this.mInfosClub = value;
+				if (this._infosClub != value) {
+					this._infosClub = value;
 					this.RaisePropertyChanged(() => this.InfosClub);
+
+					// maj de id ville selectionnee
+					this.IdVilleSelectionnee = value.Adresse.Ville.Id;
+					this.RaisePropertyChanged(() => this.IdVilleSelectionnee);
 				}
 			}
 		}
@@ -37,12 +41,31 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public ICollectionView Villes {
 			get {
-				return this.mVilles;
+				return this._villes;
 			}
 			set {
-				if (this.mVilles != value) {
-					this.mVilles = value;
+				if (this._villes != value) {
+					this._villes = value;
 					this.RaisePropertyChanged(() => this.Villes);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Obtient/Définit l'id de la ville sélectionnée
+		/// </summary>
+		public int IdVilleSelectionnee {
+			get {
+				return this._idVilleSelectionnee;
+			}
+			set {
+				if (this._idVilleSelectionnee != value) {
+					this._idVilleSelectionnee = value;
+					this.RaisePropertyChanged(() => this.IdVilleSelectionnee);
+
+					// maj de InfosClub
+					this.InfosClub.Adresse.Ville = this._daoVille.Read(value);
+					this.RaisePropertyChanged(() => this.InfosClub);
 				}
 			}
 		}
@@ -75,30 +98,12 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoVille.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
-
 			this.InfosClub = this._daoInfosClub.Read(0);
-
-			var rq = from Ville v in this.Villes.SourceCollection
-					 where v.Id == this.InfosClub.Adresse.Ville.Id
-					 select v;
-
-			if (rq.Count() > 0) {
-				this.InfosClub.Adresse.Ville = rq.First();
-				this.RaisePropertyChanged(() => this.InfosClub);
-			}
 		}
 
 		private void SelectionnerVille(Ville pVille) {
 			this.InitialisationFormulaire();
-			
-			var rq = from Ville v in this.Villes.SourceCollection
-					 where v.Id == pVille.Id
-					 select v;
-
-			if (rq.Count() > 0) {
-				this.InfosClub.Adresse.Ville = rq.First();
-				this.RaisePropertyChanged(() => this.InfosClub);
-			}
+			this.IdVilleSelectionnee = pVille.Id;
 		}
 
 		protected override bool VerifierSaisie() {
