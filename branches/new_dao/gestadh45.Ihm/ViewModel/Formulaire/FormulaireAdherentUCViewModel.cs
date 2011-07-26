@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
@@ -74,13 +75,20 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.Adherent.Contact = new Contact();
 			this.Adherent.DateNaissance = DateTime.Now;
 
-			this.InitialisationListeVilles();
-			this.InitialisationListeSexes();
+			this.InitialisationFormulaire();
 
 			this.CodeUCOrigine = CodesUC.ConsultationAdherents;
 			base.EstEdition = false;
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
+			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(
+				this, 
+				(msg) => this.SelectionnerVille(msg.Content)
+			);
+		}
+
+		public void SetAdherent(Adherent pAdherent) {
+			this.Adherent = pAdherent;
+			this.InitialisationFormulaire();
 		}
 
 		public override void ExecuteEnregistrerCommand() {
@@ -109,27 +117,61 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 		}
 
-		public override void ExecuteFenetreCommand(string pCodeUC) {
-			base.ExecuteFenetreCommand(pCodeUC);
+		private void SelectionnerVille(Ville pVille) {
+			this.InitialisationFormulaire();
 
-			this.InitialisationListeVilles();
+			var rqVille = from Ville v in this.Villes.SourceCollection
+						  where v.Id == pVille.Id
+						  select v;
+
+			if (rqVille.Count() > 0) {
+				this.Adherent.Adresse.Ville = rqVille.First();
+				this.RaisePropertyChanged(() => this.Adherent);
+			}
 		}
 
-		private void InitialisationListeSexes() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoSexe.List());
-			defaultView.SortDescriptions.Add(new SortDescription("LibelleCourt", ListSortDirection.Descending));
-			this.Sexes = defaultView;
-		}
+		private void InitialisationFormulaire() {
+			ICollectionView defaultViewSexes = CollectionViewSource.GetDefaultView(this._daoSexe.List());
+			defaultViewSexes.SortDescriptions.Add(new SortDescription("LibelleCourt", ListSortDirection.Descending));
+			this.Sexes = defaultViewSexes;
 
-		private void InitialisationListeVilles() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoVille.List());
-			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
-			this.Villes = defaultView;
-		}
+			ICollectionView defaultViewVilles = CollectionViewSource.GetDefaultView(this._daoVille.List());
+			defaultViewVilles.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
+			this.Villes = defaultViewVilles;
 
-		private void SelectionnerVille(NotificationMessageSelectionElement<Ville> msg) {
-			this.Adherent.Adresse.Ville = msg.Content;
-			this.RaisePropertyChanged(() => this.Adherent);
+			if (this.Adherent.Sexe != null) {
+				var rqSexe = from Sexe s in this.Sexes.SourceCollection
+							 where s.Id == this.Adherent.Sexe.Id
+							 select s;
+
+				if (rqSexe.Count() > 0) {
+					this.Adherent.Sexe = rqSexe.First();
+					this.RaisePropertyChanged(() => this.Adherent);
+				}
+			}
+			else {
+				var rqSexe = from Sexe s in this.Sexes.SourceCollection
+							 select s;
+
+				this.Adherent.Sexe = rqSexe.First();
+			}
+
+			if (this.Adherent.Adresse.Ville != null) {
+				var rqVille = from Ville v in this.Villes.SourceCollection
+							  where v.Id == this.Adherent.Adresse.Ville.Id
+							  select v;
+
+				if (rqVille.Count() > 0) {
+					this.Adherent.Adresse.Ville = rqVille.First();
+					this.RaisePropertyChanged(() => this.Adherent);
+				}
+			}
+			else {
+				var rqVille = from Ville v in this.Villes.SourceCollection
+							  select v;
+
+				this.Adherent.Adresse.Ville = rqVille.First();
+			}
 		}
 
 		protected override bool VerifierSaisie() {

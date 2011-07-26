@@ -93,7 +93,7 @@ namespace gestadh45.dao
 			cmdContact.Parameters.Add(paramContactMail3);
 
 			// Adresse
-			var cmdAdresse = new SQLiteCommand("UPDATE Adresse SET Libelle=@AdresseLibelle, ID_Ville=@IdVille WHERE ID=@IdAdresse;", this.Connection,trans);
+			var cmdAdresse = new SQLiteCommand("UPDATE Adresse SET Libelle=@AdresseLibelle, ID_Ville=@AdresseIdVille WHERE ID=@IdAdresse;", this.Connection, trans);
 			var paramIdAdresse = new SQLiteParameter("@IdAdresse", System.Data.DbType.Int32) { Value = pDonnee.Adresse.Id };
 			var paramAdresseLibelle = new SQLiteParameter("@AdresseLibelle", System.Data.DbType.String) { Value = pDonnee.Adresse.Libelle };
 			var paramAdresseIdVille = new SQLiteParameter("@AdresseIdVille", System.Data.DbType.Int32) { Value = pDonnee.Adresse.Ville.Id };
@@ -102,7 +102,7 @@ namespace gestadh45.dao
 			cmdAdresse.Parameters.Add(paramAdresseIdVille);
 
 			// Adhérent (la date de création ne peut être modifiée)
-			var cmdAdherent = new SQLiteCommand("UPDATE Adherent SET Nom=@Nom, Prenom=@Prenom, DateNaissance=@DateNaissance, DateModification=@DateModification, Commentaire=@Commentaire, ID_Sexe=@IdSexe WHERE ID = @Id);", this.Connection, trans);
+			var cmdAdherent = new SQLiteCommand("UPDATE Adherent SET Nom=@Nom, Prenom=@Prenom, DateNaissance=@DateNaissance, DateModification=@DateModification, Commentaire=@Commentaire, ID_Sexe=@IdSexe WHERE ID = @Id;", this.Connection, trans);
 			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
 			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToUpper() };
 			var paramPrenom = new SQLiteParameter("@Prenom", System.Data.DbType.String) { Value = pDonnee.Prenom };
@@ -170,9 +170,9 @@ namespace gestadh45.dao
 			this.Connection.Open();
 
 			// la vérification s'effectuera sur le nom et le prénom
-			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Adherent WHERE UPPER(Nom)=@Nom AND UPPER(Prenom)=@Prenom;", this.Connection);
-			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToUpper() };
-			var paramPrenom = new SQLiteParameter("@Prenom", System.Data.DbType.String) { Value = pDonnee.Prenom.ToUpper() };
+			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM Adherent WHERE lower(Nom)=@Nom AND lower(Prenom)=@Prenom;", this.Connection);
+			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToLower() };
+			var paramPrenom = new SQLiteParameter("@Prenom", System.Data.DbType.String) { Value = pDonnee.Prenom.ToLower() };
 
 			cmd.Parameters.Add(paramNom);
 			cmd.Parameters.Add(paramPrenom);

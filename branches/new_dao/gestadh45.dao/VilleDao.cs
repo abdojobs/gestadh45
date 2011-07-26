@@ -143,7 +143,7 @@ namespace gestadh45.dao
 
 			List<Ville> result = new List<Ville>();
 
-			var cmd = new SQLiteCommand("SELECT Id, UPPER(CodePostal), UPPER(Libelle) FROM Ville ORDER BY Libelle;", this.Connection);
+			var cmd = new SQLiteCommand("SELECT Id, UPPER(CodePostal), UPPER(Libelle) FROM Ville ORDER BY Libelle, CodePostal;", this.Connection);
 
 			var reader = cmd.ExecuteReader();
 
