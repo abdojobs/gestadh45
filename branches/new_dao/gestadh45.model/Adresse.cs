@@ -15,6 +15,10 @@ namespace gestadh45.model
 		public Ville Ville { get; set; }
 		#endregion
 
+		public Adresse() {
+			this.Ville = new Ville();
+		}
+
 		/// <summary>
 		/// Renvoit adresse ville
 		/// </summary>

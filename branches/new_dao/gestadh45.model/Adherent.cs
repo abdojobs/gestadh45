@@ -58,6 +58,12 @@ namespace gestadh45.model
 		}
 		#endregion
 
+		public Adherent() {
+			this.Adresse = new Adresse();
+			this.Contact = new Contact();
+			this.Sexe = new Sexe();
+		}
+
 		public override string ToString() {
 			return string.Format("{0} {1}", this.Nom, this.Prenom);
 		}

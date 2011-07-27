@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
@@ -12,9 +11,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public class FormulaireAdherentUCViewModel : ViewModelBaseFormulaire
 	{
-		private Adherent mAdherent;
-		private ICollectionView mSexes;
-		private ICollectionView mVilles;
+		private Adherent _adherent;
+		private ICollectionView _sexes;
+		private ICollectionView _villes;
 
 		private VilleDao _daoVille;
 		private SexeDao _daoSexe;
@@ -25,11 +24,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public Adherent Adherent {
 			get {
-				return this.mAdherent;
+				return this._adherent;
 			}
 			set {
-				if (this.mAdherent != value) {
-					this.mAdherent = value;
+				if (this._adherent != value) {
+					this._adherent = value;
 					this.RaisePropertyChanged(() => this.Adherent);
 				}
 			}
@@ -40,11 +39,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public ICollectionView Sexes {
 			get {
-				return this.mSexes;
+				return this._sexes;
 			}
 			set {
-				if (this.mSexes != value) {
-					this.mSexes = value;
+				if (this._sexes != value) {
+					this._sexes = value;
 					this.RaisePropertyChanged(() => this.Sexes);
 				}
 			}
@@ -55,11 +54,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public ICollectionView Villes {
 			get {
-				return this.mVilles;
+				return this._villes;
 			}
 			set {
-				if (this.mVilles != value) {
-					this.mVilles = value;
+				if (this._villes != value) {
+					this._villes = value;
 					this.RaisePropertyChanged(() => this.Villes);
 				}
 			}
@@ -71,8 +70,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this._daoAdherent = new AdherentDao(ViewModelLocator.DataSource);
 
 			this.Adherent = new Adherent();
-			this.Adherent.Adresse = new Adresse();
-			this.Adherent.Contact = new Contact();
 			this.Adherent.DateNaissance = DateTime.Now;
 
 			this.InitialisationFormulaire();
@@ -87,8 +84,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public void SetAdherent(Adherent pAdherent) {
-			this.Adherent = pAdherent;
 			this.InitialisationFormulaire();
+			this.Adherent = pAdherent;
+			this.RaisePropertyChanged(() => this.Adherent);
 		}
 
 		public override void ExecuteEnregistrerCommand() {
@@ -119,15 +117,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		private void SelectionnerVille(Ville pVille) {
 			this.InitialisationFormulaire();
-
-			var rqVille = from Ville v in this.Villes.SourceCollection
-						  where v.Id == pVille.Id
-						  select v;
-
-			if (rqVille.Count() > 0) {
-				this.Adherent.Adresse.Ville = rqVille.First();
-				this.RaisePropertyChanged(() => this.Adherent);
-			}
+			this.Adherent.Adresse.Ville = pVille;
+			this.RaisePropertyChanged(() => this.Adherent);
 		}
 
 		private void InitialisationFormulaire() {
@@ -138,40 +129,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			ICollectionView defaultViewVilles = CollectionViewSource.GetDefaultView(this._daoVille.List());
 			defaultViewVilles.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultViewVilles;
-
-			if (this.Adherent.Sexe != null) {
-				var rqSexe = from Sexe s in this.Sexes.SourceCollection
-							 where s.Id == this.Adherent.Sexe.Id
-							 select s;
-
-				if (rqSexe.Count() > 0) {
-					this.Adherent.Sexe = rqSexe.First();
-					this.RaisePropertyChanged(() => this.Adherent);
-				}
-			}
-			else {
-				var rqSexe = from Sexe s in this.Sexes.SourceCollection
-							 select s;
-
-				this.Adherent.Sexe = rqSexe.First();
-			}
-
-			if (this.Adherent.Adresse.Ville != null) {
-				var rqVille = from Ville v in this.Villes.SourceCollection
-							  where v.Id == this.Adherent.Adresse.Ville.Id
-							  select v;
-
-				if (rqVille.Count() > 0) {
-					this.Adherent.Adresse.Ville = rqVille.First();
-					this.RaisePropertyChanged(() => this.Adherent);
-				}
-			}
-			else {
-				var rqVille = from Ville v in this.Villes.SourceCollection
-							  select v;
-
-				this.Adherent.Adresse.Ville = rqVille.First();
-			}
 		}
 
 		protected override bool VerifierSaisie() {

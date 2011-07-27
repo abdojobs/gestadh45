@@ -41,6 +41,11 @@ namespace gestadh45.model
 		public DateTime HeureFin { get; set; }
 		#endregion
 
+		public Groupe() {
+			this.JourSemaine = new JourSemaine();
+			this.Saison = new Saison();
+		}
+
 		/// <summary>
 		/// Renvoit le jour et le créneau du groupe
 		/// </summary>

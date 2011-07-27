@@ -29,7 +29,7 @@
 					ItemsSource="{Binding Path=Villes}"
 					DisplayMemberPath="DisplayMemberPath"
 					SelectedValuePath="Id"
-					SelectedValue="{Binding Path=IdVilleSelectionnee}"
+					SelectedValue="{Binding Path=InfosClub.Adresse.Ville.Id}"
 					/>							
 
 				<Button ToolTip="Ajouter une ville" HorizontalAlignment="Center" 
