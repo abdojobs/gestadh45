@@ -43,5 +43,10 @@ namespace gestadh45.model
 			}
 		}
 		#endregion
+
+		public InfosClub() {
+			this.Adresse = new Adresse();
+			this.Contact = new Contact();
+		}
 	}
 }

@@ -53,6 +53,12 @@ namespace gestadh45.model
 		}
 		#endregion
 
+		public Inscription() {
+			this.Adherent = new Adherent();
+			this.Groupe = new Groupe();
+			this.StatutInscription = new StatutInscription();
+		}
+
 		/// <summary>
 		/// Renvoit adhérent groupe
 		/// </summary>

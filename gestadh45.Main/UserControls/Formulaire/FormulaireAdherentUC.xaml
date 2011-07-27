@@ -61,8 +61,8 @@
 							<ComboBox Grid.Row="3" Grid.Column="1" Width="50" HorizontalAlignment="Left"
 										ItemsSource="{Binding Path=Sexes}"
 										SelectedValuePath="Id" 
-										SelectedValue="{Binding Path=Adherent.Sexe.Id}"
-										DisplayMemberPath="DisplayMemberPath"/>
+										DisplayMemberPath="DisplayMemberPath"
+										SelectedValue="{Binding Path=Adherent.Sexe.Id}"/>
 						</Grid.Children>
 					</Grid>
 				</GroupBox>
@@ -87,9 +87,9 @@
 							<ComboBox Grid.Row="1" Grid.Column="1"
 										ItemsSource="{Binding Path=Villes}" 
 										SelectedValuePath="Id"
-										SelectedValue="{Binding Path=Adherent.Adresse.Ville.Id}"
 										DisplayMemberPath="DisplayMemberPath"
-										/>								
+										SelectedValue="{Binding Path=Adherent.Adresse.Ville.Id}" />								
+							
 							<Button Grid.Row="1" Grid.Column="2" ToolTip="Ajouter une ville" HorizontalAlignment="Center" 
 									Width="18" Height="18" 
 									Command="{Binding Path=FenetreCommand}"

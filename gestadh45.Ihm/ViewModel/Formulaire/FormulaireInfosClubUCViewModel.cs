@@ -12,7 +12,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 	{
 		private InfosClub _infosClub;
 		private ICollectionView _villes;
-		private int _idVilleSelectionnee;
 
 		private VilleDao _daoVille;
 		private InfosClubDao _daoInfosClub;
@@ -28,10 +27,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				if (this._infosClub != value) {
 					this._infosClub = value;
 					this.RaisePropertyChanged(() => this.InfosClub);
-
-					// maj de id ville selectionnee
-					this.IdVilleSelectionnee = value.Adresse.Ville.Id;
-					this.RaisePropertyChanged(() => this.IdVilleSelectionnee);
 				}
 			}
 		}
@@ -47,25 +42,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				if (this._villes != value) {
 					this._villes = value;
 					this.RaisePropertyChanged(() => this.Villes);
-				}
-			}
-		}
-
-		/// <summary>
-		/// Obtient/Définit l'id de la ville sélectionnée
-		/// </summary>
-		public int IdVilleSelectionnee {
-			get {
-				return this._idVilleSelectionnee;
-			}
-			set {
-				if (this._idVilleSelectionnee != value) {
-					this._idVilleSelectionnee = value;
-					this.RaisePropertyChanged(() => this.IdVilleSelectionnee);
-
-					// maj de InfosClub
-					this.InfosClub.Adresse.Ville = this._daoVille.Read(value);
-					this.RaisePropertyChanged(() => this.InfosClub);
 				}
 			}
 		}
@@ -103,7 +79,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		private void SelectionnerVille(Ville pVille) {
 			this.InitialisationFormulaire();
-			this.IdVilleSelectionnee = pVille.Id;
+			this.InfosClub.Adresse.Ville = pVille;
+			this.RaisePropertyChanged(() => this.InfosClub);
 		}
 
 		protected override bool VerifierSaisie() {
