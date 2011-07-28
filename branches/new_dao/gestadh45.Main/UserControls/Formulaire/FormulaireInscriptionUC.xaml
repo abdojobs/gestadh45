@@ -46,7 +46,10 @@
 						<Grid.Children>
 							<ComboBox Name="cmbAdherents" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,5,0,5" 
 										ItemsSource="{Binding Path=Adherents}" 
-										SelectedItem="{Binding Path=Inscription.Adherent}" />
+										SelectedValuePath="Id"
+										DisplayMemberPath="DisplayMemberPath"
+										SelectedValue="{Binding Path=Inscription.Adherent.Id}"/>
+							
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="Né(e) le : " VerticalAlignment="Center" />
 							<TextBlock Grid.Row="1" Grid.Column="1" Margin="0,5,0,5">
 								<TextBlock.Text>
@@ -80,7 +83,9 @@
 							<TextBlock Grid.Row="0" Grid.Column="0" Text="Groupe : " VerticalAlignment="Center" />
 							<ComboBox Name="cmbGroupes" Grid.Row="0" Grid.Column="1" Margin="0,5,0,5" 
 										ItemsSource="{Binding Path=GroupesSaisonCourante}" 
-										SelectedItem="{Binding Path=Inscription.Groupe}" />
+										SelectedValuePath="Id"
+										DisplayMemberPath="DisplayMemberPath"
+										SelectedValue="{Binding Path=Inscription.Groupe.Id}" />
 							
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="Saison : " VerticalAlignment="Center" />
 							<TextBlock Name="valSaison" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" 
@@ -88,7 +93,7 @@
 							
 							<TextBlock Grid.Row="2" Grid.Column="0" Text="Certificat : " VerticalAlignment="Center" />
 							<CheckBox Grid.Row="2" Grid.Column="1" Margin="10,5,0,5" 
-										IsChecked="{Binding Path=Inscription.CertificatMedicalRemisBool}" />
+										IsChecked="{Binding Path=Inscription.CertificatMedicalRemis}" />
 							
 							<TextBlock Text="Montant : " Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" />
 							<extToolkit:IntegerUpDown Grid.Row="3" Grid.Column="1" Width="75" HorizontalAlignment="Left" Margin="5,5,0,5"
@@ -98,8 +103,9 @@
 
 							<TextBlock Text="Statut : " Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
 							<ComboBox Grid.Row="4" Grid.Column="1" Margin="0,5,0,5"
-									  ItemsSource="{Binding Path=StatutsInscription}"
-									  SelectedItem="{Binding Path=Inscription.StatutInscription}">
+										ItemsSource="{Binding Path=StatutsInscription}"
+										SelectedValuePath="Id"
+										SelectedValue="{Binding Path=Inscription.StatutInscription.Id}">
 								<ComboBox.ItemTemplate>
 									<DataTemplate>
 										<TextBlock 

@@ -90,6 +90,17 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public override void ExecuteEnregistrerCommand() {
+			// récupération des valeur des combobox
+			var s = this._daoSexe.Read(this.Adherent.Sexe.Id);
+			if (s != null) {
+				this.Adherent.Sexe = s;
+			}
+
+			var v = this._daoVille.Read(this.Adherent.Adresse.Ville.Id);
+			if (v != null) {
+				this.Adherent.Adresse.Ville = v;
+			}
+
 			var msg = new NotificationMessageSelectionElement<Adherent>(this.Adherent);
 
 			if (this.VerifierSaisie() 
@@ -150,11 +161,13 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				lErreurs.Add(ResErreurs.Adherent_SexeObligatoire);
 			}
 
-			if (this.Adherent.Adresse == null || string.IsNullOrWhiteSpace(this.Adherent.Adresse.Libelle)) {
+			if (string.IsNullOrWhiteSpace(this.Adherent.Adresse.Libelle)) {
 				lErreurs.Add(ResErreurs.Adherent_AdresseObligatoire);
 			}
 
-			if (this.Adherent.Adresse != null && this.Adherent.Adresse.Ville == null) {
+			if (this.Adherent.Adresse.Ville == null
+				|| string.IsNullOrWhiteSpace(this.Adherent.Adresse.Ville.CodePostal)
+				|| string.IsNullOrWhiteSpace(this.Adherent.Adresse.Ville.Libelle)) {
 				lErreurs.Add(ResErreurs.Adherent_VilleObligatoire);
 			}
 

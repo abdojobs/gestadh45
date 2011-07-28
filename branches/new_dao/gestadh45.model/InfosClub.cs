@@ -47,6 +47,18 @@ namespace gestadh45.model
 		public InfosClub() {
 			this.Adresse = new Adresse();
 			this.Contact = new Contact();
+
+			this.Nom = string.Empty;
+		}
+
+		public override bool EstValide() {
+			bool result = true;
+
+			result = result && !string.IsNullOrWhiteSpace(this.Nom);
+			result = result && this.Adresse.EstValide();
+			result = result && this.Contact.EstValide();
+
+			return result;
 		}
 	}
 }

@@ -62,6 +62,9 @@ namespace gestadh45.model
 			this.Adresse = new Adresse();
 			this.Contact = new Contact();
 			this.Sexe = new Sexe();
+
+			this.Nom = string.Empty;
+			this.Prenom = string.Empty;
 		}
 
 		public override string ToString() {
@@ -79,6 +82,15 @@ namespace gestadh45.model
 				num--;
 			}
 			return num;
+		}
+
+		public override bool EstValide() {
+			bool result = true;
+
+			result = result && !string.IsNullOrWhiteSpace(this.Nom);
+			result = result && !string.IsNullOrWhiteSpace(this.Prenom);
+
+			return result;
 		}
 	}
 }

@@ -66,5 +66,15 @@ namespace gestadh45.model
 		public override string ToString() {
 			return string.Format("{0} - {1}", this.Adherent, this.Groupe.Libelle);
 		}
+
+		public override bool EstValide() {
+			bool result = true;
+
+			result = result && this.Adherent.EstValide();
+			result = result && this.Groupe.EstValide();
+			result = result && this.StatutInscription.EstValide();
+
+			return result;
+		}
 	}
 }

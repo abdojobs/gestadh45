@@ -22,5 +22,9 @@ namespace gestadh45.model
 		public override string ToString() {
 			return this.LibelleCourt;
 		}
+
+		public override bool EstValide() {
+			return !string.IsNullOrWhiteSpace(this.LibelleCourt) && !string.IsNullOrWhiteSpace(this.LibelleLong);
+		}
 	}
 }

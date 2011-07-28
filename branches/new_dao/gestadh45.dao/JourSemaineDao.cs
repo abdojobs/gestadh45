@@ -57,5 +57,25 @@ namespace gestadh45.dao
 			this.Connection.Close();
 			return result;
 		}
+
+		public bool Exists(JourSemaine pDonnee) {
+			this.Connection.Open();
+
+			// La vérification s'effectuera sur l'ID
+			var cmd = new SQLiteCommand("SELECT COUNT(*) FROM JourSemaine WHERE ID=@Id;", this.Connection);
+			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
+			cmd.Parameters.Add(paramId);
+
+			try {
+				var result = (long)cmd.ExecuteScalar();
+				return result > 0;
+			}
+			catch (SQLiteException) {
+				throw;
+			}
+			finally {
+				this.Connection.Close();
+			}
+		}
 	}
 }

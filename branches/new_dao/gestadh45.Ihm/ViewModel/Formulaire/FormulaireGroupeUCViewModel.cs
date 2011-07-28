@@ -59,6 +59,13 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public override void ExecuteEnregistrerCommand() {
+			var j = this._daoJoursSemaine.Read(this.Groupe.JourSemaine.Id);
+			if (j != null) {
+				this.Groupe.JourSemaine = j;
+			}
+
+
+
 			if (this.VerifierSaisie()
 				&& !this._daoGroupe.Exists(this.Groupe)) {
 					
