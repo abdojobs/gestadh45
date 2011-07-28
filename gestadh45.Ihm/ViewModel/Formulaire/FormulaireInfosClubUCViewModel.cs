@@ -50,6 +50,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this._daoVille = new VilleDao(ViewModelLocator.DataSource);
 			this._daoInfosClub = new InfosClubDao(ViewModelLocator.DataSource);
 
+			this.InfosClub = this._daoInfosClub.Read(0);
 			this.InitialisationFormulaire();
 			
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
@@ -61,6 +62,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public override void ExecuteEnregistrerCommand() {
+			var v = this._daoVille.Read(this.InfosClub.Adresse.Ville.Id);
+			if (v != null) {
+				this.InfosClub.Adresse.Ville = v;
+			}
+
 			if (this.VerifierSaisie()) {
 				this._daoInfosClub.Update(this.InfosClub);
 				base.ExecuteEnregistrerCommand();
@@ -74,7 +80,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoVille.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
-			this.InfosClub = this._daoInfosClub.Read(0);
 		}
 
 		private void SelectionnerVille(Ville pVille) {
@@ -90,11 +95,13 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				lErreurs.Add(ResErreurs.InfosClub_NomObligatoire);
 			}
 
-			if (this.InfosClub.Adresse == null || string.IsNullOrWhiteSpace(this.InfosClub.Adresse.Libelle)) {
+			if (string.IsNullOrWhiteSpace(this.InfosClub.Adresse.Libelle)) {
 				lErreurs.Add(ResErreurs.InfosClub_AdresseObligatoire);
 			}
 
-			if (this.InfosClub.Adresse != null && this.InfosClub.Adresse.Ville == null) {
+			if (this.InfosClub.Adresse.Ville == null 
+				|| string.IsNullOrWhiteSpace(this.InfosClub.Adresse.Ville.CodePostal) 
+				|| string.IsNullOrWhiteSpace(this.InfosClub.Adresse.Ville.Libelle)) {
 				lErreurs.Add(ResErreurs.InfosClub_VilleObligatoire);
 			}
 

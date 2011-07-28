@@ -17,5 +17,7 @@ namespace gestadh45.model
 		public string DisplayMemberPath {
 			get { return this.ToString(); }
 		}
+
+		public abstract bool EstValide();
 	}
 }

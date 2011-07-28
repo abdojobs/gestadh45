@@ -11,10 +11,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public class FormulaireInscriptionUCViewModel : ViewModelBaseFormulaire
 	{
-		private ICollectionView mAdherents;
-		private ICollectionView mGroupesSaisonCourante;
-		private ICollectionView mStatutsInscription;
-		private Inscription mInscription;
+		private ICollectionView _adherents;
+		private ICollectionView _groupesSaisonCourante;
+		private ICollectionView _statutsInscription;
+		private Inscription _inscription;
 
 		private InscriptionDao _daoInscription;
 		private GroupeDao _daoGroupe;
@@ -26,11 +26,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public ICollectionView Adherents {
 			get {
-				return this.mAdherents;
+				return this._adherents;
 			}
 			set {
-				if (this.mAdherents != value) {
-					this.mAdherents = value;
+				if (this._adherents != value) {
+					this._adherents = value;
 					this.RaisePropertyChanged(() => this.Adherents);
 				}
 			}
@@ -41,11 +41,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public ICollectionView GroupesSaisonCourante {
 			get {
-				return this.mGroupesSaisonCourante;
+				return this._groupesSaisonCourante;
 			}
 			set {
-				if (this.mGroupesSaisonCourante != value) {
-					this.mGroupesSaisonCourante = value;
+				if (this._groupesSaisonCourante != value) {
+					this._groupesSaisonCourante = value;
 					this.RaisePropertyChanged(() => this.GroupesSaisonCourante);
 				}
 			}
@@ -56,11 +56,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public ICollectionView StatutsInscription {
 			get {
-				return this.mStatutsInscription;
+				return this._statutsInscription;
 			}
 			set {
-				if (this.mStatutsInscription != value) {
-					this.mStatutsInscription = value;
+				if (this._statutsInscription != value) {
+					this._statutsInscription = value;
 					this.RaisePropertyChanged(() => this.StatutsInscription);
 				}
 			}
@@ -71,11 +71,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public Inscription Inscription {
 			get {
-				return this.mInscription;
+				return this._inscription;
 			}
 			set {
-				if (this.mInscription != value) {
-					this.mInscription = value;
+				if (this._inscription != value) {
+					this._inscription = value;
 					this.RaisePropertyChanged(() => this.Inscription);
 				}
 			}
@@ -89,9 +89,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 			this.Inscription = new Inscription();
 
-			this.InitialisationListeAdherents();
-			this.InitialisationListeGroupes();
-			this.InitialisationListeStatutsInscription();
+			this.InitialisationFormulaire();
 
 			this.CodeUCOrigine = CodesUC.ConsultationInscriptions;
 			base.EstEdition = false;
@@ -102,7 +100,35 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.Inscription.StatutInscription = this._daoStatutInscription.Read(defaultStatudId);
 		}
 
+		public void SetInscription(Inscription pInscription) {
+			this.InitialisationFormulaire();
+			this.Inscription = pInscription;
+			this.RaisePropertyChanged(() => this.Inscription);
+		}
+
+		public void SetAdherent(Adherent pAdherent) {
+			this.InitialisationFormulaire();
+			this.Inscription.Adherent = pAdherent;
+			this.RaisePropertyChanged(() => this.Inscription);
+		}
+
 		public override void ExecuteEnregistrerCommand() {
+			// récupération des valeurs des combobox
+			var a = this._daoAdherent.Read(this.Inscription.Adherent.Id);
+			if (a != null) {
+				this.Inscription.Adherent = a;
+			}
+
+			var g = this._daoGroupe.Read(this.Inscription.Groupe.Id);;
+			if (g != null) {
+				this.Inscription.Groupe = g;
+			}
+
+			var s = this._daoStatutInscription.Read(this.Inscription.Id);
+			if (s != null) {
+				this.Inscription.StatutInscription = s;
+			}
+
 			var msg = new NotificationMessageSelectionElement<Inscription>(this.Inscription);
 	
 			if (this.VerifierSaisie() 
@@ -126,24 +152,20 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			}
 		}
 
-		private void InitialisationListeAdherents() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoAdherent.List());
-			defaultView.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
-			this.Adherents = defaultView;
-		}
+		private void InitialisationFormulaire() {
+			ICollectionView defaultViewAdherents = CollectionViewSource.GetDefaultView(this._daoAdherent.List());
+			defaultViewAdherents.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
+			defaultViewAdherents.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
+			this.Adherents = defaultViewAdherents;
 
-		private void InitialisationListeGroupes() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoGroupe.ListSaisonCourante());
-			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("HeureDebutDT", ListSortDirection.Ascending));
-			this.GroupesSaisonCourante = defaultView;
-		}
+			ICollectionView defaultViewGroupes = CollectionViewSource.GetDefaultView(this._daoGroupe.ListSaisonCourante());
+			defaultViewGroupes.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
+			defaultViewGroupes.SortDescriptions.Add(new SortDescription("HeureDebutDT", ListSortDirection.Ascending));
+			this.GroupesSaisonCourante = defaultViewGroupes;
 
-		private void InitialisationListeStatutsInscription() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoStatutInscription.List());
-			defaultView.SortDescriptions.Add(new SortDescription("Ordre", ListSortDirection.Ascending));
-			this.StatutsInscription = defaultView;
+			ICollectionView defaultViewStatuts = CollectionViewSource.GetDefaultView(this._daoStatutInscription.List());
+			defaultViewStatuts.SortDescriptions.Add(new SortDescription("Ordre", ListSortDirection.Ascending));
+			this.StatutsInscription = defaultViewStatuts;
 		}
 
 		protected override bool VerifierSaisie() {

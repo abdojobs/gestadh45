@@ -40,5 +40,9 @@ namespace gestadh45.model
 				return this.ToString();
 			}
 		}
+
+		public override bool EstValide() {
+			return true;
+		}
 	}
 }

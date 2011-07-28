@@ -29,8 +29,10 @@
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 				<TextBlock Text="Jour : " Width="100" />
 				<ComboBox Width="100" 
-							ItemsSource="{Binding Path=JoursSemaine}" 
-							SelectedItem="{Binding Path=Groupe.JourSemaine}" />
+							ItemsSource="{Binding Path=Villes}" 
+							SelectedValuePath="Id"
+							DisplayMemberPath="DisplayMemberPath"
+							SelectedValue="{Binding Path=Groupe.JourSemaine.Id}" />
 			</StackPanel>
 					
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">

@@ -17,6 +17,8 @@ namespace gestadh45.model
 
 		public Adresse() {
 			this.Ville = new Ville();
+
+			this.Libelle = string.Empty;
 		}
 
 		/// <summary>
@@ -25,6 +27,10 @@ namespace gestadh45.model
 		/// <returns>adresse ville</returns>
 		public override string ToString() {
 			return string.Format("{0} {1}", this.Libelle, this.Ville);
+		}
+
+		public override bool EstValide() {
+			return !string.IsNullOrWhiteSpace(this.Libelle);
 		}
 	}
 }

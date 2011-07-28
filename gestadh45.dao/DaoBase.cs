@@ -46,5 +46,23 @@ namespace gestadh45.dao
 		public override string ToString() {
 			return string.Format("{0} - {1}", this.Connection.ConnectionString, this.Connection.Database);
 		}
+
+		/// <summary>
+		/// Convertit une valeur booléenne en entier
+		/// </summary>
+		/// <param name="pVal">Booléen</param>
+		/// <returns>1 si True, 0 si False</returns>
+		protected int BoolToInt(bool pVal) {
+			return pVal ? 1 : 0;
+		}
+
+		/// <summary>
+		/// Convertit un int en bool
+		/// </summary>
+		/// <param name="pVal">Entier</param>
+		/// <returns>True si 1, False sinon</returns>
+		protected bool IntToBool(int pVal) {
+			return pVal == 1;
+		}
 	}
 }

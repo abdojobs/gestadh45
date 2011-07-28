@@ -21,13 +21,6 @@ namespace gestadh45.dao
 		/// </summary>
 		/// <param name="pDonnee">Entité à supprimer</param>
 		void Delete(T pDonnee);
-		
-		/// <summary>
-		/// Vérifie l'existence d'une entité dans la base selon les règles spécifiques à l'entité (voir l'implémentation)
-		/// </summary>
-		/// <param name="pDonnee">Entité à vérifier</param>
-		/// <returns>True si l'entité existe, False sinon</returns>
-		bool Exists(T pDonnee);
 
 		/// <summary>
 		/// Vérifie si l'entité est utilisée par une autre
