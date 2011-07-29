@@ -318,6 +318,186 @@ CREATE TABLE [Ville] (
 
 );</value>
   </data>
+  <data name="SQL_CreateViews" xml:space="preserve">
+    <value>CREATE VIEW IF NOT EXISTS V_AdresseComplete AS
+
+SELECT
+adr.ID,
+adr.Libelle,
+
+adr.ID_Ville,
+vil.CodePostal,
+vil.Libelle AS Ville_LIbelle
+
+FROM Adresse adr
+
+INNER JOIN Ville vil ON vil.ID = adr.ID_Ville;
+
+-- ##################################################
+
+CREATE VIEW IF NOT EXISTS V_Groupe AS
+
+SELECT 
+grp.ID,
+UPPER(grp.Libelle) AS Libelle,
+grp.NbPlaces,
+grp.Commentaire,
+grp.HeureDebutDT,
+grp.HeureFinDT,
+
+grp.ID_Saison,
+sai.EstSaisonCourante AS Saison_EstSaisonCourante,
+sai.AnneeDebut AS Saison_AnneeDebut,
+sai.AnneeFin AS Saison_AnneeFin,
+
+grp.ID_JourSemaine,
+UPPER(jse.Libelle) AS JourSemaine_Libelle,
+jse.Numero AS JourSemaine_Numero
+
+FROM Groupe grp
+
+INNER JOIN Saison sai ON sai.ID = grp.ID_Saison
+INNER JOIN JourSemaine jse ON jse.ID = grp.ID_JourSemaine
+
+ORDER BY sai.AnneeDebut, jse.Numero, grp.HeureDebutDT;
+
+-- ##################################################
+
+CREATE VIEW IF NOT EXISTS V_InfosClub AS
+
+SELECT 
+inf.ID,
+UPPER(inf.Nom),
+UPPER(inf.Numero),
+UPPER(inf.Siren),
+UPPER(inf.NIC),
+
+adr.ID,
+adr.Libelle,
+
+vil.ID,
+UPPER(vil.CodePostal),
+UPPER(vil.Libelle),
+
+con.ID,
+UPPER(con.Telephone1),
+LOWER(con.Mail1),
+LOWER(con.SiteWeb)
+
+FROM InfosClub inf
+
+INNER JOIN Adresse adr ON adr.ID = inf.ID_Adresse
+INNER JOIN Ville vil ON vil.ID = adr.ID_Ville
+INNER JOIN Contact con ON con.ID = inf.ID_Contact;
+
+-- ##################################################
+
+CREATE VIEW IF NOT EXISTS V_Adherent AS
+
+SELECT
+adh.ID,
+UPPER(adh.Nom) AS Nom,
+adh.Prenom,
+adh.DateNaissance,
+adh.DateCreation,
+adh.DateModification,
+adh.Commentaire,
+
+adh.ID_Sexe,
+UPPER(sex.LibelleCourt) AS Sexe_LibelleCourt,
+sex.LibelleLong AS Sexe_LibelleLong,
+
+adh.ID_Contact,
+UPPER(con.Telephone1) AS Contact_Telephone1,
+UPPER(con.Telephone2) AS Contact_Telephone2,
+UPPER(con.Telephone3) AS Contact_Telephone3,
+LOWER(con.Mail1) AS Contact_Mail1,
+LOWER(con.Mail2) AS Contact_Mail2,
+LOWER(con.Mail3) AS Contact_Mail3,
+LOWER(con.SiteWeb) AS Contact_SiteWeb,
+
+adh.ID_Adresse,
+adr.Libelle AS Adresse_Libelle,
+
+adr.ID_Ville,
+UPPER(adr.CodePostal) AS Ville_CodePostal,
+UPPER(adr.Ville_Libelle) AS Ville_Libelle
+
+FROM Adherent adh
+
+INNER JOIN Sexe sex ON sex.ID = adh.ID_Sexe
+
+INNER JOIN Contact con ON con.ID = adh.ID_Contact
+
+INNER JOIN V_AdresseComplete adr ON adr.ID = adh.ID_Adresse
+
+ORDER BY adh.Nom, adh.Prenom;
+
+-- ##################################################
+
+CREATE VIEW IF NOT EXISTS V_Inscription AS 
+
+SELECT
+ins.ID,
+ins.CertificatMedicalRemis,
+ins.Cotisation,
+ins.DateCreation,
+ins.DateModification,
+ins.Commentaire,
+
+ins.ID_Adherent,
+adh.Nom,
+adh.Prenom,
+adh.DateNaissance,
+adh.DateCreation,
+adh.DateModification,
+adh.Commentaire,
+adh.ID_Sexe,
+adh.Sexe_LibelleCourt,
+adh.Sexe_LibelleLong,
+adh.ID_Contact,
+adh.Contact_Telephone1,
+adh.Contact_Telephone2,
+adh.Contact_Telephone3,
+adh.Contact_Mail1,
+adh.Contact_Mail2,
+adh.Contact_Mail3,
+adh.Contact_SiteWeb,
+adh.ID_Adresse,
+adh.Adresse_Libelle,
+adh.ID_Ville,
+adh.Ville_CodePostal,
+adh.Ville_Libelle,
+
+ins.ID_Groupe,
+grp.Libelle,
+grp.NbPlaces,
+grp.Commentaire,
+grp.HeureDebutDT,
+grp.HeureFinDT,
+grp.ID_Saison,
+grp.Saison_EstSaisonCourante,
+grp.Saison_AnneeDebut,
+grp.Saison_AnneeFin,
+grp.ID_JourSemaine,
+grp.JourSemaine_Libelle,
+grp.JourSemaine_Numero,
+
+ins.ID_StatutInscription,
+sti.Libelle,
+sti.CodeCouleur,
+sti.Ordre
+
+FROM Inscription ins
+
+INNER JOIN V_Adherent adh ON adh.ID = ins.ID_Adherent
+
+INNER JOIN V_Groupe grp ON grp.ID = ins.ID_Groupe
+
+INNER JOIN StatutInscription sti ON sti.ID = ins.ID_StatutInscription
+
+ORDER BY adh.Nom, adh.Prenom;</value>
+  </data>
   <data name="SQL_DropTables" xml:space="preserve">
     <value>DROP TABLE IF EXISTS [Adherent];
 DROP TABLE IF EXISTS [Adresse];
