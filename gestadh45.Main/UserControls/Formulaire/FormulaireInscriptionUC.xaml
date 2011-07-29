@@ -3,6 +3,8 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm" 
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
@@ -48,8 +50,17 @@
 										ItemsSource="{Binding Path=Adherents}" 
 										SelectedValuePath="Id"
 										DisplayMemberPath="DisplayMemberPath"
-										SelectedValue="{Binding Path=Inscription.Adherent.Id}"/>
-							
+										SelectedValue="{Binding Path=Inscription.Adherent.Id}">
+
+								<i:Interaction.Triggers>
+									<i:EventTrigger EventName="SelectionChanged">
+										<cmd:EventToCommand 
+											Command="{Binding Path=SelectionnerAdherentCommand, Mode=OneWay}" 
+											CommandParameter="{Binding ElementName=cmbAdherents, Path=SelectedItem}" />
+									</i:EventTrigger>
+								</i:Interaction.Triggers>
+							</ComboBox>
+
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="Né(e) le : " VerticalAlignment="Center" />
 							<TextBlock Grid.Row="1" Grid.Column="1" Margin="0,5,0,5">
 								<TextBlock.Text>
@@ -85,8 +96,17 @@
 										ItemsSource="{Binding Path=GroupesSaisonCourante}" 
 										SelectedValuePath="Id"
 										DisplayMemberPath="DisplayMemberPath"
-										SelectedValue="{Binding Path=Inscription.Groupe.Id}" />
-							
+										SelectedValue="{Binding Path=Inscription.Groupe.Id}">
+									  
+								<i:Interaction.Triggers>
+									<i:EventTrigger EventName="SelectionChanged">
+										<cmd:EventToCommand 
+												Command="{Binding Path=SelectionnerGroupeCommand, Mode=OneWay}" 
+												CommandParameter="{Binding ElementName=cmbGroupes, Path=SelectedItem}" />
+									</i:EventTrigger>
+								</i:Interaction.Triggers>
+							</ComboBox>
+
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="Saison : " VerticalAlignment="Center" />
 							<TextBlock Name="valSaison" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" 
 										Text="{Binding ElementName=cmbGroupes, Path=SelectedItem.Saison}" />
@@ -102,10 +122,19 @@
 													Text="{Binding Path=Inscription.Cotisation}" />
 
 							<TextBlock Text="Statut : " Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" />
-							<ComboBox Grid.Row="4" Grid.Column="1" Margin="0,5,0,5"
+							<ComboBox Grid.Row="4" Grid.Column="1" Margin="0,5,0,5" Name="cmbStatutsInscription" 
 										ItemsSource="{Binding Path=StatutsInscription}"
 										SelectedValuePath="Id"
 										SelectedValue="{Binding Path=Inscription.StatutInscription.Id}">
+								
+								<i:Interaction.Triggers>
+									<i:EventTrigger EventName="SelectionChanged">
+										<cmd:EventToCommand 
+												Command="{Binding Path=SelectionnerStatutInscriptionCommand, Mode=OneWay}" 
+												CommandParameter="{Binding ElementName=cmbStatutsInscription, Path=SelectedItem}" />
+									</i:EventTrigger>
+								</i:Interaction.Triggers>
+								
 								<ComboBox.ItemTemplate>
 									<DataTemplate>
 										<TextBlock 
