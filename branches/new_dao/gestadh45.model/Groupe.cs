@@ -41,29 +41,12 @@ namespace gestadh45.model
 		public DateTime HeureFin { get; set; }
 		#endregion
 
-		public Groupe() {
-			this.JourSemaine = new JourSemaine();
-			this.Saison = new Saison();
-
-			this.Libelle = string.Empty;
-		}
-
 		/// <summary>
 		/// Renvoit le jour et le créneau du groupe
 		/// </summary>
 		/// <returns>Jour Heure début - Heure fin</returns>
 		public override string ToString() {
 			return string.Format("{0} {1} - {2}", this.JourSemaine.ToString(), this.HeureDebut.ToShortTimeString(), this.HeureFin.ToShortTimeString());
-		}
-
-		public override bool EstValide() {
-			bool result = true;
-
-			result = result && this.JourSemaine.EstValide();
-			result = result && this.Saison.EstValide();
-			result = result && !string.IsNullOrWhiteSpace(this.Libelle);
-
-			return result;
 		}
 	}
 }
