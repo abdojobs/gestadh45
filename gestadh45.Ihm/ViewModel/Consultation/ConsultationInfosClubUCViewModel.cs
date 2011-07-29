@@ -26,7 +26,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		public ConsultationInfosClubUCViewModel() {
 			this._daoInfosClub = DaoFactory.GetInfosClubDao(ViewModelLocator.DataSource);
-			this.InfosClub = this._daoInfosClub.Read(0);
+			this.InfosClub = this._daoInfosClub.Read();
 			this.CreateEditerCommand();
 		}
 

@@ -195,7 +195,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		#region methodes privees
 		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
 			if (!string.IsNullOrWhiteSpace(pSaveFilePath)) {
-				InfosClub infosClub = _daoInfosClub.Read(0);
+				InfosClub infosClub = _daoInfosClub.Read();
 				DonneesDocument donnees = ServiceDocumentAdaptateur.InscriptionToDonneesDocument(infosClub, this.Inscription);
 				GenerateurDocumentPDF generateur = new GenerateurDocumentPDF(donnees, pSaveFilePath);
 

@@ -87,6 +87,7 @@
     <Compile Include="Documents\Templates\GeneriqueDocument.cs" />
     <Compile Include="Documents\Templates\InscriptionDocument.cs" />
     <Compile Include="Graphs\CodesGraphs.cs" />
+    <Compile Include="Graphs\DonneesGraph.cs" />
     <Compile Include="Graphs\GenerateurGraph.cs" />
     <Compile Include="Graphs\Graphique.cs" />
     <Compile Include="Graphs\ResGraphs.Designer.cs">
