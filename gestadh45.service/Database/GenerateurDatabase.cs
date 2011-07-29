@@ -1,5 +1,4 @@
 ﻿using System.Data.SQLite;
-using System;
 
 namespace gestadh45.service.Database
 {
@@ -44,6 +43,11 @@ namespace gestadh45.service.Database
 						);
 
 						using (SQLiteCommand lCommand = new SQLiteCommand(lSql, lConnection, lTransaction)) {
+							lCommand.ExecuteNonQuery();
+						}
+
+						// Création des vues
+						using (SQLiteCommand lCommand = new SQLiteCommand(ResDatabase.SQL_CreateViews, lConnection, lTransaction)) {
 							lCommand.ExecuteNonQuery();
 						}
 
