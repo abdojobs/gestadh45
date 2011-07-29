@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -69,6 +71,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this._daoSexe = new SexeDao(ViewModelLocator.DataSource);
 			this._daoAdherent = new AdherentDao(ViewModelLocator.DataSource);
 
+			this.CreateSelectionnerSexeCommand();
+			this.CreateSelectionnerVilleCommand();
+
 			this.Adherent = new Adherent();
 			this.Adherent.DateNaissance = DateTime.Now;
 
@@ -90,17 +95,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public override void ExecuteEnregistrerCommand() {
-			// récupération des valeur des combobox
-			var s = this._daoSexe.Read(this.Adherent.Sexe.Id);
-			if (s != null) {
-				this.Adherent.Sexe = s;
-			}
-
-			var v = this._daoVille.Read(this.Adherent.Adresse.Ville.Id);
-			if (v != null) {
-				this.Adherent.Adresse.Ville = v;
-			}
-
 			var msg = new NotificationMessageSelectionElement<Adherent>(this.Adherent);
 
 			if (this.VerifierSaisie() 
@@ -125,6 +119,46 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				this.AfficherErreursIhm(this.Erreurs);
 			}
 		}
+
+		#region SelectionnerSexeCommand
+		public ICommand SelectionnerSexeCommand { get; set; }
+
+		private void CreateSelectionnerSexeCommand() {
+			this.SelectionnerSexeCommand = new RelayCommand<Sexe>(
+				this.ExecuteSelectionnerSexeCommand,
+				this.CanExecuteSelectionnerSexeCommand
+			);
+		}
+
+		public bool CanExecuteSelectionnerSexeCommand(Sexe pSexe) {
+			return true;
+		}
+
+		public void ExecuteSelectionnerSexeCommand(Sexe pSexe) {
+			this.Adherent.Sexe = pSexe;
+			this.RaisePropertyChanged(() => this.Adherent);
+		}
+		#endregion
+
+		#region SelectionnerVilleCommand
+		public ICommand SelectionnerVilleCommand { get; set; }
+
+		private void CreateSelectionnerVilleCommand() {
+			this.SelectionnerVilleCommand = new RelayCommand<Ville>(
+				this.ExecuteSelectionnerVilleCommand,
+				this.CanExecuteSelectionnerVilleCommand
+			);
+		}
+
+		public bool CanExecuteSelectionnerVilleCommand(Ville pVille) {
+			return true;
+		}
+
+		public void ExecuteSelectionnerVilleCommand(Ville pVille) {
+			this.Adherent.Adresse.Ville = pVille;
+			this.RaisePropertyChanged(() => this.Adherent);
+		}
+		#endregion
 
 		private void SelectionnerVille(Ville pVille) {
 			this.InitialisationFormulaire();

@@ -12,13 +12,13 @@ namespace gestadh45.dao
 			this.Connection.Open();
 
 			// Contact
-			var cmdContact = new SQLiteCommand("INSERT INTO Contact(Telephone1, Telephone2, Telephone3, Mail1, Mail2, Mail3) VALUES @ContactTelephone1, @ContactTelephone2, @ContactTelephone3, @ContactMail1, @ContactMail2, @ContactMail3;", this.Connection);
-			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1.ToUpper() };
-			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2.ToUpper() };
-			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3.ToUpper() };
-			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1.ToLower() };
-			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2.ToLower() };
-			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3.ToLower() };
+			var cmdContact = new SQLiteCommand("INSERT INTO Contact(Telephone1, Telephone2, Telephone3, Mail1, Mail2, Mail3) VALUES (@ContactTelephone1, @ContactTelephone2, @ContactTelephone3, @ContactMail1, @ContactMail2, @ContactMail3);", this.Connection);
+			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1 == null ? string.Empty : pDonnee.Contact.Telephone1.ToUpper() };
+			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2 == null ? string.Empty : pDonnee.Contact.Telephone2.ToUpper() };
+			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3 == null ? string.Empty : pDonnee.Contact.Telephone3.ToUpper() };
+			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1 == null ? string.Empty : pDonnee.Contact.Mail1.ToLower() };
+			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2 == null ? string.Empty : pDonnee.Contact.Mail2.ToLower() };
+			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3 == null ? string.Empty : pDonnee.Contact.Mail3.ToLower() };
 			cmdContact.Parameters.Add(paramContactTelephone1);
 			cmdContact.Parameters.Add(paramContactTelephone2);
 			cmdContact.Parameters.Add(paramContactTelephone3);
@@ -27,7 +27,7 @@ namespace gestadh45.dao
 			cmdContact.Parameters.Add(paramContactMail3);
 			
 			// Adresse
-			var cmdAdresse = new SQLiteCommand("INSERT INTO Adresse(Libelle, ID_Ville) VALUES @AdresseLibelle, @AdresseIdVille;", this.Connection);
+			var cmdAdresse = new SQLiteCommand("INSERT INTO Adresse(Libelle, ID_Ville) VALUES (@AdresseLibelle, @AdresseIdVille);", this.Connection);
 			var paramAdresseLibelle = new SQLiteParameter("@AdresseLibelle", System.Data.DbType.String) { Value = pDonnee.Adresse.Libelle };
 			var paramAdresseIdVille = new SQLiteParameter("@AdresseIdVille", System.Data.DbType.Int32) { Value = pDonnee.Adresse.Ville.Id };
 			cmdAdresse.Parameters.Add(paramAdresseLibelle);
@@ -78,12 +78,12 @@ namespace gestadh45.dao
 			// Contact
 			var cmdContact = new SQLiteCommand("UPDATE Contact SET Telephone1=@ContactTelephone1, Telephone2=@ContactTelephone2, Telephone3=@ContactTelephone3, Mail1=@ContactMail1, Mail2=@ContactMail2, Mail3=@ContactMail3 WHERE ID=@IdContact;", this.Connection, trans);
 			var paramIdContact = new SQLiteParameter("@IdContact", System.Data.DbType.Int32) { Value = pDonnee.Contact.Id };
-			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1.ToUpper() };
-			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2.ToUpper() };
-			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3.ToUpper() };
-			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1.ToLower() };
-			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2.ToLower() };
-			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3.ToLower() };
+			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1 == null ? string.Empty : pDonnee.Contact.Telephone1.ToUpper() };
+			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2 == null ? string.Empty : pDonnee.Contact.Telephone2.ToUpper() };
+			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3 == null ? string.Empty : pDonnee.Contact.Telephone3.ToUpper() };
+			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1 == null ? string.Empty : pDonnee.Contact.Mail1.ToLower() };
+			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2 == null ? string.Empty : pDonnee.Contact.Mail2.ToLower() };
+			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3 == null ? string.Empty : pDonnee.Contact.Mail3.ToLower() };
 			cmdContact.Parameters.Add(paramIdContact);
 			cmdContact.Parameters.Add(paramContactTelephone1);
 			cmdContact.Parameters.Add(paramContactTelephone2);
