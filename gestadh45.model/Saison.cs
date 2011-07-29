@@ -37,7 +37,7 @@ namespace gestadh45.model
 				return string.Format("{0} (courante)", this.ToShortString());
 			}
 			else {
-				return this.ToString();
+				return this.ToShortString();
 			}
 		}
 	}
