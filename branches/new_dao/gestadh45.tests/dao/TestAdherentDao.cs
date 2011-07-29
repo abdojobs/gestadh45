@@ -17,7 +17,7 @@ namespace gestadh45.tests.dao
 			Console.WriteLine(string.Format("Test de {0}.Read (ID = {1}) : ", typeof(AdherentDao).ToString(), pId));
 
 			try {
-				IDao<Adherent> dao = new AdherentDao(pFilePath);
+				IAdherentDao dao = DaoFactory.GetAdherentDao(pFilePath);
 				Adherent s = dao.Read(pId);
 				if (s != null) {
 					Console.WriteLine(
@@ -64,7 +64,7 @@ namespace gestadh45.tests.dao
 			Console.WriteLine(string.Format("Test de {0}.List : ", typeof(AdherentDao).ToString()));
 
 			try {
-				AdherentDao dao = new AdherentDao(pFilePath);
+				IAdherentDao dao = DaoFactory.GetAdherentDao(pFilePath);
 				List<Adherent> list = dao.List();
 
 				if (list.Count != 0) {

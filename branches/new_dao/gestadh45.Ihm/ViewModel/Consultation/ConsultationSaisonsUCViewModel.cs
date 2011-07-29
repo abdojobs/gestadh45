@@ -14,21 +14,21 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 	{
 		public ICommand DefinirSaisonCouranteCommand { get; set; }
 
-		private Saison mSaison;
-		private ICollectionView mSaisons;
+		private Saison _saison;
+		private ICollectionView _saisons;
 
-		private SaisonDao _daoSaison;
+		private ISaisonDao _daoSaison;
 
 		/// <summary>
 		/// Obtient/Définit la saison à afficher
 		/// </summary>
 		public Saison Saison {
 			get {
-				return this.mSaison;
+				return this._saison;
 			}
 			set {
-				if (this.mSaison != value) {
-					this.mSaison = value;
+				if (this._saison != value) {
+					this._saison = value;
 					this.RaisePropertyChanged(() => this.Saison);
 				}
 			}
@@ -39,18 +39,18 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		/// </summary>
 		public ICollectionView Saisons {
 			get {
-				return this.mSaisons;
+				return this._saisons;
 			}
 			set {
-				if (this.mSaisons != value) {
-					this.mSaisons = value;
+				if (this._saisons != value) {
+					this._saisons = value;
 					this.RaisePropertyChanged(() => this.Saisons);
 				}
 			}
 		}
 
 		public ConsultationSaisonsUCViewModel() {
-			this._daoSaison = new SaisonDao(ViewModelLocator.DataSource);
+			this._daoSaison = DaoFactory.GetSaisonDao(ViewModelLocator.DataSource);
 
 			this.InitialisationListeSaisons();
 

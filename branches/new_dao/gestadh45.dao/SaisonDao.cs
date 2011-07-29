@@ -5,7 +5,7 @@ using gestadh45.model;
 
 namespace gestadh45.dao
 {
-	public class SaisonDao : DaoBase, IDao<Saison>
+	public class SaisonDao : DaoBase, ISaisonDao
 	{
 		public SaisonDao(string pFilePath) : base(pFilePath) { }
 

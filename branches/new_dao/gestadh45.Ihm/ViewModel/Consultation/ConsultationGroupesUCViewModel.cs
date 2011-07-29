@@ -18,9 +18,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Groupe mGroupe;
 		private ICollectionView mGroupesSaisonCourante;
 
-		private InfosClubDao _daoInfosCLub;
-		private GroupeDao _daoGroupe;
-		private InscriptionDao _daoInscription;
+		private IInfosClubDao _daoInfosCLub;
+		private IGroupeDao _daoGroupe;
+		private IInscriptionDao _daoInscription;
 
 		/// <summary>
 		/// Obtient/Définit le groupe à afficher
@@ -53,9 +53,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationGroupesUCViewModel() {
-			this._daoInfosCLub = new InfosClubDao(ViewModelLocator.DataSource);
-			this._daoGroupe = new GroupeDao(ViewModelLocator.DataSource);
-			this._daoInscription = new InscriptionDao(ViewModelLocator.DataSource);
+			this._daoInfosCLub = DaoFactory.GetInfosClubDao(ViewModelLocator.DataSource);
+			this._daoGroupe = DaoFactory.GetGroupeDao(ViewModelLocator.DataSource);
+			this._daoInscription = DaoFactory.GetInscriptionDao(ViewModelLocator.DataSource);
 
 			this.InitialisationListeGroupes();
 

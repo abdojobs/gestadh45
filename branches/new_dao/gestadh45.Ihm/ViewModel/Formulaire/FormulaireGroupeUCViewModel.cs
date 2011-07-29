@@ -15,9 +15,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private Groupe _groupe;
 		private ICollectionView _joursSemaine;
 
-		private JourSemaineDao _daoJoursSemaine;
-		private SaisonDao _daoSaison;
-		private GroupeDao _daoGroupe;
+		private IJourSemaineDao _daoJoursSemaine;
+		private ISaisonDao _daoSaison;
+		private IGroupeDao _daoGroupe;
 
 		/// <summary>
 		/// Obtient/Définit l'objet du formulaire
@@ -50,9 +50,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireGroupeUCViewModel() {
-			this._daoJoursSemaine = new JourSemaineDao(ViewModelLocator.DataSource);
-			this._daoSaison = new SaisonDao(ViewModelLocator.DataSource);
-			this._daoGroupe = new GroupeDao(ViewModelLocator.DataSource);
+			this._daoJoursSemaine = DaoFactory.GetJourSemaineDao(ViewModelLocator.DataSource);
+			this._daoSaison = DaoFactory.GetSaisonDao(ViewModelLocator.DataSource);
+			this._daoGroupe = DaoFactory.GetGroupeDao(ViewModelLocator.DataSource);
 
 			this.CreateSelectionnerJourSemaineCommand();
 

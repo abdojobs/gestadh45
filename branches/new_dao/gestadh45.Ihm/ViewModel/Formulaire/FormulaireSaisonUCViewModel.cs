@@ -9,9 +9,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public class FormulaireSaisonUCViewModel : ViewModelBaseFormulaire
 	{
-		private Saison mSaison;
+		private Saison _saison;
 		private const int DureeSaison = 1;
-		private SaisonDao _daoSaison;
+		private ISaisonDao _daoSaison;
 
 		/// <summary>
 		/// Obtient/Définit l'année de début de la saison
@@ -34,18 +34,18 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public Saison Saison {
 			get {
-				return this.mSaison;
+				return this._saison;
 			}
 			set {
-				if (this.mSaison != value) {
-					this.mSaison = value;
+				if (this._saison != value) {
+					this._saison = value;
 					this.RaisePropertyChanged("Saison");
 				}
 			}
 		}
 
 		public FormulaireSaisonUCViewModel() {
-			this._daoSaison = new SaisonDao(ViewModelLocator.DataSource);
+			this._daoSaison = DaoFactory.GetSaisonDao(ViewModelLocator.DataSource);
 
 			this.Saison = new Saison
 			{

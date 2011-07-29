@@ -4,7 +4,8 @@ using gestadh45.model;
 
 namespace gestadh45.dao
 {
-	public class SexeDao : DaoBase, IReadOnlyDao<Sexe> {
+	public class SexeDao : DaoBase, ISexeDao 
+	{
 		public SexeDao(string pFilePath) : base(pFilePath) { }
 
 		public Sexe Read(int pId) {

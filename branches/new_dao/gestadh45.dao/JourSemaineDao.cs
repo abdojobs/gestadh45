@@ -4,7 +4,7 @@ using gestadh45.model;
 
 namespace gestadh45.dao
 {
-	public class JourSemaineDao : DaoBase, IReadOnlyDao<JourSemaine>
+	public class JourSemaineDao : DaoBase, IJourSemaineDao
 	{
 		public JourSemaineDao(string pFilePath) : base(pFilePath) { }
 		

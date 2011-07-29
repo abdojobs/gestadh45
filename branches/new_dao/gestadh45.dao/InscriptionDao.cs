@@ -5,7 +5,7 @@ using gestadh45.model;
 
 namespace gestadh45.dao
 {
-	public class InscriptionDao : DaoBase, IDao<Inscription>
+	public class InscriptionDao : DaoBase, IInscriptionDao
 	{
 		public InscriptionDao(string pFilePath) : base(pFilePath) { }
 

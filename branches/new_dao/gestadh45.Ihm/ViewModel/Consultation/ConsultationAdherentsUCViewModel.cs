@@ -17,7 +17,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private Adherent mAdherent;
 		private ICollectionView mAdherents;
 
-		private AdherentDao _daoAdherent;
+		private IAdherentDao _daoAdherent;
 
 		/// <summary>
 		/// Obtient/Définit l'adhérent à afficher
@@ -50,7 +50,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		}
 
 		public ConsultationAdherentsUCViewModel() {
-			this._daoAdherent = new AdherentDao(ViewModelLocator.DataSource);
+			this._daoAdherent = DaoFactory.GetAdherentDao(ViewModelLocator.DataSource);
 
 			this.InitialisationListeAdherents();
 

@@ -5,28 +5,28 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class ConsultationInfosClubUCViewModel : ViewModelBaseConsultation
 	{
-		private InfosClub mInfosClub;
+		private InfosClub _infosClub;
 
-		private InfosClubDao mDaoInfosClub;
+		private IInfosClubDao _daoInfosClub;
 
 		/// <summary>
 		/// Obtient/Définit l'objet à afficher
 		/// </summary>
 		public InfosClub InfosClub {
 			get {
-				return this.mInfosClub;
+				return this._infosClub;
 			}
 			set {
-				if (this.mInfosClub != value) {
-					this.mInfosClub = value;
+				if (this._infosClub != value) {
+					this._infosClub = value;
 					this.RaisePropertyChanged("InfosClub");
 				}
 			}
 		}
 
 		public ConsultationInfosClubUCViewModel() {
-			this.mDaoInfosClub = new InfosClubDao(ViewModelLocator.DataSource);
-			this.InfosClub = this.mDaoInfosClub.Read(0);
+			this._daoInfosClub = DaoFactory.GetInfosClubDao(ViewModelLocator.DataSource);
+			this.InfosClub = this._daoInfosClub.Read(0);
 			this.CreateEditerCommand();
 		}
 
