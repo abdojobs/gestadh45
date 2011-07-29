@@ -20,7 +20,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		private InscriptionDao _daoInscription;
 		private GroupeDao _daoGroupe;
-		private AdherentDao _daoAdherent;
+		private IAdherentDao _daoAdherent;
 		private StatutInscriptionDao _daoStatutInscription;
 
 		/// <summary>
@@ -86,7 +86,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public FormulaireInscriptionUCViewModel() {
 			this._daoInscription = new InscriptionDao(ViewModelLocator.DataSource);
 			this._daoGroupe = new GroupeDao(ViewModelLocator.DataSource);
-			this._daoAdherent = new AdherentDao(ViewModelLocator.DataSource);
+			this._daoAdherent = DaoFactory.GetAdherentDao(ViewModelLocator.DataSource);
 			this._daoStatutInscription = new StatutInscriptionDao(ViewModelLocator.DataSource);
 
 			this.CreateSelectionnerAdherentCommand();

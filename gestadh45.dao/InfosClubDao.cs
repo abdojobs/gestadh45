@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using gestadh45.model;
 
 namespace gestadh45.dao
 {
-	public class InfosClubDao : DaoBase, IDao<InfosClub>
+	public class InfosClubDao : DaoBase, IInfosClubDao
 	{
 		public InfosClubDao(string pFilePath) : base(pFilePath) { }
-
-		/// <summary>
-		/// Lève une exception car ne doit pas être appellée
-		/// </summary>
-		/// <param name="pDonnee"></param>
-		/// <returns></returns>
-		public int Create(InfosClub pDonnee) {
-			throw new NotImplementedException("La méthode InfosClubDao.Create ne doit pas être appellée");
-		}
 
 		public void Update(InfosClub pDonnee) {
 			this.Connection.Open();
@@ -71,30 +60,6 @@ namespace gestadh45.dao
 			}			
 		}
 
-		/// <summary>
-		/// Lève une exception car ne doit pas être appellée
-		/// </summary>
-		/// <param name="pDonnee"></param>
-		public void Delete(InfosClub pDonnee) {
-			throw new NotImplementedException("La méthode InfosClubDao.Delete ne doit pas être appellée");
-		}
-
-		/// <summary>
-		/// Lève une exception car ne doit pas être appellée
-		/// </summary>
-		/// <param name="pDonnee"></param>
-		public bool Exists(InfosClub pDonnee) {
-			throw new NotImplementedException("La méthode InfosClubDao.Exists ne doit pas être appellée");
-		}
-
-		/// <summary>
-		/// Lève une exception car ne doit pas être appellée
-		/// </summary>
-		/// <param name="pDonnee"></param>
-		public bool IsUsed(InfosClub pDonnee) {
-			throw new NotImplementedException("La méthode InfosClubDao.IsUsed ne doit pas être appellée");
-		}
-
 		public InfosClub Read(int pId) {
 			this.Connection.Open();
 			InfosClub result = null;
@@ -138,14 +103,6 @@ namespace gestadh45.dao
 
 			this.Connection.Close();
 			return result;
-		}
-
-		/// <summary>
-		/// Lève une exception car ne doit pas être appellée
-		/// </summary>
-		/// <param name="pDonnee"></param>
-		public List<InfosClub> List() {
-			throw new NotImplementedException("La méthode InfosClubDao.List ne doit pas être appellée");
 		}
 	}
 }

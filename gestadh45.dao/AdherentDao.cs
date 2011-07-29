@@ -4,7 +4,7 @@ using gestadh45.model;
 
 namespace gestadh45.dao
 {
-	public class AdherentDao : DaoBase, IDao<Adherent>
+	public class AdherentDao : DaoBase, IAdherentDao
 	{
 		public AdherentDao(string pFilePath) : base(pFilePath) { }
 

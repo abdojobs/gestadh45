@@ -5,7 +5,7 @@ using gestadh45.model;
 
 namespace gestadh45.dao
 {
-	public class GroupeDao : DaoBase, IDao<Groupe>
+	public class GroupeDao : DaoBase, IGroupeDao
 	{
 		public GroupeDao(string pFilePath) : base(pFilePath) { }
 

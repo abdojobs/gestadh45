@@ -4,7 +4,7 @@ using gestadh45.model;
 
 namespace gestadh45.dao
 {
-	public class StatutInscriptionDao : DaoBase, IReadOnlyDao<StatutInscription>
+	public class StatutInscriptionDao : DaoBase, IStatutInscriptionDao
 	{
 		public StatutInscriptionDao(string pFilePath) : base(pFilePath) { }
 

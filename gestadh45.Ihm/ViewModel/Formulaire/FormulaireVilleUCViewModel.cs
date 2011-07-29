@@ -8,26 +8,26 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public class FormulaireVilleUCViewModel : ViewModelBaseFormulaire
 	{
-		private Ville mVille;
-		private VilleDao _daoVille;
+		private Ville _ville;
+		private IVilleDao _daoVille;
 
 		/// <summary>
 		/// Obtient/Définit l'objet du formulaire
 		/// </summary>
 		public Ville Ville {
 			get {
-				return this.mVille;
+				return this._ville;
 			}
 			set {
-				if (this.mVille != value) {
-					this.mVille = value;
-					this.RaisePropertyChanged("Ville");
+				if (this._ville != value) {
+					this._ville = value;
+					this.RaisePropertyChanged(() => this.Ville);
 				}
 			}
 		}
 
 		public FormulaireVilleUCViewModel() {
-			this._daoVille = new VilleDao(ViewModelLocator.DataSource);
+			this._daoVille = DaoFactory.GetVilleDao(ViewModelLocator.DataSource);
 			this.Ville = new Ville();
 			this.CodeUCOrigine = CodesUC.ConsultationVilles;
 		}

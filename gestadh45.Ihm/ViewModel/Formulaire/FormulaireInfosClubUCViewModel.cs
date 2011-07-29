@@ -13,8 +13,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private InfosClub _infosClub;
 		private ICollectionView _villes;
 
-		private VilleDao _daoVille;
-		private InfosClubDao _daoInfosClub;
+		private IVilleDao _daoVille;
+		private IInfosClubDao _daoInfosClub;
 
 		/// <summary>
 		/// Obtient/Définit l'objet Infos club du formulaire
@@ -47,8 +47,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireInfosClubUCViewModel() {
-			this._daoVille = new VilleDao(ViewModelLocator.DataSource);
-			this._daoInfosClub = new InfosClubDao(ViewModelLocator.DataSource);
+			this._daoVille = DaoFactory.GetVilleDao(ViewModelLocator.DataSource);
+			this._daoInfosClub = DaoFactory.GetInfosClubDao(ViewModelLocator.DataSource);
 
 			this.InfosClub = this._daoInfosClub.Read(0);
 			this.InitialisationFormulaire();

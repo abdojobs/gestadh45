@@ -17,22 +17,22 @@ namespace gestadh45.Ihm.ViewModel
 		public ICommand ChangerDataSourceCommand { get; internal set; }
 		public ICommand CreerDatabaseCommand { get; set; }
 
-		private SaisonDao _daoSaison;
+		private ISaisonDao _daoSaison;
 
-		private string mInfosDataSource;
-		private string mInfosSaisonCourante;
-		private NotificationIhm mNotificationIhm;
+		private string _infosDataSource;
+		private string _infosSaisonCourante;
+		private NotificationIhm _notificationIhm;
 		
 		/// <summary>
 		/// Obtient/Définit l'information sur le datasource actuel
 		/// </summary>
 		public string InfosDataSource {
 			get {
-				return this.mInfosDataSource;
+				return this._infosDataSource;
 			}
 			set {
-				if (this.mInfosDataSource != value) {
-					this.mInfosDataSource = value;
+				if (this._infosDataSource != value) {
+					this._infosDataSource = value;
 					this.RaisePropertyChanged(() => this.InfosDataSource);
 				}
 			}
@@ -43,11 +43,11 @@ namespace gestadh45.Ihm.ViewModel
 		/// </summary>
 		public string InfosSaisonCourante {
 			get {
-				return this.mInfosSaisonCourante;
+				return this._infosSaisonCourante;
 			}
 			set {
-				if (this.mInfosSaisonCourante != value) {
-					this.mInfosSaisonCourante = value;
+				if (this._infosSaisonCourante != value) {
+					this._infosSaisonCourante = value;
 					this.RaisePropertyChanged(() => this.InfosSaisonCourante);
 				}
 			}
@@ -58,19 +58,19 @@ namespace gestadh45.Ihm.ViewModel
 		/// </summary>
 		public NotificationIhm NotificationIhm {
 			get { 
-				return this.mNotificationIhm; 
+				return this._notificationIhm; 
 			}
 
 			set {
-				if (this.mNotificationIhm != value) {
-					this.mNotificationIhm = value;
+				if (this._notificationIhm != value) {
+					this._notificationIhm = value;
 					this.RaisePropertyChanged(() => this.NotificationIhm);
 				}
 			}
 		}
 
 		public MainViewModel() {
-			this.mNotificationIhm = new NotificationIhm();
+			this._notificationIhm = new NotificationIhm();
 
 			this.CreateAfficherUCCommand();
 			this.CreateChangerDataSourceCommand();
@@ -187,7 +187,7 @@ namespace gestadh45.Ihm.ViewModel
 					ViewModelLocator.DataSource = pFilePath;
 
 					this.InfosDataSource = pFilePath;
-					this._daoSaison = new SaisonDao(pFilePath);
+					this._daoSaison = DaoFactory.GetSaisonDao(pFilePath);
 					this.InfosSaisonCourante = this._daoSaison.ReadSaisonCourante().ToShortString();
 					this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
 

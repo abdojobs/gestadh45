@@ -10,20 +10,20 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class ConsultationVillesUCViewModel : ViewModelBaseConsultation
 	{
-		private Ville mVille;
-		private ICollectionView mVilles;
-		private VilleDao _daoVille;
+		private Ville _ville;
+		private ICollectionView _villes;
+		private IVilleDao _daoVille;
 
 		/// <summary>
 		/// Obtient/Définit la ville à afficher
 		/// </summary>
 		public Ville Ville {
 			get {
-				return this.mVille;
+				return this._ville;
 			}
 			set {
-				if (this.mVille != value) {
-					this.mVille = value;
+				if (this._ville != value) {
+					this._ville = value;
 					this.RaisePropertyChanged(() => this.Ville);
 				}
 			}
@@ -34,18 +34,18 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		/// </summary>
 		public ICollectionView Villes {
 			get {
-				return this.mVilles;
+				return this._villes;
 			}
 			set {
-				if (this.mVilles != value) {
-					this.mVilles = value;
+				if (this._villes != value) {
+					this._villes = value;
 					this.RaisePropertyChanged(() => this.Villes);
 				}
 			}
 		}
 
 		public ConsultationVillesUCViewModel() {
-			this._daoVille = new VilleDao(ViewModelLocator.DataSource);
+			this._daoVille = DaoFactory.GetVilleDao(ViewModelLocator.DataSource);
 			this.InitialisationListeVilles();
 
 			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);

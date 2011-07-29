@@ -4,7 +4,7 @@ using gestadh45.model;
 
 namespace gestadh45.dao
 {
-	public class VilleDao : DaoBase, IDao<Ville>
+	public class VilleDao : DaoBase, IVilleDao
 	{
 		public VilleDao(string pFilePath) : base(pFilePath) { }
 		

@@ -15,22 +15,22 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class ConsultationInscriptionsUCViewModel : ViewModelBaseConsultation
 	{	
-		private Inscription mInscription;
-		private ICollectionView mInscriptionsSaisonCourante;
+		private Inscription _inscription;
+		private ICollectionView _inscriptionsSaisonCourante;
 
-		private InscriptionDao _daoInscription;
-		private InfosClubDao _daoInfosClub;
+		private IInscriptionDao _daoInscription;
+		private IInfosClubDao _daoInfosClub;
 
 		/// <summary>
 		/// Obtient/Définit l'inscription à afficher
 		/// </summary>
 		public Inscription Inscription {
 			get {
-				return this.mInscription;
+				return this._inscription;
 			}
 			set {
-				if (this.mInscription != value) {
-					this.mInscription = value;
+				if (this._inscription != value) {
+					this._inscription = value;
 					this.RaisePropertyChanged(() => this.Inscription);
 				}
 			}
@@ -41,19 +41,19 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		/// </summary>
 		public ICollectionView InscriptionsSaisonCourante {
 			get {
-				return this.mInscriptionsSaisonCourante;
+				return this._inscriptionsSaisonCourante;
 			}
 			set {
-				if (this.mInscriptionsSaisonCourante != value) {
-					this.mInscriptionsSaisonCourante = value;
+				if (this._inscriptionsSaisonCourante != value) {
+					this._inscriptionsSaisonCourante = value;
 					this.RaisePropertyChanged(() => this.InscriptionsSaisonCourante);
 				}
 			}
 		}
 
 		public ConsultationInscriptionsUCViewModel() {
-			this._daoInscription = new InscriptionDao(ViewModelLocator.DataSource);
-			this._daoInfosClub = new InfosClubDao(ViewModelLocator.DataSource);
+			this._daoInscription = DaoFactory.GetInscriptionDao(ViewModelLocator.DataSource);
+			this._daoInfosClub = DaoFactory.GetInfosClubDao(ViewModelLocator.DataSource);
 
 			this.InitialisationListeInscriptions();
 

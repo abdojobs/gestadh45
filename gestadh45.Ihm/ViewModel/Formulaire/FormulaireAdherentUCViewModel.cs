@@ -17,9 +17,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private ICollectionView _sexes;
 		private ICollectionView _villes;
 
-		private VilleDao _daoVille;
-		private SexeDao _daoSexe;
-		private AdherentDao _daoAdherent;
+		private IVilleDao _daoVille;
+		private ISexeDao _daoSexe;
+		private IAdherentDao _daoAdherent;
 
 		/// <summary>
 		/// Obtient/Définit l'objet du formulaire
@@ -67,9 +67,9 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public FormulaireAdherentUCViewModel() {
-			this._daoVille = new VilleDao(ViewModelLocator.DataSource);
-			this._daoSexe = new SexeDao(ViewModelLocator.DataSource);
-			this._daoAdherent = new AdherentDao(ViewModelLocator.DataSource);
+			this._daoVille = DaoFactory.GetVilleDao(ViewModelLocator.DataSource);
+			this._daoSexe = DaoFactory.GetSexeDao(ViewModelLocator.DataSource);
+			this._daoAdherent = DaoFactory.GetAdherentDao(ViewModelLocator.DataSource);
 
 			this.CreateSelectionnerSexeCommand();
 			this.CreateSelectionnerVilleCommand();
