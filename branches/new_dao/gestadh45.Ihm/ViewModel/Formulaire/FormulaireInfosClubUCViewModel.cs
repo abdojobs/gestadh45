@@ -50,7 +50,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this._daoVille = DaoFactory.GetVilleDao(ViewModelLocator.DataSource);
 			this._daoInfosClub = DaoFactory.GetInfosClubDao(ViewModelLocator.DataSource);
 
-			this.InfosClub = this._daoInfosClub.Read(0);
+			this.InfosClub = this._daoInfosClub.Read();
 			this.InitialisationFormulaire();
 			
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;

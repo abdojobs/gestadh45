@@ -1,26 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.service.Graphs;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
 	public class GraphsSaisonCouranteUCViewModel : ViewModelBaseConsultation
 	{
-		private List<StructCodesGraphs> mListeGraphs;
-		private Graphique mGraphique;
+		private List<StructCodesGraphs> _listeGraphs;
+		private Graphique _graphique;
+		private DonneesGraph _donneesGraph;
 
 		/// <summary>
 		/// Obtient/Définit le graphique à afficher
 		/// </summary>
 		public Graphique Graphique {
 			get {
-				return this.mGraphique;
+				return this._graphique;
 			}
 
 			set {
-				if(this.mGraphique != value) {
-					this.mGraphique = value;
+				if(this._graphique != value) {
+					this._graphique = value;
 					this.RaisePropertyChanged(() => this.Graphique);
 					this.RaisePropertyChanged(() => this.GraphVisible);
 				}
@@ -32,11 +34,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		/// </summary>
 		public List<StructCodesGraphs> ListeGraphs {
 			get {
-				return this.mListeGraphs;
+				return this._listeGraphs;
 			}
 			set {
-				if (this.mListeGraphs != value) {
-					this.mListeGraphs = value;
+				if (this._listeGraphs != value) {
+					this._listeGraphs = value;
 					this.RaisePropertyChanged(() => this.ListeGraphs);
 				}
 			}
@@ -55,6 +57,9 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		{
 			this.initialisationListeGraphs();
 			this.CreateAfficherGraphCommand();
+
+			// on récupère une fois pour toute les données du graph
+			this._donneesGraph = ServiceGraphAdaptateur.GetDonnees(ViewModelLocator.DataSource);
 		}
 
 		private void CreateAfficherGraphCommand()
@@ -68,23 +73,23 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		{
 			switch (pCodeGraph.Code) {
 				case CodesGraphs.RemplissageGroupes:
-					this.Graphique = GenerateurGraph.CreerGraphRemplissageGroupe(ViewModelLocator.DataSource);
+					this.Graphique = GenerateurGraph.CreerGraphRemplissageGroupe(this._donneesGraph);
 					break;
 
 				case CodesGraphs.RepartitionSexes:
-					this.Graphique = GenerateurGraph.CreerGraphRepartitionSexe(ViewModelLocator.DataSource);
+					this.Graphique = GenerateurGraph.CreerGraphRepartitionSexe(this._donneesGraph);
 					break;
 
 				case CodesGraphs.RepartitionAges:
-					this.Graphique = GenerateurGraph.CreerGraphRepartitionAge(ViewModelLocator.DataSource);
+					this.Graphique = GenerateurGraph.CreerGraphRepartitionAge(this._donneesGraph);
 					break;
 
 				case CodesGraphs.RepartitionMajeursMineurs:
-					this.Graphique = GenerateurGraph.CreerGraphRepartitionMajeursMineurs(ViewModelLocator.DataSource);
+					this.Graphique = GenerateurGraph.CreerGraphRepartitionMajeursMineurs(this._donneesGraph);
 					break;
 
 				case CodesGraphs.RepartitionResidentsExterieurs:
-					this.Graphique = GenerateurGraph.CreerGraphRepartitionResidentsExterieurs(ViewModelLocator.DataSource);
+					this.Graphique = GenerateurGraph.CreerGraphRepartitionResidentsExterieurs(this._donneesGraph);
 					break;
 			}
 		}

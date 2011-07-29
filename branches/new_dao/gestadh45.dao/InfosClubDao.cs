@@ -60,7 +60,7 @@ namespace gestadh45.dao
 			}			
 		}
 
-		public InfosClub Read(int pId) {
+		public InfosClub Read() {
 			this.Connection.Open();
 			InfosClub result = null;
 

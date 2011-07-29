@@ -183,7 +183,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 		private void GenererDocumentsGroupe(string pSaveFolder, string pCodeDocument) {
 			if (pSaveFolder != null) {
-				InfosClub infosClub = this._daoInfosCLub.Read(0);
+				InfosClub infosClub = this._daoInfosCLub.Read();
 
 				foreach (Inscription inscription in this._daoInscription.ListGroupe(this.Groupe)) {
 					DonneesDocument donnees = ServiceDocumentAdaptateur.InscriptionToDonneesDocument(infosClub, inscription);
