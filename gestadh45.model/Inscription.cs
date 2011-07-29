@@ -53,28 +53,12 @@ namespace gestadh45.model
 		}
 		#endregion
 
-		public Inscription() {
-			this.Adherent = new Adherent();
-			this.Groupe = new Groupe();
-			this.StatutInscription = new StatutInscription();
-		}
-
 		/// <summary>
 		/// Renvoit adhérent groupe
 		/// </summary>
 		/// <returns>Adhérent - Groupe</returns>
 		public override string ToString() {
 			return string.Format("{0} - {1}", this.Adherent, this.Groupe.Libelle);
-		}
-
-		public override bool EstValide() {
-			bool result = true;
-
-			result = result && this.Adherent.EstValide();
-			result = result && this.Groupe.EstValide();
-			result = result && this.StatutInscription.EstValide();
-
-			return result;
 		}
 	}
 }

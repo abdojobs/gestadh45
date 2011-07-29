@@ -15,21 +15,12 @@ namespace gestadh45.model
 		public string Libelle { get; set; }
 		#endregion
 
-		public Ville() {
-			this.CodePostal = string.Empty;
-			this.Libelle = string.Empty;
-		}
-
 		/// <summary>
 		/// Renvoit l'ensemble code postal - ville
 		/// </summary>
 		/// <returns>Code postal - Villes</returns>
 		public override string ToString() {
 			return string.Format("{0} - {1}", this.CodePostal, this.Libelle);
-		}
-
-		public override bool EstValide() {
-			return !string.IsNullOrWhiteSpace(this.Libelle) && !string.IsNullOrWhiteSpace(this.CodePostal);
 		}
 	}
 }

@@ -15,22 +15,12 @@ namespace gestadh45.model
 		public Ville Ville { get; set; }
 		#endregion
 
-		public Adresse() {
-			this.Ville = new Ville();
-
-			this.Libelle = string.Empty;
-		}
-
 		/// <summary>
 		/// Renvoit adresse ville
 		/// </summary>
 		/// <returns>adresse ville</returns>
 		public override string ToString() {
 			return string.Format("{0} {1}", this.Libelle, this.Ville);
-		}
-
-		public override bool EstValide() {
-			return !string.IsNullOrWhiteSpace(this.Libelle);
 		}
 	}
 }

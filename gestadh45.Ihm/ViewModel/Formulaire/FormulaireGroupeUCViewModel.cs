@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Data;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -10,8 +12,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 {
 	public class FormulaireGroupeUCViewModel : ViewModelBaseFormulaire
 	{
-		private Groupe mGroupe;
-		private ICollectionView mJoursSemaine;
+		private Groupe _groupe;
+		private ICollectionView _joursSemaine;
 
 		private JourSemaineDao _daoJoursSemaine;
 		private SaisonDao _daoSaison;
@@ -22,12 +24,12 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public Groupe Groupe {
 			get {
-				return this.mGroupe;
+				return this._groupe;
 			}
 			set {
-				if (this.mGroupe != value) {
-					this.mGroupe = value;
-					this.RaisePropertyChanged("Groupe");
+				if (this._groupe != value) {
+					this._groupe = value;
+					this.RaisePropertyChanged(() => this.Groupe);
 				}
 			}
 		}
@@ -37,12 +39,12 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		/// </summary>
 		public ICollectionView JoursSemaine {
 			get {
-				return this.mJoursSemaine;
+				return this._joursSemaine;
 			}
 			set {
-				if (this.mJoursSemaine != value) {
-					this.mJoursSemaine = value;
-					this.RaisePropertyChanged("JoursSemaine");
+				if (this._joursSemaine != value) {
+					this._joursSemaine = value;
+					this.RaisePropertyChanged(() => this.JoursSemaine);
 				}
 			}
 		}
@@ -52,6 +54,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this._daoSaison = new SaisonDao(ViewModelLocator.DataSource);
 			this._daoGroupe = new GroupeDao(ViewModelLocator.DataSource);
 
+			this.CreateSelectionnerJourSemaineCommand();
+
 			this.Groupe = new Groupe();
 			this.Groupe.Saison = this._daoSaison.ReadSaisonCourante();
 			this.InitialisationListeJoursSemaine();
@@ -59,13 +63,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public override void ExecuteEnregistrerCommand() {
-			var j = this._daoJoursSemaine.Read(this.Groupe.JourSemaine.Id);
-			if (j != null) {
-				this.Groupe.JourSemaine = j;
-			}
-
-
-
 			if (this.VerifierSaisie()
 				&& !this._daoGroupe.Exists(this.Groupe)) {
 					
@@ -79,6 +76,26 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				this.AfficherErreursIhm(this.Erreurs);
 			}
 		}
+
+		#region SelectionnerJourSemaineCommand
+		public ICommand SelectionnerJourSemaineCommand { get; set; }
+
+		private void CreateSelectionnerJourSemaineCommand() {
+			this.SelectionnerJourSemaineCommand = new RelayCommand<JourSemaine>(
+				this.ExecuteSelectionnerJourSemaineCommand,
+				this.CanExecuteSelectionnerJourSemaineCommand
+			);
+		}
+
+		public bool CanExecuteSelectionnerJourSemaineCommand(JourSemaine pJourSemaine) {
+			return true;
+		}
+
+		public void ExecuteSelectionnerJourSemaineCommand(JourSemaine pJourSemaine) {
+			this.Groupe.JourSemaine = pJourSemaine;
+			this.RaisePropertyChanged(() => this.Groupe);
+		}
+		#endregion
 
 		private void InitialisationListeJoursSemaine() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoJoursSemaine.List());

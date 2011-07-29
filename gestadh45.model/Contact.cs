@@ -65,9 +65,5 @@ namespace gestadh45.model
 			}
 		}
 		#endregion
-
-		public override bool EstValide() {
-			return true;
-		}
 	}
 }
