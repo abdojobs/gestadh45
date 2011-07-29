@@ -3,6 +3,8 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm" 
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
 			 mc:Ignorable="d" 
@@ -58,11 +60,20 @@
 										SelectedDateFormat="Short" />
 								
 							<TextBlock Grid.Row="3" Grid.Column="0" Text="Sexe : " VerticalAlignment="Center" />
-							<ComboBox Grid.Row="3" Grid.Column="1" Width="50" HorizontalAlignment="Left"
+							<ComboBox Grid.Row="3" Grid.Column="1" Width="50" HorizontalAlignment="Left" Name="cmbSexes"
 										ItemsSource="{Binding Path=Sexes}"
 										SelectedValuePath="Id" 
 										DisplayMemberPath="DisplayMemberPath"
-										SelectedValue="{Binding Path=Adherent.Sexe.Id}"/>
+										SelectedValue="{Binding Path=Adherent.Sexe.Id}">
+
+								<i:Interaction.Triggers>
+									<i:EventTrigger EventName="SelectionChanged">
+										<cmd:EventToCommand 
+											Command="{Binding Path=SelectionnerSexeCommand, Mode=OneWay}" 
+											CommandParameter="{Binding ElementName=cmbSexes, Path=SelectedItem}" />
+									</i:EventTrigger>
+								</i:Interaction.Triggers>
+							</ComboBox>
 						</Grid.Children>
 					</Grid>
 				</GroupBox>
@@ -84,11 +95,20 @@
 									 Text="{Binding Path=Adherent.Adresse.Libelle}" />
 
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="Ville : " VerticalAlignment="Center" />
-							<ComboBox Grid.Row="1" Grid.Column="1"
+							<ComboBox Grid.Row="1" Grid.Column="1" Name="cmbVilles"
 										ItemsSource="{Binding Path=Villes}" 
 										SelectedValuePath="Id"
 										DisplayMemberPath="DisplayMemberPath"
-										SelectedValue="{Binding Path=Adherent.Adresse.Ville.Id}" />								
+										SelectedValue="{Binding Path=Adherent.Adresse.Ville.Id}">
+
+								<i:Interaction.Triggers>
+									<i:EventTrigger EventName="SelectionChanged">
+										<cmd:EventToCommand 
+											Command="{Binding Path=SelectionnerVilleCommand, Mode=OneWay}" 
+											CommandParameter="{Binding ElementName=cmbVilles, Path=SelectedItem}" />
+									</i:EventTrigger>
+								</i:Interaction.Triggers>
+							</ComboBox>							
 							
 							<Button Grid.Row="1" Grid.Column="2" ToolTip="Ajouter une ville" HorizontalAlignment="Center" 
 									Width="18" Height="18" 
