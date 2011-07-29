@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Configuration;
 using System.Windows.Data;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
@@ -87,6 +89,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this._daoAdherent = new AdherentDao(ViewModelLocator.DataSource);
 			this._daoStatutInscription = new StatutInscriptionDao(ViewModelLocator.DataSource);
 
+			this.CreateSelectionnerAdherentCommand();
+			this.CreateSelectionnerGroupeCommand();
+			this.CreateSelectionnerStatutInscriptionCommand();
+
 			this.Inscription = new Inscription();
 
 			this.InitialisationFormulaire();
@@ -113,22 +119,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		public override void ExecuteEnregistrerCommand() {
-			// récupération des valeurs des combobox
-			var a = this._daoAdherent.Read(this.Inscription.Adherent.Id);
-			if (a != null) {
-				this.Inscription.Adherent = a;
-			}
-
-			var g = this._daoGroupe.Read(this.Inscription.Groupe.Id);;
-			if (g != null) {
-				this.Inscription.Groupe = g;
-			}
-
-			var s = this._daoStatutInscription.Read(this.Inscription.Id);
-			if (s != null) {
-				this.Inscription.StatutInscription = s;
-			}
-
 			var msg = new NotificationMessageSelectionElement<Inscription>(this.Inscription);
 	
 			if (this.VerifierSaisie() 
@@ -151,6 +141,66 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				this.AfficherErreursIhm(this.Erreurs);
 			}
 		}
+
+		#region SelectionnerAdherentCommand
+		public ICommand SelectionnerAdherentCommand { get; set; }
+
+		private void CreateSelectionnerAdherentCommand() {
+			this.SelectionnerAdherentCommand = new RelayCommand<Adherent>(
+				this.ExecuteSelectionnerAdherentCommand,
+				this.CanExecuteSelectionnerAdherentCommand
+			);
+		}
+
+		public bool CanExecuteSelectionnerAdherentCommand(Adherent pAdherent) {
+			return true;
+		}
+
+		public void ExecuteSelectionnerAdherentCommand(Adherent pAdherent) {
+			this.Inscription.Adherent = pAdherent;
+			this.RaisePropertyChanged(() => this.Inscription);
+		}
+		#endregion
+
+		#region SelectionnerGroupeCommand
+		public ICommand SelectionnerGroupeCommand { get; set; }
+
+		private void CreateSelectionnerGroupeCommand() {
+			this.SelectionnerGroupeCommand = new RelayCommand<Groupe>(
+				this.ExecuteSelectionnerGroupeCommand,
+				this.CanExecuteSelectionnerGroupeCommand
+			);
+		}
+
+		public bool CanExecuteSelectionnerGroupeCommand(Groupe pGroupe) {
+			return true;
+		}
+
+		public void ExecuteSelectionnerGroupeCommand(Groupe pGroupe) {
+			this.Inscription.Groupe = pGroupe;
+			this.RaisePropertyChanged(() => this.Inscription);
+		}
+		#endregion
+
+		#region SelectionnerStatutInscriptionCommand
+		public ICommand SelectionnerStatutInscriptionCommand { get; set; }
+
+		private void CreateSelectionnerStatutInscriptionCommand() {
+			this.SelectionnerStatutInscriptionCommand = new RelayCommand<StatutInscription>(
+				this.ExecuteSelectionnerStatutInscriptionCommand,
+				this.CanExecuteSelectionnerStatutInscriptionCommand
+			);
+		}
+
+		public bool CanExecuteSelectionnerStatutInscriptionCommand(StatutInscription pStatut) {
+			return true;
+		}
+
+		public void ExecuteSelectionnerStatutInscriptionCommand(StatutInscription pStatut) {
+			this.Inscription.StatutInscription = pStatut;
+			this.RaisePropertyChanged(() => this.Inscription);
+		}
+		#endregion
 
 		private void InitialisationFormulaire() {
 			ICollectionView defaultViewAdherents = CollectionViewSource.GetDefaultView(this._daoAdherent.List());
