@@ -1,7 +1,9 @@
 ﻿
+using System;
 using System.Text;
 namespace gestadh45.model
 {
+	[Serializable]
 	public class Contact : BaseClass
 	{
 		private const string SeparateurAdressesMail = ",";

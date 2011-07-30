@@ -11,9 +11,23 @@ namespace gestadh45.Ihm.SpecialMessages
 		}
 
 		/// <summary>
+		/// Type d'ouverture de l'UC
+		/// </summary>
+		public enum TypeOuverture
+		{
+			Creation,	// l'UC sera ouvert en mode création
+			Edition		// l'UC sera ouvert en mode édition (par défaut)
+		}
+
+		/// <summary>
 		/// Obtient/Définit le type d'affichage de l'UC
 		/// </summary>
 		public TypeAffichage ModeAffichage { get; set; }
+
+		/// <summary>
+		/// Obtient/Définit le type d'ouverture
+		/// </summary>
+		public TypeOuverture ModeOuverture { get; set; }
 
 		/// <summary>
 		/// Constructeur
@@ -36,11 +50,25 @@ namespace gestadh45.Ihm.SpecialMessages
 		/// Constructeur
 		/// </summary>
 		/// <param name="pCodeUC">Code de l'UC</param>
-		/// <param name="pTYpe">Type d'affichage de l'UC</param>
+		/// <param name="pType">Type d'affichage de l'UC</param>
 		/// <param name="pElement">Objet à passer en paramètre de l'UC</param>
 		public MsgAfficherUC(string pCodeUC, TypeAffichage pType, T pElement)
 			: base(pCodeUC, pType) {
 			this.Element = pElement;
+			this.ModeOuverture = TypeOuverture.Edition;
+		}
+
+		/// <summary>
+		/// Constructeur
+		/// </summary>
+		/// <param name="pCodeUC">Code de l'UC</param>
+		/// <param name="pType">Type d'affichage de l'UC</param>
+		/// <param name="pElement">Objet à passer en paramètre de l'UC</param>
+		/// <param name="pMode">Mode d'ouverture</param>
+		public MsgAfficherUC(string pCodeUC, TypeAffichage pType, T pElement, TypeOuverture pMode)
+			: base(pCodeUC, pType) {
+			this.Element = pElement;
+			this.ModeOuverture = pMode;
 		}
 	}
 }

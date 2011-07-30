@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Ihm.ViewModel.Formulaire;
 using gestadh45.model;
 
@@ -13,10 +14,10 @@ namespace gestadh45.Main.UserControls.Formulaire
 			InitializeComponent();
 		}
 
-		public FormulaireAdherentUC(Adherent pAdherent) {
+		public FormulaireAdherentUC(Adherent pAdherent, MsgAfficherUC.TypeOuverture pMode) {
 			InitializeComponent();
 			FormulaireAdherentUCViewModel lVm = base.DataContext as FormulaireAdherentUCViewModel;
-			lVm.EstEdition = true;
+			lVm.EstEdition = (pMode == MsgAfficherUC.TypeOuverture.Edition);
 			lVm.SetAdherent(pAdherent);
 		}
 	}

@@ -42,12 +42,12 @@ namespace gestadh45.Main
 
 			Messenger.Default.Register<MsgAfficherUC<Adherent>>(
 			    this,
-			    (msg) => this.AfficherUCAvecParametre(msg.Notification, msg.Element)
+			    (msg) => this.AfficherUCAvecParametre(msg.Notification, msg.Element, msg.ModeOuverture)
 			);
 
 			Messenger.Default.Register<MsgAfficherUC<Inscription>>(
 				this,
-				(msg) => this.AfficherUCAvecParametre(msg.Notification, msg.Element)
+				(msg) => this.AfficherUCAvecParametre(msg.Notification, msg.Element, msg.ModeOuverture)
 			);
 
 			Messenger.Default.Register<NotificationMessageOuvertureFenetre>(
@@ -169,14 +169,14 @@ namespace gestadh45.Main
 			}
 		}
 
-		private void AfficherUCAvecParametre(string pCodeUC, object pObjetUC) {
-			if (pObjetUC is Inscription) {
+		private void AfficherUCAvecParametre(string pCodeUC, object pObjetUC, MsgAfficherUC.TypeOuverture pMode) {
+			if (pObjetUC is Inscription) {	// édition inscription
 				this.contenu.Content = new FormulaireInscriptionUC((Inscription)pObjetUC);
 			}
-			else if (pObjetUC is Adherent && pCodeUC.Equals(CodesUC.FormulaireAdherent)) {
-				this.contenu.Content = new FormulaireAdherentUC((Adherent)pObjetUC);
+			else if (pObjetUC is Adherent && pCodeUC.Equals(CodesUC.FormulaireAdherent)) {	// édition ou duplication adhérent (en fonction de pMode)
+				this.contenu.Content = new FormulaireAdherentUC((Adherent)pObjetUC, pMode);
 			}
-			else if (pObjetUC is Adherent && pCodeUC.Equals(CodesUC.FormulaireInscription)) {
+			else if (pObjetUC is Adherent && pCodeUC.Equals(CodesUC.FormulaireInscription)) { // inscription adhérent
 				this.contenu.Content = new FormulaireInscriptionUC((Adherent)pObjetUC);
 			}
 		}
