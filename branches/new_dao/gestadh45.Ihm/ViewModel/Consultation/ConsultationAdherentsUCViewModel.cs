@@ -55,43 +55,14 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.InitialisationListeAdherents();
 
 			this.CreateInscrireCommand();
+			this.CreateDupliquerCommand();
 
 			Messenger.Default.Register<NotificationMessageSelectionElement<Adherent>>(this, this.SelectionnerAdherent);
 		}
 
+		#region EditerCommand
 		public override bool CanExecuteEditerCommand() {
 			return (this.Adherent != null);
-		}
-
-		public override bool CanExecuteSupprimerCommand() {
-			return (
-				this.Adherent != null
-				&& this._daoAdherent.Exists(this.Adherent)
-				&& !this._daoAdherent.IsUsed(this.Adherent)
-				);
-		}
-
-		public bool CanExecuteInscrireCommand() {
-			return (this.Adherent != null);
-		}
-
-		private void CreateInscrireCommand() {
-			this.InscrireCommand = new RelayCommand(
-				this.ExecuteInscrireCommand, 
-				this.CanExecuteInscrireCommand
-			);
-		}
-
-		public override void ExecuteAfficherDetailsCommand(object pAdherent) {
-			if (pAdherent != null && pAdherent is Adherent) {
-				this.Adherent = pAdherent as Adherent;
-			}
-		}
-
-		public override void ExecuteCreerCommand() {
-			base.ExecuteCreerCommand();
-
-			this.AfficherEcran(CodesUC.FormulaireAdherent);
 		}
 
 		public override void ExecuteEditerCommand() {
@@ -105,6 +76,16 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				)
 			);
 		}
+		#endregion
+
+		#region SupprimerCommand
+		public override bool CanExecuteSupprimerCommand() {
+			return (
+				this.Adherent != null
+				&& this._daoAdherent.Exists(this.Adherent)
+				&& !this._daoAdherent.IsUsed(this.Adherent)
+				);
+		}
 
 		public override void ExecuteSupprimerCommand() {
 			if (this.Adherent != null) {
@@ -116,7 +97,48 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				Messenger.Default.Send<DialogMessageConfirmation>(message);
 			}
 		}
+		#endregion
 
+		#region InscrireCommand
+		private void CreateInscrireCommand() {
+			this.InscrireCommand = new RelayCommand(
+				this.ExecuteInscrireCommand, 
+				this.CanExecuteInscrireCommand
+			);
+		}
+
+		public bool CanExecuteInscrireCommand() {
+			return (this.Adherent != null);
+		}
+
+		public void ExecuteInscrireCommand() {
+			Messenger.Default.Send<MsgAfficherUC<Adherent>>(
+				new MsgAfficherUC<Adherent>(
+					CodesUC.FormulaireInscription,
+					MsgAfficherUC.TypeAffichage.Interne,
+					this.Adherent
+				)
+			);
+		}
+		#endregion
+
+		#region AfficherDetailsCommand
+		public override void ExecuteAfficherDetailsCommand(object pAdherent) {
+			if (pAdherent != null && pAdherent is Adherent) {
+				this.Adherent = pAdherent as Adherent;
+			}
+		}
+		#endregion
+
+		#region CreerCommand
+		public override void ExecuteCreerCommand() {
+			base.ExecuteCreerCommand();
+
+			this.AfficherEcran(CodesUC.FormulaireAdherent);
+		}
+		#endregion
+
+		#region FiltrerListeCommand
 		public override void ExecuteFiltrerListeCommand(string pFiltre) {
 			if (string.IsNullOrEmpty(pFiltre)) {
 				this.Adherents.Filter = null;
@@ -125,16 +147,32 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.Adherents.Filter = (p) => ((Adherent)p).ToString().ToUpper().Contains(pFiltre.ToUpper());
 			}
 		}
+		#endregion
 
-		public void ExecuteInscrireCommand() {
-			Messenger.Default.Send<MsgAfficherUC<Adherent>>(
-				new MsgAfficherUC<Adherent>(
-					CodesUC.FormulaireInscription, 
-					MsgAfficherUC.TypeAffichage.Interne,
-					this.Adherent
-				)
+		#region DuppliquerCommand
+		public ICommand DupliquerCommand { get; set; }
+
+		private void CreateDupliquerCommand() {
+			this.DupliquerCommand = new RelayCommand(
+				this.ExecuteDupliquerCommand,
+				this.CanExecuteDupliquerCommand
 			);
 		}
+
+		public bool CanExecuteDupliquerCommand() {
+			return this.Adherent != null;
+		}
+
+		public void ExecuteDupliquerCommand() {
+			var newAdherent = this.Adherent.Clone();
+			newAdherent.Id = 0;
+			newAdherent.Prenom = string.Empty;
+			newAdherent.Commentaire = "Copie de " + this.Adherent.ToString();
+
+			var msg = new MsgAfficherUC<Adherent>(CodesUC.FormulaireAdherent, MsgAfficherUC.TypeAffichage.Interne, newAdherent, MsgAfficherUC.TypeOuverture.Creation);
+			Messenger.Default.Send(msg);
+		}
+		#endregion
 
 		/// <summary>
 		/// Méthode appellée à la réception de la réponse au message de confirmation de suppression

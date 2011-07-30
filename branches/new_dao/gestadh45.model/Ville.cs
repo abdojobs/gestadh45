@@ -1,6 +1,8 @@
 ﻿
+using System;
 namespace gestadh45.model
 {
+	[Serializable]
 	public class Ville : BaseClass
 	{
 		#region properties

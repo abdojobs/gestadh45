@@ -1,9 +1,11 @@
 ﻿
+using System;
 namespace gestadh45.model
 {
 	/// <summary>
 	/// Classe de base de laquelle héritent toutes les autres classes
 	/// </summary>
+	[Serializable]
 	public abstract class BaseClass
 	{
 		/// <summary>

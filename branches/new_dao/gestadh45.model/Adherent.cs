@@ -2,6 +2,7 @@
 
 namespace gestadh45.model
 {
+	[Serializable]
 	public class Adherent : BaseClass
 	{
 		#region properties
