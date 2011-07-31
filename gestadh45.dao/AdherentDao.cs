@@ -10,9 +10,10 @@ namespace gestadh45.dao
 
 		public int Create(Adherent pDonnee) {
 			this.Connection.Open();
+			var trans = this.Connection.BeginTransaction();
 
 			// Contact
-			var cmdContact = new SQLiteCommand("INSERT INTO Contact(Telephone1, Telephone2, Telephone3, Mail1, Mail2, Mail3) VALUES (@ContactTelephone1, @ContactTelephone2, @ContactTelephone3, @ContactMail1, @ContactMail2, @ContactMail3);", this.Connection);
+			var cmdContact = new SQLiteCommand("INSERT INTO Contact(Telephone1, Telephone2, Telephone3, Mail1, Mail2, Mail3) VALUES (@ContactTelephone1, @ContactTelephone2, @ContactTelephone3, @ContactMail1, @ContactMail2, @ContactMail3);", this.Connection, trans);
 			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1 == null ? string.Empty : pDonnee.Contact.Telephone1.ToUpper() };
 			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2 == null ? string.Empty : pDonnee.Contact.Telephone2.ToUpper() };
 			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3 == null ? string.Empty : pDonnee.Contact.Telephone3.ToUpper() };
@@ -27,14 +28,14 @@ namespace gestadh45.dao
 			cmdContact.Parameters.Add(paramContactMail3);
 			
 			// Adresse
-			var cmdAdresse = new SQLiteCommand("INSERT INTO Adresse(Libelle, ID_Ville) VALUES (@AdresseLibelle, @AdresseIdVille);", this.Connection);
+			var cmdAdresse = new SQLiteCommand("INSERT INTO Adresse(Libelle, ID_Ville) VALUES (@AdresseLibelle, @AdresseIdVille);", this.Connection, trans);
 			var paramAdresseLibelle = new SQLiteParameter("@AdresseLibelle", System.Data.DbType.String) { Value = pDonnee.Adresse.Libelle };
 			var paramAdresseIdVille = new SQLiteParameter("@AdresseIdVille", System.Data.DbType.Int32) { Value = pDonnee.Adresse.Ville.Id };
 			cmdAdresse.Parameters.Add(paramAdresseLibelle);
 			cmdAdresse.Parameters.Add(paramAdresseIdVille);
 			
 			// Adhérent
-			var cmdAdherent = new SQLiteCommand("INSERT INTO Adherent(Nom, Prenom, DateNaissance, DateCreation, DateModification, Commentaire, ID_Sexe, ID_Contact, ID_Adresse) Values(@Nom, @Prenom, @DateNaissance, @DateCreation, @DateModification, @Commentaire, @IdSexe, @IdContact, @IdAdresse);", this.Connection);
+			var cmdAdherent = new SQLiteCommand("INSERT INTO Adherent(Nom, Prenom, DateNaissance, DateCreation, DateModification, Commentaire, ID_Sexe, ID_Contact, ID_Adresse) Values(@Nom, @Prenom, @DateNaissance, @DateCreation, @DateModification, @Commentaire, @IdSexe, @IdContact, @IdAdresse);", this.Connection, trans);
 			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToUpper() };
 			var paramPrenom = new SQLiteParameter("@Prenom", System.Data.DbType.String) { Value = pDonnee.Prenom };
 			var paramDateNaissance = new SQLiteParameter("@DateNaissance", System.Data.DbType.DateTime) { Value = pDonnee.DateNaissance };
@@ -61,9 +62,12 @@ namespace gestadh45.dao
 
 				cmdAdherent.ExecuteNonQuery();
 
+				trans.Commit();
+
 				return this.GetLastInsertId();
 			}
 			catch (SQLiteException) {
+				trans.Rollback();
 				throw;
 			}
 			finally {
