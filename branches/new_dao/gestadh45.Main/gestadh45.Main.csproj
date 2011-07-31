@@ -103,9 +103,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Transitionals">
-      <HintPath>..\Libs\Transitionals.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -319,7 +316,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <SplashScreen Include="Images\AboutLogo.png" />
+    <Resource Include="Images\AboutLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_ouvrir.png" />
@@ -374,6 +371,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_dupliquerAdherent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <SplashScreen Include="Images\StartupSplashScreen.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

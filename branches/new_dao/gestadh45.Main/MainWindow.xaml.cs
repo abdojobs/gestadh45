@@ -7,7 +7,6 @@ using gestadh45.Main.UserControls.Consultation;
 using gestadh45.Main.UserControls.Formulaire;
 using gestadh45.model;
 using Microsoft.Win32;
-using Transitionals.Transitions;
 using forms = System.Windows.Forms;
 
 namespace gestadh45.Main
@@ -58,11 +57,6 @@ namespace gestadh45.Main
 			Messenger.Default.Register<NotificationMessageAboutBox>(
 				this,
 				this.AfficherAboutBox
-			);
-
-			Messenger.Default.Register<NotificationMessageTransition>(
-				this,
-				this.ModifierTransition
 			);
 		}
 
@@ -115,69 +109,69 @@ namespace gestadh45.Main
 		private void AfficherUC(string pCodeUC) {
 			switch (pCodeUC) {
 				case CodesUC.FormulaireInfosClub:
-					this.contenu.Content = new FormulaireInfosClubUC();
+					this.contenu.Child = new FormulaireInfosClubUC();
 					break;
 
 				case CodesUC.ConsultationSaisons:
-					this.contenu.Content = new ConsultationSaisonsUC();
+					this.contenu.Child = new ConsultationSaisonsUC();
 					break;
 
 				case CodesUC.FormulaireSaison:
-					this.contenu.Content = new FormulaireSaisonUC();
+					this.contenu.Child = new FormulaireSaisonUC();
 					break;
 
 				case CodesUC.ConsultationVilles:
-					this.contenu.Content = new ConsultationVillesUC();
+					this.contenu.Child = new ConsultationVillesUC();
 					break;
 
 				case CodesUC.FormulaireVille:
-					this.contenu.Content = new FormulaireVilleUC();
+					this.contenu.Child = new FormulaireVilleUC();
 					break;
 
 				case CodesUC.ConsultationAdherents:
-					this.contenu.Content = new ConsultationAdherentsUC();
+					this.contenu.Child = new ConsultationAdherentsUC();
 					break;
 
 				case CodesUC.FormulaireAdherent:
-					this.contenu.Content = new FormulaireAdherentUC();
+					this.contenu.Child = new FormulaireAdherentUC();
 					break;
 
 				case CodesUC.ConsultationInscriptions:
-					this.contenu.Content = new ConsultationInscriptionsUC();
+					this.contenu.Child = new ConsultationInscriptionsUC();
 					break;
 
 				case CodesUC.FormulaireInscription:
-					this.contenu.Content = new FormulaireInscriptionUC();
+					this.contenu.Child = new FormulaireInscriptionUC();
 					break;
 
 				case CodesUC.ConsultationGroupes:
-					this.contenu.Content = new ConsultationGroupesUC();
+					this.contenu.Child = new ConsultationGroupesUC();
 					break;
 
 				case CodesUC.FormulaireGroupe:
-					this.contenu.Content = new FormulaireGroupeUC();
+					this.contenu.Child = new FormulaireGroupeUC();
 					break;
 
 				case CodesUC.GraphsSaisonCourante:
-					this.contenu.Content = new GraphsSaisonCouranteUC();
+					this.contenu.Child = new GraphsSaisonCouranteUC();
 					break;
 
 				case CodesUC.ConsultationInfosClub:
 				default:
-					this.contenu.Content = new ConsultationInfosClubUC();
+					this.contenu.Child = new ConsultationInfosClubUC();
 					break;
 			}
 		}
 
 		private void AfficherUCAvecParametre(string pCodeUC, object pObjetUC, MsgAfficherUC.TypeOuverture pMode) {
 			if (pObjetUC is Inscription) {	// édition inscription
-				this.contenu.Content = new FormulaireInscriptionUC((Inscription)pObjetUC);
+				this.contenu.Child = new FormulaireInscriptionUC((Inscription)pObjetUC);
 			}
 			else if (pObjetUC is Adherent && pCodeUC.Equals(CodesUC.FormulaireAdherent)) {	// édition ou duplication adhérent (en fonction de pMode)
-				this.contenu.Content = new FormulaireAdherentUC((Adherent)pObjetUC, pMode);
+				this.contenu.Child = new FormulaireAdherentUC((Adherent)pObjetUC, pMode);
 			}
 			else if (pObjetUC is Adherent && pCodeUC.Equals(CodesUC.FormulaireInscription)) { // inscription adhérent
-				this.contenu.Content = new FormulaireInscriptionUC((Adherent)pObjetUC);
+				this.contenu.Child = new FormulaireInscriptionUC((Adherent)pObjetUC);
 			}
 		}
 
@@ -192,10 +186,6 @@ namespace gestadh45.Main
 				UCWindow lWindow = new UCWindow(lUC);
 				lWindow.ShowDialog();
 			}
-		}
-
-		private void ModifierTransition(NotificationMessageTransition msg) {
-			((TranslateTransition)this.contenu.Transition).StartPoint = msg.SensTransition;
 		}
 	}
 }

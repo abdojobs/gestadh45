@@ -2,8 +2,6 @@
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
-		xmlns:Controls="clr-namespace:Transitionals.Controls;assembly=Transitionals"
-		xmlns:Transitions="clr-namespace:Transitionals.Transitions;assembly=Transitionals"
 		xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
 		Title="GestAdh45" MinHeight="500" MinWidth="705"
 		Background="#FFFFDEAD" 
@@ -48,12 +46,6 @@
 				Height="50" />
 		</Border>
 
-		<Border Margin="5,5,5,5" BorderThickness="1" BorderBrush="Black" Background="Cornsilk">
-			<Controls:TransitionElement x:Name="contenu">
-				<Controls:TransitionElement.Transition>
-					<Transitions:TranslateTransition />
-				</Controls:TransitionElement.Transition>			
-			</Controls:TransitionElement>
-		</Border>
+		<Border Name="contenu" Margin="5,5,5,5" BorderThickness="1" BorderBrush="Black" Background="Cornsilk" />
 	</DockPanel>
 </Window>
