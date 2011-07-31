@@ -14,8 +14,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 	{
 		public ICommand InscrireCommand { get; set; }
 		
-		private Adherent mAdherent;
-		private ICollectionView mAdherents;
+		private Adherent _adherent;
+		private ICollectionView _adherents;
 
 		private IAdherentDao _daoAdherent;
 
@@ -24,11 +24,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		/// </summary>
 		public Adherent Adherent {
 			get {
-				return this.mAdherent;
+				return this._adherent;
 			}
 			set {
-				if (this.mAdherent != value) {
-					this.mAdherent = value;
+				if (this._adherent != value) {
+					this._adherent = value;
 					this.RaisePropertyChanged(()=>this.Adherent);
 				}
 			}
@@ -39,11 +39,11 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		/// </summary>
 		public ICollectionView Adherents {
 			get {
-				return this.mAdherents;
+				return this._adherents;
 			}
 			set {
-				if (this.mAdherents != value) {
-					this.mAdherents = value;
+				if (this._adherents != value) {
+					this._adherents = value;
 					this.RaisePropertyChanged(()=>this.Adherents);
 				}
 			}
@@ -52,7 +52,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public ConsultationAdherentsUCViewModel() {
 			this._daoAdherent = DaoFactory.GetAdherentDao(ViewModelLocator.DataSource);
 
-			this.InitialisationListeAdherents();
+			this.InitialisationFormulaire();
 
 			this.CreateInscrireCommand();
 			this.CreateDupliquerCommand();
@@ -181,18 +181,22 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		private void ExecuteSupprimerAdherentCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
 				this._daoAdherent.Delete(this.Adherent);
-				this.InitialisationListeAdherents();
+				this.InitialisationFormulaire();
 				this.Adherent = null;
 
 				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionAdherent);
 			}
 		}
 
-		private void InitialisationListeAdherents() {
+		private void InitialisationFormulaire() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoAdherent.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
 			this.Adherents = defaultView;
+
+			var msg = new NotificationMessage(TypesNotification.EffacerFiltre);
+			// TODO commenté tant que le pb n'est pas résolu
+			//Messenger.Default.Send(msg);
 		}
 
 		private void SelectionnerAdherent(NotificationMessageSelectionElement<Adherent> msg) {
