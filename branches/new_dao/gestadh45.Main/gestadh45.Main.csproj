@@ -319,7 +319,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\AboutLogo.png" />
+    <SplashScreen Include="Images\AboutLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_ouvrir.png" />
