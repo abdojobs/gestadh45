@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Text;
+using gestadh45.model.bo;
 namespace gestadh45.model
 {
 	[Serializable]
@@ -12,32 +13,32 @@ namespace gestadh45.model
 		/// <summary>
 		/// Obtient/Définit le téléphone1
 		/// </summary>
-		public string Telephone1 { get; set; }
+		public NumeroTelephone Telephone1 { get; set; }
 
 		/// <summary>
 		/// Obtient/Définit le téléphone3
 		/// </summary>
-		public string Telephone2 { get; set; }
+		public NumeroTelephone Telephone2 { get; set; }
 
 		/// <summary>
 		/// Obtient/Définit le téléphone3
 		/// </summary>
-		public string Telephone3 { get; set; }
+		public NumeroTelephone Telephone3 { get; set; }
 
 		/// <summary>
 		/// Obtient/Définit le mail1
 		/// </summary>
-		public string Mail1 { get; set; }
+		public AdresseEmail Mail1 { get; set; }
 
 		/// <summary>
 		/// Obtient/Définit le mail2
 		/// </summary>
-		public string Mail2 { get; set; }
+		public AdresseEmail Mail2 { get; set; }
 
 		/// <summary>
 		/// Obtient/Définit le mail3
 		/// </summary>
-		public string Mail3 { get; set; }
+		public AdresseEmail Mail3 { get; set; }
 
 		/// <summary>
 		/// Obtient/Définit le site web
@@ -51,15 +52,15 @@ namespace gestadh45.model
 			get {
 				StringBuilder lSb = new StringBuilder();
 
-				if (!string.IsNullOrWhiteSpace(this.Mail1)) {
+				if (!string.IsNullOrWhiteSpace(this.Mail1.ToString())) {
 					lSb.Append(this.Mail1 + SeparateurAdressesMail);
 				}
 
-				if (!string.IsNullOrWhiteSpace(this.Mail2)) {
+				if (!string.IsNullOrWhiteSpace(this.Mail2.ToString())) {
 					lSb.Append(this.Mail2 + SeparateurAdressesMail);
 				}
 
-				if (!string.IsNullOrWhiteSpace(this.Mail3)) {
+				if (!string.IsNullOrWhiteSpace(this.Mail3.ToString())) {
 					lSb.Append(this.Mail3 + SeparateurAdressesMail);
 				}
 

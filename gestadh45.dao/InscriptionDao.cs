@@ -2,6 +2,7 @@
 using System.Data.SQLite;
 using System.Linq;
 using gestadh45.model;
+using gestadh45.model.bo;
 
 namespace gestadh45.dao
 {
@@ -163,12 +164,12 @@ namespace gestadh45.dao
 						Contact = new Contact()
 						{
 							Id = reader.GetInt32(16),
-							Telephone1 = reader.IsDBNull(17) ? string.Empty : reader.GetString(17), // gestion du NULL
-							Telephone2 = reader.IsDBNull(18) ? string.Empty : reader.GetString(18), // gestion du NULL
-							Telephone3 = reader.IsDBNull(19) ? string.Empty : reader.GetString(19), // gestion du NULL
-							Mail1 = reader.IsDBNull(20) ? string.Empty : reader.GetString(20), // gestion du NULL
-							Mail2 = reader.IsDBNull(21) ? string.Empty : reader.GetString(21), // gestion du NULL
-							Mail3 = reader.IsDBNull(22) ? string.Empty : reader.GetString(22), // gestion du NULL
+							Telephone1 = new NumeroTelephone() { Numero = reader.IsDBNull(17) ? string.Empty : reader.GetString(17) }, // gestion du NULL
+							Telephone2 = new NumeroTelephone() { Numero = reader.IsDBNull(18) ? string.Empty : reader.GetString(18) }, // gestion du NULL
+							Telephone3 = new NumeroTelephone() { Numero = reader.IsDBNull(19) ? string.Empty : reader.GetString(19) }, // gestion du NULL
+							Mail1 = new AdresseEmail() { Adresse = reader.IsDBNull(20) ? string.Empty : reader.GetString(20) }, // gestion du NULL
+							Mail2 = new AdresseEmail() { Adresse = reader.IsDBNull(21) ? string.Empty : reader.GetString(21) }, // gestion du NULL
+							Mail3 = new AdresseEmail() { Adresse = reader.IsDBNull(22) ? string.Empty : reader.GetString(22) }, // gestion du NULL
 							SiteWeb = reader.IsDBNull(23) ? string.Empty : reader.GetString(23) // gestion du NULL
 						},
 
@@ -264,12 +265,12 @@ namespace gestadh45.dao
 							Contact = new Contact()
 							{
 								Id = reader.GetInt32(16),
-								Telephone1 = reader.IsDBNull(17) ? string.Empty : reader.GetString(17), // gestion du NULL
-								Telephone2 = reader.IsDBNull(18) ? string.Empty : reader.GetString(18), // gestion du NULL
-								Telephone3 = reader.IsDBNull(19) ? string.Empty : reader.GetString(19), // gestion du NULL
-								Mail1 = reader.IsDBNull(20) ? string.Empty : reader.GetString(20), // gestion du NULL
-								Mail2 = reader.IsDBNull(21) ? string.Empty : reader.GetString(21), // gestion du NULL
-								Mail3 = reader.IsDBNull(22) ? string.Empty : reader.GetString(22), // gestion du NULL
+								Telephone1 = new NumeroTelephone() { Numero = reader.IsDBNull(17) ? string.Empty : reader.GetString(17) }, // gestion du NULL
+								Telephone2 = new NumeroTelephone() { Numero = reader.IsDBNull(18) ? string.Empty : reader.GetString(18) }, // gestion du NULL
+								Telephone3 = new NumeroTelephone() { Numero = reader.IsDBNull(19) ? string.Empty : reader.GetString(19) }, // gestion du NULL
+								Mail1 = new AdresseEmail() { Adresse = reader.IsDBNull(20) ? string.Empty : reader.GetString(20) }, // gestion du NULL
+								Mail2 = new AdresseEmail() { Adresse = reader.IsDBNull(21) ? string.Empty : reader.GetString(21) }, // gestion du NULL
+								Mail3 = new AdresseEmail() { Adresse = reader.IsDBNull(22) ? string.Empty : reader.GetString(22) }, // gestion du NULL
 								SiteWeb = reader.IsDBNull(23) ? string.Empty : reader.GetString(23) // gestion du NULL
 							},
 
