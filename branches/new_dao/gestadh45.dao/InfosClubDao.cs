@@ -1,5 +1,6 @@
 ﻿using System.Data.SQLite;
 using gestadh45.model;
+using gestadh45.model.bo;
 
 namespace gestadh45.dao
 {
@@ -23,8 +24,8 @@ namespace gestadh45.dao
 
 			var cmdContact = new SQLiteCommand("UPDATE Contact SET Telephone1=@ContactTelephone, Mail1=@ContactMail, SiteWeb=@ContactSiteWeb WHERE ID=@IdContact;", this.Connection, trans);
 			var paramIdContact = new SQLiteParameter("@IdContact", System.Data.DbType.Int32) { Value = pDonnee.Contact.Id };
-			var paramContactTelephone = new SQLiteParameter("@ContactTelephone", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1.ToUpper() };
-			var paramContactMail = new SQLiteParameter("@ContactMail", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1.ToLower() };	// toujours en minuscule
+			var paramContactTelephone = new SQLiteParameter("@ContactTelephone", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1.Numero };
+			var paramContactMail = new SQLiteParameter("@ContactMail", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1.Adresse };	// toujours en minuscule
 			var paramContactSiteWeb = new SQLiteParameter("@ContactSiteWeb", System.Data.DbType.String) { Value = pDonnee.Contact.SiteWeb.ToLower() };	// toujours en minuscule
 			cmdContact.Parameters.Add(paramIdContact);
 			cmdContact.Parameters.Add(paramContactTelephone);
@@ -94,8 +95,8 @@ namespace gestadh45.dao
 					Contact = new Contact()
 					{
 						Id = reader.GetInt32(10),
-						Telephone1 = reader.GetString(11),
-						Mail1 = reader.GetString(12),
+						Telephone1 = new NumeroTelephone() { Numero = reader.GetString(11) },
+						Mail1 = new AdresseEmail() { Adresse = reader.GetString(12) },
 						SiteWeb = reader.GetString(13)
 					}
 				};

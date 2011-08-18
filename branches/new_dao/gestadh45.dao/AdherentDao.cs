@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.SQLite;
 using gestadh45.model;
+using gestadh45.model.bo;
 
 namespace gestadh45.dao
 {
@@ -14,12 +15,12 @@ namespace gestadh45.dao
 
 			// Contact
 			var cmdContact = new SQLiteCommand("INSERT INTO Contact(Telephone1, Telephone2, Telephone3, Mail1, Mail2, Mail3) VALUES (@ContactTelephone1, @ContactTelephone2, @ContactTelephone3, @ContactMail1, @ContactMail2, @ContactMail3);", this.Connection, trans);
-			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1 == null ? string.Empty : pDonnee.Contact.Telephone1.ToUpper() };
-			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2 == null ? string.Empty : pDonnee.Contact.Telephone2.ToUpper() };
-			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3 == null ? string.Empty : pDonnee.Contact.Telephone3.ToUpper() };
-			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1 == null ? string.Empty : pDonnee.Contact.Mail1.ToLower() };
-			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2 == null ? string.Empty : pDonnee.Contact.Mail2.ToLower() };
-			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3 == null ? string.Empty : pDonnee.Contact.Mail3.ToLower() };
+			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1 == null ? string.Empty : pDonnee.Contact.Telephone1.Numero };
+			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2 == null ? string.Empty : pDonnee.Contact.Telephone2.Numero };
+			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3 == null ? string.Empty : pDonnee.Contact.Telephone3.Numero };
+			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1 == null ? string.Empty : pDonnee.Contact.Mail1.Adresse };
+			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2 == null ? string.Empty : pDonnee.Contact.Mail2.Adresse };
+			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3 == null ? string.Empty : pDonnee.Contact.Mail3.Adresse };
 			cmdContact.Parameters.Add(paramContactTelephone1);
 			cmdContact.Parameters.Add(paramContactTelephone2);
 			cmdContact.Parameters.Add(paramContactTelephone3);
@@ -82,12 +83,12 @@ namespace gestadh45.dao
 			// Contact
 			var cmdContact = new SQLiteCommand("UPDATE Contact SET Telephone1=@ContactTelephone1, Telephone2=@ContactTelephone2, Telephone3=@ContactTelephone3, Mail1=@ContactMail1, Mail2=@ContactMail2, Mail3=@ContactMail3 WHERE ID=@IdContact;", this.Connection, trans);
 			var paramIdContact = new SQLiteParameter("@IdContact", System.Data.DbType.Int32) { Value = pDonnee.Contact.Id };
-			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1 == null ? string.Empty : pDonnee.Contact.Telephone1.ToUpper() };
-			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2 == null ? string.Empty : pDonnee.Contact.Telephone2.ToUpper() };
-			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3 == null ? string.Empty : pDonnee.Contact.Telephone3.ToUpper() };
-			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1 == null ? string.Empty : pDonnee.Contact.Mail1.ToLower() };
-			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2 == null ? string.Empty : pDonnee.Contact.Mail2.ToLower() };
-			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3 == null ? string.Empty : pDonnee.Contact.Mail3.ToLower() };
+			var paramContactTelephone1 = new SQLiteParameter("@ContactTelephone1", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone1 == null ? string.Empty : pDonnee.Contact.Telephone1.Numero };
+			var paramContactTelephone2 = new SQLiteParameter("@ContactTelephone2", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone2 == null ? string.Empty : pDonnee.Contact.Telephone2.Numero };
+			var paramContactTelephone3 = new SQLiteParameter("@ContactTelephone3", System.Data.DbType.String) { Value = pDonnee.Contact.Telephone3 == null ? string.Empty : pDonnee.Contact.Telephone3.Numero };
+			var paramContactMail1 = new SQLiteParameter("@ContactMail1", System.Data.DbType.String) { Value = pDonnee.Contact.Mail1 == null ? string.Empty : pDonnee.Contact.Mail1.Adresse };
+			var paramContactMail2 = new SQLiteParameter("@ContactMail2", System.Data.DbType.String) { Value = pDonnee.Contact.Mail2 == null ? string.Empty : pDonnee.Contact.Mail2.Adresse };
+			var paramContactMail3 = new SQLiteParameter("@ContactMail3", System.Data.DbType.String) { Value = pDonnee.Contact.Mail3 == null ? string.Empty : pDonnee.Contact.Mail3.Adresse };
 			cmdContact.Parameters.Add(paramIdContact);
 			cmdContact.Parameters.Add(paramContactTelephone1);
 			cmdContact.Parameters.Add(paramContactTelephone2);
@@ -245,13 +246,13 @@ namespace gestadh45.dao
 					Contact = new Contact()
 					{
 						Id = reader.GetInt32(10),
-						Telephone1 = reader.IsDBNull(11) ? string.Empty : reader.GetString(11), // gestion du NULL
-						Telephone2 = reader.IsDBNull(12) ? string.Empty : reader.GetString(12), // gestion du NULL
-						Telephone3 = reader.IsDBNull(13) ? string.Empty : reader.GetString(13), // gestion du NULL
-						Mail1 = reader.IsDBNull(14) ? string.Empty : reader.GetString(14), // gestion du NULL
-						Mail2 = reader.IsDBNull(15) ? string.Empty : reader.GetString(15), // gestion du NULL
-						Mail3 = reader.IsDBNull(16) ? string.Empty : reader.GetString(16), // gestion du NULL
-						SiteWeb = reader.IsDBNull(17) ? string.Empty : reader.GetString(17) // gestion du NULL
+						Telephone1 = new NumeroTelephone() { Numero = reader.IsDBNull(11) ? string.Empty : reader.GetString(11) }, // gestion du NULL
+						Telephone2 = new NumeroTelephone() { Numero = reader.IsDBNull(12) ? string.Empty : reader.GetString(12) }, // gestion du NULL
+						Telephone3 = new NumeroTelephone() { Numero = reader.IsDBNull(13) ? string.Empty : reader.GetString(13) }, // gestion du NULL
+						Mail1 = new AdresseEmail() { Adresse = reader.IsDBNull(14) ? string.Empty : reader.GetString(14) }, // gestion du NULL
+						Mail2 = new AdresseEmail() { Adresse = reader.IsDBNull(15) ? string.Empty : reader.GetString(15) }, // gestion du NULL
+						Mail3 = new AdresseEmail() { Adresse = reader.IsDBNull(16) ? string.Empty : reader.GetString(16) }, // gestion du NULL
+						SiteWeb = reader.IsDBNull(17) ? string.Empty : reader.GetString(17)	// gestion du NULL
 					},
 
 					Adresse = new Adresse()
@@ -304,12 +305,12 @@ namespace gestadh45.dao
 						Contact = new Contact()
 						{
 							Id = reader.GetInt32(10),
-							Telephone1 = reader.IsDBNull(11) ? string.Empty : reader.GetString(11), // gestion du NULL
-							Telephone2 = reader.IsDBNull(12) ? string.Empty : reader.GetString(12), // gestion du NULL
-							Telephone3 = reader.IsDBNull(13) ? string.Empty : reader.GetString(13), // gestion du NULL
-							Mail1 = reader.IsDBNull(14) ? string.Empty : reader.GetString(14), // gestion du NULL
-							Mail2 = reader.IsDBNull(15) ? string.Empty : reader.GetString(15), // gestion du NULL
-							Mail3 = reader.IsDBNull(16) ? string.Empty : reader.GetString(16), // gestion du NULL
+							Telephone1 = new NumeroTelephone() { Numero = reader.IsDBNull(11) ? string.Empty : reader.GetString(11) }, // gestion du NULL
+							Telephone2 = new NumeroTelephone() { Numero = reader.IsDBNull(12) ? string.Empty : reader.GetString(12) }, // gestion du NULL
+							Telephone3 = new NumeroTelephone() { Numero = reader.IsDBNull(13) ? string.Empty : reader.GetString(13) }, // gestion du NULL
+							Mail1 = new AdresseEmail() { Adresse = reader.IsDBNull(14) ? string.Empty : reader.GetString(14) }, // gestion du NULL
+							Mail2 = new AdresseEmail() { Adresse = reader.IsDBNull(15) ? string.Empty : reader.GetString(15) }, // gestion du NULL
+							Mail3 = new AdresseEmail() { Adresse = reader.IsDBNull(16) ? string.Empty : reader.GetString(16) }, // gestion du NULL
 							SiteWeb = reader.IsDBNull(17) ? string.Empty : reader.GetString(17) // gestion du NULL
 						},
 
