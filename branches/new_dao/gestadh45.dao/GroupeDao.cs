@@ -228,7 +228,6 @@ namespace gestadh45.dao
 		/// </summary>
 		/// <returns>Groupe de la saison courante</returns>
 		public List<Groupe> ListSaisonCourante() {
-			// TODO faire des tests poru voir si linq est assez performant
 			var rq = from g in this.List()
 					 where g.Saison.EstSaisonCourante
 					 select g;

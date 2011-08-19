@@ -177,7 +177,6 @@ namespace gestadh45.dao
 		/// </summary>
 		/// <returns>Saison courante</returns>
 		public Saison ReadSaisonCourante() {
-			// TODO faire des test pour voir si linq est assez performant
 			var rq = from Saison s in this.List()
 					 where s.EstSaisonCourante
 					 select s;

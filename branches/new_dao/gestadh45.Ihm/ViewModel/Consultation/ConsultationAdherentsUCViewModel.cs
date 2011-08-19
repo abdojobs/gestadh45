@@ -197,6 +197,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
 			this.Adherents = defaultView;
 
+			// tentative pour effacer le champ filtre
+			// l'envoi du message est commenté car ça ne marche pas pour le moment
 			var msg = new NotificationMessage(TypesNotification.EffacerFiltre);
 			// TODO commenté tant que le pb n'est pas résolu
 			//Messenger.Default.Send(msg);
