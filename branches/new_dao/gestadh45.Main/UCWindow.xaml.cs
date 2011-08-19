@@ -17,10 +17,7 @@ namespace gestadh45.Main
 			// Abonnement au message de fermeture de la fenetre
 			Messenger.Default.Register<NotificationMessageFermetureFenetre>(
 				this,
-				msg =>
-				{
-					this.Close();
-				}
+				(msg) => this.Close()
 			);
 		}
 	}
