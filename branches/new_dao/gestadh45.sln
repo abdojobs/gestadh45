@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.dao", "gestadh45.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.tests", "gestadh45.tests\gestadh45.tests.csproj", "{0B44B189-6AF9-4976-912F-15BDA7D2B10C}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "gestadh45.modelisation", "gestadh45.modelisation\gestadh45.modelisation.modelproj", "{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -128,6 +130,21 @@ Global
 		{0B44B189-6AF9-4976-912F-15BDA7D2B10C}.TestDao|Mixed Platforms.Build.0 = TestDao|x86
 		{0B44B189-6AF9-4976-912F-15BDA7D2B10C}.TestDao|x86.ActiveCfg = TestDao|x86
 		{0B44B189-6AF9-4976-912F-15BDA7D2B10C}.TestDao|x86.Build.0 = TestDao|x86
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.Release|x86.ActiveCfg = Release|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.TestDao|Any CPU.ActiveCfg = Release|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.TestDao|Any CPU.Build.0 = Release|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.TestDao|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.TestDao|Mixed Platforms.Build.0 = Release|Any CPU
+		{F2BB7AB6-4CED-4543-A3FB-E0C710ED998C}.TestDao|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

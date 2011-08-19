@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="7e7f2d84-893c-4cdf-8bb7-564ff38b2240" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="46fbbd80-f1e1-48bd-9491-05e9ae1a9f96" name="gestadh45.Ihm">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="926f74b2-cd37-4a52-ae2a-0a4f5c40cf65" direction="Forward">
+          <layerMoniker Id="f7e92bc5-39b0-4593-89c4-cac9435bacff" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="b54f8eff-31d1-4804-929f-3ee35c71caf6" direction="Forward">
+          <layerMoniker Id="48943fa2-8ef2-4aac-b9d4-9a1335b311ce" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="9cf9362c-49d5-4530-8e9b-1cbdbbd957d7" direction="Forward">
+          <layerMoniker Id="ea42b298-8828-49f7-a91c-030267b65961" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="54e14c4a-a441-47dc-9d81-adb13e9d8ee6" name="gestadh45.Ihm">
+          <ArtifactNode Label="gestadh45.Ihm" Category="CodeSchema_Project" Id="(Assembly=&quot;$(DesktopUri)/DEV/branches/new_dao/gestadh45.Ihm/gestadh45.Ihm.csproj&quot;)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=gestadh45.Ihm)" Label="gestadh45.Ihm.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="ea42b298-8828-49f7-a91c-030267b65961" name="gestadh45.dao">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="2335e55f-d10c-4254-8b8b-46541f9537b4" direction="Forward">
+          <layerMoniker Id="f7e92bc5-39b0-4593-89c4-cac9435bacff" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="0324bf29-f2cd-4f45-bbc8-5e0e7eb761d2" name="gestadh45.dao">
+          <ArtifactNode Label="gestadh45.dao" Category="CodeSchema_Project" Id="(Assembly=&quot;$(DesktopUri)/DEV/branches/new_dao/gestadh45.dao/gestadh45.dao.csproj&quot;)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=gestadh45.dao)" Label="gestadh45.dao.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="f7e92bc5-39b0-4593-89c4-cac9435bacff" name="gestadh45.model">
+      <references>
+        <reference Id="533f22ff-e2da-4df1-9657-04c646203208" name="gestadh45.model">
+          <ArtifactNode Label="gestadh45.model" Category="CodeSchema_Project" Id="(Assembly=&quot;$(DesktopUri)/DEV/branches/new_dao/gestadh45.model/gestadh45.model.csproj&quot;)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=gestadh45.model)" Label="gestadh45.model.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="48943fa2-8ef2-4aac-b9d4-9a1335b311ce" name="gestadh45.service">
+      <references>
+        <reference Id="6d2090c6-8395-474b-820a-309278a48dc5" name="gestadh45.service">
+          <ArtifactNode Label="gestadh45.service" Category="CodeSchema_Project" Id="(Assembly=&quot;$(DesktopUri)/DEV/branches/new_dao/gestadh45.service/gestadh45.service.csproj&quot;)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=gestadh45.service)" Label="gestadh45.service.dll" Category="FileSystem.Category.FileOfType.dll">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="b3fa6e45-a6d7-43f9-821f-945ef4b16b48" name="gestadh45.Main">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="357d1e73-222d-4b03-83fa-deb1ade1c421" direction="Forward">
+          <layerMoniker Id="f7e92bc5-39b0-4593-89c4-cac9435bacff" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="52c8eccc-e292-4d49-a437-ad4e7d32bc6f" direction="Forward">
+          <layerMoniker Id="46fbbd80-f1e1-48bd-9491-05e9ae1a9f96" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="f864559d-ffc2-449f-9249-0204dfb8e719" name="gestadh45.Main">
+          <ArtifactNode Label="gestadh45.Main" Category="CodeSchema_Project" Id="(Assembly=&quot;$(DesktopUri)/DEV/branches/new_dao/gestadh45.Main/gestadh45.Main.csproj&quot;)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=gestadh45.Main)" Label="gestadh45.Main.exe" Category="FileSystem.Category.FileOfType.exe">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+  </layers>
+</layerModel>
