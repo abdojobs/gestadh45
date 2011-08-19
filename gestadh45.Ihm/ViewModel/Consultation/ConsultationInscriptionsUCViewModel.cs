@@ -60,7 +60,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.CreateGenererDocumentCommand();
 			this.CreateGenererVCardCommand();
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Inscription>>(this, this.SelectionnerInscription);
+			Messenger.Default.Register<NotificationMessageSelectionElement<Inscription>>(
+				this, 
+				(msg) => this.SelectionnerInscription(msg.Content)
+			);
 		}
 
 		#region CreerCommand
@@ -246,8 +249,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			return lRetour;
 		}
 
-		private void SelectionnerInscription(NotificationMessageSelectionElement<Inscription> msg) {
-			this.Inscription = msg.Content;
+		private void SelectionnerInscription(Inscription pInscription) {
+			this.Inscription = pInscription;
 			this.RaisePropertyChanged(() => this.Inscription);
 		}
 		#endregion		

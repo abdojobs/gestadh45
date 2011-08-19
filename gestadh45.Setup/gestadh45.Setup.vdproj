@@ -106,12 +106,6 @@
         "Entry"
         {
         "MsmKey" = "8:_AFF088B2A4B2337911C3137A428FCE9E"
-        "OwnerKey" = "8:_A5D55ACA8F8CD0C43C24B8AB4DF6FD13"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AFF088B2A4B2337911C3137A428FCE9E"
         "OwnerKey" = "8:_BB28BC3A36DBFC2013496D1EED237D1F"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -843,7 +837,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:GestAdh45"
         "ProductCode" = "8:{40302D57-B114-466C-AB61-09C6B8BE8DE6}"
-        "PackageCode" = "8:{F5EECE43-28DA-4640-93BD-6B557E3190BA}"
+        "PackageCode" = "8:{1E781373-75B7-4594-B3EB-A25ACBF94A9D}"
         "UpgradeCode" = "8:{08A9ADE4-7450-4304-ACFC-C2ABD8376476}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1392,7 +1386,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_084F535118174C3E89A93DA1A1D5BC4D"
             {
-            "SourcePath" = "8:..\\gestadh45.Main\\obj\\x86\\Release\\gestadh45.Main.exe"
+            "SourcePath" = "8:..\\gestadh45.Main\\obj\\x86\\Debug\\gestadh45.Main.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_379CAB2A77654C41BF8D06B6317F5409"

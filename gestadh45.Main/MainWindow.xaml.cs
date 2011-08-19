@@ -51,16 +51,16 @@ namespace gestadh45.Main
 
 			Messenger.Default.Register<NotificationMessageOuvertureFenetre>(
 				this,
-				this.OuvrirFenetreUC
+				(msg) => this.OuvrirFenetreUC(msg.CodeUC)
 			);
 
 			Messenger.Default.Register<NotificationMessageAboutBox>(
 				this,
-				this.AfficherAboutBox
+				(msg) => this.AfficherAboutBox()
 			);
 		}
 
-		private void AfficherAboutBox(NotificationMessageAboutBox pMessage) {
+		private void AfficherAboutBox() {
 			new WPFAboutBox(this).ShowDialog();
 		}
 
@@ -176,11 +176,7 @@ namespace gestadh45.Main
 		}
 
 		private void OuvrirFenetreUC(string pCodeUC) {
-
-		}
-
-		private void OuvrirFenetreUC(NotificationMessageOuvertureFenetre pMessage) {
-			if (pMessage.CodeUC.Equals(CodesUC.FormulaireVille)) {
+			if (pCodeUC.Equals(CodesUC.FormulaireVille)) {
 				FormulaireVilleUC lUC = new FormulaireVilleUC();
 				((FormulaireVilleUCViewModel)lUC.DataContext).ModeFenetre = true;
 				UCWindow lWindow = new UCWindow(lUC);

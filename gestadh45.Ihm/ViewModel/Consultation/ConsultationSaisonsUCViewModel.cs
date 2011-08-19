@@ -56,7 +56,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 
 			this.CreateDefinirSaisonCouranteCommand();
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Saison>>(this, this.SelectionnerSaison);
+			Messenger.Default.Register<NotificationMessageSelectionElement<Saison>>(
+				this, 
+				(msg) => this.SelectionnerSaison(msg.Content)
+			);
 		}
 
 		public bool CanExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
@@ -144,8 +147,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.Saisons = defaultView;
 		}
 
-		private void SelectionnerSaison(NotificationMessageSelectionElement<Saison> msg) {
-			this.Saison = msg.Content;
+		private void SelectionnerSaison(Saison pSaison) {
+			this.Saison = pSaison;
 			this.RaisePropertyChanged(() => this.Saison);
 		}
 	}

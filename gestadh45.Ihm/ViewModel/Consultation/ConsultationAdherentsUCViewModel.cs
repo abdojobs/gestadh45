@@ -57,7 +57,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.CreateInscrireCommand();
 			this.CreateDupliquerCommand();
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Adherent>>(this, this.SelectionnerAdherent);
+			Messenger.Default.Register<NotificationMessageSelectionElement<Adherent>>(
+				this, 
+				(msg) => this.SelectionnerAdherent(msg.Content)
+			);
 		}
 
 		#region EditerCommand
@@ -199,8 +202,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			//Messenger.Default.Send(msg);
 		}
 
-		private void SelectionnerAdherent(NotificationMessageSelectionElement<Adherent> msg) {
-			this.Adherent = msg.Content;
+		private void SelectionnerAdherent(Adherent pAdh) {
+			this.Adherent = pAdh;
 			this.RaisePropertyChanged(() => this.Adherent);
 		}
 	}

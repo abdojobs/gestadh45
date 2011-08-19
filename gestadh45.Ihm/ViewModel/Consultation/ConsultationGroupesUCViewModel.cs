@@ -62,7 +62,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			this.CreateGenererDocumentsGroupeCommand();
 			this.CreateGenererVCardsGroupeCommand();
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Groupe>>(this, this.SelectionnerGroupe);
+			Messenger.Default.Register<NotificationMessageSelectionElement<Groupe>>(
+				this, 
+				(msg) => this.SelectionnerGroupe(msg.Content)
+			);
 		}
 
 		#region CreerCommand
@@ -238,8 +241,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			}
 		}
 
-		private void SelectionnerGroupe(NotificationMessageSelectionElement<Groupe> msg) {
-			this.Groupe = msg.Content;
+		private void SelectionnerGroupe(Groupe pGroupe) {
+			this.Groupe = pGroupe;
 			this.RaisePropertyChanged(() => this.Groupe);
 		}
 		#endregion		
