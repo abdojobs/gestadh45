@@ -6,11 +6,11 @@
         <dependencyFromLayerToLayer Id="926f74b2-cd37-4a52-ae2a-0a4f5c40cf65" direction="Forward">
           <layerMoniker Id="f7e92bc5-39b0-4593-89c4-cac9435bacff" />
         </dependencyFromLayerToLayer>
-        <dependencyFromLayerToLayer Id="b54f8eff-31d1-4804-929f-3ee35c71caf6" direction="Forward">
-          <layerMoniker Id="48943fa2-8ef2-4aac-b9d4-9a1335b311ce" />
-        </dependencyFromLayerToLayer>
         <dependencyFromLayerToLayer Id="9cf9362c-49d5-4530-8e9b-1cbdbbd957d7" direction="Forward">
           <layerMoniker Id="ea42b298-8828-49f7-a91c-030267b65961" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="d34c299e-e93a-46ec-8bd8-391d86a82e75" direction="Forward">
+          <layerMoniker Id="2e9a1e4d-cf65-461b-af4b-8f6cbfa77dca" />
         </dependencyFromLayerToLayer>
       </dependencyToLayers>
       <references>
@@ -56,19 +56,6 @@
         </reference>
       </references>
     </layer>
-    <layer Id="48943fa2-8ef2-4aac-b9d4-9a1335b311ce" name="gestadh45.service">
-      <references>
-        <reference Id="6d2090c6-8395-474b-820a-309278a48dc5" name="gestadh45.service">
-          <ArtifactNode Label="gestadh45.service" Category="CodeSchema_Project" Id="(Assembly=&quot;$(DesktopUri)/DEV/branches/new_dao/gestadh45.service/gestadh45.service.csproj&quot;)">
-            <Category Ref="CodeSchema_SourceFile" />
-          </ArtifactNode>
-          <ExpandedNode Id="(Assembly=gestadh45.service)" Label="gestadh45.service.dll" Category="FileSystem.Category.FileOfType.dll">
-            <LinkCategory Ref="Produces" />
-            <LinkCategory Ref="Represents" />
-          </ExpandedNode>
-        </reference>
-      </references>
-    </layer>
     <layer Id="b3fa6e45-a6d7-43f9-821f-945ef4b16b48" name="gestadh45.Main">
       <dependencyToLayers>
         <dependencyFromLayerToLayer Id="357d1e73-222d-4b03-83fa-deb1ade1c421" direction="Forward">
@@ -84,6 +71,19 @@
             <Category Ref="CodeSchema_SourceFile" />
           </ArtifactNode>
           <ExpandedNode Id="(Assembly=gestadh45.Main)" Label="gestadh45.Main.exe" Category="FileSystem.Category.FileOfType.exe">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="2e9a1e4d-cf65-461b-af4b-8f6cbfa77dca" name="gestadh45.service">
+      <references>
+        <reference Id="e3dd5a88-e8b3-4969-948b-70ed81378893" name="gestadh45.service">
+          <ArtifactNode Label="gestadh45.service" Category="CodeSchema_Project" Id="(Assembly=&quot;$(DesktopUri)/DEV/branches/new_dao/gestadh45.service/gestadh45.service.csproj&quot;)">
+            <Category Ref="CodeSchema_SourceFile" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=gestadh45.service)" Label="gestadh45.service.dll" Category="FileSystem.Category.FileOfType.dll">
             <LinkCategory Ref="Produces" />
             <LinkCategory Ref="Represents" />
           </ExpandedNode>
