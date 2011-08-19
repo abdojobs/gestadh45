@@ -2,7 +2,7 @@
 using System.Linq;
 using gestadh45.model;
 
-namespace gestadh45.service.Graphs
+namespace gestadh45.Ihm.ViewModel.Consultation.Graphs
 {
 	public static class GenerateurGraph
 	{

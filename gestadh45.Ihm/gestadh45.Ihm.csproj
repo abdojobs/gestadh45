@@ -80,7 +80,6 @@
     <Compile Include="ObjetsIhm\NotificationIhm.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceAdaptateurs\ServiceDocumentAdaptateur.cs" />
-    <Compile Include="ServiceAdaptateurs\ServiceGraphAdaptateur.cs" />
     <Compile Include="ServiceAdaptateurs\ServiceVCardAdaptateur.cs" />
     <Compile Include="CodesUC.cs" />
     <Compile Include="SpecialMessages\DialogMessageConfirmation.cs" />
@@ -111,6 +110,16 @@
     <Compile Include="ViewModel\Consultation\ConsultationInscriptionsUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationSaisonsUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationVillesUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\Graphs\CodesGraphs.cs" />
+    <Compile Include="ViewModel\Consultation\Graphs\DonneesGraph.cs" />
+    <Compile Include="ViewModel\Consultation\Graphs\GenerateurGraph.cs" />
+    <Compile Include="ViewModel\Consultation\Graphs\Graphique.cs" />
+    <Compile Include="ViewModel\Consultation\Graphs\ResGraphs.Designer.cs">
+      <DependentUpon>ResGraphs.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ViewModel\Consultation\Graphs\StructCodesGraphs.cs" />
     <Compile Include="ViewModel\Consultation\GraphsSaisonCouranteUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\FormulaireAdherentUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\FormulaireGroupeUCViewModel.cs" />
@@ -138,6 +147,10 @@
     <EmbeddedResource Include="SpecialMessages\ResMessages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\Consultation\Graphs\ResGraphs.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResGraphs.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\Formulaire\ResErreurs.resx">
       <Generator>ResXFileCodeGenerator</Generator>

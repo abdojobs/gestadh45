@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace gestadh45.service.Graphs
+namespace gestadh45.Ihm.ViewModel.Consultation.Graphs
 {
 	public class Graphique
 	{
