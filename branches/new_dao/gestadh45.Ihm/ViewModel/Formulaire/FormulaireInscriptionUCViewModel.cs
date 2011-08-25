@@ -120,15 +120,17 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public override void ExecuteEnregistrerCommand() {
 			var msg = new NotificationMessageSelectionElement<Inscription>(this.Inscription);
-	
-			if (this.VerifierSaisie() 
+
+			bool saisieValide = this.VerifierSaisie();
+
+			if (saisieValide
 				&& base.EstEdition
 				&& this._daoInscription.Exists(this.Inscription)) {
 					this._daoInscription.Update(this.Inscription);
 				base.ExecuteEnregistrerCommand();
 				Messenger.Default.Send(msg);
 			}
-			else if (this.VerifierSaisie() 
+			else if (saisieValide
 				&& !base.EstEdition
 				&& !this._daoInscription.Exists(this.Inscription)) {
 

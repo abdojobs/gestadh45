@@ -8,7 +8,17 @@ namespace gestadh45.model
 	public class Contact : BaseClass
 	{
 		private const string SeparateurAdressesMail = ",";
-		
+
+		public Contact() {
+			this.Telephone1 = new NumeroTelephone();
+			this.Telephone2 = new NumeroTelephone();
+			this.Telephone3 = new NumeroTelephone();
+
+			this.Mail1 = new AdresseEmail();
+			this.Mail2 = new AdresseEmail();
+			this.Mail3 = new AdresseEmail();
+		}
+
 		#region properties
 		/// <summary>
 		/// Obtient/Définit le téléphone1

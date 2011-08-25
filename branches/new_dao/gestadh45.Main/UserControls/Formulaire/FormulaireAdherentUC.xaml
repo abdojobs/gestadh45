@@ -63,8 +63,7 @@
 							<ComboBox Grid.Row="3" Grid.Column="1" Width="50" HorizontalAlignment="Left" Name="cmbSexes"
 										ItemsSource="{Binding Path=Sexes}"
 										SelectedValuePath="Id" 
-										DisplayMemberPath="DisplayMemberPath"
-										SelectedValue="{Binding Path=Adherent.Sexe.Id}">
+										DisplayMemberPath="DisplayMemberPath">
 
 								<i:Interaction.Triggers>
 									<i:EventTrigger EventName="SelectionChanged">
@@ -98,8 +97,7 @@
 							<ComboBox Grid.Row="1" Grid.Column="1" Name="cmbVilles"
 										ItemsSource="{Binding Path=Villes}" 
 										SelectedValuePath="Id"
-										DisplayMemberPath="DisplayMemberPath"
-										SelectedValue="{Binding Path=Adherent.Adresse.Ville.Id}">
+										DisplayMemberPath="DisplayMemberPath">
 
 								<i:Interaction.Triggers>
 									<i:EventTrigger EventName="SelectionChanged">
@@ -140,29 +138,29 @@
 							<TextBlock Grid.Row="0" Grid.Column="0" Text="Tel. 1 : " VerticalAlignment="Center" />
 							<TextBox Grid.Row="0" Grid.Column="1" 
 										MaxLength="10"
-										Text="{Binding Path=Adherent.Contact.Telephone1}" />
+										Text="{Binding Path=Adherent.Contact.Telephone1.Numero}" />
 							<TextBlock Grid.Row="0" Grid.Column="3" Text="Email 1 : " VerticalAlignment="Center" />
 							<TextBox Grid.Row="0" Grid.Column="4" 
 										MaxLength="100"
-										Text="{Binding Path=Adherent.Contact.Mail1}" />
+										Text="{Binding Path=Adherent.Contact.Mail1.Adresse}" />
 								
 							<TextBlock Grid.Row="1" Grid.Column="0" Text="Tel. 2 : " VerticalAlignment="Center" />
 							<TextBox Grid.Row="1" Grid.Column="1" 
 										MaxLength="10"
-										Text="{Binding Path=Adherent.Contact.Telephone2}" />
+										Text="{Binding Path=Adherent.Contact.Telephone2.Numero}" />
 							<TextBlock Grid.Row="1" Grid.Column="3" Text="Email 2 : " VerticalAlignment="Center" />
 							<TextBox Grid.Row="1" Grid.Column="4" 
 										MaxLength="100"
-										Text="{Binding Path=Adherent.Contact.Mail2}" />
+										Text="{Binding Path=Adherent.Contact.Mail2.Adresse}" />
 								
 							<TextBlock Grid.Row="2" Grid.Column="0" Text="Tel. 3 : " VerticalAlignment="Center" />
 							<TextBox Grid.Row="2" Grid.Column="1" 
 										MaxLength="10"
-										Text="{Binding Path=Adherent.Contact.Telephone3}" />
+										Text="{Binding Path=Adherent.Contact.Telephone3.Numero}" />
 							<TextBlock Grid.Row="2" Grid.Column="3" Text="Email 3 : " VerticalAlignment="Center" />
 							<TextBox Grid.Row="2" Grid.Column="4" 
 										MaxLength="100"
-										Text="{Binding Path=Adherent.Contact.Mail3}" />
+										Text="{Binding Path=Adherent.Contact.Mail3.Adresse}" />
 						</Grid.Children>
 					</Grid>
 				</GroupBox>

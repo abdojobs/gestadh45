@@ -33,8 +33,7 @@
 				<ComboBox Width="100" Name="cmbJoursSemaine"
 							ItemsSource="{Binding Path=JoursSemaine}" 
 							SelectedValuePath="Id"
-							DisplayMemberPath="DisplayMemberPath"
-							SelectedValue="{Binding Path=Groupe.JourSemaine.Id}">
+							DisplayMemberPath="DisplayMemberPath">
 					<i:Interaction.Triggers>
 						<i:EventTrigger EventName="SelectionChanged">
 							<cmd:EventToCommand 
