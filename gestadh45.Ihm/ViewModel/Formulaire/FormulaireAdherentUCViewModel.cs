@@ -97,20 +97,22 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public override void ExecuteEnregistrerCommand() {
 			var msg = new NotificationMessageSelectionElement<Adherent>(this.Adherent);
 
-			if (this.VerifierSaisie() 
+			bool saisieValide = this.VerifierSaisie();
+
+			if (saisieValide 
 				&& base.EstEdition
 				&& this._daoAdherent.Exists(this.Adherent)) {
 
-					this._daoAdherent.Update(this.Adherent);
+				this._daoAdherent.Update(this.Adherent);
 
 				base.ExecuteEnregistrerCommand();
 				Messenger.Default.Send(msg);
 			}
-			else if (this.VerifierSaisie() 
+			else if (saisieValide
 				&& !base.EstEdition
 				&& !this._daoAdherent.Exists(this.Adherent)) {
 
-					this._daoAdherent.Create(this.Adherent);
+				this._daoAdherent.Create(this.Adherent);
 
 				base.ExecuteEnregistrerCommand();
 				Messenger.Default.Send(msg);

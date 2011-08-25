@@ -4,10 +4,20 @@ namespace gestadh45.model.bo
 {
 	public class NumeroTelephone
 	{
+		private string _numero;
+
 		/// <summary>
-		/// Obtient/Définit lenuméro de téléphone
+		/// Gets or sets the numero.
 		/// </summary>
-		public string Numero { get; set; }
+		/// <value>
+		/// The numero. Une éventuelle valeur nulle sera remplacée par une chaîne vide
+		/// </value>
+		public string Numero {
+			get { return this._numero; }
+			set {
+				this._numero = (value != null ? value : string.Empty);
+			}
+		}
 		
 		/// <summary>
 		/// Obtient un booléen indiquant si le numéro de téléphone est valide

@@ -3,6 +3,7 @@ using System.Data.SQLite;
 using System.Linq;
 using gestadh45.model;
 using gestadh45.model.bo;
+using System;
 
 namespace gestadh45.dao
 {
@@ -12,6 +13,9 @@ namespace gestadh45.dao
 
 		public int Create(Inscription pDonnee) {
 			this.Connection.Open();
+
+			pDonnee.DateCreation = DateTime.Now;
+			pDonnee.DateModification = DateTime.Now;
 
 			var cmd = new SQLiteCommand("INSERT INTO Inscription(ID_Adherent, ID_Groupe, CertificatMedicalRemis, Cotisation, DateCreation, DateModification, Commentaire, ID_StatutInscription) VALUES(@IdAdherent, @IdGroupe, @CertificatMedicalRemis, @Cotisation, @DateCreation, @DateModification, @Commentaire, @IdStatutInscription);", this.Connection);
 			var paramIdAdherent = new SQLiteParameter("@IdAdherent", System.Data.DbType.Int32) { Value = pDonnee.Adherent.Id };
@@ -46,6 +50,8 @@ namespace gestadh45.dao
 		public void Update(Inscription pDonnee) {
 			this.Connection.Open();
 
+			pDonnee.DateModification = DateTime.Now;
+
 			// la date de création ne peut être modifiée
 			var cmd = new SQLiteCommand("UPDATE Inscription SET ID_Adherent=@IdAdherent, ID_Groupe=@IdGroupe, CertificatMedicalRemis=@CertificatMedicalRemis, Cotisation=@Cotisation, DateModification=@DateModification, Commentaire=@Commentaire, ID_StatutInscription=@IdStatutInscription WHERE ID=@Id;", this.Connection);
 			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
@@ -53,7 +59,7 @@ namespace gestadh45.dao
 			var paramIdGroupe = new SQLiteParameter("@IdGroupe", System.Data.DbType.Int32) { Value = pDonnee.Groupe.Id };
 			var paramCertificatMedicalRemis = new SQLiteParameter("@CertificatMedicalRemis", System.Data.DbType.Boolean) { Value = pDonnee.CertificatMedicalRemis };
 			var paramCotisation = new SQLiteParameter("@Cotisation", System.Data.DbType.Decimal) { Value = pDonnee.Cotisation };
-			var paramDateModification = new SQLiteParameter("@DateModification", System.Data.DbType.DateTime) { Value = pDonnee.DateModification };
+			var paramDateModification = new SQLiteParameter("@DateModification", System.Data.DbType.DateTime) { Value = pDonnee.DateModification};
 			var paramCommentaire = new SQLiteParameter("@Commentaire", System.Data.DbType.String) { Value = pDonnee.Commentaire };
 			var paramIdStatutInscription = new SQLiteParameter("@IdStatutInscription", System.Data.DbType.Int32) { Value = pDonnee.StatutInscription.Id };
 			cmd.Parameters.Add(paramId);

@@ -24,7 +24,7 @@
 
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 				<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="150" />
-				<ComboBox 
+				<ComboBox Name="cmbVilles"
 					Width="250" 
 					ItemsSource="{Binding Path=Villes}"
 					DisplayMemberPath="DisplayMemberPath"

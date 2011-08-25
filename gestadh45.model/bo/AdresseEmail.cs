@@ -5,14 +5,17 @@ namespace gestadh45.model.bo
 	public class AdresseEmail
 	{
 		private string _adresse;
-		
+
 		/// <summary>
-		/// Obtient/Définit l'adresse email
+		/// Gets or sets the adresse.
 		/// </summary>
+		/// <value>
+		/// The adresse. Une éventuelle valeur nulle sera remplacée par une chaîne vide
+		/// </value>
 		public string Adresse {
 			get { return this._adresse; }
 			set {
-				this._adresse = value.ToLowerInvariant();
+				this._adresse = (value != null ? value : string.Empty);
 			}
 		}
 

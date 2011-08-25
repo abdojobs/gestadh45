@@ -2,6 +2,7 @@
 using System.Data.SQLite;
 using gestadh45.model;
 using gestadh45.model.bo;
+using System;
 
 namespace gestadh45.dao
 {
@@ -36,6 +37,9 @@ namespace gestadh45.dao
 			cmdAdresse.Parameters.Add(paramAdresseIdVille);
 			
 			// Adhérent
+			pDonnee.DateCreation = DateTime.Now;
+			pDonnee.DateModification = DateTime.Now;
+
 			var cmdAdherent = new SQLiteCommand("INSERT INTO Adherent(Nom, Prenom, DateNaissance, DateCreation, DateModification, Commentaire, ID_Sexe, ID_Contact, ID_Adresse) Values(@Nom, @Prenom, @DateNaissance, @DateCreation, @DateModification, @Commentaire, @IdSexe, @IdContact, @IdAdresse);", this.Connection, trans);
 			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToUpper() };
 			var paramPrenom = new SQLiteParameter("@Prenom", System.Data.DbType.String) { Value = pDonnee.Prenom };
@@ -107,12 +111,14 @@ namespace gestadh45.dao
 			cmdAdresse.Parameters.Add(paramAdresseIdVille);
 
 			// Adhérent (la date de création ne peut être modifiée)
+			pDonnee.DateModification = DateTime.Now;
+
 			var cmdAdherent = new SQLiteCommand("UPDATE Adherent SET Nom=@Nom, Prenom=@Prenom, DateNaissance=@DateNaissance, DateModification=@DateModification, Commentaire=@Commentaire, ID_Sexe=@IdSexe WHERE ID = @Id;", this.Connection, trans);
 			var paramId = new SQLiteParameter("@Id", System.Data.DbType.Int32) { Value = pDonnee.Id };
 			var paramNom = new SQLiteParameter("@Nom", System.Data.DbType.String) { Value = pDonnee.Nom.ToUpper() };
 			var paramPrenom = new SQLiteParameter("@Prenom", System.Data.DbType.String) { Value = pDonnee.Prenom };
 			var paramDateNaissance = new SQLiteParameter("@DateNaissance", System.Data.DbType.DateTime) { Value = pDonnee.DateNaissance };
-			var paramDateModification = new SQLiteParameter("@DateModification", System.Data.DbType.DateTime) { Value = pDonnee.DateModification };
+			var paramDateModification = new SQLiteParameter("@DateModification", System.Data.DbType.DateTime) { Value = pDonnee.DateModification};
 			var paramCommentaire = new SQLiteParameter("@Commentaire", System.Data.DbType.String) { Value = pDonnee.Commentaire };
 			var paramIdSexe = new SQLiteParameter("@IdSexe", System.Data.DbType.Int32) { Value = pDonnee.Sexe.Id };
 			cmdAdherent.Parameters.Add(paramId);

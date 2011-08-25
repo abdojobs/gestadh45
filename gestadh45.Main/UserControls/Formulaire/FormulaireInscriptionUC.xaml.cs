@@ -18,6 +18,10 @@ namespace gestadh45.Main.UserControls.Formulaire
 			FormulaireInscriptionUCViewModel lVm = base.DataContext as FormulaireInscriptionUCViewModel;
 			lVm.EstEdition = true;
 			lVm.SetInscription(pInscription);
+
+			this.SelectionnerAdherent(pInscription.Adherent.Id);
+			this.SelectionnerGroupe(pInscription.Groupe.Id);
+			this.SelectionnerStatutInscription(pInscription.StatutInscription.Id);
 		}
 
 		public FormulaireInscriptionUC(Adherent pAdherent) {
@@ -25,6 +29,20 @@ namespace gestadh45.Main.UserControls.Formulaire
 			FormulaireInscriptionUCViewModel lVm = base.DataContext as FormulaireInscriptionUCViewModel;
 			lVm.EstEdition = false;
 			lVm.SetAdherent(pAdherent);
+
+			this.SelectionnerAdherent(pAdherent.Id);
+		}
+
+		private void SelectionnerAdherent(int pIdAdherent) {
+			this.cmbAdherents.SelectedValue = pIdAdherent;
+		}
+
+		private void SelectionnerGroupe(int pIdGroupe) {
+			this.cmbGroupes.SelectedValue = pIdGroupe;
+		}
+
+		private void SelectionnerStatutInscription(int pIdStatutInscription) {
+			this.cmbStatutsInscription.SelectedValue = pIdStatutInscription;
 		}
 	}
 }

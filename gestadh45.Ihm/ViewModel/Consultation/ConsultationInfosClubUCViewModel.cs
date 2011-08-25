@@ -19,7 +19,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			set {
 				if (this._infosClub != value) {
 					this._infosClub = value;
-					this.RaisePropertyChanged("InfosClub");
+					this.RaisePropertyChanged(()=>this.InfosClub);
 				}
 			}
 		}
