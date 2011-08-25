@@ -63,6 +63,7 @@
     <Compile Include="Inscription.cs" />
     <Compile Include="JourSemaine.cs" />
     <Compile Include="ObjectCopier.cs" />
+    <Compile Include="ParamsApplication.cs" />
     <Compile Include="Saison.cs" />
     <Compile Include="Sexe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

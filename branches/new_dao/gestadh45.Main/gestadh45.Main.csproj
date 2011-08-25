@@ -58,8 +58,7 @@
     <StartupObject>gestadh45.Main.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Images\gestadh45.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'TestDao|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -140,6 +139,9 @@
     <Compile Include="UserControls\Consultation\ConsultationInscriptionsUC.xaml.cs">
       <DependentUpon>ConsultationInscriptionsUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Consultation\ConsultationParamsApplicationUC.xaml.cs">
+      <DependentUpon>ConsultationParamsApplicationUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Consultation\ConsultationSaisonsUC.xaml.cs">
       <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
     </Compile>
@@ -160,6 +162,9 @@
     </Compile>
     <Compile Include="UserControls\Formulaire\FormulaireInscriptionUC.xaml.cs">
       <DependentUpon>FormulaireInscriptionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireParamsApplicationUC.xaml.cs">
+      <DependentUpon>FormulaireParamsApplicationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Formulaire\FormulaireSaisonUC.xaml.cs">
       <DependentUpon>FormulaireSaisonUC.xaml</DependentUpon>
@@ -221,6 +226,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Consultation\ConsultationParamsApplicationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Consultation\ConsultationSaisonsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -246,6 +255,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Formulaire\FormulaireInscriptionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Formulaire\FormulaireParamsApplicationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -373,6 +386,7 @@
     <SplashScreen Include="Images\StartupSplashScreen.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\btn_paramsApplication.png" />
     <Content Include="SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

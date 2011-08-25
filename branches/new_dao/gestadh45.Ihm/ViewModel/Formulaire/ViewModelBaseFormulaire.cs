@@ -47,6 +47,10 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			Messenger.Default.Send(new NotificationMessageTransition(TransitionHelper.TranslationGaucheDroite));
 		}
 
+		/// <summary>
+		/// Méthode de base pour la vérification de la saisie. Doit être overridée si une vérification est nécessaire.
+		/// </summary>
+		/// <returns>True</returns>
 		protected virtual bool VerifierSaisie() {
 			return true;
 		}

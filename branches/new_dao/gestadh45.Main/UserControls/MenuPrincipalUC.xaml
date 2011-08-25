@@ -21,6 +21,11 @@
 				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
 			<Image Source="/gestadh45.Main;component/Images/btn_home.png" />
 		</Button>
+		<Button Name="btnConsultationParamsApplication" ToolTip="Paramètres de l'application" Height="30" Width="30" Margin="5,5,5,5" 
+				CommandParameter="{x:Static ihm:CodesUC.ConsultationParamsApplication}" 
+				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
+			<Image Source="/gestadh45.Main;component/Images/btn_paramsApplication.png" />
+		</Button>
 		<Button Name="btnConsultationSaisons" ToolTip="Parcourir les saisons" Height="30" Width="30" Margin="5,5,5,5" 
 				CommandParameter="{x:Static ihm:CodesUC.ConsultationSaisons}" 
 				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">

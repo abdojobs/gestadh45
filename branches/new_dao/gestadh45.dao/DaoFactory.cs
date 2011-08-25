@@ -38,5 +38,9 @@ namespace gestadh45.dao
 		public static IVilleDao GetVilleDao(string pFilePath) {
 			return new VilleDao(pFilePath);
 		}
+
+		public static IParamsApplicationDao GetParamsApplicationDao(string pFilePath) {
+			return new ParamsApplicationDao(pFilePath);
+		}
 	}
 }

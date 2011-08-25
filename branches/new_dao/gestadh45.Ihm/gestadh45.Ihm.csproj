@@ -105,6 +105,7 @@
     <Compile Include="ViewModel\Consultation\ConsultationGroupesUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationInfosClubUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationInscriptionsUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\ConsultationParamsApplicationViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationSaisonsUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\ConsultationVillesUCViewModel.cs" />
     <Compile Include="ViewModel\Consultation\Graphs\CodesGraphs.cs" />
@@ -122,6 +123,7 @@
     <Compile Include="ViewModel\Formulaire\FormulaireGroupeUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\FormulaireInfosClubUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\FormulaireInscriptionUCViewModel.cs" />
+    <Compile Include="ViewModel\Formulaire\FormulaireParamsApplicationUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\FormulaireSaisonUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\FormulaireVilleUCViewModel.cs" />
     <Compile Include="ViewModel\Formulaire\ResErreurs.Designer.cs">

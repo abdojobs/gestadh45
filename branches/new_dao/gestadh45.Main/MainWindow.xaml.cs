@@ -112,6 +112,14 @@ namespace gestadh45.Main
 					this.contenu.Child = new FormulaireInfosClubUC();
 					break;
 
+				case CodesUC.ConsultationParamsApplication:
+					this.contenu.Child = new ConsultationParamsApplicationUC();
+					break;
+
+				case CodesUC.FormulaireParamsApplication:
+					this.contenu.Child = new FormulaireParamsApplicationUC();
+					break;
+
 				case CodesUC.ConsultationSaisons:
 					this.contenu.Child = new ConsultationSaisonsUC();
 					break;
