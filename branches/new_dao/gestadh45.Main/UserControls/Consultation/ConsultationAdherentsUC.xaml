@@ -19,7 +19,7 @@
 					<i:Interaction.Triggers>
 						<i:EventTrigger EventName="TextChanged">
 							<cmd:EventToCommand
-								Command="{Binding Path=FiltrerListeCommand, Mode=TwoWay}"
+								Command="{Binding Path=FiltrerListeCommand, Mode=OneWay}"
 								CommandParameter="{Binding ElementName=tbxFiltre, Path=Text}" />
 						</i:EventTrigger>
 					</i:Interaction.Triggers>

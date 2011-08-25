@@ -15,7 +15,7 @@ namespace gestadh45.Main.UserControls.Consultation
 		}
 
 		private void EffacerFiltre() {
-			this.tbxFiltre.Text = string.Empty;
+			this.tbxFiltre.Clear();
 		}
 	}
 }

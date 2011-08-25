@@ -149,10 +149,12 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			else {
 				this.Adherents.Filter = (p) => ((Adherent)p).ToString().ToUpper().Contains(pFiltre.ToUpper());
 			}
+
+			this.Adherents.Refresh();
 		}
 		#endregion
 
-		#region DuppliquerCommand
+		#region DupliquerCommand
 		public ICommand DupliquerCommand { get; set; }
 
 		private void CreateDupliquerCommand() {
@@ -197,11 +199,8 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
 			this.Adherents = defaultView;
 
-			// tentative pour effacer le champ filtre
-			// l'envoi du message est commenté car ça ne marche pas pour le moment
 			var msg = new NotificationMessage(TypesNotification.EffacerFiltre);
-			// TODO commenté tant que le pb n'est pas résolu
-			//Messenger.Default.Send(msg);
+			Messenger.Default.Send(msg);
 		}
 
 		private void SelectionnerAdherent(Adherent pAdh) {
