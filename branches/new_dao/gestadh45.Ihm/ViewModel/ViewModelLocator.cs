@@ -14,31 +14,23 @@ namespace gestadh45.Ihm.ViewModel
 		public static string DataSource = null;
 
 		public ViewModelLocator() {
-			CreateMain();
-		}
-
-		public static void Cleanup() {
-			ClearMain();
-		}
-
-		#region MainView
-		private static MainViewModel _main;
-
-		public static void ClearMain() {
-			_main.Cleanup();
-			_main = null;
-		}
-
-		public static void CreateMain() {
 			if (_main == null) {
 				_main = new MainViewModel();
 			}
 		}
 
+		public static void Cleanup() {
+			_main.Cleanup();
+			_main = null;
+		}
+
+		#region MainView
+		private static MainViewModel _main;
+
 		public static MainViewModel MainStatic {
 			get {
 				if (_main == null) {
-					CreateMain();
+					_main = new MainViewModel();
 				}
 				return _main;
 			}
@@ -48,23 +40,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region ConsultationInfosClub
 		private static ConsultationInfosClubUCViewModel _consultationInfosClubVM;
 
-		public static void ClearConsultationInfosClubVMStatic() {
-			if (_consultationInfosClubVM != null) {
-				_consultationInfosClubVM.Cleanup();
-				_consultationInfosClubVM = null;
-			}
-		}
-
-		public static void CreateConsultationInfosClubVMStatic() {
-			if (_consultationInfosClubVM == null) {
-				_consultationInfosClubVM = new ConsultationInfosClubUCViewModel();
-			}
-		}
-
 		public static ConsultationInfosClubUCViewModel ConsultationInfosClubVMStatic {
 			get {
-				ClearConsultationInfosClubVMStatic();
-				CreateConsultationInfosClubVMStatic();
+				if (_consultationInfosClubVM != null) {
+					_consultationInfosClubVM.Cleanup();
+					_consultationInfosClubVM = null;
+				}
+
+				_consultationInfosClubVM = new ConsultationInfosClubUCViewModel();
+
 				return _consultationInfosClubVM;
 			}
 		}
@@ -73,23 +57,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region FormulaireInfosClub
 		private static FormulaireInfosClubUCViewModel _formulaireInfosClubVM;
 
-		public static void ClearFormulaireInfosClubVMStatic() {
-			if (_formulaireInfosClubVM != null) {
-				_formulaireInfosClubVM.Cleanup();
-				_formulaireInfosClubVM = null;
-			}
-		}
-
-		public static void CreateFormulaireInfosClubVMStatic() {
-			if (_formulaireInfosClubVM == null) {
-				_formulaireInfosClubVM = new FormulaireInfosClubUCViewModel();
-			}
-		}
-
 		public static FormulaireInfosClubUCViewModel FormulaireInfosClubVMStatic {
 			get {
-				ClearFormulaireInfosClubVMStatic();
-				CreateFormulaireInfosClubVMStatic();
+				if (_formulaireInfosClubVM != null) {
+					_formulaireInfosClubVM.Cleanup();
+					_formulaireInfosClubVM = null;
+				}
+
+				_formulaireInfosClubVM = new FormulaireInfosClubUCViewModel();
+
 				return _formulaireInfosClubVM;
 			}
 		}
@@ -98,23 +74,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region ConsultationParamsApplication
 		private static ConsultationParamsApplicationViewModel _consultationParamsApplicationVM;
 
-		public static void ClearConsultationParamsApplicationVMStatic() {
-			if (_consultationParamsApplicationVM != null) {
-				_consultationParamsApplicationVM.Cleanup();
-				_consultationParamsApplicationVM = null;
-			}
-		}
-
-		public static void CreateConsultationParamsApplicationVMStatic() {
-			if (_consultationParamsApplicationVM == null) {
-				_consultationParamsApplicationVM = new ConsultationParamsApplicationViewModel();
-			}
-		}
-
 		public static ConsultationParamsApplicationViewModel ConsultationParamsApplicationVMStatic {
 			get {
-				ClearConsultationParamsApplicationVMStatic();
-				CreateConsultationParamsApplicationVMStatic();
+				if (_consultationParamsApplicationVM != null) {
+					_consultationParamsApplicationVM.Cleanup();
+					_consultationParamsApplicationVM = null;
+				}
+
+				_consultationParamsApplicationVM = new ConsultationParamsApplicationViewModel();
+
 				return _consultationParamsApplicationVM;
 			}
 		}
@@ -123,23 +91,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region FormulaireParamsApplication
 		private static FormulaireParamsApplicationUCViewModel _formulaireParamsApplicationVM;
 
-		public static void ClearFormulaireParamsApplicationVMStatic() {
-			if (_formulaireParamsApplicationVM != null) {
-				_formulaireParamsApplicationVM.Cleanup();
-				_formulaireParamsApplicationVM = null;
-			}
-		}
-
-		public static void CreateFormulaireParamsApplicationVMStatic() {
-			if (_formulaireParamsApplicationVM == null) {
-				_formulaireParamsApplicationVM = new FormulaireParamsApplicationUCViewModel();
-			}
-		}
-
 		public static FormulaireParamsApplicationUCViewModel FormulaireParamsApplicationVMStatic {
 			get {
-				ClearFormulaireParamsApplicationVMStatic();
-				CreateFormulaireParamsApplicationVMStatic();
+				if (_formulaireParamsApplicationVM != null) {
+					_formulaireParamsApplicationVM.Cleanup();
+					_formulaireParamsApplicationVM = null;
+				}
+
+				_formulaireParamsApplicationVM = new FormulaireParamsApplicationUCViewModel();
+
 				return _formulaireParamsApplicationVM;
 			}
 		}
@@ -148,23 +108,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region ConsultationSaisons
 		private static ConsultationSaisonsUCViewModel _consultationSaisonsVM;
 
-		public static void ClearConsultationSaisonsVMStatic() {
-			if (_consultationSaisonsVM != null) {
-				_consultationSaisonsVM.Cleanup();
-				_consultationSaisonsVM = null;
-			}
-		}
-
-		public static void CreateConsultationSaisonsVMStatic() {
-			if (_consultationSaisonsVM == null) {
-				_consultationSaisonsVM = new ConsultationSaisonsUCViewModel();
-			}
-		}
-
 		public static ConsultationSaisonsUCViewModel ConsultationSaisonsVMStatic {
 			get {
-				ClearConsultationSaisonsVMStatic();
-				CreateConsultationSaisonsVMStatic();
+				if (_consultationSaisonsVM != null) {
+					_consultationSaisonsVM.Cleanup();
+					_consultationSaisonsVM = null;
+				}
+
+				_consultationSaisonsVM = new ConsultationSaisonsUCViewModel();
+
 				return _consultationSaisonsVM;
 			}
 		}
@@ -173,23 +125,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region FormulaireSaison
 		private static FormulaireSaisonUCViewModel _formulaireSaisonVM;
 
-		public static void ClearFormulaireSaisonVMStatic() {
-			if (_formulaireSaisonVM != null) {
-				_formulaireSaisonVM.Cleanup();
-				_formulaireSaisonVM = null;
-			}
-		}
-
-		public static void CreateFormulaireSaisonVMStatic() {
-			if (_formulaireSaisonVM == null) {
-				_formulaireSaisonVM = new FormulaireSaisonUCViewModel();
-			}
-		}
-
 		public static FormulaireSaisonUCViewModel FormulaireSaisonVMStatic {
 			get {
-				ClearFormulaireSaisonVMStatic();
-				CreateFormulaireSaisonVMStatic();
+				if (_formulaireSaisonVM != null) {
+					_formulaireSaisonVM.Cleanup();
+					_formulaireSaisonVM = null;
+				}
+
+				_formulaireSaisonVM = new FormulaireSaisonUCViewModel();
+
 				return _formulaireSaisonVM;
 			}
 		}
@@ -198,23 +142,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region ConsultationVilles
 		private static ConsultationVillesUCViewModel _consultationVillesVM;
 
-		public static void ClearConsultationVillesVMStatic() {
-			if (_consultationVillesVM != null) {
-				_consultationVillesVM.Cleanup();
-				_consultationVillesVM = null;
-			}
-		}
-
-		public static void CreateConsultationVillesVMStatic() {
-			if (_consultationVillesVM == null) {
-				_consultationVillesVM = new ConsultationVillesUCViewModel();
-			}
-		}
-
 		public static ConsultationVillesUCViewModel ConsultationVillesVMStatic {
 			get {
-				ClearConsultationVillesVMStatic();
-				CreateConsultationVillesVMStatic();
+				if (_consultationVillesVM != null) {
+					_consultationVillesVM.Cleanup();
+					_consultationVillesVM = null;
+				}
+
+				_consultationVillesVM = new ConsultationVillesUCViewModel();
+
 				return _consultationVillesVM;
 			}
 		}
@@ -223,23 +159,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region FormulaireVille
 		private static FormulaireVilleUCViewModel _formulaireVilleVM;
 
-		public static void ClearFormulaireVilleVMStatic() {
-			if (_formulaireVilleVM != null) {
-				_formulaireVilleVM.Cleanup();
-				_formulaireVilleVM = null;
-			}
-		}
-
-		public static void CreateFormulaireVilleVMStatic() {
-			if (_formulaireVilleVM == null) {
-				_formulaireVilleVM = new FormulaireVilleUCViewModel();
-			}
-		}
-
 		public static FormulaireVilleUCViewModel FormulaireVilleVMStatic {
 			get {
-				ClearFormulaireVilleVMStatic();
-				CreateFormulaireVilleVMStatic();
+				if (_formulaireVilleVM != null) {
+					_formulaireVilleVM.Cleanup();
+					_formulaireVilleVM = null;
+				}
+
+				_formulaireVilleVM = new FormulaireVilleUCViewModel();
+
 				return _formulaireVilleVM;
 			}
 		}
@@ -248,23 +176,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region ConsultationAdherents
 		private static ConsultationAdherentsUCViewModel _consultationAdherentsVM;
 
-		public static void ClearConsultationAdherentsVMStatic() {
-			if (_consultationAdherentsVM != null) {
-				_consultationAdherentsVM.Cleanup();
-				_consultationAdherentsVM = null;
-			}
-		}
-
-		public static void CreateConsultationAdherentsVMStatic() {
-			if (_consultationAdherentsVM == null) {
-				_consultationAdherentsVM = new ConsultationAdherentsUCViewModel();
-			}
-		}
-
 		public static ConsultationAdherentsUCViewModel ConsultationAdherentsVMStatic {
 			get {
-				ClearConsultationAdherentsVMStatic();
-				CreateConsultationAdherentsVMStatic();
+				if (_consultationAdherentsVM != null) {
+					_consultationAdherentsVM.Cleanup();
+					_consultationAdherentsVM = null;
+				}
+
+				_consultationAdherentsVM = new ConsultationAdherentsUCViewModel();
+
 				return _consultationAdherentsVM;
 			}
 		}
@@ -273,23 +193,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region FormulaireAdherent
 		private static FormulaireAdherentUCViewModel _formulaireAdherentVM;
 
-		public static void ClearFormulaireAdherentVMStatic() {
-			if (_formulaireAdherentVM != null) {
-				_formulaireAdherentVM.Cleanup();
-				_formulaireAdherentVM = null;
-			}
-		}
-
-		public static void CreateFormulaireAdherentVMStatic() {
-			if (_formulaireAdherentVM == null) {
-				_formulaireAdherentVM = new FormulaireAdherentUCViewModel();
-			}
-		}
-
 		public static FormulaireAdherentUCViewModel FormulaireAdherentVMStatic {
 			get {
-				ClearFormulaireAdherentVMStatic();
-				CreateFormulaireAdherentVMStatic();
+				if (_formulaireAdherentVM != null) {
+					_formulaireAdherentVM.Cleanup();
+					_formulaireAdherentVM = null;
+				}
+
+				_formulaireAdherentVM = new FormulaireAdherentUCViewModel();
+
 				return _formulaireAdherentVM;
 			}
 		}
@@ -298,23 +210,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region ConsultationsInscriptions
 		private static ConsultationInscriptionsUCViewModel _consultationInscriptionsVM;
 
-		public static void ClearConsultationInscriptionsVMStatic() {
-			if (_consultationInscriptionsVM != null) {
-				_consultationInscriptionsVM.Cleanup();
-				_consultationInscriptionsVM = null;
-			}
-		}
-
-		public static void CreateConsultationInscriptionsVMStatic() {
-			if (_consultationInscriptionsVM == null) {
-				_consultationInscriptionsVM = new ConsultationInscriptionsUCViewModel();
-			}
-		}
-
 		public static ConsultationInscriptionsUCViewModel ConsultationInscriptionsVMStatic {
 			get {
-				ClearConsultationInscriptionsVMStatic();
-				CreateConsultationInscriptionsVMStatic();
+				if (_consultationInscriptionsVM != null) {
+					_consultationInscriptionsVM.Cleanup();
+					_consultationInscriptionsVM = null;
+				}
+
+				_consultationInscriptionsVM = new ConsultationInscriptionsUCViewModel();
+
 				return _consultationInscriptionsVM;
 			}
 		}
@@ -323,49 +227,32 @@ namespace gestadh45.Ihm.ViewModel
 		#region FormulaireInscription
 		private static FormulaireInscriptionUCViewModel _formulaireInscriptionVM;
 
-		public static void ClearFormulaireInscriptionVMStatic() {
-			if (_formulaireInscriptionVM != null) {
-				_formulaireInscriptionVM.Cleanup();
-				_formulaireInscriptionVM = null;
-			}
-		}
-
-		public static void CreateFormulaireInscriptionVMStatic() {
-			if (_formulaireInscriptionVM == null) {
-				_formulaireInscriptionVM = new FormulaireInscriptionUCViewModel();
-			}
-		}
-
 		public static FormulaireInscriptionUCViewModel FormulaireInscriptionVMStatic {
 			get {
-				ClearFormulaireInscriptionVMStatic();
-				CreateFormulaireInscriptionVMStatic();
+				if (_formulaireInscriptionVM != null) {
+					_formulaireInscriptionVM.Cleanup();
+					_formulaireInscriptionVM = null;
+				}
+
+				_formulaireInscriptionVM = new FormulaireInscriptionUCViewModel();
+
 				return _formulaireInscriptionVM;
 			}
 		}
 		#endregion
-
-
+		
 		#region ConsultationGroupes
 		private static ConsultationGroupesUCViewModel _consultationGroupesVM;
 
-		public static void ClearConsultationGroupesVMStatic() {
-			if (_consultationGroupesVM != null) {
-				_consultationGroupesVM.Cleanup();
-				_consultationGroupesVM = null;
-			}
-		}
-
-		public static void CreateConsultationGroupesVMStatic() {
-			if (_consultationGroupesVM == null) {
-				_consultationGroupesVM = new ConsultationGroupesUCViewModel();
-			}
-		}
-
 		public static ConsultationGroupesUCViewModel ConsultationGroupesVMStatic {
 			get {
-				ClearConsultationGroupesVMStatic();
-				CreateConsultationGroupesVMStatic();
+				if (_consultationGroupesVM != null) {
+					_consultationGroupesVM.Cleanup();
+					_consultationGroupesVM = null;
+				}
+
+				_consultationGroupesVM = new ConsultationGroupesUCViewModel();
+
 				return _consultationGroupesVM;
 			}
 		}
@@ -374,23 +261,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region FormulaireGroupe
 		private static FormulaireGroupeUCViewModel _formulaireGroupeVM;
 
-		public static void ClearFormulaireGroupeVMStatic() {
-			if (_formulaireGroupeVM != null) {
-				_formulaireGroupeVM.Cleanup();
-				_formulaireGroupeVM = null;
-			}
-		}
-
-		public static void CreateFormulaireGroupeVMStatic() {
-			if (_formulaireGroupeVM == null) {
-				_formulaireGroupeVM = new FormulaireGroupeUCViewModel();
-			}
-		}
-
 		public static FormulaireGroupeUCViewModel FormulaireGroupeVMStatic {
 			get {
-				ClearFormulaireGroupeVMStatic();
-				CreateFormulaireGroupeVMStatic();
+				if (_formulaireGroupeVM != null) {
+					_formulaireGroupeVM.Cleanup();
+					_formulaireGroupeVM = null;
+				}
+
+				_formulaireGroupeVM = new FormulaireGroupeUCViewModel();
+
 				return _formulaireGroupeVM;
 			}
 		}
@@ -399,23 +278,15 @@ namespace gestadh45.Ihm.ViewModel
 		#region GraphsSaisonCourante
 		private static GraphsSaisonCouranteUCViewModel _graphsSaisonCouranteVM;
 
-		public static void ClearGraphsSaisonCouranteVMStatic() {
-			if (_graphsSaisonCouranteVM != null) {
-				_graphsSaisonCouranteVM.Cleanup();
-				_graphsSaisonCouranteVM = null;
-			}
-		}
-
-		public static void CreateGraphsSaisonCouranteVMStatic() {
-			if (_graphsSaisonCouranteVM == null) {
-				_graphsSaisonCouranteVM = new GraphsSaisonCouranteUCViewModel();
-			}
-		}
-
 		public static GraphsSaisonCouranteUCViewModel GraphsSaisonCouranteVMStatic {
 			get {
-				ClearGraphsSaisonCouranteVMStatic();
-				CreateGraphsSaisonCouranteVMStatic();
+				if (_graphsSaisonCouranteVM != null) {
+					_graphsSaisonCouranteVM.Cleanup();
+					_graphsSaisonCouranteVM = null;
+				}
+
+				_graphsSaisonCouranteVM = new GraphsSaisonCouranteUCViewModel();
+
 				return _graphsSaisonCouranteVM;
 			}
 		}
