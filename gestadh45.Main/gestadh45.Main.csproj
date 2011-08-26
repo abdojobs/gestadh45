@@ -133,13 +133,13 @@
     <Compile Include="UserControls\Groupes\ConsultationGroupesUC.xaml.cs">
       <DependentUpon>ConsultationGroupesUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\InfosClub\ConsultationInfosClubUC.xaml.cs">
+    <Compile Include="UserControls\InformationsClub\ConsultationInfosClubUC.xaml.cs">
       <DependentUpon>ConsultationInfosClubUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Inscriptions\ConsultationInscriptionsUC.xaml.cs">
       <DependentUpon>ConsultationInscriptionsUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ParamsApplication\ConsultationParamsApplicationUC.xaml.cs">
+    <Compile Include="UserControls\ParametresApplication\ConsultationParamsApplicationUC.xaml.cs">
       <DependentUpon>ConsultationParamsApplicationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Saisons\ConsultationSaisonsUC.xaml.cs">
@@ -157,13 +157,13 @@
     <Compile Include="UserControls\Groupes\FormulaireGroupeUC.xaml.cs">
       <DependentUpon>FormulaireGroupeUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\InfosClub\FormulaireInfosClubUC.xaml.cs">
+    <Compile Include="UserControls\InformationsClub\FormulaireInfosClubUC.xaml.cs">
       <DependentUpon>FormulaireInfosClubUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Inscriptions\FormulaireInscriptionUC.xaml.cs">
       <DependentUpon>FormulaireInscriptionUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ParamsApplication\FormulaireParamsApplicationUC.xaml.cs">
+    <Compile Include="UserControls\ParametresApplication\FormulaireParamsApplicationUC.xaml.cs">
       <DependentUpon>FormulaireParamsApplicationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Saisons\FormulaireSaisonUC.xaml.cs">
@@ -218,7 +218,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\InfosClub\ConsultationInfosClubUC.xaml">
+    <Page Include="UserControls\InformationsClub\ConsultationInfosClubUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,7 +226,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ParamsApplication\ConsultationParamsApplicationUC.xaml">
+    <Page Include="UserControls\ParametresApplication\ConsultationParamsApplicationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -250,7 +250,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\InfosClub\FormulaireInfosClubUC.xaml">
+    <Page Include="UserControls\InformationsClub\FormulaireInfosClubUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -258,7 +258,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ParamsApplication\FormulaireParamsApplicationUC.xaml">
+    <Page Include="UserControls\ParametresApplication\FormulaireParamsApplicationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

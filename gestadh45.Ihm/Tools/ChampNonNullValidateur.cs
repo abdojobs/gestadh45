@@ -1,5 +1,5 @@
 ﻿using System.Windows.Controls;
-using gestadh45.Ihm.ViewModel.Formulaire;
+using gestadh45.Ihm.ViewModel;
 
 namespace gestadh45.Ihm.Tools
 {

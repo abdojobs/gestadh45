@@ -1,0 +1,87 @@
+﻿<UserControl x:Class="gestadh45.Main.UserControls.InformationsClub.FormulaireInfosClubUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
+			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
+			 mc:Ignorable="d" 
+			 DataContext="{Binding Path=FormulaireInfosClubVMStatic, Source={StaticResource Locator}}" 
+			 d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
+	<DockPanel Margin="5,5,5,5">
+		<TextBlock Text="Informations sur le club" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+		<StackPanel Name="stkInfosClub" Orientation="Vertical" HorizontalAlignment="Center">
+				
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBox Width="250" MaxLength="50" Text="{Binding Path=InfosClub.Nom}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBox TextWrapping="Wrap" Width="250" MaxLength="100" Text="{Binding Path=InfosClub.Adresse.Libelle}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="150" />
+				<ComboBox Name="cmbVilles"
+					Width="250" 
+					ItemsSource="{Binding Path=Villes}"
+					DisplayMemberPath="DisplayMemberPath"
+					SelectedValuePath="Id"
+					SelectedValue="{Binding Path=InfosClub.Adresse.Ville.Id}"
+					/>							
+
+				<Button ToolTip="Ajouter une ville" HorizontalAlignment="Center" 
+						Width="18" Height="18" 
+						Command="{Binding Path=FenetreCommand}"
+						CommandParameter="{x:Static ihm:CodesUC.FormulaireVille}" 
+						Margin="5,0,0,0">
+					<Image Source="/gestadh45.Main;component/Images/btn_add16.png" />
+				</Button>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Tel. : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBox Width="250" MaxLength="10"
+							Text="{Binding Path=InfosClub.Contact.Telephone1}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Email : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBox Width="250" MaxLength="100"
+							Text="{Binding Path=InfosClub.Contact.Mail1}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Web : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBox Width="250" MaxLength="100"
+							Text="{Binding Path=InfosClub.Contact.SiteWeb}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="N° association : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBox Width="250" MaxLength="20"
+							Text="{Binding Path=InfosClub.Numero}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBox Width="250" MaxLength="9" ToolTip="N° SIREN"
+							Text="{Binding Path=InfosClub.Siren}" />
+				<TextBlock Text=" - " />
+				<TextBox Width="50" MaxLength="5" ToolTip="NIC"
+							Text="{Binding Path=InfosClub.NIC}" />
+			</StackPanel>
+				
+			<Separator Margin="0,20,0,20" />
+
+			<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5" 
+					CodeUCParent="{x:Static ihm:CodesUC.ConsultationInfosClub}"
+					CmdAnnuler="{Binding Path=AnnulerCommand}"
+					CmdEnregistrer="{Binding Path=EnregistrerCommand}"
+					/>
+
+		</StackPanel>
+	</DockPanel>
+</UserControl>
