@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Ihm.ViewModel.Formulaire;
+using gestadh45.Ihm.ViewModel.Adherents;
 using gestadh45.model;
 
 namespace gestadh45.Main.UserControls.Adherents

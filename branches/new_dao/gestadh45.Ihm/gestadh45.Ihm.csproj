@@ -101,39 +101,39 @@
     <Compile Include="Tools\HexaColorStringToBrushCOnverter.cs" />
     <Compile Include="Tools\ListToStringConverter.cs" />
     <Compile Include="Tools\TransitionHelper.cs" />
-    <Compile Include="ViewModel\Consultation\ConsultationAdherentsUCViewModel.cs" />
-    <Compile Include="ViewModel\Consultation\ConsultationGroupesUCViewModel.cs" />
-    <Compile Include="ViewModel\Consultation\ConsultationInfosClubUCViewModel.cs" />
-    <Compile Include="ViewModel\Consultation\ConsultationInscriptionsUCViewModel.cs" />
-    <Compile Include="ViewModel\Consultation\ConsultationParamsApplicationViewModel.cs" />
-    <Compile Include="ViewModel\Consultation\ConsultationSaisonsUCViewModel.cs" />
-    <Compile Include="ViewModel\Consultation\ConsultationVillesUCViewModel.cs" />
-    <Compile Include="ViewModel\Consultation\Graphs\CodesGraphs.cs" />
-    <Compile Include="ViewModel\Consultation\Graphs\DonneesGraph.cs" />
-    <Compile Include="ViewModel\Consultation\Graphs\GenerateurGraph.cs" />
-    <Compile Include="ViewModel\Consultation\Graphs\Graphique.cs" />
-    <Compile Include="ViewModel\Consultation\Graphs\ResGraphs.Designer.cs">
+    <Compile Include="ViewModel\Adherents\ConsultationAdherentsUCViewModel.cs" />
+    <Compile Include="ViewModel\Groupes\ConsultationGroupesUCViewModel.cs" />
+    <Compile Include="ViewModel\InformationsClub\ConsultationInfosClubUCViewModel.cs" />
+    <Compile Include="ViewModel\Inscriptions\ConsultationInscriptionsUCViewModel.cs" />
+    <Compile Include="ViewModel\ParametresApplication\ConsultationParamsApplicationViewModel.cs" />
+    <Compile Include="ViewModel\Saisons\ConsultationSaisonsUCViewModel.cs" />
+    <Compile Include="ViewModel\Villes\ConsultationVillesUCViewModel.cs" />
+    <Compile Include="ViewModel\Stats\CodesGraphs.cs" />
+    <Compile Include="ViewModel\Stats\DonneesGraph.cs" />
+    <Compile Include="ViewModel\Stats\GenerateurGraph.cs" />
+    <Compile Include="ViewModel\Stats\Graphique.cs" />
+    <Compile Include="ViewModel\Stats\ResGraphs.Designer.cs">
       <DependentUpon>ResGraphs.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ViewModel\Consultation\Graphs\StructCodesGraphs.cs" />
-    <Compile Include="ViewModel\Consultation\GraphsSaisonCouranteUCViewModel.cs" />
-    <Compile Include="ViewModel\Formulaire\FormulaireAdherentUCViewModel.cs" />
-    <Compile Include="ViewModel\Formulaire\FormulaireGroupeUCViewModel.cs" />
-    <Compile Include="ViewModel\Formulaire\FormulaireInfosClubUCViewModel.cs" />
-    <Compile Include="ViewModel\Formulaire\FormulaireInscriptionUCViewModel.cs" />
-    <Compile Include="ViewModel\Formulaire\FormulaireParamsApplicationUCViewModel.cs" />
-    <Compile Include="ViewModel\Formulaire\FormulaireSaisonUCViewModel.cs" />
-    <Compile Include="ViewModel\Formulaire\FormulaireVilleUCViewModel.cs" />
-    <Compile Include="ViewModel\Formulaire\ResErreurs.Designer.cs">
+    <Compile Include="ViewModel\Stats\StructCodesGraphs.cs" />
+    <Compile Include="ViewModel\Stats\GraphsSaisonCouranteUCViewModel.cs" />
+    <Compile Include="ViewModel\Adherents\FormulaireAdherentUCViewModel.cs" />
+    <Compile Include="ViewModel\Groupes\FormulaireGroupeUCViewModel.cs" />
+    <Compile Include="ViewModel\InformationsClub\FormulaireInfosClubUCViewModel.cs" />
+    <Compile Include="ViewModel\Inscriptions\FormulaireInscriptionUCViewModel.cs" />
+    <Compile Include="ViewModel\ParametresApplication\FormulaireParamsApplicationUCViewModel.cs" />
+    <Compile Include="ViewModel\Saisons\FormulaireSaisonUCViewModel.cs" />
+    <Compile Include="ViewModel\Villes\FormulaireVilleUCViewModel.cs" />
+    <Compile Include="ViewModel\ResErreurs.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResErreurs.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\Consultation\ViewModelBaseConsultation.cs" />
-    <Compile Include="ViewModel\Formulaire\ViewModelBaseFormulaire.cs" />
+    <Compile Include="ViewModel\ViewModelBaseConsultation.cs" />
+    <Compile Include="ViewModel\ViewModelBaseFormulaire.cs" />
     <Compile Include="ViewModel\ViewModelBaseApplication.cs" />
     <Compile Include="ViewModel\ViewModelBaseUC.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -147,11 +147,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewModel\Consultation\Graphs\ResGraphs.resx">
+    <EmbeddedResource Include="ViewModel\Stats\ResGraphs.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResGraphs.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewModel\Formulaire\ResErreurs.resx">
+    <EmbeddedResource Include="ViewModel\ResErreurs.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResErreurs.Designer.cs</LastGenOutput>
     </EmbeddedResource>

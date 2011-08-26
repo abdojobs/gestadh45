@@ -1,5 +1,11 @@
-﻿using gestadh45.Ihm.ViewModel.Consultation;
-using gestadh45.Ihm.ViewModel.Formulaire;
+﻿using gestadh45.Ihm.ViewModel.Adherents;
+using gestadh45.Ihm.ViewModel.Groupes;
+using gestadh45.Ihm.ViewModel.InformationsCLub;
+using gestadh45.Ihm.ViewModel.Inscriptions;
+using gestadh45.Ihm.ViewModel.ParametresApplication;
+using gestadh45.Ihm.ViewModel.Saisons;
+using gestadh45.Ihm.ViewModel.Stats;
+using gestadh45.Ihm.ViewModel.Villes;
 
 namespace gestadh45.Ihm.ViewModel
 {
