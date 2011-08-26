@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gestadh45.Ihm.ViewModel.Stats {
+namespace gestadh45.Ihm.ViewModel.Stats.Graphs {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace gestadh45.Ihm.ViewModel.Stats {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.Ihm.ViewModel.Stats.ResGraphs", typeof(ResGraphs).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.Ihm.ViewModel.Stats.Graphs.ResGraphs", typeof(ResGraphs).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
