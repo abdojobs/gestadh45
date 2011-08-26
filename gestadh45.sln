@@ -19,6 +19,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nsis", "nsis", "{4A5A2336-E
 		nsis\script_install.nsi = nsis\script_install.nsi
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{11428D83-658B-4190-A889-3D40D6FD0EE3}"
+	ProjectSection(SolutionItems) = preProject
+		Libs\GalaSoft.MvvmLight.Extras.WPF4.dll = Libs\GalaSoft.MvvmLight.Extras.WPF4.dll
+		Libs\GalaSoft.MvvmLight.WPF4.dll = Libs\GalaSoft.MvvmLight.WPF4.dll
+		Libs\itextsharp.dll = Libs\itextsharp.dll
+		Libs\SQLite.Interop.dll = Libs\SQLite.Interop.dll
+		Libs\System.Data.SQLite.dll = Libs\System.Data.SQLite.dll
+		Libs\System.Windows.Controls.DataVisualization.Toolkit.dll = Libs\System.Windows.Controls.DataVisualization.Toolkit.dll
+		Libs\System.Windows.Interactivity.dll = Libs\System.Windows.Interactivity.dll
+		Libs\WPFToolkit.dll = Libs\WPFToolkit.dll
+		Libs\WPFToolkit.Extended.dll = Libs\WPFToolkit.Extended.dll
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
