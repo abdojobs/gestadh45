@@ -3,11 +3,17 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Ihm.ViewModel.Formulaire;
-using gestadh45.Main.UserControls.Consultation;
-using gestadh45.Main.UserControls.Formulaire;
+using gestadh45.Main.UserControls.Adherents;
+using gestadh45.Main.UserControls.Groupes;
+using gestadh45.Main.UserControls.InfosClub;
+using gestadh45.Main.UserControls.Inscriptions;
+using gestadh45.Main.UserControls.ParamsApplication;
+using gestadh45.Main.UserControls.Saisons;
+using gestadh45.Main.UserControls.Villes;
 using gestadh45.model;
 using Microsoft.Win32;
 using forms = System.Windows.Forms;
+using gestadh45.Main.UserControls.Stats;
 
 namespace gestadh45.Main
 {
