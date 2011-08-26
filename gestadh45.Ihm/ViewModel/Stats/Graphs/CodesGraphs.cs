@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace gestadh45.Ihm.ViewModel.Consultation.Stats
+namespace gestadh45.Ihm.ViewModel.Consultation.Stats.Graphs
 {
 	public static class CodesGraphs
 	{

@@ -108,16 +108,16 @@
     <Compile Include="ViewModel\ParametresApplication\ConsultationParamsApplicationViewModel.cs" />
     <Compile Include="ViewModel\Saisons\ConsultationSaisonsUCViewModel.cs" />
     <Compile Include="ViewModel\Villes\ConsultationVillesUCViewModel.cs" />
-    <Compile Include="ViewModel\Stats\CodesGraphs.cs" />
-    <Compile Include="ViewModel\Stats\DonneesGraph.cs" />
-    <Compile Include="ViewModel\Stats\GenerateurGraph.cs" />
-    <Compile Include="ViewModel\Stats\Graphique.cs" />
-    <Compile Include="ViewModel\Stats\ResGraphs.Designer.cs">
+    <Compile Include="ViewModel\Stats\Graphs\CodesGraphs.cs" />
+    <Compile Include="ViewModel\Stats\Graphs\DonneesGraph.cs" />
+    <Compile Include="ViewModel\Stats\Graphs\GenerateurGraph.cs" />
+    <Compile Include="ViewModel\Stats\Graphs\Graphique.cs" />
+    <Compile Include="ViewModel\Stats\Graphs\ResGraphs.Designer.cs">
       <DependentUpon>ResGraphs.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ViewModel\Stats\StructCodesGraphs.cs" />
+    <Compile Include="ViewModel\Stats\Graphs\StructCodesGraphs.cs" />
     <Compile Include="ViewModel\Stats\GraphsSaisonCouranteUCViewModel.cs" />
     <Compile Include="ViewModel\Adherents\FormulaireAdherentUCViewModel.cs" />
     <Compile Include="ViewModel\Groupes\FormulaireGroupeUCViewModel.cs" />
@@ -147,7 +147,7 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewModel\Stats\ResGraphs.resx">
+    <EmbeddedResource Include="ViewModel\Stats\Graphs\ResGraphs.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResGraphs.Designer.cs</LastGenOutput>
     </EmbeddedResource>
