@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7D1DAFDD-8A59-4F52-9B5F-9D01AF975565}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>gestadh45.Ihm</RootNamespace>
+    <AssemblyName>gestadh45.Ihm</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\Libs\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\Libs\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainRessources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MainRessources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ObjetsIhm\NotificationIhm.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceAdaptateurs\ServiceDocumentAdaptateur.cs" />
+    <Compile Include="ServiceAdaptateurs\ServiceVCardAdaptateur.cs" />
+    <Compile Include="CodesUC.cs" />
+    <Compile Include="SpecialMessages\DialogMessageConfirmation.cs" />
+    <Compile Include="SpecialMessages\MsgAfficherUC.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageAboutBox.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageActionFileDialog.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageActionFolderDialog.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageConsultationExtractions.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageFermetureFenetre.cs" />
+    <Compile Include="SpecialMessages\MsgNotificationIhm.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageOuvertureFenetre.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageSelectionElement.cs" />
+    <Compile Include="SpecialMessages\NotificationMessageTransition.cs" />
+    <Compile Include="SpecialMessages\ResMessages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResMessages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialMessages\TypesNotification.cs" />
+    <Compile Include="Tools\BooleanInversionConverter.cs" />
+    <Compile Include="Tools\ChampNonNullValidateur.cs" />
+    <Compile Include="Tools\ChampTexteObligatoireValidateur.cs" />
+    <Compile Include="Tools\HexaColorStringToBrushCOnverter.cs" />
+    <Compile Include="Tools\ListToStringConverter.cs" />
+    <Compile Include="Tools\TransitionHelper.cs" />
+    <Compile Include="ViewModel\Consultation\ConsultationAdherentsUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\ConsultationExtractionsUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\ConsultationGroupesUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\ConsultationInfosClubUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\ConsultationInscriptionsUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\ConsultationSaisonsUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\ConsultationVillesUCViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\GraphsSaisonCouranteUCViewModel.cs" />
+    <Compile Include="ViewModel\Formulaire\FormulaireAdherentUCViewModel.cs" />
+    <Compile Include="ViewModel\Formulaire\FormulaireGroupeUCViewModel.cs" />
+    <Compile Include="ViewModel\Formulaire\FormulaireInfosClubUCViewModel.cs" />
+    <Compile Include="ViewModel\Formulaire\FormulaireInscriptionUCViewModel.cs" />
+    <Compile Include="ViewModel\Formulaire\FormulaireSaisonUCViewModel.cs" />
+    <Compile Include="ViewModel\Formulaire\FormulaireVilleUCViewModel.cs" />
+    <Compile Include="ViewModel\Formulaire\ResErreurs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResErreurs.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\Consultation\ViewModelBaseConsultation.cs" />
+    <Compile Include="ViewModel\Formulaire\ViewModelBaseFormulaire.cs" />
+    <Compile Include="ViewModel\ViewModelBaseApplication.cs" />
+    <Compile Include="ViewModel\ViewModelBaseUC.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MainRessources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MainRessources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SpecialMessages\ResMessages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResMessages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\Formulaire\ResErreurs.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResErreurs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gestadh45.dao\gestadh45.dao.csproj">
+      <Project>{5121D3C9-6745-405D-9374-DE1833907A07}</Project>
+      <Name>gestadh45.dao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.Model\gestadh45.Model.csproj">
+      <Project>{30A7733E-EAFD-4469-BDC8-7332A92E6585}</Project>
+      <Name>gestadh45.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.service\gestadh45.service.csproj">
+      <Project>{F965A907-9B56-412D-AF80-69BDDD9B3AF8}</Project>
+      <Name>gestadh45.service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Defaut_CodePostalVilleClub" xml:space="preserve">
+    <value>00000</value>
+  </data>
+  <data name="Defaut_LibelleAdresseClub" xml:space="preserve">
+    <value>&lt;ADRESSE CLUB&gt;</value>
+  </data>
+  <data name="Defaut_LibelleVilleClub" xml:space="preserve">
+    <value>&lt;VILLECLUB&gt;</value>
+  </data>
+  <data name="Defaut_NomClub" xml:space="preserve">
+    <value>&lt;NOMCLUB&gt;</value>
+  </data>
+  <data name="SQL_CreateTables" xml:space="preserve">
+    <value>CREATE TABLE [Adherent] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Nom] nvarchar(50) NOT NULL,
+
+    [Prenom] nvarchar(50) NOT NULL,
+
+    [DateNaissance] datetime NOT NULL,
+
+    [DateCreation] datetime NOT NULL,
+
+    [DateModification] datetime NOT NULL,
+
+    [ID_Sexe] integer NOT NULL,
+
+    [Commentaire] ntext,
+
+    [ID_Adresse] integer NOT NULL,
+
+    [ID_Contact] integer NOT NULL,
+
+    CONSTRAINT [FK_Adherent_0] FOREIGN KEY ([ID_Sexe]) REFERENCES [Sexe] ([ID]),
+
+    CONSTRAINT [FK_Adherent_1] FOREIGN KEY ([ID_Adresse]) REFERENCES [Adresse] ([ID]),
+
+    CONSTRAINT [FK_Adherent_ID_Contact_Contact_ID] FOREIGN KEY ([ID_Contact]) REFERENCES [Contact] ([ID])
+
+);
+
+CREATE TABLE [Adresse] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Libelle] nvarchar(100) NOT NULL,
+
+    [ID_Ville] integer NOT NULL,
+
+    CONSTRAINT [FK_Adresse_ID_Ville_Ville_ID] FOREIGN KEY ([ID_Ville]) REFERENCES [Ville] ([ID])
+
+);
+
+CREATE TABLE [Contact] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Telephone1] nvarchar(10),
+
+    [Telephone2] nvarchar(10),
+
+    [Telephone3] nvarchar(10),
+
+    [Mail1] nvarchar(100),
+
+    [Mail2] nvarchar(100),
+
+    [Mail3] nvarchar(100),
+
+    [SiteWeb] nvarchar(100)
+
+);
+
+CREATE TABLE [Groupe] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Libelle] nvarchar(50) NOT NULL,
+
+    [ID_JourSemaine] integer NOT NULL,
+
+    [HeureDebutDT] datetime NOT NULL,
+
+    [HeureFinDT] datetime NOT NULL,
+
+    [NbPlaces] integer NOT NULL,
+
+    [Commentaire] ntext,
+
+    [ID_Saison] integer NOT NULL,
+
+    CONSTRAINT [FK_Groupe_0] FOREIGN KEY ([ID_Saison]) REFERENCES [Saison] ([ID]),
+
+    CONSTRAINT [FK_Groupe_1] FOREIGN KEY ([ID_JourSemaine]) REFERENCES [JourSemaine] ([ID])
+
+);
+
+CREATE TABLE [InfosClub] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Nom] nvarchar(50) NOT NULL,
+
+    [ID_Adresse] integer NOT NULL,
+
+    [ID_Contact] integer NOT NULL,
+
+    [Numero] nvarchar(20),
+
+    [Siren] nvarchar(9),
+
+    [NIC] nvarchar(5),
+
+    CONSTRAINT [FK_InfosClub_0] FOREIGN KEY ([ID_Adresse]) REFERENCES [Adresse] ([ID]),
+
+    CONSTRAINT [FK_InfosClub_1] FOREIGN KEY ([ID_Contact]) REFERENCES [Contact] ([ID])
+
+);
+
+CREATE TABLE [Inscription] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [ID_Adherent] integer NOT NULL,
+
+    [ID_Groupe] integer NOT NULL,
+
+    [CertificatMedicalRemis] integer NOT NULL DEFAULT 0,
+
+    [Cotisation] money DEFAULT 0,
+
+    [DateCreation] datetime NOT NULL,
+
+    [DateModification] datetime NOT NULL,
+
+    [Commentaire] ntext,
+
+    CONSTRAINT [FK_Inscription_0] FOREIGN KEY ([ID_Adherent]) REFERENCES [Adherent] ([ID]),
+
+    CONSTRAINT [FK_Inscription_2] FOREIGN KEY ([ID_Groupe]) REFERENCES [Groupe] ([ID])
+
+);
+
+CREATE TABLE [JourSemaine] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Numero] integer NOT NULL,
+
+    [Libelle] nvarchar(50) NOT NULL
+
+);
+
+CREATE TABLE [Saison] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [EstSaisonCourante] integer NOT NULL DEFAULT 0,
+
+    [AnneeDebut] integer NOT NULL,
+
+    [AnneeFin] integer NOT NULL
+
+);
+
+CREATE TABLE [Sexe] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [LibelleCourt] nvarchar(1) NOT NULL,
+
+    [LibelleLong] nvarchar(50) NOT NULL
+
+);
+
+CREATE TABLE [TarifConseille] (
+
+    [ID] integer PRIMARY KEY NOT NULL,
+
+    [AgeDebut] integer NOT NULL,
+
+    [AgeFin] integer NOT NULL,
+
+    [EstResident] integer NOT NULL,
+
+    [Montant] money NOT NULL
+
+);
+
+CREATE TABLE [Ville] (
+
+    [ID] integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+
+    [Libelle] nvarchar(50) NOT NULL,
+
+    [CodePostal] nvarchar(5) NOT NULL
+
+);</value>
+  </data>
+  <data name="SQL_DropTables" xml:space="preserve">
+    <value>DROP TABLE IF EXISTS [Adherent];
+DROP TABLE IF EXISTS [Adresse];
+DROP TABLE IF EXISTS [Contact];
+DROP TABLE IF EXISTS [Groupe];
+DROP TABLE IF EXISTS [InfosClub];
+DROP TABLE IF EXISTS [Inscription];
+DROP TABLE IF EXISTS [JourSemaine];
+DROP TABLE IF EXISTS [Saison];
+DROP TABLE IF EXISTS [Sexe];
+DROP TABLE IF EXISTS [TarifConseille];
+DROP TABLE IF EXISTS [Ville];</value>
+  </data>
+  <data name="SQL_InsertData" xml:space="preserve">
+    <value>-- Alimentation des tables de reference
+INSERT INTO JourSemaine VALUES(1,1,'Lundi');
+INSERT INTO JourSemaine VALUES(2,2,'Mardi');
+INSERT INTO JourSemaine VALUES(3,3,'Mercredi');
+INSERT INTO JourSemaine VALUES(4,4,'Jeudi');
+INSERT INTO JourSemaine VALUES(5,5,'Vendredi');
+INSERT INTO JourSemaine VALUES(6,6,'Samedi');
+INSERT INTO JourSemaine VALUES(7,7,'Dimanche');
+
+INSERT INTO Sexe VALUES(1,'M','Masculin');
+INSERT INTO Sexe VALUES(2,'F','Féminin');
+
+-- Insertion des donnees indispensable pour lancer l'application
+INSERT INTO Ville VALUES(1,'{0}','{1}');
+INSERT INTO Adresse VALUES(1,'{2}',1);
+INSERT INTO Contact VALUES(1,'','','','','','','');
+INSERT INTO InfosClub VALUES(1,'{3}',1,1,'','','');
+INSERT INTO Saison VALUES(1, 1, {4}, {5});</value>
+  </data>
+</root>
