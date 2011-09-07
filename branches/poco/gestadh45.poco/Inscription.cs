@@ -59,7 +59,7 @@ namespace gestadh45.poco
         }
         private long _iD_Groupe;
     
-        public virtual long CertificatMedicalRemis
+        public virtual bool CertificatMedicalRemis
         {
             get;
             set;

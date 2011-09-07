@@ -852,9 +852,9 @@ namespace gestadh45.data
         /// <param name="iD_JourSemaine">Valeur initiale de la propriété ID_JourSemaine.</param>
         /// <param name="nbPlaces">Valeur initiale de la propriété NbPlaces.</param>
         /// <param name="iD_Saison">Valeur initiale de la propriété ID_Saison.</param>
-        /// <param name="heureDebutDT">Valeur initiale de la propriété HeureDebutDT.</param>
-        /// <param name="heureFinDT">Valeur initiale de la propriété HeureFinDT.</param>
-        public static Groupe CreateGroupe(global::System.Int64 id, global::System.String libelle, global::System.Int64 iD_JourSemaine, global::System.Int64 nbPlaces, global::System.Int64 iD_Saison, global::System.DateTime heureDebutDT, global::System.DateTime heureFinDT)
+        /// <param name="heureDebut">Valeur initiale de la propriété HeureDebut.</param>
+        /// <param name="heureFin">Valeur initiale de la propriété HeureFin.</param>
+        public static Groupe CreateGroupe(global::System.Int64 id, global::System.String libelle, global::System.Int64 iD_JourSemaine, global::System.Int64 nbPlaces, global::System.Int64 iD_Saison, global::System.DateTime heureDebut, global::System.DateTime heureFin)
         {
             Groupe groupe = new Groupe();
             groupe.ID = id;
@@ -862,8 +862,8 @@ namespace gestadh45.data
             groupe.ID_JourSemaine = iD_JourSemaine;
             groupe.NbPlaces = nbPlaces;
             groupe.ID_Saison = iD_Saison;
-            groupe.HeureDebutDT = heureDebutDT;
-            groupe.HeureFinDT = heureFinDT;
+            groupe.HeureDebut = heureDebut;
+            groupe.HeureFin = heureFin;
             return groupe;
         }
 
@@ -1022,48 +1022,48 @@ namespace gestadh45.data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime HeureDebutDT
+        public global::System.DateTime HeureDebut
         {
             get
             {
-                return _HeureDebutDT;
+                return _HeureDebut;
             }
             set
             {
-                OnHeureDebutDTChanging(value);
-                ReportPropertyChanging("HeureDebutDT");
-                _HeureDebutDT = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("HeureDebutDT");
-                OnHeureDebutDTChanged();
+                OnHeureDebutChanging(value);
+                ReportPropertyChanging("HeureDebut");
+                _HeureDebut = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HeureDebut");
+                OnHeureDebutChanged();
             }
         }
-        private global::System.DateTime _HeureDebutDT;
-        partial void OnHeureDebutDTChanging(global::System.DateTime value);
-        partial void OnHeureDebutDTChanged();
+        private global::System.DateTime _HeureDebut;
+        partial void OnHeureDebutChanging(global::System.DateTime value);
+        partial void OnHeureDebutChanged();
     
         /// <summary>
         /// Aucune documentation sur les métadonnées n'est disponible.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.DateTime HeureFinDT
+        public global::System.DateTime HeureFin
         {
             get
             {
-                return _HeureFinDT;
+                return _HeureFin;
             }
             set
             {
-                OnHeureFinDTChanging(value);
-                ReportPropertyChanging("HeureFinDT");
-                _HeureFinDT = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("HeureFinDT");
-                OnHeureFinDTChanged();
+                OnHeureFinChanging(value);
+                ReportPropertyChanging("HeureFin");
+                _HeureFin = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HeureFin");
+                OnHeureFinChanged();
             }
         }
-        private global::System.DateTime _HeureFinDT;
-        partial void OnHeureFinDTChanging(global::System.DateTime value);
-        partial void OnHeureFinDTChanged();
+        private global::System.DateTime _HeureFin;
+        partial void OnHeureFinChanging(global::System.DateTime value);
+        partial void OnHeureFinChanged();
 
         #endregion
     
@@ -1504,7 +1504,7 @@ namespace gestadh45.data
         /// <param name="dateCreation">Valeur initiale de la propriété DateCreation.</param>
         /// <param name="dateModification">Valeur initiale de la propriété DateModification.</param>
         /// <param name="iD_StatutInscription">Valeur initiale de la propriété ID_StatutInscription.</param>
-        public static Inscription CreateInscription(global::System.Int64 id, global::System.Int64 iD_Adherent, global::System.Int64 iD_Groupe, global::System.Int64 certificatMedicalRemis, global::System.DateTime dateCreation, global::System.DateTime dateModification, global::System.Int64 iD_StatutInscription)
+        public static Inscription CreateInscription(global::System.Int64 id, global::System.Int64 iD_Adherent, global::System.Int64 iD_Groupe, global::System.Boolean certificatMedicalRemis, global::System.DateTime dateCreation, global::System.DateTime dateModification, global::System.Int64 iD_StatutInscription)
         {
             Inscription inscription = new Inscription();
             inscription.ID = id;
@@ -1600,7 +1600,7 @@ namespace gestadh45.data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 CertificatMedicalRemis
+        public global::System.Boolean CertificatMedicalRemis
         {
             get
             {
@@ -1615,8 +1615,8 @@ namespace gestadh45.data
                 OnCertificatMedicalRemisChanged();
             }
         }
-        private global::System.Int64 _CertificatMedicalRemis;
-        partial void OnCertificatMedicalRemisChanging(global::System.Int64 value);
+        private global::System.Boolean _CertificatMedicalRemis;
+        partial void OnCertificatMedicalRemisChanging(global::System.Boolean value);
         partial void OnCertificatMedicalRemisChanged();
     
         /// <summary>
@@ -2009,7 +2009,7 @@ namespace gestadh45.data
         /// <param name="estSaisonCourante">Valeur initiale de la propriété EstSaisonCourante.</param>
         /// <param name="anneeDebut">Valeur initiale de la propriété AnneeDebut.</param>
         /// <param name="anneeFin">Valeur initiale de la propriété AnneeFin.</param>
-        public static Saison CreateSaison(global::System.Int64 id, global::System.Int64 estSaisonCourante, global::System.Int64 anneeDebut, global::System.Int64 anneeFin)
+        public static Saison CreateSaison(global::System.Int64 id, global::System.Boolean estSaisonCourante, global::System.Int64 anneeDebut, global::System.Int64 anneeFin)
         {
             Saison saison = new Saison();
             saison.ID = id;
@@ -2054,7 +2054,7 @@ namespace gestadh45.data
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 EstSaisonCourante
+        public global::System.Boolean EstSaisonCourante
         {
             get
             {
@@ -2069,8 +2069,8 @@ namespace gestadh45.data
                 OnEstSaisonCouranteChanged();
             }
         }
-        private global::System.Int64 _EstSaisonCourante;
-        partial void OnEstSaisonCouranteChanging(global::System.Int64 value);
+        private global::System.Boolean _EstSaisonCourante;
+        partial void OnEstSaisonCouranteChanging(global::System.Boolean value);
         partial void OnEstSaisonCouranteChanged();
     
         /// <summary>

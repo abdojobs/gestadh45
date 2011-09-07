@@ -25,7 +25,7 @@ namespace gestadh45.poco
             set;
         }
     
-        public virtual long EstSaisonCourante
+        public virtual bool EstSaisonCourante
         {
             get;
             set;

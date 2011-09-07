@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="gestadh45.data.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="gestadh45.data.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gestadh45dataStoreContainer">
           <EntitySet Name="Adherent" EntityType="gestadh45.data.Store.Adherent" store:Type="Tables" />
           <EntitySet Name="Groupe" EntityType="gestadh45.data.Store.Groupe" store:Type="Tables" />
@@ -24,28 +24,16 @@
             <End Role="Adherent" EntitySet="Adherent" />
           </AssociationSet>
           <AssociationSet Name="FK_Groupe_0" Association="gestadh45.data.Store.FK_Groupe_0">
-            <End Role="Saison" EntitySet="Saison" />
+            <End Role="JourSemaine" EntitySet="JourSemaine" />
             <End Role="Groupe" EntitySet="Groupe" />
           </AssociationSet>
           <AssociationSet Name="FK_Groupe_1" Association="gestadh45.data.Store.FK_Groupe_1">
-            <End Role="JourSemaine" EntitySet="JourSemaine" />
+            <End Role="Saison" EntitySet="Saison" />
             <End Role="Groupe" EntitySet="Groupe" />
           </AssociationSet>
           <AssociationSet Name="FK_InfosClub_0" Association="gestadh45.data.Store.FK_InfosClub_0">
             <End Role="Ville" EntitySet="Ville" />
             <End Role="InfosClub" EntitySet="InfosClub" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inscription_0" Association="gestadh45.data.Store.FK_Inscription_0">
-            <End Role="Adherent" EntitySet="Adherent" />
-            <End Role="Inscription" EntitySet="Inscription" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inscription_1" Association="gestadh45.data.Store.FK_Inscription_1">
-            <End Role="Groupe" EntitySet="Groupe" />
-            <End Role="Inscription" EntitySet="Inscription" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Inscription_2" Association="gestadh45.data.Store.FK_Inscription_2">
-            <End Role="StatutInscription" EntitySet="StatutInscription" />
-            <End Role="Inscription" EntitySet="Inscription" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Adherent">
@@ -79,8 +67,8 @@
           <Property Name="NbPlaces" Type="integer" Nullable="false" />
           <Property Name="Commentaire" Type="nvarchar" />
           <Property Name="ID_Saison" Type="integer" Nullable="false" />
-          <Property Name="HeureDebutDT" Type="datetime" Nullable="false" />
-          <Property Name="HeureFinDT" Type="datetime" Nullable="false" />
+          <Property Name="HeureDebut" Type="datetime" Nullable="false" />
+          <Property Name="HeureFin" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="InfosClub">
           <Key>
@@ -104,12 +92,12 @@
           <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ID_Adherent" Type="integer" Nullable="false" />
           <Property Name="ID_Groupe" Type="integer" Nullable="false" />
-          <Property Name="CertificatMedicalRemis" Type="integer" Nullable="false" />
           <Property Name="Cotisation" Type="decimal" Precision="53" />
           <Property Name="DateCreation" Type="datetime" Nullable="false" />
           <Property Name="DateModification" Type="datetime" Nullable="false" />
           <Property Name="Commentaire" Type="nvarchar" />
           <Property Name="ID_StatutInscription" Type="integer" Nullable="false" />
+          <Property Name="CertificatMedicalRemis" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="JourSemaine">
           <Key>
@@ -124,7 +112,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="EstSaisonCourante" Type="integer" Nullable="false" />
+          <Property Name="EstSaisonCourante" Type="bit" Nullable="false" />
           <Property Name="AnneeDebut" Type="integer" Nullable="false" />
           <Property Name="AnneeFin" Type="integer" Nullable="false" />
         </EntityType>
@@ -178,18 +166,6 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Groupe_0">
-          <End Role="Saison" Type="gestadh45.data.Store.Saison" Multiplicity="1" />
-          <End Role="Groupe" Type="gestadh45.data.Store.Groupe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Saison">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Groupe">
-              <PropertyRef Name="ID_Saison" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Groupe_1">
           <End Role="JourSemaine" Type="gestadh45.data.Store.JourSemaine" Multiplicity="1" />
           <End Role="Groupe" Type="gestadh45.data.Store.Groupe" Multiplicity="*" />
           <ReferentialConstraint>
@@ -198,6 +174,18 @@
             </Principal>
             <Dependent Role="Groupe">
               <PropertyRef Name="ID_JourSemaine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groupe_1">
+          <End Role="Saison" Type="gestadh45.data.Store.Saison" Multiplicity="1" />
+          <End Role="Groupe" Type="gestadh45.data.Store.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saison">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="ID_Saison" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -213,44 +201,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Inscription_0">
-          <End Role="Adherent" Type="gestadh45.data.Store.Adherent" Multiplicity="1" />
-          <End Role="Inscription" Type="gestadh45.data.Store.Inscription" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adherent">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Inscription">
-              <PropertyRef Name="ID_Adherent" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inscription_1">
-          <End Role="Groupe" Type="gestadh45.data.Store.Groupe" Multiplicity="1" />
-          <End Role="Inscription" Type="gestadh45.data.Store.Inscription" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Groupe">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Inscription">
-              <PropertyRef Name="ID_Groupe" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Inscription_2">
-          <End Role="StatutInscription" Type="gestadh45.data.Store.StatutInscription" Multiplicity="1" />
-          <End Role="Inscription" Type="gestadh45.data.Store.Inscription" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StatutInscription">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Inscription">
-              <PropertyRef Name="ID_StatutInscription" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gestadh45.data" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -331,11 +282,11 @@
           <Property Name="NbPlaces" Type="Int64" Nullable="false" />
           <Property Name="Commentaire" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <Property Name="ID_Saison" Type="Int64" Nullable="false" />
-          <Property Name="HeureDebutDT" Type="DateTime" Nullable="false" />
-          <Property Name="HeureFinDT" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="Saison" Relationship="gestadh45.data.FK_Groupe_0" FromRole="Groupe" ToRole="Saison" />
           <NavigationProperty Name="JourSemaine" Relationship="gestadh45.data.FK_Groupe_1" FromRole="Groupe" ToRole="JourSemaine" />
           <NavigationProperty Name="Inscription" Relationship="gestadh45.data.FK_Inscription_1" FromRole="Groupe" ToRole="Inscription" />
+          <Property Type="DateTime" Name="HeureDebut" Nullable="false" />
+          <Property Type="DateTime" Name="HeureFin" Nullable="false" />
         </EntityType>
         <EntityType Name="InfosClub">
           <Key>
@@ -360,7 +311,7 @@
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_Adherent" Type="Int64" Nullable="false" />
           <Property Name="ID_Groupe" Type="Int64" Nullable="false" />
-          <Property Name="CertificatMedicalRemis" Type="Int64" Nullable="false" />
+          <Property Name="CertificatMedicalRemis" Type="Boolean" Nullable="false" />
           <Property Name="Cotisation" Type="Decimal" Precision="53" Scale="0" />
           <Property Name="DateCreation" Type="DateTime" Nullable="false" />
           <Property Name="DateModification" Type="DateTime" Nullable="false" />
@@ -384,7 +335,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EstSaisonCourante" Type="Int64" Nullable="false" />
+          <Property Name="EstSaisonCourante" Type="Boolean" Nullable="false" />
           <Property Name="AnneeDebut" Type="Int64" Nullable="false" />
           <Property Name="AnneeFin" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Groupe" Relationship="gestadh45.data.FK_Groupe_0" FromRole="Saison" ToRole="Groupe" />
@@ -539,15 +490,15 @@
             <ScalarProperty Name="Mail3" ColumnName="Mail3" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Groupe"><EntityTypeMapping TypeName="gestadh45.data.Groupe"><MappingFragment StoreEntitySet="Groupe">
-            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="HeureFin" ColumnName="HeureFin" />
+                <ScalarProperty Name="HeureDebut" ColumnName="HeureDebut" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="Libelle" ColumnName="Libelle" />
             <ScalarProperty Name="ID_JourSemaine" ColumnName="ID_JourSemaine" />
             <ScalarProperty Name="NbPlaces" ColumnName="NbPlaces" />
             <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
             <ScalarProperty Name="ID_Saison" ColumnName="ID_Saison" />
-            <ScalarProperty Name="HeureDebutDT" ColumnName="HeureDebutDT" />
-            <ScalarProperty Name="HeureFinDT" ColumnName="HeureFinDT" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+            </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="InfosClub"><EntityTypeMapping TypeName="gestadh45.data.InfosClub"><MappingFragment StoreEntitySet="InfosClub">
             <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="Nom" ColumnName="Nom" />
@@ -620,7 +571,7 @@
     <Diagrams>
       <Diagram Name="datasource">
         <EntityTypeShape EntityType="gestadh45.data.Adherent" Width="1.5" PointX="3" PointY="4.125" Height="4.0575162760416665" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestadh45.data.Groupe" Width="1.5" PointX="3" PointY="14.625" Height="2.7427376302083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45.data.Groupe" Width="1.5" PointX="3" PointY="14.625" Height="2.7427376302083353" IsExpanded="true" />
         <EntityTypeShape EntityType="gestadh45.data.InfosClub" Width="1.5" PointX="3" PointY="9.625" Height="2.7427376302083317" IsExpanded="true" />
         <EntityTypeShape EntityType="gestadh45.data.Inscription" Width="1.5" PointX="5.25" PointY="4.75" Height="2.9070849609374996" IsExpanded="true" />
         <EntityTypeShape EntityType="gestadh45.data.JourSemaine" Width="1.5" PointX="0.75" PointY="13.875" Height="1.5923063151041674" IsExpanded="true" />
@@ -643,16 +594,16 @@
           <ConnectorPoint PointX="5.25" PointY="6.20354248046875" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.data.FK_Groupe_0" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="16.808868815104166" />
-          <ConnectorPoint PointX="3" PointY="16.808868815104166" />
+          <ConnectorPoint PointX="2.25" PointY="16.808868815104169" />
+          <ConnectorPoint PointX="3" PointY="16.808868815104169" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.data.FK_Groupe_1" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="15.046153157552084" />
           <ConnectorPoint PointX="3" PointY="15.046153157552084" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.data.FK_Inscription_1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="15.996368815104166" />
-          <ConnectorPoint PointX="6" PointY="15.996368815104166" />
+          <ConnectorPoint PointX="4.5" PointY="15.996368815104168" />
+          <ConnectorPoint PointX="6" PointY="15.996368815104168" />
           <ConnectorPoint PointX="6" PointY="7.6570849609375" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45.data.FK_InfosClub_0" ManuallyRouted="false">
