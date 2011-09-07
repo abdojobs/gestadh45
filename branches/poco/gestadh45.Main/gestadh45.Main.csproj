@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2B20AE09-1106-4640-819C-2B3E65BB3D67}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>gestadh45.Main</RootNamespace>
+    <AssemblyName>gestadh45.Main</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>gestadh45.Main.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\Libs\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\Libs\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Libs\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\Libs\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Transitionals">
+      <HintPath>..\Libs\Transitionals.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\Libs\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended, Version=1.4.0.2, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="UCWindow.xaml.cs">
+      <DependentUpon>UCWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AffichageNotificationUC.xaml.cs">
+      <DependentUpon>AffichageNotificationUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BtnAjouterEditerSupprimerUC.xaml.cs">
+      <DependentUpon>BtnAjouterEditerSupprimerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BtnAnnulerEnregistrerUC.xaml.cs">
+      <DependentUpon>BtnAnnulerEnregistrerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultation\ConsultationAdherentsUC.xaml.cs">
+      <DependentUpon>ConsultationAdherentsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultation\ConsultationExtractionsUC.xaml.cs">
+      <DependentUpon>ConsultationExtractionsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultation\ConsultationGroupesUC.xaml.cs">
+      <DependentUpon>ConsultationGroupesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultation\ConsultationInfosClubUC.xaml.cs">
+      <DependentUpon>ConsultationInfosClubUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultation\ConsultationInscriptionsUC.xaml.cs">
+      <DependentUpon>ConsultationInscriptionsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultation\ConsultationSaisonsUC.xaml.cs">
+      <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultation\ConsultationVillesUC.xaml.cs">
+      <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Consultation\GraphsSaisonCouranteUC.xaml.cs">
+      <DependentUpon>GraphsSaisonCouranteUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireAdherentUC.xaml.cs">
+      <DependentUpon>FormulaireAdherentUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireGroupeUC.xaml.cs">
+      <DependentUpon>FormulaireGroupeUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireInfosClubUC.xaml.cs">
+      <DependentUpon>FormulaireInfosClubUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireInscriptionUC.xaml.cs">
+      <DependentUpon>FormulaireInscriptionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireSaisonUC.xaml.cs">
+      <DependentUpon>FormulaireSaisonUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Formulaire\FormulaireVilleUC.xaml.cs">
+      <DependentUpon>FormulaireVilleUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MenuPrincipalUC.xaml.cs">
+      <DependentUpon>MenuPrincipalUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFAboutBox.xaml.cs">
+      <DependentUpon>WPFAboutBox.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Skins\MainSkin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UCWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AffichageNotificationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BtnAjouterEditerSupprimerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BtnAnnulerEnregistrerUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Consultation\ConsultationAdherentsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Consultation\ConsultationExtractionsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Consultation\ConsultationGroupesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Consultation\ConsultationInfosClubUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Consultation\ConsultationInscriptionsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Consultation\ConsultationSaisonsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Consultation\ConsultationVillesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Consultation\GraphsSaisonCouranteUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Formulaire\FormulaireAdherentUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Formulaire\FormulaireGroupeUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Formulaire\FormulaireInfosClubUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Formulaire\FormulaireInscriptionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Formulaire\FormulaireSaisonUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Formulaire\FormulaireVilleUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MenuPrincipalUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WPFAboutBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Include="App.config" />
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gestadh45.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gestadh45.Ihm\gestadh45.Ihm.csproj">
+      <Project>{7D1DAFDD-8A59-4F52-9B5F-9D01AF975565}</Project>
+      <Name>gestadh45.Ihm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.Model\gestadh45.Model.csproj">
+      <Project>{30A7733E-EAFD-4469-BDC8-7332A92E6585}</Project>
+      <Name>gestadh45.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.service\gestadh45.service.csproj">
+      <Project>{F965A907-9B56-412D-AF80-69BDDD9B3AF8}</Project>
+      <Name>gestadh45.service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AboutLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_ouvrir.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_saisons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_city.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_adherents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_inscriptions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_groupes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_graphs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_inscrire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_annuler.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_moins.png" />
+    <Resource Include="Images\btn_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_add16.png" />
+    <Resource Include="Images\btn_mails16.png" />
+    <Resource Include="Images\btn_pdf16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_enregistrer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_creerDatabase.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
