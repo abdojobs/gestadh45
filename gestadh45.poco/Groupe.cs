@@ -77,13 +77,13 @@ namespace gestadh45.poco
         }
         private long _iD_Saison;
     
-        public virtual System.DateTime HeureDebutDT
+        public virtual System.DateTime HeureDebut
         {
             get;
             set;
         }
     
-        public virtual System.DateTime HeureFinDT
+        public virtual System.DateTime HeureFin
         {
             get;
             set;
