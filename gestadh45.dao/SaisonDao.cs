@@ -22,7 +22,7 @@ namespace gestadh45.dao
 			return saison;
 		}
 
-		public List<Saison> List() {
+		public IList<Saison> List() {
 			return (from s in Context.Saisons
 					orderby s.AnneeDebut ascending
 					select s).ToList();

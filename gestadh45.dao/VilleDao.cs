@@ -22,7 +22,7 @@ namespace gestadh45.dao
 			return ville;
 		}
 
-		public List<Ville> List() {
+		public IList<Ville> List() {
 			return Context.Villes.ToList();
 		}
 

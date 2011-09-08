@@ -6,6 +6,6 @@ namespace gestadh45.dao
 	public interface IStatutInscriptionDao : IDao<StatutInscription>
 	{
 		StatutInscription Read(int id);
-		List<StatutInscription> List();
+		IEnumerable<StatutInscription> List();
 	}
 }

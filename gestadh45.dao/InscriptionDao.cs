@@ -22,7 +22,7 @@ namespace gestadh45.dao
 			return inscription;
 		}
 
-		public List<Inscription> List() {
+		public IList<Inscription> List() {
 			return (from i in Context.Inscriptions
 					orderby
 						i.Adherent.Nom,
@@ -30,7 +30,7 @@ namespace gestadh45.dao
 					select i).ToList<Inscription>();
 		}
 
-		public List<Inscription> ListSaisonCourante() {
+		public IList<Inscription> ListSaisonCourante() {
 			return (from i in Context.Inscriptions
 					where i.Groupe.Saison.EstSaisonCourante
 					orderby

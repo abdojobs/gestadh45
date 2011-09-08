@@ -12,7 +12,7 @@ namespace gestadh45.dao
 					select s).First();
 		}
 
-		public List<Sexe> List() {
+		public IEnumerable<Sexe> List() {
 			return (from s in Context.Sexes
 					orderby s.LibelleCourt descending
 					select s).ToList();

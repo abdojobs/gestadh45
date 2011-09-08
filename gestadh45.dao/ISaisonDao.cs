@@ -9,7 +9,7 @@ namespace gestadh45.dao
 		Saison Read(int id);
 		Saison Update(Saison saison);
 
-		List<Saison> List();
+		IList<Saison> List();
 		Saison ReadSaisonCourante();
 		bool Exists(Saison saison);
 		bool IsUsed(Saison saison);

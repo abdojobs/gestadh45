@@ -22,7 +22,7 @@ namespace gestadh45.dao
 			return adherent;
 		}
 
-		public List<Adherent> List() {
+		public IList<Adherent> List() {
 			return (from a in Context.Adherents
 					orderby
 						a.Nom ascending,
