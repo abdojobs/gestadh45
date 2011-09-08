@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using gestadh45.dal;
 
-namespace gestadh45.Ihm.ViewModel.Consultation.Stats.Graphs
+namespace gestadh45.Ihm.ViewModel.Stats.Graphs
 {
 	public class DonneesGraph
 	{

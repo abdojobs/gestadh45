@@ -2,7 +2,7 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using gestadh45.dao;
-using gestadh45.Ihm.ViewModel.Consultation.Stats.Graphs;
+using gestadh45.Ihm.ViewModel.Stats.Graphs;
 
 namespace gestadh45.Ihm.ViewModel.Stats
 {

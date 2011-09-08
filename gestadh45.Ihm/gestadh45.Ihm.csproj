@@ -96,10 +96,10 @@
     <Compile Include="ViewModel\Stats\Graphs\DonneesGraph.cs" />
     <Compile Include="ViewModel\Stats\Graphs\GenerateurGraph.cs" />
     <Compile Include="ViewModel\Stats\Graphs\Graphique.cs" />
-    <Compile Include="ViewModel\Stats\Graphs\ResGraphs2.Designer.cs">
+    <Compile Include="ViewModel\Stats\Graphs\ResGraphs.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ResGraphs2.resx</DependentUpon>
+      <DependentUpon>ResGraphs.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Stats\Graphs\StructCodesGraphs.cs" />
     <Compile Include="ViewModel\Villes\ConsultationVillesUCViewModel.cs" />
@@ -135,9 +135,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResErreurs.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewModel\Stats\Graphs\ResGraphs2.resx">
+    <EmbeddedResource Include="ViewModel\Stats\Graphs\ResGraphs.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResGraphs2.Designer.cs</LastGenOutput>
+      <LastGenOutput>ResGraphs.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
