@@ -58,7 +58,7 @@
 							</TextBlock>
 							<TextBlock Grid.Row="2" Grid.Column="0" Text="Résidence : " VerticalAlignment="Center" />
 							<TextBlock Grid.Row="2" Grid.Column="1" Margin="0,5,0,5" 
-										Text="{Binding ElementName=cmbAdherents, Path=SelectedItem.Adresse.Ville}" />
+										Text="{Binding ElementName=cmbAdherents, Path=SelectedItem.Ville}" />
 						</Grid.Children>
 					</Grid>
 				</GroupBox>
