@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.dao
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.dao
 {
@@ -26,16 +26,16 @@ namespace gestadh45.dao
 			return (from g in Context.Groupes
 					orderby
 						g.JourSemaine.Numero ascending,
-						g.HeureDebutDT ascending
+						g.HeureDebut ascending
 					select g).ToList();
 		}
 
 		public List<Groupe> ListSaisonCourante() {
 			return (from g in Context.Groupes
-					where g.Saison.EstSaisonCourante == 1
+					where g.Saison.EstSaisonCourante
 					orderby
 						g.JourSemaine.Numero ascending,
-						g.HeureDebutDT ascending
+						g.HeureDebut ascending
 					select g).ToList();
 		}
 

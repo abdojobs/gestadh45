@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.dao
 {
@@ -34,7 +34,7 @@ namespace gestadh45.dao
 		}
 
 		public bool IsUsed(Ville ville) {
-			return ((from a in Context.Adresses
+			return ((from a in Context.Adherents
 					 where a.ID_Ville == ville.ID
 					 select a).Count() > 0);
 		}

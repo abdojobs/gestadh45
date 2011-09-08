@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.dao
 {
@@ -32,7 +32,7 @@ namespace gestadh45.dao
 
 		public List<Inscription> ListSaisonCourante() {
 			return (from i in Context.Inscriptions
-					where i.Groupe.Saison.EstSaisonCourante == 1
+					where i.Groupe.Saison.EstSaisonCourante
 					orderby
 						i.Adherent.Nom,
 						i.Adherent.Prenom

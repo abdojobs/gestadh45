@@ -46,10 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdherentDao.cs" />
-    <Compile Include="AdresseDao.cs" />
-    <Compile Include="ContactDao.cs" />
-    <Compile Include="IAdresseDao.cs" />
-    <Compile Include="IContactDao.cs" />
     <Compile Include="IStatutInscriptionDao.cs" />
     <Compile Include="ObjectContextManager.cs" />
     <Compile Include="DaoFactory.cs" />
@@ -76,9 +72,9 @@
     <Compile Include="VilleDao.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\gestadh45.Model\gestadh45.Model.csproj">
-      <Project>{30A7733E-EAFD-4469-BDC8-7332A92E6585}</Project>
-      <Name>gestadh45.Model</Name>
+    <ProjectReference Include="..\gestadh45.dal\gestadh45.dal.csproj">
+      <Project>{511AC6A7-B581-4B4E-946F-297AE7E731F1}</Project>
+      <Name>gestadh45.dal</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

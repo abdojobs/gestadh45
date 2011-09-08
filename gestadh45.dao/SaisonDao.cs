@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.dao
 {
@@ -30,7 +30,7 @@ namespace gestadh45.dao
 
 		public Saison ReadSaisonCourante() {
 			return (from s in Context.Saisons
-				   where s.EstSaisonCourante == 1
+				   where s.EstSaisonCourante
 				   select s).First();
 		}
 
