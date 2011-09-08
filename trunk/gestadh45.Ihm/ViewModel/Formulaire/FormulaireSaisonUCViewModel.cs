@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -51,7 +51,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			{
 				AnneeDebut = DateTime.Now.Year,
 				AnneeFin = DateTime.Now.Year + DureeSaison,
-				EstSaisonCouranteBool = false
+				EstSaisonCourante = false
 			};
 
 			this.CodeUCOrigine = CodesUC.ConsultationSaisons;

@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.dal;
 using gestadh45.service.Documents;
 using gestadh45.service.VCards;
 
@@ -188,7 +188,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 			StringBuilder lSb = new StringBuilder();
 
 			foreach (Inscription lInscription in this.Groupe.Inscriptions) {
-				lSb.Append(lInscription.Adherent.Contact.ChaineMails);
+				lSb.Append(lInscription.Adherent.ChaineMails);
 			}
 
 			Messenger.Default.Send<NotificationMessageConsultationExtractions>(

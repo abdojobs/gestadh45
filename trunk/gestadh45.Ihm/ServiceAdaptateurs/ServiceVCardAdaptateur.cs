@@ -1,4 +1,4 @@
-﻿using gestadh45.Model;
+﻿using gestadh45.dal;
 using gestadh45.service.VCards;
 
 namespace gestadh45.Ihm.ServiceAdaptateurs
@@ -11,13 +11,13 @@ namespace gestadh45.Ihm.ServiceAdaptateurs
 				Nom = pInscription.Adherent.Nom,
 				Prenom = pInscription.Adherent.Prenom,
 
-				Telephone1 = pInscription.Adherent.Contact.Telephone1,
-				Telephone2 = pInscription.Adherent.Contact.Telephone2,
-				Telephone3 = pInscription.Adherent.Contact.Telephone3,
+				Telephone1 = pInscription.Adherent.Telephone1,
+				Telephone2 = pInscription.Adherent.Telephone2,
+				Telephone3 = pInscription.Adherent.Telephone3,
 
-				Mail1 = pInscription.Adherent.Contact.Mail1,
-				Mail2 = pInscription.Adherent.Contact.Mail2,
-				Mail3 = pInscription.Adherent.Contact.Mail3,
+				Mail1 = pInscription.Adherent.Mail1,
+				Mail2 = pInscription.Adherent.Mail2,
+				Mail3 = pInscription.Adherent.Mail3,
 
 				LibelleGroupe = pInscription.Groupe.ToString()
 			};

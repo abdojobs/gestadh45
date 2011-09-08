@@ -5,7 +5,7 @@ using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -18,8 +18,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		private IVilleDao mDaoVille;
 		private ISexeDao mDaoSexe;
 		private IAdherentDao mDaoAdherent;
-		private IContactDao mDaoContact;
-		private IAdresseDao mDaoAdresse;
 
 		/// <summary>
 		/// Obtient/Définit l'objet du formulaire
@@ -70,12 +68,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 			this.mDaoVille = this.mDaoFactory.GetVilleDao();
 			this.mDaoSexe = this.mDaoFactory.GetSexeDao();
 			this.mDaoAdherent = this.mDaoFactory.GetAdherentDao();
-			this.mDaoContact = this.mDaoFactory.GetContactDao();
-			this.mDaoAdresse = this.mDaoFactory.GetAdresseDao();
 
 			this.Adherent = new Adherent();
-			this.Adherent.Adresse = new Adresse();
-			this.Adherent.Contact = new Contact();
 			this.Adherent.DateNaissance = DateTime.Now;
 
 			this.InitialisationListeVilles();
@@ -89,9 +83,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public override void ExecuteAnnulerCommand() {
 			if ((this.Adherent != null) && base.EstEdition) {
-				this.mDaoVille.Refresh(this.Adherent.Adresse.Ville);
-				this.mDaoAdresse.Refresh(this.Adherent.Adresse);
-				this.mDaoContact.Refresh(this.Adherent.Contact);
+				this.mDaoVille.Refresh(this.Adherent.Ville);
 				this.mDaoAdherent.Refresh(this.Adherent);
 			}
 			base.ExecuteAnnulerCommand();
@@ -142,7 +134,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		private void SelectionnerVille(NotificationMessageSelectionElement<Ville> msg) {
-			this.Adherent.Adresse.Ville = msg.Content;
+			this.Adherent.Ville = msg.Content;
 			this.RaisePropertyChanged(() => this.Adherent);
 		}
 
@@ -165,11 +157,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				lErreurs.Add(ResErreurs.Adherent_SexeObligatoire);
 			}
 
-			if (this.Adherent.Adresse == null || string.IsNullOrWhiteSpace(this.Adherent.Adresse.Libelle)) {
+			if (this.Adherent.Adresse == null || string.IsNullOrWhiteSpace(this.Adherent.Adresse)) {
 				lErreurs.Add(ResErreurs.Adherent_AdresseObligatoire);
 			}
 
-			if (this.Adherent.Adresse != null && this.Adherent.Adresse.Ville == null) {
+			if (this.Adherent.Adresse != null && this.Adherent.Ville == null) {
 				lErreurs.Add(ResErreurs.Adherent_VilleObligatoire);
 			}
 

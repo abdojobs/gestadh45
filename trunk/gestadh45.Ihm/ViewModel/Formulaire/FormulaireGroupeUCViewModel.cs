@@ -4,7 +4,7 @@ using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -90,8 +90,8 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				lErreurs.Add(ResErreurs.Groupe_JourObligatoire);
 			}
 
-			if (this.Groupe.HeureDebutDT.Hour > this.Groupe.HeureFinDT.Hour
-				|| (this.Groupe.HeureDebutDT.Hour == this.Groupe.HeureFinDT.Hour && this.Groupe.HeureDebutDT.Minute >= this.Groupe.HeureFinDT.Minute)) {
+			if (this.Groupe.HeureDebut.Hour > this.Groupe.HeureFin.Hour
+				|| (this.Groupe.HeureDebut.Hour == this.Groupe.HeureFin.Hour && this.Groupe.HeureDebut.Minute >= this.Groupe.HeureFin.Minute)) {
 			        lErreurs.Add(ResErreurs.Groupe_HeureFinSupHeureDebut);
 			}
 
