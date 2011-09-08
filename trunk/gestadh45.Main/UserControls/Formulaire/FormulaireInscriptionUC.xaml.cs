@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
-using gestadh45.Ihm.ViewModel.Formulaire;
 using gestadh45.dal;
+using gestadh45.Ihm.ViewModel.Inscriptions;
 
 namespace gestadh45.Main.UserControls.Formulaire
 {
