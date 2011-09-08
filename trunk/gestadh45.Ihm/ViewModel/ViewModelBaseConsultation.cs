@@ -20,8 +20,6 @@ namespace gestadh45.Ihm.ViewModel
 			this.CreateSupprimerCommand();
 			this.CreateAfficherDetailsCommand();
 			this.CreateFiltrerListeCommand();
-
-			Messenger.Default.Send(new NotificationMessageTransition(TransitionHelper.TranslationDroiteGauche));
 		}
 
 		protected void CreateCreerCommand() {
