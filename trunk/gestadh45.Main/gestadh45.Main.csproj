@@ -122,47 +122,47 @@
     <Compile Include="UserControls\BtnAnnulerEnregistrerUC.xaml.cs">
       <DependentUpon>BtnAnnulerEnregistrerUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Consultation\ConsultationAdherentsUC.xaml.cs">
+    <Compile Include="UserControls\Adherents\ConsultationAdherentsUC.xaml.cs">
       <DependentUpon>ConsultationAdherentsUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Consultation\ConsultationExtractionsUC.xaml.cs">
+    <Compile Include="UserControls\Common\ConsultationExtractionsUC.xaml.cs">
       <DependentUpon>ConsultationExtractionsUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Consultation\ConsultationGroupesUC.xaml.cs">
-      <DependentUpon>ConsultationGroupesUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Consultation\ConsultationInfosClubUC.xaml.cs">
+    <Compile Include="UserControls\InfosClubs\ConsultationInfosClubUC.xaml.cs">
       <DependentUpon>ConsultationInfosClubUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Consultation\ConsultationInscriptionsUC.xaml.cs">
+    <Compile Include="UserControls\Inscriptions\ConsultationInscriptionsUC.xaml.cs">
       <DependentUpon>ConsultationInscriptionsUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Consultation\ConsultationSaisonsUC.xaml.cs">
+    <Compile Include="UserControls\Saisons\ConsultationSaisonsUC.xaml.cs">
       <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Consultation\ConsultationVillesUC.xaml.cs">
+    <Compile Include="UserControls\Villes\ConsultationVillesUC.xaml.cs">
       <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Consultation\GraphsSaisonCouranteUC.xaml.cs">
+    <Compile Include="UserControls\Stats\GraphsSaisonCouranteUC.xaml.cs">
       <DependentUpon>GraphsSaisonCouranteUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Formulaire\FormulaireAdherentUC.xaml.cs">
+    <Compile Include="UserControls\Adherents\FormulaireAdherentUC.xaml.cs">
       <DependentUpon>FormulaireAdherentUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Formulaire\FormulaireGroupeUC.xaml.cs">
-      <DependentUpon>FormulaireGroupeUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Formulaire\FormulaireInfosClubUC.xaml.cs">
+    <Compile Include="UserControls\InfosClubs\FormulaireInfosClubUC.xaml.cs">
       <DependentUpon>FormulaireInfosClubUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Formulaire\FormulaireInscriptionUC.xaml.cs">
+    <Compile Include="UserControls\Inscriptions\FormulaireInscriptionUC.xaml.cs">
       <DependentUpon>FormulaireInscriptionUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Formulaire\FormulaireSaisonUC.xaml.cs">
+    <Compile Include="UserControls\Saisons\FormulaireSaisonUC.xaml.cs">
       <DependentUpon>FormulaireSaisonUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Formulaire\FormulaireVilleUC.xaml.cs">
+    <Compile Include="UserControls\Villes\FormulaireVilleUC.xaml.cs">
       <DependentUpon>FormulaireVilleUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Groupes\ConsultationGroupesUC.xaml.cs">
+      <DependentUpon>ConsultationGroupesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Groupes\FormulaireGroupeUC.xaml.cs">
+      <DependentUpon>FormulaireGroupeUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MenuPrincipalUC.xaml.cs">
       <DependentUpon>MenuPrincipalUC.xaml</DependentUpon>
@@ -202,61 +202,61 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Consultation\ConsultationAdherentsUC.xaml">
+    <Page Include="UserControls\Adherents\ConsultationAdherentsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Consultation\ConsultationExtractionsUC.xaml">
+    <Page Include="UserControls\Common\ConsultationExtractionsUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\InfosClubs\ConsultationInfosClubUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Consultation\ConsultationGroupesUC.xaml">
+    <Page Include="UserControls\Inscriptions\ConsultationInscriptionsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Consultation\ConsultationInfosClubUC.xaml">
+    <Page Include="UserControls\Saisons\ConsultationSaisonsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Consultation\ConsultationInscriptionsUC.xaml">
+    <Page Include="UserControls\Villes\ConsultationVillesUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Consultation\ConsultationSaisonsUC.xaml">
+    <Page Include="UserControls\Stats\GraphsSaisonCouranteUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Consultation\ConsultationVillesUC.xaml">
+    <Page Include="UserControls\Adherents\FormulaireAdherentUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Consultation\GraphsSaisonCouranteUC.xaml">
+    <Page Include="UserControls\InfosClubs\FormulaireInfosClubUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Formulaire\FormulaireAdherentUC.xaml">
+    <Page Include="UserControls\Inscriptions\FormulaireInscriptionUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Formulaire\FormulaireGroupeUC.xaml">
+    <Page Include="UserControls\Saisons\FormulaireSaisonUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Formulaire\FormulaireInfosClubUC.xaml">
+    <Page Include="UserControls\Villes\FormulaireVilleUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Formulaire\FormulaireInscriptionUC.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="UserControls\Groupes\ConsultationGroupesUC.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Formulaire\FormulaireSaisonUC.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="UserControls\Groupes\FormulaireGroupeUC.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Formulaire\FormulaireVilleUC.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MenuPrincipalUC.xaml">
       <SubType>Designer</SubType>
@@ -370,6 +370,7 @@
   <ItemGroup>
     <Resource Include="gestadh45.ico" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
