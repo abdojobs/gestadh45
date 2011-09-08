@@ -9,8 +9,8 @@ namespace gestadh45.dao
 		Inscription Read(int id);
 		Inscription Update(Inscription inscription);
 
-		List<Inscription> List();
-		List<Inscription> ListSaisonCourante();
+		IList<Inscription> List();
+		IList<Inscription> ListSaisonCourante();
 		bool Exists(Inscription inscription);
 	}
 }

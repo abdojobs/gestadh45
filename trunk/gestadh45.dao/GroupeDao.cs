@@ -22,7 +22,7 @@ namespace gestadh45.dao
 			return groupe;
 		}
 
-		public List<Groupe> List() {
+		public IList<Groupe> List() {
 			return (from g in Context.Groupes
 					orderby
 						g.JourSemaine.Numero ascending,
@@ -30,7 +30,7 @@ namespace gestadh45.dao
 					select g).ToList();
 		}
 
-		public List<Groupe> ListSaisonCourante() {
+		public IList<Groupe> ListSaisonCourante() {
 			return (from g in Context.Groupes
 					where g.Saison.EstSaisonCourante
 					orderby

@@ -13,7 +13,7 @@ namespace gestadh45.dao
 					select s).First();
 		}
 
-		public List<JourSemaine> List() {
+		public IEnumerable<JourSemaine> List() {
 			return (from j in Context.JourSemaines
 					orderby j.Numero ascending
 					select j).ToList();

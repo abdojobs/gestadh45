@@ -8,7 +8,7 @@ namespace gestadh45.Ihm.ViewModel.Stats
 {
 	public class GraphsSaisonCouranteUCViewModel : ViewModelBaseConsultation
 	{
-		private List<StructCodesGraphs> _listeGraphs;
+		private IList<StructCodesGraphs> _listeGraphs;
 		private Graphique _graphique;
 		private DonneesGraph _donneesGraph;
 
@@ -32,7 +32,7 @@ namespace gestadh45.Ihm.ViewModel.Stats
 		/// <summary>
 		/// Obtient/Définit la liste des graphs
 		/// </summary>
-		public List<StructCodesGraphs> ListeGraphs {
+		public IList<StructCodesGraphs> ListeGraphs {
 			get {
 				return this._listeGraphs;
 			}

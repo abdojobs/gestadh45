@@ -9,7 +9,7 @@ namespace gestadh45.dao
 		Adherent Read(int id);
 		Adherent Update(Adherent adherent);
 
-		List<Adherent> List();
+		IList<Adherent> List();
 		bool Exists(Adherent adherent);
 		bool IsUsed(Adherent adherent);
 	}

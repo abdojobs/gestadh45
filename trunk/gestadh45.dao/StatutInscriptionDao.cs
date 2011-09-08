@@ -12,7 +12,7 @@ namespace gestadh45.dao
 					select s).First();
 		}
 
-		public List<StatutInscription> List() {
+		public IEnumerable<StatutInscription> List() {
 			return (from s in Context.StatutInscriptions
 					orderby s.Libelle ascending
 					select s).ToList();

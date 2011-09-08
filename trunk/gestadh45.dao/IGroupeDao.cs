@@ -9,8 +9,8 @@ namespace gestadh45.dao
 		Groupe Read(int id);
 		Groupe Update(Groupe groupe);
 
-		List<Groupe> List();
-		List<Groupe> ListSaisonCourante();
+		IList<Groupe> List();
+		IList<Groupe> ListSaisonCourante();
 		bool Exists(Groupe groupe);
 		bool IsUsed(Groupe groupe);
 	}

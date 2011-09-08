@@ -9,7 +9,7 @@ namespace gestadh45.dao
 		Ville Read(int id);
 		Ville Update(Ville ville);
 
-		List<Ville> List();
+		IList<Ville> List();
 		bool Exists(Ville ville);
 		bool IsUsed(Ville ville);
 	}
