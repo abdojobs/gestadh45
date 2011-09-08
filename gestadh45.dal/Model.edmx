@@ -1,0 +1,557 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Adherent" EntityType="Model.Store.Adherent" store:Type="Tables" />
+          <EntitySet Name="Groupe" EntityType="Model.Store.Groupe" store:Type="Tables" />
+          <EntitySet Name="InfosClub" EntityType="Model.Store.InfosClub" store:Type="Tables" />
+          <EntitySet Name="Inscription" EntityType="Model.Store.Inscription" store:Type="Tables" />
+          <EntitySet Name="JourSemaine" EntityType="Model.Store.JourSemaine" store:Type="Tables" />
+          <EntitySet Name="Saison" EntityType="Model.Store.Saison" store:Type="Tables" />
+          <EntitySet Name="Sexe" EntityType="Model.Store.Sexe" store:Type="Tables" />
+          <EntitySet Name="StatutInscription" EntityType="Model.Store.StatutInscription" store:Type="Tables" />
+          <EntitySet Name="Ville" EntityType="Model.Store.Ville" store:Type="Tables" />
+          <AssociationSet Name="FK_Adherent_0" Association="Model.Store.FK_Adherent_0">
+            <End Role="Sexe" EntitySet="Sexe" />
+            <End Role="Adherent" EntitySet="Adherent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adherent_1" Association="Model.Store.FK_Adherent_1">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="Adherent" EntitySet="Adherent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groupe_0" Association="Model.Store.FK_Groupe_0">
+            <End Role="JourSemaine" EntitySet="JourSemaine" />
+            <End Role="Groupe" EntitySet="Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groupe_1" Association="Model.Store.FK_Groupe_1">
+            <End Role="Saison" EntitySet="Saison" />
+            <End Role="Groupe" EntitySet="Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfosClub_0" Association="Model.Store.FK_InfosClub_0">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="InfosClub" EntitySet="InfosClub" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Adherent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DateNaissance" Type="datetime" Nullable="false" />
+          <Property Name="DateCreation" Type="datetime" Nullable="false" />
+          <Property Name="DateModification" Type="datetime" Nullable="false" />
+          <Property Name="ID_Sexe" Type="integer" Nullable="false" />
+          <Property Name="Commentaire" Type="nvarchar" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID_Ville" Type="integer" Nullable="false" />
+          <Property Name="Telephone1" Type="nvarchar" MaxLength="10" />
+          <Property Name="Telephone2" Type="nvarchar" MaxLength="10" />
+          <Property Name="Telephone3" Type="nvarchar" MaxLength="10" />
+          <Property Name="Mail1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mail2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mail3" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Groupe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ID_JourSemaine" Type="integer" Nullable="false" />
+          <Property Name="NbPlaces" Type="integer" Nullable="false" />
+          <Property Name="Commentaire" Type="nvarchar" />
+          <Property Name="ID_Saison" Type="integer" Nullable="false" />
+          <Property Name="HeureDebut" Type="datetime" Nullable="false" />
+          <Property Name="HeureFin" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InfosClub">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="20" />
+          <Property Name="Siren" Type="nvarchar" MaxLength="9" />
+          <Property Name="NIC" Type="nvarchar" MaxLength="5" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID_Ville" Type="integer" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="10" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="5" />
+          <Property Name="SiteWeb" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Inscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Adherent" Type="integer" Nullable="false" />
+          <Property Name="ID_Groupe" Type="integer" Nullable="false" />
+          <Property Name="Cotisation" Type="decimal" Precision="53" />
+          <Property Name="DateCreation" Type="datetime" Nullable="false" />
+          <Property Name="DateModification" Type="datetime" Nullable="false" />
+          <Property Name="Commentaire" Type="nvarchar" />
+          <Property Name="ID_StatutInscription" Type="integer" Nullable="false" />
+          <Property Name="CertificatMedicalRemis" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JourSemaine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="integer" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Saison">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EstSaisonCourante" Type="bit" Nullable="false" />
+          <Property Name="AnneeDebut" Type="integer" Nullable="false" />
+          <Property Name="AnneeFin" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sexe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LibelleCourt" Type="nvarchar" Nullable="false" MaxLength="1" />
+          <Property Name="LibelleLong" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StatutInscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CodeCouleur" Type="nvarchar" Nullable="false" MaxLength="7" />
+          <Property Name="Ordre" Type="integer" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ville">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CodePostal" Type="nvarchar" Nullable="false" MaxLength="5" />
+        </EntityType>
+        <Association Name="FK_Adherent_0">
+          <End Role="Sexe" Type="Model.Store.Sexe" Multiplicity="1" />
+          <End Role="Adherent" Type="Model.Store.Adherent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sexe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adherent">
+              <PropertyRef Name="ID_Sexe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adherent_1">
+          <End Role="Ville" Type="Model.Store.Ville" Multiplicity="1" />
+          <End Role="Adherent" Type="Model.Store.Adherent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adherent">
+              <PropertyRef Name="ID_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groupe_0">
+          <End Role="JourSemaine" Type="Model.Store.JourSemaine" Multiplicity="1" />
+          <End Role="Groupe" Type="Model.Store.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JourSemaine">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="ID_JourSemaine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groupe_1">
+          <End Role="Saison" Type="Model.Store.Saison" Multiplicity="1" />
+          <End Role="Groupe" Type="Model.Store.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saison">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="ID_Saison" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfosClub_0">
+          <End Role="Ville" Type="Model.Store.Ville" Multiplicity="0..1" />
+          <End Role="InfosClub" Type="Model.Store.InfosClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InfosClub">
+              <PropertyRef Name="ID_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adherents" EntityType="Model.Adherent" />
+          <EntitySet Name="Groupes" EntityType="Model.Groupe" />
+          <EntitySet Name="InfosClubs" EntityType="Model.InfosClub" />
+          <EntitySet Name="Inscriptions" EntityType="Model.Inscription" />
+          <EntitySet Name="JourSemaines" EntityType="Model.JourSemaine" />
+          <EntitySet Name="Saisons" EntityType="Model.Saison" />
+          <EntitySet Name="Sexes" EntityType="Model.Sexe" />
+          <EntitySet Name="StatutInscriptions" EntityType="Model.StatutInscription" />
+          <EntitySet Name="Villes" EntityType="Model.Ville" />
+          <AssociationSet Name="FK_Adherent_0" Association="Model.FK_Adherent_0">
+            <End Role="Sexe" EntitySet="Sexes" />
+            <End Role="Adherent" EntitySet="Adherents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adherent_1" Association="Model.FK_Adherent_1">
+            <End Role="Ville" EntitySet="Villes" />
+            <End Role="Adherent" EntitySet="Adherents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groupe_0" Association="Model.FK_Groupe_0">
+            <End Role="JourSemaine" EntitySet="JourSemaines" />
+            <End Role="Groupe" EntitySet="Groupes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groupe_1" Association="Model.FK_Groupe_1">
+            <End Role="Saison" EntitySet="Saisons" />
+            <End Role="Groupe" EntitySet="Groupes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfosClub_0" Association="Model.FK_InfosClub_0">
+            <End Role="Ville" EntitySet="Villes" />
+            <End Role="InfosClub" EntitySet="InfosClubs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Adherent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DateNaissance" Type="DateTime" Nullable="false" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" />
+          <Property Name="DateModification" Type="DateTime" Nullable="false" />
+          <Property Name="ID_Sexe" Type="Int64" Nullable="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="Adresse" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ID_Ville" Type="Int64" Nullable="false" />
+          <Property Name="Telephone1" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Telephone2" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Telephone3" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Mail1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Mail2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Mail3" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Sexe" Relationship="Model.FK_Adherent_0" FromRole="Adherent" ToRole="Sexe" />
+          <NavigationProperty Name="Ville" Relationship="Model.FK_Adherent_1" FromRole="Adherent" ToRole="Ville" />
+        </EntityType>
+        <EntityType Name="Groupe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ID_JourSemaine" Type="Int64" Nullable="false" />
+          <Property Name="NbPlaces" Type="Int64" Nullable="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="ID_Saison" Type="Int64" Nullable="false" />
+          <Property Name="HeureDebut" Type="DateTime" Nullable="false" />
+          <Property Name="HeureFin" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="JourSemaine" Relationship="Model.FK_Groupe_0" FromRole="Groupe" ToRole="JourSemaine" />
+          <NavigationProperty Name="Saison" Relationship="Model.FK_Groupe_1" FromRole="Groupe" ToRole="Saison" />
+        </EntityType>
+        <EntityType Name="InfosClub">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Numero" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Siren" Type="String" MaxLength="9" Unicode="true" FixedLength="false" />
+          <Property Name="NIC" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="Adresse" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ID_Ville" Type="Int64" />
+          <Property Name="Telephone" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Mail" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="SiteWeb" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Ville" Relationship="Model.FK_InfosClub_0" FromRole="InfosClub" ToRole="Ville" />
+        </EntityType>
+        <EntityType Name="Inscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Adherent" Type="Int64" Nullable="false" />
+          <Property Name="ID_Groupe" Type="Int64" Nullable="false" />
+          <Property Name="Cotisation" Type="Decimal" Precision="53" Scale="0" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" />
+          <Property Name="DateModification" Type="DateTime" Nullable="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
+          <Property Name="ID_StatutInscription" Type="Int64" Nullable="false" />
+          <Property Name="CertificatMedicalRemis" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="JourSemaine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Numero" Type="Int64" Nullable="false" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Groupes" Relationship="Model.FK_Groupe_0" FromRole="JourSemaine" ToRole="Groupe" />
+        </EntityType>
+        <EntityType Name="Saison">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EstSaisonCourante" Type="Boolean" Nullable="false" />
+          <Property Name="AnneeDebut" Type="Int64" Nullable="false" />
+          <Property Name="AnneeFin" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Groupes" Relationship="Model.FK_Groupe_1" FromRole="Saison" ToRole="Groupe" />
+        </EntityType>
+        <EntityType Name="Sexe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LibelleCourt" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="false" />
+          <Property Name="LibelleLong" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Adherents" Relationship="Model.FK_Adherent_0" FromRole="Sexe" ToRole="Adherent" />
+        </EntityType>
+        <EntityType Name="StatutInscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CodeCouleur" Type="String" Nullable="false" MaxLength="7" Unicode="true" FixedLength="false" />
+          <Property Name="Ordre" Type="Int64" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ville">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CodePostal" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Adherents" Relationship="Model.FK_Adherent_1" FromRole="Ville" ToRole="Adherent" />
+          <NavigationProperty Name="InfosClubs" Relationship="Model.FK_InfosClub_0" FromRole="Ville" ToRole="InfosClub" />
+        </EntityType>
+        <Association Name="FK_Adherent_0">
+          <End Role="Sexe" Type="Model.Sexe" Multiplicity="1" />
+          <End Role="Adherent" Type="Model.Adherent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sexe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adherent">
+              <PropertyRef Name="ID_Sexe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adherent_1">
+          <End Role="Ville" Type="Model.Ville" Multiplicity="1" />
+          <End Role="Adherent" Type="Model.Adherent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adherent">
+              <PropertyRef Name="ID_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groupe_0">
+          <End Role="JourSemaine" Type="Model.JourSemaine" Multiplicity="1" />
+          <End Role="Groupe" Type="Model.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JourSemaine">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="ID_JourSemaine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groupe_1">
+          <End Role="Saison" Type="Model.Saison" Multiplicity="1" />
+          <End Role="Groupe" Type="Model.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saison">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="ID_Saison" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfosClub_0">
+          <End Role="Ville" Type="Model.Ville" Multiplicity="0..1" />
+          <End Role="InfosClub" Type="Model.InfosClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InfosClub">
+              <PropertyRef Name="ID_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Adherents"><EntityTypeMapping TypeName="Model.Adherent"><MappingFragment StoreEntitySet="Adherent">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Nom" ColumnName="Nom" />
+            <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+            <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+            <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+            <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+            <ScalarProperty Name="ID_Sexe" ColumnName="ID_Sexe" />
+            <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+            <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+            <ScalarProperty Name="ID_Ville" ColumnName="ID_Ville" />
+            <ScalarProperty Name="Telephone1" ColumnName="Telephone1" />
+            <ScalarProperty Name="Telephone2" ColumnName="Telephone2" />
+            <ScalarProperty Name="Telephone3" ColumnName="Telephone3" />
+            <ScalarProperty Name="Mail1" ColumnName="Mail1" />
+            <ScalarProperty Name="Mail2" ColumnName="Mail2" />
+            <ScalarProperty Name="Mail3" ColumnName="Mail3" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Groupes"><EntityTypeMapping TypeName="Model.Groupe"><MappingFragment StoreEntitySet="Groupe">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+            <ScalarProperty Name="ID_JourSemaine" ColumnName="ID_JourSemaine" />
+            <ScalarProperty Name="NbPlaces" ColumnName="NbPlaces" />
+            <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+            <ScalarProperty Name="ID_Saison" ColumnName="ID_Saison" />
+            <ScalarProperty Name="HeureDebut" ColumnName="HeureDebut" />
+            <ScalarProperty Name="HeureFin" ColumnName="HeureFin" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="InfosClubs"><EntityTypeMapping TypeName="Model.InfosClub"><MappingFragment StoreEntitySet="InfosClub">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Nom" ColumnName="Nom" />
+            <ScalarProperty Name="Numero" ColumnName="Numero" />
+            <ScalarProperty Name="Siren" ColumnName="Siren" />
+            <ScalarProperty Name="NIC" ColumnName="NIC" />
+            <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+            <ScalarProperty Name="ID_Ville" ColumnName="ID_Ville" />
+            <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+            <ScalarProperty Name="Mail" ColumnName="Mail" />
+            <ScalarProperty Name="SiteWeb" ColumnName="SiteWeb" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Inscriptions"><EntityTypeMapping TypeName="Model.Inscription"><MappingFragment StoreEntitySet="Inscription">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="ID_Adherent" ColumnName="ID_Adherent" />
+            <ScalarProperty Name="ID_Groupe" ColumnName="ID_Groupe" />
+            <ScalarProperty Name="Cotisation" ColumnName="Cotisation" />
+            <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+            <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+            <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+            <ScalarProperty Name="ID_StatutInscription" ColumnName="ID_StatutInscription" />
+            <ScalarProperty Name="CertificatMedicalRemis" ColumnName="CertificatMedicalRemis" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="JourSemaines"><EntityTypeMapping TypeName="Model.JourSemaine"><MappingFragment StoreEntitySet="JourSemaine">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Numero" ColumnName="Numero" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Saisons"><EntityTypeMapping TypeName="Model.Saison"><MappingFragment StoreEntitySet="Saison">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="EstSaisonCourante" ColumnName="EstSaisonCourante" />
+            <ScalarProperty Name="AnneeDebut" ColumnName="AnneeDebut" />
+            <ScalarProperty Name="AnneeFin" ColumnName="AnneeFin" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Sexes"><EntityTypeMapping TypeName="Model.Sexe"><MappingFragment StoreEntitySet="Sexe">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="LibelleCourt" ColumnName="LibelleCourt" />
+            <ScalarProperty Name="LibelleLong" ColumnName="LibelleLong" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="StatutInscriptions"><EntityTypeMapping TypeName="Model.StatutInscription"><MappingFragment StoreEntitySet="StatutInscription">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+            <ScalarProperty Name="CodeCouleur" ColumnName="CodeCouleur" />
+            <ScalarProperty Name="Ordre" ColumnName="Ordre" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Villes"><EntityTypeMapping TypeName="Model.Ville"><MappingFragment StoreEntitySet="Ville">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+            <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model">
+        <EntityTypeShape EntityType="Model.Adherent" Width="1.5" PointX="3" PointY="3" Height="3.8931689453124996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Groupe" Width="1.5" PointX="8" PointY="1" Height="2.5783902994791656" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.InfosClub" Width="1.5" PointX="3" PointY="8.125" Height="2.7427376302083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Inscription" Width="1.5" PointX="7.75" PointY="4.75" Height="2.4140429687499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.JourSemaine" Width="1.5" PointX="5.75" PointY="1.5" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Saison" Width="1.5" PointX="5.75" PointY="5.375" Height="1.7566536458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Sexe" Width="1.5" PointX="0.75" PointY="1.125" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.StatutInscription" Width="1.5" PointX="5.75" PointY="8.75" Height="1.5923063151041674" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Ville" Width="1.5" PointX="0.75" PointY="4" Height="1.7566536458333317" IsExpanded="true" />
+        <AssociationConnector Association="Model.FK_Adherent_0" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="1.9211531575520837" />
+          <ConnectorPoint PointX="3.75" PointY="1.9211531575520837" />
+          <ConnectorPoint PointX="3.75" PointY="3" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK_Adherent_1" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.8783268229166659" />
+          <ConnectorPoint PointX="3" PointY="4.8783268229166659" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK_Groupe_0" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="2.2961531575520837" />
+          <ConnectorPoint PointX="8" PointY="2.2961531575520837" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK_Groupe_1" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.25" PointY="6.2533268229166659" />
+          <ConnectorPoint PointX="7.5" PointY="6.2533268229166659" />
+          <ConnectorPoint PointX="7.5" PointY="4.5" />
+          <ConnectorPoint PointX="8.75" PointY="4.5" />
+          <ConnectorPoint PointX="8.75" PointY="3.5783902994791656" />
+        </AssociationConnector>
+        <AssociationConnector Association="Model.FK_InfosClub_0" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="5.7566536458333317" />
+          <ConnectorPoint PointX="1.5" PointY="9.4963688151041659" />
+          <ConnectorPoint PointX="3" PointY="9.4963688151041659" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
