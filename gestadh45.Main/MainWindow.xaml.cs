@@ -1,12 +1,12 @@
 ﻿using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
+using gestadh45.dal;
 using gestadh45.Ihm;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Ihm.ViewModel.Consultation;
-using gestadh45.Ihm.ViewModel.Formulaire;
+using gestadh45.Ihm.ViewModel.Common;
+using gestadh45.Ihm.ViewModel.Villes;
 using gestadh45.Main.UserControls.Consultation;
 using gestadh45.Main.UserControls.Formulaire;
-using gestadh45.dal;
 using Microsoft.Win32;
 using Transitionals.Transitions;
 using forms = System.Windows.Forms;
