@@ -3,7 +3,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using gestadh45.service.Graphs;
 
-namespace gestadh45.Ihm.ViewModel.Consultation
+namespace gestadh45.Ihm.ViewModel.Stats
 {
 	public class GraphsSaisonCouranteUCViewModel : ViewModelBaseConsultation
 	{

@@ -4,7 +4,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Ihm.Tools;
 
-namespace gestadh45.Ihm.ViewModel.Consultation
+namespace gestadh45.Ihm.ViewModel
 {
 	public abstract class ViewModelBaseConsultation : ViewModelBaseUC
 	{

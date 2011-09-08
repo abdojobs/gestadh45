@@ -4,11 +4,11 @@ using System.Windows.Data;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using gestadh45.dal;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.dal;
 
-namespace gestadh45.Ihm.ViewModel.Consultation
+namespace gestadh45.Ihm.ViewModel.Adherents
 {
 	public class ConsultationAdherentsUCViewModel : ViewModelBaseConsultation
 	{

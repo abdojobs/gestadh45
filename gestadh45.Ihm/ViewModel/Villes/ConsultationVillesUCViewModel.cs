@@ -2,11 +2,11 @@
 using System.Windows;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
+using gestadh45.dal;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.dal;
 
-namespace gestadh45.Ihm.ViewModel.Consultation
+namespace gestadh45.Ihm.ViewModel.Villes
 {
 	public class ConsultationVillesUCViewModel : ViewModelBaseConsultation
 	{
