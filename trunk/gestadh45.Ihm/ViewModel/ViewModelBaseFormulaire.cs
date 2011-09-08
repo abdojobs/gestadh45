@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Ihm.Tools;
 
-namespace gestadh45.Ihm.ViewModel.Formulaire
+namespace gestadh45.Ihm.ViewModel
 {
 	public abstract class ViewModelBaseFormulaire : ViewModelBaseUC
 	{		

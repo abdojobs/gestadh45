@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
+using gestadh45.dal;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.dal;
-using System.Configuration;
 
-namespace gestadh45.Ihm.ViewModel.Formulaire
+namespace gestadh45.Ihm.ViewModel.Inscriptions
 {
 	public class FormulaireInscriptionUCViewModel : ViewModelBaseFormulaire
 	{

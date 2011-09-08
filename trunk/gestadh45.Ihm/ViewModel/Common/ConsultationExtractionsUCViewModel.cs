@@ -1,5 +1,5 @@
 ﻿
-namespace gestadh45.Ihm.ViewModel.Consultation
+namespace gestadh45.Ihm.ViewModel.Common
 {
 	public class ConsultationExtractionsUCViewModel : ViewModelBaseConsultation
 	{
