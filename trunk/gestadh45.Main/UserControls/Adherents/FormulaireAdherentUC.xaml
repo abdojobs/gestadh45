@@ -98,48 +98,34 @@
 				</GroupBox>
 					
 				<GroupBox Name="gbxContact" Header="Contact" Grid.Row="1" Grid.ColumnSpan="2" Margin="5,5,5,5">
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="auto" />
-							<ColumnDefinition Width="100" />
-							<ColumnDefinition Width="50" />
-							<ColumnDefinition Width="auto" />
-							<ColumnDefinition Width="200" />
-						</Grid.ColumnDefinitions>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="auto" />
-							<RowDefinition Height="auto" />
-							<RowDefinition Height="auto" />
-						</Grid.RowDefinitions>
-						<Grid.Children>
-							<TextBlock Grid.Row="0" Grid.Column="0" Text="Tel. 1 : " VerticalAlignment="Center" />
-							<TextBox Grid.Row="0" Grid.Column="1" 
-										MaxLength="10"
-										Text="{Binding Path=Adherent.Telephone1}" />
-							<TextBlock Grid.Row="0" Grid.Column="3" Text="Email 1 : " VerticalAlignment="Center" />
-							<TextBox Grid.Row="0" Grid.Column="4" 
-										MaxLength="100"
-										Text="{Binding Path=Adherent.Mail1}" />
-								
-							<TextBlock Grid.Row="1" Grid.Column="0" Text="Tel. 2 : " VerticalAlignment="Center" />
-							<TextBox Grid.Row="1" Grid.Column="1" 
-										MaxLength="10"
-										Text="{Binding Path=Adherent.Telephone2}" />
-							<TextBlock Grid.Row="1" Grid.Column="3" Text="Email 2 : " VerticalAlignment="Center" />
-							<TextBox Grid.Row="1" Grid.Column="4" 
-										MaxLength="100"
-										Text="{Binding Path=Adherent.Mail2}" />
-								
-							<TextBlock Grid.Row="2" Grid.Column="0" Text="Tel. 3 : " VerticalAlignment="Center" />
-							<TextBox Grid.Row="2" Grid.Column="1" 
-										MaxLength="10"
-										Text="{Binding Path=Adherent.Telephone3}" />
-							<TextBlock Grid.Row="2" Grid.Column="3" Text="Email 3 : " VerticalAlignment="Center" />
-							<TextBox Grid.Row="2" Grid.Column="4" 
-										MaxLength="100"
-										Text="{Binding Path=Adherent.Mail3}" />
-						</Grid.Children>
-					</Grid>
+					<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+						<StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+							<TextBlock Width="50" Text=" Tel. 1 : " VerticalAlignment="Center" />
+							<TextBox Name="tbxTel1" Width="100"
+									 Text="{Binding Path=Adherent.Telephone1}" />
+							<TextBlock Width="100" Text="Email 1 : " TextAlignment="Right" VerticalAlignment="Center" />
+							<TextBox Name="tbxMail1" Width="150" 
+									 Text="{Binding Path=Adherent.Mail1}" />
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+							<TextBlock Width="50" Text=" Tel. 2 : " VerticalAlignment="Center" />
+							<TextBox Name="tbxTel2" Width="100" 
+									 Text="{Binding Path=Adherent.Telephone2}" />
+							<TextBlock Width="100" Text="Email 2 : " TextAlignment="Right" VerticalAlignment="Center" />
+							<TextBox Name="tbxMail2" Width="150" 
+									 Text="{Binding Path=Adherent.Mail2}" />
+						</StackPanel>
+
+						<StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+							<TextBlock Width="50" Text=" Tel. 3 : " VerticalAlignment="Center" />
+							<TextBox Name="tbxTel3" Width="100" 
+									 Text="{Binding Path=Adherent.Telephone3}" />
+							<TextBlock Width="100" Text="Email 3 : " TextAlignment="Right" VerticalAlignment="Center" />
+							<TextBox Name="tbxMail3" Width="150" 
+									 Text="{Binding Path=Adherent.Mail3}" />
+						</StackPanel>
+					</StackPanel>
 				</GroupBox>
 
 				<GroupBox Name="gbxInfos" Header="Infos" Grid.Row="2" Grid.ColumnSpan="2" Margin="5,5,5,5">
