@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using gestadh45.dao;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.service.Graphs
 {
@@ -141,14 +141,14 @@ namespace gestadh45.service.Graphs
 
 			// Nombre de résidents
 			var qResidents = from Inscription i in lInscriptions
-						   where i.Adherent.Adresse.ID_Ville == lInfosClub.Adresse.ID_Ville
+						   where i.Adherent.ID_Ville == lInfosClub.ID_Ville
 						   select i;
 
 			lGraph.Donnees.Add(ResGraphs.Libelle_Residents, qResidents.LongCount());
 
 			// Nombre d'extérieurs
 			var qExterieurs = from Inscription i in lInscriptions
-							 where i.Adherent.Adresse.ID_Ville != lInfosClub.Adresse.ID_Ville
+							 where i.Adherent.ID_Ville != lInfosClub.ID_Ville
 							 select i;
 
 			lGraph.Donnees.Add(ResGraphs.Libelle_Exterieurs, qExterieurs.LongCount());
