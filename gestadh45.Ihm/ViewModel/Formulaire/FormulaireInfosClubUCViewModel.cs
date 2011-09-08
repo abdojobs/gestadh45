@@ -4,7 +4,7 @@ using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.Ihm.ViewModel.Formulaire
 {
@@ -15,8 +15,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		private IVilleDao mDaoVille;
 		private IInfosClubDao mDaoInfosClub;
-		private IContactDao mDaoContact;
-		private IAdresseDao mDaoAdresse;
 
 		/// <summary>
 		/// Obtient/Définit l'objet Infos club du formulaire
@@ -51,8 +49,6 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		public FormulaireInfosClubUCViewModel() {
 			this.mDaoVille = this.mDaoFactory.GetVilleDao();
 			this.mDaoInfosClub = this.mDaoFactory.GetInfosClubDao();
-			this.mDaoContact = this.mDaoFactory.GetContactDao();
-			this.mDaoAdresse = this.mDaoFactory.GetAdresseDao();
 
 			this.InitialisationListeVilles();
 
@@ -65,9 +61,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 
 		public override void ExecuteAnnulerCommand() {
 			if (this.InfosClub != null) {
-				this.mDaoVille.Refresh(this.InfosClub.Adresse.Ville);
-				this.mDaoAdresse.Refresh(this.InfosClub.Adresse);
-				this.mDaoContact.Refresh(this.InfosClub.Contact);
+				this.mDaoVille.Refresh(this.InfosClub.Ville);
 				this.mDaoInfosClub.Refresh(this.InfosClub);
 			}
 
@@ -98,7 +92,7 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 		}
 
 		private void SelectionnerVille(NotificationMessageSelectionElement<Ville> msg) {
-			this.InfosClub.Adresse.Ville = msg.Content;
+			this.InfosClub.Ville = msg.Content;
 			this.RaisePropertyChanged(() => this.InfosClub);
 		}
 
@@ -109,11 +103,11 @@ namespace gestadh45.Ihm.ViewModel.Formulaire
 				lErreurs.Add(ResErreurs.InfosClub_NomObligatoire);
 			}
 
-			if (this.InfosClub.Adresse == null || string.IsNullOrWhiteSpace(this.InfosClub.Adresse.Libelle)) {
+			if (this.InfosClub.Adresse == null || string.IsNullOrWhiteSpace(this.InfosClub.Adresse)) {
 				lErreurs.Add(ResErreurs.InfosClub_AdresseObligatoire);
 			}
 
-			if (this.InfosClub.Adresse != null && this.InfosClub.Adresse.Ville == null) {
+			if (this.InfosClub.Adresse != null && this.InfosClub.Ville == null) {
 				lErreurs.Add(ResErreurs.InfosClub_VilleObligatoire);
 			}
 

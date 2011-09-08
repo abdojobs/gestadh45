@@ -1,6 +1,6 @@
 ﻿using gestadh45.Ihm.ViewModel.Consultation;
 using gestadh45.Ihm.ViewModel.Formulaire;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.Ihm.ViewModel
 {

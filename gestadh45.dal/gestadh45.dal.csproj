@@ -34,6 +34,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <HintPath>..\Libs\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -45,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Adherent.cs" />
     <Compile Include="EFExtension.cs" />
+    <Compile Include="EntitySQLiteHelper.cs" />
     <Compile Include="Groupe.cs" />
     <Compile Include="InfosClub.cs" />
     <Compile Include="Inscription.cs" />

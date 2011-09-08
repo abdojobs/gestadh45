@@ -6,7 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Model;
+using gestadh45.dal;
 
 namespace gestadh45.Ihm.ViewModel.Consultation
 {
@@ -62,7 +62,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public bool CanExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
 			return (
 				pSaison != null 
-				&& !pSaison.EstSaisonCouranteBool
+				&& !pSaison.EstSaisonCourante
 				);
 		}
 
@@ -71,7 +71,7 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 				this.Saison != null
 				&& this.mSaisonDao.Exists(this.Saison)
 				&& !this.mSaisonDao.IsUsed(this.Saison)
-				&& !this.Saison.EstSaisonCouranteBool	// on ne peut pas supprimer la saison courante
+				&& !this.Saison.EstSaisonCourante	// on ne peut pas supprimer la saison courante
 			);
 		}
 
@@ -97,10 +97,10 @@ namespace gestadh45.Ihm.ViewModel.Consultation
 		public void ExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
 			if (pSaison != null) {
 				Saison lOldSaisonCourante = this.mSaisonDao.ReadSaisonCourante();
-				lOldSaisonCourante.EstSaisonCouranteBool = false;
+				lOldSaisonCourante.EstSaisonCourante = false;
 				this.mSaisonDao.Update(lOldSaisonCourante);
 
-				pSaison.EstSaisonCouranteBool = true;
+				pSaison.EstSaisonCourante = true;
 
 				this.mSaisonDao.Update(pSaison);
 				this.InitialisationListeSaisons();
