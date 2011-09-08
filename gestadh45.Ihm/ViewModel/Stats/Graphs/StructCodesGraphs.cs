@@ -1,5 +1,5 @@
 ﻿
-namespace gestadh45.service.Graphs
+namespace gestadh45.Ihm.ViewModel.Consultation.Stats.Graphs
 {
 	public struct StructCodesGraphs
 	{
