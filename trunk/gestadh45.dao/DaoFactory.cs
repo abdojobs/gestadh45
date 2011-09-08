@@ -35,14 +35,6 @@ namespace gestadh45.dao
 			return new AdherentDao();
 		}
 
-		public IContactDao GetContactDao() {
-			return new ContactDao();
-		}
-
-		public IAdresseDao GetAdresseDao() {
-			return new AdresseDao();
-		}
-
 		public IStatutInscriptionDao GetStatutInscriptionDao() {
 			return new StatutInscriptionDao();
 		}
