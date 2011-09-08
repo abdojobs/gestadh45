@@ -43,8 +43,6 @@ namespace gestadh45.Ihm.ViewModel
 		public ViewModelBaseFormulaire() {
 			this.CreateEnregistrerCommand();
 			this.CreateAnnulerCommand();
-
-			Messenger.Default.Send(new NotificationMessageTransition(TransitionHelper.TranslationGaucheDroite));
 		}
 
 		protected virtual bool VerifierSaisie() {
