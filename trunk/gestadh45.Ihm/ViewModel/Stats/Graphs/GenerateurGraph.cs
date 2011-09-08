@@ -3,7 +3,7 @@ using System.Linq;
 using gestadh45.Ihm.ViewModel.Stats.Graphs;
 using gestadh45.dal;
 
-namespace gestadh45.Ihm.ViewModel.Consultation.Stats.Graphs
+namespace gestadh45.Ihm.ViewModel.Stats.Graphs
 {
 	public static class GenerateurGraph
 	{

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace gestadh45.Ihm.ViewModel.Consultation.Stats.Graphs
+namespace gestadh45.Ihm.ViewModel.Stats.Graphs
 {
 	public class Graphique
 	{
