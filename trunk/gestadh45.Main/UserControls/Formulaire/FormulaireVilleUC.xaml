@@ -1,14 +1,14 @@
 ﻿<UserControl x:Class="gestadh45.Main.UserControls.Formulaire.FormulaireVilleUC"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
 			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
-             mc:Ignorable="d" 
+			 mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireVilleVMStatic, Source={StaticResource Locator}}" 
-             d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
+			 d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
 	<DockPanel>
 		<TextBlock Text="Ville" DockPanel.Dock="Top" HorizontalAlignment="Stretch" 
 					Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />

@@ -1,15 +1,15 @@
 ﻿<UserControl x:Class="gestadh45.Main.UserControls.Consultation.ConsultationVillesUC"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
-             mc:Ignorable="d" 
+			 mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationVillesVMStatic, Source={StaticResource Locator}}"
-             d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
+			 d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
 	<DockPanel Margin="5,5,5,5">
 		<DockPanel.Children>
 			<TextBlock Text="Villes" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
