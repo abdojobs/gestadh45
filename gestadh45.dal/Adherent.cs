@@ -3,7 +3,7 @@ using System.Text;
 
 namespace gestadh45.dal
 {
-	public partial class Adherent
+	public partial class Adherent : ICloneable
 	{
 		private const string SeparateurAdressesMail = ",";
 		
@@ -50,5 +50,35 @@ namespace gestadh45.dal
 			}
 			return num;
 		}
+
+		#region ICloneable Membres
+
+		public object Clone() {
+			return new Adherent()
+			{
+				Nom = string.Copy(this.Nom),
+				Prenom = string.Copy(this.Prenom),
+				DateNaissance = this.DateNaissance,
+				ID_Sexe = this.ID_Sexe,
+
+				Adresse = string.Copy(this.Adresse),
+				ID_Ville = this.ID_Ville,
+
+				Telephone1 = string.Copy(this.Telephone1 ?? string.Empty),
+				Telephone2 = string.Copy(this.Telephone2 ?? string.Empty),
+				Telephone3 = string.Copy(this.Telephone3 ?? string.Empty),
+
+				Mail1 = string.Copy(this.Mail1 ?? string.Empty),
+				Mail2 = string.Copy(this.Mail2 ?? string.Empty),
+				Mail3 = string.Copy(this.Mail3 ?? string.Empty),
+
+				Commentaire = string.Copy(this.Commentaire ?? string.Empty),
+
+				DateCreation = DateTime.Now,
+				DateModification = DateTime.Now
+			};
+		}
+
+		#endregion
 	}
 }

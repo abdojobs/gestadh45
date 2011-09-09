@@ -123,6 +123,9 @@
   <data name="ErreurFataleInfoQuitter" xml:space="preserve">
     <value>Pour éviter tout problème d'instabilité, l'application va maintenant se fermer.</value>
   </data>
+  <data name="MessageConfirmDuplicationAdherent" xml:space="preserve">
+    <value>L'adhérent a correctement été dupliqué</value>
+  </data>
   <data name="MessageConfirmSupprAdherent" xml:space="preserve">
     <value>Etes-vous sûr de vouloir supprimer cet adhérent?</value>
   </data>

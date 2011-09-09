@@ -55,6 +55,7 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 			this.InitialisationListeAdherents();
 
 			this.CreateInscrireCommand();
+			this.CreateDupliquerCommand();
 
 			Messenger.Default.Register<NotificationMessageSelectionElement<Adherent>>(this, this.SelectionnerAdherent);
 		}
@@ -135,6 +136,33 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 				)
 			);
 		}
+
+		#region DupliquerCommand
+		public ICommand DupliquerCommand { get; set; }
+
+		private void CreateDupliquerCommand() {
+			this.DupliquerCommand = new RelayCommand(
+				this.ExecuteDupliquerCommand,
+				this.CanExecuteDupliquerCommand
+			);
+		}
+
+		public bool CanExecuteDupliquerCommand() {
+			return this.Adherent != null;
+		}
+
+		public void ExecuteDupliquerCommand() {
+			var newAdherent = this.Adherent.Clone() as Adherent;
+			newAdherent.ID = 0;
+			newAdherent.Prenom += " (copie)";
+			newAdherent.Commentaire = "Copie de " + this.Adherent.ToString();
+
+			this.mDaoAdherent.Create(newAdherent);
+			this.InitialisationListeAdherents();
+
+			this.AfficherInformationIhm(ResMessages.MessageConfirmDuplicationAdherent);
+		}
+		#endregion
 
 		/// <summary>
 		/// Méthode appellée à la réception de la réponse au message de confirmation de suppression
