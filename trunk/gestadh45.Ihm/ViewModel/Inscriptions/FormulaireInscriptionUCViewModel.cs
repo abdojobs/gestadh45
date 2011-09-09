@@ -152,7 +152,7 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 		private void InitialisationListeGroupes() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoGroupe.ListSaisonCourante());
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("HeureDebutDT", ListSortDirection.Ascending));
+			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
 			this.GroupesSaisonCourante = defaultView;
 		}
 
