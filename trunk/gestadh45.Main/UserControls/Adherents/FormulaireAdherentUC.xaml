@@ -5,6 +5,7 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm" 
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
+			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
 			 mc:Ignorable="d" 
 			 DataContext="{Binding FormulaireAdherentVMStatic, Source={StaticResource Locator}}" 
 			 d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
@@ -101,8 +102,9 @@
 					<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 						<StackPanel Orientation="Horizontal" Margin="0,5,0,0">
 							<TextBlock Width="50" Text=" Tel. 1 : " VerticalAlignment="Center" />
-							<TextBox Name="tbxTel1" Width="100"
-									 Text="{Binding Path=Adherent.Telephone1}" />
+							<extToolkit:MaskedTextBox Name="tbxTel1" Width="100" 
+													  Mask="00 00 00 00 00" 
+													  Value="{Binding Path=Adherent.Telephone1}" />
 							<TextBlock Width="100" Text="Email 1 : " TextAlignment="Right" VerticalAlignment="Center" />
 							<TextBox Name="tbxMail1" Width="150" 
 									 Text="{Binding Path=Adherent.Mail1}" />
@@ -110,8 +112,9 @@
 
 						<StackPanel Orientation="Horizontal" Margin="0,5,0,0">
 							<TextBlock Width="50" Text=" Tel. 2 : " VerticalAlignment="Center" />
-							<TextBox Name="tbxTel2" Width="100" 
-									 Text="{Binding Path=Adherent.Telephone2}" />
+							<extToolkit:MaskedTextBox Name="tbxTel2" Width="100" 
+													  Mask="00 00 00 00 00" 
+													  Value="{Binding Path=Adherent.Telephone2}" />
 							<TextBlock Width="100" Text="Email 2 : " TextAlignment="Right" VerticalAlignment="Center" />
 							<TextBox Name="tbxMail2" Width="150" 
 									 Text="{Binding Path=Adherent.Mail2}" />
@@ -119,8 +122,9 @@
 
 						<StackPanel Orientation="Horizontal" Margin="0,5,0,0">
 							<TextBlock Width="50" Text=" Tel. 3 : " VerticalAlignment="Center" />
-							<TextBox Name="tbxTel3" Width="100" 
-									 Text="{Binding Path=Adherent.Telephone3}" />
+							<extToolkit:MaskedTextBox Name="tbxTel3" Width="100" 
+													  Mask="00 00 00 00 00" 
+													  Value="{Binding Path=Adherent.Telephone3}" />
 							<TextBlock Width="100" Text="Email 3 : " TextAlignment="Right" VerticalAlignment="Center" />
 							<TextBox Name="tbxMail3" Width="150" 
 									 Text="{Binding Path=Adherent.Mail3}" />
