@@ -146,6 +146,9 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 				this.InitialisationListeAdherents();
 				this.Adherent = null;
 
+				var msg = new NotificationMessage(TypesNotification.EffacerFiltre);
+				Messenger.Default.Send(msg);
+
 				this.AfficherInformationIhm(ResMessages.MessageInfoSuppressionAdherent);
 			}
 		}
