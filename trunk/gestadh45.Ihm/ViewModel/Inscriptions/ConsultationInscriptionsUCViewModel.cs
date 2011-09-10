@@ -201,7 +201,7 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 
 				generateur.CreerDocument(pCodeDocument);
 
-				this.AfficherErreurIhm(ResMessages.MessageInfoGenerationDocument);
+				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationDocument);
 			}
 		}
 

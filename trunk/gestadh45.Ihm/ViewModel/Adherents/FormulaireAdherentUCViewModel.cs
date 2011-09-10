@@ -92,20 +92,13 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 		public override void ExecuteEnregistrerCommand() {
 			var msg = new NotificationMessageSelectionElement<Adherent>(this.Adherent);
 
-			if (this.VerifierSaisie() 
-				&& base.EstEdition
-				&& this.mDaoAdherent.Exists(this.Adherent)) {
-
+			if (this.VerifierSaisie()) {
+				if (this.EstEdition) {
 					this.mDaoAdherent.Update(this.Adherent);
-
-				base.ExecuteEnregistrerCommand();
-				Messenger.Default.Send(msg);
-			}
-			else if (this.VerifierSaisie() 
-				&& !base.EstEdition
-				&& !this.mDaoAdherent.Exists(this.Adherent)) {
-
+				}
+				else {
 					this.mDaoAdherent.Create(this.Adherent);
+				}
 
 				base.ExecuteEnregistrerCommand();
 				Messenger.Default.Send(msg);
@@ -129,6 +122,7 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 
 		private void InitialisationListeVilles() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoVille.List());
+			defaultView.SortDescriptions.Add(new SortDescription("CodePostal", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
 		}
