@@ -114,7 +114,7 @@
 								<StackPanel Orientation="Horizontal">
 									<StackPanel.Children>
 										<TextBlock Text="Tel.1 : " />
-										<TextBlock Text="{Binding Adherent.Telephone1}" />
+										<TextBlock Text="{Binding Path=Adherent.Telephone1}" />
 									</StackPanel.Children>
 								</StackPanel>
 								<StackPanel Orientation="Horizontal">
