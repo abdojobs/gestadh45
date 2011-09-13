@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using gestadh45.dal;
+using System;
 
 namespace gestadh45.dao
 {
 	public class InscriptionDao : EntityDao<Inscription>, IInscriptionDao
 	{
 		public Inscription Create(Inscription inscription) {
+			inscription.DateCreation = DateTime.Now;
+			inscription.DateModification = DateTime.Now;
+
 			return this.Save(inscription);
 		}
 
@@ -17,6 +21,8 @@ namespace gestadh45.dao
 		}
 
 		public Inscription Update(Inscription inscription) {
+			inscription.DateModification = DateTime.Now;
+
 			inscription.SetAllModified(Context);
 			this.SaveChanges();
 			return inscription;

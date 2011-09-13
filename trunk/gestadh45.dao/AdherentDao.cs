@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using gestadh45.dal;
+using System;
 
 namespace gestadh45.dao
 {
 	public class AdherentDao : EntityDao<Adherent>, IAdherentDao
 	{
 		public Adherent Create(Adherent adherent) {
+			adherent.DateCreation = DateTime.Now;
+			adherent.DateModification = DateTime.Now;
+
 			return this.Save(adherent);
 		}
 
@@ -17,6 +21,8 @@ namespace gestadh45.dao
 		}
 
 		public Adherent Update(Adherent adherent) {
+			adherent.DateModification = DateTime.Now;
+
 			adherent.SetAllModified(Context);
 			this.SaveChanges();
 			return adherent;
