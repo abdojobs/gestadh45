@@ -185,6 +185,9 @@ namespace gestadh45.Main
 			else if (pObjetUC is Adherent && pCodeUC.Equals(CodesUC.FormulaireInscription)) {
 				this.contenu.Child = new FormulaireInscriptionUC((Adherent)pObjetUC);
 			}
+			else if (pObjetUC is Adherent && pCodeUC.Equals(CodesUC.ConsultationAdherents)) {
+				this.contenu.Child = new ConsultationAdherentsUC((Adherent)pObjetUC);
+			}
 		}
 
 		private void OuvrirFenetreUC(NotificationMessageOuvertureFenetre pMessage) {

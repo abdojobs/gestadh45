@@ -78,7 +78,7 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 			this.CodeUCOrigine = CodesUC.ConsultationAdherents;
 			base.EstEdition = false;
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
+			Messenger.Default.Register<MsgSelectionElement<Ville>>(this, this.SelectionnerVille);
 		}
 
 		public override void ExecuteAnnulerCommand() {
@@ -90,7 +90,7 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 		}
 
 		public override void ExecuteEnregistrerCommand() {
-			var msg = new NotificationMessageSelectionElement<Adherent>(this.Adherent);
+			var msg = new MsgSelectionElement<Adherent>(this.Adherent);
 
 			if (this.VerifierSaisie()) {
 				if (this.EstEdition) {
@@ -127,7 +127,7 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 			this.Villes = defaultView;
 		}
 
-		private void SelectionnerVille(NotificationMessageSelectionElement<Ville> msg) {
+		private void SelectionnerVille(MsgSelectionElement<Ville> msg) {
 			this.Adherent.Ville = msg.Content;
 			this.RaisePropertyChanged(() => this.Adherent);
 		}

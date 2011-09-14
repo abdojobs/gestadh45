@@ -48,7 +48,7 @@ namespace gestadh45.Ihm.ViewModel.Villes
 			this.mDaoVille = this.mDaoFactory.GetVilleDao();
 			this.InitialisationListeVilles();
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
+			Messenger.Default.Register<MsgSelectionElement<Ville>>(this, this.SelectionnerVille);
 		}
 
 		public override bool CanExecuteSupprimerCommand() {
@@ -105,7 +105,7 @@ namespace gestadh45.Ihm.ViewModel.Villes
 			this.AfficherEcran(CodesUC.FormulaireVille);
 		}
 
-		private void SelectionnerVille(NotificationMessageSelectionElement<Ville> msg) {
+		private void SelectionnerVille(MsgSelectionElement<Ville> msg) {
 			this.Ville = msg.Content;
 			this.RaisePropertyChanged(() => this.Ville);
 		}

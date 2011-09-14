@@ -59,8 +59,9 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 
 			this.CreateGenererDocumentCommand();
 			this.CreateGenererVCardCommand();
+			this.CreateAfficherAdherentCommand();
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Inscription>>(this, this.SelectionnerInscription);
+			Messenger.Default.Register<MsgSelectionElement<Inscription>>(this, this.SelectionnerInscription);
 		}
 
 		#region CreerCommand
@@ -192,6 +193,28 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 		}
 		#endregion
 
+		#region AfficherAdherentCommand
+		public ICommand AfficherAdherentCommand { get; set; }
+
+		private void CreateAfficherAdherentCommand() {
+			this.AfficherAdherentCommand = new RelayCommand(
+				this.ExecuteAfficherAdherentCommand,
+				this.CanExecuteAfficherAdherentCommand
+			);
+		}
+
+		public bool CanExecuteAfficherAdherentCommand() {
+			return (this.Inscription != null && this.Inscription.Adherent != null);
+		}
+
+		public void ExecuteAfficherAdherentCommand() {
+			if (this.Inscription != null && this.Inscription.Adherent != null) {
+				var msg = new MsgAfficherUC<Adherent>(CodesUC.ConsultationAdherents, MsgAfficherUC.TypeAffichage.Interne, this.Inscription.Adherent);
+				Messenger.Default.Send(msg);
+			}
+		}
+		#endregion
+
 		#region methodes privees
 		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
 			if (!string.IsNullOrWhiteSpace(pSaveFilePath)) {
@@ -247,7 +270,7 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 			return lRetour;
 		}
 
-		private void SelectionnerInscription(NotificationMessageSelectionElement<Inscription> msg) {
+		private void SelectionnerInscription(MsgSelectionElement<Inscription> msg) {
 			this.Inscription = msg.Content;
 			this.RaisePropertyChanged(() => this.Inscription);
 		}

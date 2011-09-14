@@ -65,7 +65,7 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 				this.mDaoGroupe.Create(this.Groupe);
 				base.ExecuteEnregistrerCommand();
 
-				var msg = new NotificationMessageSelectionElement<Groupe>(this.Groupe);
+				var msg = new MsgSelectionElement<Groupe>(this.Groupe);
 				Messenger.Default.Send(msg);
 			}
 			else {

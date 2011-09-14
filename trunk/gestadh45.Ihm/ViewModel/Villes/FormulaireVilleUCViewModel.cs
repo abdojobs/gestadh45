@@ -38,7 +38,7 @@ namespace gestadh45.Ihm.ViewModel.Villes
 
 				base.ExecuteEnregistrerCommand();
 
-				var msg = new NotificationMessageSelectionElement<Ville>(this.Ville);
+				var msg = new MsgSelectionElement<Ville>(this.Ville);
 				Messenger.Default.Send(msg);
 			}
 			else {
