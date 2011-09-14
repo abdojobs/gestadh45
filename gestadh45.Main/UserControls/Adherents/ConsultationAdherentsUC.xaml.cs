@@ -1,5 +1,7 @@
 ﻿using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
+using gestadh45.dal;
+using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Main.UserControls.Adherents
 {
@@ -15,6 +17,18 @@ namespace gestadh45.Main.UserControls.Adherents
 				this, 
 				(msg) => this.EffacerFiltre()
 			);
+		}
+
+		public ConsultationAdherentsUC(Adherent pAdherent) {
+			InitializeComponent();
+
+			Messenger.Default.Register<NotificationMessage>(
+				this,
+				(msg) => this.EffacerFiltre()
+			);
+
+			// Envoi du message déclenchant la sélection de l'adhérent
+			Messenger.Default.Send(new MsgSelectionElement<Adherent>(pAdherent));
 		}
 
 		private void EffacerFiltre() {

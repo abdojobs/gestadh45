@@ -2,9 +2,9 @@
 
 namespace gestadh45.Ihm.SpecialMessages
 {
-	public class NotificationMessageSelectionElement<T> : NotificationMessage<T>
+	public class MsgSelectionElement<T> : NotificationMessage<T>
 	{
-		public NotificationMessageSelectionElement(T elem) 
+		public MsgSelectionElement(T elem) 
 			: base (elem, TypesNotification.SelectionElement) {}
 	}
 }

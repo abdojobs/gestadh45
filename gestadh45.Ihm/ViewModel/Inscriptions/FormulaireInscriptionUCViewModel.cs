@@ -119,7 +119,7 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 		}
 
 		public override void ExecuteEnregistrerCommand() {
-			var msg = new NotificationMessageSelectionElement<Inscription>(this.Inscription);
+			var msg = new MsgSelectionElement<Inscription>(this.Inscription);
 	
 			if (this.VerifierSaisie() 
 				&& base.EstEdition

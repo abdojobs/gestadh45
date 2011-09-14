@@ -63,7 +63,7 @@ namespace gestadh45.Ihm.ViewModel.Saisons
 
 				base.ExecuteEnregistrerCommand();
 
-				var msg = new NotificationMessageSelectionElement<Saison>(this.Saison);
+				var msg = new MsgSelectionElement<Saison>(this.Saison);
 				Messenger.Default.Send(msg);
 			}
 			else {

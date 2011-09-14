@@ -56,7 +56,7 @@ namespace gestadh45.Ihm.ViewModel.InfosClubs
 			this.mDaoInfosClub.Refresh(this.InfosClub);
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Ville>>(this, this.SelectionnerVille);
+			Messenger.Default.Register<MsgSelectionElement<Ville>>(this, this.SelectionnerVille);
 		}
 
 		public override void ExecuteAnnulerCommand() {
@@ -91,7 +91,7 @@ namespace gestadh45.Ihm.ViewModel.InfosClubs
 			this.Villes = defaultView;
 		}
 
-		private void SelectionnerVille(NotificationMessageSelectionElement<Ville> msg) {
+		private void SelectionnerVille(MsgSelectionElement<Ville> msg) {
 			this.InfosClub.Ville = msg.Content;
 			this.RaisePropertyChanged(() => this.InfosClub);
 		}

@@ -57,7 +57,7 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 			this.CreateInscrireCommand();
 			this.CreateDupliquerCommand();
 
-			Messenger.Default.Register<NotificationMessageSelectionElement<Adherent>>(this, this.SelectionnerAdherent);
+			Messenger.Default.Register<MsgSelectionElement<Adherent>>(this, this.SelectionnerAdherent);
 		}
 
 		public override bool CanExecuteEditerCommand() {
@@ -188,7 +188,7 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 			this.Adherents = defaultView;
 		}
 
-		private void SelectionnerAdherent(NotificationMessageSelectionElement<Adherent> msg) {
+		private void SelectionnerAdherent(MsgSelectionElement<Adherent> msg) {
 			this.Adherent = msg.Content;
 			this.RaisePropertyChanged(() => this.Adherent);
 		}
