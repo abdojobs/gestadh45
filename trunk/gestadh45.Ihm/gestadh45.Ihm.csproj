@@ -100,6 +100,7 @@
       <DependentUpon>ResGraphs.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Stats\Graphs\StructCodesGraphs.cs" />
+    <Compile Include="ViewModel\Stats\StatsSaisonCouranteUCViewModel.cs" />
     <Compile Include="ViewModel\Villes\ConsultationVillesUCViewModel.cs" />
     <Compile Include="ViewModel\Stats\GraphsSaisonCouranteUCViewModel.cs" />
     <Compile Include="ViewModel\Adherents\FormulaireAdherentUCViewModel.cs" />
