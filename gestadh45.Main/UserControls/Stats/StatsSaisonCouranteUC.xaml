@@ -16,7 +16,7 @@
         <StackPanel Orientation="Vertical" DockPanel.Dock="Top" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Width="150" Text="Total des cotisations : " />
-                <TextBlock Width="100" Text="{Binding Path=TotalCotisations}" />
+                <TextBlock Width="100" Text="{Binding Path=TotalCotisations, StringFormat='{}{0}€'}" />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
