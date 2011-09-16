@@ -137,6 +137,9 @@
     <Compile Include="UserControls\Saisons\ConsultationSaisonsUC.xaml.cs">
       <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Stats\StatsSaisonCouranteUC.xaml.cs">
+      <DependentUpon>StatsSaisonCouranteUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Villes\ConsultationVillesUC.xaml.cs">
       <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
@@ -219,6 +222,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Saisons\ConsultationSaisonsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Stats\StatsSaisonCouranteUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

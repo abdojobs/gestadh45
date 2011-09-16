@@ -17,5 +17,6 @@ namespace gestadh45.Ihm
 		public const string FormulaireSaison = "FormulaireSaison";
 		public const string FormulaireVille = "FormulaireVille";
 		public const string GraphsSaisonCourante = "GraphsSaisonCourante";
+        public const string StatsSaisonCourante = "StatsSaisonCourante";
 	}
 }
