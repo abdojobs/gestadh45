@@ -272,7 +272,7 @@ namespace gestadh45.Ihm.ViewModel
 
                 _statsSaisonCouranteVM = new StatsSaisonCouranteUCViewModel();
 
-                return StatsSaisonCouranteVMStatic;
+				return _statsSaisonCouranteVM;
             }
         }
         #endregion

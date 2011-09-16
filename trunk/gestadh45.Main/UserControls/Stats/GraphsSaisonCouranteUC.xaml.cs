@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace gestadh45.Main.UserControls.stats
+namespace gestadh45.Main.UserControls.Stats
 {
 	/// <summary>
 	/// Logique d'interaction pour GraphsSaisonCouranteUC.xaml
