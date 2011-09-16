@@ -6,7 +6,7 @@
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
 			 mc:Ignorable="d" 
 			 x:Name="MenuPrincipal"
-			 d:DesignHeight="40" d:DesignWidth="465">
+			 d:DesignHeight="40" d:DesignWidth="500">
 	<StackPanel Orientation="Horizontal">
 		<Button Name="btnNouveau" ToolTip="Créer une base" Height="30" Width="30" Margin="10,5,5,5" 
 				Command="{Binding ElementName=MenuPrincipal, Path=CmdCreerDatabase}">
@@ -47,11 +47,16 @@
 			<Image Source="/gestadh45.Main;component/Images/btn_groupes.png" />
 		</Button>
 		<Button Name="btnGraphs" ToolTip="Graphiques pour la saison courante" Height="30" Width="30" Margin="5,5,5,5" 
-				CommandParameter="{x:Static ihm:CodesUC.StatsSaisonCourante}" 
+				CommandParameter="{x:Static ihm:CodesUC.GraphsSaisonCourante}" 
 				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
 			<Image Source="/gestadh45.Main;component/Images/btn_graphs.png" />
 		</Button>
-		<Button Name="btnAbout" ToolTip="A propos" Height="30" Width="30" Margin="20,5,10,5" 
+        <Button Name="btnStats" ToolTip="Statistiques pour la saison courante" Height="30" Width="30" Margin="5,5,5,5" 
+				CommandParameter="{x:Static ihm:CodesUC.StatsSaisonCourante}" 
+				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
+            <TextBlock Text="%" />
+        </Button>
+        <Button Name="btnAbout" ToolTip="A propos" Height="30" Width="30" Margin="20,5,10,5" 
 				Command="{Binding ElementName=MenuPrincipal, Path=CmdAboutBox}">
 			<Image Source="/gestadh45.Main;component/Images/btn_about.png" />
 		</Button>

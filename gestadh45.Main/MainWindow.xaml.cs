@@ -11,7 +11,7 @@ using gestadh45.Main.UserControls.Groupes;
 using gestadh45.Main.UserControls.InfosClubs;
 using gestadh45.Main.UserControls.Inscriptions;
 using gestadh45.Main.UserControls.Saisons;
-using gestadh45.Main.UserControls.stats;
+using gestadh45.Main.UserControls.Stats;
 using gestadh45.Main.UserControls.Villes;
 using Microsoft.Win32;
 using forms = System.Windows.Forms;
@@ -166,6 +166,10 @@ namespace gestadh45.Main
 
 				case CodesUC.GraphsSaisonCourante:
 					this.contenu.Child = new GraphsSaisonCouranteUC();
+					break;
+
+				case CodesUC.StatsSaisonCourante:
+					this.contenu.Child = new StatsSaisonCouranteUC();
 					break;
 
 				case CodesUC.ConsultationInfosClub:

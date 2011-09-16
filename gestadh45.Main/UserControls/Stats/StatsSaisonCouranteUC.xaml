@@ -8,8 +8,8 @@
 			 d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
     <DockPanel>
         <TextBlock Text="Statistiques pour la saison courante" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
-        
-        <Button Name="btnCalculer" DockPanel.Dock="Bottom" Command="{Binding Path=CalculerCommand}" Width="100" Margin="0,10,0,20">
+
+        <Button Name="btnCalculer" DockPanel.Dock="Bottom" Command="{Binding Path=CalculerStatsCommand}" Width="100" Margin="0,10,0,20">
             <TextBlock Text="Recalculer" />
         </Button>
 
