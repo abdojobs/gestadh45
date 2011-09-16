@@ -256,5 +256,25 @@ namespace gestadh45.Ihm.ViewModel
 			}
 		}
 		#endregion
-	}
+
+        #region StatsSaisonCourante
+        private static StatsSaisonCouranteUCViewModel _statsSaisonCouranteVM;
+
+        public static StatsSaisonCouranteUCViewModel StatsSaisonCouranteVMStatic
+        {
+            get
+            {
+                if (_statsSaisonCouranteVM != null)
+                {
+                    _statsSaisonCouranteVM.Cleanup();
+                    _statsSaisonCouranteVM = null;
+                }
+
+                _statsSaisonCouranteVM = new StatsSaisonCouranteUCViewModel();
+
+                return StatsSaisonCouranteVMStatic;
+            }
+        }
+        #endregion
+    }
 }
