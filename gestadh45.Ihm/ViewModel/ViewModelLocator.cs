@@ -5,6 +5,7 @@ using gestadh45.Ihm.ViewModel.Inscriptions;
 using gestadh45.Ihm.ViewModel.Saisons;
 using gestadh45.Ihm.ViewModel.Stats;
 using gestadh45.Ihm.ViewModel.Villes;
+using gestadh45.Ihm.ViewModel.Tools;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -276,5 +277,23 @@ namespace gestadh45.Ihm.ViewModel
             }
         }
         #endregion
-    }
+
+		#region FicheEffectif
+		private static FicheEffectifUCViewModel _ficheEffectifVM;
+
+		public static FicheEffectifUCViewModel FicheEffectifVMStatic {
+			get {
+				if (_ficheEffectifVM != null)
+				{
+					_ficheEffectifVM.Cleanup();
+					_ficheEffectifVM = null;
+				}
+
+				_ficheEffectifVM = new FicheEffectifUCViewModel();
+
+				return _ficheEffectifVM;
+			}
+		}
+		#endregion
+	}
 }

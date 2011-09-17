@@ -22,6 +22,7 @@ namespace gestadh45.Ihm.ViewModel
 			this.mDaoFactory = new DaoFactory();
 
 			this.CreateFenetreCommand();
+			this.CreateAfficherUCCommand();
 		}
 
 		/// <summary>
@@ -69,6 +70,26 @@ namespace gestadh45.Ihm.ViewModel
 
 		protected void AfficherEcranFenetre(string pCodeUC) {
 			this.EnvoyerMsgAffichageUC(pCodeUC, MsgAfficherUC.TypeAffichage.Externe);
+		}
+		#endregion
+
+		#region AfficherUCCommand
+		public ICommand AfficherUCCommand { get; internal set; }
+
+		private void CreateAfficherUCCommand() {
+			this.AfficherUCCommand = new RelayCommand<string>(
+				this.ExecuteAfficherUCCommand,
+				this.CanExecuteAfficherUCCommand
+			);
+		}
+
+		public bool CanExecuteAfficherUCCommand(string pCodeUC) {
+			return (ObjectContextManager.Context != null);
+		}
+
+		public void ExecuteAfficherUCCommand(string pCodeUC) {
+			this.RazNotificationIhm();
+			this.AfficherEcran(pCodeUC);
 		}
 		#endregion
 
