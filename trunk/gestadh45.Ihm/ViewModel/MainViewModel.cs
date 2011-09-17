@@ -13,7 +13,6 @@ namespace gestadh45.Ihm.ViewModel
 	public class MainViewModel : ViewModelBaseApplication
 	{
 		public ICommand AboutBoxCommand { get; set; }
-		public ICommand AfficherUCCommand { get; internal set; }
 		public ICommand ChangerDataSourceCommand { get; internal set; }
 		public ICommand CreerDatabaseCommand { get; set; }
 
@@ -73,7 +72,6 @@ namespace gestadh45.Ihm.ViewModel
 			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
 			this.mNotificationIhm = new NotificationIhm();
 
-			this.CreateAfficherUCCommand();
 			this.CreateChangerDataSourceCommand();
 			this.CreateAboutBoxCommand();
 			this.CreateCreerDatabaseCommand();
@@ -89,10 +87,6 @@ namespace gestadh45.Ihm.ViewModel
 			);
 		}
 
-		public bool CanExecuteAfficherUCCommand(string pCodeUC) {
-			return (ObjectContextManager.Context != null);
-		}
-
 		#region création des commandes
 		private void CreateAboutBoxCommand() {
 			this.AboutBoxCommand = new RelayCommand(
@@ -103,13 +97,6 @@ namespace gestadh45.Ihm.ViewModel
 		private void CreateChangerDataSourceCommand() {
 			this.ChangerDataSourceCommand = new RelayCommand(
 				this.ExecuteChangerDataSourceCommand
-			);
-		}
-
-		private void CreateAfficherUCCommand() {
-			this.AfficherUCCommand = new RelayCommand<string>(
-				this.ExecuteAfficherUCCommand, 
-				this.CanExecuteAfficherUCCommand
 			);
 		}
 
@@ -125,11 +112,6 @@ namespace gestadh45.Ihm.ViewModel
 			Messenger.Default.Send<NotificationMessageAboutBox>(
 				new NotificationMessageAboutBox()
 			);
-		}
-
-		public void ExecuteAfficherUCCommand(string pCodeUC) {
-			this.RazNotificationIhm();
-			this.AfficherEcran(pCodeUC);
 		}
 
 		public void ExecuteChangerDataSourceCommand() {
