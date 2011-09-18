@@ -143,6 +143,9 @@
     <Compile Include="UserControls\Tools\FicheEffectifUC.xaml.cs">
       <DependentUpon>FicheEffectifUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Tools\RepartitionEffectifUC.xaml.cs">
+      <DependentUpon>RepartitionEffectifUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Villes\ConsultationVillesUC.xaml.cs">
       <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
@@ -233,6 +236,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Tools\FicheEffectifUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Tools\RepartitionEffectifUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -389,6 +396,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_grille.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_repartitionEffectif.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

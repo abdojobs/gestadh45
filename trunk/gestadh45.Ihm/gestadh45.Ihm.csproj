@@ -101,7 +101,9 @@
     </Compile>
     <Compile Include="ViewModel\Stats\Graphs\StructCodesGraphs.cs" />
     <Compile Include="ViewModel\Stats\StatsSaisonCouranteUCViewModel.cs" />
+    <Compile Include="ViewModel\Tools\Effectif\TrancheEffectif.cs" />
     <Compile Include="ViewModel\Tools\FicheEffectifUCViewModel.cs" />
+    <Compile Include="ViewModel\Tools\RepartitionEffectifUCViewModel.cs" />
     <Compile Include="ViewModel\Villes\ConsultationVillesUCViewModel.cs" />
     <Compile Include="ViewModel\Stats\GraphsSaisonCouranteUCViewModel.cs" />
     <Compile Include="ViewModel\Adherents\FormulaireAdherentUCViewModel.cs" />

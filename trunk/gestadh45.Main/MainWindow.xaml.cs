@@ -177,6 +177,10 @@ namespace gestadh45.Main
 					this.contenu.Child = new FicheEffectifUC();
 					break;
 
+				case CodesUC.RepartitionEffectif:
+					this.contenu.Child = new RepartitionEffectifUC();
+					break;
+
 				case CodesUC.ConsultationInfosClub:
 				default:
 					this.contenu.Child = new ConsultationInfosClubUC();
