@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="gestadh45.Main.UserControls.Tools.RepartitionEffectifUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 mc:Ignorable="d" 
+			 DataContext="{Binding Path=RepartitionEffectifVMStatic, Source={StaticResource Locator}}" 
+			 d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
+	<DockPanel>
+		<DataGrid Name="dgTranchesEffectif" ItemsSource="{Binding Path=TranchesEffectif}" IsReadOnly="True" AutoGenerateColumns="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Tranche" Binding="{Binding Path=Libelle}" />
+				<DataGridTextColumn Header="Effectif" Binding="{Binding Path=Effectif}" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</DockPanel>
+</UserControl>

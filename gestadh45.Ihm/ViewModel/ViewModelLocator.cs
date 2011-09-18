@@ -258,25 +258,25 @@ namespace gestadh45.Ihm.ViewModel
 		}
 		#endregion
 
-        #region StatsSaisonCourante
-        private static StatsSaisonCouranteUCViewModel _statsSaisonCouranteVM;
+		#region StatsSaisonCourante
+		private static StatsSaisonCouranteUCViewModel _statsSaisonCouranteVM;
 
-        public static StatsSaisonCouranteUCViewModel StatsSaisonCouranteVMStatic
-        {
-            get
-            {
-                if (_statsSaisonCouranteVM != null)
-                {
-                    _statsSaisonCouranteVM.Cleanup();
-                    _statsSaisonCouranteVM = null;
-                }
+		public static StatsSaisonCouranteUCViewModel StatsSaisonCouranteVMStatic
+		{
+			get
+			{
+				if (_statsSaisonCouranteVM != null)
+				{
+					_statsSaisonCouranteVM.Cleanup();
+					_statsSaisonCouranteVM = null;
+				}
 
-                _statsSaisonCouranteVM = new StatsSaisonCouranteUCViewModel();
+				_statsSaisonCouranteVM = new StatsSaisonCouranteUCViewModel();
 
 				return _statsSaisonCouranteVM;
-            }
-        }
-        #endregion
+			}
+		}
+		#endregion
 
 		#region FicheEffectif
 		private static FicheEffectifUCViewModel _ficheEffectifVM;
@@ -292,6 +292,23 @@ namespace gestadh45.Ihm.ViewModel
 				_ficheEffectifVM = new FicheEffectifUCViewModel();
 
 				return _ficheEffectifVM;
+			}
+		}
+		#endregion
+
+		#region RepartitionEffectif
+		private static RepartitionEffectifUCViewModel _repartitionEffectifVM;
+
+		public static RepartitionEffectifUCViewModel RepartitionEffectifVMStatic {
+			get {
+				if (_repartitionEffectifVM != null) {
+					_repartitionEffectifVM.Cleanup();
+					_repartitionEffectifVM = null;
+				}
+
+				_repartitionEffectifVM = new RepartitionEffectifUCViewModel();
+
+				return _repartitionEffectifVM;
 			}
 		}
 		#endregion
