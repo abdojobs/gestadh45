@@ -15,7 +15,7 @@
 			<Setter Property="Control.Template">
 				<Setter.Value>
 					<ControlTemplate>
-						<Expander IsExpanded="False" Header="{Binding Name}">
+						<Expander IsExpanded="True" Header="{Binding Name}">
 							<ItemsPresenter />
 						</Expander>
 					</ControlTemplate>
