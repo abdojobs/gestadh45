@@ -108,7 +108,7 @@
 								<StackPanel Orientation="Horizontal">
 									<StackPanel.Children>
 										<TextBlock Text="Certificat médical : " />
-										<CheckBox IsChecked="{Binding Path=Inscription.CertificatMedicalRemisBool}" 
+										<CheckBox IsChecked="{Binding Path=Inscription.CertificatMedicalRemis}" 
 												  IsHitTestVisible="False" Focusable="False" />
 									</StackPanel.Children>
 								</StackPanel>
