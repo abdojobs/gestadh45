@@ -62,6 +62,7 @@
     <Compile Include="Saison.cs" />
     <Compile Include="Sexe.cs" />
     <Compile Include="StatutInscription.cs" />
+    <Compile Include="TrancheAge.cs" />
     <Compile Include="Ville.cs" />
   </ItemGroup>
   <ItemGroup>

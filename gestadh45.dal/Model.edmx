@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Adherent" EntityType="Model.Store.Adherent" store:Type="Tables" />
           <EntitySet Name="Groupe" EntityType="Model.Store.Groupe" store:Type="Tables" />
@@ -14,6 +14,7 @@
           <EntitySet Name="Saison" EntityType="Model.Store.Saison" store:Type="Tables" />
           <EntitySet Name="Sexe" EntityType="Model.Store.Sexe" store:Type="Tables" />
           <EntitySet Name="StatutInscription" EntityType="Model.Store.StatutInscription" store:Type="Tables" />
+          <EntitySet Name="TrancheAge" EntityType="Model.Store.TrancheAge" store:Type="Tables" />
           <EntitySet Name="Ville" EntityType="Model.Store.Ville" store:Type="Tables" />
           <AssociationSet Name="FK_Adherent_0" Association="Model.Store.FK_Adherent_0">
             <End Role="Sexe" EntitySet="Sexe" />
@@ -145,6 +146,14 @@
           <Property Name="CodeCouleur" Type="nvarchar" Nullable="false" MaxLength="7" />
           <Property Name="Ordre" Type="integer" Nullable="false" />
         </EntityType>
+        <EntityType Name="TrancheAge">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AgeInf" Type="integer" Nullable="false" />
+          <Property Name="AgeSup" Type="integer" Nullable="false" />
+        </EntityType>
         <EntityType Name="Ville">
           <Key>
             <PropertyRef Name="ID" />
@@ -249,8 +258,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -296,6 +304,7 @@
             <End Role="StatutInscription" EntitySet="StatutInscriptions" />
             <End Role="Inscription" EntitySet="Inscriptions" />
           </AssociationSet>
+          <EntitySet Name="TrancheAges" EntityType="Model.TrancheAge" />
         </EntityContainer>
         <EntityType Name="Adherent">
           <Key>
@@ -514,6 +523,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TrancheAge">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="AgeInf" Nullable="false" />
+          <Property Type="Int64" Name="AgeSup" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -598,6 +615,15 @@
             <ScalarProperty Name="Libelle" ColumnName="Libelle" />
             <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TrancheAges">
+            <EntityTypeMapping TypeName="Model.TrancheAge">
+              <MappingFragment StoreEntitySet="TrancheAge">
+                <ScalarProperty Name="AgeSup" ColumnName="AgeSup" />
+                <ScalarProperty Name="AgeInf" ColumnName="AgeInf" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -612,13 +638,13 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="Model">
+      <Diagram Name="Model" ZoomLevel="107">
         <EntityTypeShape EntityType="Model.Adherent" Width="1.5" PointX="3" PointY="4.125" Height="4.0575162760416665" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Groupe" Width="1.5" PointX="3" PointY="14.625" Height="2.7427376302083317" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.InfosClub" Width="1.5" PointX="3" PointY="9.625" Height="2.7427376302083317" IsExpanded="true" />
@@ -651,9 +677,9 @@
           <ConnectorPoint PointX="3" PointY="16.808868815104166" />
         </AssociationConnector>
         <AssociationConnector Association="Model.FK_Inscription_1" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="15.996368815104166" />
-          <ConnectorPoint PointX="6" PointY="15.996368815104166" />
-          <ConnectorPoint PointX="6" PointY="7.6570849609375" />
+          <ConnectorPoint PointX="4.5" PointY="16.192047526041669" />
+          <ConnectorPoint PointX="6" PointY="16.192047526041669" />
+          <ConnectorPoint PointX="6" PointY="8.076396484375" />
         </AssociationConnector>
         <AssociationConnector Association="Model.FK_InfosClub_0" ManuallyRouted="false">
           <ConnectorPoint PointX="1.5" PointY="7.1316536458333317" />
@@ -661,10 +687,11 @@
           <ConnectorPoint PointX="3" PointY="10.996368815104166" />
         </AssociationConnector>
         <AssociationConnector Association="Model.FK_Inscription_0" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="1.6283268229166659" />
-          <ConnectorPoint PointX="6" PointY="1.6283268229166659" />
-          <ConnectorPoint PointX="6" PointY="4.75" />
+          <ConnectorPoint PointX="4.5" PointY="2.5792350260416672" />
+          <ConnectorPoint PointX="5.28125" PointY="2.5792350260416672" />
+          <ConnectorPoint PointX="5.28125" PointY="4.75" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="Model.TrancheAge" Width="1.5" PointX="5.375" PointY="0.75" Height="1.6156835937500005" />
       </Diagram>
     </Diagrams>
   </Designer>

@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="AdherentDao.cs" />
     <Compile Include="IStatutInscriptionDao.cs" />
+    <Compile Include="ITrancheAgeDao.cs" />
     <Compile Include="ObjectContextManager.cs" />
     <Compile Include="DaoFactory.cs" />
     <Compile Include="EntityDao.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="SaisonDao.cs" />
     <Compile Include="SexeDao.cs" />
     <Compile Include="StatutInscriptionDao.cs" />
+    <Compile Include="TrancheAgeDao.cs" />
     <Compile Include="VilleDao.cs" />
   </ItemGroup>
   <ItemGroup>
