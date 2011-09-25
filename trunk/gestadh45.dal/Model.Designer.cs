@@ -220,6 +220,22 @@ namespace gestadh45.dal
             }
         }
         private ObjectSet<Ville> _Villes;
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        public ObjectSet<TrancheAge> TrancheAges
+        {
+            get
+            {
+                if ((_TrancheAges == null))
+                {
+                    _TrancheAges = base.CreateObjectSet<TrancheAge>("TrancheAges");
+                }
+                return _TrancheAges;
+            }
+        }
+        private ObjectSet<TrancheAge> _TrancheAges;
 
         #endregion
         #region Méthodes AddTo
@@ -294,6 +310,14 @@ namespace gestadh45.dal
         public void AddToVilles(Ville ville)
         {
             base.AddObject("Villes", ville);
+        }
+    
+        /// <summary>
+        /// Méthode déconseillée pour ajouter un nouvel objet à l'EntitySet TrancheAges. Utilisez la méthode .Add de la propriété ObjectSet&lt;T&gt; associée à la place.
+        /// </summary>
+        public void AddToTrancheAges(TrancheAge trancheAge)
+        {
+            base.AddObject("TrancheAges", trancheAge);
         }
 
         #endregion
@@ -2438,6 +2462,113 @@ namespace gestadh45.dal
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// Aucune documentation sur les métadonnées n'est disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="TrancheAge")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class TrancheAge : EntityObject
+    {
+        #region Méthode de fabrique
+    
+        /// <summary>
+        /// Créez un nouvel objet TrancheAge.
+        /// </summary>
+        /// <param name="id">Valeur initiale de la propriété ID.</param>
+        /// <param name="ageInf">Valeur initiale de la propriété AgeInf.</param>
+        /// <param name="ageSup">Valeur initiale de la propriété AgeSup.</param>
+        public static TrancheAge CreateTrancheAge(global::System.Int64 id, global::System.Int64 ageInf, global::System.Int64 ageSup)
+        {
+            TrancheAge trancheAge = new TrancheAge();
+            trancheAge.ID = id;
+            trancheAge.AgeInf = ageInf;
+            trancheAge.AgeSup = ageSup;
+            return trancheAge;
+        }
+
+        #endregion
+        #region Propriétés primitives
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _ID;
+        partial void OnIDChanging(global::System.Int64 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 AgeInf
+        {
+            get
+            {
+                return _AgeInf;
+            }
+            set
+            {
+                OnAgeInfChanging(value);
+                ReportPropertyChanging("AgeInf");
+                _AgeInf = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AgeInf");
+                OnAgeInfChanged();
+            }
+        }
+        private global::System.Int64 _AgeInf;
+        partial void OnAgeInfChanging(global::System.Int64 value);
+        partial void OnAgeInfChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 AgeSup
+        {
+            get
+            {
+                return _AgeSup;
+            }
+            set
+            {
+                OnAgeSupChanging(value);
+                ReportPropertyChanging("AgeSup");
+                _AgeSup = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("AgeSup");
+                OnAgeSupChanged();
+            }
+        }
+        private global::System.Int64 _AgeSup;
+        partial void OnAgeSupChanging(global::System.Int64 value);
+        partial void OnAgeSupChanged();
+
+        #endregion
+    
     }
     
     /// <summary>
