@@ -138,6 +138,9 @@
   <data name="MessageConfirmSupprSaison" xml:space="preserve">
     <value>Etes-vous sûr de vouloir supprimer cette saison?</value>
   </data>
+  <data name="MessageConfirmSupprTrancheAge" xml:space="preserve">
+    <value>Etes-vous sûr de vouloir supprimer cette tranche d'âge?</value>
+  </data>
   <data name="MessageConfirmSupprVille" xml:space="preserve">
     <value>Etes-vous sûr de vouloir supprimer cette ville?</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="MessageInfoSuppressionSaison" xml:space="preserve">
     <value>La saison a correctement été supprimée</value>
+  </data>
+  <data name="MessageInfoSuppressionTrancheAge" xml:space="preserve">
+    <value>La tranche d'âge a correctement été supprimée</value>
   </data>
   <data name="MessageInfoSuppressionVille" xml:space="preserve">
     <value>La ville a correctement été supprimée</value>
