@@ -12,5 +12,6 @@ namespace gestadh45.dao
 		IGroupeDao GetGroupeDao();
 		IAdherentDao GetAdherentDao();
 		IStatutInscriptionDao GetStatutInscriptionDao();
+		ITrancheAgeDao GetTrancheAgeDao();
 	}
 }

@@ -124,6 +124,15 @@ namespace gestadh45.Ihm.SpecialMessages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Etes-vous sûr de vouloir supprimer cette tranche d&apos;âge?.
+        /// </summary>
+        public static string MessageConfirmSupprTrancheAge {
+            get {
+                return ResourceManager.GetString("MessageConfirmSupprTrancheAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Etes-vous sûr de vouloir supprimer cette ville?.
         /// </summary>
         public static string MessageConfirmSupprVille {
@@ -201,6 +210,15 @@ namespace gestadh45.Ihm.SpecialMessages {
         public static string MessageInfoSuppressionSaison {
             get {
                 return ResourceManager.GetString("MessageInfoSuppressionSaison", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à La tranche d&apos;âge a correctement été supprimée.
+        /// </summary>
+        public static string MessageInfoSuppressionTrancheAge {
+            get {
+                return ResourceManager.GetString("MessageInfoSuppressionTrancheAge", resourceCulture);
             }
         }
         

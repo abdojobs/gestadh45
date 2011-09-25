@@ -38,5 +38,9 @@ namespace gestadh45.dao
 		public IStatutInscriptionDao GetStatutInscriptionDao() {
 			return new StatutInscriptionDao();
 		}
+
+		public ITrancheAgeDao GetTrancheAgeDao() {
+			return new TrancheAgeDao();
+		}
 	}
 }

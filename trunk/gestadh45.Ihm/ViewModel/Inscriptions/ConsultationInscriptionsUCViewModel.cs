@@ -92,10 +92,7 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 
 		#region SupprimerCommand
 		public override bool CanExecuteSupprimerCommand() {
-			return (
-				this.Inscription != null
-				&& this.mDaoInscription.Exists(this.Inscription)
-				);
+			return this.Inscription != null;
 		}
 
 		public override void ExecuteSupprimerCommand() {
