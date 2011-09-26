@@ -223,7 +223,7 @@ namespace gestadh45.Ihm.ViewModel {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Cette inscription existe déjà (adhérent+groupe).
+        ///   Recherche une chaîne localisée semblable à Cette inscription existe déjà (adhérent + saison).
         /// </summary>
         internal static string Inscription_Existe {
             get {
