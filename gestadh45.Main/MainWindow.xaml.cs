@@ -12,10 +12,11 @@ using gestadh45.Main.UserControls.InfosClubs;
 using gestadh45.Main.UserControls.Inscriptions;
 using gestadh45.Main.UserControls.Saisons;
 using gestadh45.Main.UserControls.Stats;
+using gestadh45.Main.UserControls.Tools;
+using gestadh45.Main.UserControls.TranchesAge;
 using gestadh45.Main.UserControls.Villes;
 using Microsoft.Win32;
 using forms = System.Windows.Forms;
-using gestadh45.Main.UserControls.Tools;
 
 namespace gestadh45.Main
 {
@@ -179,6 +180,10 @@ namespace gestadh45.Main
 
 				case CodesUC.RepartitionEffectif:
 					this.contenu.Child = new RepartitionEffectifUC();
+					break;
+
+				case CodesUC.ConsultationTranchesAge:
+					this.contenu.Child = new ConsultationTranchesAgeUC();
 					break;
 
 				case CodesUC.ConsultationInfosClub:
