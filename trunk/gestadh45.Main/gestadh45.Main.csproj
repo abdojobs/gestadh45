@@ -149,6 +149,9 @@
     <Compile Include="UserControls\TranchesAge\ConsultationTranchesAgeUC.xaml.cs">
       <DependentUpon>ConsultationTranchesAgeUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\TranchesAge\FormulaireTrancheAgeUC.xaml.cs">
+      <DependentUpon>FormulaireTrancheAgeUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Villes\ConsultationVillesUC.xaml.cs">
       <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
@@ -247,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\TranchesAge\ConsultationTranchesAgeUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\TranchesAge\FormulaireTrancheAgeUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

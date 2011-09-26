@@ -286,6 +286,42 @@ namespace gestadh45.Ihm.ViewModel {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;âge de début doit être positif.
+        /// </summary>
+        internal static string TrancheAge_AgeInfPositif {
+            get {
+                return ResourceManager.GetString("TrancheAge_AgeInfPositif", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;âge de fin doit être positif.
+        /// </summary>
+        internal static string TrancheAge_AgeSupPositif {
+            get {
+                return ResourceManager.GetString("TrancheAge_AgeSupPositif", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cette tranche d&apos;âge existe déjà ou chevauche une tranche existante.
+        /// </summary>
+        internal static string TrancheAge_Existe {
+            get {
+                return ResourceManager.GetString("TrancheAge_Existe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;âge de fin doit être supérieur à l&apos;âge de début.
+        /// </summary>
+        internal static string TrancheAge_OrdreAges {
+            get {
+                return ResourceManager.GetString("TrancheAge_OrdreAges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Le code postal est obligatoire.
         /// </summary>
         internal static string Ville_CodePostalObligatoire {

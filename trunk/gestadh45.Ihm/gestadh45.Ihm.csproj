@@ -105,6 +105,7 @@
     <Compile Include="ViewModel\Tools\FicheEffectifUCViewModel.cs" />
     <Compile Include="ViewModel\Tools\RepartitionEffectifUCViewModel.cs" />
     <Compile Include="ViewModel\TranchesAge\ConsultationTranchesAgeUCViewModel.cs" />
+    <Compile Include="ViewModel\TranchesAge\FormulaireTrancheAgeUCViewModel.cs" />
     <Compile Include="ViewModel\Villes\ConsultationVillesUCViewModel.cs" />
     <Compile Include="ViewModel\Stats\GraphsSaisonCouranteUCViewModel.cs" />
     <Compile Include="ViewModel\Adherents\FormulaireAdherentUCViewModel.cs" />
