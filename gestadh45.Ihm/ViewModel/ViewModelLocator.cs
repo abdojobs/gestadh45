@@ -330,5 +330,22 @@ namespace gestadh45.Ihm.ViewModel
 			}
 		}
 		#endregion
+
+		#region FormulaireTrancheAge
+		private static FormulaireTrancheAgeUCViewModel _formulaireTranchesAgeVM;
+
+		public static FormulaireTrancheAgeUCViewModel FormulaireTranchesAgeVMStatic {
+			get {
+				if (_formulaireTranchesAgeVM != null) {
+					_formulaireTranchesAgeVM.Cleanup();
+					_formulaireTranchesAgeVM = null;
+				}
+
+				_formulaireTranchesAgeVM = new FormulaireTrancheAgeUCViewModel();
+
+				return _formulaireTranchesAgeVM;
+			}
+		}
+		#endregion
 	}
 }

@@ -192,6 +192,18 @@
   <data name="Saison_Existe" xml:space="preserve">
     <value>Cette saison existe déjà</value>
   </data>
+  <data name="TrancheAge_AgeInfPositif" xml:space="preserve">
+    <value>L'âge de début doit être positif</value>
+  </data>
+  <data name="TrancheAge_AgeSupPositif" xml:space="preserve">
+    <value>L'âge de fin doit être positif</value>
+  </data>
+  <data name="TrancheAge_Existe" xml:space="preserve">
+    <value>Cette tranche d'âge existe déjà ou chevauche une tranche existante</value>
+  </data>
+  <data name="TrancheAge_OrdreAges" xml:space="preserve">
+    <value>L'âge de fin doit être supérieur à l'âge de début</value>
+  </data>
   <data name="Ville_CodePostalObligatoire" xml:space="preserve">
     <value>Le code postal est obligatoire</value>
   </data>

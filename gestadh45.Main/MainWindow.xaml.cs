@@ -186,6 +186,10 @@ namespace gestadh45.Main
 					this.contenu.Child = new ConsultationTranchesAgeUC();
 					break;
 
+				case CodesUC.FormulaireTrancheAge:
+					this.contenu.Child = new FormulaireTrancheAgeUC();
+					break;
+
 				case CodesUC.ConsultationInfosClub:
 				default:
 					this.contenu.Child = new ConsultationInfosClubUC();
