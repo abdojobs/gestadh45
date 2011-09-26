@@ -7,7 +7,7 @@
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
 			 mc:Ignorable="d" 
-			 DataContext="{Binding ConsultationTranchesAgesVMStatic, Source={StaticResource Locator}}" 
+			 DataContext="{Binding ConsultationTranchesAgeVMStatic, Source={StaticResource Locator}}" 
 			 d:DesignHeight="500" d:DesignWidth="600" Background="Cornsilk">
 	<DockPanel Margin="5,5,5,5">
 		<TextBlock Text="Tranches d'âge" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
@@ -36,17 +36,17 @@
 				/>			
 		</StackPanel>
 
-		<StackPanel Name="stkDetailsInscription" DockPanel.Dock="Right" Margin="20,0,0,0">
+		<StackPanel Name="stkDetails" DockPanel.Dock="Right" Margin="20,0,0,0">
 			<GroupBox Name="gbxInfos" Header="Stats" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
 				<StackPanel Orientation="Vertical">
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Age inf. : " />
-						<TextBlock Text="{Binding ElementName=lbxInscriptions, Path=Items.AgeInf}" />
+						<TextBlock Text="{Binding Path=TrancheAge.AgeInf}" />
 					</StackPanel>
 
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Age sup. : " />
-						<TextBlock Text="{Binding ElementName=lbxInscriptions, Path=Items.AgeSup}" />
+						<TextBlock Text="{Binding Path=TrancheAge.AgeSup}" />
 					</StackPanel>
 				</StackPanel>
 			</GroupBox>

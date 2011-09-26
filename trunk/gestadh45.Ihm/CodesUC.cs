@@ -20,7 +20,7 @@ namespace gestadh45.Ihm
 		public const string StatsSaisonCourante = "StatsSaisonCourante";
 		public const string FicheEffectif = "FicheEffectif";
 		public const string RepartitionEffectif = "RepartitionEffectif";
-		public const string ConsultationTrancheAge = "ConsultationTrancheAge";
+		public const string ConsultationTranchesAge = "ConsultationTranchesAge";
 		public const string FormulaireTrancheAge = "FormulaireTrancheAge";
 	}
 }
