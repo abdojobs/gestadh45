@@ -172,7 +172,7 @@
     <value>L'adhérent est obligatoire</value>
   </data>
   <data name="Inscription_Existe" xml:space="preserve">
-    <value>Cette inscription existe déjà (adhérent+groupe)</value>
+    <value>Cette inscription existe déjà (adhérent + saison)</value>
   </data>
   <data name="Inscription_GroupeObligatoire" xml:space="preserve">
     <value>Le groupe est obligatoire</value>

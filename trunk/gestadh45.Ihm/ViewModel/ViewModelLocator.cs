@@ -6,6 +6,7 @@ using gestadh45.Ihm.ViewModel.Saisons;
 using gestadh45.Ihm.ViewModel.Stats;
 using gestadh45.Ihm.ViewModel.Villes;
 using gestadh45.Ihm.ViewModel.Tools;
+using gestadh45.Ihm.ViewModel.TranchesAge;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -309,6 +310,23 @@ namespace gestadh45.Ihm.ViewModel
 				_repartitionEffectifVM = new RepartitionEffectifUCViewModel();
 
 				return _repartitionEffectifVM;
+			}
+		}
+		#endregion
+
+		#region ConsultationTranchesAge
+		private static ConsultationTranchesAgeUCViewModel _consultationTranchesAgeVM;
+
+		public static ConsultationTranchesAgeUCViewModel ConsultationTranchesAgeVMStatic {
+			get {
+				if (_consultationTranchesAgeVM != null) {
+					_consultationTranchesAgeVM.Cleanup();
+					_consultationTranchesAgeVM = null;
+				}
+
+				_consultationTranchesAgeVM = new ConsultationTranchesAgeUCViewModel();
+
+				return _consultationTranchesAgeVM;
 			}
 		}
 		#endregion

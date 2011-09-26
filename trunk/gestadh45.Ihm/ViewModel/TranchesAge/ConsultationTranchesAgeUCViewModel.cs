@@ -83,6 +83,32 @@ namespace gestadh45.Ihm.ViewModel.TranchesAge
 		}
 		#endregion
 
+		#region EditerCommand
+		public override bool CanExecuteEditerCommand() {
+			return (this.TrancheAge != null);
+		}
+
+		public override void ExecuteEditerCommand() {
+			base.ExecuteEditerCommand();
+
+			Messenger.Default.Send<MsgAfficherUC<TrancheAge>>(
+				new MsgAfficherUC<TrancheAge>(
+					CodesUC.FormulaireTrancheAge,
+					MsgAfficherUC.TypeAffichage.Interne,
+					this.TrancheAge
+				)
+			);
+		}
+		#endregion
+
+		#region AfficherDetailsCommand
+		public override void ExecuteAfficherDetailsCommand(object pTrancheAge) {
+			if (pTrancheAge != null && pTrancheAge is TrancheAge) {
+				this.TrancheAge = pTrancheAge as TrancheAge;
+			}
+		}
+		#endregion
+
 		#region private methods
 		private void InitialisationListeTranchesAge() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoTrancheAge.List());
