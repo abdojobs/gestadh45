@@ -31,6 +31,8 @@ namespace gestadh45.Ihm.ViewModel.TranchesAge
 		#region constructor
 		public FormulaireTrancheAgeUCViewModel() {
 			this._daoTrancheAge = this.mDaoFactory.GetTrancheAgeDao();
+			this.TrancheAge = new TrancheAge();
+			this.CodeUCOrigine = CodesUC.ConsultationTranchesAge;
 		}
 		#endregion
 

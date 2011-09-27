@@ -28,10 +28,9 @@
 			<uc:BtnAjouterEditerSupprimerUC 
 				OrientationUC="Vertical"
 				BtnAjouterVisibilite="Visible"
-				BtnModifierVisibilite="Visible"
+				BtnModifierVisibilite="Collapsed"
 				BtnSupprimerVisibilite="Visible"
 				CmdAjouter="{Binding Path=CreerCommand}"
-				CmdModifier="{Binding Path=EditerCommand}"
 				CmdSupprimer="{Binding Path=SupprimerCommand}"
 				/>			
 		</StackPanel>
