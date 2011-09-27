@@ -109,6 +109,14 @@ namespace gestadh45.Ihm.ViewModel.TranchesAge
 		}
 		#endregion
 
+		#region CreerCommand
+		public override void ExecuteCreerCommand() {
+			base.ExecuteCreerCommand();
+
+			this.AfficherEcran(CodesUC.FormulaireTrancheAge);
+		}
+		#endregion
+
 		#region private methods
 		private void InitialisationListeTranchesAge() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoTrancheAge.List());
