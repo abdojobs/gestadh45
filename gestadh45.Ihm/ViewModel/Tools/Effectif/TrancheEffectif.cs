@@ -18,14 +18,45 @@ namespace gestadh45.Ihm.ViewModel.Tools.Effectif
 		public int AgeSuperieur { get; set; }
 
 		/// <summary>
-		/// Obtient/Définit l'effectif de résidents pour cette tranche
+		/// Obtient/Définit l'effectif de résidents homme pour cette tranche
 		/// </summary>
-		public int EffectifResidents { get; set; }
+		public int EffectifResidentsH { get; set; }
 
 		/// <summary>
-		/// Obtient/Définit l'effectif d'extérieurs pour cettetranche
+		/// Obtient/Définit l'effectif de résidents femme pour cette tranche
 		/// </summary>
-		public int EffectifExterieurs { get; set; }
+		public int EffectifResidentsF { get; set; }
+
+		/// <summary>
+		/// Obtient/Définit l'effectif d'extérieurs homme pour cettetranche
+		/// </summary>
+		public int EffectifExterieursH { get; set; }
+
+		/// <summary>
+		/// Obtient/Définit l'effectif d'extérieurs femme pour cettetranche
+		/// </summary>
+		public int EffectifExterieursF { get; set; }
+
+		/// <summary>
+		/// Obtient l'effectif total extérieurs (H + F)
+		/// </summary>
+		public int EffectifTotalExterieurs {
+			get { return this.EffectifExterieursH + this.EffectifExterieursF; }
+		}
+
+		/// <summary>
+		/// Obtient l'effectif total résidents (H + F)
+		/// </summary>
+		public int EffectifTotalResidents {
+			get { return this.EffectifResidentsH + this.EffectifResidentsF; }
+		}
+
+		/// <summary>
+		/// Obtient l'effectif total (résidents + extérieurs)
+		/// </summary>
+		public int EffectifTotal {
+			get { return this.EffectifTotalResidents + this.EffectifTotalExterieurs; }
+		}
 
 		/// <summary>
 		/// Obtient une chaîne décrivant l'objet (ToString)

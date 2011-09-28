@@ -17,6 +17,7 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		private IInscriptionDao _daoInscription;
 		private IInfosClubDao _daoInfosClub;
 		private ITrancheAgeDao _daoTrancheAge;
+		private ISexeDao _daoSexe;
 
 		private IEnumerable _inscriptionsSaisonCourante;
 		private Ville _villeResident;
@@ -44,6 +45,7 @@ namespace gestadh45.Ihm.ViewModel.Tools
 			this._daoInscription = this.mDaoFactory.GetInscriptionDao();
 			this._daoInfosClub = this.mDaoFactory.GetInfosClubDao();
 			this._daoTrancheAge = this.mDaoFactory.GetTrancheAgeDao();
+			this._daoSexe = this.mDaoFactory.GetSexeDao();
 
 			this._inscriptionsSaisonCourante = this._daoInscription.ListSaisonCourante();
 			this._villeResident = this._daoInfosClub.Read().Ville;
@@ -72,21 +74,38 @@ namespace gestadh45.Ihm.ViewModel.Tools
 				AgeSuperieur = (int)trancheAge.AgeSup
 			};
 
-			var rqEffectifResidents = from Inscription ins in this._inscriptionsSaisonCourante
+			var rqEffectifResidentsH = from Inscription ins in this._inscriptionsSaisonCourante
 									  where ins.Adherent.Age >= trancheAge.AgeInf
 											&& ins.Adherent.Age <= trancheAge.AgeSup 
 											&& ins.Adherent.ID_Ville == this._villeResident.ID
-									 select ins;
+											&& ins.Adherent.Sexe.LibelleCourt.Equals("M")
+									 select ins;			
 
-			tranche.EffectifResidents = rqEffectifResidents.Count();
-
-			var rqEffectifExterieur = from Inscription ins in this._inscriptionsSaisonCourante
+			var rqEffectifResidentsF = from Inscription ins in this._inscriptionsSaisonCourante
+									   where ins.Adherent.Age >= trancheAge.AgeInf
+											 && ins.Adherent.Age <= trancheAge.AgeSup
+											 && ins.Adherent.ID_Ville == this._villeResident.ID
+											 && ins.Adherent.Sexe.LibelleCourt.Equals("F")
+									   select ins;
+			
+			var rqEffectifExterieurH = from Inscription ins in this._inscriptionsSaisonCourante
 									  where ins.Adherent.Age >= trancheAge.AgeInf
 											&& ins.Adherent.Age <= trancheAge.AgeSup
 											&& ins.Adherent.ID_Ville != this._villeResident.ID
-									  select ins;
+											&& ins.Adherent.Sexe.LibelleCourt.Equals("M")
+									  select ins;			
 
-			tranche.EffectifExterieurs = rqEffectifExterieur.Count();
+			var rqEffectifExterieurF = from Inscription ins in this._inscriptionsSaisonCourante
+									   where ins.Adherent.Age >= trancheAge.AgeInf
+											 && ins.Adherent.Age <= trancheAge.AgeSup
+											 && ins.Adherent.ID_Ville != this._villeResident.ID
+											 && ins.Adherent.Sexe.LibelleCourt.Equals("F")
+									   select ins;
+
+			tranche.EffectifResidentsH = rqEffectifResidentsH.Count();
+			tranche.EffectifResidentsF = rqEffectifResidentsF.Count();
+			tranche.EffectifExterieursH = rqEffectifExterieurH.Count();
+			tranche.EffectifExterieursF = rqEffectifExterieurF.Count();
 
 			return tranche;
 		}
