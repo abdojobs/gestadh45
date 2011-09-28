@@ -16,6 +16,7 @@ namespace gestadh45.Ihm.ViewModel.Tools
 
 		private IInscriptionDao _daoInscription;
 		private IInfosClubDao _daoInfosClub;
+		private ITrancheAgeDao _daoTrancheAge;
 
 		private IEnumerable _inscriptionsSaisonCourante;
 		private Ville _villeResident;
@@ -42,6 +43,7 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		public RepartitionEffectifUCViewModel() {
 			this._daoInscription = this.mDaoFactory.GetInscriptionDao();
 			this._daoInfosClub = this.mDaoFactory.GetInfosClubDao();
+			this._daoTrancheAge = this.mDaoFactory.GetTrancheAgeDao();
 
 			this._inscriptionsSaisonCourante = this._daoInscription.ListSaisonCourante();
 			this._villeResident = this._daoInfosClub.Read().Ville;
@@ -54,40 +56,37 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		private void InitialisationTranchesEffectif() {
 			var tranches = new List<TrancheEffectif>();
 
-			// Création et alimentation des tranches
-			tranches.Add(this.CreerTrancheEffectif(2, 12, true));
-			tranches.Add(this.CreerTrancheEffectif(2, 12, false));
-			tranches.Add(this.CreerTrancheEffectif(13, 16, true));
-			tranches.Add(this.CreerTrancheEffectif(13, 16, false));
-			tranches.Add(this.CreerTrancheEffectif(17, 25, true));
-			tranches.Add(this.CreerTrancheEffectif(17, 25, false));
-			tranches.Add(this.CreerTrancheEffectif(26, 59, true));
-			tranches.Add(this.CreerTrancheEffectif(26, 59, false));
-			tranches.Add(this.CreerTrancheEffectif(60, 999, true));
-			tranches.Add(this.CreerTrancheEffectif(60, 999, false));
+			foreach (TrancheAge tranche in this._daoTrancheAge.List()) {
+				tranches.Add(this.CreerTrancheEffectif(tranche));
+			}
 
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(tranches);
 			defaultView.SortDescriptions.Add(new SortDescription("AgeInferieur", ListSortDirection.Ascending));
-			defaultView.SortDescriptions.Add(new SortDescription("EstResident", ListSortDirection.Descending));
 			this.TranchesEffectif = defaultView;
 		}
 
-		private TrancheEffectif CreerTrancheEffectif(int pAgeMini, int pAgeMaxi, bool pEstResident) {
+		private TrancheEffectif CreerTrancheEffectif(TrancheAge trancheAge) {
 			var tranche = new TrancheEffectif()
 			{
-				AgeInferieur = pAgeMini,
-				AgeSuperieur = pAgeMaxi,
-				EstResident = pEstResident
+				AgeInferieur = (int)trancheAge.AgeInf,
+				AgeSuperieur = (int)trancheAge.AgeSup
 			};
 
-			var rqEffectif = from Inscription ins in this._inscriptionsSaisonCourante
-							 where ins.Adherent.Age >= pAgeMini 
-							 && ins.Adherent.Age <= pAgeMaxi 
-							 && ((pEstResident)?(ins.Adherent.ID_Ville == this._villeResident.ID):(ins.Adherent.ID_Ville != this._villeResident.ID))
-							 select ins;
+			var rqEffectifResidents = from Inscription ins in this._inscriptionsSaisonCourante
+									  where ins.Adherent.Age >= trancheAge.AgeInf
+											&& ins.Adherent.Age <= trancheAge.AgeSup 
+											&& ins.Adherent.ID_Ville == this._villeResident.ID
+									 select ins;
 
+			tranche.EffectifResidents = rqEffectifResidents.Count();
 
-			tranche.Effectif = rqEffectif.Count();
+			var rqEffectifExterieur = from Inscription ins in this._inscriptionsSaisonCourante
+									  where ins.Adherent.Age >= trancheAge.AgeInf
+											&& ins.Adherent.Age <= trancheAge.AgeSup
+											&& ins.Adherent.ID_Ville != this._villeResident.ID
+									  select ins;
+
+			tranche.EffectifExterieurs = rqEffectifExterieur.Count();
 
 			return tranche;
 		}

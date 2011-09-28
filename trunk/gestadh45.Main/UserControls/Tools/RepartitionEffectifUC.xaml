@@ -10,7 +10,8 @@
 		<DataGrid Name="dgTranchesEffectif" ItemsSource="{Binding Path=TranchesEffectif}" IsReadOnly="True" AutoGenerateColumns="False">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Tranche" Binding="{Binding Path=Libelle}" />
-				<DataGridTextColumn Header="Effectif" Binding="{Binding Path=Effectif}" />
+				<DataGridTextColumn Header="Résidents" Binding="{Binding Path=EffectifResidents}" />
+				<DataGridTextColumn Header="Extérieurs" Binding="{Binding Path=EffectifExterieurs}" />
 			</DataGrid.Columns>
 		</DataGrid>
 	</DockPanel>
