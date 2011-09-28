@@ -334,7 +334,7 @@ namespace gestadh45.Ihm.ViewModel
 		#region FormulaireTrancheAge
 		private static FormulaireTrancheAgeUCViewModel _formulaireTranchesAgeVM;
 
-		public static FormulaireTrancheAgeUCViewModel FormulaireTranchesAgeVMStatic {
+		public static FormulaireTrancheAgeUCViewModel FormulaireTrancheAgeVMStatic {
 			get {
 				if (_formulaireTranchesAgeVM != null) {
 					_formulaireTranchesAgeVM.Cleanup();
