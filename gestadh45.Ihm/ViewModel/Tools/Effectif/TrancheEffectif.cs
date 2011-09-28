@@ -18,17 +18,17 @@ namespace gestadh45.Ihm.ViewModel.Tools.Effectif
 		public int AgeSuperieur { get; set; }
 
 		/// <summary>
-		/// Obtient/Définit un booléen indiquant si la tranche concerne les résidents oul es extérieurs
+		/// Obtient/Définit l'effectif de résidents pour cette tranche
 		/// </summary>
-		public bool EstResident { get; set; }
+		public int EffectifResidents { get; set; }
 
 		/// <summary>
-		/// Obtient/Définit l'effectif de la tranche
+		/// Obtient/Définit l'effectif d'extérieurs pour cettetranche
 		/// </summary>
-		public int Effectif { get; set; }
+		public int EffectifExterieurs { get; set; }
 
 		/// <summary>
-		/// Obtient le libellé de la tranche
+		/// Obtient une chaîne décrivant l'objet (ToString)
 		/// </summary>
 		public string Libelle {
 			get { return this.ToString(); }
@@ -36,13 +36,7 @@ namespace gestadh45.Ihm.ViewModel.Tools.Effectif
 		#endregion
 
 		public override string ToString() {
-			var statut = "extérieur";
-			
-			if (this.EstResident) {
-				statut = "résident";
-			}
-
-			return string.Format("{0} - {1} ({2})", this.AgeInferieur, this.AgeSuperieur, statut);
+			return string.Format("{0} - {1} ans", this.AgeInferieur, this.AgeSuperieur);
 		}
 	}
 }
