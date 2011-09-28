@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.Main", "gestadh45
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.dal", "gestadh45.dal\gestadh45.dal.csproj", "{511AC6A7-B581-4B4E-946F-297AE7E731F1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nsis", "nsis", "{EFE63629-041F-4211-99E0-EE31645340CE}"
+	ProjectSection(SolutionItems) = preProject
+		nsis\licence.txt = nsis\licence.txt
+		nsis\setup.nsi = nsis\setup.nsi
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
