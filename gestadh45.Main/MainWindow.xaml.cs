@@ -67,11 +67,6 @@ namespace gestadh45.Main
 				this,
 				this.AfficherAboutBox
 			);
-
-			Messenger.Default.Register<NotificationMessageConsultationExtractions>(
-				this,
-				this.OuvrirFenetreUC
-			);
 		}
 
 		private void AfficherAboutBox(NotificationMessageAboutBox pMessage) {
@@ -219,14 +214,6 @@ namespace gestadh45.Main
 				UCWindow lWindow = new UCWindow(lUC);
 				lWindow.ShowDialog();
 			}
-		}
-
-		private void OuvrirFenetreUC(NotificationMessageConsultationExtractions pMessage) {
-			ConsultationExtractionsUC lUC = new ConsultationExtractionsUC();
-			((ConsultationExtractionsUCViewModel)lUC.DataContext).ModeFenetre = true;
-			((ConsultationExtractionsUCViewModel)lUC.DataContext).ResultatExtraction = pMessage.ResultatExtraction;
-			UCWindow lWindow = new UCWindow(lUC);
-			lWindow.ShowDialog();
 		}
 	}
 }
