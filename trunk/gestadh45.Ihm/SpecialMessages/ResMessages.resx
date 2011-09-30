@@ -144,6 +144,9 @@
   <data name="MessageConfirmSupprVille" xml:space="preserve">
     <value>Etes-vous sûr de vouloir supprimer cette ville?</value>
   </data>
+  <data name="MessageInfoExtractionMails" xml:space="preserve">
+    <value>Liste de mail correctement exportée dans : </value>
+  </data>
   <data name="MessageInfoGenerationDocument" xml:space="preserve">
     <value>Le document a correctement été généré</value>
   </data>
