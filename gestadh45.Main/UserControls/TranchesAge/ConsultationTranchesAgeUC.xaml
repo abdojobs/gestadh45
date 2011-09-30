@@ -6,6 +6,7 @@
 			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
+			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm" 
 			 mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationTranchesAgeVMStatic, Source={StaticResource Locator}}" 
 			 d:DesignHeight="500" d:DesignWidth="600" Background="Cornsilk">
@@ -32,7 +33,15 @@
 				BtnSupprimerVisibilite="Visible"
 				CmdAjouter="{Binding Path=CreerCommand}"
 				CmdSupprimer="{Binding Path=SupprimerCommand}"
-				/>			
+				/>
+
+			<Separator Margin="0,10,0,10" />
+
+			<Button ToolTip="Répartition des effectifs par tranches d'âge" Width="30" Height="30" Margin="0,0,0,5"
+						CommandParameter="{x:Static ihm:CodesUC.RepartitionEffectif}" 
+						Command="{Binding Path=AfficherUCCommand}">
+				<Image Source="/gestadh45.Main;component/Images/btn_repartitionEffectif.png" />
+			</Button>
 		</StackPanel>
 
 		<StackPanel Name="stkDetails" DockPanel.Dock="Right" Margin="20,0,0,0">

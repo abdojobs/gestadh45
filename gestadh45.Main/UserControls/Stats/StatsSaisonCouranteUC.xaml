@@ -25,11 +25,13 @@
 				<TextBlock Width="100" Text="{Binding Path=NbAdherents}" />
 			</StackPanel>
 			
+			<Separator Margin="5,5,5,5" />
+			
 			<StackPanel Orientation="Horizontal">
 				<Button Name="btnTranchesAge"
 						CommandParameter="{x:Static ihm:CodesUC.ConsultationTranchesAge}" 
 						Command="{Binding Path=AfficherUCCommand}">
-					<TextBlock Text="tranches age" />
+					<TextBlock Text="Répartition par tranche d'âge" />
 				</Button>
 			</StackPanel>
 		</StackPanel>
