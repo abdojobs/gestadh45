@@ -53,6 +53,8 @@ namespace gestadh45.Ihm.ViewModel.Stats
 		public StatsSaisonCouranteUCViewModel() {
 			this._daoInscription = this.mDaoFactory.GetInscriptionDao();
 			this.CreateCalculerStatsCommand();
+
+			this.CalculerStats();
 		}
 		#endregion
 

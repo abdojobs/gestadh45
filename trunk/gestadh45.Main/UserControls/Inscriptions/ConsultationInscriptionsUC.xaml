@@ -55,12 +55,6 @@
 						Command="{Binding Path=AfficherUCCommand}">
 					<Image Source="/gestadh45.Main;component/Images/btn_grille.png" />
 				</Button>
-
-				<Button ToolTip="Répartition des effectifs par tranches d'âge" Width="30" Height="30" Margin="0,0,0,5"
-						CommandParameter="{x:Static ihm:CodesUC.RepartitionEffectif}" 
-						Command="{Binding Path=AfficherUCCommand}">
-					<Image Source="/gestadh45.Main;component/Images/btn_repartitionEffectif.png" />
-				</Button>
 			</StackPanel>
 
 			<StackPanel Name="stkDetailsInscription" DockPanel.Dock="Right" Margin="20,0,0,0">
