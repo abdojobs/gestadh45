@@ -70,6 +70,12 @@
     <Compile Include="Documents\Templates\AttestationDocument.cs" />
     <Compile Include="Documents\Templates\GeneriqueDocument.cs" />
     <Compile Include="Documents\Templates\InscriptionDocument.cs" />
+    <Compile Include="ExportTxt\ExportTxtHelper.cs" />
+    <Compile Include="ExportTxt\ResTxt.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResTxt.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VCards\DonneesVCard.cs" />
     <Compile Include="VCards\ResVCards.Designer.cs">
@@ -88,6 +94,10 @@
     <EmbeddedResource Include="Documents\ResDocuments.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResDocuments.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportTxt\ResTxt.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResTxt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="VCards\ResVCards.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
