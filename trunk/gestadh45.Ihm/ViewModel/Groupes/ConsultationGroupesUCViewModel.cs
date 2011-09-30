@@ -11,6 +11,8 @@ using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.service.Documents;
 using gestadh45.service.VCards;
+using gestadh45.service.ExportTxt;
+using System.Collections.Generic;
 
 namespace gestadh45.Ihm.ViewModel.Groupes
 {
@@ -185,15 +187,32 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 		}
 
 		public void ExecuteExtraireMailsCommand() {
-			StringBuilder lSb = new StringBuilder();
+			// TODO trouver un autre nom par défaut pour le fichier
+			if (this.Groupe != null) {
+				NotificationMessageActionFileDialog<string> message =
+					new NotificationMessageActionFileDialog<string>(
+						TypesNotification.SaveFileDialog,
+						ResTxt.Extension,
+						this.Groupe.ToString(),
+						callbackmessage =>
+						{
+							this.ExecuteExtraireMailsCommandCallBack(callbackmessage);
+						}
+					);
 
-			foreach (Inscription lInscription in this.Groupe.Inscriptions) {
-				lSb.Append(lInscription.Adherent.ChaineMails);
+				Messenger.Default.Send<NotificationMessageActionFileDialog<string>>(message);
+			}
+		}
+
+		private void ExecuteExtraireMailsCommandCallBack(string pSavePath) {
+			IList<string> listeMails = new List<string>();
+
+			foreach (Inscription ins in this.Groupe.Inscriptions) {
+				listeMails.Add(ins.Adherent.Mail1);
 			}
 
-			Messenger.Default.Send<NotificationMessageConsultationExtractions>(
-				new NotificationMessageConsultationExtractions(lSb.ToString())
-			);
+			ExportTxtHelper.IEnumerableToTxt(pSavePath, listeMails, ";");
+			this.AfficherInformationIhm("Liste de mail correctement exportée dans " + pSavePath);
 		}
 		#endregion
 
