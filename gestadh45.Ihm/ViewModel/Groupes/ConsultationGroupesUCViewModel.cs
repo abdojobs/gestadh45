@@ -187,13 +187,12 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 		}
 
 		public void ExecuteExtraireMailsCommand() {
-			// TODO trouver un autre nom par défaut pour le fichier
 			if (this.Groupe != null) {
 				NotificationMessageActionFileDialog<string> message =
 					new NotificationMessageActionFileDialog<string>(
 						TypesNotification.SaveFileDialog,
 						ResTxt.Extension,
-						this.Groupe.ToString(),
+						this.Groupe.Libelle,
 						callbackmessage =>
 						{
 							this.ExecuteExtraireMailsCommandCallBack(callbackmessage);
@@ -212,7 +211,7 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 			}
 
 			ExportTxtHelper.IEnumerableToTxt(pSavePath, listeMails, ";");
-			this.AfficherInformationIhm("Liste de mail correctement exportée dans " + pSavePath);
+			this.AfficherInformationIhm(ResMessages.MessageInfoExtractionMails + pSavePath);
 		}
 		#endregion
 

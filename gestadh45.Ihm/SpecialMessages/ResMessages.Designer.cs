@@ -142,6 +142,15 @@ namespace gestadh45.Ihm.SpecialMessages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Liste de mail correctement exportée dans : .
+        /// </summary>
+        public static string MessageInfoExtractionMails {
+            get {
+                return ResourceManager.GetString("MessageInfoExtractionMails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Le document a correctement été généré.
         /// </summary>
         public static string MessageInfoGenerationDocument {
