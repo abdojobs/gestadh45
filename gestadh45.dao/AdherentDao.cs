@@ -38,9 +38,9 @@ namespace gestadh45.dao
 
 		public bool Exists(Adherent adherent) {
 			return ((from a in Context.Adherents
-					 where (a.Nom.ToUpper().Equals(adherent.Nom.ToUpper()) 
-					 && a.Prenom.ToUpper().Equals(adherent.Prenom.ToUpper()))
-					 && a.DateNaissance.Equals(adherent.DateNaissance)
+					 where 
+						a.Nom.ToUpper().Equals(adherent.Nom.ToUpper()) 
+						&& a.Prenom.ToUpper().Equals(adherent.Prenom.ToUpper())
 					 select a).Count<Adherent>() > 0);
 		}
 
