@@ -22,5 +22,6 @@ namespace gestadh45.Ihm
 		public const string RepartitionEffectif = "RepartitionEffectif";
 		public const string ConsultationTranchesAge = "ConsultationTranchesAge";
 		public const string FormulaireTrancheAge = "FormulaireTrancheAge";
+		public const string Export = "Export";
 	}
 }

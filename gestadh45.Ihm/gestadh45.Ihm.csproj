@@ -101,6 +101,14 @@
     <Compile Include="ViewModel\Stats\Graphs\StructCodesGraphs.cs" />
     <Compile Include="ViewModel\Stats\StatsSaisonCouranteUCViewModel.cs" />
     <Compile Include="ViewModel\Tools\Effectif\TrancheEffectif.cs" />
+    <Compile Include="ViewModel\Tools\ExportUCViewModel.cs" />
+    <Compile Include="ViewModel\Tools\Export\CodesEncodage.cs" />
+    <Compile Include="ViewModel\Tools\Export\EncodageIhm.cs" />
+    <Compile Include="ViewModel\Tools\Export\ResEncodages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResEncodages.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\Tools\FicheEffectifUCViewModel.cs" />
     <Compile Include="ViewModel\Tools\RepartitionEffectifUCViewModel.cs" />
     <Compile Include="ViewModel\TranchesAge\ConsultationTranchesAgeUCViewModel.cs" />
@@ -141,6 +149,10 @@
     <EmbeddedResource Include="ViewModel\Stats\Graphs\ResGraphs.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResGraphs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\Tools\Export\ResEncodages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResEncodages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

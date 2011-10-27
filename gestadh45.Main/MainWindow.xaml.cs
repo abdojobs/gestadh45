@@ -185,9 +185,14 @@ namespace gestadh45.Main
 					this.contenu.Child = new FormulaireTrancheAgeUC();
 					break;
 
+				case CodesUC.Export:
+					this.contenu.Child = new ExportUC();
+					break;
+
 				case CodesUC.ConsultationInfosClub:
 				default:
-					this.contenu.Child = new ConsultationInfosClubUC();
+					//this.contenu.Child = new ConsultationInfosClubUC();
+					this.contenu.Child = new ExportUC();
 					break;
 			}
 		}

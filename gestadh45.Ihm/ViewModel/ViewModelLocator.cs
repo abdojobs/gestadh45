@@ -347,5 +347,22 @@ namespace gestadh45.Ihm.ViewModel
 			}
 		}
 		#endregion
+
+		#region ExportUC
+		private static ExportUCViewModel _ExportVM;
+
+		public static ExportUCViewModel ExportVMStatic {
+			get {
+				if (_ExportVM != null) {
+					_ExportVM.Cleanup();
+					_ExportVM = null;
+				}
+
+				_ExportVM = new ExportUCViewModel();
+
+				return _ExportVM;
+			}
+		}
+		#endregion
 	}
 }

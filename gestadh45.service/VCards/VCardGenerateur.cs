@@ -2,30 +2,45 @@
 using System.IO;
 using System.Text;
 using System.Globalization;
+using System.Collections.Generic;
 namespace gestadh45.service.VCards
 {
-	public class VCardGenerateur : VCard
+	public class VCardGenerateur
 	{
-		private string mSaveFilePath;
-		private DonneesVCard mDonnees;
+		private string _SaveFilePath;
+		private List<DonneesVCard> _Donnees;
 		
-		public VCardGenerateur(DonneesVCard pDonnees, string pSaveFilePath) {
-			this.mSaveFilePath = pSaveFilePath;
-			this.mDonnees = pDonnees;
+		public VCardGenerateur(List<DonneesVCard> pDonnees, string pSaveFilePath) {
+			this._SaveFilePath = pSaveFilePath;
+			this._Donnees = pDonnees;
+		}
 
+		public VCardGenerateur(DonneesVCard pDonnees, string pSaveFilePath) {
+			this._SaveFilePath = pSaveFilePath;
+			this._Donnees = new List<DonneesVCard>();
+			this._Donnees.Add(pDonnees);
 		}
 
 		public void CreerVCard() {
-			base.LastName = this.mDonnees.Nom;
-			base.FirstName = this.mDonnees.Prenom;
+			var chaineVcards = new StringBuilder();
+			
+			foreach (DonneesVCard donnee in this._Donnees) {
+				var vcard = new VCard();
 
-			base.DirectDial = this.mDonnees.Telephone1;
-			base.Email = this.mDonnees.Mail1;
-			base.Organization = this.mDonnees.LibelleGroupe;
+				vcard.LastName = donnee.Nom;
+				vcard.FirstName = donnee.Prenom;
 
-			// ecriture du fichier
-			StreamWriter lWriter = new StreamWriter(this.mSaveFilePath, false, Encoding.Default);
-			lWriter.Write(this.GetVCard());
+				vcard.DirectDial = donnee.Telephone1;
+				vcard.Email = donnee.Mail1;
+				vcard.Organization = donnee.LibelleGroupe;
+
+				chaineVcards.Append(vcard.GetVCard());
+			}			
+
+			// ecriture du fichier en UTF-8 (sans BOM pour ne pas poser de problèmes avec l'import dans zimbra)
+			// TODO voir pour le rendre paramétrable...
+			StreamWriter lWriter = new StreamWriter(this._SaveFilePath, false, new System.Text.UTF8Encoding(false));
+			lWriter.Write(chaineVcards.ToString());
 			lWriter.Close();
 		}
 	}
