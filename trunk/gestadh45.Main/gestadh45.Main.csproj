@@ -140,6 +140,9 @@
     <Compile Include="UserControls\Stats\StatsSaisonCouranteUC.xaml.cs">
       <DependentUpon>StatsSaisonCouranteUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Tools\ExportUC.xaml.cs">
+      <DependentUpon>ExportUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Tools\FicheEffectifUC.xaml.cs">
       <DependentUpon>FicheEffectifUC.xaml</DependentUpon>
     </Compile>
@@ -241,6 +244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Tools\ExportUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Tools\FicheEffectifUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -306,7 +313,9 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
