@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using gestadh45.dao;
 using gestadh45.Ihm.ViewModel.Stats.Graphs;
 
 namespace gestadh45.Ihm.ViewModel.Stats
@@ -54,21 +53,16 @@ namespace gestadh45.Ihm.ViewModel.Stats
 		public ICommand AfficherGraphCommand { get; set; }
 
 		public GraphsSaisonCouranteUCViewModel() {
-			IInfosClubDao daoInfosClub = this.mDaoFactory.GetInfosClubDao();
-			IInscriptionDao daoInscription = this.mDaoFactory.GetInscriptionDao();
-			IGroupeDao daoGroupe = this.mDaoFactory.GetGroupeDao();
-			ISexeDao daoSexe = this.mDaoFactory.GetSexeDao();
-
 			this.initialisationListeGraphs();
 			this.CreateAfficherGraphCommand();
 
 			// on récupère une fois pour toute les données du graph
 			this._donneesGraph = new DonneesGraph()
 			{
-				InfosClub = daoInfosClub.Read(),
-				GroupesSaisonCourante = daoGroupe.ListSaisonCourante(),
-				InscriptionsSaisonCourante = daoInscription.ListSaisonCourante(),
-				Sexes = daoSexe.List()
+				InfosClub = ViewModelLocator.DaoInfosClub.Read(),
+				GroupesSaisonCourante = ViewModelLocator.DaoGroupe.ListSaisonCourante(),
+				InscriptionsSaisonCourante = ViewModelLocator.DaoInscription.ListSaisonCourante(),
+				Sexes = ViewModelLocator.DaoSexe.List()
 			};
 		}
 

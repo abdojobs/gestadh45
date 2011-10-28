@@ -1,18 +1,15 @@
 ﻿using System.ComponentModel;
+using System.Windows;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
-using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
-using System.Windows;
 
 namespace gestadh45.Ihm.ViewModel.TranchesAge
 {
 	public class ConsultationTranchesAgeUCViewModel : ViewModelBaseConsultation
 	{
 		#region private fields
-		private ITrancheAgeDao _daoTrancheAge;
-
 		private ICollectionView _tranchesAge;
 		private TrancheAge _trancheAge;
 		#endregion
@@ -48,7 +45,6 @@ namespace gestadh45.Ihm.ViewModel.TranchesAge
 
 		#region constructor
 		public ConsultationTranchesAgeUCViewModel() {
-			this._daoTrancheAge = this.mDaoFactory.GetTrancheAgeDao();
 			this.InitialisationListeTranchesAge();
 
 			Messenger.Default.Register<MsgSelectionElement<TrancheAge>>(this, this.SelectionnerTrancheAge);
@@ -74,7 +70,7 @@ namespace gestadh45.Ihm.ViewModel.TranchesAge
 
 		private void ExecuteSupprimerTrancheAgeCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				this._daoTrancheAge.Delete(this.TrancheAge);
+				ViewModelLocator.DaoTrancheAge.Delete(this.TrancheAge);
 				this.InitialisationListeTranchesAge();
 				this.TrancheAge = null;
 
@@ -119,7 +115,7 @@ namespace gestadh45.Ihm.ViewModel.TranchesAge
 
 		#region private methods
 		private void InitialisationListeTranchesAge() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoTrancheAge.List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(ViewModelLocator.DaoTrancheAge.List());
 			defaultView.SortDescriptions.Add(new SortDescription("AgeInf", ListSortDirection.Ascending));
 			this.TranchesAge = defaultView;
 		}

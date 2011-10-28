@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Data;
 using gestadh45.dal;
-using gestadh45.dao;
 using gestadh45.Ihm.ViewModel.Tools.Effectif;
 
 namespace gestadh45.Ihm.ViewModel.Tools
@@ -13,11 +12,6 @@ namespace gestadh45.Ihm.ViewModel.Tools
 	{
 		#region private fields
 		private ICollectionView _tranchesEffectif;
-
-		private IInscriptionDao _daoInscription;
-		private IInfosClubDao _daoInfosClub;
-		private ITrancheAgeDao _daoTrancheAge;
-		private ISexeDao _daoSexe;
 
 		private IEnumerable _inscriptionsSaisonCourante;
 		private Ville _villeResident;
@@ -42,13 +36,8 @@ namespace gestadh45.Ihm.ViewModel.Tools
 
 		#region Constructor
 		public RepartitionEffectifUCViewModel() {
-			this._daoInscription = this.mDaoFactory.GetInscriptionDao();
-			this._daoInfosClub = this.mDaoFactory.GetInfosClubDao();
-			this._daoTrancheAge = this.mDaoFactory.GetTrancheAgeDao();
-			this._daoSexe = this.mDaoFactory.GetSexeDao();
-
-			this._inscriptionsSaisonCourante = this._daoInscription.ListSaisonCourante();
-			this._villeResident = this._daoInfosClub.Read().Ville;
+			this._inscriptionsSaisonCourante = ViewModelLocator.DaoInscription.ListSaisonCourante();
+			this._villeResident = ViewModelLocator.DaoInfosClub.Read().Ville;
 
 			this.InitialisationTranchesEffectif();
 		}
@@ -58,7 +47,7 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		private void InitialisationTranchesEffectif() {
 			var tranches = new List<TrancheEffectif>();
 
-			foreach (TrancheAge tranche in this._daoTrancheAge.List()) {
+			foreach (TrancheAge tranche in ViewModelLocator.DaoTrancheAge.List()) {
 				tranches.Add(this.CreerTrancheEffectif(tranche));
 			}
 

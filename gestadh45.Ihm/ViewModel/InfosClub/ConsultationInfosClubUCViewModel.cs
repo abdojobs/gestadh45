@@ -1,13 +1,10 @@
 ﻿using gestadh45.dal;
-using gestadh45.dao;
 
 namespace gestadh45.Ihm.ViewModel.InfosClubs
 {
 	public class ConsultationInfosClubUCViewModel : ViewModelBaseConsultation
 	{
 		private InfosClub mInfosClub;
-
-		private IInfosClubDao mDaoInfosClub;
 
 		/// <summary>
 		/// Obtient/Définit l'objet à afficher
@@ -25,10 +22,8 @@ namespace gestadh45.Ihm.ViewModel.InfosClubs
 		}
 
 		public ConsultationInfosClubUCViewModel() {
-			this.mDaoInfosClub = this.mDaoFactory.GetInfosClubDao();
-
-			this.InfosClub = this.mDaoInfosClub.Read();
-			this.mDaoInfosClub.Refresh(this.InfosClub);
+			this.InfosClub = ViewModelLocator.DaoInfosClub.Read();
+			ViewModelLocator.DaoInfosClub.Refresh(this.InfosClub);
 
 			this.CreateEditerCommand();
 		}

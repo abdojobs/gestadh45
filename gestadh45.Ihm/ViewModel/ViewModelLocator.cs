@@ -7,6 +7,7 @@ using gestadh45.Ihm.ViewModel.Stats;
 using gestadh45.Ihm.ViewModel.Villes;
 using gestadh45.Ihm.ViewModel.Tools;
 using gestadh45.Ihm.ViewModel.TranchesAge;
+using gestadh45.dao;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -15,6 +16,7 @@ namespace gestadh45.Ihm.ViewModel
 		public static string DataSource = null;
 
 		public ViewModelLocator() {
+			// initialisation du VM principal
 			if (_main == null) {
 				_main = new MainViewModel();
 			}
@@ -24,6 +26,19 @@ namespace gestadh45.Ihm.ViewModel
 			_main.Cleanup();
 			_main = null;
 		}
+
+		#region DAO
+		public static IAdherentDao DaoAdherent { get; set; }
+		public static IGroupeDao DaoGroupe { get; set; }
+		public static IInfosClubDao DaoInfosClub { get; set; }
+		public static IInscriptionDao DaoInscription { get; set; }
+		public static IJourSemaineDao DaoJourSemaine { get; set; }
+		public static ISaisonDao DaoSaison { get; set; }
+		public static ISexeDao DaoSexe { get; set; }
+		public static IStatutInscriptionDao DaoStatutInscription { get; set; }
+		public static ITrancheAgeDao DaoTrancheAge { get; set; }
+		public static IVilleDao DaoVille { get; set; }
+		#endregion
 
 		#region MainView
 		private static MainViewModel _main;

@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
-using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.Groupes
@@ -12,10 +11,6 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 	{
 		private Groupe mGroupe;
 		private ICollectionView mJoursSemaine;
-
-		private IJourSemaineDao mDaoJoursSemaine;
-		private ISaisonDao mDaoSaison;
-		private IGroupeDao mDaoGroupe;
 
 		/// <summary>
 		/// Obtient/Définit l'objet du formulaire
@@ -48,21 +43,17 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 		}
 
 		public FormulaireGroupeUCViewModel() {
-			this.mDaoJoursSemaine = this.mDaoFactory.GetJourSemaineDao();
-			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
-			this.mDaoGroupe = this.mDaoFactory.GetGroupeDao();
-
 			this.Groupe = new Groupe();
-			this.Groupe.Saison = this.mDaoSaison.ReadSaisonCourante();
+			this.Groupe.Saison = ViewModelLocator.DaoSaison.ReadSaisonCourante();
 			this.InitialisationListeJoursSemaine();
 			this.CodeUCOrigine = CodesUC.ConsultationGroupes;
 		}
 
 		public override void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie()
-				&& !this.mDaoGroupe.Exists(this.Groupe)) {
-					
-				this.mDaoGroupe.Create(this.Groupe);
+				&& !ViewModelLocator.DaoGroupe.Exists(this.Groupe)) {
+
+					ViewModelLocator.DaoGroupe.Create(this.Groupe);
 				base.ExecuteEnregistrerCommand();
 
 				var msg = new MsgSelectionElement<Groupe>(this.Groupe);
@@ -74,7 +65,7 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 		}
 
 		private void InitialisationListeJoursSemaine() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoJoursSemaine.List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(ViewModelLocator.DaoJourSemaine.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Numero", ListSortDirection.Ascending));
 			this.JoursSemaine = defaultView;
 		}
@@ -97,7 +88,7 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 
 			if (!this.EstEdition
 				&& lErreurs.Count == 0
-				&& this.mDaoGroupe.Exists(this.Groupe)) {
+				&& ViewModelLocator.DaoGroupe.Exists(this.Groupe)) {
 
 					lErreurs.Add(ResErreurs.Groupe_Existe);
 			}

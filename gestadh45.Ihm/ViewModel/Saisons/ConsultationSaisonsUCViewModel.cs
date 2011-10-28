@@ -5,7 +5,6 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
-using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.Saisons
@@ -16,8 +15,6 @@ namespace gestadh45.Ihm.ViewModel.Saisons
 
 		private Saison mSaison;
 		private ICollectionView mSaisons;
-
-		private ISaisonDao mSaisonDao;
 
 		/// <summary>
 		/// Obtient/Définit la saison à afficher
@@ -50,8 +47,6 @@ namespace gestadh45.Ihm.ViewModel.Saisons
 		}
 
 		public ConsultationSaisonsUCViewModel() {
-			this.mSaisonDao = this.mDaoFactory.GetSaisonDao();
-
 			this.InitialisationListeSaisons();
 
 			this.CreateDefinirSaisonCouranteCommand();
@@ -69,8 +64,8 @@ namespace gestadh45.Ihm.ViewModel.Saisons
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Saison != null
-				&& this.mSaisonDao.Exists(this.Saison)
-				&& !this.mSaisonDao.IsUsed(this.Saison)
+				&& ViewModelLocator.DaoSaison.Exists(this.Saison)
+				&& !ViewModelLocator.DaoSaison.IsUsed(this.Saison)
 				&& !this.Saison.EstSaisonCourante	// on ne peut pas supprimer la saison courante
 			);
 		}
@@ -96,13 +91,13 @@ namespace gestadh45.Ihm.ViewModel.Saisons
 
 		public void ExecuteDefinirSaisonCouranteCommand(Saison pSaison) {
 			if (pSaison != null) {
-				Saison lOldSaisonCourante = this.mSaisonDao.ReadSaisonCourante();
+				Saison lOldSaisonCourante = ViewModelLocator.DaoSaison.ReadSaisonCourante();
 				lOldSaisonCourante.EstSaisonCourante = false;
-				this.mSaisonDao.Update(lOldSaisonCourante);
+				ViewModelLocator.DaoSaison.Update(lOldSaisonCourante);
 
 				pSaison.EstSaisonCourante = true;
 
-				this.mSaisonDao.Update(pSaison);
+				ViewModelLocator.DaoSaison.Update(pSaison);
 				this.InitialisationListeSaisons();
 
 				this.Saison = null;
@@ -127,7 +122,7 @@ namespace gestadh45.Ihm.ViewModel.Saisons
 
 		private void ExecuteSupprimerSaisonCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				this.mSaisonDao.Delete(this.Saison);
+				ViewModelLocator.DaoSaison.Delete(this.Saison);
 				this.InitialisationListeSaisons();
 				this.Saison = null;
 
@@ -137,11 +132,11 @@ namespace gestadh45.Ihm.ViewModel.Saisons
 
 		private void InitialisationListeSaisons() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-				this.mSaisonDao.List()
+				ViewModelLocator.DaoSaison.List()
 			);
 
 			foreach (Saison lSaison in defaultView) {
-				this.mSaisonDao.Refresh(lSaison);
+				ViewModelLocator.DaoSaison.Refresh(lSaison);
 			}
 
 			defaultView.SortDescriptions.Add(new SortDescription("AnneeDebut", ListSortDirection.Ascending));

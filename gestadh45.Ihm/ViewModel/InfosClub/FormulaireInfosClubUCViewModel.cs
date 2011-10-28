@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
-using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.InfosClubs
@@ -12,9 +11,6 @@ namespace gestadh45.Ihm.ViewModel.InfosClubs
 	{
 		private InfosClub mInfosClub;
 		private ICollectionView mVilles;
-
-		private IVilleDao mDaoVille;
-		private IInfosClubDao mDaoInfosClub;
 
 		/// <summary>
 		/// Obtient/Définit l'objet Infos club du formulaire
@@ -47,13 +43,10 @@ namespace gestadh45.Ihm.ViewModel.InfosClubs
 		}
 
 		public FormulaireInfosClubUCViewModel() {
-			this.mDaoVille = this.mDaoFactory.GetVilleDao();
-			this.mDaoInfosClub = this.mDaoFactory.GetInfosClubDao();
-
 			this.InitialisationListeVilles();
 
-			this.InfosClub = this.mDaoInfosClub.Read();
-			this.mDaoInfosClub.Refresh(this.InfosClub);
+			this.InfosClub = ViewModelLocator.DaoInfosClub.Read();
+			ViewModelLocator.DaoInfosClub.Refresh(this.InfosClub);
 			this.CodeUCOrigine = CodesUC.ConsultationInfosClub;
 
 			Messenger.Default.Register<MsgSelectionElement<Ville>>(this, this.SelectionnerVille);
@@ -61,8 +54,8 @@ namespace gestadh45.Ihm.ViewModel.InfosClubs
 
 		public override void ExecuteAnnulerCommand() {
 			if (this.InfosClub != null) {
-				this.mDaoVille.Refresh(this.InfosClub.Ville);
-				this.mDaoInfosClub.Refresh(this.InfosClub);
+				ViewModelLocator.DaoVille.Refresh(this.InfosClub.Ville);
+				ViewModelLocator.DaoInfosClub.Refresh(this.InfosClub);
 			}
 
 			base.ExecuteAnnulerCommand();
@@ -70,7 +63,7 @@ namespace gestadh45.Ihm.ViewModel.InfosClubs
 
 		public override void ExecuteEnregistrerCommand() {
 			if (this.VerifierSaisie()) {
-				this.mDaoInfosClub.Update(this.InfosClub);
+				ViewModelLocator.DaoInfosClub.Update(this.InfosClub);
 
 				base.ExecuteEnregistrerCommand();
 			}
@@ -86,7 +79,7 @@ namespace gestadh45.Ihm.ViewModel.InfosClubs
 		}
 
 		private void InitialisationListeVilles() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoVille.List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(ViewModelLocator.DaoVille.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
 		}

@@ -5,7 +5,6 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
-using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.Adherents
@@ -16,8 +15,6 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 		
 		private Adherent mAdherent;
 		private ICollectionView mAdherents;
-
-		private IAdherentDao mDaoAdherent;
 
 		/// <summary>
 		/// Obtient/Définit l'adhérent à afficher
@@ -50,8 +47,6 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 		}
 
 		public ConsultationAdherentsUCViewModel() {
-			this.mDaoAdherent = this.mDaoFactory.GetAdherentDao();
-
 			this.InitialisationListeAdherents();
 
 			this.CreateInscrireCommand();
@@ -67,8 +62,8 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Adherent != null
-				&& this.mDaoAdherent.Exists(this.Adherent)
-				&& !this.mDaoAdherent.IsUsed(this.Adherent)
+				&& ViewModelLocator.DaoAdherent.Exists(this.Adherent)
+				&& !ViewModelLocator.DaoAdherent.IsUsed(this.Adherent)
 				);
 		}
 
@@ -157,7 +152,7 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 			newAdherent.Prenom += " (copie)";
 			newAdherent.Commentaire = "Copie de " + this.Adherent.ToString();
 
-			this.mDaoAdherent.Create(newAdherent);
+			ViewModelLocator.DaoAdherent.Create(newAdherent);
 			this.InitialisationListeAdherents();
 
 			this.AfficherInformationIhm(ResMessages.MessageConfirmDuplicationAdherent);
@@ -170,7 +165,7 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 		/// <param name="pResult">Résultat de la demande de confirmation</param>
 		private void ExecuteSupprimerAdherentCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				this.mDaoAdherent.Delete(this.Adherent);
+				ViewModelLocator.DaoAdherent.Delete(this.Adherent);
 				this.InitialisationListeAdherents();
 				this.Adherent = null;
 
@@ -182,7 +177,7 @@ namespace gestadh45.Ihm.ViewModel.Adherents
 		}
 
 		private void InitialisationListeAdherents() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoAdherent.List());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(ViewModelLocator.DaoAdherent.List());
 			defaultView.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Prenom", ListSortDirection.Ascending));
 			this.Adherents = defaultView;

@@ -2,10 +2,10 @@
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using gestadh45.dal;
 using gestadh45.dao;
 using gestadh45.Ihm.ObjetsIhm;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.dal;
 using gestadh45.service.Database;
 
 namespace gestadh45.Ihm.ViewModel
@@ -16,11 +16,11 @@ namespace gestadh45.Ihm.ViewModel
 		public ICommand ChangerDataSourceCommand { get; internal set; }
 		public ICommand CreerDatabaseCommand { get; set; }
 
-		private ISaisonDao mDaoSaison;
-
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
 		private NotificationIhm mNotificationIhm;
+
+		private IDaoFactory _daoFactory;
 		
 		/// <summary>
 		/// Obtient/Définit l'information sur le datasource actuel
@@ -69,7 +69,7 @@ namespace gestadh45.Ihm.ViewModel
 		}
 
 		public MainViewModel() {
-			this.mDaoSaison = this.mDaoFactory.GetSaisonDao();
+			this._daoFactory = new DaoFactory();	
 			this.mNotificationIhm = new NotificationIhm();
 
 			this.CreateChangerDataSourceCommand();
@@ -172,7 +172,11 @@ namespace gestadh45.Ihm.ViewModel
 					ObjectContextManager.CreateContext(EntitySQLiteHelper.GetConnectionString(pFilePath));
 
 					this.InfosDataSource = EntitySQLiteHelper.GetFilePathFromContext(ObjectContextManager.Context);
-					this.InfosSaisonCourante = this.mDaoSaison.ReadSaisonCourante().ToShortString();
+
+					// DAO
+					this.InitialisationDaos();
+
+					this.InfosSaisonCourante = ViewModelLocator.DaoSaison.ReadSaisonCourante().ToShortString();
 					this.ExecuteAfficherUCCommand(CodesUC.ConsultationInfosClub);
 
 					this.AfficherInformationIhm(MainRessources.NotificationOuvertureBase + pFilePath);
@@ -181,6 +185,19 @@ namespace gestadh45.Ihm.ViewModel
 			catch (Exception exception) {
 				this.AfficherErreurIhm(exception.Message);
 			}
+		}
+
+		private void InitialisationDaos() {
+			ViewModelLocator.DaoAdherent = this._daoFactory.GetAdherentDao();
+			ViewModelLocator.DaoGroupe = this._daoFactory.GetGroupeDao();
+			ViewModelLocator.DaoInfosClub = this._daoFactory.GetInfosClubDao();
+			ViewModelLocator.DaoInscription = this._daoFactory.GetInscriptionDao();
+			ViewModelLocator.DaoJourSemaine = this._daoFactory.GetJourSemaineDao();
+			ViewModelLocator.DaoSaison = this._daoFactory.GetSaisonDao();
+			ViewModelLocator.DaoSexe = this._daoFactory.GetSexeDao();
+			ViewModelLocator.DaoStatutInscription = this._daoFactory.GetStatutInscriptionDao();
+			ViewModelLocator.DaoTrancheAge = this._daoFactory.GetTrancheAgeDao();
+			ViewModelLocator.DaoVille = this._daoFactory.GetVilleDao();
 		}
 		#endregion
 	}

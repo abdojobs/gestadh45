@@ -5,7 +5,6 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
-using gestadh45.dao;
 using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Ihm.ViewModel.Tools.Export;
@@ -21,10 +20,6 @@ namespace gestadh45.Ihm.ViewModel.Tools
 
 		private ICollectionView _groupes;
 		private Groupe _groupe;
-
-		private IGroupeDao _daoGroupe;
-		private IInscriptionDao _daoInscription;
-		private ISaisonDao _daoSaison;
 		#endregion
 
 		#region properties
@@ -78,10 +73,6 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		/// Constructeur
 		/// </summary>
 		public ExportUCViewModel() {
-			this._daoGroupe = this.mDaoFactory.GetGroupeDao();
-			this._daoInscription = this.mDaoFactory.GetInscriptionDao();
-			this._daoSaison = this.mDaoFactory.GetSaisonDao();
-
 			this.CreateExtractionVCardGroupCommand();
 			this.CreateExtractionVCardSaisonCommand();
 
@@ -114,10 +105,10 @@ namespace gestadh45.Ihm.ViewModel.Tools
 							bool fichierUnique = pFichierUnique ?? false;
 
 							if (fichierUnique) {
-								this.GenererVCardFichierUnique(callbackmessage, this._daoInscription.ListSaisonCourante(), this._daoSaison.ReadSaisonCourante().ToShortString());
+								this.GenererVCardFichierUnique(callbackmessage, ViewModelLocator.DaoInscription.ListSaisonCourante(), ViewModelLocator.DaoSaison.ReadSaisonCourante().ToShortString());
 							}
 							else {
-								this.GenererVCard(callbackmessage, this._daoInscription.ListSaisonCourante());
+								this.GenererVCard(callbackmessage, ViewModelLocator.DaoInscription.ListSaisonCourante());
 							}
 						}
 					);
@@ -175,7 +166,7 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		}
 
 		private void InitialisationGroupes() {
-			var groupes = this._daoGroupe.ListSaisonCourante();
+			var groupes = ViewModelLocator.DaoGroupe.ListSaisonCourante();
 			var defaultView = CollectionViewSource.GetDefaultView(groupes);
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
