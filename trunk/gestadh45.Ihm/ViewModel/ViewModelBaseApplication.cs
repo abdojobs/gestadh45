@@ -16,11 +16,7 @@ namespace gestadh45.Ihm.ViewModel
 	{
 		public ICommand FenetreCommand { get; set; }
 
-		protected IDaoFactory mDaoFactory;		
-
 		public ViewModelBaseApplication() {
-			this.mDaoFactory = new DaoFactory();
-
 			this.CreateFenetreCommand();
 			this.CreateAfficherUCCommand();
 		}

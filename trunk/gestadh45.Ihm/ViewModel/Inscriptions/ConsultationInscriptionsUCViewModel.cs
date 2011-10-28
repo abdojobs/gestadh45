@@ -5,7 +5,6 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
-using gestadh45.dao;
 using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.service.Documents;
@@ -17,9 +16,6 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 	{	
 		private Inscription mInscription;
 		private ICollectionView mInscriptionsSaisonCourante;
-
-		private IInscriptionDao mDaoInscription;
-		private IInfosClubDao mDaoInfosClub;
 
 		/// <summary>
 		/// Obtient/Définit l'inscription à afficher
@@ -52,9 +48,6 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 		}
 
 		public ConsultationInscriptionsUCViewModel() {
-			this.mDaoInscription = this.mDaoFactory.GetInscriptionDao();
-			this.mDaoInfosClub = this.mDaoFactory.GetInfosClubDao();
-
 			this.InitialisationListeInscriptions();
 
 			this.CreateGenererDocumentCommand();
@@ -109,7 +102,7 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 
 		private void ExecuteSupprimerInscriptionCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				this.mDaoInscription.Delete(this.Inscription);
+				ViewModelLocator.DaoInscription.Delete(this.Inscription);
 				this.InitialisationListeInscriptions();
 				this.Inscription = null;
 
@@ -215,7 +208,7 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 		#region methodes privees
 		private void GenererDocument(string pSaveFilePath, string pCodeDocument) {
 			if (!string.IsNullOrWhiteSpace(pSaveFilePath)) {
-				InfosClub infosClub = mDaoInfosClub.Read();
+				InfosClub infosClub = ViewModelLocator.DaoInfosClub.Read();
 				DonneesDocument donnees = ServiceDocumentAdaptateur.InscriptionToDonneesDocument(infosClub, this.Inscription);
 				GenerateurDocumentPDF generateur = new GenerateurDocumentPDF(donnees, pSaveFilePath);
 
@@ -237,7 +230,7 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 		}
 
 		private void InitialisationListeInscriptions() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.mDaoInscription.ListSaisonCourante());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(ViewModelLocator.DaoInscription.ListSaisonCourante());
 			defaultView.GroupDescriptions.Add(new PropertyGroupDescription("Groupe"));
 			defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine.Numero", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Groupe.JourSemaine", ListSortDirection.Ascending));

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using gestadh45.dal;
-using gestadh45.dao;
 namespace gestadh45.Ihm.ViewModel.Stats
 {
 	public class StatsSaisonCouranteUCViewModel : ViewModelBaseConsultation
@@ -11,8 +10,6 @@ namespace gestadh45.Ihm.ViewModel.Stats
 		#region private fields
 		private decimal _totalCotisations;
 		private int _nbAdherents;
-
-		private IInscriptionDao _daoInscription;
 		#endregion
 		
 		#region properties
@@ -51,7 +48,6 @@ namespace gestadh45.Ihm.ViewModel.Stats
 
 		#region constructors
 		public StatsSaisonCouranteUCViewModel() {
-			this._daoInscription = this.mDaoFactory.GetInscriptionDao();
 			this.CreateCalculerStatsCommand();
 
 			this.CalculerStats();
@@ -81,7 +77,7 @@ namespace gestadh45.Ihm.ViewModel.Stats
 		/// Recalcule toutes les stats
 		/// </summary>
 		private void CalculerStats() {
-			var inscriptions = this._daoInscription.ListSaisonCourante();
+			var inscriptions = ViewModelLocator.DaoInscription.ListSaisonCourante();
 
 			// calcul du total des cotisations
 			this.TotalCotisations = this.CalculerTotalCotisations(inscriptions);

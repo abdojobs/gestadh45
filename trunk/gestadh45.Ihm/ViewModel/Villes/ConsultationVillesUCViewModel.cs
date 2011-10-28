@@ -3,7 +3,6 @@ using System.Windows;
 using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
-using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 
 namespace gestadh45.Ihm.ViewModel.Villes
@@ -12,7 +11,6 @@ namespace gestadh45.Ihm.ViewModel.Villes
 	{
 		private Ville mVille;
 		private ICollectionView mVilles;
-		private IVilleDao mDaoVille;
 
 		/// <summary>
 		/// Obtient/Définit la ville à afficher
@@ -45,7 +43,6 @@ namespace gestadh45.Ihm.ViewModel.Villes
 		}
 
 		public ConsultationVillesUCViewModel() {
-			this.mDaoVille = this.mDaoFactory.GetVilleDao();
 			this.InitialisationListeVilles();
 
 			Messenger.Default.Register<MsgSelectionElement<Ville>>(this, this.SelectionnerVille);
@@ -54,8 +51,8 @@ namespace gestadh45.Ihm.ViewModel.Villes
 		public override bool CanExecuteSupprimerCommand() {
 			return (
 				this.Ville != null
-				&& this.mDaoVille.Exists(this.Ville)
-				&& !this.mDaoVille.IsUsed(this.Ville)
+				&& ViewModelLocator.DaoVille.Exists(this.Ville)
+				&& !ViewModelLocator.DaoVille.IsUsed(this.Ville)
 				);
 		}
 
@@ -78,7 +75,7 @@ namespace gestadh45.Ihm.ViewModel.Villes
 
 		private void ExecuteSupprimerVilleCommandCallBack(MessageBoxResult pResult) {
 			if (pResult == MessageBoxResult.OK) {
-				this.mDaoVille.Delete(this.Ville);
+				ViewModelLocator.DaoVille.Delete(this.Ville);
 				this.InitialisationListeVilles();
 				this.Ville = null;
 
@@ -88,11 +85,11 @@ namespace gestadh45.Ihm.ViewModel.Villes
 
 		private void InitialisationListeVilles() {
 			ICollectionView defaultView = CollectionViewSource.GetDefaultView(
-				this.mDaoVille.List()
+				ViewModelLocator.DaoVille.List()
 			);
 
 			foreach (Ville lVille in defaultView) {
-				this.mDaoVille.Refresh(lVille);
+				ViewModelLocator.DaoVille.Refresh(lVille);
 			}
 
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));

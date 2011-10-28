@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
-using gestadh45.dao;
 using gestadh45.Ihm.SpecialMessages;
 namespace gestadh45.Ihm.ViewModel.TranchesAge
 {
@@ -10,7 +9,6 @@ namespace gestadh45.Ihm.ViewModel.TranchesAge
 	{
 		#region private fields
 		private TrancheAge _trancheAge;
-		private ITrancheAgeDao _daoTrancheAge;
 		#endregion
 
 		#region properties
@@ -30,7 +28,6 @@ namespace gestadh45.Ihm.ViewModel.TranchesAge
 
 		#region constructor
 		public FormulaireTrancheAgeUCViewModel() {
-			this._daoTrancheAge = this.mDaoFactory.GetTrancheAgeDao();
 			this.TrancheAge = new TrancheAge();
 			this.CodeUCOrigine = CodesUC.ConsultationTranchesAge;
 		}
@@ -38,8 +35,8 @@ namespace gestadh45.Ihm.ViewModel.TranchesAge
 
 		#region EnregistrerCommand
 		public override void ExecuteEnregistrerCommand() {
-			if (this.VerifierSaisie() && !this._daoTrancheAge.Exists(this.TrancheAge)) {
-				this._daoTrancheAge.Create(this.TrancheAge);
+			if (this.VerifierSaisie() && !ViewModelLocator.DaoTrancheAge.Exists(this.TrancheAge)) {
+				ViewModelLocator.DaoTrancheAge.Create(this.TrancheAge);
 
 				base.ExecuteEnregistrerCommand();
 
@@ -72,7 +69,7 @@ namespace gestadh45.Ihm.ViewModel.TranchesAge
 			}
 
 			// on vérifie que la tranche n'existe pas déjà
-			if (erreurs.Count == 0 && this._daoTrancheAge.Exists(this.TrancheAge)) {
+			if (erreurs.Count == 0 && ViewModelLocator.DaoTrancheAge.Exists(this.TrancheAge)) {
 				erreurs.Add(ResErreurs.TrancheAge_Existe);
 			}
 

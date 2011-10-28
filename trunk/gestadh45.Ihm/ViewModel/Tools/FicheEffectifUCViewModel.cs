@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows.Data;
 using gestadh45.dal;
-using gestadh45.dao;
 
 namespace gestadh45.Ihm.ViewModel.Tools
 {
@@ -12,9 +11,6 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		private ICollectionView _groupes;
 		private Groupe _groupeFiltre;
 		private bool _filtreActif;
-
-		private IInscriptionDao _daoInscription;
-		private IGroupeDao _daoGroupe;
 		#endregion
 
 		#region properties
@@ -89,9 +85,6 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		public FicheEffectifUCViewModel() {
 			this.CodeUCOrigine = CodesUC.ConsultationInscriptions;
 
-			this._daoInscription = this.mDaoFactory.GetInscriptionDao();
-			this._daoGroupe = this.mDaoFactory.GetGroupeDao();
-
 			this.InitialisationListeInscriptions();
 			this.InitialisationListeGroupes();
 		}
@@ -99,14 +92,14 @@ namespace gestadh45.Ihm.ViewModel.Tools
 
 		#region private methods
 		private void InitialisationListeInscriptions() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoInscription.ListSaisonCourante());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(ViewModelLocator.DaoInscription.ListSaisonCourante());
 			defaultView.SortDescriptions.Add(new SortDescription("Adherent.Nom", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("Adherent.Prenom", ListSortDirection.Ascending));
 			this.Inscriptions = defaultView;
 		}
 
 		private void InitialisationListeGroupes() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this._daoGroupe.ListSaisonCourante());
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(ViewModelLocator.DaoGroupe.ListSaisonCourante());
 			defaultView.SortDescriptions.Add(new SortDescription("JourSemaine.Numero", ListSortDirection.Ascending));
 			defaultView.SortDescriptions.Add(new SortDescription("HeureDebut", ListSortDirection.Ascending));
 			this.Groupes = defaultView;
