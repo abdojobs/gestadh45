@@ -4,10 +4,10 @@ using System.Windows.Input;
 
 namespace gestadh45.Main.UserControls
 {
-    /// <summary>
-    /// Logique d'interaction pour MenuPrincipalUC.xaml
-    /// </summary>
-    public partial class MenuPrincipalUC : UserControl
+	/// <summary>
+	/// Logique d'interaction pour MenuPrincipalUC.xaml
+	/// </summary>
+	public partial class MenuPrincipalUC : UserControl
 	{
 		#region proprietes
 		/// <summary>
@@ -61,11 +61,23 @@ namespace gestadh45.Main.UserControls
 				SetValue(CmdAboutBoxProperty, value);
 			}
 		}
+
+		/// <summary>
+		/// Obtient/Définit la commande de fermeture de l'application
+		/// </summary>
+		public ICommand CmdClose {
+			get {
+				return (ICommand)GetValue(CmdCloseProperty);
+			}
+
+			set {
+				SetValue(CmdCloseProperty, value);
+			}
+		}
 		#endregion
 
-		public MenuPrincipalUC()
-        {
-            InitializeComponent();
+		public MenuPrincipalUC() {
+			InitializeComponent();
 		}
 
 		#region Dependency Properties
@@ -89,6 +101,12 @@ namespace gestadh45.Main.UserControls
 
 		public static DependencyProperty CmdAboutBoxProperty = DependencyProperty.Register(
 			"CmdAboutBox",
+			typeof(ICommand),
+			typeof(MenuPrincipalUC)
+		);
+
+		public static DependencyProperty CmdCloseProperty = DependencyProperty.Register(
+			"CmdClose",
 			typeof(ICommand),
 			typeof(MenuPrincipalUC)
 		);

@@ -12,10 +12,6 @@ namespace gestadh45.Ihm.ViewModel
 {
 	public class MainViewModel : ViewModelBaseApplication
 	{
-		public ICommand AboutBoxCommand { get; set; }
-		public ICommand ChangerDataSourceCommand { get; internal set; }
-		public ICommand CreerDatabaseCommand { get; set; }
-
 		private string mInfosDataSource;
 		private string mInfosSaisonCourante;
 		private NotificationIhm mNotificationIhm;
@@ -75,6 +71,7 @@ namespace gestadh45.Ihm.ViewModel
 			this.CreateChangerDataSourceCommand();
 			this.CreateAboutBoxCommand();
 			this.CreateCreerDatabaseCommand();
+			this.CreateCloseCommand();
 
 			Messenger.Default.Register<NotificationMessage<Saison>>(
 				this, 
@@ -87,12 +84,24 @@ namespace gestadh45.Ihm.ViewModel
 			);
 		}
 
-		#region création des commandes
+		#region AboutBoxCommand
+		public ICommand AboutBoxCommand { get; set; }
+
 		private void CreateAboutBoxCommand() {
 			this.AboutBoxCommand = new RelayCommand(
 				this.ExecuteAboutBoxCommand
 			);
 		}
+
+		public void ExecuteAboutBoxCommand() {
+			Messenger.Default.Send<NotificationMessageAboutBox>(
+				new NotificationMessageAboutBox()
+			);
+		}
+		#endregion
+
+		#region ChangerDataSourceCommand
+		public ICommand ChangerDataSourceCommand { get; set; }
 
 		private void CreateChangerDataSourceCommand() {
 			this.ChangerDataSourceCommand = new RelayCommand(
@@ -100,29 +109,25 @@ namespace gestadh45.Ihm.ViewModel
 			);
 		}
 
-		private void CreateCreerDatabaseCommand() {
-			this.CreerDatabaseCommand = new RelayCommand(
-				this.ExecuteCreerDatabaseCommand
-			);
-		}
-		#endregion
-
-		#region exécution des commandes
-		public void ExecuteAboutBoxCommand() {
-			Messenger.Default.Send<NotificationMessageAboutBox>(
-				new NotificationMessageAboutBox()
-			);
-		}
-
 		public void ExecuteChangerDataSourceCommand() {
-			NotificationMessageActionFileDialog<string> message = 
+			NotificationMessageActionFileDialog<string> message =
 				new NotificationMessageActionFileDialog<string>(
-					TypesNotification.OpenFileDialog, 
-					MainRessources.ExtensionBase, 
+					TypesNotification.OpenFileDialog,
+					MainRessources.ExtensionBase,
 					string.Empty,
 					this.ChangeDataSource
 				);
 			Messenger.Default.Send<NotificationMessageActionFileDialog<string>>(message);
+		}
+		#endregion
+
+		#region CreerDatabaseCommand
+		public ICommand CreerDatabaseCommand { get; set; }
+
+		private void CreateCreerDatabaseCommand() {
+			this.CreerDatabaseCommand = new RelayCommand(
+				this.ExecuteCreerDatabaseCommand
+			);
 		}
 
 		public void ExecuteCreerDatabaseCommand() {
@@ -135,6 +140,18 @@ namespace gestadh45.Ihm.ViewModel
 				);
 
 			Messenger.Default.Send<NotificationMessageActionFileDialog<string>>(message);
+		}
+		#endregion
+
+		#region CloseCommand
+		public ICommand CloseCommand { get; set; }
+
+		private void CreateCloseCommand() {
+			this.CloseCommand = new RelayCommand(this.ExecuteCloseCommand);
+		}
+
+		public void ExecuteCloseCommand() {
+			Messenger.Default.Send(new MsgClose());
 		}
 		#endregion
 

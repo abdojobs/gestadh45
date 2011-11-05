@@ -3,10 +3,8 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
 using gestadh45.Ihm;
 using gestadh45.Ihm.SpecialMessages;
-using gestadh45.Ihm.ViewModel.Common;
 using gestadh45.Ihm.ViewModel.Villes;
 using gestadh45.Main.UserControls.Adherents;
-using gestadh45.Main.UserControls.Common;
 using gestadh45.Main.UserControls.Groupes;
 using gestadh45.Main.UserControls.InfosClubs;
 using gestadh45.Main.UserControls.Inscriptions;
@@ -60,12 +58,17 @@ namespace gestadh45.Main
 
 			Messenger.Default.Register<NotificationMessageOuvertureFenetre>(
 				this,
-				this.OuvrirFenetreUC
+				(msg) => this.OuvrirFenetreUC(msg.CodeUC)
 			);
 
 			Messenger.Default.Register<NotificationMessageAboutBox>(
 				this,
 				this.AfficherAboutBox
+			);
+
+			Messenger.Default.Register<MsgClose>(
+				this,
+				(msg) => this.Quitter()
 			);
 		}
 
@@ -191,8 +194,7 @@ namespace gestadh45.Main
 
 				case CodesUC.ConsultationInfosClub:
 				default:
-					//this.contenu.Child = new ConsultationInfosClubUC();
-					this.contenu.Child = new ExportUC();
+					this.contenu.Child = new ConsultationInfosClubUC();
 					break;
 			}
 		}
@@ -212,13 +214,20 @@ namespace gestadh45.Main
 			}
 		}
 
-		private void OuvrirFenetreUC(NotificationMessageOuvertureFenetre pMessage) {
-			if (pMessage.CodeUC.Equals(CodesUC.FormulaireVille)) {
+		private void OuvrirFenetreUC(string pCodeUC) {
+			if (pCodeUC.Equals(CodesUC.FormulaireVille)) {
 				FormulaireVilleUC lUC = new FormulaireVilleUC();
 				((FormulaireVilleUCViewModel)lUC.DataContext).ModeFenetre = true;
 				UCWindow lWindow = new UCWindow(lUC);
 				lWindow.ShowDialog();
 			}
+		}
+
+		/// <summary>
+		/// Quitte l'application
+		/// </summary>
+		private void Quitter() {
+			this.Close();
 		}
 	}
 }

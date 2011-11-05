@@ -16,16 +16,13 @@
 	</Window.Resources>
 	
 	<DockPanel>
-		<Border DockPanel.Dock="Top" Width="auto" HorizontalAlignment="Center" Margin="0,5,0,0" 
-				BorderThickness="0.5" BorderBrush="#FF000000" 
-				CornerRadius="10" Style="{StaticResource StyleEnfant}">
-			<uc:MenuPrincipalUC 
-				CmdCreerDatabase="{Binding Path=CreerDatabaseCommand}"
-				CmdChangerDataSource="{Binding Path=ChangerDataSourceCommand}"
-				CmdAfficherUC="{Binding Path=AfficherUCCommand}"
-				CmdAboutBox="{Binding Path=AboutBoxCommand}"
-				/>
-		</Border>
+		<uc:MenuPrincipalUC DockPanel.Dock="Top"
+							  CmdCreerDatabase="{Binding Path=CreerDatabaseCommand}"
+							  CmdChangerDataSource="{Binding Path=ChangerDataSourceCommand}"
+							  CmdAfficherUC="{Binding Path=AfficherUCCommand}"
+							  CmdAboutBox="{Binding Path=AboutBoxCommand}"
+							  CmdClose="{Binding Path=CloseCommand}"
+							  />
 		
 		<Border DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">
 			<StatusBar MaxHeight="25">
