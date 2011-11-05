@@ -67,6 +67,7 @@
     <Compile Include="CodesUC.cs" />
     <Compile Include="SpecialMessages\DialogMessageConfirmation.cs" />
     <Compile Include="SpecialMessages\MsgAfficherUC.cs" />
+    <Compile Include="SpecialMessages\MsgClose.cs" />
     <Compile Include="SpecialMessages\NotificationMessageAboutBox.cs" />
     <Compile Include="SpecialMessages\NotificationMessageActionFileDialog.cs" />
     <Compile Include="SpecialMessages\NotificationMessageActionFolderDialog.cs" />

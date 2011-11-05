@@ -20,5 +20,6 @@ namespace gestadh45.Ihm.SpecialMessages
 		public const string ModificationTransition = "ModificationTransition";
 		public const string EffacerFiltre = "EffacerFiltre";
 		public const string NotificationIhm = "NotificationIhm";
+		public const string NotificationClose = "NotificationClose";
 	}
 }

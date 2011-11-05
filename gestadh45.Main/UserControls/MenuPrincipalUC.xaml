@@ -6,59 +6,100 @@
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm"
 			 mc:Ignorable="d" 
 			 x:Name="MenuPrincipal"
-			 d:DesignHeight="40" d:DesignWidth="500">
-	<StackPanel Orientation="Horizontal">
-		<Button Name="btnNouveau" ToolTip="Créer une base" Height="30" Width="30" Margin="10,5,5,5" 
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdCreerDatabase}">
-			<Image Source="/gestadh45.Main;component/Images/btn_creerDatabase.png" />
-		</Button>
-		<Button Name="btnOuvrir" ToolTip="Ouvrir une base" Height="30" Width="30" Margin="5,5,15,5" 
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdChangerDataSource}">
-			<Image Source="/gestadh45.Main;component/Images/btn_ouvrir.png" />
-		</Button>
-		<Button Name="btnAccueil" ToolTip="Informations sur le club" Height="30" Width="30" Margin="15,5,5,5" 
-				CommandParameter="{x:Static ihm:CodesUC.ConsultationInfosClub}" 
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
-			<Image Source="/gestadh45.Main;component/Images/btn_home.png" />
-		</Button>
-		<Button Name="btnConsultationSaisons" ToolTip="Parcourir les saisons" Height="30" Width="30" Margin="5,5,5,5" 
-				CommandParameter="{x:Static ihm:CodesUC.ConsultationSaisons}" 
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
-			<Image Source="/gestadh45.Main;component/Images/btn_saisons.png" />
-		</Button>
-		<Button Name="btnConsultationVilles" ToolTip="Parcourir les villes" Height="30" Width="30" Margin="5,5,5,5" 
-				CommandParameter="{x:Static ihm:CodesUC.ConsultationVilles}"
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
-			<Image Source="/gestadh45.Main;component/Images/btn_city.png" />
-		</Button>
-		<Button Name="btnConsultAdherents" ToolTip="Parcourir les adhérents" Height="30" Width="30" Margin="5,5,15,5" 
-				CommandParameter="{x:Static ihm:CodesUC.ConsultationAdherents}" 
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
-			<Image Source="/gestadh45.Main;component/Images/btn_adherents.png" />
-		</Button>
-		<Button Name="btnConsulInscriptions" ToolTip="Parcourir les inscriptions de la saison courante" Height="30" Width="30" Margin="15,5,5,5" 
-				CommandParameter="{x:Static ihm:CodesUC.ConsultationInscriptions}" 
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
-			<Image Source="/gestadh45.Main;component/Images/btn_inscriptions.png" />
-		</Button>
-		<Button Name="btnConsultationGroupes" ToolTip="Parcourir les groupes de la saison courante" Height="30" Width="30" Margin="5,5,5,5" 
-				CommandParameter="{x:Static ihm:CodesUC.ConsultationGroupes}" 
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
-			<Image Source="/gestadh45.Main;component/Images/btn_groupes.png" />
-		</Button>
-		<Button Name="btnGraphs" ToolTip="Graphiques pour la saison courante" Height="30" Width="30" Margin="5,5,5,5" 
-				CommandParameter="{x:Static ihm:CodesUC.GraphsSaisonCourante}" 
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
-			<Image Source="/gestadh45.Main;component/Images/btn_graphs.png" />
-		</Button>
-        <Button Name="btnStats" ToolTip="Statistiques pour la saison courante" Height="30" Width="30" Margin="5,5,5,5" 
-				CommandParameter="{x:Static ihm:CodesUC.StatsSaisonCourante}" 
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
-            <TextBlock Text="%" />
-        </Button>
-        <Button Name="btnAbout" ToolTip="A propos" Height="30" Width="30" Margin="20,5,10,5" 
-				Command="{Binding ElementName=MenuPrincipal, Path=CmdAboutBox}">
-			<Image Source="/gestadh45.Main;component/Images/btn_about.png" />
-		</Button>
-	</StackPanel>
+			 d:DesignHeight="25" d:DesignWidth="500">
+	<Menu IsMainMenu="True">
+		<MenuItem Header="_Fichier">
+			<MenuItem Header="_Nouvelle base" 
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdCreerDatabase}">
+				<MenuItem.Icon>
+					<Image Source="/gestadh45.Main;component/Images/btn_creerDatabase.png" Width="16" Height="16" />
+				</MenuItem.Icon>
+			</MenuItem>
+			
+			<MenuItem Header="_Ouvrir une base existante" 					  
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdChangerDataSource}">
+				<MenuItem.Icon>
+					<Image Source="/gestadh45.Main;component/Images/btn_ouvrir.png" Width="16" Height="16" />
+				</MenuItem.Icon>
+			</MenuItem>
+			
+			<Separator />
+			
+			<MenuItem Header="_Quitter"
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdClose}"/>
+		</MenuItem>
+
+		<MenuItem Header="_Référentiel">
+			<MenuItem Header="Saisons" 
+					  CommandParameter="{x:Static ihm:CodesUC.ConsultationSaisons}" 
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
+				<MenuItem.Icon>
+					<Image Source="/gestadh45.Main;component/Images/btn_saisons.png" Width="16" Height="16" />
+				</MenuItem.Icon>
+			</MenuItem>
+			
+			<MenuItem Header="Villes" 
+					  CommandParameter="{x:Static ihm:CodesUC.ConsultationVilles}"
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
+				<MenuItem.Icon>
+					<Image Source="/gestadh45.Main;component/Images/btn_city.png" Width="16" Height="16" />
+				</MenuItem.Icon>
+			</MenuItem>
+		</MenuItem>
+
+		<MenuItem Header="_Gestion">
+			<MenuItem Header="Adhérents" 
+					  CommandParameter="{x:Static ihm:CodesUC.ConsultationAdherents}" 
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
+				<MenuItem.Icon>
+					<Image Source="/gestadh45.Main;component/Images/btn_adherents.png" Width="16" Height="16" />
+				</MenuItem.Icon>
+			</MenuItem>
+			
+			<MenuItem Header="Inscriptions" 
+					  CommandParameter="{x:Static ihm:CodesUC.ConsultationInscriptions}" 
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
+				<MenuItem.Icon>
+					<Image Source="/gestadh45.Main;component/Images/btn_inscriptions.png" Width="16" Height="16" />
+				</MenuItem.Icon>
+			</MenuItem>
+			
+			<MenuItem Header="Groupes" 
+					  CommandParameter="{x:Static ihm:CodesUC.ConsultationGroupes}" 
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
+				<MenuItem.Icon>
+					<Image Source="/gestadh45.Main;component/Images/btn_groupes.png" Width="16" Height="16" />
+				</MenuItem.Icon>
+			</MenuItem>
+		</MenuItem>
+
+		<MenuItem Header="_Outils">
+			<MenuItem Header="Graphiques" 
+					  CommandParameter="{x:Static ihm:CodesUC.GraphsSaisonCourante}" 
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
+				<MenuItem.Icon>
+					<Image Source="/gestadh45.Main;component/Images/btn_graphs.png" Width="16" Height="16" />
+				</MenuItem.Icon>
+			</MenuItem>
+			
+			<MenuItem Header="Statistiques" 
+					  CommandParameter="{x:Static ihm:CodesUC.StatsSaisonCourante}" 
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}" />
+			<MenuItem Header="Répartition" 
+					  CommandParameter="{x:Static ihm:CodesUC.RepartitionEffectif}" 
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}" />
+			<MenuItem Header="E_xtractions"
+					  CommandParameter="{x:Static ihm:CodesUC.Export}" 
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}" />
+		</MenuItem>
+
+		<MenuItem Header="_?">
+			<MenuItem Header="A _propos"
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAboutBox}">
+				<MenuItem.Icon>
+					<Image Source="/gestadh45.Main;component/Images/btn_about.png" Width="16" Height="16" />
+				</MenuItem.Icon>
+			</MenuItem>
+		</MenuItem>
+	</Menu>
 </UserControl>
