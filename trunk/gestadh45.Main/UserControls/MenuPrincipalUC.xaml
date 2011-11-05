@@ -85,9 +85,20 @@
 			<MenuItem Header="Statistiques" 
 					  CommandParameter="{x:Static ihm:CodesUC.StatsSaisonCourante}" 
 					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}" />
-			<MenuItem Header="Répartition" 
-					  CommandParameter="{x:Static ihm:CodesUC.RepartitionEffectif}" 
-					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}" />
+
+			<Separator />
+
+			<MenuItem Header="Répartition des adhérents">
+				<MenuItem Header="Configuration"
+						  CommandParameter="{x:Static ihm:CodesUC.ConsultationTranchesAge}" 
+						  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}" />
+				<MenuItem Header="Afficher"
+						  CommandParameter="{x:Static ihm:CodesUC.RepartitionEffectif}" 
+						  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}" />
+			</MenuItem>
+
+			<Separator />
+
 			<MenuItem Header="E_xtractions"
 					  CommandParameter="{x:Static ihm:CodesUC.Export}" 
 					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}" />
