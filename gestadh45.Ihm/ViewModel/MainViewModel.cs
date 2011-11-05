@@ -13,7 +13,7 @@ namespace gestadh45.Ihm.ViewModel
 	public class MainViewModel : ViewModelBaseApplication
 	{
 		private string _infosDataSource;
-		private string infosSaisonCourante;
+		private string _infosSaisonCourante;
 		private NotificationIhm _notificationIhm;
 
 		private IDaoFactory _daoFactory;
@@ -38,11 +38,11 @@ namespace gestadh45.Ihm.ViewModel
 		/// </summary>
 		public string InfosSaisonCourante {
 			get {
-				return this.infosSaisonCourante;
+				return this._infosSaisonCourante;
 			}
 			set {
-				if (this.infosSaisonCourante != value) {
-					this.infosSaisonCourante = value;
+				if (this._infosSaisonCourante != value) {
+					this._infosSaisonCourante = value;
 					this.RaisePropertyChanged(() => this.InfosSaisonCourante);
 				}
 			}
