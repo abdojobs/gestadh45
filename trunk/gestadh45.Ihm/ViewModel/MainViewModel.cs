@@ -12,9 +12,9 @@ namespace gestadh45.Ihm.ViewModel
 {
 	public class MainViewModel : ViewModelBaseApplication
 	{
-		private string mInfosDataSource;
-		private string mInfosSaisonCourante;
-		private NotificationIhm mNotificationIhm;
+		private string _infosDataSource;
+		private string infosSaisonCourante;
+		private NotificationIhm _notificationIhm;
 
 		private IDaoFactory _daoFactory;
 		
@@ -23,11 +23,11 @@ namespace gestadh45.Ihm.ViewModel
 		/// </summary>
 		public string InfosDataSource {
 			get {
-				return this.mInfosDataSource;
+				return this._infosDataSource;
 			}
 			set {
-				if (this.mInfosDataSource != value) {
-					this.mInfosDataSource = value;
+				if (this._infosDataSource != value) {
+					this._infosDataSource = value;
 					this.RaisePropertyChanged(() => this.InfosDataSource);
 				}
 			}
@@ -38,11 +38,11 @@ namespace gestadh45.Ihm.ViewModel
 		/// </summary>
 		public string InfosSaisonCourante {
 			get {
-				return this.mInfosSaisonCourante;
+				return this.infosSaisonCourante;
 			}
 			set {
-				if (this.mInfosSaisonCourante != value) {
-					this.mInfosSaisonCourante = value;
+				if (this.infosSaisonCourante != value) {
+					this.infosSaisonCourante = value;
 					this.RaisePropertyChanged(() => this.InfosSaisonCourante);
 				}
 			}
@@ -53,12 +53,12 @@ namespace gestadh45.Ihm.ViewModel
 		/// </summary>
 		public NotificationIhm NotificationIhm {
 			get { 
-				return this.mNotificationIhm; 
+				return this._notificationIhm; 
 			}
 
 			set {
-				if (this.mNotificationIhm != value) {
-					this.mNotificationIhm = value;
+				if (this._notificationIhm != value) {
+					this._notificationIhm = value;
 					this.RaisePropertyChanged(() => this.NotificationIhm);
 				}
 			}
@@ -66,12 +66,8 @@ namespace gestadh45.Ihm.ViewModel
 
 		public MainViewModel() {
 			this._daoFactory = new DaoFactory();	
-			this.mNotificationIhm = new NotificationIhm();
-
-			this.CreateChangerDataSourceCommand();
-			this.CreateAboutBoxCommand();
-			this.CreateCreerDatabaseCommand();
-			this.CreateCloseCommand();
+			this._notificationIhm = new NotificationIhm();
+			this.InitialisationCommandes();
 
 			Messenger.Default.Register<NotificationMessage<Saison>>(
 				this, 
@@ -155,12 +151,6 @@ namespace gestadh45.Ihm.ViewModel
 		}
 		#endregion
 
-		#region gestion des notifications IHM
-		private void MajNotificationsIhm(NotificationIhm pNotification) {
-			this.NotificationIhm = pNotification;		
-		}
-		#endregion
-
 		#region méthodes privees
 		private void MajInfosSaisonCourante(NotificationMessage<Saison> msg) {
 			if (msg.Notification.Equals(TypesNotification.ChangementSaisonCourante)) {
@@ -204,6 +194,13 @@ namespace gestadh45.Ihm.ViewModel
 			}
 		}
 
+		private void MajNotificationsIhm(NotificationIhm pNotification) {
+			this.NotificationIhm = pNotification;
+		}
+
+		/// <summary>
+		/// Regroupe toutes les initialisation de DAO
+		/// </summary>
 		private void InitialisationDaos() {
 			ViewModelLocator.DaoAdherent = this._daoFactory.GetAdherentDao();
 			ViewModelLocator.DaoGroupe = this._daoFactory.GetGroupeDao();
@@ -215,6 +212,16 @@ namespace gestadh45.Ihm.ViewModel
 			ViewModelLocator.DaoStatutInscription = this._daoFactory.GetStatutInscriptionDao();
 			ViewModelLocator.DaoTrancheAge = this._daoFactory.GetTrancheAgeDao();
 			ViewModelLocator.DaoVille = this._daoFactory.GetVilleDao();
+		}
+
+		/// <summary>
+		/// Regroupe toutes les initialisations de commandes
+		/// </summary>
+		private void InitialisationCommandes() {
+			this.CreateChangerDataSourceCommand();
+			this.CreateAboutBoxCommand();
+			this.CreateCreerDatabaseCommand();
+			this.CreateCloseCommand();
 		}
 		#endregion
 	}
