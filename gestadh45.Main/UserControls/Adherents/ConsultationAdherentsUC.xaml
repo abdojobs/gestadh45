@@ -7,6 +7,7 @@
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
 			 xmlns:ihm="clr-namespace:gestadh45.Ihm;assembly=gestadh45.Ihm" 
 			 xmlns:uc="clr-namespace:gestadh45.Main.UserControls"
+			 xmlns:ucadh="clr-namespace:gestadh45.Main.UserControls.Adherents"
 			 mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationAdherentsVMStatic, Source={StaticResource Locator}}" 
 			 d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
@@ -63,127 +64,14 @@
 			</StackPanel>
 							
 			<StackPanel Name="stkDetailsAdherent" DockPanel.Dock="Right" Margin="20,0,0,0">
-				<StackPanel.Children>
-					<GroupBox Name="gbxIdentite" Header="Identité" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
-						<StackPanel Orientation="Vertical">
-							<StackPanel.Children>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock FontWeight="Bold" FontSize="14">
-											<TextBlock.Text>
-												<MultiBinding StringFormat="{}{0} {1}">
-													<Binding Path="Adherent.Nom" />
-													<Binding Path="Adherent.Prenom" />
-												</MultiBinding>
-											</TextBlock.Text>
-										</TextBlock>
-									</StackPanel.Children>
-								</StackPanel>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock>
-											<TextBlock.Text>
-												<MultiBinding StringFormat="Né(e) le {0:dd/MM/yyyy} ({1} ans)">
-													<Binding Path="Adherent.DateNaissance" />
-													<Binding Path="Adherent.Age" />
-												</MultiBinding>
-											</TextBlock.Text>
-										</TextBlock>
-									</StackPanel.Children>
-								</StackPanel>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock Text="Sexe : " />
-										<TextBlock Text="{Binding Adherent.Sexe}" />
-									</StackPanel.Children>
-								</StackPanel>
-							</StackPanel.Children>
-						</StackPanel>
-					</GroupBox>
-					<GroupBox Name="gbxAdresse" Header="Adresse" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
-						<StackPanel Orientation="Vertical">
-							<StackPanel.Children>
-								<TextBlock Text="{Binding Adherent.Adresse}" />
-								<TextBlock Text="{Binding Adherent.Ville}" />
-							</StackPanel.Children>
-						</StackPanel>
-					</GroupBox>
-					<GroupBox Name="gbxContact" Header="Contact" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
-						<StackPanel Orientation="Vertical">
-							<StackPanel.Children>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock Text="Tel.1 : " />
-										<TextBlock Text="{Binding Path=Adherent.Telephone1}" />
-									</StackPanel.Children>
-								</StackPanel>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock Text="Tel.2 : " />
-										<TextBlock Text="{Binding Adherent.Telephone2}" />
-									</StackPanel.Children>
-								</StackPanel>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock Text="Tel.3 : " />
-										<TextBlock Text="{Binding Adherent.Telephone3}" />
-									</StackPanel.Children>
-								</StackPanel>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock Text="E-mail 1 : " />
-										<TextBlock Text="{Binding Adherent.Mail1}" />
-									</StackPanel.Children>
-								</StackPanel>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock Text="E-mail 2 : " />
-										<TextBlock Text="{Binding Adherent.Mail2}" />
-									</StackPanel.Children>
-								</StackPanel>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock Text="E-mail 3 : " />
-										<TextBlock Text="{Binding Adherent.Mail3}" />
-									</StackPanel.Children>
-								</StackPanel>
-							</StackPanel.Children>
-						</StackPanel>
-					</GroupBox>
-					<GroupBox Name="gbxDivers" Header="Divers" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
-						<StackPanel Orientation="Vertical">
-							<StackPanel.Children>
-								<TextBlock TextWrapping="Wrap" Text="{Binding Adherent.Commentaire}" />
-								<TextBlock Text="" />
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock Text="Créé le " />
-										<TextBlock Text="{Binding Path=Adherent.DateCreation, StringFormat='dd/MM/yyyy à  HH:MM:ss'}" />
-									</StackPanel.Children>
-								</StackPanel>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock Text="Modifié le " />
-										<TextBlock Text="{Binding Path=Adherent.DateModification, StringFormat='dd/MM/yyyy à  HH:MM:ss'}" />
-									</StackPanel.Children>
-								</StackPanel>
-							</StackPanel.Children>
-						</StackPanel>
-					</GroupBox>
-					<Separator Height="2" Background="#FF000000" />
-					<GroupBox Name="gbxStats" Header="Stats" Margin="0,0,0,10" Background="#FFFFDEAD" BorderBrush="#FF000000">
-						<StackPanel Orientation="Vertical">
-							<StackPanel.Children>
-								<StackPanel Orientation="Horizontal">
-									<StackPanel.Children>
-										<TextBlock Text="Nb. fiches : " />
-										<TextBlock Text="{Binding ElementName=lbxAdherents, Path=Items.Count}" />
-									</StackPanel.Children>
-								</StackPanel>
-							</StackPanel.Children>
-						</StackPanel>
-					</GroupBox>
-				</StackPanel.Children>
+				<ucadh:AdherentIdentiteUC Adherent="{Binding Path=Adherent}" />
+				<ucadh:AdherentAdresseUC Adherent="{Binding Path=Adherent}" />
+				<ucadh:AdherentContactUC Adherent="{Binding Path=Adherent}" />
+				<ucadh:AdherentDiversUC Adherent="{Binding Path=Adherent}" />
+
+				<Separator Height="2" Background="#FF000000" />
+
+				<ucadh:AdherentsStatsUC NbAdherents="{Binding ElementName=lbxAdherents, Path=Items.Count}" />
 			</StackPanel>
 		</DockPanel.Children>
 	</DockPanel>
