@@ -113,6 +113,21 @@
     <Compile Include="UCWindow.xaml.cs">
       <DependentUpon>UCWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Adherents\AdherentAdresseUC.xaml.cs">
+      <DependentUpon>AdherentAdresseUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Adherents\AdherentContactUC.xaml.cs">
+      <DependentUpon>AdherentContactUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Adherents\AdherentDiversUC.xaml.cs">
+      <DependentUpon>AdherentDiversUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Adherents\AdherentIdentiteUC.xaml.cs">
+      <DependentUpon>AdherentIdentiteUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Adherents\AdherentsStatsUC.xaml.cs">
+      <DependentUpon>AdherentsStatsUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AffichageNotificationUC.xaml.cs">
       <DependentUpon>AffichageNotificationUC.xaml</DependentUpon>
     </Compile>
@@ -205,6 +220,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UCWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Adherents\AdherentAdresseUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Adherents\AdherentContactUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Adherents\AdherentDiversUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Adherents\AdherentIdentiteUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Adherents\AdherentsStatsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
