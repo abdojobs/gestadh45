@@ -10,7 +10,6 @@ using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.service.Documents;
 using gestadh45.service.ExportTxt;
-using gestadh45.service.VCards;
 
 namespace gestadh45.Ihm.ViewModel.Groupes
 {
@@ -232,20 +231,6 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 				}
 
 				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationDocumentsGroupe);
-			}
-		}
-
-		private void GenererVCardsGroupe(string pSaveFolder) {
-			if (pSaveFolder != null) {
-				foreach (Inscription inscription in this.Groupe.Inscriptions) {
-					DonneesVCard donnees = ServiceVCardAdaptateur.InscriptionToDonneesVCard(inscription);
-					string saveFilePath = pSaveFolder + "\\" + inscription.Adherent.ToString() + ResVCards.Extension;
-
-					VCardGenerateur generateur = new VCardGenerateur(donnees, saveFilePath);
-					generateur.CreerVCard();
-				}
-
-				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCardsGroupe);
 			}
 		}
 
