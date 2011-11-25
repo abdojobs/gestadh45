@@ -222,9 +222,9 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		private void InitialiseEncodages() {
 			var encodages = new List<EncodageIhm>();
 
-			encodages.Add(new EncodageIhm(CodesEncodage.UTF8, ResEncodages.UTF8, new System.Text.UTF8Encoding(true)));
-			encodages.Add(new EncodageIhm(CodesEncodage.UTF8WithoutBOM, ResEncodages.UTF8WithoutBOM, new System.Text.UTF8Encoding(false)));
-			encodages.Add(new EncodageIhm(CodesEncodage.Unicode, ResEncodages.Unicode, new System.Text.UnicodeEncoding()));
+			encodages.Add(new EncodageIhm(CodesEncodage.UTF8, ResExport.UTF8, new System.Text.UTF8Encoding(true)));
+			encodages.Add(new EncodageIhm(CodesEncodage.UTF8WithoutBOM, ResExport.UTF8WithoutBOM, new System.Text.UTF8Encoding(false)));
+			encodages.Add(new EncodageIhm(CodesEncodage.Unicode, ResExport.Unicode, new System.Text.UnicodeEncoding()));
 
 			this._encodages = CollectionViewSource.GetDefaultView(encodages);
 		}

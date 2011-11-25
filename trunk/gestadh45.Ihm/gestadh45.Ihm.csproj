@@ -108,11 +108,6 @@
     <Compile Include="ViewModel\Tools\ExportUCViewModel.cs" />
     <Compile Include="ViewModel\Tools\Export\CodesEncodage.cs" />
     <Compile Include="ViewModel\Tools\Export\EncodageIhm.cs" />
-    <Compile Include="ViewModel\Tools\Export\ResEncodages.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResEncodages.resx</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\Tools\Export\ResExport.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -158,10 +153,6 @@
     <EmbeddedResource Include="ViewModel\Stats\Graphs\ResGraphs.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResGraphs.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewModel\Tools\Export\ResEncodages.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResEncodages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\Tools\Export\ResExport.resx">
       <Generator>ResXFileCodeGenerator</Generator>
