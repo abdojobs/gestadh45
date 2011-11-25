@@ -14,17 +14,17 @@
 		<StackPanel Name="stkInfosClub" Orientation="Vertical" HorizontalAlignment="Center">
 				
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="200" />
 				<TextBox Width="250" MaxLength="50" Text="{Binding Path=InfosClub.Nom}" />
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="200" />
 				<TextBox TextWrapping="Wrap" Width="250" MaxLength="100" Text="{Binding Path=InfosClub.Adresse}" />
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="200" />
 				<ComboBox Width="250" 
 							ItemsSource="{Binding Path=Villes}"
 							SelectedItem="{Binding Path=InfosClub.Ville}" />							
@@ -39,39 +39,45 @@
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Tel. : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBlock Text="Tel. : " FontSize="14" FontWeight="Bold" Width="200" />
 				<extToolkit:MaskedTextBox Name="tbxTel1" Width="250" 
 										  Mask="00 00 00 00 00" 
 										  Value="{Binding Path=InfosClub.Telephone}" />
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Email : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBlock Text="Email : " FontSize="14" FontWeight="Bold" Width="200" />
 				<TextBox Width="250" MaxLength="100"
 							Text="{Binding Path=InfosClub.Mail}" />
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Web : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBlock Text="Web : " FontSize="14" FontWeight="Bold" Width="200" />
 				<TextBox Width="250" MaxLength="100"
 							Text="{Binding Path=InfosClub.SiteWeb}" />
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="N° association : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBlock Text="N° association : " FontSize="14" FontWeight="Bold" Width="200" />
 				<TextBox Width="250" MaxLength="20"
 							Text="{Binding Path=InfosClub.Numero}" />
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="150" />
+				<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="200" />
 				<TextBox Width="250" MaxLength="9" ToolTip="N° SIREN"
 							Text="{Binding Path=InfosClub.Siren}" />
 				<TextBlock Text=" - " />
 				<TextBox Width="50" MaxLength="5" ToolTip="NIC"
 							Text="{Binding Path=InfosClub.NIC}" />
 			</StackPanel>
-				
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="N° établissement APS : " FontSize="14" FontWeight="Bold" Width="200" />
+				<TextBox Width="250" MaxLength="20"
+							Text="{Binding Path=InfosClub.NumAPS}" />
+			</StackPanel>
+
 			<Separator Margin="0,20,0,20" />
 
 			<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5" 

@@ -1462,6 +1462,30 @@ namespace gestadh45.dal
         private global::System.String _SiteWeb;
         partial void OnSiteWebChanging(global::System.String value);
         partial void OnSiteWebChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String NumAPS
+        {
+            get
+            {
+                return _NumAPS;
+            }
+            set
+            {
+                OnNumAPSChanging(value);
+                ReportPropertyChanging("NumAPS");
+                _NumAPS = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("NumAPS");
+                OnNumAPSChanged();
+            }
+        }
+        private global::System.String _NumAPS;
+        partial void OnNumAPSChanging(global::System.String value);
+        partial void OnNumAPSChanged();
 
         #endregion
     
