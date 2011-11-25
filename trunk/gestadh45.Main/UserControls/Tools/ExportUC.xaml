@@ -7,7 +7,7 @@
 			 DataContext="{Binding Path=ExportVMStatic, Source={StaticResource Locator}}" 
 			 d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
 	<DockPanel>
-		<TextBlock Text="Extraction des données" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+		<TextBlock Text="Extraction de données pour la saison courante" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
 		
 		<StackPanel Orientation="Vertical">
 			<StackPanel Orientation="Horizontal">
@@ -19,8 +19,10 @@
 			
 			<Separator Margin="5,10,5,10" />
 			
-			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-				<TextBlock Text="Extraction des VCards pour le groupe : " Width="225" />
+			<TextBlock Text="VCards" Margin="0,0,0,10" FontSize="14" FontWeight="Bold" />
+			
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,10">
+				<TextBlock Text="Par groupe : " Width="225" />
 				<ComboBox Width="150" Margin="0,0,20,0"
 						  ItemsSource="{Binding Path=Groupes}" 
 						  SelectedItem="{Binding Path=Groupe}"/>
@@ -32,11 +34,9 @@
 					<TextBlock Text="Générer" />
 				</Button>
 			</StackPanel>
-
-			<Separator Margin="5,10,5,10" />
 			
-			<StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-				<TextBlock Text="Extraction de toutes les VCards : " Width="225" />
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
+				<TextBlock Text="Tous les adhérents : " Width="225" />
 				<CheckBox Content="Fichier unique" Name="chbxFichierUniqueVcardSaison" 
 						  VerticalAlignment="Center" Width="270" />
 				<Button Name="btnExtractVCardsSaison" Margin="20,0,0,0"
@@ -47,8 +47,34 @@
 			</StackPanel>
 
 			<Separator Margin="5,10,5,10" />
-			
-			
+
+			<TextBlock Text="Listings (CSV)" Margin="0,0,0,10" FontSize="14" FontWeight="Bold" />
+
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,10">
+				<TextBlock Text="Par groupe : " Width="225" />
+				<ComboBox Width="150" Margin="0,0,20,0"
+						  ItemsSource="{Binding Path=Groupes}" 
+						  SelectedItem="{Binding Path=Groupe}"/>
+				<CheckBox Content="Fichier unique" Name="chbxFichierUniqueCSVGroup" 
+						  VerticalAlignment="Center" Width="100" />
+				<Button Name="btnExtractCSVGroup" Margin="20,0,0,0"
+						Command="{Binding Path=ExtractionCSVGroupCommand}"
+						CommandParameter="{Binding ElementName=chbxFichierUniqueCSVGroup, Path=IsChecked}">
+					<TextBlock Text="Générer" />
+				</Button>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
+				<TextBlock Text="Tous les adhérents : " Width="225" />
+				<CheckBox Content="Fichier unique" Name="chbxFichierUniqueCSVSaison" 
+						  VerticalAlignment="Center" Width="270" />
+				<Button Name="btnExtractCSVSaison" Margin="20,0,0,0"
+						Command="{Binding Path=ExtractionCSVSaisonCommand}"
+						CommandParameter="{Binding ElementName=chbxFichierUniqueCSVSaison, Path=IsChecked}">
+					<TextBlock Text="Générer" />
+				</Button>
+			</StackPanel>
+
 		</StackPanel>
 		
 	</DockPanel>

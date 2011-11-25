@@ -76,6 +76,9 @@ namespace gestadh45.Ihm.ViewModel.Tools
 			this.CreateExtractionVCardGroupCommand();
 			this.CreateExtractionVCardSaisonCommand();
 
+			this.CreateExtractionCSVGroupCommand();
+			this.CreateExtractionCSVSaisonCommand();
+
 			this.InitialiseEncodages();
 			this.InitialisationGroupes();
 		}
@@ -145,6 +148,79 @@ namespace gestadh45.Ihm.ViewModel.Tools
 							}
 							else {
 								this.GenererVCard(callbackmessage, this.Groupe.Inscriptions);
+							}
+						}
+					);
+
+				Messenger.Default.Send<NotificationMessageActionFolderDialog<string>>(message);
+			}
+		}
+		#endregion
+
+		#region ExtractionCSVSaisonCommand
+		public ICommand ExtractionCSVSaisonCommand { get; set; }
+
+		private void CreateExtractionCSVSaisonCommand() {
+			this.ExtractionCSVSaisonCommand = new RelayCommand<bool?>(
+				this.ExecuteExtractionCSVSaisonCommand,
+				this.CanExecuteExtractionCSVSaisonCommand
+			);
+
+		}
+
+		public bool CanExecuteExtractionCSVSaisonCommand(bool? pFichierUnique) {
+			return this.Encodage != null;
+		}
+
+		public void ExecuteExtractionCSVSaisonCommand(bool? pFichierUnique) {
+			if (this.Encodage != null) {
+				NotificationMessageActionFolderDialog<string> message =
+					new NotificationMessageActionFolderDialog<string>(
+						callbackmessage =>
+						{
+							bool fichierUnique = pFichierUnique ?? false;
+
+							if (fichierUnique) {
+								// TODO to implement
+							}
+							else {
+								// TODO to implement
+							}
+						}
+					);
+
+				Messenger.Default.Send<NotificationMessageActionFolderDialog<string>>(message);
+			}
+		}
+		#endregion
+
+		#region ExtractionCSVGroupCommand
+		public ICommand ExtractionCSVGroupCommand { get; set; }
+
+		private void CreateExtractionCSVGroupCommand() {
+			this.ExtractionCSVGroupCommand = new RelayCommand<bool?>(
+				this.ExecuteExtractionCSVGroupCommand,
+				this.CanExecuteExtractionCSVGroupCommand
+			);
+		}
+
+		public bool CanExecuteExtractionCSVGroupCommand(bool? pFichierUnique) {
+			return this.Encodage != null && this.Groupe != null;
+		}
+
+		public void ExecuteExtractionCSVGroupCommand(bool? pFichierUnique) {
+			if (this.Encodage != null && this.Groupe != null) {
+				NotificationMessageActionFolderDialog<string> message =
+					new NotificationMessageActionFolderDialog<string>(
+						callbackmessage =>
+						{
+							bool fichierUnique = pFichierUnique ?? false;
+
+							if (fichierUnique) {
+								// TODO To implement
+							}
+							else {
+								// TODO To implement
 							}
 						}
 					);
