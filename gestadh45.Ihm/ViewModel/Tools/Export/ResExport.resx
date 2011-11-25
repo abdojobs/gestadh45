@@ -141,4 +141,7 @@
   <data name="VcardExtension" xml:space="preserve">
     <value>.vcf</value>
   </data>
+  <data name="MsgInfoGenerationVcard" xml:space="preserve">
+    <value>La VCard a correctement été générée</value>
+  </data>
 </root>

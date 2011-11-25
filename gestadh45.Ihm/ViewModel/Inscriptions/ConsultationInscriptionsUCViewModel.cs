@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -7,8 +9,9 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
 using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
+using gestadh45.Ihm.ViewModel.Tools.Export;
 using gestadh45.service.Documents;
-using gestadh45.service.VCards;
+using GPToolkit.Vcard;
 
 namespace gestadh45.Ihm.ViewModel.Inscriptions
 {
@@ -170,7 +173,7 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 				NotificationMessageActionFileDialog<string> message =
 					new NotificationMessageActionFileDialog<string>(
 						TypesNotification.SaveFileDialog,
-						ResVCards.Extension,
+						ResExport.VcardExtension,
 						this.Inscription.Adherent.ToString(),
 						callbackmessage =>
 						{
@@ -220,12 +223,20 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 
 		private void GenererVCard(string pSaveFilePath) {
 			if(!string.IsNullOrWhiteSpace(pSaveFilePath)) {
-				DonneesVCard donnees = ServiceVCardAdaptateur.InscriptionToDonneesVCard(this.Inscription);
+				var generateur = new VcardGenerator21(
+					this.Inscription.Adherent.Prenom,
+					this.Inscription.Adherent.Nom,
+					this.Inscription.Adherent.Telephone1,
+					this.Inscription.Adherent.Mail1,
+					this.Inscription.Groupe.ToString()
+				);
 
-				VCardGenerateur generateur = new VCardGenerateur(donnees, pSaveFilePath);
-				generateur.CreerVCard();
+				using (StreamWriter writer = new StreamWriter(pSaveFilePath, false, new UTF8Encoding(false))) {
+					writer.Write(generateur.GetVCard());
+					writer.Close();
+				}
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCard);
+				this.AfficherInformationIhm(ResExport.MsgInfoGenerationVcard);
 			}
 		}
 

@@ -88,6 +88,15 @@ namespace gestadh45.Ihm.ViewModel.Tools.Export {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à La VCard a correctement été générée.
+        /// </summary>
+        internal static string MsgInfoGenerationVcard {
+            get {
+                return ResourceManager.GetString("MsgInfoGenerationVcard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Les VCards ont correctement été générées.
         /// </summary>
         internal static string MsgInfoGenerationVcards {
