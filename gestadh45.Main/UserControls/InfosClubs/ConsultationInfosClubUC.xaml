@@ -14,54 +14,61 @@
 			<StackPanel.Children>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
-						<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="150" />
+						<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="200" />
 						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Nom}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
-						<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="150" />
+						<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="200" />
 						<TextBlock FontSize="14" TextWrapping="Wrap" Width="250" Text="{Binding InfosClub.Adresse}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
-						<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="150" />
+						<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="200" />
 						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Ville}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
-						<TextBlock Text="Tel. : " FontSize="14" FontWeight="Bold" Width="150" />
+						<TextBlock Text="Tel. : " FontSize="14" FontWeight="Bold" Width="200" />
 						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Telephone}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
-						<TextBlock Text="Email : " FontSize="14" FontWeight="Bold" Width="150" />
+						<TextBlock Text="Email : " FontSize="14" FontWeight="Bold" Width="200" />
 						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Mail}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
-						<TextBlock Text="Web : " FontSize="14" FontWeight="Bold" Width="150" />
+						<TextBlock Text="Web : " FontSize="14" FontWeight="Bold" Width="200" />
 						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.SiteWeb}" />
 					</StackPanel.Children>
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
-						<TextBlock Text="N° association : " FontSize="14" FontWeight="Bold" Width="150" />
+						<TextBlock Text="N° association : " FontSize="14" FontWeight="Bold" Width="200" />
 						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Numero}" />
 					</StackPanel.Children>
 				</StackPanel>
 				
 				<StackPanel Orientation="Horizontal">
 					<StackPanel.Children>
-						<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="150" />
+						<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="200" />
 						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Siret}" />
 					</StackPanel.Children>
 				</StackPanel>
-				
+
+				<StackPanel Orientation="Horizontal">
+					<StackPanel.Children>
+						<TextBlock Text="N° établissement APS : " FontSize="14" FontWeight="Bold" Width="200" />
+						<TextBlock FontSize="14" Width="250" Text="{Binding Path=InfosClub.NumAPS}" />
+					</StackPanel.Children>
+				</StackPanel>
+
 				<Separator Margin="0,20,0,20" />
 
 				<uc:BtnAjouterEditerSupprimerUC HorizontalAlignment="Center" Margin="10,10,10,10"

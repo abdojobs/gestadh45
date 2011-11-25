@@ -32,10 +32,6 @@
             <End Role="Saison" EntitySet="Saison" />
             <End Role="Groupe" EntitySet="Groupe" />
           </AssociationSet>
-          <AssociationSet Name="FK_InfosClub_0" Association="Model.Store.FK_InfosClub_0">
-            <End Role="Ville" EntitySet="Ville" />
-            <End Role="InfosClub" EntitySet="InfosClub" />
-          </AssociationSet>
           <AssociationSet Name="FK_Inscription_0" Association="Model.Store.FK_Inscription_0">
             <End Role="StatutInscription" EntitySet="StatutInscription" />
             <End Role="Inscription" EntitySet="Inscription" />
@@ -97,6 +93,7 @@
           <Property Name="Telephone" Type="nvarchar" MaxLength="10" />
           <Property Name="Mail" Type="nvarchar" MaxLength="5" />
           <Property Name="SiteWeb" Type="nvarchar" MaxLength="100" />
+          <Property Name="NumAPS" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Inscription">
           <Key>
@@ -207,18 +204,6 @@
             </Principal>
             <Dependent Role="Groupe">
               <PropertyRef Name="ID_Saison" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_InfosClub_0">
-          <End Role="Ville" Type="Model.Store.Ville" Multiplicity="0..1" />
-          <End Role="InfosClub" Type="Model.Store.InfosClub" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ville">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="InfosClub">
-              <PropertyRef Name="ID_Ville" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -361,6 +346,7 @@
           <Property Name="Mail" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
           <Property Name="SiteWeb" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Ville" Relationship="Model.FK_InfosClub_0" FromRole="InfosClub" ToRole="Ville" />
+          <Property Type="String" Name="NumAPS" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Inscription">
           <Key>
@@ -566,7 +552,8 @@
             <ScalarProperty Name="HeureFin" ColumnName="HeureFin" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="InfosClubs"><EntityTypeMapping TypeName="Model.InfosClub"><MappingFragment StoreEntitySet="InfosClub">
-            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="NumAPS" ColumnName="NumAPS" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
             <ScalarProperty Name="Nom" ColumnName="Nom" />
             <ScalarProperty Name="Numero" ColumnName="Numero" />
             <ScalarProperty Name="Siren" ColumnName="Siren" />
