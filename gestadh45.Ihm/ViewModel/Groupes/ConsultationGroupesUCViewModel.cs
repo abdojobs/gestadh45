@@ -53,7 +53,6 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 			this.InitialisationListeGroupes();
 
 			this.CreateGenererDocumentsGroupeCommand();
-			this.CreateGenererVCardsGroupeCommand();
 			this.CreateExtraireMailsCommand();
 
 			Messenger.Default.Register<MsgSelectionElement<Groupe>>(this, this.SelectionnerGroupe);
@@ -127,35 +126,6 @@ namespace gestadh45.Ihm.ViewModel.Groupes
 						callbackmessage =>
 						{
 							this.GenererDocumentsGroupe(callbackmessage, pCodeDocument);
-						}
-					);
-
-				Messenger.Default.Send<NotificationMessageActionFolderDialog<string>>(message);
-			}
-		}
-		#endregion
-
-		#region GenererVCardsGroupeCommand
-		public ICommand GenererVCardsGroupeCommand { get; set; }
-
-		private void CreateGenererVCardsGroupeCommand() {
-			this.GenererVCardsGroupeCommand = new RelayCommand(
-				this.ExecuteGenererVCardsGroupeCommand,
-				this.CanExecuteGenererVCardsGroupeCommand
-			);
-		}
-
-		public bool CanExecuteGenererVCardsGroupeCommand() {
-			return (this.Groupe != null);
-		}
-
-		public void ExecuteGenererVCardsGroupeCommand() {
-			if (this.Groupe != null) {
-				NotificationMessageActionFolderDialog<string> message =
-					new NotificationMessageActionFolderDialog<string>(
-						callbackmessage =>
-						{
-							this.GenererVCardsGroupe(callbackmessage);
 						}
 					);
 
