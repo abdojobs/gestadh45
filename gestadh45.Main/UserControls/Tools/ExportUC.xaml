@@ -55,22 +55,16 @@
 				<ComboBox Width="150" Margin="0,0,20,0"
 						  ItemsSource="{Binding Path=Groupes}" 
 						  SelectedItem="{Binding Path=Groupe}"/>
-				<CheckBox Content="Fichier unique" Name="chbxFichierUniqueCSVGroup" 
-						  VerticalAlignment="Center" Width="100" />
 				<Button Name="btnExtractCSVGroup" Margin="20,0,0,0"
-						Command="{Binding Path=ExtractionCSVGroupCommand}"
-						CommandParameter="{Binding ElementName=chbxFichierUniqueCSVGroup, Path=IsChecked}">
+						Command="{Binding Path=ExtractionCSVGroupCommand}">
 					<TextBlock Text="Générer" />
 				</Button>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
 				<TextBlock Text="Tous les adhérents : " Width="225" />
-				<CheckBox Content="Fichier unique" Name="chbxFichierUniqueCSVSaison" 
-						  VerticalAlignment="Center" Width="270" />
 				<Button Name="btnExtractCSVSaison" Margin="20,0,0,0"
-						Command="{Binding Path=ExtractionCSVSaisonCommand}"
-						CommandParameter="{Binding ElementName=chbxFichierUniqueCSVSaison, Path=IsChecked}">
+						Command="{Binding Path=ExtractionCSVSaisonCommand}">
 					<TextBlock Text="Générer" />
 				</Button>
 			</StackPanel>
