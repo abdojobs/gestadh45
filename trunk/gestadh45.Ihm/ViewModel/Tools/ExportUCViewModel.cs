@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Text;
 using System.Windows.Data;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.dal;
-using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Ihm.ViewModel.Tools.Export;
-using gestadh45.service.VCards;
 using GPToolkit.CSV;
-using System.IO;
+using GPToolkit.Vcard;
 
 namespace gestadh45.Ihm.ViewModel.Tools
 {
@@ -241,37 +241,56 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		private void GenererVCard(string pSaveFolder, IEnumerable<Inscription> pInscriptions) {
 			if(!string.IsNullOrWhiteSpace(pSaveFolder)) {
 				foreach (Inscription inscription in pInscriptions) {
-					DonneesVCard donnees = ServiceVCardAdaptateur.InscriptionToDonneesVCard(inscription);
-					string saveFilePath = pSaveFolder + "\\" + inscription.Adherent.ToString() + ResVCards.Extension;
+					string saveFilePath = pSaveFolder + "\\" + inscription.Adherent.ToString() + ResExport.VcardExtension;
 
-					var generateur = new VCardGenerateur(donnees, saveFilePath);
-					generateur.CreerVCard();
+					var generateur = new VcardGenerator21(
+						inscription.Adherent.Prenom,
+						inscription.Adherent.Nom,
+						inscription.Adherent.Telephone1,
+						inscription.Adherent.Mail1,
+						inscription.Groupe.ToString()
+					);
 
-					this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCardsGroupe);
+					using (StreamWriter writer = new StreamWriter(saveFilePath, false, this.Encodage.Encodage)) {
+						writer.Write(generateur.GetVCard());
+						writer.Close();
+					}
+					
+					this.AfficherInformationIhm(ResExport.MsgInfoGenerationVcards);
 				}
 			}
 		}
 
 		private void GenererVCardFichierUnique(string pSaveFolder, IEnumerable<Inscription> pInscriptions, string pFileName) {
 			if (!string.IsNullOrWhiteSpace(pSaveFolder)) {
-				string saveFilePath = pSaveFolder + "\\" + pFileName + ResVCards.Extension;
-				List<DonneesVCard> donnees = new List<DonneesVCard>();
+				string saveFilePath = pSaveFolder + "\\" + pFileName + ResExport.VcardExtension;
+
+				StringBuilder sb = new StringBuilder();
 
 				foreach (Inscription inscription in pInscriptions) {
-					donnees.Add(ServiceVCardAdaptateur.InscriptionToDonneesVCard(inscription));
+					var generateur = new VcardGenerator21(
+						inscription.Adherent.Prenom, 
+						inscription.Adherent.Nom, 
+						inscription.Adherent.Telephone1, 
+						inscription.Adherent.Mail1, 
+						inscription.Groupe.ToString()
+					);
+
+					sb.Append(generateur.GetVCard());
 				}
 
-				var generateur = new VCardGenerateur(donnees, saveFilePath);
-				generateur.CreerVCard();
+				using (StreamWriter writer = new StreamWriter(saveFilePath, false, this.Encodage.Encodage)) {
+					writer.Write(sb.ToString());
+					writer.Close();
+				}
 
-				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCardsGroupe);
+				this.AfficherInformationIhm(ResExport.MsgInfoGenerationVcards);
 			}
 		}
 
 		private void GenererCSV(string pSaveFolder, IEnumerable<Inscription> pInscriptions, string pFileName) {
 			if (!string.IsNullOrWhiteSpace(pSaveFolder)) {
-				// TODO mettre l'extension dans un fichier ressource
-				string saveFilePath = pSaveFolder + "\\" + pFileName + ".csv";
+				string saveFilePath = pSaveFolder + "\\" + pFileName + ResExport.CsvExtension;
 				List<CSVRow> donnees = new List<CSVRow>();
 
 				foreach (Inscription inscription in pInscriptions) {
@@ -285,15 +304,13 @@ namespace gestadh45.Ihm.ViewModel.Tools
 					donnees.Add(row);
 				}
 
-				// TODO séparateur a mettre dans un fichier de ressource
-				var generateur = new CSVGenerator(donnees, ";");
-				using (StreamWriter writer = new StreamWriter(saveFilePath)) {
+				var generateur = new CSVGenerator(donnees, ResExport.CsvSeparator);
+				using (StreamWriter writer = new StreamWriter(saveFilePath, false, this.Encodage.Encodage)) {
 					writer.Write(generateur.GetCSV());
 					writer.Close();
 				}
 
-				// TODO message de confirmation à ajouter
-				this.AfficherInformationIhm("TODO");
+				this.AfficherInformationIhm(ResExport.MsgInfoGenerationCsv);
 			}
 		}
 		#endregion
