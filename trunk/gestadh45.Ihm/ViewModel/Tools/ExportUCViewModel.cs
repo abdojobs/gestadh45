@@ -9,6 +9,8 @@ using gestadh45.Ihm.ServiceAdaptateurs;
 using gestadh45.Ihm.SpecialMessages;
 using gestadh45.Ihm.ViewModel.Tools.Export;
 using gestadh45.service.VCards;
+using GPToolkit.CSV;
+using System.IO;
 
 namespace gestadh45.Ihm.ViewModel.Tools
 {
@@ -161,31 +163,24 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		public ICommand ExtractionCSVSaisonCommand { get; set; }
 
 		private void CreateExtractionCSVSaisonCommand() {
-			this.ExtractionCSVSaisonCommand = new RelayCommand<bool?>(
+			this.ExtractionCSVSaisonCommand = new RelayCommand(
 				this.ExecuteExtractionCSVSaisonCommand,
 				this.CanExecuteExtractionCSVSaisonCommand
 			);
 
 		}
 
-		public bool CanExecuteExtractionCSVSaisonCommand(bool? pFichierUnique) {
+		public bool CanExecuteExtractionCSVSaisonCommand() {
 			return this.Encodage != null;
 		}
 
-		public void ExecuteExtractionCSVSaisonCommand(bool? pFichierUnique) {
+		public void ExecuteExtractionCSVSaisonCommand() {
 			if (this.Encodage != null) {
 				NotificationMessageActionFolderDialog<string> message =
 					new NotificationMessageActionFolderDialog<string>(
 						callbackmessage =>
 						{
-							bool fichierUnique = pFichierUnique ?? false;
-
-							if (fichierUnique) {
-								// TODO to implement
-							}
-							else {
-								// TODO to implement
-							}
+							this.GenererCSV(callbackmessage, ViewModelLocator.DaoInscription.ListSaisonCourante(), ViewModelLocator.DaoSaison.ReadSaisonCourante().ToShortString());
 						}
 					);
 
@@ -198,30 +193,23 @@ namespace gestadh45.Ihm.ViewModel.Tools
 		public ICommand ExtractionCSVGroupCommand { get; set; }
 
 		private void CreateExtractionCSVGroupCommand() {
-			this.ExtractionCSVGroupCommand = new RelayCommand<bool?>(
+			this.ExtractionCSVGroupCommand = new RelayCommand(
 				this.ExecuteExtractionCSVGroupCommand,
 				this.CanExecuteExtractionCSVGroupCommand
 			);
 		}
 
-		public bool CanExecuteExtractionCSVGroupCommand(bool? pFichierUnique) {
+		public bool CanExecuteExtractionCSVGroupCommand() {
 			return this.Encodage != null && this.Groupe != null;
 		}
 
-		public void ExecuteExtractionCSVGroupCommand(bool? pFichierUnique) {
+		public void ExecuteExtractionCSVGroupCommand() {
 			if (this.Encodage != null && this.Groupe != null) {
 				NotificationMessageActionFolderDialog<string> message =
 					new NotificationMessageActionFolderDialog<string>(
 						callbackmessage =>
 						{
-							bool fichierUnique = pFichierUnique ?? false;
-
-							if (fichierUnique) {
-								// TODO To implement
-							}
-							else {
-								// TODO To implement
-							}
+							this.GenererCSV(callbackmessage, this.Groupe.Inscriptions, this.Groupe.Libelle);
 						}
 					);
 
@@ -277,6 +265,35 @@ namespace gestadh45.Ihm.ViewModel.Tools
 				generateur.CreerVCard();
 
 				this.AfficherInformationIhm(ResMessages.MessageInfoGenerationVCardsGroupe);
+			}
+		}
+
+		private void GenererCSV(string pSaveFolder, IEnumerable<Inscription> pInscriptions, string pFileName) {
+			if (!string.IsNullOrWhiteSpace(pSaveFolder)) {
+				// TODO mettre l'extension dans un fichier ressource
+				string saveFilePath = pSaveFolder + "\\" + pFileName + ".csv";
+				List<CSVRow> donnees = new List<CSVRow>();
+
+				foreach (Inscription inscription in pInscriptions) {
+					var row = new CSVRow();
+					row.AddValue(inscription.Groupe.ToString());
+					row.AddValue(inscription.Adherent.Nom);
+					row.AddValue(inscription.Adherent.Prenom);
+					row.AddValue(inscription.Adherent.DateNaissance.ToShortDateString());
+					row.AddValue(inscription.Adherent.Adresse.ToString());
+
+					donnees.Add(row);
+				}
+
+				// TODO séparateur a mettre dans un fichier de ressource
+				var generateur = new CSVGenerator(donnees, ";");
+				using (StreamWriter writer = new StreamWriter(saveFilePath)) {
+					writer.Write(generateur.GetCSV());
+					writer.Close();
+				}
+
+				// TODO message de confirmation à ajouter
+				this.AfficherInformationIhm("TODO");
 			}
 		}
 		#endregion
