@@ -97,6 +97,33 @@ namespace gestadh45.Ihm.ViewModel.Tools.Export {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Unicode.
+        /// </summary>
+        internal static string Unicode {
+            get {
+                return ResourceManager.GetString("Unicode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à UTF-8.
+        /// </summary>
+        internal static string UTF8 {
+            get {
+                return ResourceManager.GetString("UTF8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à UTF-8 (sans BOM).
+        /// </summary>
+        internal static string UTF8WithoutBOM {
+            get {
+                return ResourceManager.GetString("UTF8WithoutBOM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à .vcf.
         /// </summary>
         internal static string VcardExtension {

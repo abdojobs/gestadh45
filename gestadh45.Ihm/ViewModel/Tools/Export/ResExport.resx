@@ -129,6 +129,15 @@
   <data name="MsgInfoGenerationVcards" xml:space="preserve">
     <value>Les VCards ont correctement été générées</value>
   </data>
+  <data name="Unicode" xml:space="preserve">
+    <value>Unicode</value>
+  </data>
+  <data name="UTF8" xml:space="preserve">
+    <value>UTF-8</value>
+  </data>
+  <data name="UTF8WithoutBOM" xml:space="preserve">
+    <value>UTF-8 (sans BOM)</value>
+  </data>
   <data name="VcardExtension" xml:space="preserve">
     <value>.vcf</value>
   </data>
