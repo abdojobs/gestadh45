@@ -212,6 +212,7 @@ namespace gestadh45.Ihm.ViewModel
 			ViewModelLocator.DaoStatutInscription = this._daoFactory.GetStatutInscriptionDao();
 			ViewModelLocator.DaoTrancheAge = this._daoFactory.GetTrancheAgeDao();
 			ViewModelLocator.DaoVille = this._daoFactory.GetVilleDao();
+			ViewModelLocator.DaoAppUser = this._daoFactory.GetAppUserDao();
 		}
 
 		/// <summary>

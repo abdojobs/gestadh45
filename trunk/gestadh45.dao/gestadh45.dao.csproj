@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdherentDao.cs" />
+    <Compile Include="AppUserDao.cs" />
+    <Compile Include="IAppUserDao.cs" />
     <Compile Include="IStatutInscriptionDao.cs" />
     <Compile Include="ITrancheAgeDao.cs" />
     <Compile Include="ObjectContextManager.cs" />

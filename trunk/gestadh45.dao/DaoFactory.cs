@@ -42,5 +42,10 @@ namespace gestadh45.dao
 		public ITrancheAgeDao GetTrancheAgeDao() {
 			return new TrancheAgeDao();
 		}
+
+		public IAppUserDao GetAppUserDao() {
+			return new AppUserDao();
+		}
+
 	}
 }

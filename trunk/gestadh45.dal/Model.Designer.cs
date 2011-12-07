@@ -236,6 +236,22 @@ namespace gestadh45.dal
             }
         }
         private ObjectSet<TrancheAge> _TrancheAges;
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        public ObjectSet<AppUser> AppUsers
+        {
+            get
+            {
+                if ((_AppUsers == null))
+                {
+                    _AppUsers = base.CreateObjectSet<AppUser>("AppUsers");
+                }
+                return _AppUsers;
+            }
+        }
+        private ObjectSet<AppUser> _AppUsers;
 
         #endregion
         #region Méthodes AddTo
@@ -318,6 +334,14 @@ namespace gestadh45.dal
         public void AddToTrancheAges(TrancheAge trancheAge)
         {
             base.AddObject("TrancheAges", trancheAge);
+        }
+    
+        /// <summary>
+        /// Méthode déconseillée pour ajouter un nouvel objet à l'EntitySet AppUsers. Utilisez la méthode .Add de la propriété ObjectSet&lt;T&gt; associée à la place.
+        /// </summary>
+        public void AddToAppUsers(AppUser appUser)
+        {
+            base.AddObject("AppUsers", appUser);
         }
 
         #endregion
@@ -856,6 +880,165 @@ namespace gestadh45.dal
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// Aucune documentation sur les métadonnées n'est disponible.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="AppUser")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AppUser : EntityObject
+    {
+        #region Méthode de fabrique
+    
+        /// <summary>
+        /// Créez un nouvel objet AppUser.
+        /// </summary>
+        /// <param name="id">Valeur initiale de la propriété ID.</param>
+        /// <param name="login">Valeur initiale de la propriété Login.</param>
+        /// <param name="password">Valeur initiale de la propriété Password.</param>
+        /// <param name="reader">Valeur initiale de la propriété Reader.</param>
+        /// <param name="writer">Valeur initiale de la propriété Writer.</param>
+        public static AppUser CreateAppUser(global::System.Int64 id, global::System.String login, global::System.String password, global::System.Boolean reader, global::System.Boolean writer)
+        {
+            AppUser appUser = new AppUser();
+            appUser.ID = id;
+            appUser.Login = login;
+            appUser.Password = password;
+            appUser.Reader = reader;
+            appUser.Writer = writer;
+            return appUser;
+        }
+
+        #endregion
+        #region Propriétés primitives
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 ID
+        {
+            get
+            {
+                return _ID;
+            }
+            set
+            {
+                if (_ID != value)
+                {
+                    OnIDChanging(value);
+                    ReportPropertyChanging("ID");
+                    _ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ID");
+                    OnIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _ID;
+        partial void OnIDChanging(global::System.Int64 value);
+        partial void OnIDChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Login
+        {
+            get
+            {
+                return _Login;
+            }
+            set
+            {
+                OnLoginChanging(value);
+                ReportPropertyChanging("Login");
+                _Login = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Login");
+                OnLoginChanged();
+            }
+        }
+        private global::System.String _Login;
+        partial void OnLoginChanging(global::System.String value);
+        partial void OnLoginChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Password
+        {
+            get
+            {
+                return _Password;
+            }
+            set
+            {
+                OnPasswordChanging(value);
+                ReportPropertyChanging("Password");
+                _Password = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Password");
+                OnPasswordChanged();
+            }
+        }
+        private global::System.String _Password;
+        partial void OnPasswordChanging(global::System.String value);
+        partial void OnPasswordChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Reader
+        {
+            get
+            {
+                return _Reader;
+            }
+            set
+            {
+                OnReaderChanging(value);
+                ReportPropertyChanging("Reader");
+                _Reader = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Reader");
+                OnReaderChanged();
+            }
+        }
+        private global::System.Boolean _Reader;
+        partial void OnReaderChanging(global::System.Boolean value);
+        partial void OnReaderChanged();
+    
+        /// <summary>
+        /// Aucune documentation sur les métadonnées n'est disponible.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean Writer
+        {
+            get
+            {
+                return _Writer;
+            }
+            set
+            {
+                OnWriterChanging(value);
+                ReportPropertyChanging("Writer");
+                _Writer = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Writer");
+                OnWriterChanged();
+            }
+        }
+        private global::System.Boolean _Writer;
+        partial void OnWriterChanging(global::System.Boolean value);
+        partial void OnWriterChanged();
+
+        #endregion
+    
     }
     
     /// <summary>

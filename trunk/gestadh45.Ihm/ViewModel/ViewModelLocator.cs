@@ -1,13 +1,14 @@
-﻿using gestadh45.Ihm.ViewModel.Adherents;
+﻿using gestadh45.dal;
+using gestadh45.dao;
+using gestadh45.Ihm.ViewModel.Adherents;
 using gestadh45.Ihm.ViewModel.Groupes;
 using gestadh45.Ihm.ViewModel.InfosClubs;
 using gestadh45.Ihm.ViewModel.Inscriptions;
 using gestadh45.Ihm.ViewModel.Saisons;
 using gestadh45.Ihm.ViewModel.Stats;
-using gestadh45.Ihm.ViewModel.Villes;
 using gestadh45.Ihm.ViewModel.Tools;
 using gestadh45.Ihm.ViewModel.TranchesAge;
-using gestadh45.dao;
+using gestadh45.Ihm.ViewModel.Villes;
 
 namespace gestadh45.Ihm.ViewModel
 {
@@ -38,6 +39,11 @@ namespace gestadh45.Ihm.ViewModel
 		public static IStatutInscriptionDao DaoStatutInscription { get; set; }
 		public static ITrancheAgeDao DaoTrancheAge { get; set; }
 		public static IVilleDao DaoVille { get; set; }
+		public static IAppUserDao DaoAppUser { get; set; }
+		#endregion
+
+		#region session utilisateur
+		public static AppUser CurrentUser { get; set; }
 		#endregion
 
 		#region MainView
