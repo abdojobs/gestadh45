@@ -86,6 +86,7 @@
     <Compile Include="Tools\BooleanInversionConverter.cs" />
     <Compile Include="Tools\HexaColorStringToBrushCOnverter.cs" />
     <Compile Include="Tools\ListToStringConverter.cs" />
+    <Compile Include="Tools\SessionHelper.cs" />
     <Compile Include="ViewModel\Adherents\ConsultationAdherentsUCViewModel.cs" />
     <Compile Include="ViewModel\Common\ConsultationExtractionsUCViewModel.cs" />
     <Compile Include="ViewModel\Groupes\ConsultationGroupesUCViewModel.cs" />

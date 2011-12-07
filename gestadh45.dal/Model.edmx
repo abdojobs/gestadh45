@@ -7,6 +7,7 @@
     <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Adherent" EntityType="Model.Store.Adherent" store:Type="Tables" />
+          <EntitySet Name="AppUser" EntityType="Model.Store.AppUser" store:Type="Tables" />
           <EntitySet Name="Groupe" EntityType="Model.Store.Groupe" store:Type="Tables" />
           <EntitySet Name="InfosClub" EntityType="Model.Store.InfosClub" store:Type="Tables" />
           <EntitySet Name="Inscription" EntityType="Model.Store.Inscription" store:Type="Tables" />
@@ -65,6 +66,16 @@
           <Property Name="Mail1" Type="nvarchar" MaxLength="100" />
           <Property Name="Mail2" Type="nvarchar" MaxLength="100" />
           <Property Name="Mail3" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="AppUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Reader" Type="bit" Nullable="false" />
+          <Property Name="Writer" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Groupe">
           <Key>
@@ -290,6 +301,7 @@
             <End Role="Inscription" EntitySet="Inscriptions" />
           </AssociationSet>
           <EntitySet Name="TrancheAges" EntityType="Model.TrancheAge" />
+          <EntitySet Name="AppUsers" EntityType="Model.AppUser" />
         </EntityContainer>
         <EntityType Name="Adherent">
           <Key>
@@ -517,6 +529,16 @@
           <Property Type="Int64" Name="AgeInf" Nullable="false" />
           <Property Type="Int64" Name="AgeSup" Nullable="false" />
         </EntityType>
+        <EntityType Name="AppUser">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int64" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Login" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Reader" Nullable="false" />
+          <Property Type="Boolean" Name="Writer" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -611,6 +633,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AppUsers">
+            <EntityTypeMapping TypeName="Model.AppUser">
+              <MappingFragment StoreEntitySet="AppUser">
+                <ScalarProperty Name="Writer" ColumnName="Writer" />
+                <ScalarProperty Name="Reader" ColumnName="Reader" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -679,6 +712,7 @@
           <ConnectorPoint PointX="5.28125" PointY="4.75" />
         </AssociationConnector>
         <EntityTypeShape EntityType="Model.TrancheAge" Width="1.5" PointX="5.375" PointY="0.75" Height="1.6156835937500005" />
+        <EntityTypeShape EntityType="Model.AppUser" Width="1.5" PointX="7.375" PointY="0.75" Height="1.7566536458333353" />
       </Diagram>
     </Diagrams>
   </Designer>
