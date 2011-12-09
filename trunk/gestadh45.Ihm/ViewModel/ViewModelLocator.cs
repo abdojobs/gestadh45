@@ -1,5 +1,5 @@
-﻿using gestadh45.dal;
-using gestadh45.dao;
+﻿using gestadh45.dao;
+using gestadh45.Ihm.ObjetsIhm;
 using gestadh45.Ihm.ViewModel.Adherents;
 using gestadh45.Ihm.ViewModel.Groupes;
 using gestadh45.Ihm.ViewModel.InfosClubs;
@@ -43,7 +43,7 @@ namespace gestadh45.Ihm.ViewModel
 		#endregion
 
 		#region session utilisateur
-		public static AppUser CurrentUser { get; set; }
+		public static SessionIhm CurrentSession { get; set; }
 		#endregion
 
 		#region MainView
