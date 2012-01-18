@@ -13,20 +13,22 @@ namespace gestadh45.service.Documents
 
 		public override void CreerDocumentAttestation() {
 			Document document = new Document();
-			FileStream os = new FileStream(base.mSavePath, FileMode.Create);
-			PdfWriter.GetInstance(document, os);
-			document.Open();
-			document.Add(new AttestationDocument(base.mDonnees).GenererContenuDocument());
-			document.Close();
+
+			using (var os = new FileStream(base.mSavePath, FileMode.Create)) {
+				PdfWriter.GetInstance(document, os);
+				document.Open();
+				document.Add(new AttestationDocument(base.mDonnees).GenererContenuDocument());
+			}
 		}
 
 		public override void CreerDocumentInscription() {
 			Document document = new Document();
-			FileStream os = new FileStream(base.mSavePath, FileMode.Create);
-			PdfWriter.GetInstance(document, os);
-			document.Open();
-			document.Add(new InscriptionDocument(base.mDonnees).GenererContenuDocument());
-			document.Close();
+
+			using (var os = new FileStream(base.mSavePath, FileMode.Create)) {
+				PdfWriter.GetInstance(document, os);
+				document.Open();
+				document.Add(new InscriptionDocument(base.mDonnees).GenererContenuDocument());
+			}
 		}
 	}
 }

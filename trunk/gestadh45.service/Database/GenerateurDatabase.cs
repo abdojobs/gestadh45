@@ -49,8 +49,6 @@ namespace gestadh45.service.Database
 
 						lTransaction.Commit();
 					}
-					
-					lConnection.Close();
 				}
 			}
 		}
