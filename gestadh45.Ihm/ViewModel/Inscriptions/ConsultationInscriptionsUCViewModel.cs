@@ -225,11 +225,12 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 			if(!string.IsNullOrWhiteSpace(pSaveFilePath)) {
 				var generateur = new VcardGenerator21(
 					this.Inscription.Adherent.Prenom,
-					this.Inscription.Adherent.Nom,
-					this.Inscription.Adherent.Telephone1,
-					this.Inscription.Adherent.Mail1,
-					this.Inscription.Groupe.ToString()
+					this.Inscription.Adherent.Nom
 				);
+
+				generateur.AddEmailInternet(this.Inscription.Adherent.Mail1);
+				generateur.AddTelWork(this.Inscription.Adherent.Telephone1);
+				generateur.AddOrganization(this.Inscription.Groupe.ToString());				
 
 				using (StreamWriter writer = new StreamWriter(pSaveFilePath, false, new UTF8Encoding(false))) {
 					writer.Write(generateur.GetVCard());

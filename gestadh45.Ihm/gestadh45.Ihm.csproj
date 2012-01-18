@@ -41,7 +41,8 @@
     <Reference Include="GalaSoft.MvvmLight.WPF4">
       <HintPath>..\Libs\GalaSoft.MvvmLight.WPF4.dll</HintPath>
     </Reference>
-    <Reference Include="GPToolkit">
+    <Reference Include="GPToolkit, Version=1.1.0.0, Culture=neutral, PublicKeyToken=9e97af99cf0b8974, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\GPToolkit.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />

@@ -245,11 +245,12 @@ namespace gestadh45.Ihm.ViewModel.Tools
 
 					var generateur = new VcardGenerator21(
 						inscription.Adherent.Prenom,
-						inscription.Adherent.Nom,
-						inscription.Adherent.Telephone1,
-						inscription.Adherent.Mail1,
-						inscription.Groupe.ToString()
+						inscription.Adherent.Nom
 					);
+
+					generateur.AddEmailInternet(inscription.Adherent.Mail1);
+					generateur.AddTelWork(inscription.Adherent.Telephone1);
+					generateur.AddOrganization(inscription.Groupe.ToString());	
 
 					using (StreamWriter writer = new StreamWriter(saveFilePath, false, this.Encodage.Encodage)) {
 						writer.Write(generateur.GetVCard());
@@ -270,11 +271,12 @@ namespace gestadh45.Ihm.ViewModel.Tools
 				foreach (Inscription inscription in pInscriptions) {
 					var generateur = new VcardGenerator21(
 						inscription.Adherent.Prenom, 
-						inscription.Adherent.Nom, 
-						inscription.Adherent.Telephone1, 
-						inscription.Adherent.Mail1, 
-						inscription.Groupe.ToString()
+						inscription.Adherent.Nom
 					);
+
+					generateur.AddEmailInternet(inscription.Adherent.Mail1);
+					generateur.AddTelWork(inscription.Adherent.Telephone1);
+					generateur.AddOrganization(inscription.Groupe.ToString());
 
 					sb.Append(generateur.GetVCard());
 				}
