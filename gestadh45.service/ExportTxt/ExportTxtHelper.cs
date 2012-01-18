@@ -16,9 +16,6 @@ namespace gestadh45.service.ExportTxt
 				foreach (string elem in pElements) {
 					writer.Write(elem + pDelimiteur);
 				}
-
-				writer.Flush();
-				writer.Close();
 			}
 		}
 	}
