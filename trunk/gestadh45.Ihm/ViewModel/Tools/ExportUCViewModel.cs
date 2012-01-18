@@ -254,7 +254,6 @@ namespace gestadh45.Ihm.ViewModel.Tools
 
 					using (StreamWriter writer = new StreamWriter(saveFilePath, false, this.Encodage.Encodage)) {
 						writer.Write(generateur.GetVCard());
-						writer.Close();
 					}
 					
 					this.AfficherInformationIhm(ResExport.MsgInfoGenerationVcards);
@@ -283,7 +282,6 @@ namespace gestadh45.Ihm.ViewModel.Tools
 
 				using (StreamWriter writer = new StreamWriter(saveFilePath, false, this.Encodage.Encodage)) {
 					writer.Write(sb.ToString());
-					writer.Close();
 				}
 
 				this.AfficherInformationIhm(ResExport.MsgInfoGenerationVcards);
@@ -309,7 +307,6 @@ namespace gestadh45.Ihm.ViewModel.Tools
 				var generateur = new CSVGenerator(donnees, ResExport.CsvSeparator);
 				using (StreamWriter writer = new StreamWriter(saveFilePath, false, this.Encodage.Encodage)) {
 					writer.Write(generateur.GetCSV());
-					writer.Close();
 				}
 
 				this.AfficherInformationIhm(ResExport.MsgInfoGenerationCsv);
