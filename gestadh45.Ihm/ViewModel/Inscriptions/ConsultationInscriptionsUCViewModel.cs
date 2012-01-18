@@ -234,7 +234,6 @@ namespace gestadh45.Ihm.ViewModel.Inscriptions
 
 				using (StreamWriter writer = new StreamWriter(pSaveFilePath, false, new UTF8Encoding(false))) {
 					writer.Write(generateur.GetVCard());
-					writer.Close();
 				}
 
 				this.AfficherInformationIhm(ResExport.MsgInfoGenerationVcard);
