@@ -88,6 +88,7 @@
     <Compile Include="PersonalizedObj\TrancheAge.cs" />
     <Compile Include="PersonalizedObj\Ville.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Saison.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
