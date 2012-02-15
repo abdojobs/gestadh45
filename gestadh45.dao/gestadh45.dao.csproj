@@ -75,12 +75,6 @@
     <Compile Include="TrancheAgeDao.cs" />
     <Compile Include="VilleDao.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\gestadh45.dal\gestadh45.dal.csproj">
-      <Project>{511AC6A7-B581-4B4E-946F-297AE7E731F1}</Project>
-      <Name>gestadh45.dal</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -357,10 +357,6 @@
     <Resource Include="Images\gestadh45.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\gestadh45.dal\gestadh45.dal.csproj">
-      <Project>{511AC6A7-B581-4B4E-946F-297AE7E731F1}</Project>
-      <Name>gestadh45.dal</Name>
-    </ProjectReference>
     <ProjectReference Include="..\gestadh45.Ihm\gestadh45.Ihm.csproj">
       <Project>{7D1DAFDD-8A59-4F52-9B5F-9D01AF975565}</Project>
       <Name>gestadh45.Ihm</Name>
