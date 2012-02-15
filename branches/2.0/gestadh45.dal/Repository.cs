@@ -1,37 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 
 namespace gestadh45.dal
 {
-	public class Repository<C, T> where T : class where C : DbContext, new()
+	public class Repository<TEntity> where TEntity : class, new()
 	{
-		private C _entities = new C();
-		protected C Context {
+		private GestAdh45Entities _entities = new GestAdh45Entities();
+		protected GestAdh45Entities Context {
 			get { return this._entities; }
 			set { this._entities = value; }
 		}
 
 		#region IRepository<T> Membres
 
-		public IEnumerable<T> GetAll() {
-			return this._entities.Set<T>().ToList();
+		public IEnumerable<TEntity> GetAll() {
+			return this._entities.Set<TEntity>().ToList();
 		}
 
-		public T GetById(int id) {
-			return this._entities.Set<T>().Find(id);
+		public TEntity GetById(int id) {
+			return this._entities.Set<TEntity>().Find(id);
 		}
 
-		public void Add(T entity) {
-			this._entities.Set<T>().Add(entity);
+		public void Add(TEntity entity) {
+			this._entities.Set<TEntity>().Add(entity);
 		}
 
-		public void Delete(T entity) {
-			this._entities.Set<T>().Remove(entity);
+		public void Delete(TEntity entity) {
+			this._entities.Set<TEntity>().Remove(entity);
 		}
 
-		public void Edit(T entity) {
+		public void Edit(TEntity entity) {
 			this._entities.Entry(entity).State = System.Data.EntityState.Modified;
 		}
 
