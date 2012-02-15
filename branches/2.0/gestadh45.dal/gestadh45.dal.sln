@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.dal", "gestadh45.dal.csproj", "{B592B627-A159-4936-92E8-EFF98114395C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.consoletest", "..\gestadh45.consoletest\gestadh45.consoletest.csproj", "{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -27,6 +29,16 @@ Global
 		{B592B627-A159-4936-92E8-EFF98114395C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B592B627-A159-4936-92E8-EFF98114395C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B592B627-A159-4936-92E8-EFF98114395C}.Release|x86.ActiveCfg = Release|Any CPU
+		{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}.Debug|x86.ActiveCfg = Debug|x86
+		{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}.Debug|x86.Build.0 = Debug|x86
+		{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}.Release|Any CPU.ActiveCfg = Release|x86
+		{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}.Release|x86.ActiveCfg = Release|x86
+		{A3C39C1B-7FBC-4002-A1AB-AFE076D983C1}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
