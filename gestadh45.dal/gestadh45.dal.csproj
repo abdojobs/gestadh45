@@ -38,6 +38,8 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,11 +47,71 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adherent.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestAdh45Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestAdh45Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestAdh45Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GestAdh45Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestAdh45Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Groupe.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InfosClub.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Inscription.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JourSemaine.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Saison.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Sexe.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StatutInscription.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TrancheAge.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Ville.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="GestAdh45Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>GestAdh45Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="GestAdh45Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GestAdh45Model.Context.cs</LastGenOutput>
+    </None>
+    <None Include="GestAdh45Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>GestAdh45Model.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
