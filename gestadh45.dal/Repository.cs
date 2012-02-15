@@ -7,9 +7,9 @@ namespace gestadh45.dal
 	public class Repository<TEntity> where TEntity : class, new()
 	{
 		private GestAdh45Entities _entities = new GestAdh45Entities();
-		protected GestAdh45Entities Context {
-			get { return this._entities; }
-			set { this._entities = value; }
+
+		public Repository(GestAdh45Entities context) {
+			this._entities = context;
 		}
 
 		#region IRepository<T> Membres
