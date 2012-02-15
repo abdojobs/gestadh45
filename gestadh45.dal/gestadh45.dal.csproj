@@ -106,7 +106,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <EntityDeploy Include="GestAdh45Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>GestAdh45Model.Designer.cs</LastGenOutput>
@@ -119,7 +121,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>GestAdh45Model.cs</LastGenOutput>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
