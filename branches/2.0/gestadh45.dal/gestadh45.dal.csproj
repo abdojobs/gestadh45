@@ -77,6 +77,16 @@
     <Compile Include="JourSemaine.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="PersonalizedObj\Adherent.cs" />
+    <Compile Include="PersonalizedObj\Groupe.cs" />
+    <Compile Include="PersonalizedObj\InfosClub.cs" />
+    <Compile Include="PersonalizedObj\Inscription.cs" />
+    <Compile Include="PersonalizedObj\JourSemaine.cs" />
+    <Compile Include="PersonalizedObj\Saison.cs" />
+    <Compile Include="PersonalizedObj\Sexe.cs" />
+    <Compile Include="PersonalizedObj\StatutInscription.cs" />
+    <Compile Include="PersonalizedObj\TrancheAge.cs" />
+    <Compile Include="PersonalizedObj\Ville.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Saison.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
