@@ -93,10 +93,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\gestadh45.dal\gestadh45.dal.csproj">
-      <Project>{511AC6A7-B581-4B4E-946F-297AE7E731F1}</Project>
-      <Name>gestadh45.dal</Name>
-    </ProjectReference>
     <ProjectReference Include="..\gestadh45.dao\gestadh45.dao.csproj">
       <Project>{5121D3C9-6745-405D-9374-DE1833907A07}</Project>
       <Name>gestadh45.dao</Name>
