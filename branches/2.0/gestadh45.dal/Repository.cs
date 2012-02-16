@@ -5,9 +5,13 @@ using System.Linq;
 
 namespace gestadh45.dal
 {
-	public class Repository<TEntity, TContext> where TEntity : class where TContext : DbContext, new()
+	public class Repository<TEntity> where TEntity : class, new()
 	{
-		private TContext _entities = new TContext();
+		private DbContext _entities;
+
+		public Repository(DbContext context) {
+			this._entities = context;
+		}
 
 		#region IRepository<T> Membres
 
