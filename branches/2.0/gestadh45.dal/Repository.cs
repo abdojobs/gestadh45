@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace gestadh45.dal
 {
-	public class Repository<TEntity> where TEntity : class, new()
+	public class Repository<TEntity, TContext> where TEntity : class where TContext : DbContext, new()
 	{
-		private GestAdh45Entities _entities = new GestAdh45Entities();
-
-		public Repository(GestAdh45Entities context) {
-			this._entities = context;
-		}
+		private TContext _entities = new TContext();
 
 		#region IRepository<T> Membres
 

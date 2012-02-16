@@ -10,15 +10,15 @@ namespace gestadh45.consoletest
 	class Program
 	{
 		static void Main(string[] args) {
-			var context = new GestAdh45Entities();
-			var repo = new Repository<Sexe>(context);
+			//var context = new GestAdh45Entities();
+			var repo = new Repository<Inscription, GestAdh45Entities>();
 
-			foreach(Sexe sexe in repo.GetAll()) {
-				Console.WriteLine(string.Format("{0} - {1}", sexe.ID, sexe.ToLongString()));
+			foreach(object obj in repo.GetAll()) {
+				Console.WriteLine(obj.ToString());
 			}
 
 			repo.Dispose();
-			context.Dispose();
+			//context.Dispose();
 
 			Console.ReadKey();
 		}
