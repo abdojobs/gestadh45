@@ -17,7 +17,6 @@ namespace gestadh45.consoletest
 				Console.WriteLine(obj.ToString());
 			}
 
-			repo.Dispose();
 			context.Dispose();
 
 			Console.ReadKey();

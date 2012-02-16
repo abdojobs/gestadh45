@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
@@ -23,6 +22,10 @@ namespace gestadh45.dal
 			return this._entities.Set<TEntity>().Find(id);
 		}
 
+		public TEntity GetByKey(object[] keyValues) {
+			return this._entities.Set<TEntity>().Find(keyValues);
+		}
+
 		public void Add(TEntity entity) {
 			this._entities.Set<TEntity>().Add(entity);
 		}
@@ -37,28 +40,6 @@ namespace gestadh45.dal
 
 		public void Save() {
 			this._entities.SaveChanges();
-		}
-
-
-		#endregion
-
-		private bool disposed = false;
-
-		protected virtual void Dispose(bool disposing) {
-			if (!this.disposed) {
-				if (disposing) {
-					this._entities.Dispose();
-				}
-			}
-
-			this.disposed = true;
-		}
-
-		#region IDisposable Membres
-
-		public void Dispose() {
-			this.Dispose(true);
-			GC.SuppressFinalize(this);
 		}
 
 		#endregion
