@@ -1,6 +1,6 @@
 ﻿using gestadh45.dal;
 
-namespace gestadh45.business.ViewModel.Consultation
+namespace gestadh45.business.ViewModel.InfosClubVM
 {
 	public class ConsultationInfosClubVM : VMConsultationBase
 	{

@@ -66,8 +66,8 @@
     <Compile Include="PersonalizedMsg\NMType.cs" />
     <Compile Include="PersonalizedMsg\NMUserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\InfosClub\ConsultationInfosClubVM.cs" />
-    <Compile Include="ViewModel\InfosClub\FormulaireInfosClubVM.cs" />
+    <Compile Include="ViewModel\InfosClubVM\ConsultationInfosClubVM.cs" />
+    <Compile Include="ViewModel\InfosClubVM\FormulaireInfosClubVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VMApplicationBase.cs" />

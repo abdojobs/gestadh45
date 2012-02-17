@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.consoleTest", "ge
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.business", "gestadh45.business\gestadh45.business.csproj", "{0964C348-005F-4329-A351-7DFCF43362AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gestadh45.wpf", "gestadh45.wpf\gestadh45.wpf.csproj", "{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -51,6 +53,16 @@ Global
 		{0964C348-005F-4329-A351-7DFCF43362AE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{0964C348-005F-4329-A351-7DFCF43362AE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{0964C348-005F-4329-A351-7DFCF43362AE}.Release|x86.ActiveCfg = Release|Any CPU
+		{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}.Debug|x86.ActiveCfg = Debug|x86
+		{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}.Debug|x86.Build.0 = Debug|x86
+		{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}.Release|Any CPU.ActiveCfg = Release|x86
+		{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}.Release|Mixed Platforms.Build.0 = Release|x86
+		{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}.Release|x86.ActiveCfg = Release|x86
+		{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
 
-namespace gestadh45.business.ViewModel.Formulaire
+namespace gestadh45.business.ViewModel.InfosClubVM
 {
 	public class FormulaireInfosClubVM : VMFormulaireBase
 	{
