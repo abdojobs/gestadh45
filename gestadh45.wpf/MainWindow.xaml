@@ -1,8 +1,12 @@
 ﻿<Window x:Class="gestadh45.wpf.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="GestAdh45" MinHeight="500" MinWidth="705"
+		Background="#FFFFDEAD" 
+		DataContext="{Binding MainStatic, Source={StaticResource ResourceKey=Locator}}" 
+		Icon="/gestadh45.wpf;component/gestadh45.ico" 
+		WindowState="Maximized">
+	<Grid>
+		
+	</Grid>
 </Window>
