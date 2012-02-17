@@ -14,11 +14,20 @@ using gestadh45.business.ViewModel.InfosClubVM;
 
 namespace gestadh45.business.ViewModel
 {
-	public static class ViewModelLocator
+	public class ViewModelLocator
 	{
+		private static MainViewModel _main;
+		
 		public static MainViewModel Main
 		{
-			get { return new MainViewModel(); }
+			get { return _main; }
+		}
+
+		public ViewModelLocator() {
+			// initialisation du VM principal
+			if (_main == null) {
+				_main = new MainViewModel();
+			}
 		}
 
 		#region InfosClubVM
