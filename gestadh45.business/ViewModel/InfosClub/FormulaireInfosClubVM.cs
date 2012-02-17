@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Data;
+using GalaSoft.MvvmLight.Messaging;
+using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
 
 namespace gestadh45.business.ViewModel.Formulaire
@@ -27,12 +27,12 @@ namespace gestadh45.business.ViewModel.Formulaire
 		#endregion
 
 		#region Villes
-		private ICollection<Ville> _villes;
+		private ICollectionView _villes;
 
 		/// <summary>
 		/// Obitent/Définit la liste des villes
 		/// </summary>
-		public ICollection<Ville> Villes {
+		public ICollectionView Villes {
 			get { return this._villes; }
 			set {
 				if (this._villes != value) {
@@ -55,7 +55,12 @@ namespace gestadh45.business.ViewModel.Formulaire
 			this.repoVille = new Repository<Ville>(this._context);
 
 			this.InfosClub = repoMain.GetFirst();
-			this.Villes = repoVille.GetAll();
+			this.PopulatesVilles();
+
+			Messenger.Default.Register<NMSelectionElement<Ville>>(
+				this, 
+				(msg) => this.SelectVille(msg.Content)
+			);
 		}
 
 		#region CancelCommand
@@ -82,5 +87,42 @@ namespace gestadh45.business.ViewModel.Formulaire
 			}
 		}
 		#endregion
+
+		#region PopupVilleCommand
+		public override void ExecutePopupVilleCommand() {
+			base.ExecutePopupVilleCommand();
+
+			// rafraichissement de la liste des villes
+			this.PopulatesVilles();
+		}
+		#endregion
+
+		private void PopulatesVilles() {
+			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.repoVille.GetAll());
+			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
+			this.Villes = defaultView;
+		}
+
+		private void SelectVille(Ville ville) {
+			this.InfosClub.Ville = ville;
+			this.RaisePropertyChanged(() => this.InfosClub);
+		}
+
+		protected override bool CheckFormValidity(List<string> errors) {
+			// TODO sortir les chaines
+			if (string.IsNullOrWhiteSpace(this.InfosClub.Nom)) {
+				errors.Add("Le nom est obligatoire");
+			}
+
+			if (this.InfosClub.Adresse == null || string.IsNullOrWhiteSpace(this.InfosClub.Adresse)) {
+				errors.Add("L'adresse est obligatoire");
+			}
+
+			if (this.InfosClub.Adresse != null && this.InfosClub.Ville == null) {
+				errors.Add("La ville est obligatoire");
+			}
+
+			return errors.Count == 0;
+		}
 	}
 }

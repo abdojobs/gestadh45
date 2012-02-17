@@ -114,5 +114,24 @@ namespace gestadh45.business.ViewModel
 			}
 		}
 		#endregion
+
+		#region PopupVilleCommand
+		public ICommand PopupVilleCommand { get; set; }
+
+		private void CreatePopupVilleCommand() {
+			this.PopupVilleCommand = new RelayCommand(
+				this.ExecutePopupVilleCommand, 
+				this.CanExecutePopupVilleCommand
+			);
+		}
+
+		public virtual bool CanExecutePopupVilleCommand() {
+			return true;
+		}
+
+		public virtual void ExecutePopupVilleCommand() {
+			this.ExecuteOpenWindowCommand(CodesUC.FormulaireVille);
+		}
+		#endregion
 	}
 }
