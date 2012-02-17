@@ -16,17 +16,17 @@ namespace gestadh45.business.ViewModel
 {
 	public class ViewModelLocator
 	{
-		private static MainViewModel _main;
+		private static MainViewModel _mainVM;
 		
-		public static MainViewModel Main
+		public static MainViewModel MainVM
 		{
-			get { return _main; }
+			get { return _mainVM; }
 		}
 
 		public ViewModelLocator() {
 			// initialisation du VM principal
-			if (_main == null) {
-				_main = new MainViewModel();
+			if (_mainVM == null) {
+				_mainVM = new MainViewModel();
 			}
 		}
 

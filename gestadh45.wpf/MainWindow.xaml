@@ -1,12 +1,42 @@
 ﻿<Window x:Class="gestadh45.wpf.MainWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
 		Title="GestAdh45" MinHeight="500" MinWidth="705"
 		Background="#FFFFDEAD" 
-		DataContext="{Binding MainStatic, Source={StaticResource ResourceKey=Locator}}" 
+		DataContext="{Binding Path=MainVM, Source={StaticResource ResourceKey=Locator}}" 
 		Icon="/gestadh45.wpf;component/gestadh45.ico" 
 		WindowState="Maximized">
-	<Grid>
-		
-	</Grid>
+	<DockPanel>
+		<uc:MenuPrincipalUC DockPanel.Dock="Top"
+							  CmdShowUC="{Binding Path=ShowUCCommand}"
+							  CmdAboutBox="{Binding Path=AboutBoxCommand}"
+							  CmdClose="{Binding Path=CloseCommand}"
+							  />
+
+		<Border DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">
+			<StatusBar MaxHeight="25">
+				<StatusBar.Items>
+					<StatusBarItem HorizontalAlignment="Left">
+						<TextBlock Text="{Binding InfosDataSource}" />
+					</StatusBarItem>
+					<StatusBarItem HorizontalAlignment="Right">
+						<TextBlock Text="{Binding InfosSaisonCourante}" />
+					</StatusBarItem>
+				</StatusBar.Items>
+			</StatusBar>
+		</Border>
+
+		<Border Margin="5,5,5,5" DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">
+			<uc:UserNotificationUC
+				Notification="{Binding Path=UserNotification}"
+				Height="50" />
+		</Border>
+
+		<Border Name="contenu"
+			Margin="5,5,5,5" 
+			BorderThickness="1" 
+			BorderBrush="Black" 
+			Background="Cornsilk" />
+	</DockPanel>
 </Window>
