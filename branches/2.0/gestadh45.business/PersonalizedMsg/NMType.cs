@@ -7,5 +7,6 @@ namespace gestadh45.business.PersonalizedMsg
 		public const string NMCloseWindow = "CloseWindow";
 		public const string NMUserNotification = "UserNotification";
 		public const string NMShowUC = "ShowUC";
+		public const string NMSelectionElement = "SElectionElement";
 	}
 }

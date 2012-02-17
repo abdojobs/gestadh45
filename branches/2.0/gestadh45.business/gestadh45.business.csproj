@@ -61,6 +61,7 @@
     <Compile Include="CodesUC.cs" />
     <Compile Include="PersonalizedMsg\NMCloseWindow.cs" />
     <Compile Include="PersonalizedMsg\NMOpenWindow.cs" />
+    <Compile Include="PersonalizedMsg\NMSelectionElement.cs" />
     <Compile Include="PersonalizedMsg\NMShowUC.cs" />
     <Compile Include="PersonalizedMsg\NMType.cs" />
     <Compile Include="PersonalizedMsg\NMUserNotification.cs" />

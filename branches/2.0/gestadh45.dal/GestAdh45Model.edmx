@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GestAdh45Model.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="GestAdh45Model.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="GestAdh45ModelStoreContainer">
           <EntitySet Name="Adherent" EntityType="GestAdh45Model.Store.Adherent" store:Type="Tables" />
           <EntitySet Name="Groupe" EntityType="GestAdh45Model.Store.Groupe" store:Type="Tables" />
@@ -31,6 +31,10 @@
           <AssociationSet Name="FK_Groupe_1_0" Association="GestAdh45Model.Store.FK_Groupe_1_0">
             <End Role="Saison" EntitySet="Saison" />
             <End Role="Groupe" EntitySet="Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfosClub_0_0" Association="GestAdh45Model.Store.FK_InfosClub_0_0">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="InfosClub" EntitySet="InfosClub" />
           </AssociationSet>
           <AssociationSet Name="FK_Inscription_0_0" Association="GestAdh45Model.Store.FK_Inscription_0_0">
             <End Role="StatutInscription" EntitySet="StatutInscription" />
@@ -207,6 +211,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_InfosClub_0_0">
+          <End Role="Ville" Type="GestAdh45Model.Store.Ville" Multiplicity="0..1" />
+          <End Role="InfosClub" Type="GestAdh45Model.Store.InfosClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InfosClub">
+              <PropertyRef Name="ID_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Inscription_0_0">
           <End Role="StatutInscription" Type="GestAdh45Model.Store.StatutInscription" Multiplicity="1" />
           <End Role="Inscription" Type="GestAdh45Model.Store.Inscription" Multiplicity="*" />
@@ -243,8 +259,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GestAdh45Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -286,6 +301,10 @@
           <AssociationSet Name="FK_Inscription_0_0" Association="GestAdh45Model.FK_Inscription_0_0">
             <End Role="StatutInscription" EntitySet="StatutInscriptions" />
             <End Role="Inscription" EntitySet="Inscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InfosClub_0_0" Association="GestAdh45Model.FK_InfosClub_0_0">
+            <End Role="Ville" EntitySet="Villes" />
+            <End Role="InfosClub" EntitySet="InfosClubs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Adherent">
@@ -343,6 +362,7 @@
           <Property Name="Mail" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
           <Property Name="SiteWeb" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="NumAPS" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Ville" Relationship="GestAdh45Model.FK_InfosClub_0_0" FromRole="InfosClub" ToRole="Ville" />
         </EntityType>
         <EntityType Name="Inscription">
           <Key>
@@ -415,6 +435,7 @@
           <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CodePostal" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Adherents" Relationship="GestAdh45Model.FK_Adherent_1_0" FromRole="Ville" ToRole="Adherent" />
+          <NavigationProperty Name="InfosClub" Relationship="GestAdh45Model.FK_InfosClub_0_0" FromRole="Ville" ToRole="InfosClub" />
         </EntityType>
         <Association Name="FK_Adherent_0_0">
           <End Role="Sexe" Type="GestAdh45Model.Sexe" Multiplicity="1" />
@@ -497,6 +518,18 @@
             </Principal>
             <Dependent Role="Inscription">
               <PropertyRef Name="ID_StatutInscription" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InfosClub_0_0">
+          <End Type="GestAdh45Model.Ville" Role="Ville" Multiplicity="0..1" />
+          <End Type="GestAdh45Model.InfosClub" Role="InfosClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InfosClub">
+              <PropertyRef Name="ID_Ville" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -627,8 +660,8 @@
           <ConnectorPoint PointX="3" PointY="4.5461531575520837" />
         </AssociationConnector>
         <AssociationConnector Association="GestAdh45Model.FK_Adherent_1_0" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="1.5461531575520837" />
-          <ConnectorPoint PointX="3.75" PointY="1.5461531575520837" />
+          <ConnectorPoint PointX="2.25" PointY="1.6249995" />
+          <ConnectorPoint PointX="3.75" PointY="1.6249995" />
           <ConnectorPoint PointX="3.75" PointY="2.5" />
         </AssociationConnector>
         <AssociationConnector Association="GestAdh45Model.FK_Inscription_2_0" ManuallyRouted="false">
@@ -654,6 +687,11 @@
           <ConnectorPoint PointX="4.5" PointY="13.753326822916666" />
           <ConnectorPoint PointX="5.3281225" PointY="13.753326822916666" />
           <ConnectorPoint PointX="5.3281225" PointY="6.0320849609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="GestAdh45Model.FK_InfosClub_0_0" >
+          <ConnectorPoint PointX="2.25" PointY="1.1562472499999992" />
+          <ConnectorPoint PointX="7.03125" PointY="1.1562472499999992" />
+          <ConnectorPoint PointX="7.03125" PointY="7.25" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

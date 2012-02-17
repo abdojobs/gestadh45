@@ -25,6 +25,8 @@ namespace gestadh45.dal
         public string Mail { get; set; }
         public string SiteWeb { get; set; }
         public string NumAPS { get; set; }
+    
+        public virtual Ville Ville { get; set; }
     }
     
 }
