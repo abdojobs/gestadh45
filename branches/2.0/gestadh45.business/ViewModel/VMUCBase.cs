@@ -1,4 +1,5 @@
 ﻿
+using gestadh45.dal;
 namespace gestadh45.business.ViewModel
 {
 	public abstract class VMUCBase : VMApplicationBase
@@ -13,10 +14,13 @@ namespace gestadh45.business.ViewModel
 		/// </summary>
 		public bool IsWindowMode { get; set; }
 
+		protected GestAdh45Entities _context;
+
 		/// <summary>
 		/// Constructeur définissant l'UC par défaut à afficher (Consultation infos club)
 		/// </summary>
 		public VMUCBase() {
+			this._context = new GestAdh45Entities();
 			this.UCParentCode = CodesUC.ConsultationInfosClub;
 		}
 	}

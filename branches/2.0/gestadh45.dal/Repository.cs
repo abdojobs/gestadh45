@@ -14,7 +14,7 @@ namespace gestadh45.dal
 
 		#region IRepository<T> Membres
 
-		public IEnumerable<TEntity> GetAll() {
+		public ICollection<TEntity> GetAll() {
 			return this._entities.Set<TEntity>().ToList();
 		}
 
@@ -24,6 +24,10 @@ namespace gestadh45.dal
 
 		public TEntity GetByKey(object[] keyValues) {
 			return this._entities.Set<TEntity>().Find(keyValues);
+		}
+
+		public TEntity GetFirst() {
+			return this._entities.Set<TEntity>().FirstOrDefault();
 		}
 
 		public void Add(TEntity entity) {
@@ -36,6 +40,10 @@ namespace gestadh45.dal
 
 		public void Edit(TEntity entity) {
 			this._entities.Entry(entity).State = System.Data.EntityState.Modified;
+		}
+
+		public void Reload(TEntity entity) {
+			this._entities.Entry<TEntity>(entity).Reload();
 		}
 
 		public void Save() {

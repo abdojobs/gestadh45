@@ -50,7 +50,7 @@ namespace gestadh45.business.ViewModel
 			this.CreateCancelCommand();
 		}
 
-		protected virtual bool IsFormValid() {
+		protected virtual bool CheckFormValidity(List<string> errors) {
 			// par défaut le formulaire est considéré comme valide (à redéfinir si besoin dans les classes filles)
 			return true;
 		}
