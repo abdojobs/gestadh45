@@ -80,6 +80,7 @@ namespace gestadh45.business.ViewModel.InfosClubVM
 			
 			if (this.CheckFormValidity(errors)) {
 				this.repoMain.Edit(this.InfosClub);
+				this.repoMain.Save();
 				base.ExecuteSaveCommand();
 			}
 			else {
