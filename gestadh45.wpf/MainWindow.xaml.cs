@@ -4,6 +4,8 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
 using gestadh45.wpf.UserControls;
+using gestadh45.business;
+using gestadh45.wpf.UserControls.InfosClubs;
 
 namespace gestadh45.wpf
 {
@@ -53,8 +55,16 @@ namespace gestadh45.wpf
 			UserControl userControl;
 			
 			switch (codeUC) {
+				case CodesUC.ConsultationInfosClub:
+					userControl = new ConsultationInfosClubUC();
+					break;
+
+				case CodesUC.FormulaireInfosClub:
+					userControl = new FormulaireInfosClubUC();
+					break;
+
 				default:
-					userControl = new MenuPrincipalUC();
+					userControl = new ConsultationInfosClubUC();
 					break;
 			}
 

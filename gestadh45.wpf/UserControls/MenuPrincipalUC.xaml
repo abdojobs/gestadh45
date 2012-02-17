@@ -11,7 +11,7 @@
 		<MenuItem Header="_Fichier">
 			<MenuItem Header="_Démarrer" 
 					  CommandParameter="{x:Static b:CodesUC.ConsultationInfosClub}" 
-					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdShowUC}">
 				<MenuItem.Icon>
 					<Image Source="/gestadh45.wpf;component/Images/btn_Home.png" Width="16" Height="16" />
 				</MenuItem.Icon>
