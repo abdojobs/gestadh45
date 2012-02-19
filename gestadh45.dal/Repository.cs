@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace gestadh45.dal
 {
@@ -47,7 +49,18 @@ namespace gestadh45.dal
 		}
 
 		public void Save() {
-			this._entities.SaveChanges();
+			try {
+				this._entities.SaveChanges();
+			}
+			catch (DbEntityValidationException dbEx) {
+				#if DEBUG
+				foreach (var validationErrors in dbEx.EntityValidationErrors) {
+					foreach (var validationError in validationErrors.ValidationErrors) {
+						Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
+					}
+				}
+				#endif
+			}
 		}
 
 		#endregion
