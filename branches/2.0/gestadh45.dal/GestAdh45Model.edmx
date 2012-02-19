@@ -95,7 +95,7 @@
           <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
           <Property Name="ID_Ville" Type="integer" />
           <Property Name="Telephone" Type="nvarchar" MaxLength="10" />
-          <Property Name="Mail" Type="nvarchar" MaxLength="5" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="100" />
           <Property Name="SiteWeb" Type="nvarchar" MaxLength="100" />
           <Property Name="NumAPS" Type="nvarchar" MaxLength="20" />
         </EntityType>
@@ -359,7 +359,7 @@
           <Property Name="Adresse" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="ID_Ville" Type="Int64" />
           <Property Name="Telephone" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="Mail" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="Mail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="SiteWeb" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="NumAPS" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Ville" Relationship="GestAdh45Model.FK_InfosClub_0_0" FromRole="InfosClub" ToRole="Ville" />
