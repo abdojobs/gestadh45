@@ -4,80 +4,71 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
 			 mc:Ignorable="d" 
 			 DataContext="{Binding ConsultationInfosClubVM, Source={StaticResource Locator}}" 
 			 d:DesignHeight="400" d:DesignWidth="600" Background="Cornsilk">
 	<DockPanel Margin="5,5,5,5">
 		<TextBlock Text="Informations sur le club" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
-		<StackPanel Name="stkInfosClub" Orientation="Vertical" HorizontalAlignment="Center">
-			<StackPanel.Children>
-				<StackPanel Orientation="Horizontal">
-					<StackPanel.Children>
-						<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="200" />
-						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Nom}" />
-					</StackPanel.Children>
-				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<StackPanel.Children>
-						<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="200" />
-						<TextBlock FontSize="14" TextWrapping="Wrap" Width="250" Text="{Binding InfosClub.Adresse}" />
-					</StackPanel.Children>
-				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<StackPanel.Children>
-						<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="200" />
-						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Ville}" />
-					</StackPanel.Children>
-				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<StackPanel.Children>
-						<TextBlock Text="Tel. : " FontSize="14" FontWeight="Bold" Width="200" />
-						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Telephone}" />
-					</StackPanel.Children>
-				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<StackPanel.Children>
-						<TextBlock Text="Email : " FontSize="14" FontWeight="Bold" Width="200" />
-						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Mail}" />
-					</StackPanel.Children>
-				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<StackPanel.Children>
-						<TextBlock Text="Web : " FontSize="14" FontWeight="Bold" Width="200" />
-						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.SiteWeb}" />
-					</StackPanel.Children>
-				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<StackPanel.Children>
-						<TextBlock Text="N° association : " FontSize="14" FontWeight="Bold" Width="200" />
-						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Numero}" />
-					</StackPanel.Children>
-				</StackPanel>
-				
-				<StackPanel Orientation="Horizontal">
-					<StackPanel.Children>
-						<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="200" />
-						<TextBlock FontSize="14" Width="250" Text="{Binding InfosClub.Siret}" />
-					</StackPanel.Children>
-				</StackPanel>
+		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 
-				<StackPanel Orientation="Horizontal">
-					<StackPanel.Children>
-						<TextBlock Text="N° établissement APS : " FontSize="14" FontWeight="Bold" Width="200" />
-						<TextBlock FontSize="14" Width="250" Text="{Binding Path=InfosClub.NumAPS}" />
-					</StackPanel.Children>
-				</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="200" />
+				<TextBox IsReadOnly="True" Width="250" Text="{Binding Path=InfosClub.Nom, Mode=OneWay}" />
+			</StackPanel>
 
-				<Separator Margin="0,20,0,20" />
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="200" />
+				<TextBox IsReadOnly="True" TextWrapping="Wrap" Width="250" Text="{Binding Path=InfosClub.Adresse, Mode=OneWay}" />
+			</StackPanel>
 
-				<uc:BtnAjouterEditerSupprimerUC HorizontalAlignment="Center" Margin="10,10,10,10"
-					OrientationUC="Horizontal"
-					BtnAjouterVisibilite="Collapsed"
-					BtnModifierVisibilite="Visible"
-					BtnSupprimerVisibilite="Collapsed"
-					CmdModifier="{Binding Path=EditCommand}"
-				/>
-			</StackPanel.Children>
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="200" />
+				<TextBox IsReadOnly="True" Width="250" Text="{Binding Path=InfosClub.Ville, Mode=OneWay}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Tel. : " FontSize="14" FontWeight="Bold" Width="200" />
+				<extToolkit:MaskedTextBox IsReadOnly= "True" Name="tbxTel1" Width="250" 
+										  Mask="00 00 00 00 00" 
+										  Value="{Binding Path=InfosClub.Telephone, Mode=OneWay}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Email : " FontSize="14" FontWeight="Bold" Width="200" />
+				<TextBox IsReadOnly="True" Width="250" Text="{Binding Path=InfosClub.Mail, Mode=OneWay}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Web : " FontSize="14" FontWeight="Bold" Width="200" />
+				<TextBox IsReadOnly="True" Width="250" Text="{Binding Path=InfosClub.SiteWeb, Mode=OneWay}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="N° association : " FontSize="14" FontWeight="Bold" Width="200" />
+				<TextBox IsReadOnly="True" Width="250" Text="{Binding Path=InfosClub.Numero, Mode=OneWay}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="200" />
+				<TextBox IsReadOnly="True" Width="250" Text="{Binding Path=InfosClub.Siret, Mode=OneWay}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="N° établissement APS : " FontSize="14" FontWeight="Bold" Width="200" />
+				<TextBox IsReadOnly="True"  Width="250" Text="{Binding Path=InfosClub.NumAPS, Mode=OneWay}" />
+			</StackPanel>
+
+
+			<Separator Margin="0,20,0,20" />
+
+			<uc:BtnAjouterEditerSupprimerUC HorizontalAlignment="Center" Margin="10,10,10,10"
+				OrientationUC="Horizontal"
+				BtnAjouterVisibilite="Collapsed"
+				BtnModifierVisibilite="Visible"
+				BtnSupprimerVisibilite="Collapsed"
+				CmdModifier="{Binding Path=EditCommand}"
+			/>
 		</StackPanel>
 	</DockPanel>
 </UserControl>
