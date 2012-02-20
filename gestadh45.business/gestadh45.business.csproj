@@ -73,6 +73,7 @@
     <Compile Include="ViewModel\InfosClubVM\FormulaireInfosClubVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\VillesVM\ConsultationVillesVM.cs" />
     <Compile Include="ViewModel\VMApplicationBase.cs" />
     <Compile Include="ViewModel\VMConsultationBase.cs" />
     <Compile Include="ViewModel\VMFormulaireBase.cs" />
