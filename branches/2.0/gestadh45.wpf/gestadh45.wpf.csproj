@@ -89,10 +89,10 @@
     <Compile Include="UserControls\SaisonsUC\ConsultationSaisonsUC.xaml.cs">
       <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Villes\ConsultationVillesUC.xaml.cs">
+    <Compile Include="UserControls\VillesUC\ConsultationVillesUC.xaml.cs">
       <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Villes\FormulaireVilleUC.xaml.cs">
+    <Compile Include="UserControls\VillesUC\FormulaireVilleUC.xaml.cs">
       <DependentUpon>FormulaireVilleUC.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
@@ -131,11 +131,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Villes\ConsultationVillesUC.xaml">
+    <Page Include="UserControls\VillesUC\ConsultationVillesUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\Villes\FormulaireVilleUC.xaml">
+    <Page Include="UserControls\VillesUC\FormulaireVilleUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
