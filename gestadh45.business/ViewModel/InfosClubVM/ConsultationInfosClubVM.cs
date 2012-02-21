@@ -27,8 +27,7 @@ namespace gestadh45.business.ViewModel.InfosClubVM
 			this.InfosClub = repoMain.GetFirst();
 
 			if (this.InfosClub == null) {
-				// TODO sortir le message d'erreur
-				this.ShowUserNotification("Erreur - La table InfosClub est vide");
+				this.ShowUserNotification(ResInfosClub.ErrTableInfosClubVide);
 			}
 		}
 

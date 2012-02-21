@@ -28,9 +28,9 @@
 		</Border>
 
 		<Border Margin="5,5,5,5" DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">
-			<uc:UserNotificationUC
-				Notification="{Binding Path=UserNotification}"
-				Height="50" />
+			<TextBox Height="50" 
+				Text="{Binding Path=UserNotification}" 
+				VerticalScrollBarVisibility="Auto"/>
 		</Border>
 
 		<Border Name="contenu"
