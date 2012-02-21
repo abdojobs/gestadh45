@@ -74,19 +74,19 @@ namespace gestadh45.business.ViewModel
 		public ICommand ShowDetailsCommand { get; set; }
 
 		private void CreateShowDetailsCommand() {
-			this.ShowDetailsCommand = new RelayCommand(
+			this.ShowDetailsCommand = new RelayCommand<object>(
 				this.ExecuteShowDetailsCommand, 
 				this.CanExecuteShowDetailsCommand
 			);
 		}
 
-		public virtual bool CanExecuteShowDetailsCommand() {
+		public virtual bool CanExecuteShowDetailsCommand(object selectedItem) {
 			// l'affichage des détails est autorisé par défaut (à redéfinir si besoin dans les classes filles)
 			return true;
 		}
 
 		// A redéfinir dans les classes filles...
-		public virtual void ExecuteShowDetailsCommand() { }
+		public virtual void ExecuteShowDetailsCommand(object selectedItem) { }
 		#endregion
 
 		#region FilterCommand

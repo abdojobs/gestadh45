@@ -18,7 +18,7 @@
 			<i:Interaction.Triggers>
 				<i:EventTrigger EventName="SelectionChanged">
 					<cmd:EventToCommand 
-						Command="{Binding Path=AfficherDetailsCommand, Mode=OneWay}" 
+						Command="{Binding Path=ShowDetailsCommand, Mode=OneWay}" 
 						CommandParameter="{Binding ElementName=lbxVilles, Path=SelectedItem}" />
 				</i:EventTrigger>
 			</i:Interaction.Triggers>
@@ -40,12 +40,12 @@
 					
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Code postal : " />
-						<TextBlock Text="{Binding ElementName=lbxVilles, Path=SelectedItem.CodePostal}" />
+						<TextBlock Text="{Binding Path=SelectedVille.CodePostal}" />
 					</StackPanel>
 					
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Libellé : " />
-						<TextBlock Text="{Binding ElementName=lbxVilles, Path=SelectedItem.Libelle}" />
+						<TextBlock Text="{Binding Path=SelectedVille.Libelle}" />
 					</StackPanel>
 					
 				</StackPanel>

@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Windows.Data;
 using gestadh45.dal;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace gestadh45.business.ViewModel.VillesVM
 {
@@ -23,6 +25,23 @@ namespace gestadh45.business.ViewModel.VillesVM
 		}
 		#endregion
 
+		#region SelectedVille
+		private Ville _selectedVille;
+
+		/// <summary>
+		/// Obtient/Définit la ville sélectionnée
+		/// </summary>
+		public Ville SelectedVille {
+			get { return this._selectedVille; }
+			set {
+				if (this._selectedVille != value) {
+					this._selectedVille = value;
+					this.RaisePropertyChanged(() => this.SelectedVille);
+				}
+			}
+		}
+		#endregion
+
 		#region repositories
 		private Repository<Ville> repoMain;
 		#endregion
@@ -37,5 +56,27 @@ namespace gestadh45.business.ViewModel.VillesVM
 			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
 			this.Villes = defaultView;
 		}
+
+		#region ShowDetailsCommand
+		public override void ExecuteShowDetailsCommand(object selectedItem) {
+			if (selectedItem is Ville) {
+				this.SelectedVille = (Ville)selectedItem;
+			}
+		}
+		#endregion
+
+		#region DeleteCommand
+		public override bool CanExecuteDeleteCommand() {
+			return this.SelectedVille != null && this.SelectedVille.Adherents.Count == 0;
+		}
+
+		public override void ExecuteDeleteCommand() {
+			// TODO travail en cours ici
+			this.repoMain.Delete(this.SelectedVille);
+			this.repoMain.Save();
+			this.PopulateVilles();
+			this.SelectedVille = (Ville)this.Villes.CurrentItem;
+		}
+		#endregion
 	}
 }
