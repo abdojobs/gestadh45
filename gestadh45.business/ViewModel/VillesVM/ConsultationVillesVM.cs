@@ -3,18 +3,19 @@ using System.Windows.Data;
 using gestadh45.dal;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace gestadh45.business.ViewModel.VillesVM
 {
 	public class ConsultationVillesVM : VMConsultationBase
 	{
 		#region Villes
-		private ICollectionView _villes;
+		private IOrderedEnumerable<Ville> _villes;
 
 		/// <summary>
 		/// Obtient/Définit la liste des villes
 		/// </summary>
-		public ICollectionView Villes {
+		public IOrderedEnumerable<Ville> Villes {
 			get { return this._villes; }
 			set {
 				if (this._villes != value) {
@@ -52,9 +53,7 @@ namespace gestadh45.business.ViewModel.VillesVM
 		}
 
 		private void PopulateVilles() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.repoMain.GetAll());
-			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
-			this.Villes = defaultView;
+			this.Villes = this.repoMain.GetAll().OrderBy((v) => v.Libelle);
 		}
 
 		#region ShowDetailsCommand
@@ -71,11 +70,19 @@ namespace gestadh45.business.ViewModel.VillesVM
 		}
 
 		public override void ExecuteDeleteCommand() {
-			// TODO travail en cours ici
-			this.repoMain.Delete(this.SelectedVille);
-			this.repoMain.Save();
-			this.PopulateVilles();
-			this.SelectedVille = (Ville)this.Villes.CurrentItem;
+			if (this.SelectedVille != null) {
+				this.repoMain.Delete(this.SelectedVille);
+				this.repoMain.Save();
+				this.PopulateVilles();
+				this.SelectedVille = this.Villes.FirstOrDefault();
+			}			
+		}
+		#endregion
+
+		#region CreateCommand
+		public override void ExecuteCreateCommand() {
+			// TODO implémenter
+			base.ExecuteCreateCommand();
 		}
 		#endregion
 	}
