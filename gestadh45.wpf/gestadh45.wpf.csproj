@@ -71,6 +71,9 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="UserControls\AffichageNotificationUC.xaml.cs">
+      <DependentUpon>AffichageNotificationUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\BtnAjouterEditerSupprimerUC.xaml.cs">
       <DependentUpon>BtnAjouterEditerSupprimerUC.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,9 @@
     <Compile Include="UserControls\MenuPrincipalUC.xaml.cs">
       <DependentUpon>MenuPrincipalUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Villes\ConsultationVillesUC.xaml.cs">
+      <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -101,6 +107,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\AffichageNotificationUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserControls\BtnAjouterEditerSupprimerUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -122,6 +132,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\MenuPrincipalUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Villes\ConsultationVillesUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -179,6 +193,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_add16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_city.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
