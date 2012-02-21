@@ -6,6 +6,7 @@ using gestadh45.dal;
 using gestadh45.wpf.UserControls;
 using gestadh45.business;
 using gestadh45.wpf.UserControls.InfosClubs;
+using gestadh45.wpf.UserControls.Villes;
 
 namespace gestadh45.wpf
 {
@@ -61,6 +62,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireInfosClub:
 					userControl = new FormulaireInfosClubUC();
+					break;
+
+				case CodesUC.ConsultationVilles:
+					userControl = new ConsultationVillesUC();
 					break;
 
 				default:
