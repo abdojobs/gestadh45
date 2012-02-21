@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -54,6 +51,16 @@ namespace gestadh45.business.ViewModel
 			// par défaut le formulaire est considéré comme valide (à redéfinir si besoin dans les classes filles)
 			return true;
 		}
+
+		protected virtual bool CurrentElementExists() {
+			// par défaut l'élément courant du formulaire n'existe pas déjà en BDD
+			return false;
+		}
+
+		/// <summary>
+		/// Prépare les valeurs du formulaire avant la vérification et l'enregistrement. (à redéfinit dans les classes filles)
+		/// </summary>
+		protected virtual void PrepareValuesForTreatment() { }
 
 		#region SaveCommand
 		public ICommand SaveCommand { get; set; }

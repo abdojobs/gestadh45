@@ -4,6 +4,7 @@ using System.Windows.Data;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
+using System.Linq;
 
 namespace gestadh45.business.ViewModel.InfosClubVM
 {
@@ -27,12 +28,12 @@ namespace gestadh45.business.ViewModel.InfosClubVM
 		#endregion
 
 		#region Villes
-		private ICollectionView _villes;
+		private IOrderedEnumerable<Ville> _villes;
 
 		/// <summary>
 		/// Obitent/Définit la liste des villes
 		/// </summary>
-		public ICollectionView Villes {
+		public IOrderedEnumerable<Ville> Villes {
 			get { return this._villes; }
 			set {
 				if (this._villes != value) {
@@ -99,9 +100,7 @@ namespace gestadh45.business.ViewModel.InfosClubVM
 		#endregion
 
 		private void PopulatesVilles() {
-			ICollectionView defaultView = CollectionViewSource.GetDefaultView(this.repoVille.GetAll());
-			defaultView.SortDescriptions.Add(new SortDescription("Libelle", ListSortDirection.Ascending));
-			this.Villes = defaultView;
+			this.Villes = this.repoVille.GetAll().OrderBy((v) => v.Libelle);
 		}
 
 		private void SelectVille(Ville ville) {
@@ -110,17 +109,16 @@ namespace gestadh45.business.ViewModel.InfosClubVM
 		}
 
 		protected override bool CheckFormValidity(List<string> errors) {
-			// TODO sortir les chaines
 			if (string.IsNullOrWhiteSpace(this.InfosClub.Nom)) {
-				errors.Add("Le nom est obligatoire");
+				errors.Add(ResInfosClub.ErrNomObligatoire);
 			}
 
 			if (this.InfosClub.Adresse == null || string.IsNullOrWhiteSpace(this.InfosClub.Adresse)) {
-				errors.Add("L'adresse est obligatoire");
+				errors.Add(ResInfosClub.ErrAdresseObligatoire);
 			}
 
 			if (this.InfosClub.Adresse != null && this.InfosClub.Ville == null) {
-				errors.Add("La ville est obligatoire");
+				errors.Add(ResInfosClub.ErrVilleObligatoire);
 			}
 
 			return errors.Count == 0;

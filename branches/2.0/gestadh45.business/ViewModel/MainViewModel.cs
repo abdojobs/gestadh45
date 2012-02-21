@@ -58,7 +58,7 @@ namespace gestadh45.business.ViewModel
 
 			Messenger.Default.Register<NMUserNotification>(
 				this,
-				(msg) => this.UpdateUserNotification(msg.Notification)
+				(msg) => this.UpdateUserNotification(msg.Text)
 			);
 		}
 

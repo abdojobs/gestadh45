@@ -67,6 +67,10 @@ namespace gestadh45.wpf
 					userControl = new ConsultationVillesUC();
 					break;
 
+				case CodesUC.FormulaireVille:
+					userControl = new FormulaireVilleUC();
+					break;
+
 				default:
 					userControl = new ConsultationInfosClubUC();
 					break;

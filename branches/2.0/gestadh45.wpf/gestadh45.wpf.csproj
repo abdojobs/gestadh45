@@ -71,9 +71,6 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Compile Include="UserControls\AffichageNotificationUC.xaml.cs">
-      <DependentUpon>AffichageNotificationUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\BtnAjouterEditerSupprimerUC.xaml.cs">
       <DependentUpon>BtnAjouterEditerSupprimerUC.xaml</DependentUpon>
     </Compile>
@@ -95,6 +92,9 @@
     <Compile Include="UserControls\Villes\ConsultationVillesUC.xaml.cs">
       <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Villes\FormulaireVilleUC.xaml.cs">
+      <DependentUpon>FormulaireVilleUC.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -107,10 +107,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\AffichageNotificationUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="UserControls\BtnAjouterEditerSupprimerUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,6 +132,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\Villes\ConsultationVillesUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\Villes\FormulaireVilleUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

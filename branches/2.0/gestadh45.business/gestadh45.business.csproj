@@ -71,9 +71,20 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\InfosClubVM\ConsultationInfosClubVM.cs" />
     <Compile Include="ViewModel\InfosClubVM\FormulaireInfosClubVM.cs" />
+    <Compile Include="ViewModel\InfosClubVM\ResInfosClub.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResInfosClub.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VillesVM\ConsultationVillesVM.cs" />
+    <Compile Include="ViewModel\VillesVM\FormulaireVilleVM.cs" />
+    <Compile Include="ViewModel\VillesVM\ResVilles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResVilles.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\VMApplicationBase.cs" />
     <Compile Include="ViewModel\VMConsultationBase.cs" />
     <Compile Include="ViewModel\VMFormulaireBase.cs" />
@@ -91,6 +102,16 @@
       <Project>{B592B627-A159-4936-92E8-EFF98114395C}</Project>
       <Name>gestadh45.dal</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ViewModel\InfosClubVM\ResInfosClub.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResInfosClub.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\VillesVM\ResVilles.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResVilles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

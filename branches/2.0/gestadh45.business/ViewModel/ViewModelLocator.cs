@@ -45,6 +45,10 @@ namespace gestadh45.business.ViewModel
 		public static ConsultationVillesVM ConsultationVillesVM {
 			get { return new ConsultationVillesVM(); }
 		}
+
+		public static FormulaireVilleVM FormulaireVilleVM {
+			get { return new FormulaireVilleVM(); }
+		}
 		#endregion
 	}
 }
