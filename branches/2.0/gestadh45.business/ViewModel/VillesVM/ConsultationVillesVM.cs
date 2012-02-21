@@ -1,9 +1,7 @@
-﻿using System.ComponentModel;
-using System.Windows.Data;
+﻿using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
+using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace gestadh45.business.ViewModel.VillesVM
 {
@@ -81,8 +79,7 @@ namespace gestadh45.business.ViewModel.VillesVM
 
 		#region CreateCommand
 		public override void ExecuteCreateCommand() {
-			// TODO implémenter
-			base.ExecuteCreateCommand();
+			Messenger.Default.Send<NMShowUC>(new NMShowUC(CodesUC.FormulaireVille));
 		}
 		#endregion
 	}
