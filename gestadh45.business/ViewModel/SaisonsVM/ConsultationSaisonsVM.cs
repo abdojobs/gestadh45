@@ -85,7 +85,7 @@ namespace gestadh45.business.ViewModel.SaisonsVM
 
 		#region CreateCommand
 		public override void ExecuteCreateCommand() {
-			Messenger.Default.Send<NMShowUC>(new NMShowUC(CodesUC.FormulaireVille));
+			Messenger.Default.Send<NMShowUC>(new NMShowUC(CodesUC.FormulaireSaison));
 		}
 		#endregion
 

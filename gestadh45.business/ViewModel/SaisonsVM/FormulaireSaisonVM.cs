@@ -34,10 +34,11 @@ namespace gestadh45.business.ViewModel.SaisonsVM
 		#endregion
 
 		public FormulaireSaisonVM() {
+			this.repoSaison = new Repository<Saison>(this._context);
+
 			this.CurrentSaison = new Saison()
 			{
 				AnneeDebut = DateTime.Now.Year,
-				AnneeFin = DateTime.Now.Year + DureeSaison,
 				EstSaisonCourante = false
 			};
 
@@ -52,6 +53,7 @@ namespace gestadh45.business.ViewModel.SaisonsVM
 
 		#region SaveCommand
 		public override void ExecuteSaveCommand() {
+			this.PrepareValuesForTreatment();
 			var errors = new List<string>();
 
 			if (this.CheckFormValidity(errors)) {
@@ -90,6 +92,10 @@ namespace gestadh45.business.ViewModel.SaisonsVM
 			}
 
 			return errors.Count == 0;
+		}
+
+		protected override void PrepareValuesForTreatment() {
+			this.CurrentSaison.AnneeFin = this.CurrentSaison.AnneeDebut + DureeSaison;
 		}
 	}
 }
