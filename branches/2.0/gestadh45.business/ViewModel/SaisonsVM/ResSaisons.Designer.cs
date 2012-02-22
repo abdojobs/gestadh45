@@ -61,6 +61,42 @@ namespace gestadh45.business.ViewModel.SaisonsVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;année de début doit être inférieure à l&apos;année de fin..
+        /// </summary>
+        internal static string ErrAnneeDebutInfAnneeFin {
+            get {
+                return ResourceManager.GetString("ErrAnneeDebutInfAnneeFin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;année de début est obligatoire..
+        /// </summary>
+        internal static string ErrAnneeDebutObligatoire {
+            get {
+                return ResourceManager.GetString("ErrAnneeDebutObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;année de fin est obligatoire..
+        /// </summary>
+        internal static string ErrAnneeFinObligatoire {
+            get {
+                return ResourceManager.GetString("ErrAnneeFinObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cette saison existe déjà..
+        /// </summary>
+        internal static string ErrSaisonExiste {
+            get {
+                return ResourceManager.GetString("ErrSaisonExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à La saison courante a été modifiée..
         /// </summary>
         internal static string InfoSetSaisonCourante {
