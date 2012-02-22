@@ -78,6 +78,7 @@
     </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SaisonsVM\ConsultationSaisonsVM.cs" />
+    <Compile Include="ViewModel\SaisonsVM\FormulaireSaisonVM.cs" />
     <Compile Include="ViewModel\SaisonsVM\ResSaisons.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -56,6 +56,10 @@ namespace gestadh45.business.ViewModel
 		public static ConsultationSaisonsVM ConsultationSaisonsVM {
 			get { return new ConsultationSaisonsVM(); }
 		}
+
+		public static FormulaireSaisonVM FormulaireSaisonVM {
+			get { return new FormulaireSaisonVM(); }
+		}
 		#endregion
 	}
 }
