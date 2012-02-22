@@ -24,19 +24,19 @@
 		</MenuItem>
 
 		<MenuItem Header="_Référentiel">
-			<!--<MenuItem Header="Saisons" 
+			<MenuItem Header="Saisons" 
 					  CommandParameter="{x:Static b:CodesUC.ConsultationSaisons}" 
-					  Command="{Binding ElementName=MenuPrincipal, Path=CmdAfficherUC}">
+					  Command="{Binding ElementName=MenuPrincipal, Path=CmdShowUC}">
 				<MenuItem.Icon>
-					<Image Source="/gestadh45.Main;component/Images/btn_saisons.png" Width="16" Height="16" />
+					<Image Source="/gestadh45.wpf;component/Images/btn_saisons.png" Width="16" Height="16" />
 				</MenuItem.Icon>
-			</MenuItem>-->
+			</MenuItem>
 			
 			<MenuItem Header="Villes" 
 					  CommandParameter="{x:Static b:CodesUC.ConsultationVilles}"
 					  Command="{Binding ElementName=MenuPrincipal, Path=CmdShowUC}">
 				<MenuItem.Icon>
-					<Image Source="/gestadh45.Main;component/Images/btn_city.png" Width="16" Height="16" />
+					<Image Source="/gestadh45.wpf;component/Images/btn_city.png" Width="16" Height="16" />
 				</MenuItem.Icon>
 			</MenuItem>
 		</MenuItem>

@@ -6,6 +6,7 @@ using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
 using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.Villes;
+using gestadh45.wpf.UserControls.Saisons;
 
 namespace gestadh45.wpf
 {
@@ -69,6 +70,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireVille:
 					userControl = new FormulaireVilleUC();
+					break;
+
+				case CodesUC.ConsultationSaisons:
+					userControl = new ConsultationSaisonsUC();
 					break;
 
 				default:

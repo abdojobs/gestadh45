@@ -12,6 +12,7 @@
 using GalaSoft.MvvmLight;
 using gestadh45.business.ViewModel.InfosClubVM;
 using gestadh45.business.ViewModel.VillesVM;
+using gestadh45.business.ViewModel.SaisonsVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -48,6 +49,12 @@ namespace gestadh45.business.ViewModel
 
 		public static FormulaireVilleVM FormulaireVilleVM {
 			get { return new FormulaireVilleVM(); }
+		}
+		#endregion
+
+		#region SaisonsVM
+		public static ConsultationSaisonsVM ConsultationSaisonsVM {
+			get { return new ConsultationSaisonsVM(); }
 		}
 		#endregion
 	}
