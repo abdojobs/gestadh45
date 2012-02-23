@@ -87,7 +87,7 @@ namespace gestadh45.business.ViewModel.SaisonsVM
 				errors.Add(ResSaisons.ErrAnneeDebutInfAnneeFin);
 			}
 
-			if (errors.Count == 0 && !this.CurrentElementExists()) {
+			if (errors.Count == 0 && this.CurrentElementExists()) {
 				errors.Add(ResSaisons.ErrSaisonExiste);
 			}
 
