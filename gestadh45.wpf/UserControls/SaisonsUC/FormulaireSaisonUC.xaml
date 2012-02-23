@@ -4,7 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
-			 xmlns:ihm="clr-namespace:gestadh45.business;assembly=gestadh45.business"
+			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
 			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=FormulaireSaisonVM, Source={StaticResource Locator}}" 
@@ -13,20 +13,21 @@
 		<TextBlock Text="Saison" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
 
 		<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5" 
-			CodeUCParent="{x:Static ihm:CodesUC.ConsultationSaisons}"
+			CodeUCParent="{x:Static business:CodesUC.ConsultationSaisons}"
 			CmdAnnuler="{Binding Path=CancelCommand}"
 			CmdEnregistrer="{Binding Path=SaveCommand}"
 			/>
 
 		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 
-		<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
-					<TextBlock Grid.Row="0" Grid.Column="0" Text="Année de début : " />
-					<extToolkit:IntegerUpDown Grid.Row="0" Grid.Column="1" Width="100" HorizontalAlignment="Left" 
-												Minimum="1950" Maximum="2999"
-												Value="{Binding Path=CurrentSaison.AnneeDebut}" 
-												Text="{Binding Path=CurrentSaison.AnneeDebut}" />
+		<StackPanel Orientation="Vertical">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+				<TextBlock Text="Année de début : " VerticalAlignment="Center" />
+				<extToolkit:IntegerUpDown Width="100" HorizontalAlignment="Left" Name="itgAnneeDebut"
+										  Minimum="1950" Maximum="2999"
+										  Value="{Binding Path=CurrentSaison.AnneeDebut}" 
+										  Text="{Binding Path=CurrentSaison.AnneeDebut}" />
+			</StackPanel>
 		</StackPanel>
 	</DockPanel>
 </UserControl>
