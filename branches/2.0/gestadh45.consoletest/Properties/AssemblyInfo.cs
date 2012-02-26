@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("gestadh45.consoletest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("UNILOG")]
+[assembly: AssemblyCompany("Guillaume Porte")]
 [assembly: AssemblyProduct("gestadh45.consoletest")]
-[assembly: AssemblyCopyright("Copyright © UNILOG 2012")]
+[assembly: AssemblyCopyright("Copyright © Guillaume Porte 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
