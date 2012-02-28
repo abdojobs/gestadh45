@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System.Linq;
 
 namespace gestadh45.dal
 {
@@ -14,17 +14,11 @@ namespace gestadh45.dal
 			this._entities = context;
 		}
 
-		#region IRepository<T> Membres
-
 		public ICollection<TEntity> GetAll() {
 			return this._entities.Set<TEntity>().ToList();
 		}
 
-		public TEntity GetById(int id) {
-			return this._entities.Set<TEntity>().Find(id);
-		}
-
-		public TEntity GetByKey(object[] keyValues) {
+		public TEntity GetByKey(params object[] keyValues) {
 			return this._entities.Set<TEntity>().Find(keyValues);
 		}
 
@@ -62,7 +56,5 @@ namespace gestadh45.dal
 				#endif
 			}
 		}
-
-		#endregion
 	}
 }
