@@ -1,0 +1,172 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.FormulaireInscription"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 mc:Ignorable="d" 
+			 d:DesignHeight="500" d:DesignWidth="800"
+			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
+			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+			 DataContext="{Binding Path=FormulaireInscriptionVM, Source={StaticResource ResourceKey=Locator}}">
+	<StackPanel Orientation="Vertical">
+		<TextBlock Text="Inscription" HorizontalAlignment="Stretch" 
+				   Margin="0,5,0,10" TextAlignment="Center" Style="{DynamicResource ResourceKey=titreUC}" />
+		
+		<GroupBox Name="gbxAdherent" Header="Adhérent">
+			<StackPanel Orientation="Vertical">
+				<StackPanel Orientation="Horizontal">
+					<ComboBox Name="comboAdherents" Width="200"
+							 ItemsSource="{Binding Path=ListeAdherents}" 
+							 IsEnabled="{Binding Path=NouveauAdherent, Converter={StaticResource ResourceKey=BooleanInversionConverter}}">
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="SelectionChanged">
+								<cmd:EventToCommand 
+									Command="{Binding Path=ChargerAdherentCommand, Mode=OneWay}" 
+									CommandParameter="{Binding ElementName=comboAdherents, Path=SelectedItem}" />
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+					</ComboBox>
+					<CheckBox Name="chbxNouveauAdherent" Margin="20,0,0,0" VerticalAlignment="Center" 
+							  IsChecked="{Binding Path=NouveauAdherent}" />
+					<TextBlock Text="Nouveau : " Margin="10,0,0,0" VerticalAlignment="Center" />
+				</StackPanel>
+
+				<Separator Margin="0,10,0,10" />
+
+				<StackPanel Orientation="Horizontal">
+					<Grid Name="grdIdentite" Margin="0,0,20,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="100" />
+							<ColumnDefinition Width="200" />
+						</Grid.ColumnDefinitions>
+						
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+						</Grid.RowDefinitions>
+
+						<TextBlock Grid.Row="0" Grid.Column="0" Text="Nom : " />
+						<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Path=CurrentAdherent.Nom}" MaxLength="50"/>
+
+						<TextBlock Grid.Row="1" Grid.Column="0" Text="Prénom : " />
+						<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=CurrentAdherent.Prenom}" MaxLength="50"/>
+
+						<TextBlock Grid.Row="2" Grid.Column="0" Text="Né le : " />
+						<DatePicker Grid.Row="2" Grid.Column="1" 
+									DisplayDate="{Binding Path=CurrentAdherent.DateNaissance}" 
+									SelectedDate="{Binding Path=CurrentAdherent.DateNaissance}"
+									SelectedDateFormat="Short" />
+
+						<TextBlock Grid.Row="3" Grid.Column="0" Text="Sexe : " />
+						<ComboBox Grid.Row="3" Grid.Column="1" Width="50" HorizontalAlignment="Left"
+								  ItemsSource="{Binding Path=ListeSexes}" SelectedItem="{Binding Path=CurrentAdherent.Sexe}" />
+					</Grid>
+					
+					<Grid Name="grdCoordonnees" Margin="20,0,0,0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="100" />
+							<ColumnDefinition Width="100" />
+							<ColumnDefinition Width="100" />
+							<ColumnDefinition Width="100" />
+						</Grid.ColumnDefinitions>
+						
+						<Grid.RowDefinitions>
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+							<RowDefinition Height="auto" />
+						</Grid.RowDefinitions>
+
+						<TextBlock Grid.Row="0" Grid.Column="0" Text="Adresse : " />
+						<TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" 
+								 Text="{Binding Path=CurrentAdherent.Adresse}" MaxLength="100"/>
+
+						<TextBlock Grid.Row="1" Grid.Column="0" Text="Ville : " />
+						<ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"
+								  ItemsSource="{Binding Path=ListeVilles}"
+								  SelectedItem="{Binding Path=CurrentAdherent.Ville}" />
+						<Button Grid.Row="1" Grid.Column="3" ToolTip="Ajouter une ville" HorizontalAlignment="Left" 
+									Width="18" Height="18" 
+									Command="{Binding Path=FenetreCommand}"
+									CommandParameter="{x:Static business:CodesUC.FormulaireVille}" 
+									Margin="10,0,0,0">
+							<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
+						</Button>
+
+						<TextBlock Grid.Row="2" Grid.Column="0" Text="Tél. 1 : " />
+						<extToolkit:MaskedTextBox Grid.Row="2" Grid.Column="1"
+												  Mask="00 00 00 00 00" 
+												  Value="{Binding Path=CurrentAdherent.Telephone1}" />
+
+						<TextBlock Grid.Row="3" Grid.Column="0" Text="Tél. 2 : " />
+						<extToolkit:MaskedTextBox Grid.Row="3" Grid.Column="1"
+												  Mask="00 00 00 00 00" 
+												  Value="{Binding Path=CurrentAdherent.Telephone2}" />
+
+						<TextBlock Grid.Row="4" Grid.Column="0" Text="Tél. 3 : " />
+						<extToolkit:MaskedTextBox Grid.Row="4" Grid.Column="1"
+												  Mask="00 00 00 00 00" 
+												  Value="{Binding Path=CurrentAdherent.Telephone3}" />
+					</Grid>
+				</StackPanel>
+				
+				<StackPanel Orientation="Horizontal">
+					<TextBlock Width="100" Text="Commentaire : " />
+					<TextBox Height="50" Width="500" AcceptsReturn="True" 
+							 Text="{Binding Path=CurrentAdherent.Commentaire}" />
+				</StackPanel>
+			</StackPanel>
+		</GroupBox>
+
+		<GroupBox Name="gbxInscription" Header="Inscription">
+			<Grid Name="grdInscription">
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="100" />
+					<ColumnDefinition Width="150" />
+					<ColumnDefinition Width="100" />
+					<ColumnDefinition Width="150" />
+				</Grid.ColumnDefinitions>
+				
+				<Grid.RowDefinitions>
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+					<RowDefinition Height="auto" />
+				</Grid.RowDefinitions>
+
+				<TextBlock Grid.Row="0" Grid.Column="0" Text="Groupe : " />
+				<ComboBox Grid.Row="0" Grid.Column="1"
+								  ItemsSource="{Binding Path=ListeGroupes}"
+								  SelectedItem="{Binding Path=CurrentInscription.Groupe}" />
+
+				<TextBlock Grid.Row="0" Grid.Column="2" Text="Certificat : " Margin="20,0,0,0" />
+				<CheckBox Grid.Row="0" Grid.Column="3" VerticalAlignment="Center"
+						  IsChecked="{Binding Path=CurrentInscription.CertificatRemis}" />
+
+				<TextBlock Grid.Row="1" Grid.Column="0" Text="Cotisation : " VerticalAlignment="Center" />
+				<extToolkit:IntegerUpDown Grid.Row="1" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="5,5,0,5"
+													Minimum="0"
+													Value="{Binding Path=CurrentInscription.Cotisation}" 
+													Text="{Binding Path=CurrentInscription.Cotisation}" />
+
+				<TextBlock Grid.Row="2" Grid.Column="0" Text="Commentaire : " />
+				<TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" 
+						 Height="50" Width="500" AcceptsReturn="True" 
+						 Text="{Binding Path=CurrentInscription.Commentaire}" />
+			</Grid>
+		</GroupBox>
+
+		<Separator Margin="0,20,0,20" />
+
+		<uc:BtnAnnulerEnregistrerUC HorizontalAlignment="Center" Margin="5,5,5,5" 
+			CodeUCParent="{x:Static business:CodesUC.ConsultationInscription}"
+			CmdAnnuler="{Binding Path=CancelCommand}"
+			CmdEnregistrer="{Binding Path=SaveCommand}"
+			/>
+	</StackPanel>
+</UserControl>
