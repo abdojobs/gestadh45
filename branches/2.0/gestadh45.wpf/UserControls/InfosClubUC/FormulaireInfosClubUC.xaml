@@ -9,83 +9,75 @@
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=FormulaireInfosClubVM, Source={StaticResource Locator}}" 
 			 d:DesignHeight="400" d:DesignWidth="600">
-	<DockPanel Margin="5,5,5,5">
-		<TextBlock Text="Informations sur le club" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
-		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-				
-			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Nom du club : " FontSize="14" FontWeight="Bold" Width="200" />
-				<TextBox Width="250" MaxLength="50" Text="{Binding Path=InfosClub.Nom}" />
-			</StackPanel>
+	<StackPanel Orientation="Vertical">
+		<TextBlock Text="Informations sur le club" HorizontalAlignment="Stretch" 
+				   Margin="0,5,0,10" TextAlignment="Center" Style="{DynamicResource ResourceKey=titreUC}" />
 
-			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Adresse : " FontSize="14" FontWeight="Bold" Width="200" />
-				<TextBox TextWrapping="Wrap" Width="250" MaxLength="100" Text="{Binding Path=InfosClub.Adresse}" />
-			</StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="0,5,0,5" HorizontalAlignment="Center">
+			<TextBlock Text="Nom du club : " Style="{DynamicResource ResourceKey=labelForm}" Width="200" />
+			<TextBox Width="250" MaxLength="50" Text="{Binding Path=InfosClub.Nom}" />
+		</StackPanel>
 
-			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Ville : " FontSize="14" FontWeight="Bold" Width="200" />
-				<ComboBox Width="250" 
+		<StackPanel Orientation="Horizontal" Margin="0,5,0,5" HorizontalAlignment="Center">
+			<TextBlock Text="Adresse : " Style="{DynamicResource ResourceKey=labelForm}" Width="200" />
+			<TextBox TextWrapping="Wrap" Width="250" MaxLength="100" Text="{Binding Path=InfosClub.Adresse}" />
+		</StackPanel>
+
+		<StackPanel Orientation="Horizontal" Margin="0,5,0,5" HorizontalAlignment="Center">
+			<TextBlock Text="Ville : " Style="{DynamicResource ResourceKey=labelForm}" Width="200" />
+			<ComboBox Width="232" 
 							ItemsSource="{Binding Path=Villes}"
-							SelectedItem="{Binding Path=InfosClub.Ville}" />							
+							SelectedItem="{Binding Path=InfosClub.Ville}" />
 
-				<Button ToolTip="Ajouter une ville" HorizontalAlignment="Center" 
+			<Button ToolTip="Ajouter une ville" HorizontalAlignment="Center" 
 						Width="18" Height="18" 
 						Command="{Binding Path=FenetreCommand}"
 						CommandParameter="{x:Static b:CodesUC.FormulaireVille}" 
 						Margin="5,0,0,0">
-					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
-				</Button>
-			</StackPanel>
+				<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
+			</Button>
+		</StackPanel>
 
-			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Tel. : " FontSize="14" FontWeight="Bold" Width="200" />
-				<extToolkit:MaskedTextBox Name="tbxTel1" Width="250" 
-										  Mask="00 00 00 00 00" 
-										  Value="{Binding Path=InfosClub.Telephone}" />
-			</StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="0,5,0,5" HorizontalAlignment="Center">
+			<TextBlock Text="Tel. : " Style="{DynamicResource ResourceKey=labelForm}" Width="200" />
+			<extToolkit:MaskedTextBox Name="tbxTel1" Width="250" 
+									  Mask="00 00 00 00 00" 
+									  Value="{Binding Path=InfosClub.Telephone}" />
+		</StackPanel>
 
-			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Email : " FontSize="14" FontWeight="Bold" Width="200" />
-				<TextBox Width="250" MaxLength="100"
-							Text="{Binding Path=InfosClub.Mail}" />
-			</StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="0,5,0,5" HorizontalAlignment="Center">
+			<TextBlock Text="Email : " Style="{DynamicResource ResourceKey=labelForm}" Width="200" />
+			<TextBlock Width="250" Text="{Binding Path=InfosClub.Mail}" />
+		</StackPanel>
 
-			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="Web : " FontSize="14" FontWeight="Bold" Width="200" />
-				<TextBox Width="250" MaxLength="100"
-							Text="{Binding Path=InfosClub.SiteWeb}" />
-			</StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="0,5,0,5" HorizontalAlignment="Center">
+			<TextBlock Text="Web : " Style="{DynamicResource ResourceKey=labelForm}" Width="200" />
+			<TextBox Width="250" MaxLength="100" Text="{Binding Path=InfosClub.SiteWeb}" />
+		</StackPanel>
 
-			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="N° association : " FontSize="14" FontWeight="Bold" Width="200" />
-				<TextBox Width="250" MaxLength="20"
-							Text="{Binding Path=InfosClub.Numero}" />
-			</StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="0,5,0,5" HorizontalAlignment="Center">
+			<TextBlock Text="N° association : " Style="{DynamicResource ResourceKey=labelForm}" Width="200" />
+			<TextBox Width="250" MaxLength="20" Text="{Binding Path=InfosClub.Numero}" />
+		</StackPanel>
 
-			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="SIRET : " FontSize="14" FontWeight="Bold" Width="200" />
-				<TextBox Width="250" MaxLength="9" ToolTip="N° SIREN"
-							Text="{Binding Path=InfosClub.Siren}" />
-				<TextBlock Text=" - " />
-				<TextBox Width="50" MaxLength="5" ToolTip="NIC"
-							Text="{Binding Path=InfosClub.NIC}" />
-			</StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="0,5,0,5" HorizontalAlignment="Center">
+			<TextBlock Text="SIRET : " Style="{DynamicResource ResourceKey=labelForm}" Width="200" />
+			<TextBox Width="190" MaxLength="9" ToolTip="N° SIREN" Text="{Binding Path=InfosClub.Siren}" />
+			<TextBlock Width="10"  Text=" - " />
+			<TextBox Width="50" MaxLength="5" ToolTip="NIC"	Text="{Binding Path=InfosClub.NIC}" />
+		</StackPanel>
 
-			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="N° établissement APS : " FontSize="14" FontWeight="Bold" Width="200" />
-				<TextBox Width="250" MaxLength="20"
-							Text="{Binding Path=InfosClub.NumAPS}" />
-			</StackPanel>
+		<StackPanel Orientation="Horizontal" Margin="0,5,0,5" HorizontalAlignment="Center">
+			<TextBlock Text="N° établissement APS : " Style="{DynamicResource ResourceKey=labelForm}" Width="200" />
+			<TextBox Width="250" MaxLength="20"	Text="{Binding Path=InfosClub.NumAPS}" />
+		</StackPanel>
 
-			<Separator Margin="0,20,0,20" />
+		<Separator Margin="0,20,0,20" />
 
-			<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5" 
+		<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5" 
 					CodeUCParent="{x:Static b:CodesUC.ConsultationInfosClub}"
 					CmdAnnuler="{Binding Path=CancelCommand}"
 					CmdEnregistrer="{Binding Path=SaveCommand}"
 					/>
-
-		</StackPanel>
-	</DockPanel>
+	</StackPanel>
 </UserControl>

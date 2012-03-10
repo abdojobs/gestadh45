@@ -7,6 +7,7 @@ using gestadh45.dal;
 using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.Villes;
 using gestadh45.wpf.UserControls.Saisons;
+using gestadh45.wpf.UserControls;
 
 namespace gestadh45.wpf
 {
@@ -78,6 +79,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireSaison:
 					userControl = new FormulaireSaisonUC();
+					break;
+
+				case CodesUC.FormulaireInscription:
+					userControl = new FormulaireInscription();
 					break;
 
 				default:
