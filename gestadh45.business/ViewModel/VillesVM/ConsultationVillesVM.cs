@@ -57,7 +57,7 @@ namespace gestadh45.business.ViewModel.VillesVM
 		#region ShowDetailsCommand
 		public override void ExecuteShowDetailsCommand(object selectedItem) {
 			if (selectedItem is Ville) {
-				this.SelectedVille = (Ville)selectedItem;
+				this.SelectedVille = selectedItem as Ville;
 			}
 		}
 		#endregion

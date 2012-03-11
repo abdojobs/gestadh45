@@ -93,19 +93,19 @@ namespace gestadh45.business.ViewModel
 		public ICommand FilterCommand { get; set; }
 
 		private void CreateFilterCommand() {
-			this.FilterCommand = new RelayCommand(
+			this.FilterCommand = new RelayCommand<string>(
 				this.ExecuteFilterCommand, 
 				this.CanExecuteFilterCommand
 			);
 		}
 
-		public virtual bool CanExecuteFilterCommand() {
+		public virtual bool CanExecuteFilterCommand(string filtre) {
 			// le filtrage est autorisé par défaut (à redéfinir si besoin dans les classes filles)
 			return true;
 		}
 
 		// A redéfinir dans les classes filles...
-		public virtual void ExecuteFilterCommand() { }
+		public virtual void ExecuteFilterCommand(string filtre) { }
 		#endregion
 	}
 }
