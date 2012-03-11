@@ -16,7 +16,7 @@ namespace gestadh45.business.ViewModel.SaisonsVM
 		private Saison _currentSaison;
 
 		/// <summary>
-		/// Obtient/Définit la saison courante du formualire
+		/// Obtient/Définit la saison courante du formulaire
 		/// </summary>
 		public Saison CurrentSaison {
 			get { return this._currentSaison; }
@@ -44,12 +44,6 @@ namespace gestadh45.business.ViewModel.SaisonsVM
 
 			this.UCParentCode = CodesUC.ConsultationSaisons;
 		}
-
-		#region CancelCommand
-		public override void ExecuteCancelCommand() {
-			base.ExecuteCancelCommand();
-		}
-		#endregion
 
 		#region SaveCommand
 		public override void ExecuteSaveCommand() {

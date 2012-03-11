@@ -68,9 +68,9 @@ namespace gestadh45.business.ViewModel
 			get { return new ConsultationAdherentsVM(); }
 		}
 
-		//public static FormulaireAdherentVM FormulaireAdherentVM {
-		//    get { return new FormulaireAdherentVM(); }
-		//}
+		public static FormulaireAdherentVM FormulaireAdherentVM {
+			get { return new FormulaireAdherentVM(); }
+		}
 		#endregion
 	}
 }

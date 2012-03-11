@@ -81,6 +81,9 @@
     <Compile Include="UserControls\AdherentsUC\ConsultationAdherentsUC.xaml.cs">
       <DependentUpon>ConsultationAdherentsUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AdherentsUC\FormulaireAdherentUC.xaml.cs">
+      <DependentUpon>FormulaireAdherentUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\BtnAjouterEditerSupprimerUC.xaml.cs">
       <DependentUpon>BtnAjouterEditerSupprimerUC.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="UserControls\AdherentsUC\ConsultationAdherentsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AdherentsUC\FormulaireAdherentUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
