@@ -11,5 +11,6 @@ namespace gestadh45.business.PersonalizedMsg
 		public const string NMShowInfosSaisonCourante = "ShowInfosSaisonCourante";
 		public const string NMShowAboutBox = "ShowAboutBox";
 		public const string NMCloseApplication = "CloseApplication";
+		public const string NMClearFilter = "ClearFilter";
 	}
 }

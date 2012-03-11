@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodesUC.cs" />
+    <Compile Include="PersonalizedMsg\NMClearFilter.cs" />
     <Compile Include="PersonalizedMsg\NMCloseApplication.cs" />
     <Compile Include="PersonalizedMsg\NMCloseWindow.cs" />
     <Compile Include="PersonalizedMsg\NMOpenWindow.cs" />
@@ -77,6 +78,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AdherentsVM\ConsultationAdherentsVM.cs" />
     <Compile Include="ViewModel\AdherentsVM\FormulaireAdherentVM.cs" />
+    <Compile Include="ViewModel\AdherentsVM\ResAdherents.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResAdherents.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\InfosClubVM\ConsultationInfosClubVM.cs" />
     <Compile Include="ViewModel\InfosClubVM\FormulaireInfosClubVM.cs" />
     <Compile Include="ViewModel\InfosClubVM\ResInfosClub.Designer.cs">
@@ -120,6 +126,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ViewModel\AdherentsVM\ResAdherents.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResAdherents.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\InfosClubVM\ResInfosClub.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResInfosClub.Designer.cs</LastGenOutput>
