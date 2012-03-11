@@ -99,7 +99,7 @@
 					<StackPanel Orientation="Horizontal">
 						<Button Height="16" Width="16" ToolTip="Générer une fiche d'inscription au format PDF" 
 										CommandParameter="{x:Static doc:CodesDocuments.FicheInscriptionPDF}" 
-										Command="{Binding GenererDocumentCommand}">
+										Command="{Binding Path=GenererDocumentCommand}">
 							<Image Source="/gestadh45.wpf;component/Images/btn_pdf16.png" />
 						</Button>
 						<TextBlock Text=" : Fiche d'inscription (pdf)" />
@@ -108,7 +108,7 @@
 					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 						<Button Height="16" Width="16" ToolTip="Générer une attestation d'inscription au format PDF" 
 										CommandParameter="{x:Static doc:CodesDocuments.AttestationPDF}" 
-										Command="{Binding GenererDocumentCommand}">
+										Command="{Binding Path=GenererDocumentCommand}">
 							<Image Source="/gestadh45.wpf;component/Images/btn_pdf16.png" />
 						</Button>
 						<TextBlock Text=" : Attestation (pdf)" />
