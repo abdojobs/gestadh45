@@ -13,29 +13,28 @@
 		<TextBlock Text="Adhérents" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
 				   Style="{DynamicResource ResourceKey=titreUC}" />
 
-		<StackPanel DockPanel.Dock="Left" Orientation="Vertical">
-			<TextBox Name="tbxFiltre" Margin="0,0,0,10" ToolTip="Saisissez une partie du nom ou du prénom pour filtrer la liste">
-				<i:Interaction.Triggers>
-					<i:EventTrigger EventName="TextChanged">
-						<cmd:EventToCommand
+		<TextBox Name="tbxFiltre" Margin="0,0,0,10" DockPanel.Dock="Top" Width="300" HorizontalAlignment="Left"
+				 ToolTip="Saisissez une partie du nom ou du prénom pour filtrer la liste">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="TextChanged">
+					<cmd:EventToCommand
 								Command="{Binding Path=FilterCommand, Mode=OneWay}"
 								CommandParameter="{Binding ElementName=tbxFiltre, Path=Text}" />
-					</i:EventTrigger>
-				</i:Interaction.Triggers>
-			</TextBox>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</TextBox>
 
-			<ListBox Name="lbxAdherents" Width="300"
+		<ListBox Name="lbxAdherents" Width="300"
 					ItemsSource="{Binding Path=Adherents}"
 					SelectedItem="{Binding Path=SelectedAdherent}">
-				<i:Interaction.Triggers>
-					<i:EventTrigger EventName="SelectionChanged">
-						<cmd:EventToCommand 
-						Command="{Binding Path=ShowDetailsCommand, Mode=OneWay}" 
-						CommandParameter="{Binding ElementName=lbxAdherents, Path=SelectedItem}" />
-					</i:EventTrigger>
-				</i:Interaction.Triggers>
-			</ListBox>
-		</StackPanel>
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="SelectionChanged">
+					<cmd:EventToCommand 
+					Command="{Binding Path=ShowDetailsCommand, Mode=OneWay}" 
+					CommandParameter="{Binding ElementName=lbxAdherents, Path=SelectedItem}" />
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</ListBox>
 
 		<StackPanel DockPanel.Dock="Right" Orientation="Vertical" VerticalAlignment="Center" Margin="10,10,10,10">
 			<uc:BtnAjouterEditerSupprimerUC 

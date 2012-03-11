@@ -6,9 +6,9 @@ namespace gestadh45.dal
 		/// <summary>
 		/// Obtient la description de l'inscription
 		/// </summary>
-		/// <returns>Adherent - LibelleGroupe</returns>
+		/// <returns>LibelleGroupe - Adherent</returns>
 		public override string ToString() {
-			return string.Format("{0} - {1}", this.Adherent, this.Groupe.Libelle);
+			return string.Format("{0} - {1}", this.Groupe.Libelle, this.Adherent);
 		}
 	}
 }

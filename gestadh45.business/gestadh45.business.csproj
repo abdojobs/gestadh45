@@ -90,6 +90,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResInfosClub.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\InscriptionsVM\ConsultationInscriptionsVM.cs" />
+    <Compile Include="ViewModel\InscriptionsVM\ResInscriptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResInscriptions.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SaisonsVM\ConsultationSaisonsVM.cs" />
     <Compile Include="ViewModel\SaisonsVM\FormulaireSaisonVM.cs" />
@@ -117,7 +123,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="IhmObj\" />
-    <Folder Include="ViewModel\InscriptionsVM\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gestadh45.dal\gestadh45.dal.csproj">
@@ -133,6 +138,10 @@
     <EmbeddedResource Include="ViewModel\InfosClubVM\ResInfosClub.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResInfosClub.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\InscriptionsVM\ResInscriptions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResInscriptions.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\SaisonsVM\ResSaisons.resx">
       <Generator>ResXFileCodeGenerator</Generator>

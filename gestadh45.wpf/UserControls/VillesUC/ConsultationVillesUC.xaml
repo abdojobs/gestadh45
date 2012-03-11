@@ -12,8 +12,8 @@
 	<DockPanel Margin="5,5,5,5">
 		<TextBlock Text="Villes" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
 				   Style="{DynamicResource ResourceKey=titreUC}" />
-		
-		<ListBox Name="lbxVilles" Width="300" DockPanel.Dock="Left" 
+
+		<ListBox Name="lbxVilles" Width="300" DockPanel.Dock="Left"
 					ItemsSource="{Binding Path=Villes}"
 					SelectedItem="{Binding Path=Ville}">
 			<i:Interaction.Triggers>

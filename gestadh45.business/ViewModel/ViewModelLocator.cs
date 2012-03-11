@@ -9,11 +9,11 @@
   DataContext="{Binding Source={StaticResource Locator}, Path=[StaticVMProperty]}"
 */
 
-using GalaSoft.MvvmLight;
-using gestadh45.business.ViewModel.InfosClubVM;
-using gestadh45.business.ViewModel.VillesVM;
-using gestadh45.business.ViewModel.SaisonsVM;
 using gestadh45.business.ViewModel.AdherentsVM;
+using gestadh45.business.ViewModel.InfosClubVM;
+using gestadh45.business.ViewModel.InscriptionsVM;
+using gestadh45.business.ViewModel.SaisonsVM;
+using gestadh45.business.ViewModel.VillesVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -63,7 +63,7 @@ namespace gestadh45.business.ViewModel
 		}
 		#endregion
 
-		#region AdherentVM
+		#region AdherentsVM
 		public static ConsultationAdherentsVM ConsultationAdherentsVM {
 			get { return new ConsultationAdherentsVM(); }
 		}
@@ -71,6 +71,16 @@ namespace gestadh45.business.ViewModel
 		public static FormulaireAdherentVM FormulaireAdherentVM {
 			get { return new FormulaireAdherentVM(); }
 		}
+		#endregion
+
+		#region InscriptionsVM
+		public static ConsultationInscriptionsVM ConsultationInscriptionsVM {
+			get { return new ConsultationInscriptionsVM(); }
+		}
+
+		//public static FormulaireInscriptionVM FormulaireInscriptionVM {
+		//    get { return new FormulaireInscriptionVM(); }
+		//}
 		#endregion
 	}
 }
