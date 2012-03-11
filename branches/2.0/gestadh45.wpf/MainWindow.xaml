@@ -45,6 +45,12 @@
 					CommandParameter="{x:Static b:CodesUC.ConsultationAdherents}">
 				<Image Source="/gestadh45.wpf;component/Images/btn_adherents.png" />
 			</Button>
+
+			<Button Name="btnInscriptions" Height="32" Width="32" Margin="5,5,5,5"
+					Command="{Binding Path=ShowUCCommand}"
+					CommandParameter="{x:Static b:CodesUC.ConsultationInscriptions}">
+				<Image Source="/gestadh45.wpf;component/Images/btn_inscriptions.png" />
+			</Button>
 		</StackPanel>
 		
 		<Border Margin="5,5,5,5" DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">

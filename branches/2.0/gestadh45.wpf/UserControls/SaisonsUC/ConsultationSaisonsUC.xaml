@@ -13,8 +13,8 @@
 		
 		<TextBlock Text="Saisons" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
 				   Style="{DynamicResource ResourceKey=titreUC}" />
-		
-		<ListBox Name="lbxSaisons" Width="300" DockPanel.Dock="Left" 
+
+		<ListBox Name="lbxSaisons" Width="300" DockPanel.Dock="Left"
 					ItemsSource="{Binding Path=Saisons}"
 					SelectedItem="{Binding Path=Saison}">
 			<i:Interaction.Triggers>
