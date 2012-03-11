@@ -61,6 +61,60 @@ namespace gestadh45.business.ViewModel.AdherentsVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cet adhérent existe déjà.
+        /// </summary>
+        internal static string ErrAdherentExiste {
+            get {
+                return ResourceManager.GetString("ErrAdherentExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;adresse est obligatoire.
+        /// </summary>
+        internal static string ErrAdresseObligatoire {
+            get {
+                return ResourceManager.GetString("ErrAdresseObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à La date de naissance est obligatoire.
+        /// </summary>
+        internal static string ErrDateNaissanceObligatoire {
+            get {
+                return ResourceManager.GetString("ErrDateNaissanceObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le nom est obligatoire.
+        /// </summary>
+        internal static string ErrNomObligatoire {
+            get {
+                return ResourceManager.GetString("ErrNomObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le prénom est obligatoire.
+        /// </summary>
+        internal static string ErrPrenomObligatoire {
+            get {
+                return ResourceManager.GetString("ErrPrenomObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à La ville est obligatoire.
+        /// </summary>
+        internal static string ErrVilleObligatoire {
+            get {
+                return ResourceManager.GetString("ErrVilleObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à L&apos;adhérent a été dupliqué.
         /// </summary>
         internal static string InfosAdherentDuplique {

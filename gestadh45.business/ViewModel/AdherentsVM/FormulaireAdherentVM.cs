@@ -124,27 +124,27 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 
 		protected override bool CheckFormValidity(List<string> errors) {
 			if (string.IsNullOrWhiteSpace(this.CurrentAdherent.Nom)) {
-				errors.Add("Le nom est obligatoire");
+				errors.Add(ResAdherents.ErrNomObligatoire);
 			}
 
 			if (string.IsNullOrWhiteSpace(this.CurrentAdherent.Prenom)) {
-				errors.Add("Le prénom est obligatoire");
+				errors.Add(ResAdherents.ErrPrenomObligatoire);
 			}
 
 			if (this.CurrentAdherent.DateNaissance == DateTime.MinValue) {
-				errors.Add("La date de naissance est obligatoire");
+				errors.Add(ResAdherents.ErrDateNaissanceObligatoire);
 			}
 
 			if (string.IsNullOrWhiteSpace(this.CurrentAdherent.Adresse)) {
-				errors.Add("L'adresse est obligatoire");
+				errors.Add(ResAdherents.ErrAdresseObligatoire);
 			}
 
 			if (this.CurrentAdherent.Ville == null) {
-				errors.Add("La ville est obligatoire");
+				errors.Add(ResAdherents.ErrVilleObligatoire);
 			}
 
 			if (errors.Count == 0 && !this.IsEditMode && this.CurrentElementExists()) {
-				errors.Add("Cet adhérent existe déjà");
+				errors.Add(ResAdherents.ErrAdherentExiste);
 			}
 
 			return errors.Count == 0;
