@@ -84,17 +84,11 @@
     <Compile Include="UserControls\BtnAnnulerEnregistrerUC.xaml.cs">
       <DependentUpon>BtnAnnulerEnregistrerUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\FormulaireInscription.xaml.cs">
-      <DependentUpon>FormulaireInscription.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\InfosClubUC\ConsultationInfosClubUC.xaml.cs">
       <DependentUpon>ConsultationInfosClubUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\InfosClubUC\FormulaireInfosClubUC.xaml.cs">
       <DependentUpon>FormulaireInfosClubUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\MenuPrincipalUC.xaml.cs">
-      <DependentUpon>MenuPrincipalUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SaisonsUC\ConsultationSaisonsUC.xaml.cs">
       <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
@@ -128,19 +122,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UserControls\FormulaireInscription.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UserControls\InfosClubUC\ConsultationInfosClubUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\InfosClubUC\FormulaireInfosClubUC.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\MenuPrincipalUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -81,10 +81,6 @@ namespace gestadh45.wpf
 					userControl = new FormulaireSaisonUC();
 					break;
 
-				case CodesUC.FormulaireInscription:
-					userControl = new FormulaireInscription();
-					break;
-
 				default:
 					userControl = new ConsultationInfosClubUC();
 					break;
