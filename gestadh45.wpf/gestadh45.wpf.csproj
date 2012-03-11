@@ -224,6 +224,12 @@
   <ItemGroup>
     <Resource Include="Images\btn_adherents.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_inscrire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_dupliquerAdherent.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
