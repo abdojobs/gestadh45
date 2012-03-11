@@ -1,4 +1,6 @@
 ﻿using System.Linq;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
@@ -50,6 +52,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 			this.repoMain = new Repository<Inscription>(this._context);
 
 			this.PopulateInscriptions();
+			this.CreateCommands();
 		}
 		#endregion
 
@@ -65,6 +68,11 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 			}
 
 			this.Inscriptions = ins.OrderBy(i => i.ToString());
+		}
+
+		private void CreateCommands() {
+			this.CreateGenererDocumentCommand();
+			this.CreateGenererVCardCommand();
 		}
 
 		#region ShowDetailsCommand
@@ -112,6 +120,52 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 		public override void ExecuteFilterCommand(string filtre) {
 			if (!string.IsNullOrEmpty(filtre)) {
 				this.PopulateInscriptions(filtre);
+			}
+		}
+		#endregion
+
+		#region GenererDocumentCommand
+		public ICommand GenererDocumentCommand { get; set; }
+
+		private void CreateGenererDocumentCommand() {
+			this.GenererDocumentCommand = new RelayCommand<string>(
+				this.ExecuteGenererDocumentCommand,
+				this.CanExecuteGenererDocumentCommand
+			);
+		}
+
+		public bool CanExecuteGenererDocumentCommand(string codeDocument) {
+			return this.SelectedInscription != null;
+		}
+
+		public void ExecuteGenererDocumentCommand(string codeDocument) {
+			if (this.SelectedInscription != null) {
+				// TODO implémenter
+
+				this.ShowUserNotification(ResInscriptions.InfosDocumentGenere);
+			}
+		}
+		#endregion
+
+		#region GenererVCardCommand
+		public ICommand GenererVCardCommand { get; set; }
+
+		private void CreateGenererVCardCommand() {
+			this.GenererVCardCommand = new RelayCommand(
+				this.ExecuteGenererVCardCommand,
+				this.CanExecuteGenererVCardCommand
+			);
+		}
+
+		public bool CanExecuteGenererVCardCommand() {
+			return this.SelectedInscription != null;
+		}
+
+		public void ExecuteGenererVCardCommand() {
+			if (this.SelectedInscription != null) {
+				// TODO implémenter
+
+				this.ShowUserNotification(ResInscriptions.InfosVCardGeneree);
 			}
 		}
 		#endregion

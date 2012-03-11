@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="InfosDocumentGenere" xml:space="preserve">
+    <value>Le document a été généré</value>
+  </data>
   <data name="InfosInscriptionSupprimee" xml:space="preserve">
     <value>L'inscription a été supprimée</value>
+  </data>
+  <data name="InfosVCardGeneree" xml:space="preserve">
+    <value>La VCard é été générée</value>
   </data>
 </root>

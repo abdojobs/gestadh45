@@ -61,11 +61,29 @@ namespace gestadh45.business.ViewModel.InscriptionsVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le document a été généré.
+        /// </summary>
+        internal static string InfosDocumentGenere {
+            get {
+                return ResourceManager.GetString("InfosDocumentGenere", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à L&apos;inscription a été supprimée.
         /// </summary>
         internal static string InfosInscriptionSupprimee {
             get {
                 return ResourceManager.GetString("InfosInscriptionSupprimee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à La VCard é été générée.
+        /// </summary>
+        internal static string InfosVCardGeneree {
+            get {
+                return ResourceManager.GetString("InfosVCardGeneree", resourceCulture);
             }
         }
     }
