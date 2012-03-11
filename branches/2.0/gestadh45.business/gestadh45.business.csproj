@@ -91,6 +91,7 @@
       <DependentUpon>ResInfosClub.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\InscriptionsVM\ConsultationInscriptionsVM.cs" />
+    <Compile Include="ViewModel\InscriptionsVM\FormulaireInscriptionVM.cs" />
     <Compile Include="ViewModel\InscriptionsVM\ResInscriptions.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

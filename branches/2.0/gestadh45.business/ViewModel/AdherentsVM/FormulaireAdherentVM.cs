@@ -67,7 +67,7 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 
 		#region Constructeurs
 		/// <summary>
-		/// COnstructeur pour le mode création
+		/// Constructeur pour le mode création
 		/// </summary>
 		public FormulaireAdherentVM() {
 			this.UCParentCode = CodesUC.ConsultationAdherents;

@@ -61,6 +61,42 @@ namespace gestadh45.business.ViewModel.InscriptionsVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;adhérent est obligatoire.
+        /// </summary>
+        internal static string ErrAdherentObligatoire {
+            get {
+                return ResourceManager.GetString("ErrAdherentObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le groupe est obligatoire.
+        /// </summary>
+        internal static string ErrGroupeObligatoire {
+            get {
+                return ResourceManager.GetString("ErrGroupeObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cette inscription existe déjà.
+        /// </summary>
+        internal static string ErrInscriptionExiste {
+            get {
+                return ResourceManager.GetString("ErrInscriptionExiste", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le statut est obligatoire.
+        /// </summary>
+        internal static string ErrStatutObligatoire {
+            get {
+                return ResourceManager.GetString("ErrStatutObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Le document a été généré.
         /// </summary>
         internal static string InfosDocumentGenere {
