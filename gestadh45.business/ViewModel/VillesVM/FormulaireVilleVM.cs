@@ -35,12 +35,6 @@ namespace gestadh45.business.ViewModel.VillesVM
 			this.UCParentCode = CodesUC.ConsultationVilles;
 		}
 
-		#region CancelCommand
-		public override void ExecuteCancelCommand() {
-			base.ExecuteCancelCommand();
-		}
-		#endregion
-
 		#region SaveCommand
 		public override void ExecuteSaveCommand() {
 			this.PrepareValuesForTreatment();

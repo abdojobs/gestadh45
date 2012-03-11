@@ -9,6 +9,7 @@ using gestadh45.wpf.UserControls.Villes;
 using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls;
 using gestadh45.wpf.UserControls.AdherentsUC;
+using gestadh45.business.ViewModel.AdherentsVM;
 
 namespace gestadh45.wpf
 {
@@ -38,11 +39,9 @@ namespace gestadh45.wpf
 		}
 
 		private void ShowUCWithParameters(string codeUC, object objetUC) {
-			var uc = this.GetUCFromCode(codeUC);
-			// TODO alimenter l'UC avec l'objetUC
-
-			this.contenu.Child = uc;
-			
+			if (codeUC.Equals(CodesUC.FormulaireAdherent) && objetUC is Adherent) {
+				this.contenu.Child = new FormulaireAdherentUC(objetUC as Adherent);
+			}		
 		}
 
 		private void OpenWindowUC(string codeUC) {
@@ -84,6 +83,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.ConsultationAdherents:
 					userControl = new ConsultationAdherentsUC();
+					break;
+
+				case CodesUC.FormulaireAdherent:
+					userControl = new FormulaireAdherentUC();
 					break;
 
 				default:
