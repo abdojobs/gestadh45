@@ -75,6 +75,7 @@
     <Compile Include="PersonalizedMsg\NMType.cs" />
     <Compile Include="PersonalizedMsg\NMUserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AdherentsVM\ConsultationAdherentsVM.cs" />
     <Compile Include="ViewModel\InfosClubVM\ConsultationInfosClubVM.cs" />
     <Compile Include="ViewModel\InfosClubVM\FormulaireInfosClubVM.cs" />
     <Compile Include="ViewModel\InfosClubVM\ResInfosClub.Designer.cs">

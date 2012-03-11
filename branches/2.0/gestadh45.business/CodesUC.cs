@@ -12,6 +12,9 @@ namespace gestadh45.business
 		public const string ConsultationSaisons = "ConsultationSaisons";
 		public const string FormulaireSaison = "FormulaireSaison";
 
+		public const string ConsultationAdherents = "ConsultationAdherents";
+		public const string FormulaireAdherent = "FormulaireAdherent";
+
 		public const string ConsultationInscription = "ConsultationInscription";
 		public const string FormulaireInscription = "FormulaireInscription";
 	}

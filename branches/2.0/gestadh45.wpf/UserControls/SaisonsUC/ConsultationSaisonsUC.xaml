@@ -11,7 +11,8 @@
 			 d:DesignHeight="400" d:DesignWidth="600">
 	<DockPanel Margin="5,5,5,5">
 		
-		<TextBlock Text="Saisons" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+		<TextBlock Text="Saisons" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
+				   Style="{DynamicResource ResourceKey=titreUC}" />
 		
 		<ListBox Name="lbxSaisons" Width="300" DockPanel.Dock="Left" 
 					ItemsSource="{Binding Path=Saisons}"

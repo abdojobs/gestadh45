@@ -61,7 +61,7 @@ namespace gestadh45.business.ViewModel.SaisonsVM
 		#region ShowDetailsCommand
 		public override void ExecuteShowDetailsCommand(object selectedItem) {
 			if (selectedItem is Saison) {
-				this.SelectedSaison = (Saison)selectedItem;
+				this.SelectedSaison = selectedItem as Saison;
 			}
 		}
 		#endregion
