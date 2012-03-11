@@ -1,9 +1,9 @@
 ﻿using System.Linq;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 
 namespace gestadh45.business.ViewModel.AdherentsVM
 {
@@ -64,6 +64,7 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 			}
 			else {
 				this.Adherents = this.repoMain.GetAll().OrderBy(a => a.ToString());
+				Messenger.Default.Send(new NMClearFilter());
 			}
 		}
 
@@ -88,7 +89,7 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 
 				this.PopulateAdherents();
 				this.SelectedAdherent = this.Adherents.FirstOrDefault();
-				this.ShowUserNotification("Adhérent supprimé");
+				this.ShowUserNotification(ResAdherents.InfosAdherentSupprime);
 			}
 		}
 		#endregion
@@ -115,7 +116,9 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 
 		#region FilterCommand
 		public override void ExecuteFilterCommand(string filtre) {
-			this.PopulateAdherents(filtre);
+			if (!string.IsNullOrEmpty(filtre)) {
+				this.PopulateAdherents(filtre);
+			}
 		}
 		#endregion
 
@@ -164,8 +167,8 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 			this.repoMain.Save();
 
 			this.PopulateAdherents();
-
-			this.ShowUserNotification("Adhérent dupliqué");
+			this.SelectedAdherent = this.Adherents.FirstOrDefault();
+			this.ShowUserNotification(ResAdherents.InfosAdherentDuplique);
 		}
 		#endregion
 	}
