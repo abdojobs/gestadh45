@@ -2,6 +2,8 @@
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace gestadh45.business.ViewModel.AdherentsVM
 {
@@ -49,6 +51,9 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 		public ConsultationAdherentsVM() {
 			this.repoMain = new Repository<Adherent>(this._context);
 
+			this.CreateInscrireCommand();
+			this.CreateDupliquerCommand();
+
 			this.PopulateAdherents();
 		}
 		#endregion
@@ -80,8 +85,10 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 			if (this.SelectedAdherent != null) {
 				this.repoMain.Delete(this.SelectedAdherent);
 				this.repoMain.Save();
+
 				this.PopulateAdherents();
 				this.SelectedAdherent = this.Adherents.FirstOrDefault();
+				this.ShowUserNotification("Adhérent supprimé");
 			}
 		}
 		#endregion
@@ -109,6 +116,56 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 		#region FilterCommand
 		public override void ExecuteFilterCommand(string filtre) {
 			this.PopulateAdherents(filtre);
+		}
+		#endregion
+
+		#region InscrireCommand
+		public ICommand InscrireCommand { get; set; }
+
+		private void CreateInscrireCommand() {
+			this.InscrireCommand = new RelayCommand(
+				this.ExecuteInscrireCommand,
+				this.CanExecuteInscrireCommand
+			);
+		}
+
+		public bool CanExecuteInscrireCommand() {
+			return this.SelectedAdherent != null;
+		}
+
+		public void ExecuteInscrireCommand() {
+			Messenger.Default.Send<NMShowUC<Adherent>>(
+				new NMShowUC<Adherent>(CodesUC.FormulaireInscription, this.SelectedAdherent)
+			);
+		}
+		#endregion
+
+		#region DupliquerCommand
+		public ICommand DupliquerCommand { get; set; }
+
+		private void CreateDupliquerCommand() {
+			this.DupliquerCommand = new RelayCommand(
+				this.ExecuteDupliquerCommand,
+				this.CanExecuteDupliquerCommand
+			);
+		}
+
+		public bool CanExecuteDupliquerCommand() {
+			return this.SelectedAdherent != null;
+		}
+
+		public void ExecuteDupliquerCommand() {
+			var newAdherent = this.SelectedAdherent.Clone() as Adherent;
+			newAdherent.ID = 0;
+			newAdherent.Prenom += " (copie)";
+			newAdherent.Commentaire = "Copie de " + this.SelectedAdherent.ToString();
+
+			this.repoMain.Add(newAdherent);
+			this.repoMain.Save();
+
+			this.PopulateAdherents();
+
+			this.ShowUserNotification("Adhérent dupliqué");
 		}
 		#endregion
 	}

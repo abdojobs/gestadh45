@@ -169,10 +169,13 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 			var errors = new List<string>();
 
 			if (this.CheckFormValidity(errors)) {
+				this.CurrentAdherent.DateModification = DateTime.Now;
+				
 				if (this.IsEditMode) {
 					this.repoAdherent.Edit(this.CurrentAdherent);
 				}
 				else {
+					this.CurrentAdherent.DateCreation = DateTime.Now;
 					this.repoAdherent.Add(this.CurrentAdherent);
 				}
 
