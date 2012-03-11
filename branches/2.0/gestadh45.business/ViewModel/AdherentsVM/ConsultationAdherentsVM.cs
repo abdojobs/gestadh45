@@ -55,7 +55,7 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 
 		private void PopulateAdherents(string filtre = null) {
 			if (!string.IsNullOrEmpty(filtre)) {
-				this.Adherents = this.repoMain.GetAll().Where(a => a.ToString().Contains(filtre)).OrderBy(a => a.ToString());
+				this.Adherents = this.repoMain.GetAll().Where(a => a.ToString().ToUpperInvariant().Contains(filtre.ToUpperInvariant())).OrderBy(a => a.ToString());
 			}
 			else {
 				this.Adherents = this.repoMain.GetAll().OrderBy(a => a.ToString());
