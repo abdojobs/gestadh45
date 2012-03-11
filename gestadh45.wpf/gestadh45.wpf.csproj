@@ -78,6 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Compile Include="Tools\BooleanInversionConverter.cs" />
+    <Compile Include="Tools\HexaColorStringToBrushConverter.cs" />
     <Compile Include="UserControls\AdherentsUC\ConsultationAdherentsUC.xaml.cs">
       <DependentUpon>ConsultationAdherentsUC.xaml</DependentUpon>
     </Compile>
@@ -98,6 +99,9 @@
     </Compile>
     <Compile Include="UserControls\InscriptionsUC\ConsultationInscriptionsUC.xaml.cs">
       <DependentUpon>ConsultationInscriptionsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\InscriptionsUC\FormulaireInscriptionUC.xaml.cs">
+      <DependentUpon>FormulaireInscriptionUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SaisonsUC\ConsultationSaisonsUC.xaml.cs">
       <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
@@ -148,6 +152,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\InscriptionsUC\ConsultationInscriptionsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\InscriptionsUC\FormulaireInscriptionUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

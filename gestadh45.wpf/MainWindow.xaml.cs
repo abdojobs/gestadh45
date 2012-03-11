@@ -4,13 +4,11 @@ using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
-using gestadh45.wpf.UserControls.InfosClubs;
-using gestadh45.wpf.UserControls.Villes;
-using gestadh45.wpf.UserControls.Saisons;
-using gestadh45.wpf.UserControls;
 using gestadh45.wpf.UserControls.AdherentsUC;
-using gestadh45.business.ViewModel.AdherentsVM;
+using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.InscriptionsUC;
+using gestadh45.wpf.UserControls.Saisons;
+using gestadh45.wpf.UserControls.Villes;
 
 namespace gestadh45.wpf
 {
@@ -42,6 +40,12 @@ namespace gestadh45.wpf
 		private void ShowUCWithParameters(string codeUC, object objetUC) {
 			if (codeUC.Equals(CodesUC.FormulaireAdherent) && objetUC is Adherent) {
 				this.contenu.Child = new FormulaireAdherentUC(objetUC as Adherent);
+			}
+			else if (codeUC.Equals(CodesUC.FormulaireInscription) && objetUC is Inscription) {
+				this.contenu.Child = new FormulaireInscriptionUC(objetUC as Inscription);
+			}
+			else if (codeUC.Equals(CodesUC.FormulaireInscription) && objetUC is Adherent) {
+				this.contenu.Child = new FormulaireInscriptionUC(objetUC as Adherent);
 			}
 		}
 
@@ -92,6 +96,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.ConsultationInscriptions:
 					userControl = new ConsultationInscriptionsUC();
+					break;
+
+				case CodesUC.FormulaireInscription:
+					userControl = new FormulaireInscriptionUC();
 					break;
 
 				default:

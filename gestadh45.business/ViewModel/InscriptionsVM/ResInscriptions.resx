@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrAdherentObligatoire" xml:space="preserve">
+    <value>L'adhérent est obligatoire</value>
+  </data>
+  <data name="ErrGroupeObligatoire" xml:space="preserve">
+    <value>Le groupe est obligatoire</value>
+  </data>
+  <data name="ErrInscriptionExiste" xml:space="preserve">
+    <value>Cette inscription existe déjà</value>
+  </data>
+  <data name="ErrStatutObligatoire" xml:space="preserve">
+    <value>Le statut est obligatoire</value>
+  </data>
   <data name="InfosDocumentGenere" xml:space="preserve">
     <value>Le document a été généré</value>
   </data>
