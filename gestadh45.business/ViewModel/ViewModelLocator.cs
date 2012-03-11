@@ -13,7 +13,6 @@ using GalaSoft.MvvmLight;
 using gestadh45.business.ViewModel.InfosClubVM;
 using gestadh45.business.ViewModel.VillesVM;
 using gestadh45.business.ViewModel.SaisonsVM;
-using gestadh45.business.ViewModel.InscriptionsVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -64,9 +63,6 @@ namespace gestadh45.business.ViewModel
 		#endregion
 
 		#region InscriptionVM
-		public static FormulaireInscriptionVM FormulaireInscriptionVM {
-			get { return new FormulaireInscriptionVM(); }
-		}
 		#endregion
 	}
 }

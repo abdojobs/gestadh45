@@ -24,7 +24,7 @@
 		<StackPanel DockPanel.Dock="top" Orientation="Horizontal">
 			<Button Name="btnInfosClub" Height="32" Width="32" Margin="5,5,10,5"
 					Command="{Binding Path=ShowUCCommand}"
-					CommandParameter="{x:Static b:CodesUC.FormulaireInscription}">
+					CommandParameter="{x:Static b:CodesUC.ConsultationInfosClub}">
 				<Image Source="/gestadh45.wpf;component/Images/btn_Home.png" />
 			</Button>
 
