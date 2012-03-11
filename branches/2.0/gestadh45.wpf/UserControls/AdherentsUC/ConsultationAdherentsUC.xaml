@@ -53,6 +53,32 @@
 					<TextBlock Text="{Binding Path=SelectedAdherent.Sexe, StringFormat='Sexe : {0}'}" />
 				</StackPanel>
 			</GroupBox>
+			
+			<GroupBox Name="gbxAdresse" Header="Adresse" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="{Binding Path=SelectedAdherent.Adresse}" />
+					<TextBlock Text="{Binding Path=SelectedAdherent.Ville}" />
+				</StackPanel>				
+			</GroupBox>
+			
+			<GroupBox Name="gbxContact" Header="Contact" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="{Binding Path=SelectedAdherent.Telephone1, StringFormat='Tél. 1 : {0}'}" />
+					<TextBlock Text="{Binding Path=SelectedAdherent.Telephone2, StringFormat='Tél. 2 : {0}'}" />
+					<TextBlock Text="{Binding Path=SelectedAdherent.Telephone3, StringFormat='Tél. 3 : {0}'}" />
+					<TextBlock Text="{Binding Path=SelectedAdherent.Mail1, StringFormat='Mail 1 : {0}'}" />
+					<TextBlock Text="{Binding Path=SelectedAdherent.Mail2, StringFormat='Mail 2 : {0}'}" />
+					<TextBlock Text="{Binding Path=SelectedAdherent.Mail3, StringFormat='Mail 3 : {0}'}" />
+				</StackPanel>
+			</GroupBox>
+			
+			<GroupBox Name="gbxDivers" Header="Divers" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<TextBlock TextWrapping="Wrap" Text="{Binding Path=SelectedAdherent.Commentaire}" Margin="0,0,0,5" />
+					<TextBlock Text="{Binding Path=SelectedAdherent.DateCreation, StringFormat='Créé(e) le : {0:dd/MM/yyyy}'}" />
+					<TextBlock Text="{Binding Path=SelectedAdherent.DateModification, StringFormat='Modifié(e) le : {0:dd/MM/yyyy}'}" />
+				</StackPanel>
+			</GroupBox>
 
 			<Separator Height="2" />
 
