@@ -93,7 +93,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 			this.CreateRepositories();
 			this.PopulateCombos();
 
-			this.CurrentInscription = new Inscription();
+			this.CurrentInscription = new Inscription() { Cotisation = 0 };
 		}
 
 		/// <summary>
@@ -147,7 +147,11 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 			}
 
 			if (this.CurrentInscription.StatutInscription == null) {
-				errors.Add(ResInscriptions.ErrStatutObligatoire);
+				errors.Add(ResInscriptions.ErrCotisationInvalide);
+			}
+
+			if (this.CurrentInscription.Cotisation == null) {
+				errors.Add(ResInscriptions.ErrCotisationInvalide);
 			}
 
 			if (errors.Count == 0 && !this.IsEditMode && this.CurrentElementExists()) {

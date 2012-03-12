@@ -118,9 +118,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 
 		#region FilterCommand
 		public override void ExecuteFilterCommand(string filtre) {
-			if (!string.IsNullOrEmpty(filtre)) {
-				this.PopulateInscriptions(filtre);
-			}
+			this.PopulateInscriptions(filtre);
 		}
 		#endregion
 

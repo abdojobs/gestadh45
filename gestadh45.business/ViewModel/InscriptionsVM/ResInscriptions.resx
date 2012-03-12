@@ -120,6 +120,9 @@
   <data name="ErrAdherentObligatoire" xml:space="preserve">
     <value>L'adhérent est obligatoire</value>
   </data>
+  <data name="ErrCotisationInvalide" xml:space="preserve">
+    <value>Le montant de la cotisation est invalide</value>
+  </data>
   <data name="ErrGroupeObligatoire" xml:space="preserve">
     <value>Le groupe est obligatoire</value>
   </data>
