@@ -48,6 +48,9 @@ namespace gestadh45.wpf
 			else if (codeUC.Equals(CodesUC.FormulaireInscription) && objetUC is Adherent) {
 				this.contenu.Child = new FormulaireInscriptionUC(objetUC as Adherent);
 			}
+			else if (codeUC.Equals(CodesUC.ConsultationAdherents) && objetUC is Adherent) {
+				this.contenu.Child = new ConsultationAdherentsUC(objetUC as Adherent);
+			}
 		}
 
 		private void OpenWindowUC(string codeUC) {

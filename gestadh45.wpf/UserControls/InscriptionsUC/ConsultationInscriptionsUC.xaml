@@ -58,7 +58,7 @@
 		<StackPanel DockPanel.Dock="Right" Margin="20,0,0,0" Orientation="Vertical">
 			<GroupBox Name="gbxAdherent" Header="Adhérent" Margin="0,0,0,10">
 				<StackPanel Orientation="Vertical">
-					<Button Name="btnAfficherAdherent" Margin="0,5,0,5" Command="{Binding Path=AfficherAdherentCommand}">
+					<Button Name="btnAfficherAdherent" Margin="0,5,0,5" Command="{Binding Path=ShowDetailsAdherentCommand}">
 						<TextBlock Style="{DynamicResource ResourceKey=lablForm}" Text="{Binding Path=SelectedInscription.Adherent}" />
 					</Button>
 
