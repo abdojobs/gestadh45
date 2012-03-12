@@ -35,6 +35,12 @@
 					CommandParameter="{Binding ElementName=lbxInscriptions, Path=SelectedItem}" />
 				</i:EventTrigger>
 			</i:Interaction.Triggers>
+			
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Path=Libelle}" Foreground="{Binding Path=StatutInscription.CodeCouleur, Converter={StaticResource ResourceKey=HexaToBrush}}" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
 		</ListBox>
 
 		<StackPanel DockPanel.Dock="Right" Orientation="Vertical" VerticalAlignment="Center" Margin="10,10,10,10">
