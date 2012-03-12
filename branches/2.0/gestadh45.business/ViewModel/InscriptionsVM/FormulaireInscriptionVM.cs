@@ -112,7 +112,19 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 		#endregion
 
 		private void PopulateCombos() {
-			this.Adherents = this.repoAdherent.GetAll().OrderBy(a => a.ToString());
+			// en mode création on n'alimente la liste qu'avec les adhérents qui n'ont pas encore d'inscription sur la saison
+			if (!this.IsEditMode) {
+				this.Adherents = this.repoAdherent.GetAll()
+					.Where(a => a.Inscriptions
+						.Where(i => i.Groupe.Saison.EstSaisonCourante).Count() == 0
+					)
+					.OrderBy(a => a.ToString()
+				);
+			}
+			else {
+				this.Adherents = this.repoAdherent.GetAll().OrderBy(a => a.ToString());
+			}
+
 			this.Groupes = this.repoGroupe.GetAll()
 				.Where(g => g.Saison.EstSaisonCourante)
 				.OrderBy(g => g.JourSemaine.Numero);
