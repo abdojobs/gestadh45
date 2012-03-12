@@ -10,5 +10,12 @@ namespace gestadh45.dal
 		public override string ToString() {
 			return string.Format("{0} - {1}", this.Groupe.Libelle, this.Adherent);
 		}
+
+		/// <summary>
+		/// Obtient le libellé de l'inscription (encapsulation de ToString())
+		/// </summary>
+		public string Libelle {
+			get { return this.ToString(); }
+		}
 	}
 }
