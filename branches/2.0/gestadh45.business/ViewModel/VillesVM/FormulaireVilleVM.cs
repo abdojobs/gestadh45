@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using GalaSoft.MvvmLight.Messaging;
-using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
 
 namespace gestadh45.business.ViewModel.VillesVM
@@ -71,8 +70,8 @@ namespace gestadh45.business.ViewModel.VillesVM
 
 		protected override bool CurrentElementExists() {
 			return this.repoVille.GetAll().Where(
-				(v) => v.Libelle.ToUpperInvariant().Equals(this.CurrentVille.Libelle) 
-					&& v.CodePostal.ToUpperInvariant().Equals(this.CurrentVille.CodePostal)
+				(v) => v.Libelle.Equals(this.CurrentVille.Libelle, StringComparison.OrdinalIgnoreCase) 
+					&& v.CodePostal.Equals(this.CurrentVille.CodePostal, StringComparison.OrdinalIgnoreCase)
 				).Count() != 0;
 		}
 

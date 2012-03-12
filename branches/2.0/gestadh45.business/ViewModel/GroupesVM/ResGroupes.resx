@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrHeureDebutObligatoire" xml:space="preserve">
+    <value>L'heure de début est obligatoire</value>
+  </data>
+  <data name="ErrHeureFinInfHeureSup" xml:space="preserve">
+    <value>L'heure de fin doit être strictement supérieure à l'heure de début</value>
+  </data>
+  <data name="ErrHeureFinObligatoire" xml:space="preserve">
+    <value>L'heure de fin est obligatoire</value>
+  </data>
+  <data name="ErrJourObligatoire" xml:space="preserve">
+    <value>Le jour est obligatoire</value>
+  </data>
+  <data name="ErrLibelleObligatoire" xml:space="preserve">
+    <value>Le libellé est obligatoire</value>
+  </data>
   <data name="InfoGroupeSupprime" xml:space="preserve">
     <value>Le groupe a été supprimé</value>
   </data>

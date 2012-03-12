@@ -84,6 +84,7 @@
       <DependentUpon>ResAdherents.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\GroupesVM\ConsultationGroupesVM.cs" />
+    <Compile Include="ViewModel\GroupesVM\FormulaireGroupeVM.cs" />
     <Compile Include="ViewModel\GroupesVM\ResGroupes.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
