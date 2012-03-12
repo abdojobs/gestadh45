@@ -91,6 +91,9 @@
     <Compile Include="UserControls\BtnAnnulerEnregistrerUC.xaml.cs">
       <DependentUpon>BtnAnnulerEnregistrerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\GroupesUC\ConsultationGroupesUC.xaml.cs">
+      <DependentUpon>ConsultationGroupesUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\InfosClubUC\ConsultationInfosClubUC.xaml.cs">
       <DependentUpon>ConsultationInfosClubUC.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
     <Page Include="UserControls\BtnAnnulerEnregistrerUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\GroupesUC\ConsultationGroupesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\InfosClubUC\ConsultationInfosClubUC.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -255,6 +262,9 @@
   <ItemGroup>
     <Resource Include="Images\btn_mails16.png" />
     <Resource Include="Images\btn_pdf16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_groupes.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

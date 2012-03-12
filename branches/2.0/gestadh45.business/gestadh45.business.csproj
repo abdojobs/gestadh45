@@ -83,6 +83,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResAdherents.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\GroupesVM\ConsultationGroupesVM.cs" />
+    <Compile Include="ViewModel\GroupesVM\ResGroupes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResGroupes.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\InfosClubVM\ConsultationInfosClubVM.cs" />
     <Compile Include="ViewModel\InfosClubVM\FormulaireInfosClubVM.cs" />
     <Compile Include="ViewModel\InfosClubVM\ResInfosClub.Designer.cs">
@@ -135,6 +141,10 @@
     <EmbeddedResource Include="ViewModel\AdherentsVM\ResAdherents.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResAdherents.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\GroupesVM\ResGroupes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResGroupes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\InfosClubVM\ResInfosClub.resx">
       <Generator>ResXFileCodeGenerator</Generator>

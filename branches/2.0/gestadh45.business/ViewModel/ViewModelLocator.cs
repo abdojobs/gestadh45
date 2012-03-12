@@ -14,6 +14,7 @@ using gestadh45.business.ViewModel.InfosClubVM;
 using gestadh45.business.ViewModel.InscriptionsVM;
 using gestadh45.business.ViewModel.SaisonsVM;
 using gestadh45.business.ViewModel.VillesVM;
+using gestadh45.business.ViewModel.GroupesVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -81,6 +82,16 @@ namespace gestadh45.business.ViewModel
 		public static FormulaireInscriptionVM FormulaireInscriptionVM {
 			get { return new FormulaireInscriptionVM(); }
 		}
+		#endregion
+
+		#region GroupesVM
+		public static ConsultationGroupesVM ConsultationGroupesVM {
+			get { return new ConsultationGroupesVM(); }
+		}
+
+		//public static FormulaireGroupeVM FormulaireGroupeVM {
+		//    get { return new FormulaireGroupeVM(); }
+		//}
 		#endregion
 	}
 }

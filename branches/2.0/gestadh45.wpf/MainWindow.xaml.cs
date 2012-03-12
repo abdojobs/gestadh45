@@ -9,6 +9,7 @@ using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.InscriptionsUC;
 using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls.Villes;
+using gestadh45.wpf.UserControls.GroupesUC;
 
 namespace gestadh45.wpf
 {
@@ -100,6 +101,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireInscription:
 					userControl = new FormulaireInscriptionUC();
+					break;
+
+				case CodesUC.ConsultationGroupes:
+					userControl = new ConsultationGroupesUC();
 					break;
 
 				default:

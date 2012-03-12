@@ -17,5 +17,8 @@ namespace gestadh45.business
 
 		public const string ConsultationInscriptions = "ConsultationInscriptions";
 		public const string FormulaireInscription = "FormulaireInscription";
+
+		public const string ConsultationGroupes = "ConsultationGroupes";
+		public const string FormulaireGroupe = "FormulaireGroupe";
 	}
 }
