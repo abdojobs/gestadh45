@@ -70,6 +70,15 @@ namespace gestadh45.business.ViewModel.InscriptionsVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le montant de la cotisation est invalide.
+        /// </summary>
+        internal static string ErrCotisationInvalide {
+            get {
+                return ResourceManager.GetString("ErrCotisationInvalide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Le groupe est obligatoire.
         /// </summary>
         internal static string ErrGroupeObligatoire {
