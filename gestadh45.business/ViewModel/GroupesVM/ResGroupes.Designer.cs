@@ -61,6 +61,51 @@ namespace gestadh45.business.ViewModel.GroupesVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;heure de début est obligatoire.
+        /// </summary>
+        internal static string ErrHeureDebutObligatoire {
+            get {
+                return ResourceManager.GetString("ErrHeureDebutObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;heure de fin doit être strictement supérieure à l&apos;heure de début.
+        /// </summary>
+        internal static string ErrHeureFinInfHeureSup {
+            get {
+                return ResourceManager.GetString("ErrHeureFinInfHeureSup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;heure de fin est obligatoire.
+        /// </summary>
+        internal static string ErrHeureFinObligatoire {
+            get {
+                return ResourceManager.GetString("ErrHeureFinObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le jour est obligatoire.
+        /// </summary>
+        internal static string ErrJourObligatoire {
+            get {
+                return ResourceManager.GetString("ErrJourObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le libellé est obligatoire.
+        /// </summary>
+        internal static string ErrLibelleObligatoire {
+            get {
+                return ResourceManager.GetString("ErrLibelleObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Le groupe a été supprimé.
         /// </summary>
         internal static string InfoGroupeSupprime {

@@ -112,8 +112,8 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 		/// <returns>Booléen indiquant si l'adhérent existe déjà ou non</returns>
 		protected override bool CurrentElementExists() {
 			return this.repoAdherent.GetAll().Where(
-					a => a.Nom.ToUpperInvariant().Equals(this.CurrentAdherent.Nom.ToUpperInvariant())
-					&& a.Prenom.ToUpperInvariant().Equals(this.CurrentAdherent.Prenom.ToUpperInvariant())
+					a => a.Nom.Equals(this.CurrentAdherent.Nom, StringComparison.OrdinalIgnoreCase)
+					&& a.Prenom.Equals(this.CurrentAdherent.Prenom, StringComparison.OrdinalIgnoreCase)
 				).Count() != 0;
 		}
 
