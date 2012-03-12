@@ -73,6 +73,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 		private void CreateCommands() {
 			this.CreateGenererDocumentCommand();
 			this.CreateGenererVCardCommand();
+			this.CreateShowDetailsAdherentCommand();
 		}
 
 		#region ShowDetailsCommand
@@ -164,6 +165,32 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 				// TODO implémenter
 
 				this.ShowUserNotification(ResInscriptions.InfosVCardGeneree);
+			}
+		}
+		#endregion
+
+		#region ShowDetailsAdherentCommand
+		public ICommand ShowDetailsAdherentCommand { get; set; }
+
+		private void CreateShowDetailsAdherentCommand() {
+			this.ShowDetailsAdherentCommand = new RelayCommand(
+				this.ExecuteShowDetailsAdherentCommand,
+				this.CanExecuteShowDetailsAdherentCommand
+			);
+		}
+
+		public bool CanExecuteShowDetailsAdherentCommand() {
+			return (this.SelectedInscription != null && this.SelectedInscription.Adherent != null);
+		}
+
+		public void ExecuteShowDetailsAdherentCommand() {
+			if (this.SelectedInscription != null && this.SelectedInscription.Adherent != null) {
+				Messenger.Default.Send(
+					new NMShowUC<Adherent>(
+						CodesUC.ConsultationAdherents,
+						this.SelectedInscription.Adherent
+					)
+				);
 			}
 		}
 		#endregion
