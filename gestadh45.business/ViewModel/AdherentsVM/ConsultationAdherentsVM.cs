@@ -131,7 +131,10 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 		}
 
 		public bool CanExecuteInscrireCommand() {
-			return this.SelectedAdherent != null;
+			// la commande Inscrire est acctivée seulement si un adhérent est sélectionné 
+			// ET qu'il n'a encore aucune inscription sur la saison courante
+			return this.SelectedAdherent != null 
+				&& this.SelectedAdherent.Inscriptions.Where(i => i.Groupe.Saison.EstSaisonCourante).Count() == 0;
 		}
 
 		public void ExecuteInscrireCommand() {
