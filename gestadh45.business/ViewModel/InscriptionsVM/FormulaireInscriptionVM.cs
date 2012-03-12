@@ -167,6 +167,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 		/// <param name="idAdherent">ID de l'adhérent</param>
 		public void SetAdherent(int idAdherent) {
 			this.CurrentInscription.Adherent = this.repoAdherent.GetByKey(idAdherent);
+			this.RaisePropertyChanged(() => this.CurrentInscription);
 		}
 
 		#region CancelCommand
