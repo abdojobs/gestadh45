@@ -40,15 +40,20 @@
 			<GroupBox Name="gbxInfos" Header="Informations" Margin="0,0,0,10">
 				<StackPanel Orientation="Vertical">
 					<TextBlock Style="{DynamicResource ResourceKey=labelForm}"  Text="{Binding Path=SelectedGroupe.Libelle}" />
+					
 					<TextBlock Text="{Binding Path=SelectedGroupe.JourSemaine, StringFormat='Jour : {0}'}" />
+					
 					<TextBlock>
 						<TextBlock.Text>
 							<MultiBinding StringFormat="Horaire : {0:t} - {1:t}">
-								<Binding Path="Path=SelectedGroupe.HeureDebutDT" />
-								<Binding Path="Path=SelectedGroupe.HeureFinDT" />
+								<Binding Path="SelectedGroupe.HeureDebut" />
+								<Binding Path="SelectedGroupe.HeureFin" />
 							</MultiBinding>
 						</TextBlock.Text>
 					</TextBlock>
+					
+					<TextBlock Text="{Binding Path=SelectedGroupe.Saison, StringFormat='Saison : {0}'}" />
+					
 					<TextBlock Text="{Binding Path=SelectedGroupe.NbPlaces, StringFormat='Nb. de places : {0}'}" />
 				</StackPanel>
 			</GroupBox>

@@ -1,15 +1,17 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
 using gestadh45.wpf.UserControls.AdherentsUC;
+using gestadh45.wpf.UserControls.GroupesUC;
 using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.InscriptionsUC;
 using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls.Villes;
-using gestadh45.wpf.UserControls.GroupesUC;
 
 namespace gestadh45.wpf
 {
@@ -19,6 +21,17 @@ namespace gestadh45.wpf
 	public partial class MainWindow : Window
 	{
 		public MainWindow() {
+			// Ensure the current culture passed into bindings 
+			// is the OS culture. By default, WPF uses en-US 
+			// as the culture, regardless of the system settings.
+			FrameworkElement.LanguageProperty.OverrideMetadata(
+				typeof(FrameworkElement), 
+				new FrameworkPropertyMetadata(
+					XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)
+				)
+			);
+
+
 			InitializeComponent();
 
 			// Abonnement aux messages
@@ -108,6 +121,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.ConsultationGroupes:
 					userControl = new ConsultationGroupesUC();
+					break;
+
+				case CodesUC.FormulaireGroupe:
+					userControl = new FormulaireGroupeUC();
 					break;
 
 				default:
