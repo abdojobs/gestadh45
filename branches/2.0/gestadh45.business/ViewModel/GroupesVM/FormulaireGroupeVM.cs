@@ -44,16 +44,21 @@ namespace gestadh45.business.ViewModel.GroupesVM
 		#region Repositories
 		private Repository<JourSemaine> repoJourSemaine;
 		private Repository<Groupe> repoGroupe;
+		private Repository<Saison> repoSaison;
 		#endregion
 
 		public FormulaireGroupeVM() {
 			this.CreateRepositories();
 			this.CurrentGroupe = new Groupe();
 			this.UCParentCode = CodesUC.ConsultationGroupes;
+			this.PopulateCombos();
+
+			this.CurrentGroupe.Saison = this.repoSaison.GetAll().Where(s => s.EstSaisonCourante).FirstOrDefault();
 		}
 
 		private void CreateRepositories() {
 			this.repoGroupe = new Repository<Groupe>(this._context);
+			this.repoSaison = new Repository<Saison>(this._context);
 			this.repoJourSemaine = new Repository<JourSemaine>(this._context);
 		}
 
