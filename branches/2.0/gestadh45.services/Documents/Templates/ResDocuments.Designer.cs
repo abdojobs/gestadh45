@@ -70,6 +70,15 @@ namespace gestadh45.services.Documents.Templates {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Autorisation parentale pour les mineurs.
+        /// </summary>
+        internal static string LibelleAutorisationParentale {
+            get {
+                return ResourceManager.GetString("LibelleAutorisationParentale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Cotisation : {0} euros.
         /// </summary>
         internal static string LibelleCotisation {
@@ -84,6 +93,24 @@ namespace gestadh45.services.Documents.Templates {
         internal static string LibelleFaitALe {
             get {
                 return ResourceManager.GetString("LibelleFaitALe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fait à .............................. le ...............................
+        /// </summary>
+        internal static string LibelleFaitALeVide {
+            get {
+                return ResourceManager.GetString("LibelleFaitALeVide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Groupe : {0}.
+        /// </summary>
+        internal static string LibelleGroupe {
+            get {
+                return ResourceManager.GetString("LibelleGroupe", resourceCulture);
             }
         }
         
@@ -142,6 +169,24 @@ namespace gestadh45.services.Documents.Templates {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Signature de l&apos;adhérent ou de son représentant légal.
+        /// </summary>
+        internal static string LibelleSignatureAdherent {
+            get {
+                return ResourceManager.GetString("LibelleSignatureAdherent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Signature.
+        /// </summary>
+        internal static string LibelleSignatureParents {
+            get {
+                return ResourceManager.GetString("LibelleSignatureParents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à SIRET : {0}.
         /// </summary>
         internal static string LibelleSiret {
@@ -165,6 +210,33 @@ namespace gestadh45.services.Documents.Templates {
         internal static string LibelleTelephone {
             get {
                 return ResourceManager.GetString("LibelleTelephone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} - {1}.
+        /// </summary>
+        internal static string LibelleTelMail {
+            get {
+                return ResourceManager.GetString("LibelleTelMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inscription {0} à {1}.
+        /// </summary>
+        internal static string LibelleTitreFicheInscription {
+            get {
+                return ResourceManager.GetString("LibelleTitreFicheInscription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Je, soussigné .................................................., agissant en qualité de parent ou de tuteur légal de l&apos;enfant désigné ci-dessus, autorise le club à faire transporter mon enfant au centre hospitalier le plus proche si son état le nécessite ou a prendre toutes les mesures nécessaires en cas d&apos;accident survenant lors de la pratique de l&apos;escalade dans le cadre du club..
+        /// </summary>
+        internal static string TexteAutorisationParentale {
+            get {
+                return ResourceManager.GetString("TexteAutorisationParentale", resourceCulture);
             }
         }
     }
