@@ -4,6 +4,8 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
+using gestadh45.services.Documents;
+using gestadh45.business.ServicesAdapters;
 
 namespace gestadh45.business.ViewModel.InscriptionsVM
 {
@@ -45,11 +47,13 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 
 		#region Repositories
 		private Repository<Inscription> repoMain;
+		private Repository<InfosClub> repoInfosClub;
 		#endregion
 
 		#region Constructeur
 		public ConsultationInscriptionsVM() {
 			this.repoMain = new Repository<Inscription>(this._context);
+			this.repoInfosClub = new Repository<InfosClub>(this._context);
 
 			this.PopulateInscriptions();
 			this.CreateCommands();
@@ -139,7 +143,12 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 
 		public void ExecuteGenererDocumentCommand(string codeDocument) {
 			if (this.SelectedInscription != null) {
-				// TODO implémenter
+				var gen = new GenerateurDocumentPDF(
+					ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), this.SelectedInscription), 
+					@"dev.pdf"
+				);
+
+				gen.CreerDocument(codeDocument);
 
 				this.ShowUserNotification(ResInscriptions.InfosDocumentGenere);
 			}

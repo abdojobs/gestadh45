@@ -66,7 +66,7 @@
 				<StackPanel Orientation="Vertical" Margin="0,5,0,5">
 					<StackPanel Orientation="Horizontal">
 						<Button Height="16" Width="16" ToolTip="Générer les fiches d'inscription du groupe au format PDF" 
-								CommandParameter="{x:Static doc:CodesDocuments.FicheInscriptionPDF}" 
+								CommandParameter="{x:Static doc:CodesDocument.FicheInscriptionPDF}" 
 								Command="{Binding Path=GenererDocumentsGroupeCommand}">
 							<Image Source="/gestadh45.wpf;component/Images/btn_pdf16.png" />
 						</Button>
@@ -75,7 +75,7 @@
 
 					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 						<Button Height="16" Width="16" ToolTip="Générer les attestations du grope au format PDF" 
-								CommandParameter="{x:Static doc:CodesDocuments.AttestationPDF}" 
+								CommandParameter="{x:Static doc:CodesDocument.AttestationPDF}" 
 								Command="{Binding Path=GenererDocumentsGroupeCommand}">
 							<Image Source="/gestadh45.wpf;component/Images/btn_pdf16.png" />
 						</Button>

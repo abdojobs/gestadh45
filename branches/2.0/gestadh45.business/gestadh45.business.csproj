@@ -76,6 +76,7 @@
     <Compile Include="PersonalizedMsg\NMType.cs" />
     <Compile Include="PersonalizedMsg\NMUserNotification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicesAdapters\ServiceDocumentAdapter.cs" />
     <Compile Include="ViewModel\AdherentsVM\ConsultationAdherentsVM.cs" />
     <Compile Include="ViewModel\AdherentsVM\FormulaireAdherentVM.cs" />
     <Compile Include="ViewModel\AdherentsVM\ResAdherents.Designer.cs">
@@ -136,6 +137,10 @@
     <ProjectReference Include="..\gestadh45.dal\gestadh45.dal.csproj">
       <Project>{B592B627-A159-4936-92E8-EFF98114395C}</Project>
       <Name>gestadh45.dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.services\gestadh45.services.csproj">
+      <Project>{3272969B-5D97-4067-B0CF-217D38263749}</Project>
+      <Name>gestadh45.services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

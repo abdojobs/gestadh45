@@ -31,8 +31,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PdfSharp">
+      <HintPath>..\packages\PDFsharp.1.32.2602.0\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting">
+      <HintPath>..\packages\PDFsharp.1.32.2602.0\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,8 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Documents\CodesDocuments.cs" />
+    <Compile Include="Documents\CodesDocument.cs" />
+    <Compile Include="Documents\DonneesDocument.cs" />
+    <Compile Include="Documents\GenerateurDocumentBase.cs" />
+    <Compile Include="Documents\GenerateurDocumentPDF.cs" />
+    <Compile Include="Documents\Templates\AttestationDocumentPDF.cs" />
+    <Compile Include="Documents\Templates\GeneriqueDocumentPDF.cs" />
+    <Compile Include="Documents\Templates\InscriptionDocumentPDF.cs" />
+    <Compile Include="Documents\Templates\ResDocuments.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResDocuments.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Documents\Templates\ResDocuments.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResDocuments.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
