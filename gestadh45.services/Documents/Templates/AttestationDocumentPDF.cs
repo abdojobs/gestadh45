@@ -12,7 +12,7 @@ namespace gestadh45.service.Documents.Templates
 			: base(page, donnees) {
 		}
 
-		private void CreerZoneCoordonneesAdherent() {
+		private void CreerZoneTitre() {
 			using (var gfxRecuPourAdhesion = XGraphics.FromPdfPage(this._page)) {
 				gfxRecuPourAdhesion.DrawString(
 					string.Format(ResDocuments.LibelleRecuPourAdhesion, this._donnees.Saison, this._donnees.NomClub),
@@ -22,7 +22,9 @@ namespace gestadh45.service.Documents.Templates
 					XStringFormats.Center
 				);
 			}
-			
+		}
+
+		private void CreerZoneCoordonneesAdherent() {			
 			using (var gfxNomAdherent = XGraphics.FromPdfPage(this._page)) {
 				gfxNomAdherent.DrawString(
 					string.Format(ResDocuments.LibelleNomAdherent, this._donnees.NomAdherent, this._donnees.PrenomAdherent),
@@ -79,6 +81,7 @@ namespace gestadh45.service.Documents.Templates
 
 		public void GenererContenuDocument() {
 			base.CreerEntete();
+			this.CreerZoneTitre();
 			this.CreerZoneCoordonneesAdherent();
 			this.CreerZoneInfosAttestation();
 			this.CreerZoneLieuDate();

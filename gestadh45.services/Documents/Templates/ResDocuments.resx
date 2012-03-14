@@ -120,11 +120,20 @@
   <data name="LibelleAdresse" xml:space="preserve">
     <value>{0} {1} - {2}</value>
   </data>
+  <data name="LibelleAutorisationParentale" xml:space="preserve">
+    <value>Autorisation parentale pour les mineurs</value>
+  </data>
   <data name="LibelleCotisation" xml:space="preserve">
     <value>Cotisation : {0} euros</value>
   </data>
   <data name="LibelleFaitALe" xml:space="preserve">
     <value>Fait à {0} le {1}</value>
+  </data>
+  <data name="LibelleFaitALeVide" xml:space="preserve">
+    <value>Fait à .............................. le ..............................</value>
+  </data>
+  <data name="LibelleGroupe" xml:space="preserve">
+    <value>Groupe : {0}</value>
   </data>
   <data name="LibelleMailClub" xml:space="preserve">
     <value>Mail : {0}</value>
@@ -144,6 +153,12 @@
   <data name="LibelleRecuPourAdhesion" xml:space="preserve">
     <value>Reçu pour l'adhésion {0} à {1}</value>
   </data>
+  <data name="LibelleSignatureAdherent" xml:space="preserve">
+    <value>Signature de l'adhérent ou de son représentant légal</value>
+  </data>
+  <data name="LibelleSignatureParents" xml:space="preserve">
+    <value>Signature</value>
+  </data>
   <data name="LibelleSiret" xml:space="preserve">
     <value>SIRET : {0}</value>
   </data>
@@ -152,5 +167,14 @@
   </data>
   <data name="LibelleTelephone" xml:space="preserve">
     <value>Tel. : {0}</value>
+  </data>
+  <data name="LibelleTelMail" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+  <data name="LibelleTitreFicheInscription" xml:space="preserve">
+    <value>Inscription {0} à {1}</value>
+  </data>
+  <data name="TexteAutorisationParentale" xml:space="preserve">
+    <value>Je, soussigné .................................................., agissant en qualité de parent ou de tuteur légal de l'enfant désigné ci-dessus, autorise le club à faire transporter mon enfant au centre hospitalier le plus proche si son état le nécessite ou a prendre toutes les mesures nécessaires en cas d'accident survenant lors de la pratique de l'escalade dans le cadre du club.</value>
   </data>
 </root>
