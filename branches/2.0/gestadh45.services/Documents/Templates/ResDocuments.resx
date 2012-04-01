@@ -177,4 +177,13 @@
   <data name="TexteAutorisationParentale" xml:space="preserve">
     <value>Je, soussigné .................................................., agissant en qualité de parent ou de tuteur légal de l'enfant désigné ci-dessus, autorise le club à faire transporter mon enfant au centre hospitalier le plus proche si son état le nécessite ou a prendre toutes les mesures nécessaires en cas d'accident survenant lors de la pratique de l'escalade dans le cadre du club.</value>
   </data>
+  <data name="AttestationPDFFileName" xml:space="preserve">
+    <value>Attestation - {0}.pdf</value>
+  </data>
+  <data name="InscriptionPDFFileName" xml:space="preserve">
+    <value>Inscription - {0}.pdf</value>
+  </data>
+  <data name="ExtensionPDF" xml:space="preserve">
+    <value>.pdf</value>
+  </data>
 </root>

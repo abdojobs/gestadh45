@@ -61,15 +61,6 @@ namespace gestadh45.business.ViewModel.InscriptionsVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Attestation - {0}.pdf.
-        /// </summary>
-        internal static string AttestationPDFFileName {
-            get {
-                return ResourceManager.GetString("AttestationPDFFileName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à L&apos;adhérent est obligatoire.
         /// </summary>
         internal static string ErrAdherentObligatoire {
@@ -115,15 +106,6 @@ namespace gestadh45.business.ViewModel.InscriptionsVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .pdf.
-        /// </summary>
-        internal static string ExtensionPdf {
-            get {
-                return ResourceManager.GetString("ExtensionPdf", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Le document a été généré.
         /// </summary>
         internal static string InfosDocumentGenere {
@@ -147,15 +129,6 @@ namespace gestadh45.business.ViewModel.InscriptionsVM {
         internal static string InfosVCardGeneree {
             get {
                 return ResourceManager.GetString("InfosVCardGeneree", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Inscription - {0}.pdf.
-        /// </summary>
-        internal static string InscriptionPDFFileName {
-            get {
-                return ResourceManager.GetString("InscriptionPDFFileName", resourceCulture);
             }
         }
     }

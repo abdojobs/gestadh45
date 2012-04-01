@@ -163,7 +163,7 @@ namespace gestadh45.wpf
 				FileName = nomFichier
 			};
 
-			dialog.Filter = string.Format("fichiers {0} (*{0})|*{0}", extensionFichier);
+			dialog.Filter = string.Format(Properties.Resources.FileDialogFilter, extensionFichier);
 			dialog.RestoreDirectory = true;
 
 			string filePath = (dialog.ShowDialog().Value) ? dialog.FileName : null;

@@ -22,7 +22,7 @@ namespace gestadh45.services.Documents.Templates {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResDocuments {
+    public class ResDocuments {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace gestadh45.services.Documents.Templates {
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.services.Documents.Templates.ResDocuments", typeof(ResDocuments).Assembly);
@@ -51,7 +51,7 @@ namespace gestadh45.services.Documents.Templates {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,9 +61,36 @@ namespace gestadh45.services.Documents.Templates {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Attestation - {0}.pdf.
+        /// </summary>
+        public static string AttestationPDFFileName {
+            get {
+                return ResourceManager.GetString("AttestationPDFFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à .pdf.
+        /// </summary>
+        public static string ExtensionPDF {
+            get {
+                return ResourceManager.GetString("ExtensionPDF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inscription - {0}.pdf.
+        /// </summary>
+        public static string InscriptionPDFFileName {
+            get {
+                return ResourceManager.GetString("InscriptionPDFFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à {0} {1} - {2}.
         /// </summary>
-        internal static string LibelleAdresse {
+        public static string LibelleAdresse {
             get {
                 return ResourceManager.GetString("LibelleAdresse", resourceCulture);
             }
@@ -72,7 +99,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Autorisation parentale pour les mineurs.
         /// </summary>
-        internal static string LibelleAutorisationParentale {
+        public static string LibelleAutorisationParentale {
             get {
                 return ResourceManager.GetString("LibelleAutorisationParentale", resourceCulture);
             }
@@ -81,7 +108,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Cotisation : {0} euros.
         /// </summary>
-        internal static string LibelleCotisation {
+        public static string LibelleCotisation {
             get {
                 return ResourceManager.GetString("LibelleCotisation", resourceCulture);
             }
@@ -90,7 +117,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Fait à {0} le {1}.
         /// </summary>
-        internal static string LibelleFaitALe {
+        public static string LibelleFaitALe {
             get {
                 return ResourceManager.GetString("LibelleFaitALe", resourceCulture);
             }
@@ -99,7 +126,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Fait à .............................. le ...............................
         /// </summary>
-        internal static string LibelleFaitALeVide {
+        public static string LibelleFaitALeVide {
             get {
                 return ResourceManager.GetString("LibelleFaitALeVide", resourceCulture);
             }
@@ -108,7 +135,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Groupe : {0}.
         /// </summary>
-        internal static string LibelleGroupe {
+        public static string LibelleGroupe {
             get {
                 return ResourceManager.GetString("LibelleGroupe", resourceCulture);
             }
@@ -117,7 +144,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Mail : {0}.
         /// </summary>
-        internal static string LibelleMailClub {
+        public static string LibelleMailClub {
             get {
                 return ResourceManager.GetString("LibelleMailClub", resourceCulture);
             }
@@ -126,7 +153,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Né(e) le {0}.
         /// </summary>
-        internal static string LibelleNeLe {
+        public static string LibelleNeLe {
             get {
                 return ResourceManager.GetString("LibelleNeLe", resourceCulture);
             }
@@ -135,7 +162,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à {0} {1}.
         /// </summary>
-        internal static string LibelleNomAdherent {
+        public static string LibelleNomAdherent {
             get {
                 return ResourceManager.GetString("LibelleNomAdherent", resourceCulture);
             }
@@ -144,7 +171,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à {0} - Saison {1}.
         /// </summary>
-        internal static string LibelleNomClubSaison {
+        public static string LibelleNomClubSaison {
             get {
                 return ResourceManager.GetString("LibelleNomClubSaison", resourceCulture);
             }
@@ -153,7 +180,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à N° {0}.
         /// </summary>
-        internal static string LibelleNumeroClub {
+        public static string LibelleNumeroClub {
             get {
                 return ResourceManager.GetString("LibelleNumeroClub", resourceCulture);
             }
@@ -162,7 +189,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Reçu pour l&apos;adhésion {0} à {1}.
         /// </summary>
-        internal static string LibelleRecuPourAdhesion {
+        public static string LibelleRecuPourAdhesion {
             get {
                 return ResourceManager.GetString("LibelleRecuPourAdhesion", resourceCulture);
             }
@@ -171,7 +198,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Signature de l&apos;adhérent ou de son représentant légal.
         /// </summary>
-        internal static string LibelleSignatureAdherent {
+        public static string LibelleSignatureAdherent {
             get {
                 return ResourceManager.GetString("LibelleSignatureAdherent", resourceCulture);
             }
@@ -180,7 +207,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Signature.
         /// </summary>
-        internal static string LibelleSignatureParents {
+        public static string LibelleSignatureParents {
             get {
                 return ResourceManager.GetString("LibelleSignatureParents", resourceCulture);
             }
@@ -189,7 +216,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à SIRET : {0}.
         /// </summary>
-        internal static string LibelleSiret {
+        public static string LibelleSiret {
             get {
                 return ResourceManager.GetString("LibelleSiret", resourceCulture);
             }
@@ -198,7 +225,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Web : {0}.
         /// </summary>
-        internal static string LibelleSiteWebClub {
+        public static string LibelleSiteWebClub {
             get {
                 return ResourceManager.GetString("LibelleSiteWebClub", resourceCulture);
             }
@@ -207,7 +234,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Tel. : {0}.
         /// </summary>
-        internal static string LibelleTelephone {
+        public static string LibelleTelephone {
             get {
                 return ResourceManager.GetString("LibelleTelephone", resourceCulture);
             }
@@ -216,7 +243,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à {0} - {1}.
         /// </summary>
-        internal static string LibelleTelMail {
+        public static string LibelleTelMail {
             get {
                 return ResourceManager.GetString("LibelleTelMail", resourceCulture);
             }
@@ -225,7 +252,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Inscription {0} à {1}.
         /// </summary>
-        internal static string LibelleTitreFicheInscription {
+        public static string LibelleTitreFicheInscription {
             get {
                 return ResourceManager.GetString("LibelleTitreFicheInscription", resourceCulture);
             }
@@ -234,7 +261,7 @@ namespace gestadh45.services.Documents.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Je, soussigné .................................................., agissant en qualité de parent ou de tuteur légal de l&apos;enfant désigné ci-dessus, autorise le club à faire transporter mon enfant au centre hospitalier le plus proche si son état le nécessite ou a prendre toutes les mesures nécessaires en cas d&apos;accident survenant lors de la pratique de l&apos;escalade dans le cadre du club..
         /// </summary>
-        internal static string TexteAutorisationParentale {
+        public static string TexteAutorisationParentale {
             get {
                 return ResourceManager.GetString("TexteAutorisationParentale", resourceCulture);
             }
