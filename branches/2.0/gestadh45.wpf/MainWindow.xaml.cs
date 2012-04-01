@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
@@ -12,6 +13,7 @@ using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.InscriptionsUC;
 using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls.Villes;
+using Microsoft.Win32;
 
 namespace gestadh45.wpf
 {
@@ -41,6 +43,7 @@ namespace gestadh45.wpf
 			Messenger.Default.Register<NMShowUC<Adherent>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<Inscription>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowAboutBox>(this, (msg) => this.ShowAboutBox());
+			Messenger.Default.Register<NMActionFileDialog<string>>(this, (msg) => this.ShowSaveFileDialog(msg.ExtensionFichier, msg.NomFichier, msg.Execute));
 		}
 
 		private void ShowAboutBox() {
@@ -140,6 +143,25 @@ namespace gestadh45.wpf
 		/// </summary>
 		private void Exit() {
 			this.Close();
+		}
+
+		
+		private void ShowSaveFileDialog(string extensionFichier, string nomFichier, Action<string> callback) {
+			var dialog = new SaveFileDialog()
+			{
+				FileName = nomFichier
+			};
+
+			var filePath = string.Empty;
+
+			dialog.Filter = string.Format("fichiers {0} (*{0})|*{0}", extensionFichier);
+			dialog.RestoreDirectory = true;
+
+			if (dialog.ShowDialog().Value) {
+				filePath = dialog.FileName;
+			}
+
+			callback(filePath);
 		}
 	}
 }

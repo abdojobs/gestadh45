@@ -152,15 +152,29 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 
 		public void ExecuteGenererDocumentCommand(string codeDocument) {
 			if (this.SelectedInscription != null) {
-				var gen = new GenerateurDocumentPDF(
-					ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), this.SelectedInscription), 
-					this.GetDocumentFileName(codeDocument)
+				// recuperation du chemin d'enregistrement et passage au callback qui s'occupe de la génération a proprement parler
+				Messenger.Default.Send<NMActionFileDialog<string>>(
+					new NMActionFileDialog<string>(
+						ResInscriptions.ExtensionPdf,
+						this.GetDocumentFileName(codeDocument),
+						callback =>
+						{
+							this.GenererDocumentCallBack(callback, codeDocument);
+						}
+					)
+				);				
+			}
+		}
+
+		private void GenererDocumentCallBack(string filePath, string codeDocument) {
+			var gen = new GenerateurDocumentPDF(
+					ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), this.SelectedInscription),
+					filePath
 				);
 
-				gen.CreerDocument(codeDocument);
+			gen.CreerDocument(codeDocument);
 
-				this.ShowUserNotification(ResInscriptions.InfosDocumentGenere);
-			}
+			this.ShowUserNotification(ResInscriptions.InfosDocumentGenere);
 		}
 		#endregion
 
