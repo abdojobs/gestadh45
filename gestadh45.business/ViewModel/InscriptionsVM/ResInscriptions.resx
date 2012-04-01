@@ -135,6 +135,9 @@
   <data name="ErrStatutObligatoire" xml:space="preserve">
     <value>Le statut est obligatoire</value>
   </data>
+  <data name="ExtensionPdf" xml:space="preserve">
+    <value>.pdf</value>
+  </data>
   <data name="InfosDocumentGenere" xml:space="preserve">
     <value>Le document a été généré</value>
   </data>

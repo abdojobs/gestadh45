@@ -12,5 +12,7 @@ namespace gestadh45.business.PersonalizedMsg
 		public const string NMShowAboutBox = "ShowAboutBox";
 		public const string NMCloseApplication = "CloseApplication";
 		public const string NMClearFilter = "ClearFilter";
+		public const string NMActionFileDialog = "NMActionFileDialog";
+		public const string NMActionFolderDialog = "NMActionFolderDialog";
 	}
 }

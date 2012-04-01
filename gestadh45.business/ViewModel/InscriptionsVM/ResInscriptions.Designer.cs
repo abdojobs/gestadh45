@@ -115,6 +115,15 @@ namespace gestadh45.business.ViewModel.InscriptionsVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à .pdf.
+        /// </summary>
+        internal static string ExtensionPdf {
+            get {
+                return ResourceManager.GetString("ExtensionPdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Le document a été généré.
         /// </summary>
         internal static string InfosDocumentGenere {
