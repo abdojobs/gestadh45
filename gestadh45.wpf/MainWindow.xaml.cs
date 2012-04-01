@@ -14,6 +14,7 @@ using gestadh45.wpf.UserControls.InscriptionsUC;
 using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
+using Forms = System.Windows.Forms;
 
 namespace gestadh45.wpf
 {
@@ -43,7 +44,18 @@ namespace gestadh45.wpf
 			Messenger.Default.Register<NMShowUC<Adherent>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<Inscription>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowAboutBox>(this, (msg) => this.ShowAboutBox());
-			Messenger.Default.Register<NMActionFileDialog<string>>(this, (msg) => this.ShowSaveFileDialog(msg.ExtensionFichier, msg.NomFichier, msg.Execute));
+
+			// Abonnement aux messages pour les dialogues
+			Messenger.Default.Register<NMActionFileDialog<string>>(
+				this, 
+				(msg) => this.ShowSaveFileDialog(msg.ExtensionFichier, msg.NomFichier, msg.Execute)
+			);
+
+			Messenger.Default.Register<NMActionFolderDialog<string>>(
+				this,
+				(msg) => this.ShowFolderBrowserDialog(msg.Execute)
+			);
+
 		}
 
 		private void ShowAboutBox() {
@@ -144,24 +156,28 @@ namespace gestadh45.wpf
 		private void Exit() {
 			this.Close();
 		}
-
 		
 		private void ShowSaveFileDialog(string extensionFichier, string nomFichier, Action<string> callback) {
-			var dialog = new SaveFileDialog()
+			SaveFileDialog dialog = new SaveFileDialog()
 			{
 				FileName = nomFichier
 			};
 
-			var filePath = string.Empty;
-
 			dialog.Filter = string.Format("fichiers {0} (*{0})|*{0}", extensionFichier);
 			dialog.RestoreDirectory = true;
 
-			if (dialog.ShowDialog().Value) {
-				filePath = dialog.FileName;
-			}
+			string filePath = (dialog.ShowDialog().Value) ? dialog.FileName : null;
 
 			callback(filePath);
+		}
+
+		private void ShowFolderBrowserDialog(Action<string> callback) {
+			Forms.FolderBrowserDialog dialog = new Forms.FolderBrowserDialog();
+			dialog.ShowNewFolderButton = true;
+
+			string selectedFolder = (dialog.ShowDialog() == Forms.DialogResult.OK) ? dialog.SelectedPath : null;
+
+			callback(selectedFolder);
 		}
 	}
 }
