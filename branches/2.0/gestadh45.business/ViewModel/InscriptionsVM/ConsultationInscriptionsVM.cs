@@ -3,9 +3,9 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
+using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
 using gestadh45.services.Documents;
-using gestadh45.business.ServicesAdapters;
 
 namespace gestadh45.business.ViewModel.InscriptionsVM
 {
@@ -80,6 +80,15 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 			this.CreateShowDetailsAdherentCommand();
 		}
 
+		private string GetDocumentFileName(string codeDocument) {
+			if (codeDocument.Equals(CodesDocument.AttestationPDF)) {
+				return string.Format(ResInscriptions.AttestationPDFFileName, this._selectedInscription.Adherent.ToString());
+			}
+			else {
+				return string.Format(ResInscriptions.InscriptionPDFFileName, this._selectedInscription.Adherent.ToString());
+			}
+		}
+
 		#region ShowDetailsCommand
 		public override void ExecuteShowDetailsCommand(object selectedItem) {
 			if (selectedItem is Inscription) {
@@ -145,7 +154,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 			if (this.SelectedInscription != null) {
 				var gen = new GenerateurDocumentPDF(
 					ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), this.SelectedInscription), 
-					@"dev.pdf"
+					this.GetDocumentFileName(codeDocument)
 				);
 
 				gen.CreerDocument(codeDocument);
