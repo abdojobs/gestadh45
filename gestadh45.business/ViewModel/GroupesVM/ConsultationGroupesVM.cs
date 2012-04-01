@@ -3,7 +3,10 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
+using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
+using gestadh45.services.Documents;
+using gestadh45.services.Documents.Templates;
 
 namespace gestadh45.business.ViewModel.GroupesVM
 {
@@ -45,11 +48,13 @@ namespace gestadh45.business.ViewModel.GroupesVM
 
 		#region Repositories
 		private Repository<Groupe> repoMain;
+		private Repository<InfosClub> repoInfosClub;
 		#endregion
 
 		#region Constructeur
 		public ConsultationGroupesVM() {
 			this.repoMain = new Repository<Groupe>(this._context);
+			this.repoInfosClub = new Repository<InfosClub>(this._context);
 			this.PopulateGroupes();
 			this.CreateGenererDocumentsGroupeCommand();
 		}
@@ -62,6 +67,28 @@ namespace gestadh45.business.ViewModel.GroupesVM
 
 		private void CreateCommandes() {
 			this.CreateGenererDocumentsGroupeCommand();
+		}
+
+		private string GetDocumentFileName(string codeDocument, Inscription ins) {
+			if (codeDocument.Equals(CodesDocument.AttestationPDF)) {
+				return string.Format(ResDocuments.AttestationPDFFileName, ins.Adherent.ToString());
+			}
+			else {
+				return string.Format(ResDocuments.InscriptionPDFFileName, ins.Adherent.ToString());
+			}
+		}
+
+		private void GenererDocumentsCallBack(string folderPath, string codeDocument) {
+			foreach (Inscription ins in this.SelectedGroupe.Inscriptions) {
+				var gen = new GenerateurDocumentPDF(
+					ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), ins),
+					string.Concat(folderPath, @"\", this.GetDocumentFileName(codeDocument, ins))
+				);
+
+				gen.CreerDocument(codeDocument);
+			}
+
+			this.ShowUserNotification(ResGroupes.InfosDocumentsGeneres);
 		}
 
 		#region ShowDetailsCommand
@@ -107,15 +134,21 @@ namespace gestadh45.business.ViewModel.GroupesVM
 			);
 		}
 
-		public bool CanExecuteGenererDocumentsGroupeCommand(string codeDoc) {
+		public bool CanExecuteGenererDocumentsGroupeCommand(string codeDocument) {
 			return this.SelectedGroupe != null;
 		}
 
-		public void ExecuteGenererDocumentsGroupeCommand(string codeDoc) {
+		public void ExecuteGenererDocumentsGroupeCommand(string codeDocument) {
 			if (this.SelectedGroupe != null) {
-				// TODO implémenter
-
-				this.ShowUserNotification(ResGroupes.InfosDocumentsGeneres);
+				// recuperation du dossier d'enregistrement et passage au callback qui s'occupe de la génération a proprement parler
+				Messenger.Default.Send<NMActionFolderDialog<string>>(
+					new NMActionFolderDialog<string>(
+						callback =>
+						{
+							this.GenererDocumentsCallBack(callback, codeDocument);
+						}
+					)
+				);			
 			}
 		}
 		#endregion

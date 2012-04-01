@@ -6,6 +6,7 @@ using gestadh45.business.PersonalizedMsg;
 using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
 using gestadh45.services.Documents;
+using gestadh45.services.Documents.Templates;
 
 namespace gestadh45.business.ViewModel.InscriptionsVM
 {
@@ -82,10 +83,10 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 
 		private string GetDocumentFileName(string codeDocument) {
 			if (codeDocument.Equals(CodesDocument.AttestationPDF)) {
-				return string.Format(ResInscriptions.AttestationPDFFileName, this._selectedInscription.Adherent.ToString());
+				return string.Format(ResDocuments.AttestationPDFFileName, this._selectedInscription.Adherent.ToString());
 			}
 			else {
-				return string.Format(ResInscriptions.InscriptionPDFFileName, this._selectedInscription.Adherent.ToString());
+				return string.Format(ResDocuments.InscriptionPDFFileName, this._selectedInscription.Adherent.ToString());
 			}
 		}
 
@@ -155,7 +156,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 				// recuperation du chemin d'enregistrement et passage au callback qui s'occupe de la génération a proprement parler
 				Messenger.Default.Send<NMActionFileDialog<string>>(
 					new NMActionFileDialog<string>(
-						ResInscriptions.ExtensionPdf,
+						ResDocuments.ExtensionPDF,
 						this.GetDocumentFileName(codeDocument),
 						callback =>
 						{
