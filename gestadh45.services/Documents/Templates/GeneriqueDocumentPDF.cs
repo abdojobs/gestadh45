@@ -1,95 +1,57 @@
 ﻿using gestadh45.services.Documents;
 using gestadh45.services.Documents.Templates;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
+using MigraDoc.DocumentObjectModel;
 
 namespace gestadh45.service.Documents.Templates
 {
 	public abstract class GeneriqueDocumentPDF
 	{
-		// polices
-		protected XFont fontCoordonneesClub = new XFont("Times-Roman", 10f, XFontStyle.Regular);
-		protected XFont fontLabel = new XFont("Helvetica-Bold", 10f, XFontStyle.Bold);
-		protected XFont fontValue = new XFont("Helvetica", 10f, XFontStyle.Regular);
-		protected XFont fontNomClubSaison = new XFont("Helvetica-Bold", 16f, XFontStyle.Bold);
-		protected XFont fontTitre = new XFont("Helvetica-Bold", 12f, XFontStyle.Bold);
-
-
-		protected PdfPage _page;
+		private Document _document;
+		protected Section _page;
 		protected DonneesDocument _donnees;
 
-		protected GeneriqueDocumentPDF(PdfPage page, DonneesDocument donnees) {
-			this._page = page;
+		protected GeneriqueDocumentPDF(Document document, DonneesDocument donnees) {
+			this._document = document;
+			this._page = this._document.AddSection();
 			this._donnees = donnees;
 		}
 
 		protected void CreerEntete() {
-			using (var gfxNomClubSaison = XGraphics.FromPdfPage(this._page)) {
-				gfxNomClubSaison.DrawString(
-					string.Format(ResDocuments.LibelleNomClubSaison, this._donnees.NomClub, this._donnees.Saison),
-					this.fontNomClubSaison,
-					XBrushes.Black,
-					new XRect(40, 40, 0, 0)
-				);
-			}
+			var parNomClubSaison = this._page.AddParagraph();
+			parNomClubSaison.AddFormattedText(
+				string.Format(ResDocuments.LibelleNomClubSaison, this._donnees.NomClub, this._donnees.Saison),
+				TextFormat.Bold
+			);
 
-			using (var gfxAdresseClub = XGraphics.FromPdfPage(this._page)) {
-				gfxAdresseClub.DrawString(
-					string.Format(ResDocuments.LibelleAdresse, this._donnees.AdresseClub, this._donnees.CodePostalClub, this._donnees.VilleClub),
-					this.fontCoordonneesClub,
-					XBrushes.Black,
-					new XRect(40, 70, 0, 0)
-				);
-			}
+			var parAdresseClub = this._page.AddParagraph();
+			parAdresseClub.AddFormattedText(
+				string.Format(ResDocuments.LibelleNomClubSaison, this._donnees.NomClub, this._donnees.Saison)
+			);
 
-			using (var gfxTelephoneClub = XGraphics.FromPdfPage(this._page)) {
-				gfxTelephoneClub.DrawString(
-					string.Format(ResDocuments.LibelleTelephone, this._donnees.TelephoneCLub),
-					this.fontCoordonneesClub,
-					XBrushes.Black,
-					new XRect(40, 85, 0, 0)
-				);
-			}
+			var parTelClub = this._page.AddParagraph();
+			parTelClub.AddFormattedText(
+				string.Format(ResDocuments.LibelleTelephone, this._donnees.TelephoneCLub)
+			);
 
-			using (var gfxMailClub = XGraphics.FromPdfPage(this._page)) {
-				gfxMailClub.DrawString(
-					string.Format(ResDocuments.LibelleMailClub, this._donnees.TelephoneCLub),
-					this.fontCoordonneesClub,
-					XBrushes.Black,
-					new XRect(40, 100, 0, 0)
-				);
-			}
+			var parMailClub = this._page.AddParagraph();
+			parTelClub.AddFormattedText(
+				string.Format(ResDocuments.LibelleMailClub, this._donnees.MailClub)
+			);
 
-			using (var gfxSiteWebClub = XGraphics.FromPdfPage(this._page)) {
-				gfxSiteWebClub.DrawString(
-					string.Format(ResDocuments.LibelleSiteWebClub, this._donnees.MailClub),
-					this.fontCoordonneesClub,
-					XBrushes.Black,
-					new XRect(40, 115, 0, 0)
-				);
-			}
+			var parSiteWebClub = this._page.AddParagraph();
+			parSiteWebClub.AddFormattedText(
+				string.Format(ResDocuments.LibelleSiteWebClub, this._donnees.SiteWebClub)
+			);
 
-			using (var gfxNumeroClub = XGraphics.FromPdfPage(this._page)) {
-				gfxNumeroClub.DrawString(
-					string.Format(ResDocuments.LibelleNumeroClub, this._donnees.NumeroClub),
-					this.fontCoordonneesClub,
-					XBrushes.Black,
-					new XRect(40, 130, 0, 0)
-				);
-			}
+			var parNumeroClub = this._page.AddParagraph();
+			parNumeroClub.AddFormattedText(
+				string.Format(ResDocuments.LibelleNumeroClub, this._donnees.NumeroClub)
+			);
 
-			using (var gfxSiretClub = XGraphics.FromPdfPage(this._page)) {
-				gfxSiretClub.DrawString(
-					string.Format(ResDocuments.LibelleSiret, this._donnees.SiretClub),
-					this.fontCoordonneesClub,
-					XBrushes.Black,
-					new XRect(40, 145, 0, 0)
-				);
-			}
-
-			using (var gfxSeparator = XGraphics.FromPdfPage(this._page)) {
-				gfxSeparator.DrawLine(XPens.Black, 40, 175, this._page.Width - 40, 175);
-			}
+			var parSiretClub = this._page.AddParagraph();
+			parSiretClub.AddFormattedText(
+				string.Format(ResDocuments.LibelleSiret, this._donnees.SiretClub)
+			);
 		}
 	}
 }

@@ -1,30 +1,43 @@
 ﻿using gestadh45.service.Documents.Templates;
+using MigraDoc.Rendering;
+using MigraDoc.DocumentObjectModel;
 using PdfSharp.Pdf;
 
 namespace gestadh45.services.Documents
 {
 	public class GenerateurDocumentPDF : GenerateurDocumentBase
 	{
+		const bool Unicode = false;
+		const PdfFontEmbedding Embedding = PdfFontEmbedding.Always;
+		
 		public GenerateurDocumentPDF(DonneesDocument donnees, string savePath)
 			: base(donnees, savePath) {
 		}
 
 		public override void CreerDocumentAttestation() {
-			var document = new PdfDocument();
-			var page = document.AddPage();
+			var document = new Document();
+			document.UseCmykColor = true;
 
-			var attestation = new AttestationDocumentPDF(page, this._donnees);
+			var attestation = new AttestationDocumentPDF(document, this._donnees);
 			attestation.GenererContenuDocument();
-			document.Save(this._savePath);
+
+			var pdfRenderer = new PdfDocumentRenderer(Unicode, Embedding);
+			pdfRenderer.Document = document;
+			pdfRenderer.RenderDocument();
+			pdfRenderer.PdfDocument.Save(this._savePath);
 		}
 
 		public override void CreerDocumentInscription() {
-			var document = new PdfDocument();
-			var page = document.AddPage();
+			var document = new Document();
+			document.UseCmykColor = true;
 
-			var attestation = new InscriptionDocumentPDF(page, this._donnees);
-			attestation.GenererContenuDocument();
-			document.Save(this._savePath);
+			var inscription = new InscriptionDocumentPDF(document, this._donnees);
+			inscription.GenererContenuDocument();
+
+			var pdfRenderer = new PdfDocumentRenderer(Unicode, Embedding);
+			pdfRenderer.Document = document;
+			pdfRenderer.RenderDocument();
+			pdfRenderer.PdfDocument.Save(this._savePath);
 		}
 	}
 }
