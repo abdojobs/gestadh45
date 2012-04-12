@@ -79,16 +79,18 @@ namespace gestadh45.business.ViewModel.GroupesVM
 		}
 
 		private void GenererDocumentsCallBack(string folderPath, string codeDocument) {
-			foreach (Inscription ins in this.SelectedGroupe.Inscriptions) {
-				var gen = new GenerateurDocumentPDF(
-					ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), ins),
-					string.Concat(folderPath, @"\", this.GetDocumentFileName(codeDocument, ins))
-				);
+			if (!string.IsNullOrWhiteSpace(folderPath)) {
+				foreach (Inscription ins in this.SelectedGroupe.Inscriptions) {
+					var gen = new GenerateurDocumentPDF(
+						ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), ins),
+						string.Concat(folderPath, @"\", this.GetDocumentFileName(codeDocument, ins))
+					);
 
-				gen.CreerDocument(codeDocument);
+					gen.CreerDocument(codeDocument);
+				}
+
+				this.ShowUserNotification(ResGroupes.InfosDocumentsGeneres);
 			}
-
-			this.ShowUserNotification(ResGroupes.InfosDocumentsGeneres);
 		}
 
 		#region ShowDetailsCommand
