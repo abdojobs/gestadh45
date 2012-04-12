@@ -168,14 +168,16 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 		}
 
 		private void GenererDocumentCallBack(string filePath, string codeDocument) {
-			var gen = new GenerateurDocumentPDF(
-					ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), this.SelectedInscription),
-					filePath
-				);
+			if (!string.IsNullOrWhiteSpace(filePath)) {
+				var gen = new GenerateurDocumentPDF(
+						ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), this.SelectedInscription),
+						filePath
+					);
 
-			gen.CreerDocument(codeDocument);
+				gen.CreerDocument(codeDocument);
 
-			this.ShowUserNotification(ResInscriptions.InfosDocumentGenere);
+				this.ShowUserNotification(ResInscriptions.InfosDocumentGenere);
+			}
 		}
 		#endregion
 
