@@ -61,9 +61,9 @@
     <Compile Include="Documents\DonneesDocument.cs" />
     <Compile Include="Documents\GenerateurDocumentBase.cs" />
     <Compile Include="Documents\GenerateurDocumentPDF.cs" />
-    <Compile Include="Documents\Templates\AttestationDocumentPDF.cs" />
-    <Compile Include="Documents\Templates\GeneriqueDocumentPDF.cs" />
-    <Compile Include="Documents\Templates\InscriptionDocumentPDF.cs" />
+    <Compile Include="Documents\Templates\AttestationDocument.cs" />
+    <Compile Include="Documents\Templates\GeneriqueDocument.cs" />
+    <Compile Include="Documents\Templates\InscriptionDocument.cs" />
     <Compile Include="Documents\Templates\ResDocuments.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
