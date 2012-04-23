@@ -4,13 +4,13 @@ using MigraDoc.DocumentObjectModel;
 
 namespace gestadh45.service.Documents.Templates
 {
-	public abstract class GeneriqueDocumentPDF
+	public abstract class GeneriqueDocument
 	{
 		private Document _document;
 		protected Section _page;
 		protected DonneesDocument _donnees;
 
-		protected GeneriqueDocumentPDF(Document document, DonneesDocument donnees) {
+		protected GeneriqueDocument(Document document, DonneesDocument donnees) {
 			this._document = document;
 			this._page = this._document.AddSection();
 			this._donnees = donnees;
@@ -25,7 +25,12 @@ namespace gestadh45.service.Documents.Templates
 
 			var parAdresseClub = this._page.AddParagraph();
 			parAdresseClub.AddFormattedText(
-				string.Format(ResDocuments.LibelleNomClubSaison, this._donnees.NomClub, this._donnees.Saison)
+				string.Format(ResDocuments.LibelleAdresseClub, this._donnees.AdresseClub)
+			);
+
+			var parCodePostalVilleClub = this._page.AddParagraph();
+			parCodePostalVilleClub.AddFormattedText(
+				string.Format(ResDocuments.LibelleCodePostalVilleClub, this._donnees.CodePostalClub, this._donnees.VilleClub)
 			);
 
 			var parTelClub = this._page.AddParagraph();
@@ -34,7 +39,7 @@ namespace gestadh45.service.Documents.Templates
 			);
 
 			var parMailClub = this._page.AddParagraph();
-			parTelClub.AddFormattedText(
+			parMailClub.AddFormattedText(
 				string.Format(ResDocuments.LibelleMailClub, this._donnees.MailClub)
 			);
 
@@ -52,6 +57,17 @@ namespace gestadh45.service.Documents.Templates
 			parSiretClub.AddFormattedText(
 				string.Format(ResDocuments.LibelleSiret, this._donnees.SiretClub)
 			);
+		}
+
+		protected void CreerSeparateur() {
+			var parSeparateur = this._page.AddParagraph();
+			parSeparateur.AddFormattedText(ResDocuments.Separateur, TextFormat.Bold);
+			parSeparateur.Format.Alignment = ParagraphAlignment.Center;
+		}
+
+		protected void CreerRetourLigne() {
+			var parLigneVide = this._page.AddParagraph();
+			parLigneVide.AddLineBreak();
 		}
 	}
 }

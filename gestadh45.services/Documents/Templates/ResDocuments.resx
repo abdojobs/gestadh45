@@ -186,4 +186,13 @@
   <data name="ExtensionPDF" xml:space="preserve">
     <value>.pdf</value>
   </data>
+  <data name="LibelleAdresseClub" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="LibelleCodePostalVilleClub" xml:space="preserve">
+    <value>{0} - {1}</value>
+  </data>
+  <data name="Separateur" xml:space="preserve">
+    <value>__________________________________________________</value>
+  </data>
 </root>

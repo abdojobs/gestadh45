@@ -4,9 +4,9 @@ using MigraDoc.DocumentObjectModel;
 
 namespace gestadh45.service.Documents.Templates
 {
-	public class InscriptionDocumentPDF : GeneriqueDocumentPDF
+	public class InscriptionDocument : GeneriqueDocument
 	{
-		public InscriptionDocumentPDF(Document document, DonneesDocument donnees)
+		public InscriptionDocument(Document document, DonneesDocument donnees)
 			: base(document, donnees) {
 		}
 

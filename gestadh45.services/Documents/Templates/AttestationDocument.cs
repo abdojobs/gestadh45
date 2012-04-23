@@ -5,9 +5,9 @@ using MigraDoc.DocumentObjectModel;
 
 namespace gestadh45.service.Documents.Templates
 {
-	public class AttestationDocumentPDF : GeneriqueDocumentPDF
+	public class AttestationDocument : GeneriqueDocument
 	{
-		public AttestationDocumentPDF(Document document, DonneesDocument donnees)
+		public AttestationDocument(Document document, DonneesDocument donnees)
 			: base(document, donnees) {
 		}
 
@@ -17,6 +17,7 @@ namespace gestadh45.service.Documents.Templates
 				string.Format(ResDocuments.LibelleRecuPourAdhesion, this._donnees.Saison, this._donnees.NomClub),
 				TextFormat.Bold
 			);
+			par.Format.Alignment = ParagraphAlignment.Center;
 		}
 
 		private void CreerZoneCoordonneesAdherent() {
@@ -39,8 +40,10 @@ namespace gestadh45.service.Documents.Templates
 		private void CreerZoneInfosAttestation() {
 			var par = this._page.AddParagraph();
 			par.AddFormattedText(
-				string.Format(ResDocuments.LibelleCotisation, this._donnees.CotisationInscription)
+				string.Format(ResDocuments.LibelleCotisation, this._donnees.CotisationInscription),
+				TextFormat.Bold
 			);
+			par.Format.Alignment = ParagraphAlignment.Center;
 		}
 
 		private void CreerZoneLieuDate() {
@@ -52,9 +55,21 @@ namespace gestadh45.service.Documents.Templates
 
 		public void GenererContenuDocument() {
 			base.CreerEntete();
+			this.CreerRetourLigne();
+
+			this.CreerSeparateur();
+			this.CreerRetourLigne();
+
 			this.CreerZoneTitre();
+			this.CreerRetourLigne();
+
 			this.CreerZoneCoordonneesAdherent();
+			this.CreerRetourLigne();
+
 			this.CreerZoneInfosAttestation();
+			this.CreerRetourLigne();
+
+			this.CreerRetourLigne();
 			this.CreerZoneLieuDate();
 		}
 	}

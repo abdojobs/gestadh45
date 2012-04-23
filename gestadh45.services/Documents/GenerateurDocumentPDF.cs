@@ -18,7 +18,7 @@ namespace gestadh45.services.Documents
 			var document = new Document();
 			document.UseCmykColor = true;
 
-			var attestation = new AttestationDocumentPDF(document, this._donnees);
+			var attestation = new AttestationDocument(document, this._donnees);
 			attestation.GenererContenuDocument();
 
 			var pdfRenderer = new PdfDocumentRenderer(Unicode, Embedding);
@@ -31,7 +31,7 @@ namespace gestadh45.services.Documents
 			var document = new Document();
 			document.UseCmykColor = true;
 
-			var inscription = new InscriptionDocumentPDF(document, this._donnees);
+			var inscription = new InscriptionDocument(document, this._donnees);
 			inscription.GenererContenuDocument();
 
 			var pdfRenderer = new PdfDocumentRenderer(Unicode, Embedding);
