@@ -54,7 +54,7 @@ namespace gestadh45.service.Documents.Templates
 		}
 
 		public void GenererContenuDocument() {
-			base.CreerEntete();
+			this.CreerEntete();
 			this.CreerRetourLigne();
 
 			this.CreerSeparateur();
