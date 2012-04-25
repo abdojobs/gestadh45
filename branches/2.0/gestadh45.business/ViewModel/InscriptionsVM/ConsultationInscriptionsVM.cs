@@ -46,6 +46,26 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 		}
 		#endregion
 
+		#region ShowAdherentButton
+		private bool _showAdherentButton;
+
+		/// <summary>
+		/// Obtient/Définit un booléen indiquant si le bouton adhérent doit être affiché
+		/// </summary>
+		public bool ShowAdherentButton {
+			get {
+				return this._showAdherentButton;
+			}
+
+			set {
+				if (this._showAdherentButton != value) {
+					this._showAdherentButton = value;
+					this.RaisePropertyChanged(() => this.ShowAdherentButton);
+				}
+			}
+		}
+		#endregion
+
 		#region Repositories
 		private Repository<Inscription> repoMain;
 		private Repository<InfosClub> repoInfosClub;
@@ -92,6 +112,8 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 
 		#region ShowDetailsCommand
 		public override void ExecuteShowDetailsCommand(object selectedItem) {
+			this.ShowAdherentButton = this.CanExecuteShowDetailsCommand(selectedItem);
+
 			if (selectedItem is Inscription) {
 				this.SelectedInscription = selectedItem as Inscription;
 			}
