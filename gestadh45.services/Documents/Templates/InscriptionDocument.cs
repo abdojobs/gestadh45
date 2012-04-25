@@ -17,6 +17,7 @@ namespace gestadh45.service.Documents.Templates
 				string.Format(ResDocuments.LibelleTitreFicheInscription, this._donnees.Saison, this._donnees.NomClub),
 				TextFormat.Bold
 			);
+			par.Format.Alignment = ParagraphAlignment.Center;
 		}
 
 		private void CreerZoneCoordonneesAdherent() {
@@ -81,20 +82,43 @@ namespace gestadh45.service.Documents.Templates
 			parTexteAutorisation.AddFormattedText(
 				ResDocuments.TexteAutorisationParentale
 			);
+		}
 
-			var parSignatureParents = this._page.AddParagraph();
-			parSignatureParents.AddFormattedText(
+		private void CreerZoneSignatureParents() {
+			var parSignature = this._page.AddParagraph();
+			parSignature.AddFormattedText(
 				ResDocuments.LibelleSignatureParents
 			);
 		}
+		
 
 		public void GenererContenuDocument() {
-			base.CreerEntete();
+			this.CreerEntete();
+			this.CreerRetourLigne();
+
+			this.CreerSeparateur();
+			this.CreerRetourLigne();
+
 			this.CreerZoneTitre();
+			this.CreerRetourLigne();
+
 			this.CreerZoneCoordonneesAdherent();
+			this.CreerRetourLigne();
+
 			this.CreerZoneInfosInscription();
+			this.CreerRetourLigne();
+
+			this.CreerRetourLigne();
 			this.CreerZoneSignature();
+			this.CreerRetourLigne();
+
+			this.CreerSeparateur();
+			this.CreerRetourLigne();
+
 			this.CreerZoneAutorisation();
+			this.CreerRetourLigne();
+
+			this.CreerZoneSignatureParents();
 		}
 	}
 }
