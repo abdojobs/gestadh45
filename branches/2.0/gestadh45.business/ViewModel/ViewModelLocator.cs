@@ -10,11 +10,12 @@
 */
 
 using gestadh45.business.ViewModel.AdherentsVM;
+using gestadh45.business.ViewModel.GroupesVM;
 using gestadh45.business.ViewModel.InfosClubVM;
 using gestadh45.business.ViewModel.InscriptionsVM;
 using gestadh45.business.ViewModel.SaisonsVM;
+using gestadh45.business.ViewModel.Statistiques;
 using gestadh45.business.ViewModel.VillesVM;
-using gestadh45.business.ViewModel.GroupesVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -91,6 +92,14 @@ namespace gestadh45.business.ViewModel
 
 		public static FormulaireGroupeVM FormulaireGroupeVM {
 			get { return new FormulaireGroupeVM(); }
+		}
+		#endregion
+
+		#region StatistiquesVM
+		public static EcranStatistiquesVM EcranStatistiquesVM {
+			get {
+				return new EcranStatistiquesVM();
+			}
 		}
 		#endregion
 	}

@@ -117,6 +117,9 @@
     <Compile Include="UserControls\SaisonsUC\FormulaireSaisonUC.xaml.cs">
       <DependentUpon>FormulaireSaisonUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\StatistiquesUC\EcranStatistiquesUC.xaml.cs">
+      <DependentUpon>EcranStatistiquesUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\VillesUC\ConsultationVillesUC.xaml.cs">
       <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
     <Page Include="UserControls\SaisonsUC\FormulaireSaisonUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\StatistiquesUC\EcranStatistiquesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\VillesUC\ConsultationVillesUC.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -274,6 +281,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_groupes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_statistiques.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
