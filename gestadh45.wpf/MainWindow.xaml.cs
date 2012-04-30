@@ -15,6 +15,7 @@ using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
 using Forms = System.Windows.Forms;
+using gestadh45.wpf.UserControls.StatistiquesUC;
 
 namespace gestadh45.wpf
 {
@@ -140,6 +141,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireGroupe:
 					userControl = new FormulaireGroupeUC();
+					break;
+
+				case CodesUC.EcranStatistiques:
+					userControl = new EcranStatistiquesUC();
 					break;
 
 				default:

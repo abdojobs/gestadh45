@@ -57,6 +57,12 @@
 					CommandParameter="{x:Static b:CodesUC.ConsultationGroupes}">
 				<Image Source="/gestadh45.wpf;component/Images/btn_groupes.png" />
 			</Button>
+
+			<Button Name="btnStatistiques" Height="32" Width="32" Margin="5,5,5,5"
+					Command="{Binding Path=ShowUCCommand}"
+					CommandParameter="{x:Static b:CodesUC.EcranStatistiques}">
+				<Image Source="/gestadh45.wpf;component/Images/btn_statistiques.png" />
+			</Button>
 		</StackPanel>
 		
 		<Border Margin="5,5,5,5" DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">

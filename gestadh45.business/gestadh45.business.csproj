@@ -119,6 +119,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResSaisons.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\Statistiques\EcranStatistiquesVM.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VillesVM\ConsultationVillesVM.cs" />
     <Compile Include="ViewModel\VillesVM\FormulaireVilleVM.cs" />
