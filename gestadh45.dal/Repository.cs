@@ -53,6 +53,8 @@ namespace gestadh45.dal
 						Trace.TraceInformation("Property: {0} Error: {1}", validationError.PropertyName, validationError.ErrorMessage);
 					}
 				}
+				#else
+				throw;
 				#endif
 			}
 		}

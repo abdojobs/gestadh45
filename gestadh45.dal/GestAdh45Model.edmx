@@ -321,9 +321,9 @@
           <Property Name="Commentaire" Type="String" MaxLength="2147483647" Unicode="true" FixedLength="false" />
           <Property Name="Adresse" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="ID_Ville" Type="Int64" Nullable="false" />
-          <Property Name="Telephone1" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="Telephone2" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
-          <Property Name="Telephone3" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Telephone1" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
+          <Property Name="Telephone2" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
+          <Property Name="Telephone3" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
           <Property Name="Mail1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Mail2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="Mail3" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
@@ -358,7 +358,7 @@
           <Property Name="NIC" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
           <Property Name="Adresse" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="ID_Ville" Type="Int64" />
-          <Property Name="Telephone" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="Telephone" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
           <Property Name="Mail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="SiteWeb" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="NumAPS" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
