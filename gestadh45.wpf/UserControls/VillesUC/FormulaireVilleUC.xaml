@@ -4,7 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
-			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
+			 xmlns:extToolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=WPFToolKit.Extended" 
 			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=FormulaireVilleVM, Source={StaticResource Locator}}" 
