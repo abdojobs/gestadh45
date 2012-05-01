@@ -69,6 +69,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodesUC.cs" />
+    <Compile Include="IhmObjects\ChoixGraphIhm.cs" />
+    <Compile Include="ViewModel\Statistiques\CodesGraphs.cs" />
+    <Compile Include="ViewModel\Statistiques\RessourcesStats.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RessourcesStats.resx</DependentUpon>
+    </Compile>
     <Compile Include="PersonalizedMsg\NMActionFileDialog.cs" />
     <Compile Include="PersonalizedMsg\NMActionFolderDialog.cs" />
     <Compile Include="PersonalizedMsg\NMClearFilter.cs" />
@@ -137,9 +144,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IhmObj\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\gestadh45.dal\gestadh45.dal.csproj">
       <Project>{B592B627-A159-4936-92E8-EFF98114395C}</Project>
@@ -151,6 +156,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ViewModel\Statistiques\RessourcesStats.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RessourcesStats.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\AdherentsVM\ResAdherents.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResAdherents.Designer.cs</LastGenOutput>

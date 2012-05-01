@@ -5,7 +5,7 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
 			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
-			 xmlns:extToolkit="clr-namespace:Microsoft.Windows.Controls;assembly=WPFToolKit.Extended" 
+			 xmlns:extToolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=WPFToolKit.Extended" 
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=FormulaireInscriptionVM, Source={StaticResource Locator}}" 
 			 d:DesignHeight="450" d:DesignWidth="600">
