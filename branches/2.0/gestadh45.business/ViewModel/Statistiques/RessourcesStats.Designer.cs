@@ -77,5 +77,23 @@ namespace gestadh45.business.ViewModel.Statistiques {
                 return ResourceManager.GetString("RepartitionHommesFemmes", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Répartition majeurs/mineurs.
+        /// </summary>
+        internal static string RepartitionMajeursMineurs {
+            get {
+                return ResourceManager.GetString("RepartitionMajeursMineurs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Répartition résidents/extérieurs.
+        /// </summary>
+        internal static string RepartitionResidentsExterieurs {
+            get {
+                return ResourceManager.GetString("RepartitionResidentsExterieurs", resourceCulture);
+            }
+        }
     }
 }
