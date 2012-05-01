@@ -123,4 +123,10 @@
   <data name="RepartitionHommesFemmes" xml:space="preserve">
     <value>Répartition H/F</value>
   </data>
+  <data name="RepartitionMajeursMineurs" xml:space="preserve">
+    <value>Répartition majeurs/mineurs</value>
+  </data>
+  <data name="RepartitionResidentsExterieurs" xml:space="preserve">
+    <value>Répartition résidents/extérieurs</value>
+  </data>
 </root>

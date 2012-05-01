@@ -82,6 +82,7 @@ namespace gestadh45.business.ViewModel.Statistiques
 		private Repository<Inscription> repoInscriptions;
 		private Repository<Groupe> repoGroupes;
 		private Repository<Sexe> repoSexes;
+		private Repository<InfosClub> repoInfosClub;
 		#endregion
 
 		#region private fields
@@ -93,6 +94,7 @@ namespace gestadh45.business.ViewModel.Statistiques
 			this.repoInscriptions = new Repository<Inscription>(this._context);
 			this.repoGroupes = new Repository<Groupe>(this._context);
 			this.repoSexes = new Repository<Sexe>(this._context);
+			this.repoInfosClub = new Repository<InfosClub>(this._context);
 
 			this._groupesSaisonCourante = this.repoGroupes.GetAll()
 				.Where(grp => grp.Saison.EstSaisonCourante)
@@ -137,7 +139,17 @@ namespace gestadh45.business.ViewModel.Statistiques
 					this.ChartKeysValues = this.GetRepartitionHommeFemmes();
 					break;
 
+				case CodesGraphs.RepartitionMajeursMineurs:
+					this.ChartKeysValues = this.GetRepartitionMajeursMineurs();
+					break;
+
+				case CodesGraphs.RepartitionResidentsExterieurs:
+					this.ChartKeysValues = this.GetRepartitionResidentsExterieurs();
+					break;
+
 				default:
+					this.ChartKeysValues.Clear();
+					this.ChartKeysValues = null;
 					break;
 			}
 		}
@@ -147,6 +159,8 @@ namespace gestadh45.business.ViewModel.Statistiques
 			this.ListeGraphs = new List<ChoixGraphIhm>();
 			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RemplissageGroupes));
 			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionHommesFemmes));
+			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionMajeursMineurs));
+			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionResidentsExterieurs));
 		}
 
 		#region Alimentation des graphs
@@ -174,6 +188,32 @@ namespace gestadh45.business.ViewModel.Statistiques
 
 				keyValues.Add(new KeyValuePair<string, int>(sexe.LibelleCourt, nb));
 			}
+
+			return keyValues;
+		}
+
+		private List<KeyValuePair<string, int>> GetRepartitionMajeursMineurs() {
+			List<KeyValuePair<string, int>> keyValues = new List<KeyValuePair<string, int>>();
+
+			int nbMineurs = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Age < 18).Count();
+			int nbMajeurs = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Age >= 18).Count();
+
+			keyValues.Add(new KeyValuePair<string, int>("-18", nbMineurs));
+			keyValues.Add(new KeyValuePair<string, int>("18+", nbMajeurs));
+
+			return keyValues;
+		}
+
+		private List<KeyValuePair<string, int>> GetRepartitionResidentsExterieurs() {
+			List<KeyValuePair<string, int>> keyValues = new List<KeyValuePair<string, int>>();
+
+			Ville villeClub = this.repoInfosClub.GetFirst().Ville;
+
+			int nbResidents = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Ville.ID == villeClub.ID).Count();
+			int nbExterieurs = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Ville.ID != villeClub.ID).Count();
+
+			keyValues.Add(new KeyValuePair<string, int>("Résidents", nbResidents));
+			keyValues.Add(new KeyValuePair<string, int>("Extérieurs", nbExterieurs));
 
 			return keyValues;
 		}
