@@ -61,6 +61,42 @@ namespace gestadh45.business.ViewModel.Statistiques {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Extérieurs.
+        /// </summary>
+        internal static string LibelleExtérieurs {
+            get {
+                return ResourceManager.GetString("LibelleExtérieurs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à 18+.
+        /// </summary>
+        internal static string LibelleMajeurs {
+            get {
+                return ResourceManager.GetString("LibelleMajeurs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à -18.
+        /// </summary>
+        internal static string LibelleMineurs {
+            get {
+                return ResourceManager.GetString("LibelleMineurs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Résidents.
+        /// </summary>
+        internal static string LibelleResidents {
+            get {
+                return ResourceManager.GetString("LibelleResidents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Remplissage des groupes.
         /// </summary>
         internal static string RemplissageGroupes {

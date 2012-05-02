@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="LibelleExtérieurs" xml:space="preserve">
+    <value>Extérieurs</value>
+  </data>
+  <data name="LibelleMajeurs" xml:space="preserve">
+    <value>18+</value>
+  </data>
+  <data name="LibelleMineurs" xml:space="preserve">
+    <value>-18</value>
+  </data>
+  <data name="LibelleResidents" xml:space="preserve">
+    <value>Résidents</value>
+  </data>
   <data name="RemplissageGroupes" xml:space="preserve">
     <value>Remplissage des groupes</value>
   </data>
