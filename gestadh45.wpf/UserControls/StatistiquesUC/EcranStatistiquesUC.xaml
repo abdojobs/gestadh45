@@ -9,46 +9,32 @@
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=EcranStatistiquesVM, Source={StaticResource Locator}}"
 			 d:DesignHeight="400" d:DesignWidth="600">
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition />
-			<ColumnDefinition />
-		</Grid.ColumnDefinitions>
-		
-		<Grid.RowDefinitions>
-			<RowDefinition Height="50" />
-			<RowDefinition />
-			<RowDefinition />
-		</Grid.RowDefinitions>
+	<DockPanel>
 
-		<TextBlock Text="Statistiques" Grid.Row="0" Grid.ColumnSpan="2"
+		<TextBlock Text="Statistiques" DockPanel.Dock="Top"
 				   VerticalAlignment="Top" 
 				   Margin="0,5,0,10" TextAlignment="Center" 
 				   Style="{DynamicResource ResourceKey=titreUC}" />
 		
-		<GroupBox Name="gbxCharts" Header="Graphs" Grid.Row="1" Grid.Column="0" Margin="5,5,5,5">
-			<StackPanel Orientation="Vertical">
-				<ComboBox Name="comboChoixGraph" ItemsSource="{Binding Path=ListeGraphs}">
-					<i:Interaction.Triggers>
-						<i:EventTrigger EventName="SelectionChanged">
-							<cmd:EventToCommand 
-								Command="{Binding Path=ChangeChartCommand, Mode=OneWay}" 
-								CommandParameter="{Binding ElementName=comboChoixGraph, Path=SelectedItem}" />
-						</i:EventTrigger>
-					</i:Interaction.Triggers>
-				</ComboBox>
+			<ComboBox Name="comboChoixGraph" ItemsSource="{Binding Path=ListeGraphs}" DockPanel.Dock="Top">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="SelectionChanged">
+						<cmd:EventToCommand 
+							Command="{Binding Path=ChangeChartCommand, Mode=OneWay}" 
+							CommandParameter="{Binding ElementName=comboChoixGraph, Path=SelectedItem}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</ComboBox>
 
-				<Separator Margin="0,10,0,10" />
+			<Separator Margin="0,10,0,10" />
 
-				<chartingToolkit:Chart Name="chart" Title="{Binding Path=TitreGraph}">
-					<chartingToolkit:Chart.Series>
-						<chartingToolkit:PieSeries Title="PieChart" 
-												   ItemsSource="{Binding Path=ChartKeysValues}"
-												   IndependentValueBinding="{Binding Path=Key}"
-												   DependentValueBinding="{Binding Path=Value}" />
-					</chartingToolkit:Chart.Series>
-				</chartingToolkit:Chart>
-			</StackPanel>
-		</GroupBox>
-	</Grid>
+			<chartingToolkit:Chart Name="chart" Title="{Binding Path=TitreGraph}">
+				<chartingToolkit:Chart.Series>
+					<chartingToolkit:PieSeries Title="PieChart" 
+												ItemsSource="{Binding Path=ChartKeysValues}"
+												IndependentValueBinding="{Binding Path=Key}"
+												DependentValueBinding="{Binding Path=Value}" />
+				</chartingToolkit:Chart.Series>
+			</chartingToolkit:Chart>
+	</DockPanel>
 </UserControl>

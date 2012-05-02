@@ -198,8 +198,8 @@ namespace gestadh45.business.ViewModel.Statistiques
 			int nbMineurs = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Age < 18).Count();
 			int nbMajeurs = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Age >= 18).Count();
 
-			keyValues.Add(new KeyValuePair<string, int>("-18", nbMineurs));
-			keyValues.Add(new KeyValuePair<string, int>("18+", nbMajeurs));
+			keyValues.Add(new KeyValuePair<string, int>(RessourcesStats.LibelleMineurs, nbMineurs));
+			keyValues.Add(new KeyValuePair<string, int>(RessourcesStats.LibelleMajeurs, nbMajeurs));
 
 			return keyValues;
 		}
@@ -212,8 +212,8 @@ namespace gestadh45.business.ViewModel.Statistiques
 			int nbResidents = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Ville.ID == villeClub.ID).Count();
 			int nbExterieurs = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Ville.ID != villeClub.ID).Count();
 
-			keyValues.Add(new KeyValuePair<string, int>("Résidents", nbResidents));
-			keyValues.Add(new KeyValuePair<string, int>("Extérieurs", nbExterieurs));
+			keyValues.Add(new KeyValuePair<string, int>(RessourcesStats.LibelleResidents, nbResidents));
+			keyValues.Add(new KeyValuePair<string, int>(RessourcesStats.LibelleExtérieurs, nbExterieurs));
 
 			return keyValues;
 		}
