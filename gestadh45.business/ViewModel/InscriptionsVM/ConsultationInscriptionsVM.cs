@@ -7,6 +7,8 @@ using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
 using gestadh45.services.Documents;
 using gestadh45.services.Documents.Templates;
+using gestadh45.services.VCards;
+using System.IO;
 
 namespace gestadh45.business.ViewModel.InscriptionsVM
 {
@@ -219,7 +221,31 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 
 		public void ExecuteGenererVCardCommand() {
 			if (this.SelectedInscription != null) {
-				// TODO implémenter
+				// recuperation du chemin d'enregistrement et passage au callback qui s'occupe de la génération a proprement parler
+				Messenger.Default.Send<NMActionFileDialog<string>>(
+					new NMActionFileDialog<string>(
+						ResVCards.ExtensionVcf,
+						string.Format(ResVCards.InscriptionVCardFileName, this.SelectedInscription.Adherent.ToString()),
+						callback =>
+						{
+							this.GenererVCardCallBack(callback);
+						}
+					)
+				);			
+			}
+		}
+
+		private void GenererVCardCallBack(string filePath) {
+			if (!string.IsNullOrWhiteSpace(filePath)) {
+				var gen = new VcardGenerator21(this.SelectedInscription.Adherent.Prenom, this.SelectedInscription.Adherent.Nom);
+				
+				gen.AddEmailInternet(this.SelectedInscription.Adherent.Mail1);
+				gen.AddTelWork(this.SelectedInscription.Adherent.Telephone1);
+				gen.AddOrganization(this.SelectedInscription.Groupe.ToString());
+
+				using (var sw = new StreamWriter(filePath)) {
+					sw.Write(gen.GetVCard());
+				}
 
 				this.ShowUserNotification(ResInscriptions.InfosVCardGeneree);
 			}

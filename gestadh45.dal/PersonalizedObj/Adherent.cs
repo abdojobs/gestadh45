@@ -23,7 +23,6 @@ namespace gestadh45.dal
 		/// Calcule l'age de l'adherent à partir de sa date de naissance
 		/// </summary>
 		/// <returns>Age de l'adhérent</returns>
-		[Obsolete("Utiliser la méthode du gptoolkit à la place")]
 		private int CalculerAge() {
 			int num = DateTime.Now.Year - this.DateNaissance.Year;
 			DateTime time = new DateTime(DateTime.Now.Year, this.DateNaissance.Month, this.DateNaissance.Day);
