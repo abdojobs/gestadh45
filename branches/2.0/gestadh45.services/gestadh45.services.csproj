@@ -70,11 +70,23 @@
       <DependentUpon>ResDocuments.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VCards\ResVCards.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResVCards.resx</DependentUpon>
+    </Compile>
+    <Compile Include="VCards\VcardGenerator21.cs" />
+    <Compile Include="VCards\VcardGenerator3.cs" />
+    <Compile Include="VCards\VcardGeneratorBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Documents\Templates\ResDocuments.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResDocuments.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VCards\ResVCards.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResVCards.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
