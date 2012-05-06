@@ -122,5 +122,23 @@ namespace gestadh45.business.ViewModel.GroupesVM {
                 return ResourceManager.GetString("InfosDocumentsGeneres", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Les {0} VCards ont été générées ({0} fichiers).
+        /// </summary>
+        internal static string InfosVCardsDistinctGenerees {
+            get {
+                return ResourceManager.GetString("InfosVCardsDistinctGenerees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Les {0} VCards ont été générées (1 fichier).
+        /// </summary>
+        internal static string InfosVCardsUniqueGenerees {
+            get {
+                return ResourceManager.GetString("InfosVCardsUniqueGenerees", resourceCulture);
+            }
+        }
     }
 }

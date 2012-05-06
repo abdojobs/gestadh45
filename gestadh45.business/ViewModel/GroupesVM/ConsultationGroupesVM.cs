@@ -7,6 +7,8 @@ using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
 using gestadh45.services.Documents;
 using gestadh45.services.Documents.Templates;
+using gestadh45.services.VCards;
+using System.IO;
 
 namespace gestadh45.business.ViewModel.GroupesVM
 {
@@ -57,6 +59,7 @@ namespace gestadh45.business.ViewModel.GroupesVM
 			this.repoInfosClub = new Repository<InfosClub>(this._context);
 			this.PopulateGroupes();
 			this.CreateGenererDocumentsGroupeCommand();
+			this.CreateGenererVCardsGroupeDistinctCommand();
 		}
 		#endregion
 
@@ -151,6 +154,58 @@ namespace gestadh45.business.ViewModel.GroupesVM
 						}
 					)
 				);			
+			}
+		}
+		#endregion
+
+		#region GenererVCardsGroupeDistinctCommand
+		public ICommand GenererVCardsGroupeDistinctCommand {
+			get;
+			set;
+		}
+
+		private void CreateGenererVCardsGroupeDistinctCommand() {
+			this.GenererVCardsGroupeDistinctCommand = new RelayCommand(
+				this.ExecuteGenererVCardsGroupeDistinctCommand,
+				this.CanExecuteGenererVCardsGroupeDistinctCommand
+			);
+		}
+
+		public bool CanExecuteGenererVCardsGroupeDistinctCommand() {
+			return this.SelectedGroupe != null;
+		}
+
+		public void ExecuteGenererVCardsGroupeDistinctCommand() {
+			if (this.SelectedGroupe != null) {
+				// recuperation du chemin d'enregistrement et passage au callback qui s'occupe de la génération a proprement parler
+				Messenger.Default.Send<NMActionFolderDialog<string>>(
+					new NMActionFolderDialog<string>(
+						callback =>
+						{
+							this.GenererVCardGroupeDistinctCallBack(callback);
+						}
+					)
+				);
+			}
+		}
+
+		private void GenererVCardGroupeDistinctCallBack(string savePath) {
+			if (!string.IsNullOrWhiteSpace(savePath)) {
+				foreach (Inscription ins in this.SelectedGroupe.Inscriptions) {
+					var gen = new VcardGenerator21(ins.Adherent.Prenom, ins.Adherent.Nom);
+
+					gen.AddEmailInternet(ins.Adherent.Mail1);
+					gen.AddTelWork(ins.Adherent.Telephone1);
+					gen.AddOrganization(ins.Groupe.ToString());
+
+					var fileName = string.Concat(savePath, "/", ins.Adherent.ToString(), ResVCards.ExtensionVcf);
+
+					using (var sw = new StreamWriter(fileName)) {
+						sw.Write(gen.GetVCard());
+					}
+				}
+
+				this.ShowUserNotification(string.Format(ResGroupes.InfosVCardsDistinctGenerees, this.SelectedGroupe.Inscriptions.Count().ToString()));
 			}
 		}
 		#endregion

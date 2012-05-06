@@ -138,4 +138,10 @@
   <data name="InfosDocumentsGeneres" xml:space="preserve">
     <value>Les documents ont été générés</value>
   </data>
+  <data name="InfosVCardsDistinctGenerees" xml:space="preserve">
+    <value>Les {0} VCards ont été générées ({0} fichiers)</value>
+  </data>
+  <data name="InfosVCardsUniqueGenerees" xml:space="preserve">
+    <value>Les {0} VCards ont été générées (1 fichier)</value>
+  </data>
 </root>
