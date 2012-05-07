@@ -74,7 +74,7 @@
 					</StackPanel>
 
 					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-						<Button Height="16" Width="16" ToolTip="Générer les attestations du grope au format PDF" 
+						<Button Height="16" Width="16" ToolTip="Générer les attestations du groupe au format PDF" 
 								CommandParameter="{x:Static doc:CodesDocument.AttestationPDF}" 
 								Command="{Binding Path=GenererDocumentsGroupeCommand}">
 							<Image Source="/gestadh45.wpf;component/Images/btn_pdf16.png" />
@@ -82,6 +82,23 @@
 						<TextBlock Text=" : Attestations (pdf)" />
 					</StackPanel>
 
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+						<Button Height="16" Width="16" ToolTip="Générer les VCards du groupe (fichiers distincts)" 
+										Command="{Binding Path=GenererVCardsGroupeDistinctCommand}">
+							<Image Source="/gestadh45.wpf;component/Images/btn_mails16.png" />
+						</Button>
+						<TextBlock Text=" : VCard distincts (vcf)" />
+					</StackPanel>
+
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+						<Button Height="16" Width="16" ToolTip="Générer les VCards du groupe (fichier unique)" 
+										Command="{Binding Path=GenererVCardsGroupeUniqueCommand}">
+							<Image Source="/gestadh45.wpf;component/Images/btn_mails16.png" />
+						</Button>
+						<TextBlock Text=" : VCard unique (vcf)" />
+					</StackPanel>
+
+					<TextBlock Text="Les inscriptions annulées ne seront pas exportées" FontSize="10" TextWrapping="WrapWithOverflow" />
 				</StackPanel>
 			</GroupBox>
 

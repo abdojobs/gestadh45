@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
+using System.Text;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -8,7 +10,7 @@ using gestadh45.dal;
 using gestadh45.services.Documents;
 using gestadh45.services.Documents.Templates;
 using gestadh45.services.VCards;
-using System.IO;
+using System;
 
 namespace gestadh45.business.ViewModel.GroupesVM
 {
@@ -60,6 +62,7 @@ namespace gestadh45.business.ViewModel.GroupesVM
 			this.PopulateGroupes();
 			this.CreateGenererDocumentsGroupeCommand();
 			this.CreateGenererVCardsGroupeDistinctCommand();
+			this.CreateGenererVCardsGroupeUniqueCommand();
 		}
 		#endregion
 
@@ -191,7 +194,7 @@ namespace gestadh45.business.ViewModel.GroupesVM
 
 		private void GenererVCardGroupeDistinctCallBack(string savePath) {
 			if (!string.IsNullOrWhiteSpace(savePath)) {
-				foreach (Inscription ins in this.SelectedGroupe.Inscriptions) {
+				foreach (Inscription ins in this.SelectedGroupe.Inscriptions.Where(ins => ins.StatutInscription.ID != 2)) {
 					var gen = new VcardGenerator21(ins.Adherent.Prenom, ins.Adherent.Nom);
 
 					gen.AddEmailInternet(ins.Adherent.Mail1);
@@ -206,6 +209,62 @@ namespace gestadh45.business.ViewModel.GroupesVM
 				}
 
 				this.ShowUserNotification(string.Format(ResGroupes.InfosVCardsDistinctGenerees, this.SelectedGroupe.Inscriptions.Count().ToString()));
+			}
+		}
+		#endregion
+
+		#region GenererVCardsGroupeUniqueCommand
+		public ICommand GenererVCardsGroupeUniqueCommand {
+			get;
+			set;
+		}
+
+		private void CreateGenererVCardsGroupeUniqueCommand() {
+			this.GenererVCardsGroupeUniqueCommand = new RelayCommand(
+				this.ExecuteGenererVCardsGroupeUniqueCommand,
+				this.CanExecuteGenererVCardsGroupeUniqueCommand
+			);
+		}
+
+		public bool CanExecuteGenererVCardsGroupeUniqueCommand() {
+			return this.SelectedGroupe != null;
+		}
+
+		public void ExecuteGenererVCardsGroupeUniqueCommand() {
+			if (this.SelectedGroupe != null) {
+				// recuperation du chemin d'enregistrement et passage au callback qui s'occupe de la génération a proprement parler
+				Messenger.Default.Send<NMActionFolderDialog<string>>(
+					new NMActionFolderDialog<string>(
+						callback =>
+						{
+							this.GenererVCardsGroupeUniqueCallBack(callback);
+						}
+					)
+				);
+			}
+		}
+
+		private void GenererVCardsGroupeUniqueCallBack(string savePath) {
+			if (!string.IsNullOrWhiteSpace(savePath)) {
+				var sb = new StringBuilder();
+
+				foreach (Inscription ins in this.SelectedGroupe.Inscriptions.Where(ins => ins.StatutInscription.ID != 2)) {
+					var gen = new VcardGenerator21(ins.Adherent.Prenom, ins.Adherent.Nom);
+
+					gen.AddEmailInternet(ins.Adherent.Mail1);
+					gen.AddTelWork(ins.Adherent.Telephone1);
+					gen.AddOrganization(ins.Groupe.ToString());
+
+					sb.AppendLine(gen.GetVCard());
+				}
+
+				var fileName = string.Concat(savePath, "/", this.SelectedGroupe.Libelle, ResVCards.ExtensionVcf);
+
+				using (var sw = new StreamWriter(fileName)) {
+					sw.Write(sb.ToString());
+				}
+
+				this.ShowUserNotification(string.Format(ResGroupes.InfosVCardsUniqueGenerees, this.SelectedGroupe.Inscriptions.Count().ToString()));
 			}
 		}
 		#endregion
