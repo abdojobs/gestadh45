@@ -55,7 +55,7 @@
 										  Text="{Binding Path=CurrentGroupe.NbPlaces}" />
 			</StackPanel>
 
-			<TextBox Text="{Binding Path=CurrentGroupe.Saison, StringFormat='Saison : {0}'}" />
+			<TextBlock Text="{Binding Path=CurrentGroupe.Saison, StringFormat='Saison : {0}'}" />
 
 			<TextBlock Text="Commentaire : " />
 			<TextBox AcceptsReturn="True" Height="50" Width="500">
