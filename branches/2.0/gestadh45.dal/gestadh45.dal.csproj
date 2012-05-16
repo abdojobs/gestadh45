@@ -49,35 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adherent.cs">
-      <DependentUpon>GestAdh45.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GestAdh45.Context.cs">
+    <Compile Include="GestAdh45Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GestAdh45.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GestAdh45.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GestAdh45.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GestAdh45.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GestAdh45.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Groupe.cs">
-      <DependentUpon>GestAdh45.tt</DependentUpon>
-    </Compile>
-    <Compile Include="InfosClub.cs">
-      <DependentUpon>GestAdh45.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Inscription.cs">
-      <DependentUpon>GestAdh45.tt</DependentUpon>
-    </Compile>
-    <Compile Include="JourSemaine.cs">
-      <DependentUpon>GestAdh45.tt</DependentUpon>
+      <DependentUpon>GestAdh45Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="PersonalizedObj\Adherent.cs" />
     <Compile Include="PersonalizedObj\Groupe.cs" />
@@ -91,38 +66,15 @@
     <Compile Include="PersonalizedObj\Ville.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
-    <Compile Include="Saison.cs">
-      <DependentUpon>GestAdh45.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Sexe.cs">
-      <DependentUpon>GestAdh45.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StatutInscription.cs">
-      <DependentUpon>GestAdh45.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TrancheAge.cs">
-      <DependentUpon>GestAdh45.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Ville.cs">
-      <DependentUpon>GestAdh45.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <EntityDeploy Include="GestAdh45.edmx">
+    <EntityDeploy Include="GestAdh45Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GestAdh45.Designer.cs</LastGenOutput>
+      <LastGenOutput>GestAdh45Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="GestAdh45.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GestAdh45.Context.cs</LastGenOutput>
-    </None>
-    <None Include="GestAdh45.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GestAdh45.cs</LastGenOutput>
-    </None>
     <None Include="packages.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

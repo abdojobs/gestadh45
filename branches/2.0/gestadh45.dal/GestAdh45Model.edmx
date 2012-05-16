@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="gestadh45Model.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="gestadh45ModelStoreContainer">
+          <EntitySet Name="Groupe" EntityType="gestadh45Model.Store.Groupe" store:Type="Tables" />
+          <EntitySet Name="InfosClub" EntityType="gestadh45Model.Store.InfosClub" store:Type="Tables" />
+          <EntitySet Name="JourSemaine" EntityType="gestadh45Model.Store.JourSemaine" store:Type="Tables" />
+          <EntitySet Name="Saison" EntityType="gestadh45Model.Store.Saison" store:Type="Tables" />
+          <EntitySet Name="Sexe" EntityType="gestadh45Model.Store.Sexe" store:Type="Tables" />
+          <EntitySet Name="StatutInscription" EntityType="gestadh45Model.Store.StatutInscription" store:Type="Tables" />
+          <EntitySet Name="TrancheAge" EntityType="gestadh45Model.Store.TrancheAge" store:Type="Tables" />
+          <EntitySet Name="Ville" EntityType="gestadh45Model.Store.Ville" store:Type="Tables" />
+        </EntityContainer>
+        <EntityType Name="Groupe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ID_JourSemaine" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NbPlaces" Type="int" Nullable="false" />
+          <Property Name="Commentaire" Type="ntext" />
+          <Property Name="ID_Saison" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="HeureDebut" Type="datetime" Nullable="false" />
+          <Property Name="HeureFin" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InfosClub">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Numero" Type="nvarchar" MaxLength="20" />
+          <Property Name="Siren" Type="nvarchar" MaxLength="9" />
+          <Property Name="NIC" Type="nvarchar" MaxLength="5" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID_Ville" Type="uniqueidentifier" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="14" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="100" />
+          <Property Name="SiteWeb" Type="nvarchar" MaxLength="100" />
+          <Property Name="NumAPS" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="JourSemaine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Saison">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EstSaisonCourante" Type="bit" Nullable="false" />
+          <Property Name="AnneeDebut" Type="int" Nullable="false" />
+          <Property Name="AnneeFin" Type="int" />
+        </EntityType>
+        <EntityType Name="Sexe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LibelleCourt" Type="nvarchar" Nullable="false" MaxLength="1" />
+          <Property Name="LibelleLong" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StatutInscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CodeCouleur" Type="nvarchar" Nullable="false" MaxLength="7" />
+          <Property Name="Ordre" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrancheAge">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AgeInf" Type="int" Nullable="false" />
+          <Property Name="AgeSup" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ville">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CodePostal" Type="nvarchar" Nullable="false" MaxLength="5" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="gestadh45Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="gestadh45Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Groupes" EntityType="gestadh45Model.Groupe" />
+          <EntitySet Name="InfosClubs" EntityType="gestadh45Model.InfosClub" />
+          <EntitySet Name="JourSemaines" EntityType="gestadh45Model.JourSemaine" />
+          <EntitySet Name="Saisons" EntityType="gestadh45Model.Saison" />
+          <EntitySet Name="Sexes" EntityType="gestadh45Model.Sexe" />
+          <EntitySet Name="StatutInscriptions" EntityType="gestadh45Model.StatutInscription" />
+          <EntitySet Name="TrancheAges" EntityType="gestadh45Model.TrancheAge" />
+          <EntitySet Name="Villes" EntityType="gestadh45Model.Ville" />
+        </EntityContainer>
+        <EntityType Name="Groupe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ID_JourSemaine" Type="Guid" Nullable="false" />
+          <Property Name="NbPlaces" Type="Int32" Nullable="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ID_Saison" Type="Guid" Nullable="false" />
+          <Property Name="HeureDebut" Type="DateTime" Nullable="false" />
+          <Property Name="HeureFin" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="InfosClub">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Numero" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Siren" Type="String" MaxLength="9" Unicode="true" FixedLength="false" />
+          <Property Name="NIC" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="Adresse" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ID_Ville" Type="Guid" />
+          <Property Name="Telephone" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
+          <Property Name="Mail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="SiteWeb" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="NumAPS" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="JourSemaine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Numero" Type="Int32" Nullable="false" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Saison">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="EstSaisonCourante" Type="Boolean" Nullable="false" />
+          <Property Name="AnneeDebut" Type="Int32" Nullable="false" />
+          <Property Name="AnneeFin" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Sexe">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="LibelleCourt" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="false" />
+          <Property Name="LibelleLong" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="StatutInscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CodeCouleur" Type="String" Nullable="false" MaxLength="7" Unicode="true" FixedLength="false" />
+          <Property Name="Ordre" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrancheAge">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="AgeInf" Type="Int32" Nullable="false" />
+          <Property Name="AgeSup" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ville">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CodePostal" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="gestadh45ModelStoreContainer" CdmEntityContainer="gestadh45Entities">
+          <EntitySetMapping Name="Groupes"><EntityTypeMapping TypeName="gestadh45Model.Groupe"><MappingFragment StoreEntitySet="Groupe">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+            <ScalarProperty Name="ID_JourSemaine" ColumnName="ID_JourSemaine" />
+            <ScalarProperty Name="NbPlaces" ColumnName="NbPlaces" />
+            <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+            <ScalarProperty Name="ID_Saison" ColumnName="ID_Saison" />
+            <ScalarProperty Name="HeureDebut" ColumnName="HeureDebut" />
+            <ScalarProperty Name="HeureFin" ColumnName="HeureFin" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="InfosClubs"><EntityTypeMapping TypeName="gestadh45Model.InfosClub"><MappingFragment StoreEntitySet="InfosClub">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Nom" ColumnName="Nom" />
+            <ScalarProperty Name="Numero" ColumnName="Numero" />
+            <ScalarProperty Name="Siren" ColumnName="Siren" />
+            <ScalarProperty Name="NIC" ColumnName="NIC" />
+            <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+            <ScalarProperty Name="ID_Ville" ColumnName="ID_Ville" />
+            <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+            <ScalarProperty Name="Mail" ColumnName="Mail" />
+            <ScalarProperty Name="SiteWeb" ColumnName="SiteWeb" />
+            <ScalarProperty Name="NumAPS" ColumnName="NumAPS" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="JourSemaines"><EntityTypeMapping TypeName="gestadh45Model.JourSemaine"><MappingFragment StoreEntitySet="JourSemaine">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Numero" ColumnName="Numero" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Saisons"><EntityTypeMapping TypeName="gestadh45Model.Saison"><MappingFragment StoreEntitySet="Saison">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="EstSaisonCourante" ColumnName="EstSaisonCourante" />
+            <ScalarProperty Name="AnneeDebut" ColumnName="AnneeDebut" />
+            <ScalarProperty Name="AnneeFin" ColumnName="AnneeFin" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Sexes"><EntityTypeMapping TypeName="gestadh45Model.Sexe"><MappingFragment StoreEntitySet="Sexe">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="LibelleCourt" ColumnName="LibelleCourt" />
+            <ScalarProperty Name="LibelleLong" ColumnName="LibelleLong" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="StatutInscriptions"><EntityTypeMapping TypeName="gestadh45Model.StatutInscription"><MappingFragment StoreEntitySet="StatutInscription">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+            <ScalarProperty Name="CodeCouleur" ColumnName="CodeCouleur" />
+            <ScalarProperty Name="Ordre" ColumnName="Ordre" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="TrancheAges"><EntityTypeMapping TypeName="gestadh45Model.TrancheAge"><MappingFragment StoreEntitySet="TrancheAge">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="AgeInf" ColumnName="AgeInf" />
+            <ScalarProperty Name="AgeSup" ColumnName="AgeSup" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Villes"><EntityTypeMapping TypeName="gestadh45Model.Ville"><MappingFragment StoreEntitySet="Ville">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+            <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="GestAdh45Model">
+        <EntityTypeShape EntityType="gestadh45Model.Groupe" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.InfosClub" Width="1.5" PointX="2.75" PointY="0.75" Height="3.1340950520833326" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.JourSemaine" Width="1.5" PointX="4.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.Saison" Width="1.5" PointX="0.75" PointY="4.75" Height="1.7879850260416657" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.Sexe" Width="1.5" PointX="2.75" PointY="4.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.StatutInscription" Width="1.5" PointX="4.75" PointY="3.75" Height="1.787985026041667" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.TrancheAge" Width="1.5" PointX="6.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.Ville" Width="1.5" PointX="6.75" PointY="3.75" Height="1.5956835937499996" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
