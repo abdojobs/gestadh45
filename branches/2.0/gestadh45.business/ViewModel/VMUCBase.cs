@@ -14,13 +14,13 @@ namespace gestadh45.business.ViewModel
 		/// </summary>
 		public bool IsWindowMode { get; set; }
 
-		protected GestAdh45Entities _context;
+		protected gestadh45Entities _context;
 
 		/// <summary>
 		/// Constructeur définissant l'UC par défaut à afficher (Consultation infos club)
 		/// </summary>
 		public VMUCBase() {
-			this._context = new GestAdh45Entities();
+			this._context = new gestadh45Entities();
 			this.UCParentCode = CodesUC.ConsultationInfosClub;
 		}
 	}

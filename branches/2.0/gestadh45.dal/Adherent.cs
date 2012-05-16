@@ -36,9 +36,9 @@ namespace gestadh45.dal
         public string Mail2 { get; set; }
         public string Mail3 { get; set; }
     
+        public virtual ICollection<Inscription> Inscriptions { get; set; }
         public virtual Sexe Sexe { get; set; }
         public virtual Ville Ville { get; set; }
-        public virtual ICollection<Inscription> Inscriptions { get; set; }
     }
     
 }

@@ -17,7 +17,7 @@ namespace gestadh45.dal
         public Ville()
         {
             this.Adherents = new HashSet<Adherent>();
-            this.InfosClub = new HashSet<InfosClub>();
+            this.InfosClubs = new HashSet<InfosClub>();
         }
     
         public long ID { get; set; }
@@ -25,7 +25,7 @@ namespace gestadh45.dal
         public string CodePostal { get; set; }
     
         public virtual ICollection<Adherent> Adherents { get; set; }
-        public virtual ICollection<InfosClub> InfosClub { get; set; }
+        public virtual ICollection<InfosClub> InfosClubs { get; set; }
     }
     
 }
