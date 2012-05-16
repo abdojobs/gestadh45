@@ -19,7 +19,7 @@ namespace gestadh45.dal
             this.Adherents = new HashSet<Adherent>();
         }
     
-        public long ID { get; set; }
+        public System.Guid ID { get; set; }
         public string LibelleCourt { get; set; }
         public string LibelleLong { get; set; }
     

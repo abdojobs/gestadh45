@@ -100,7 +100,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 		/// Formulaire pour le mode édition
 		/// </summary>
 		/// <param name="idInscription">ID de l'inscription à éditer</param>
-		public FormulaireInscriptionVM(int idInscription) {
+		public FormulaireInscriptionVM(Guid idInscription) {
 			this.UCParentCode = CodesUC.ConsultationInscriptions;
 			this.IsEditMode = true;
 
@@ -177,7 +177,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 		/// Ajoute automatiquement un adhérent à l'inscription à partir de son ID
 		/// </summary>
 		/// <param name="idAdherent">ID de l'adhérent</param>
-		public void SetAdherent(int idAdherent) {
+		public void SetAdherent(Guid idAdherent) {
 			this.CurrentInscription.Adherent = this.repoAdherent.GetByKey(idAdherent);
 			this.RaisePropertyChanged(() => this.CurrentInscription);
 		}
@@ -206,6 +206,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 					this.repoInscription.Edit(this.CurrentInscription);
 				}
 				else {
+					this.CurrentInscription.ID = Guid.NewGuid();
 					this.CurrentInscription.DateCreation = DateTime.Now;
 					this.repoInscription.Add(this.CurrentInscription);
 				}

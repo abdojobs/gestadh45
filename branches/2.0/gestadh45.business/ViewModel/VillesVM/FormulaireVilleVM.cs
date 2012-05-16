@@ -41,6 +41,7 @@ namespace gestadh45.business.ViewModel.VillesVM
 			var errors = new List<string>();
 
 			if (this.CheckFormValidity(errors)) {
+				this.CurrentVille.ID = Guid.NewGuid();
 				this.repoVille.Add(this.CurrentVille);
 				this.repoVille.Save();
 

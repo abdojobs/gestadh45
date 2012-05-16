@@ -6,15 +6,70 @@
     <edmx:StorageModels>
       <Schema Namespace="gestadh45Model.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gestadh45ModelStoreContainer">
+          <EntitySet Name="Adherent" EntityType="gestadh45Model.Store.Adherent" store:Type="Tables" />
           <EntitySet Name="Groupe" EntityType="gestadh45Model.Store.Groupe" store:Type="Tables" />
           <EntitySet Name="InfosClub" EntityType="gestadh45Model.Store.InfosClub" store:Type="Tables" />
+          <EntitySet Name="Inscription" EntityType="gestadh45Model.Store.Inscription" store:Type="Tables" />
           <EntitySet Name="JourSemaine" EntityType="gestadh45Model.Store.JourSemaine" store:Type="Tables" />
           <EntitySet Name="Saison" EntityType="gestadh45Model.Store.Saison" store:Type="Tables" />
           <EntitySet Name="Sexe" EntityType="gestadh45Model.Store.Sexe" store:Type="Tables" />
           <EntitySet Name="StatutInscription" EntityType="gestadh45Model.Store.StatutInscription" store:Type="Tables" />
           <EntitySet Name="TrancheAge" EntityType="gestadh45Model.Store.TrancheAge" store:Type="Tables" />
           <EntitySet Name="Ville" EntityType="gestadh45Model.Store.Ville" store:Type="Tables" />
+          <AssociationSet Name="FK_Adherent_Inscription" Association="gestadh45Model.Store.FK_Adherent_Inscription">
+            <End Role="Adherent" EntitySet="Adherent" />
+            <End Role="Inscription" EntitySet="Inscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groupe_Inscription" Association="gestadh45Model.Store.FK_Groupe_Inscription">
+            <End Role="Groupe" EntitySet="Groupe" />
+            <End Role="Inscription" EntitySet="Inscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JourSemaine_Groupe" Association="gestadh45Model.Store.FK_JourSemaine_Groupe">
+            <End Role="JourSemaine" EntitySet="JourSemaine" />
+            <End Role="Groupe" EntitySet="Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Saison_Groupe" Association="gestadh45Model.Store.FK_Saison_Groupe">
+            <End Role="Saison" EntitySet="Saison" />
+            <End Role="Groupe" EntitySet="Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sexe_Adherent" Association="gestadh45Model.Store.FK_Sexe_Adherent">
+            <End Role="Sexe" EntitySet="Sexe" />
+            <End Role="Adherent" EntitySet="Adherent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatutInscription_Inscription" Association="gestadh45Model.Store.FK_StatutInscription_Inscription">
+            <End Role="StatutInscription" EntitySet="StatutInscription" />
+            <End Role="Inscription" EntitySet="Inscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ville_Adherent" Association="gestadh45Model.Store.FK_Ville_Adherent">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="Adherent" EntitySet="Adherent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ville_InfosClub" Association="gestadh45Model.Store.FK_Ville_InfosClub">
+            <End Role="Ville" EntitySet="Ville" />
+            <End Role="InfosClub" EntitySet="InfosClub" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Adherent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Prenom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DateNaissance" Type="datetime" Nullable="false" />
+          <Property Name="DateCreation" Type="datetime" Nullable="false" />
+          <Property Name="DateModification" Type="datetime" Nullable="false" />
+          <Property Name="ID_Sexe" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Commentaire" Type="ntext" />
+          <Property Name="Adresse" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="ID_Ville" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Telephone1" Type="nvarchar" MaxLength="14" />
+          <Property Name="Telephone2" Type="nvarchar" MaxLength="14" />
+          <Property Name="Telephone3" Type="nvarchar" MaxLength="14" />
+          <Property Name="Mail1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mail2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mail3" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="Groupe">
           <Key>
             <PropertyRef Name="ID" />
@@ -43,6 +98,20 @@
           <Property Name="Mail" Type="nvarchar" MaxLength="100" />
           <Property Name="SiteWeb" Type="nvarchar" MaxLength="100" />
           <Property Name="NumAPS" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Inscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID_Adherent" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID_Groupe" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Cotisation" Type="money" />
+          <Property Name="DateCreation" Type="datetime" Nullable="false" />
+          <Property Name="DateModification" Type="datetime" Nullable="false" />
+          <Property Name="Commentaire" Type="ntext" />
+          <Property Name="ID_StatutInscription" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CertificatMedicalRemis" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="JourSemaine">
           <Key>
@@ -94,21 +163,175 @@
           <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CodePostal" Type="nvarchar" Nullable="false" MaxLength="5" />
         </EntityType>
+        <Association Name="FK_Adherent_Inscription">
+          <End Role="Adherent" Type="gestadh45Model.Store.Adherent" Multiplicity="1" />
+          <End Role="Inscription" Type="gestadh45Model.Store.Inscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adherent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inscription">
+              <PropertyRef Name="ID_Adherent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groupe_Inscription">
+          <End Role="Groupe" Type="gestadh45Model.Store.Groupe" Multiplicity="1" />
+          <End Role="Inscription" Type="gestadh45Model.Store.Inscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inscription">
+              <PropertyRef Name="ID_Groupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JourSemaine_Groupe">
+          <End Role="JourSemaine" Type="gestadh45Model.Store.JourSemaine" Multiplicity="1" />
+          <End Role="Groupe" Type="gestadh45Model.Store.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JourSemaine">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="ID_JourSemaine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Saison_Groupe">
+          <End Role="Saison" Type="gestadh45Model.Store.Saison" Multiplicity="1" />
+          <End Role="Groupe" Type="gestadh45Model.Store.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saison">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="ID_Saison" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sexe_Adherent">
+          <End Role="Sexe" Type="gestadh45Model.Store.Sexe" Multiplicity="1" />
+          <End Role="Adherent" Type="gestadh45Model.Store.Adherent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sexe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adherent">
+              <PropertyRef Name="ID_Sexe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatutInscription_Inscription">
+          <End Role="StatutInscription" Type="gestadh45Model.Store.StatutInscription" Multiplicity="1" />
+          <End Role="Inscription" Type="gestadh45Model.Store.Inscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatutInscription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inscription">
+              <PropertyRef Name="ID_StatutInscription" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ville_Adherent">
+          <End Role="Ville" Type="gestadh45Model.Store.Ville" Multiplicity="1" />
+          <End Role="Adherent" Type="gestadh45Model.Store.Adherent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adherent">
+              <PropertyRef Name="ID_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ville_InfosClub">
+          <End Role="Ville" Type="gestadh45Model.Store.Ville" Multiplicity="0..1" />
+          <End Role="InfosClub" Type="gestadh45Model.Store.InfosClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InfosClub">
+              <PropertyRef Name="ID_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="gestadh45Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="gestadh45Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adherents" EntityType="gestadh45Model.Adherent" />
           <EntitySet Name="Groupes" EntityType="gestadh45Model.Groupe" />
           <EntitySet Name="InfosClubs" EntityType="gestadh45Model.InfosClub" />
+          <EntitySet Name="Inscriptions" EntityType="gestadh45Model.Inscription" />
           <EntitySet Name="JourSemaines" EntityType="gestadh45Model.JourSemaine" />
           <EntitySet Name="Saisons" EntityType="gestadh45Model.Saison" />
           <EntitySet Name="Sexes" EntityType="gestadh45Model.Sexe" />
           <EntitySet Name="StatutInscriptions" EntityType="gestadh45Model.StatutInscription" />
           <EntitySet Name="TrancheAges" EntityType="gestadh45Model.TrancheAge" />
           <EntitySet Name="Villes" EntityType="gestadh45Model.Ville" />
+          <AssociationSet Name="FK_Adherent_Inscription" Association="gestadh45Model.FK_Adherent_Inscription">
+            <End Role="Adherent" EntitySet="Adherents" />
+            <End Role="Inscription" EntitySet="Inscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sexe_Adherent" Association="gestadh45Model.FK_Sexe_Adherent">
+            <End Role="Sexe" EntitySet="Sexes" />
+            <End Role="Adherent" EntitySet="Adherents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ville_Adherent" Association="gestadh45Model.FK_Ville_Adherent">
+            <End Role="Ville" EntitySet="Villes" />
+            <End Role="Adherent" EntitySet="Adherents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groupe_Inscription" Association="gestadh45Model.FK_Groupe_Inscription">
+            <End Role="Groupe" EntitySet="Groupes" />
+            <End Role="Inscription" EntitySet="Inscriptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_JourSemaine_Groupe" Association="gestadh45Model.FK_JourSemaine_Groupe">
+            <End Role="JourSemaine" EntitySet="JourSemaines" />
+            <End Role="Groupe" EntitySet="Groupes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Saison_Groupe" Association="gestadh45Model.FK_Saison_Groupe">
+            <End Role="Saison" EntitySet="Saisons" />
+            <End Role="Groupe" EntitySet="Groupes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ville_InfosClub" Association="gestadh45Model.FK_Ville_InfosClub">
+            <End Role="Ville" EntitySet="Villes" />
+            <End Role="InfosClub" EntitySet="InfosClubs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StatutInscription_Inscription" Association="gestadh45Model.FK_StatutInscription_Inscription">
+            <End Role="StatutInscription" EntitySet="StatutInscriptions" />
+            <End Role="Inscription" EntitySet="Inscriptions" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Adherent">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Nom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Prenom" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="DateNaissance" Type="DateTime" Nullable="false" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" />
+          <Property Name="DateModification" Type="DateTime" Nullable="false" />
+          <Property Name="ID_Sexe" Type="Guid" Nullable="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Adresse" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ID_Ville" Type="Guid" Nullable="false" />
+          <Property Name="Telephone1" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
+          <Property Name="Telephone2" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
+          <Property Name="Telephone3" Type="String" MaxLength="14" Unicode="true" FixedLength="false" />
+          <Property Name="Mail1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Mail2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Mail3" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Inscriptions" Relationship="gestadh45Model.FK_Adherent_Inscription" FromRole="Adherent" ToRole="Inscription" />
+          <NavigationProperty Name="Sexe" Relationship="gestadh45Model.FK_Sexe_Adherent" FromRole="Adherent" ToRole="Sexe" />
+          <NavigationProperty Name="Ville" Relationship="gestadh45Model.FK_Ville_Adherent" FromRole="Adherent" ToRole="Ville" />
+        </EntityType>
         <EntityType Name="Groupe">
           <Key>
             <PropertyRef Name="ID" />
@@ -121,6 +344,9 @@
           <Property Name="ID_Saison" Type="Guid" Nullable="false" />
           <Property Name="HeureDebut" Type="DateTime" Nullable="false" />
           <Property Name="HeureFin" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Inscriptions" Relationship="gestadh45Model.FK_Groupe_Inscription" FromRole="Groupe" ToRole="Inscription" />
+          <NavigationProperty Name="JourSemaine" Relationship="gestadh45Model.FK_JourSemaine_Groupe" FromRole="Groupe" ToRole="JourSemaine" />
+          <NavigationProperty Name="Saison" Relationship="gestadh45Model.FK_Saison_Groupe" FromRole="Groupe" ToRole="Saison" />
         </EntityType>
         <EntityType Name="InfosClub">
           <Key>
@@ -137,6 +363,24 @@
           <Property Name="Mail" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="SiteWeb" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <Property Name="NumAPS" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Ville" Relationship="gestadh45Model.FK_Ville_InfosClub" FromRole="InfosClub" ToRole="Ville" />
+        </EntityType>
+        <EntityType Name="Inscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="ID_Adherent" Type="Guid" Nullable="false" />
+          <Property Name="ID_Groupe" Type="Guid" Nullable="false" />
+          <Property Name="Cotisation" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="DateCreation" Type="DateTime" Nullable="false" />
+          <Property Name="DateModification" Type="DateTime" Nullable="false" />
+          <Property Name="Commentaire" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="ID_StatutInscription" Type="Guid" Nullable="false" />
+          <Property Name="CertificatMedicalRemis" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Adherent" Relationship="gestadh45Model.FK_Adherent_Inscription" FromRole="Inscription" ToRole="Adherent" />
+          <NavigationProperty Name="Groupe" Relationship="gestadh45Model.FK_Groupe_Inscription" FromRole="Inscription" ToRole="Groupe" />
+          <NavigationProperty Name="StatutInscription" Relationship="gestadh45Model.FK_StatutInscription_Inscription" FromRole="Inscription" ToRole="StatutInscription" />
         </EntityType>
         <EntityType Name="JourSemaine">
           <Key>
@@ -145,6 +389,7 @@
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="Numero" Type="Int32" Nullable="false" />
           <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Groupes" Relationship="gestadh45Model.FK_JourSemaine_Groupe" FromRole="JourSemaine" ToRole="Groupe" />
         </EntityType>
         <EntityType Name="Saison">
           <Key>
@@ -154,6 +399,7 @@
           <Property Name="EstSaisonCourante" Type="Boolean" Nullable="false" />
           <Property Name="AnneeDebut" Type="Int32" Nullable="false" />
           <Property Name="AnneeFin" Type="Int32" />
+          <NavigationProperty Name="Groupes" Relationship="gestadh45Model.FK_Saison_Groupe" FromRole="Saison" ToRole="Groupe" />
         </EntityType>
         <EntityType Name="Sexe">
           <Key>
@@ -162,6 +408,7 @@
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="LibelleCourt" Type="String" Nullable="false" MaxLength="1" Unicode="true" FixedLength="false" />
           <Property Name="LibelleLong" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Adherents" Relationship="gestadh45Model.FK_Sexe_Adherent" FromRole="Sexe" ToRole="Adherent" />
         </EntityType>
         <EntityType Name="StatutInscription">
           <Key>
@@ -171,6 +418,7 @@
           <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CodeCouleur" Type="String" Nullable="false" MaxLength="7" Unicode="true" FixedLength="false" />
           <Property Name="Ordre" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inscriptions" Relationship="gestadh45Model.FK_StatutInscription_Inscription" FromRole="StatutInscription" ToRole="Inscription" />
         </EntityType>
         <EntityType Name="TrancheAge">
           <Key>
@@ -187,68 +435,235 @@
           <Property Name="ID" Type="Guid" Nullable="false" />
           <Property Name="Libelle" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CodePostal" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Adherents" Relationship="gestadh45Model.FK_Ville_Adherent" FromRole="Ville" ToRole="Adherent" />
+          <NavigationProperty Name="InfosClubs" Relationship="gestadh45Model.FK_Ville_InfosClub" FromRole="Ville" ToRole="InfosClub" />
         </EntityType>
+        <Association Name="FK_Adherent_Inscription">
+          <End Role="Adherent" Type="gestadh45Model.Adherent" Multiplicity="1" />
+          <End Role="Inscription" Type="gestadh45Model.Inscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adherent">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inscription">
+              <PropertyRef Name="ID_Adherent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sexe_Adherent">
+          <End Role="Sexe" Type="gestadh45Model.Sexe" Multiplicity="1" />
+          <End Role="Adherent" Type="gestadh45Model.Adherent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sexe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adherent">
+              <PropertyRef Name="ID_Sexe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ville_Adherent">
+          <End Role="Ville" Type="gestadh45Model.Ville" Multiplicity="1" />
+          <End Role="Adherent" Type="gestadh45Model.Adherent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Adherent">
+              <PropertyRef Name="ID_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Groupe_Inscription">
+          <End Role="Groupe" Type="gestadh45Model.Groupe" Multiplicity="1" />
+          <End Role="Inscription" Type="gestadh45Model.Inscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groupe">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inscription">
+              <PropertyRef Name="ID_Groupe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_JourSemaine_Groupe">
+          <End Role="JourSemaine" Type="gestadh45Model.JourSemaine" Multiplicity="1" />
+          <End Role="Groupe" Type="gestadh45Model.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JourSemaine">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="ID_JourSemaine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Saison_Groupe">
+          <End Role="Saison" Type="gestadh45Model.Saison" Multiplicity="1" />
+          <End Role="Groupe" Type="gestadh45Model.Groupe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Saison">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Groupe">
+              <PropertyRef Name="ID_Saison" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ville_InfosClub">
+          <End Role="Ville" Type="gestadh45Model.Ville" Multiplicity="0..1" />
+          <End Role="InfosClub" Type="gestadh45Model.InfosClub" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ville">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="InfosClub">
+              <PropertyRef Name="ID_Ville" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StatutInscription_Inscription">
+          <End Role="StatutInscription" Type="gestadh45Model.StatutInscription" Multiplicity="1" />
+          <End Role="Inscription" Type="gestadh45Model.Inscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatutInscription">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inscription">
+              <PropertyRef Name="ID_StatutInscription" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="gestadh45ModelStoreContainer" CdmEntityContainer="gestadh45Entities">
-          <EntitySetMapping Name="Groupes"><EntityTypeMapping TypeName="gestadh45Model.Groupe"><MappingFragment StoreEntitySet="Groupe">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
-            <ScalarProperty Name="ID_JourSemaine" ColumnName="ID_JourSemaine" />
-            <ScalarProperty Name="NbPlaces" ColumnName="NbPlaces" />
-            <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
-            <ScalarProperty Name="ID_Saison" ColumnName="ID_Saison" />
-            <ScalarProperty Name="HeureDebut" ColumnName="HeureDebut" />
-            <ScalarProperty Name="HeureFin" ColumnName="HeureFin" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="InfosClubs"><EntityTypeMapping TypeName="gestadh45Model.InfosClub"><MappingFragment StoreEntitySet="InfosClub">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Nom" ColumnName="Nom" />
-            <ScalarProperty Name="Numero" ColumnName="Numero" />
-            <ScalarProperty Name="Siren" ColumnName="Siren" />
-            <ScalarProperty Name="NIC" ColumnName="NIC" />
-            <ScalarProperty Name="Adresse" ColumnName="Adresse" />
-            <ScalarProperty Name="ID_Ville" ColumnName="ID_Ville" />
-            <ScalarProperty Name="Telephone" ColumnName="Telephone" />
-            <ScalarProperty Name="Mail" ColumnName="Mail" />
-            <ScalarProperty Name="SiteWeb" ColumnName="SiteWeb" />
-            <ScalarProperty Name="NumAPS" ColumnName="NumAPS" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="JourSemaines"><EntityTypeMapping TypeName="gestadh45Model.JourSemaine"><MappingFragment StoreEntitySet="JourSemaine">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Numero" ColumnName="Numero" />
-            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Saisons"><EntityTypeMapping TypeName="gestadh45Model.Saison"><MappingFragment StoreEntitySet="Saison">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="EstSaisonCourante" ColumnName="EstSaisonCourante" />
-            <ScalarProperty Name="AnneeDebut" ColumnName="AnneeDebut" />
-            <ScalarProperty Name="AnneeFin" ColumnName="AnneeFin" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Sexes"><EntityTypeMapping TypeName="gestadh45Model.Sexe"><MappingFragment StoreEntitySet="Sexe">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="LibelleCourt" ColumnName="LibelleCourt" />
-            <ScalarProperty Name="LibelleLong" ColumnName="LibelleLong" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="StatutInscriptions"><EntityTypeMapping TypeName="gestadh45Model.StatutInscription"><MappingFragment StoreEntitySet="StatutInscription">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
-            <ScalarProperty Name="CodeCouleur" ColumnName="CodeCouleur" />
-            <ScalarProperty Name="Ordre" ColumnName="Ordre" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="TrancheAges"><EntityTypeMapping TypeName="gestadh45Model.TrancheAge"><MappingFragment StoreEntitySet="TrancheAge">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="AgeInf" ColumnName="AgeInf" />
-            <ScalarProperty Name="AgeSup" ColumnName="AgeSup" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Villes"><EntityTypeMapping TypeName="gestadh45Model.Ville"><MappingFragment StoreEntitySet="Ville">
-            <ScalarProperty Name="ID" ColumnName="ID" />
-            <ScalarProperty Name="Libelle" ColumnName="Libelle" />
-            <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Adherents">
+            <EntityTypeMapping TypeName="gestadh45Model.Adherent">
+              <MappingFragment StoreEntitySet="Adherent">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+                <ScalarProperty Name="DateNaissance" ColumnName="DateNaissance" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="ID_Sexe" ColumnName="ID_Sexe" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="ID_Ville" ColumnName="ID_Ville" />
+                <ScalarProperty Name="Telephone1" ColumnName="Telephone1" />
+                <ScalarProperty Name="Telephone2" ColumnName="Telephone2" />
+                <ScalarProperty Name="Telephone3" ColumnName="Telephone3" />
+                <ScalarProperty Name="Mail1" ColumnName="Mail1" />
+                <ScalarProperty Name="Mail2" ColumnName="Mail2" />
+                <ScalarProperty Name="Mail3" ColumnName="Mail3" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groupes">
+            <EntityTypeMapping TypeName="gestadh45Model.Groupe">
+              <MappingFragment StoreEntitySet="Groupe">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="ID_JourSemaine" ColumnName="ID_JourSemaine" />
+                <ScalarProperty Name="NbPlaces" ColumnName="NbPlaces" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+                <ScalarProperty Name="ID_Saison" ColumnName="ID_Saison" />
+                <ScalarProperty Name="HeureDebut" ColumnName="HeureDebut" />
+                <ScalarProperty Name="HeureFin" ColumnName="HeureFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InfosClubs">
+            <EntityTypeMapping TypeName="gestadh45Model.InfosClub">
+              <MappingFragment StoreEntitySet="InfosClub">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Siren" ColumnName="Siren" />
+                <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="ID_Ville" ColumnName="ID_Ville" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="SiteWeb" ColumnName="SiteWeb" />
+                <ScalarProperty Name="NumAPS" ColumnName="NumAPS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inscriptions">
+            <EntityTypeMapping TypeName="gestadh45Model.Inscription">
+              <MappingFragment StoreEntitySet="Inscription">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ID_Adherent" ColumnName="ID_Adherent" />
+                <ScalarProperty Name="ID_Groupe" ColumnName="ID_Groupe" />
+                <ScalarProperty Name="Cotisation" ColumnName="Cotisation" />
+                <ScalarProperty Name="DateCreation" ColumnName="DateCreation" />
+                <ScalarProperty Name="DateModification" ColumnName="DateModification" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+                <ScalarProperty Name="ID_StatutInscription" ColumnName="ID_StatutInscription" />
+                <ScalarProperty Name="CertificatMedicalRemis" ColumnName="CertificatMedicalRemis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JourSemaines">
+            <EntityTypeMapping TypeName="gestadh45Model.JourSemaine">
+              <MappingFragment StoreEntitySet="JourSemaine">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saisons">
+            <EntityTypeMapping TypeName="gestadh45Model.Saison">
+              <MappingFragment StoreEntitySet="Saison">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EstSaisonCourante" ColumnName="EstSaisonCourante" />
+                <ScalarProperty Name="AnneeDebut" ColumnName="AnneeDebut" />
+                <ScalarProperty Name="AnneeFin" ColumnName="AnneeFin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sexes">
+            <EntityTypeMapping TypeName="gestadh45Model.Sexe">
+              <MappingFragment StoreEntitySet="Sexe">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LibelleCourt" ColumnName="LibelleCourt" />
+                <ScalarProperty Name="LibelleLong" ColumnName="LibelleLong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatutInscriptions">
+            <EntityTypeMapping TypeName="gestadh45Model.StatutInscription">
+              <MappingFragment StoreEntitySet="StatutInscription">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="CodeCouleur" ColumnName="CodeCouleur" />
+                <ScalarProperty Name="Ordre" ColumnName="Ordre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrancheAges">
+            <EntityTypeMapping TypeName="gestadh45Model.TrancheAge">
+              <MappingFragment StoreEntitySet="TrancheAge">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="AgeInf" ColumnName="AgeInf" />
+                <ScalarProperty Name="AgeSup" ColumnName="AgeSup" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Villes">
+            <EntityTypeMapping TypeName="gestadh45Model.Ville">
+              <MappingFragment StoreEntitySet="Ville">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="CodePostal" ColumnName="CodePostal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -265,19 +680,59 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="GestAdh45Model">
-        <EntityTypeShape EntityType="gestadh45Model.Groupe" Width="1.5" PointX="0.75" PointY="0.75" Height="2.5571907552083335" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestadh45Model.InfosClub" Width="1.5" PointX="2.75" PointY="0.75" Height="3.1340950520833326" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestadh45Model.JourSemaine" Width="1.5" PointX="4.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestadh45Model.Saison" Width="1.5" PointX="0.75" PointY="4.75" Height="1.7879850260416657" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestadh45Model.Sexe" Width="1.5" PointX="2.75" PointY="4.75" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestadh45Model.StatutInscription" Width="1.5" PointX="4.75" PointY="3.75" Height="1.787985026041667" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestadh45Model.TrancheAge" Width="1.5" PointX="6.75" PointY="0.75" Height="1.5956835937499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="gestadh45Model.Ville" Width="1.5" PointX="6.75" PointY="3.75" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.Adherent" Width="1.5" PointX="3" PointY="3.75" Height="4.6725065104166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.Groupe" Width="1.5" PointX="3" PointY="15.125" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.InfosClub" Width="1.5" PointX="3" PointY="9.875" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.Inscription" Width="1.5" PointX="5.25" PointY="4.5" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.JourSemaine" Width="1.5" PointX="0.75" PointY="14.5" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.Saison" Width="1.5" PointX="0.75" PointY="17" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.Sexe" Width="1.5" PointX="0.75" PointY="2.25" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.StatutInscription" Width="1.5" PointX="3" PointY="0.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.TrancheAge" Width="1.5" PointX="5.75" PointY="1.25" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="gestadh45Model.Ville" Width="1.5" PointX="0.75" PointY="5.125" Height="1.9802864583333317" IsExpanded="true" />
+        <AssociationConnector Association="gestadh45Model.FK_Adherent_Inscription" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.1631982421875" />
+          <ConnectorPoint PointX="5.25" PointY="6.1631982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="gestadh45Model.FK_Sexe_Adherent" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.0379850260416674" />
+          <ConnectorPoint PointX="2.625" PointY="4.4129850260416674" />
+          <ConnectorPoint PointX="2.625" PointY="3.375" />
+          <ConnectorPoint PointX="3" PointY="3.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="gestadh45Model.FK_Ville_Adherent" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.1151432291666659" />
+          <ConnectorPoint PointX="3" PointY="6.1151432291666659" />
+        </AssociationConnector>
+        <AssociationConnector Association="gestadh45Model.FK_Groupe_Inscription" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="16.692047526041666" />
+          <ConnectorPoint PointX="6" PointY="16.692047526041666" />
+          <ConnectorPoint PointX="6" PointY="7.826396484375" />
+        </AssociationConnector>
+        <AssociationConnector Association="gestadh45Model.FK_JourSemaine_Groupe" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="15.706492513020834" />
+          <ConnectorPoint PointX="3" PointY="15.706492513020834" />
+        </AssociationConnector>
+        <AssociationConnector Association="gestadh45Model.FK_Saison_Groupe" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="17.629547526041666" />
+          <ConnectorPoint PointX="3" PointY="17.629547526041666" />
+        </AssociationConnector>
+        <AssociationConnector Association="gestadh45Model.FK_Ville_InfosClub" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="7.1052864583333317" />
+          <ConnectorPoint PointX="1.5" PointY="11.5381982421875" />
+          <ConnectorPoint PointX="3" PointY="11.5381982421875" />
+        </AssociationConnector>
+        <AssociationConnector Association="gestadh45Model.FK_StatutInscription_Inscription" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="0.96875" />
+          <ConnectorPoint PointX="5.46875" PointY="0.96875" />
+          <ConnectorPoint PointX="5.46875" PointY="4.5" />
+        </AssociationConnector>
       </Diagram>
     </Diagrams>
   </Designer>

@@ -51,6 +51,7 @@ namespace gestadh45.business.ViewModel.SaisonsVM
 			var errors = new List<string>();
 
 			if (this.CheckFormValidity(errors)) {
+				this.CurrentSaison.ID = Guid.NewGuid();
 				this.repoSaison.Add(this.CurrentSaison);
 				this.repoSaison.Save();
 

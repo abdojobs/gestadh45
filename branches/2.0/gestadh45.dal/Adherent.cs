@@ -19,16 +19,16 @@ namespace gestadh45.dal
             this.Inscriptions = new HashSet<Inscription>();
         }
     
-        public long ID { get; set; }
+        public System.Guid ID { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public System.DateTime DateNaissance { get; set; }
         public System.DateTime DateCreation { get; set; }
         public System.DateTime DateModification { get; set; }
-        public long ID_Sexe { get; set; }
+        public System.Guid ID_Sexe { get; set; }
         public string Commentaire { get; set; }
         public string Adresse { get; set; }
-        public long ID_Ville { get; set; }
+        public System.Guid ID_Ville { get; set; }
         public string Telephone1 { get; set; }
         public string Telephone2 { get; set; }
         public string Telephone3 { get; set; }

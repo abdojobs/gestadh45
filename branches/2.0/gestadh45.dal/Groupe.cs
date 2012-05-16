@@ -19,18 +19,18 @@ namespace gestadh45.dal
             this.Inscriptions = new HashSet<Inscription>();
         }
     
-        public long ID { get; set; }
+        public System.Guid ID { get; set; }
         public string Libelle { get; set; }
-        public long ID_JourSemaine { get; set; }
-        public long NbPlaces { get; set; }
+        public System.Guid ID_JourSemaine { get; set; }
+        public int NbPlaces { get; set; }
         public string Commentaire { get; set; }
-        public long ID_Saison { get; set; }
+        public System.Guid ID_Saison { get; set; }
         public System.DateTime HeureDebut { get; set; }
         public System.DateTime HeureFin { get; set; }
     
+        public virtual ICollection<Inscription> Inscriptions { get; set; }
         public virtual JourSemaine JourSemaine { get; set; }
         public virtual Saison Saison { get; set; }
-        public virtual ICollection<Inscription> Inscriptions { get; set; }
     }
     
 }

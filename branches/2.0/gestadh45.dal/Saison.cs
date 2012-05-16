@@ -19,10 +19,10 @@ namespace gestadh45.dal
             this.Groupes = new HashSet<Groupe>();
         }
     
-        public long ID { get; set; }
+        public System.Guid ID { get; set; }
         public bool EstSaisonCourante { get; set; }
-        public long AnneeDebut { get; set; }
-        public long AnneeFin { get; set; }
+        public int AnneeDebut { get; set; }
+        public Nullable<int> AnneeFin { get; set; }
     
         public virtual ICollection<Groupe> Groupes { get; set; }
     }
