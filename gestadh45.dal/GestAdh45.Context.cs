@@ -13,10 +13,10 @@ using System.Data.Entity.Infrastructure;
 
 namespace gestadh45.dal
 {
-    public partial class GestAdh45Entities : DbContext
+    public partial class gestadh45Entities : DbContext
     {
-        public GestAdh45Entities()
-            : base("name=GestAdh45Entities")
+        public gestadh45Entities()
+            : base("name=gestadh45Entities")
         {
         }
     
