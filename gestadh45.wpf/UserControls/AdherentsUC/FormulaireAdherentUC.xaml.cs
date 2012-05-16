@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using gestadh45.business.ViewModel.AdherentsVM;
 using gestadh45.dal;
 
@@ -15,7 +16,7 @@ namespace gestadh45.wpf.UserControls.AdherentsUC
 
 		public FormulaireAdherentUC(Adherent adherent) {
 			InitializeComponent();
-			this.DataContext = new FormulaireAdherentVM((int)adherent.ID);
+			this.DataContext = new FormulaireAdherentVM((Guid)adherent.ID);
 		}
 	}
 }

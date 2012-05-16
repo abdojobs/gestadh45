@@ -67,6 +67,10 @@ namespace gestadh45.business.ViewModel.GroupesVM
 		}
 
 		protected override void PrepareValuesForTreatment() {
+			// on change la date minimum par le minimum accepté par sql server (01/01/1753)
+			this.CurrentGroupe.HeureDebut = this.CurrentGroupe.HeureDebut.AddYears(1752);
+			this.CurrentGroupe.HeureFin = this.CurrentGroupe.HeureFin.AddYears(1752);
+
 			this.CurrentGroupe.Libelle = (this.CurrentGroupe.Libelle == null) ? null : this.CurrentGroupe.Libelle.ToUpperInvariant();
 		}
 
@@ -112,6 +116,7 @@ namespace gestadh45.business.ViewModel.GroupesVM
 			var errors = new List<string>();
 
 			if (this.CheckFormValidity(errors)) {
+				this.CurrentGroupe.ID = Guid.NewGuid();
 				this.repoGroupe.Add(this.CurrentGroupe);
 				this.repoGroupe.Save();
 

@@ -194,7 +194,7 @@ namespace gestadh45.business.ViewModel.GroupesVM
 
 		private void GenererVCardGroupeDistinctCallBack(string savePath) {
 			if (!string.IsNullOrWhiteSpace(savePath)) {
-				foreach (Inscription ins in this.SelectedGroupe.Inscriptions.Where(ins => ins.StatutInscription.ID != 2)) {
+				foreach (Inscription ins in this.SelectedGroupe.Inscriptions.Where(ins => ins.StatutInscription.Ordre != 3)) {
 					var gen = new VcardGenerator21(ins.Adherent.Prenom, ins.Adherent.Nom);
 
 					gen.AddEmailInternet(ins.Adherent.Mail1);
@@ -248,7 +248,7 @@ namespace gestadh45.business.ViewModel.GroupesVM
 			if (!string.IsNullOrWhiteSpace(savePath)) {
 				var sb = new StringBuilder();
 
-				foreach (Inscription ins in this.SelectedGroupe.Inscriptions.Where(ins => ins.StatutInscription.ID != 2)) {
+				foreach (Inscription ins in this.SelectedGroupe.Inscriptions.Where(ins => ins.StatutInscription.Ordre != 3)) {
 					var gen = new VcardGenerator21(ins.Adherent.Prenom, ins.Adherent.Nom);
 
 					gen.AddEmailInternet(ins.Adherent.Mail1);

@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
 using gestadh45.business.ViewModel.InscriptionsVM;
 using gestadh45.dal;
 
@@ -15,14 +16,14 @@ namespace gestadh45.wpf.UserControls.InscriptionsUC
 
 		public FormulaireInscriptionUC(Inscription inscription) {
 			InitializeComponent();
-			this.DataContext = new FormulaireInscriptionVM((int)inscription.ID);
+			this.DataContext = new FormulaireInscriptionVM((Guid)inscription.ID);
 			
 		}
 
 		public FormulaireInscriptionUC(Adherent adherent) {
 			InitializeComponent();
 			var vm = this.DataContext as FormulaireInscriptionVM;
-			vm.SetAdherent((int)adherent.ID);
+			vm.SetAdherent((Guid)adherent.ID);
 		}
 	}
 }

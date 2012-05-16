@@ -14,14 +14,14 @@ namespace gestadh45.dal
 {
     public partial class Inscription
     {
-        public long ID { get; set; }
-        public long ID_Adherent { get; set; }
-        public long ID_Groupe { get; set; }
+        public System.Guid ID { get; set; }
+        public System.Guid ID_Adherent { get; set; }
+        public System.Guid ID_Groupe { get; set; }
         public Nullable<decimal> Cotisation { get; set; }
         public System.DateTime DateCreation { get; set; }
         public System.DateTime DateModification { get; set; }
         public string Commentaire { get; set; }
-        public long ID_StatutInscription { get; set; }
+        public System.Guid ID_StatutInscription { get; set; }
         public bool CertificatMedicalRemis { get; set; }
     
         public virtual Adherent Adherent { get; set; }

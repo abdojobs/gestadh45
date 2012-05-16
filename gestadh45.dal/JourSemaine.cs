@@ -19,8 +19,8 @@ namespace gestadh45.dal
             this.Groupes = new HashSet<Groupe>();
         }
     
-        public long ID { get; set; }
-        public long Numero { get; set; }
+        public System.Guid ID { get; set; }
+        public int Numero { get; set; }
         public string Libelle { get; set; }
     
         public virtual ICollection<Groupe> Groupes { get; set; }

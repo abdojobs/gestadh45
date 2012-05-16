@@ -84,7 +84,7 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 		/// Constructeur pour le mode édition. On doit passer par l'id pour récupérer l'adhérent car on a changé de contexte.
 		/// </summary>
 		/// <param name="idAdherent">ID de l'adhérent à éditer</param>
-		public FormulaireAdherentVM(int idAdherent) {
+		public FormulaireAdherentVM(Guid idAdherent) {
 			this.UCParentCode = CodesUC.ConsultationAdherents;
 			this.IsEditMode = true;
 
@@ -175,6 +175,7 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 					this.repoAdherent.Edit(this.CurrentAdherent);
 				}
 				else {
+					this.CurrentAdherent.ID = Guid.NewGuid();
 					this.CurrentAdherent.DateCreation = DateTime.Now;
 					this.repoAdherent.Add(this.CurrentAdherent);
 				}

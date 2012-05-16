@@ -20,7 +20,7 @@ namespace gestadh45.dal
             this.InfosClubs = new HashSet<InfosClub>();
         }
     
-        public long ID { get; set; }
+        public System.Guid ID { get; set; }
         public string Libelle { get; set; }
         public string CodePostal { get; set; }
     

@@ -14,13 +14,13 @@ namespace gestadh45.dal
 {
     public partial class InfosClub
     {
-        public long ID { get; set; }
+        public System.Guid ID { get; set; }
         public string Nom { get; set; }
         public string Numero { get; set; }
         public string Siren { get; set; }
         public string NIC { get; set; }
         public string Adresse { get; set; }
-        public Nullable<long> ID_Ville { get; set; }
+        public Nullable<System.Guid> ID_Ville { get; set; }
         public string Telephone { get; set; }
         public string Mail { get; set; }
         public string SiteWeb { get; set; }

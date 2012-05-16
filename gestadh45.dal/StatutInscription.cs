@@ -19,10 +19,10 @@ namespace gestadh45.dal
             this.Inscriptions = new HashSet<Inscription>();
         }
     
-        public long ID { get; set; }
+        public System.Guid ID { get; set; }
         public string Libelle { get; set; }
         public string CodeCouleur { get; set; }
-        public long Ordre { get; set; }
+        public int Ordre { get; set; }
     
         public virtual ICollection<Inscription> Inscriptions { get; set; }
     }

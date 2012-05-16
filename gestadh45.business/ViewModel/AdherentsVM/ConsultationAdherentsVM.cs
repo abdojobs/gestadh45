@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -160,7 +161,8 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 
 		public void ExecuteDupliquerCommand() {
 			var newAdherent = this.SelectedAdherent.Clone() as Adherent;
-			newAdherent.ID = 0;
+
+			newAdherent.ID = Guid.NewGuid();
 			newAdherent.Prenom += " (copie)";
 			newAdherent.Commentaire = "Copie de " + this.SelectedAdherent.ToString();
 
