@@ -53,8 +53,15 @@
 					</TextBlock>
 					
 					<TextBlock Text="{Binding Path=SelectedGroupe.Saison, StringFormat='Saison : {0}'}" />
-					
-					<TextBlock Text="{Binding Path=SelectedGroupe.NbPlaces, StringFormat='Nb. de places : {0}'}" />
+
+					<TextBlock>
+						<TextBlock.Text>
+							<MultiBinding StringFormat="Nb. de places : {0} ({1} libres)">
+								<Binding Path="SelectedGroupe.NbPlaces" />
+								<Binding Path="SelectedGroupe.NbPlacesLibres" />
+							</MultiBinding>
+						</TextBlock.Text>
+					</TextBlock>
 				</StackPanel>
 			</GroupBox>
 			
