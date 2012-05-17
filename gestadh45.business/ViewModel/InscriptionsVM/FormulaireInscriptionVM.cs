@@ -159,7 +159,7 @@ namespace gestadh45.business.ViewModel.InscriptionsVM
 			}
 
 			if (this.CurrentInscription.StatutInscription == null) {
-				errors.Add(ResInscriptions.ErrCotisationInvalide);
+				errors.Add(ResInscriptions.ErrStatutObligatoire);
 			}
 
 			if (this.CurrentInscription.Cotisation == null) {

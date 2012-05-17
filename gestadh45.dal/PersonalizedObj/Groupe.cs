@@ -15,5 +15,14 @@ namespace gestadh45.dal
 				this.HeureFin.ToString("t")
 			);
 		}
+
+		/// <summary>
+		/// Gets the nb places libres.
+		/// </summary>
+		public int NbPlacesLibres {
+			get {
+				return this.NbPlaces - this.Inscriptions.Count;
+			}
+		}
 	}
 }
