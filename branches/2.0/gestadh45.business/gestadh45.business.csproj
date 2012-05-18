@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="CodesUC.cs" />
     <Compile Include="IhmObjects\ChoixGraphIhm.cs" />
+    <Compile Include="PersonalizedMsg\NMRefreshDatas.cs" />
     <Compile Include="ViewModel\Statistiques\CodesGraphs.cs" />
     <Compile Include="ViewModel\Statistiques\RessourcesStats.Designer.cs">
       <AutoGen>True</AutoGen>

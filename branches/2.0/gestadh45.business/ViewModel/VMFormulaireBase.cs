@@ -84,6 +84,7 @@ namespace gestadh45.business.ViewModel
 			this.ClearUserNotifications();
 
 			if (this.IsWindowMode) {
+				Messenger.Default.Send(new NMRefreshDatas());
 				Messenger.Default.Send(new NMCloseWindow());
 			}
 			else {

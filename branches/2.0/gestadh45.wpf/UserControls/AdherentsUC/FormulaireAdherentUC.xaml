@@ -87,7 +87,7 @@
 								SelectedItem="{Binding Path=CurrentAdherent.Ville}" />
 					<Button Grid.Row="1" Grid.Column="2" ToolTip="Ajouter une ville" HorizontalAlignment="Center" 
 							Width="18" Height="18" 
-							Command="{Binding Path=ShowWindowCommand}"
+							Command="{Binding Path=OpenWindowCommand}"
 							CommandParameter="{x:Static business:CodesUC.FormulaireVille}" 
 							Margin="5,0,0,0">
 						<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />

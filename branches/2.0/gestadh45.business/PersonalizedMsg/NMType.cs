@@ -14,5 +14,6 @@ namespace gestadh45.business.PersonalizedMsg
 		public const string NMClearFilter = "ClearFilter";
 		public const string NMActionFileDialog = "NMActionFileDialog";
 		public const string NMActionFolderDialog = "NMActionFolderDialog";
+		public const string NMRefreshDatas = "NMRefreshDatas";
 	}
 }
