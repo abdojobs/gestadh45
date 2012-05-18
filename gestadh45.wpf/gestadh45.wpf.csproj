@@ -94,6 +94,9 @@
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Compile Include="AboutBox.xaml.cs">
+      <DependentUpon>AboutBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Tools\BooleanInversionConverter.cs" />
     <Compile Include="Tools\HexaColorStringToBrushConverter.cs" />
     <Compile Include="UCWindow.xaml.cs">
@@ -144,6 +147,10 @@
     <Compile Include="UserControls\VillesUC\FormulaireVilleUC.xaml.cs">
       <DependentUpon>FormulaireVilleUC.xaml</DependentUpon>
     </Compile>
+    <Page Include="AboutBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -308,6 +315,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_statistiques.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AboutLogo.png">
+      <SubType>Image</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_about.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

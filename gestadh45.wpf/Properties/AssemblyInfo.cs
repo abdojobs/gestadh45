@@ -7,11 +7,11 @@ using System.Windows;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("gestadh45.wpf")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("GestAdh45")]
+[assembly: AssemblyDescription("Gestion des adhérents d'un club sportif")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Guillaume Porte")]
-[assembly: AssemblyProduct("gestadh45.wpf")]
+[assembly: AssemblyProduct("GestAdh45")]
 [assembly: AssemblyCopyright("Copyright © Guillaume Porte 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
