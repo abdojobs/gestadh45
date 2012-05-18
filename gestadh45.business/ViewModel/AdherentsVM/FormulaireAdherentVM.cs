@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
+using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
 
 namespace gestadh45.business.ViewModel.AdherentsVM
@@ -78,6 +80,8 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 
 			this.CurrentAdherent = new Adherent();
 			this.CurrentAdherent.DateNaissance = DateTime.Now;
+
+			Messenger.Default.Register<NMRefreshDatas>(this, m => this.PopulateCombos());
 		}
 
 		/// <summary>
@@ -92,6 +96,8 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 			this.PopulateCombos();
 
 			this.CurrentAdherent = this.repoAdherent.GetByKey(idAdherent);
+
+			Messenger.Default.Register<NMRefreshDatas>(this, m => this.PopulateCombos());
 		}
 		#endregion
 

@@ -62,6 +62,8 @@ namespace gestadh45.business.ViewModel.InfosClubVM
 				this, 
 				(msg) => this.SelectVille(msg.Content)
 			);
+
+			Messenger.Default.Register<NMRefreshDatas>(this, m => this.PopulatesVilles());
 		}
 
 		#region CancelCommand

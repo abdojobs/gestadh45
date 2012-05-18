@@ -96,6 +96,9 @@
     </ApplicationDefinition>
     <Compile Include="Tools\BooleanInversionConverter.cs" />
     <Compile Include="Tools\HexaColorStringToBrushConverter.cs" />
+    <Compile Include="UCWindow.xaml.cs">
+      <DependentUpon>UCWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AdherentsUC\ConsultationAdherentsUC.xaml.cs">
       <DependentUpon>ConsultationAdherentsUC.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UCWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\AdherentsUC\ConsultationAdherentsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

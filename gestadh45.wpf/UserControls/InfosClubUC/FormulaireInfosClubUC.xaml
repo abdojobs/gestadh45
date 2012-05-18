@@ -31,7 +31,7 @@
 
 			<Button ToolTip="Ajouter une ville" HorizontalAlignment="Center" 
 						Width="18" Height="18" 
-						Command="{Binding Path=FenetreCommand}"
+						Command="{Binding Path=OpenWindowCommand}"
 						CommandParameter="{x:Static b:CodesUC.FormulaireVille}" 
 						Margin="5,0,0,0">
 				<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />

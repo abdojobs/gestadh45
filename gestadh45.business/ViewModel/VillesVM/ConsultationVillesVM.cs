@@ -73,6 +73,8 @@ namespace gestadh45.business.ViewModel.VillesVM
 				this.repoMain.Save();
 				this.PopulateVilles();
 				this.SelectedVille = this.Villes.FirstOrDefault();
+
+				this.ShowUserNotification(ResVilles.InfoVilleSupprimee);
 			}			
 		}
 		#endregion

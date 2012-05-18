@@ -16,6 +16,7 @@ using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
 using Forms = System.Windows.Forms;
 using gestadh45.wpf.UserControls.StatistiquesUC;
+using gestadh45.business.ViewModel;
 
 namespace gestadh45.wpf
 {
@@ -83,7 +84,12 @@ namespace gestadh45.wpf
 		}
 
 		private void OpenWindowUC(string codeUC) {
-			// TODO ouvrir UC dans une fenetre
+			UserControl uc = this.GetUCFromCode(codeUC);
+
+			((VMUCBase)uc.DataContext).IsWindowMode = true;
+
+			UCWindow window = new UCWindow(uc);
+			window.ShowDialog();
 		}
 
 		/// <summary>

@@ -126,4 +126,7 @@
   <data name="ErrVilleExiste" xml:space="preserve">
     <value>Cette ville existe déjà.</value>
   </data>
+  <data name="InfoVilleSupprimee" xml:space="preserve">
+    <value>La ville a été supprimée</value>
+  </data>
 </root>
