@@ -6,17 +6,17 @@ using System.Windows.Markup;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business;
 using gestadh45.business.PersonalizedMsg;
+using gestadh45.business.ViewModel;
 using gestadh45.dal;
 using gestadh45.wpf.UserControls.AdherentsUC;
 using gestadh45.wpf.UserControls.GroupesUC;
 using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.InscriptionsUC;
 using gestadh45.wpf.UserControls.Saisons;
+using gestadh45.wpf.UserControls.StatistiquesUC;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
 using Forms = System.Windows.Forms;
-using gestadh45.wpf.UserControls.StatistiquesUC;
-using gestadh45.business.ViewModel;
 
 namespace gestadh45.wpf
 {
@@ -61,7 +61,8 @@ namespace gestadh45.wpf
 		}
 
 		private void ShowAboutBox() {
-			// TODO afficher aboutbox
+			var about = new AboutBox(this);
+			about.ShowDialog();
 		}
 
 		private void ShowUC(string codeUC) {
