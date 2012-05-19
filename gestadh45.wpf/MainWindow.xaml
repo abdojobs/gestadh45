@@ -1,4 +1,4 @@
-﻿<Window x:Class="gestadh45.wpf.MainWindow"
+﻿<Window xmlns:my="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"  x:Class="gestadh45.wpf.MainWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
@@ -6,7 +6,7 @@
 		Title="GestAdh45" MinHeight="500" MinWidth="705"
 		DataContext="{Binding Path=MainVM, Source={StaticResource ResourceKey=Locator}}" 
 		Icon="/gestadh45.wpf;component/gestadh45.ico" 
-		WindowState="Maximized">
+		WindowState="Maximized" Background="#FFDFE9F5">
 
 	<Window.Resources>
 		<Style x:Key="titreUC" TargetType="{x:Type TextBlock}">
@@ -21,54 +21,101 @@
 	</Window.Resources>
 
 	<DockPanel>
-		<StackPanel DockPanel.Dock="top" Orientation="Horizontal">
-			<Button Name="btnInfosClub" Height="32" Width="32" Margin="5,5,10,5"
-					Command="{Binding Path=ShowUCCommand}"
-					CommandParameter="{x:Static b:CodesUC.ConsultationInfosClub}">
-				<Image Source="/gestadh45.wpf;component/Images/btn_Home.png" />
-			</Button>
+		<my:Ribbon DockPanel.Dock="Top">
+			<my:RibbonTab Name="MainTab" Header="Accueil">
+				<my:RibbonGroup Name="GrpInfosClub" Header="Infos Club">
+					<my:RibbonButton Height="40" Width="40" ToolTip="Infos Club"
+									 Command="{Binding Path=ShowUCCommand}"
+									 CommandParameter="{x:Static b:CodesUC.ConsultationInfosClub}" 
+									 LargeImageSource="/gestadh45.wpf;component/Images/btn_Home.png" 
+									 SmallImageSource="/gestadh45.wpf;component/Images/btn_Home.png">
+					</my:RibbonButton>
+				</my:RibbonGroup>
 
-			<Button Name="btnVilles" Height="32" Width="32" Margin="10,5,5,5"
-					Command="{Binding Path=ShowUCCommand}"
-					CommandParameter="{x:Static b:CodesUC.ConsultationVilles}">
-				<Image Source="/gestadh45.wpf;component/Images/btn_city.png" />
-			</Button>
+				<my:RibbonGroup Name="GrpReferentiel" Header="Référentiel">
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Villes"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationVilles}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_city.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_city.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationVilles}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireVille}" />
+					</my:RibbonSplitButton>
 
-			<Button Name="btnSaisons" Height="32" Width="32" Margin="5,5,10,5"
-					Command="{Binding Path=ShowUCCommand}"
-					CommandParameter="{x:Static b:CodesUC.ConsultationSaisons}">
-				<Image Source="/gestadh45.wpf;component/Images/btn_saisons.png" />
-			</Button>
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Saisons"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationSaisons}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_saisons.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_saisons.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationSaisons}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireSaison}" />
+					</my:RibbonSplitButton>
 
-			<Button Name="btnAdherents" Height="32" Width="32" Margin="10,5,5,5"
-					Command="{Binding Path=ShowUCCommand}"
-					CommandParameter="{x:Static b:CodesUC.ConsultationAdherents}">
-				<Image Source="/gestadh45.wpf;component/Images/btn_adherents.png" />
-			</Button>
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Groupes"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationGroupes}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_groupes.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_groupes.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationGroupes}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireGroupe}" />
+					</my:RibbonSplitButton>
+				</my:RibbonGroup>
 
-			<Button Name="btnInscriptions" Height="32" Width="32" Margin="5,5,5,5"
-					Command="{Binding Path=ShowUCCommand}"
-					CommandParameter="{x:Static b:CodesUC.ConsultationInscriptions}">
-				<Image Source="/gestadh45.wpf;component/Images/btn_inscriptions.png" />
-			</Button>
+				<my:RibbonGroup Name="GrpGestion" Header="Gestion">
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Adhérents"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationAdherents}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_adherents.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_adherents.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationAdherents}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireAdherent}" />
+					</my:RibbonSplitButton>
 
-			<Button Name="btnGroupes" Height="32" Width="32" Margin="5,5,5,5"
-					Command="{Binding Path=ShowUCCommand}"
-					CommandParameter="{x:Static b:CodesUC.ConsultationGroupes}">
-				<Image Source="/gestadh45.wpf;component/Images/btn_groupes.png" />
-			</Button>
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Inscriptions"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationInscriptions}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_inscriptions.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_inscriptions.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationInscriptions}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireInscription}" />
+					</my:RibbonSplitButton>
+				</my:RibbonGroup>
 
-			<Button Name="btnStatistiques" Height="32" Width="32" Margin="5,5,20,5"
-					Command="{Binding Path=ShowUCCommand}"
-					CommandParameter="{x:Static b:CodesUC.EcranStatistiques}">
-				<Image Source="/gestadh45.wpf;component/Images/btn_statistiques.png" />
-			</Button>
-			
-			<Button Name="btnAboutBox" Height="32" Width="32" Margin="20,5,5,5"
-					Command="{Binding Path=AboutBoxCommand}">
-				<Image Source="/gestadh45.wpf;component/Images/btn_about.png" />
-			</Button>
-		</StackPanel>
+				<my:RibbonGroup Name="Stats" Header="Statistiques">
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Statistiques"
+										  CommandParameter="{x:Static b:CodesUC.EcranStatistiques}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_statistiques.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_statistiques.png">
+						<my:RibbonMenuItem Header="Graphiques"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.EcranStatistiques}" />
+					</my:RibbonSplitButton>
+				</my:RibbonGroup>
+
+				<my:RibbonGroup Name="About" Header="A propos">
+					<my:RibbonButton Height="40" Width="40"
+									 Command="{Binding Path=AboutBoxCommand}"
+									 LargeImageSource="/gestadh45.wpf;component/Images/btn_about.png" 
+									 SmallImageSource="/gestadh45.wpf;component/Images/btn_about.png">
+					</my:RibbonButton>
+				</my:RibbonGroup>
+			</my:RibbonTab>
+		</my:Ribbon>
 		
 		<Border Margin="5,5,5,5" DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">
 			<TextBox Height="50" 
