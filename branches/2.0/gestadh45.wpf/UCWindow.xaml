@@ -1,7 +1,7 @@
 ﻿<Window x:Class="gestadh45.wpf.UCWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="UCWindow" Height="300" Width="300" Icon="/gestadh45.wpf;component/gestadh45.ico">
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		Title="Ajout" Height="300" Width="300" Icon="/gestadh45.wpf;component/gestadh45.ico">
 	<StackPanel Name="contenu">
 		
 	</StackPanel>
