@@ -17,6 +17,7 @@ using gestadh45.wpf.UserControls.StatistiquesUC;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
 using Forms = System.Windows.Forms;
+using gestadh45.wpf.UserControls.MarquesUC;
 
 namespace gestadh45.wpf
 {
@@ -152,6 +153,13 @@ namespace gestadh45.wpf
 
 				case CodesUC.EcranStatistiques:
 					userControl = new EcranStatistiquesUC();
+					break;
+
+				case CodesUC.ConsultationMarques:
+					userControl = new ConsultationMarquesUC();
+					break;
+				case CodesUC.FormulaireMarque:
+					userControl = new FormulaireMarqueUC();
 					break;
 
 				default:
