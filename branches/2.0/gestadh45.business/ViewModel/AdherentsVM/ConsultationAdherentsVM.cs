@@ -162,7 +162,6 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 		public void ExecuteDupliquerCommand() {
 			var newAdherent = this.SelectedAdherent.Clone() as Adherent;
 
-			newAdherent.ID = Guid.NewGuid();
 			newAdherent.Prenom += " (copie)";
 			newAdherent.Commentaire = "Copie de " + this.SelectedAdherent.ToString();
 

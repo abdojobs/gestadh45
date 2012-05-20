@@ -37,6 +37,8 @@ namespace gestadh45.dal
 		public object Clone() {
 			return new Adherent()
 			{
+				ID = Guid.NewGuid(),
+				
 				Nom = string.Copy(this.Nom),
 				Prenom = string.Copy(this.Prenom),
 				DateNaissance = this.DateNaissance,

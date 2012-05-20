@@ -146,6 +146,20 @@
 							CommandParameter="{x:Static b:CodesUC.FormulaireMarque}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
+
+				<my:RibbonGroup Name="GrpEquipements" Header="Equipements">
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Equipements"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationEquipements}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_equipement.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_equipement.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationEquipements}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireEquipement}" />
+					</my:RibbonSplitButton>
+				</my:RibbonGroup>
 			</my:RibbonTab>
 		</my:Ribbon>
 		
