@@ -52,6 +52,9 @@
     <Compile Include="Adherent.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Equipement.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="GestAdh45Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -79,11 +82,16 @@
     <Compile Include="JourSemaine.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Marque.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="PersonalizedObj\Adherent.cs" />
+    <Compile Include="PersonalizedObj\Equipement.cs" />
     <Compile Include="PersonalizedObj\Groupe.cs" />
     <Compile Include="PersonalizedObj\InfosClub.cs" />
     <Compile Include="PersonalizedObj\Inscription.cs" />
     <Compile Include="PersonalizedObj\JourSemaine.cs" />
+    <Compile Include="PersonalizedObj\Marque.cs" />
     <Compile Include="PersonalizedObj\Saison.cs" />
     <Compile Include="PersonalizedObj\Sexe.cs" />
     <Compile Include="PersonalizedObj\StatutInscription.cs" />

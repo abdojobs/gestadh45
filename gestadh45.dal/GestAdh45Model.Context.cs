@@ -35,5 +35,7 @@ namespace gestadh45.dal
         public DbSet<StatutInscription> StatutInscriptions { get; set; }
         public DbSet<TrancheAge> TrancheAges { get; set; }
         public DbSet<Ville> Villes { get; set; }
+        public DbSet<Equipement> Equipements { get; set; }
+        public DbSet<Marque> Marques { get; set; }
     }
 }

@@ -63,6 +63,13 @@
     <Compile Include="CodesUC.cs" />
     <Compile Include="IhmObjects\ChoixGraphIhm.cs" />
     <Compile Include="PersonalizedMsg\NMRefreshDatas.cs" />
+    <Compile Include="ViewModel\MarquesVM\ConsultationMarquesVM.cs" />
+    <Compile Include="ViewModel\MarquesVM\FormulaireMarqueVM.cs" />
+    <Compile Include="ViewModel\MarquesVM\ResMarques.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResMarques.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\Statistiques\CodesGraphs.cs" />
     <Compile Include="ViewModel\Statistiques\RessourcesStats.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -149,6 +156,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ViewModel\MarquesVM\ResMarques.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResMarques.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\Statistiques\RessourcesStats.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>RessourcesStats.Designer.cs</LastGenOutput>
