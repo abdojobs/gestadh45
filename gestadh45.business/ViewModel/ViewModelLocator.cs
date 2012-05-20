@@ -17,6 +17,7 @@ using gestadh45.business.ViewModel.SaisonsVM;
 using gestadh45.business.ViewModel.Statistiques;
 using gestadh45.business.ViewModel.VillesVM;
 using gestadh45.business.ViewModel.MarquesVM;
+using gestadh45.business.ViewModel.EquipementsVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -114,6 +115,20 @@ namespace gestadh45.business.ViewModel
 		public static FormulaireMarqueVM FormulaireMarqueVM {
 			get {
 				return new FormulaireMarqueVM();
+			}
+		}
+		#endregion
+
+		#region MarquesVM
+		public static ConsultationEquipementsVM ConsultationEquipementsVM {
+			get {
+				return new ConsultationEquipementsVM();
+			}
+		}
+
+		public static FormulaireEquipementVM FormulaireEquipementVM {
+			get {
+				return new FormulaireEquipementVM();
 			}
 		}
 		#endregion

@@ -9,15 +9,16 @@ using gestadh45.business.PersonalizedMsg;
 using gestadh45.business.ViewModel;
 using gestadh45.dal;
 using gestadh45.wpf.UserControls.AdherentsUC;
+using gestadh45.wpf.UserControls.EquipementsUC;
 using gestadh45.wpf.UserControls.GroupesUC;
 using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.InscriptionsUC;
+using gestadh45.wpf.UserControls.MarquesUC;
 using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls.StatistiquesUC;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
 using Forms = System.Windows.Forms;
-using gestadh45.wpf.UserControls.MarquesUC;
 
 namespace gestadh45.wpf
 {
@@ -158,8 +159,17 @@ namespace gestadh45.wpf
 				case CodesUC.ConsultationMarques:
 					userControl = new ConsultationMarquesUC();
 					break;
+
 				case CodesUC.FormulaireMarque:
 					userControl = new FormulaireMarqueUC();
+					break;
+
+				case CodesUC.ConsultationEquipements:
+					userControl = new ConsultationEquipementsUC();
+					break;
+
+				case CodesUC.FormulaireEquipement:
+					userControl = new FormulaireEquipementUC();
 					break;
 
 				default:

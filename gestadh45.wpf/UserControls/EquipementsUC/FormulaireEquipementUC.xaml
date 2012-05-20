@@ -1,0 +1,77 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.EquipementsUC.FormulaireEquipementUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
+			 xmlns:extToolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=WPFToolKit.Extended" 
+			 mc:Ignorable="d" 
+			 DataContext="{Binding Path=FormulaireEquipementVM, Source={StaticResource Locator}}" 
+			 d:DesignHeight="450" d:DesignWidth="600">
+	<DockPanel Margin="5,5,5,5">
+		<TextBlock Text="Equipement" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
+				   Style="{DynamicResource ResourceKey=titreUC}" />
+
+		<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5"
+			CodeUCParent="{x:Static business:CodesUC.ConsultationEquipements}"
+			CmdAnnuler="{Binding Path=CancelCommand}"
+			CmdEnregistrer="{Binding Path=SaveCommand}"
+			/>
+
+		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
+		
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="100" />
+				<ColumnDefinition />
+				<ColumnDefinition Width="160" />
+				<ColumnDefinition />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
+			</Grid.RowDefinitions>
+
+			<TextBlock Grid.Row="0" Grid.Column="0" Text="Numéro : " VerticalAlignment="Center" />
+			<TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" CharacterCasing="Upper" 
+					 Text="{Binding Path=CurrentEquipement.Numero}"
+					 IsEnabled="{Binding Path=IsEditMode, Converter={StaticResource ResourceKey=BooleanInversionConverter}}"/>
+
+			<TextBlock Grid.Row="0" Grid.Column="2" Text="Marque : " Margin="20,0,0,0"
+					   VerticalAlignment="Center" />
+
+			<StackPanel Grid.Row="0" Grid.Column="3" Orientation="Horizontal">
+				<ComboBox Name="cmbMarques" Width="125"
+								ItemsSource="{Binding Path=Marques}"
+								SelectedItem="{Binding Path=CurrentEquipement.Marque}" />
+				<Button ToolTip="Ajouter une marque" HorizontalAlignment="Center" 
+							Width="18" Height="18" 
+							Command="{Binding Path=OpenWindowCommand}"
+							CommandParameter="{x:Static business:CodesUC.FormulaireMarque}" 
+							Margin="5,0,0,0">
+					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
+				</Button>
+			</StackPanel>
+
+			<TextBlock Grid.Row="1" Grid.Column="0" Text="Date d'achat : " VerticalAlignment="Center" />
+			<DatePicker Grid.Row="1" Grid.Column="1" 
+								DisplayDate="{Binding Path=CurrentEquipement.DateAchat}" 
+								SelectedDate="{Binding Path=CurrentEquipement.DateAchat}"
+								SelectedDateFormat="Short" />
+
+			<TextBlock Grid.Row="1" Grid.Column="2" Margin="20,0,0,0"
+					   Text="Date de mise en service : " VerticalAlignment="Center" />
+			<DatePicker Grid.Row="1" Grid.Column="3" 
+								DisplayDate="{Binding Path=CurrentEquipement.DateMiseEnService}" 
+								SelectedDate="{Binding Path=CurrentEquipement.DateMiseEnService}"
+								SelectedDateFormat="Short" />
+
+			<GroupBox Name="gbxInfos" Header="Infos" Grid.Row="2" Grid.ColumnSpan="4" Margin="5,5,5,5">
+				<TextBox AcceptsReturn="True" Height="50" Width="500"
+						 Text="{Binding Path=CurrentEquipement.Commentaire}" />
+			</GroupBox>
+		</Grid>
+	</DockPanel>
+</UserControl>

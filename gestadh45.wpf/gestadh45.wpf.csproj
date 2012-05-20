@@ -118,6 +118,12 @@
     <Compile Include="UserControls\BtnAnnulerEnregistrerUC.xaml.cs">
       <DependentUpon>BtnAnnulerEnregistrerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\EquipementsUC\ConsultationEquipementsUC.xaml.cs">
+      <DependentUpon>ConsultationEquipementsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EquipementsUC\FormulaireEquipementUC.xaml.cs">
+      <DependentUpon>FormulaireEquipementUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GroupesUC\ConsultationGroupesUC.xaml.cs">
       <DependentUpon>ConsultationGroupesUC.xaml</DependentUpon>
     </Compile>
@@ -192,6 +198,14 @@
     <Page Include="UserControls\BtnAnnulerEnregistrerUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\EquipementsUC\ConsultationEquipementsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EquipementsUC\FormulaireEquipementUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\GroupesUC\ConsultationGroupesUC.xaml">
       <SubType>Designer</SubType>
@@ -346,6 +360,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_marque.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_equipement.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

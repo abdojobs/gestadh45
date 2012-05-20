@@ -15,7 +15,7 @@
 
 		<ListBox Name="lbxMarques" Width="300" DockPanel.Dock="Left"
 					ItemsSource="{Binding Path=Marques}"
-					SelectedItem="{Binding Path=Marques}">
+					SelectedItem="{Binding Path=SelectedMarque}">
 			<i:Interaction.Triggers>
 				<i:EventTrigger EventName="SelectionChanged">
 					<cmd:EventToCommand 
