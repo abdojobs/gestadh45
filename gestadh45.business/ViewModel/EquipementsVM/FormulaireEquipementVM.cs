@@ -32,6 +32,29 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		}
 		#endregion
 
+		#region Categories
+		private IOrderedEnumerable<Categorie> _categories;
+
+		/// <summary>
+		/// Gets or sets the categories.
+		/// </summary>
+		/// <value>
+		/// The categories.
+		/// </value>
+		public IOrderedEnumerable<Categorie> Categories {
+			get {
+				return this._categories;
+			}
+
+			set {
+				if (this._categories != value) {
+					this._categories = value;
+					this.RaisePropertyChanged(() => this.Categories);
+				}
+			}
+		}
+		#endregion
+
 		#region CurrentEquipement
 		private Equipement _currentEquipement;
 
@@ -58,6 +81,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		#region Repositories
 		private Repository<Marque> _repoMarque;
 		private Repository<Equipement> _repoEquipement;
+		private Repository<Categorie> _repoCategorie;
 		#endregion
 
 		#region Constructeurs
@@ -96,10 +120,12 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		private void CreateRepositories() {
 			this._repoEquipement = new Repository<Equipement>(this._context);
 			this._repoMarque = new Repository<Marque>(this._context);
+			this._repoCategorie = new Repository<Categorie>(this._context);
 		}
 
 		private void PopulateCombos() {
 			this.Marques = this._repoMarque.GetAll().OrderBy(m => m.ToString());
+			this.Categories = this._repoCategorie.GetAll().OrderBy(c => c.ToString());
 		}
 
 		/// <summary>
@@ -123,6 +149,10 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 
 			if (this.CurrentEquipement.Marque == null) {
 				errors.Add(ResEquipements.ErrMarqueObligatoire);
+			}
+
+			if (this.CurrentEquipement.Categorie == null) {
+				errors.Add(ResEquipements.ErrCategorieObligatoire);
 			}
 
 			if (errors.Count == 0 && !this.IsEditMode && this.CurrentElementExists()) {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gestadh45.business.ViewModel.EquipementsVM {
+namespace gestadh45.business.ViewModel.CategoriesVM {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResEquipements {
+    internal class ResCategories {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResEquipements() {
+        internal ResCategories() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.EquipementsVM.ResEquipements", typeof(ResEquipements).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.CategoriesVM.ResCategories", typeof(ResCategories).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,56 +61,29 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à La catégorie est obligatoire.
+        ///   Recherche une chaîne localisée semblable à Cette catégorie existe déjà.
         /// </summary>
-        internal static string ErrCategorieObligatoire {
+        internal static string ErrCategorieExiste {
             get {
-                return ResourceManager.GetString("ErrCategorieObligatoire", resourceCulture);
+                return ResourceManager.GetString("ErrCategorieExiste", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Cet équipement existe déja.
+        ///   Recherche une chaîne localisée semblable à Le libellé est obligatoire.
         /// </summary>
-        internal static string ErrEquipementExiste {
+        internal static string ErrLibelleObligatoire {
             get {
-                return ResourceManager.GetString("ErrEquipementExiste", resourceCulture);
+                return ResourceManager.GetString("ErrLibelleObligatoire", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à La marque est obligatoire.
+        ///   Recherche une chaîne localisée semblable à La catégorie a été supprimée.
         /// </summary>
-        internal static string ErrMarqueObligatoire {
+        internal static string InfoCategorieSupprimee {
             get {
-                return ResourceManager.GetString("ErrMarqueObligatoire", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le numéro est obligatoire.
-        /// </summary>
-        internal static string ErrNumeroObligatoire {
-            get {
-                return ResourceManager.GetString("ErrNumeroObligatoire", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à L&apos;équipement a été dupliqué.
-        /// </summary>
-        internal static string InfoEquipementDuplique {
-            get {
-                return ResourceManager.GetString("InfoEquipementDuplique", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à L&apos;équipement a été supprimé.
-        /// </summary>
-        internal static string InfoEquipementSupprime {
-            get {
-                return ResourceManager.GetString("InfoEquipementSupprime", resourceCulture);
+                return ResourceManager.GetString("InfoCategorieSupprimee", resourceCulture);
             }
         }
     }

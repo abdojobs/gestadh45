@@ -22,8 +22,10 @@ namespace gestadh45.dal
         public System.DateTime DateModification { get; set; }
         public string Commentaire { get; set; }
         public System.Guid ID_Marque { get; set; }
+        public System.Guid ID_Categorie { get; set; }
     
         public virtual Marque Marque { get; set; }
+        public virtual Categorie Categorie { get; set; }
     }
     
 }

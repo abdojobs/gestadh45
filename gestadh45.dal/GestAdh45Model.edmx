@@ -7,6 +7,7 @@
     <Schema Namespace="gestadh45Model.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gestadh45ModelStoreContainer">
           <EntitySet Name="Adherent" EntityType="gestadh45Model.Store.Adherent" store:Type="Tables" />
+          <EntitySet Name="Categorie" EntityType="gestadh45Model.Store.Categorie" store:Type="Tables" />
           <EntitySet Name="Equipement" EntityType="gestadh45Model.Store.Equipement" store:Type="Tables" />
           <EntitySet Name="Groupe" EntityType="gestadh45Model.Store.Groupe" store:Type="Tables" />
           <EntitySet Name="InfosClub" EntityType="gestadh45Model.Store.InfosClub" store:Type="Tables" />
@@ -21,6 +22,10 @@
           <AssociationSet Name="FK_Adherent_Inscription" Association="gestadh45Model.Store.FK_Adherent_Inscription">
             <End Role="Adherent" EntitySet="Adherent" />
             <End Role="Inscription" EntitySet="Inscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Categorie_Equipement" Association="gestadh45Model.Store.FK_Categorie_Equipement">
+            <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Equipement" EntitySet="Equipement" />
           </AssociationSet>
           <AssociationSet Name="FK_Groupe_Inscription" Association="gestadh45Model.Store.FK_Groupe_Inscription">
             <End Role="Groupe" EntitySet="Groupe" />
@@ -76,6 +81,13 @@
           <Property Name="Mail2" Type="nvarchar" MaxLength="100" />
           <Property Name="Mail3" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Equipement">
           <Key>
             <PropertyRef Name="ID" />
@@ -88,6 +100,7 @@
           <Property Name="DateModification" Type="datetime" Nullable="false" />
           <Property Name="Commentaire" Type="ntext" />
           <Property Name="ID_Marque" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID_Categorie" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Groupe">
           <Key>
@@ -198,6 +211,18 @@
             </Principal>
             <Dependent Role="Inscription">
               <PropertyRef Name="ID_Adherent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Categorie_Equipement">
+          <End Role="Categorie" Type="gestadh45Model.Store.Categorie" Multiplicity="1" />
+          <End Role="Equipement" Type="gestadh45Model.Store.Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="ID_Categorie" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -348,6 +373,11 @@
           <EntitySet Name="Marques" EntityType="gestadh45Model.Marque" />
           <AssociationSet Name="FK_Marque_Equipement" Association="gestadh45Model.FK_Marque_Equipement">
             <End Role="Marque" EntitySet="Marques" />
+            <End Role="Equipement" EntitySet="Equipements" />
+          </AssociationSet>
+          <EntitySet Name="Categories" EntityType="gestadh45Model.Categorie" />
+          <AssociationSet Name="FK_Categorie_Equipement" Association="gestadh45Model.FK_Categorie_Equipement">
+            <End Role="Categorie" EntitySet="Categories" />
             <End Role="Equipement" EntitySet="Equipements" />
           </AssociationSet>
         </EntityContainer>
@@ -590,6 +620,8 @@
           <Property Type="String" Name="Commentaire" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Guid" Name="ID_Marque" Nullable="false" />
           <NavigationProperty Name="Marque" Relationship="gestadh45Model.FK_Marque_Equipement" FromRole="Equipement" ToRole="Marque" />
+          <Property Type="Guid" Name="ID_Categorie" Nullable="false" />
+          <NavigationProperty Name="Categorie" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Equipement" ToRole="Categorie" />
         </EntityType>
         <EntityType Name="Marque">
           <Key>
@@ -608,6 +640,26 @@
             </Principal>
             <Dependent Role="Equipement">
               <PropertyRef Name="ID_Marque" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Categorie" ToRole="Equipement" />
+        </EntityType>
+        <Association Name="FK_Categorie_Equipement">
+          <End Type="gestadh45Model.Categorie" Role="Categorie" Multiplicity="1" />
+          <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="ID_Categorie" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -744,6 +796,7 @@
           <EntitySetMapping Name="Equipements">
             <EntityTypeMapping TypeName="gestadh45Model.Equipement">
               <MappingFragment StoreEntitySet="Equipement">
+                <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
                 <ScalarProperty Name="ID_Marque" ColumnName="ID_Marque" />
                 <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
                 <ScalarProperty Name="DateModification" ColumnName="DateModification" />
@@ -758,6 +811,14 @@
           <EntitySetMapping Name="Marques">
             <EntityTypeMapping TypeName="gestadh45Model.Marque">
               <MappingFragment StoreEntitySet="Marque">
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="gestadh45Model.Categorie">
+              <MappingFragment StoreEntitySet="Categorie">
                 <ScalarProperty Name="Libelle" ColumnName="Libelle" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -836,7 +897,15 @@
         <EntityTypeShape EntityType="gestadh45Model.Marque" Width="1.5" PointX="7.375" PointY="4.5" Height="1.5956835937500031" />
         <AssociationConnector Association="gestadh45Model.FK_Marque_Equipement" >
           <ConnectorPoint PointX="8.875" PointY="5.2978417968750016" />
+          <ConnectorPoint PointX="9.1666641666666653" PointY="5.2978417968750007" />
+          <ConnectorPoint PointX="9.3333308333333331" PointY="5.2978417968750016" />
           <ConnectorPoint PointX="9.625" PointY="5.2978417968750016" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="gestadh45Model.Categorie" Width="1.5" PointX="8.375" PointY="0.875" Height="1.5956835937500031" />
+        <AssociationConnector Association="gestadh45Model.FK_Categorie_Equipement" >
+          <ConnectorPoint PointX="9.2499975" PointY="2.4706835937500031" />
+          <ConnectorPoint PointX="9.2499975" PointY="6.6461393229166674" />
+          <ConnectorPoint PointX="9.625" PointY="6.6461393229166674" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

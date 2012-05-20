@@ -11,7 +11,7 @@ namespace gestadh45.dal
 		/// A <see cref="System.String"/> that represents this instance.
 		/// </returns>
 		public override string ToString() {
-			return string.Format("{0}", this.Numero);
+			return string.Format("{0} {1} - {2}", this.Marque.ToString(), this.Categorie.ToString(), this.Numero);
 		}
 
 		/// <summary>
@@ -26,6 +26,7 @@ namespace gestadh45.dal
 				ID = Guid.NewGuid(),
 				Numero = string.Copy(this.Numero),
 				ID_Marque = this.ID_Marque,
+				ID_Categorie = this.ID_Categorie,
 				DateCreation = DateTime.Now,
 				DateModification = DateTime.Now,
 

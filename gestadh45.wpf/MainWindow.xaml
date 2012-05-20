@@ -23,8 +23,8 @@
 	<DockPanel>
 		<my:Ribbon DockPanel.Dock="Top">
 			<my:Ribbon.ApplicationMenu>
-				<my:RibbonApplicationMenu>
-					<my:RibbonApplicationMenuItem Header="Quitter" />
+				<my:RibbonApplicationMenu Label="Menu" SmallImageSource="/gestadh45.wpf;component/Images/btn_menu.png">
+					<my:RibbonApplicationMenuItem Header="Quitter" Command="{Binding Path=CloseCommand}" />
 				</my:RibbonApplicationMenu>
 			</my:Ribbon.ApplicationMenu>
 			
@@ -144,6 +144,20 @@
 						<my:RibbonMenuItem Header="Ajout"
 							Command="{Binding Path=ShowUCCommand}"
 							CommandParameter="{x:Static b:CodesUC.FormulaireMarque}" />
+					</my:RibbonSplitButton>
+				</my:RibbonGroup>
+
+				<my:RibbonGroup Name="GrpCategories" Header="Catégories">
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Catégories"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationCategories}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_categorie.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_categorie.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationCategories}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireCategorie}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
 

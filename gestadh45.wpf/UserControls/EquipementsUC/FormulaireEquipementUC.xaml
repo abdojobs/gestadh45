@@ -32,6 +32,7 @@
 				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
 				<RowDefinition Height="auto" />
+				<RowDefinition Height="auto" />
 			</Grid.RowDefinitions>
 
 			<TextBlock Grid.Row="0" Grid.Column="0" Text="Numéro : " VerticalAlignment="Center" />
@@ -55,20 +56,37 @@
 				</Button>
 			</StackPanel>
 
-			<TextBlock Grid.Row="1" Grid.Column="0" Text="Date d'achat : " VerticalAlignment="Center" />
-			<DatePicker Grid.Row="1" Grid.Column="1" 
+			<TextBlock Grid.Row="1" Grid.Column="0" Text="Catégorie : "
+					   VerticalAlignment="Center" />
+
+			<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
+				<ComboBox Name="cmbCategories" Width="125"
+								ItemsSource="{Binding Path=Categories}"
+								SelectedItem="{Binding Path=CurrentEquipement.Categorie}" />
+				<Button ToolTip="Ajouter une marque" HorizontalAlignment="Center" 
+							Width="18" Height="18" 
+							Command="{Binding Path=OpenWindowCommand}"
+							CommandParameter="{x:Static business:CodesUC.FormulaireCategorie}" 
+							Margin="5,0,0,0">
+					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
+				</Button>
+			</StackPanel>
+
+			<TextBlock Grid.Row="1" Grid.Column="2" Margin="20,0,0,0"
+					   Text="Date d'achat : " VerticalAlignment="Center" />
+			<DatePicker Grid.Row="1" Grid.Column="3" 
 								DisplayDate="{Binding Path=CurrentEquipement.DateAchat}" 
 								SelectedDate="{Binding Path=CurrentEquipement.DateAchat}"
 								SelectedDateFormat="Short" />
 
-			<TextBlock Grid.Row="1" Grid.Column="2" Margin="20,0,0,0"
+			<TextBlock Grid.Row="2" Grid.Column="2" Margin="20,0,0,0"
 					   Text="Date de mise en service : " VerticalAlignment="Center" />
-			<DatePicker Grid.Row="1" Grid.Column="3" 
+			<DatePicker Grid.Row="2" Grid.Column="3" 
 								DisplayDate="{Binding Path=CurrentEquipement.DateMiseEnService}" 
 								SelectedDate="{Binding Path=CurrentEquipement.DateMiseEnService}"
 								SelectedDateFormat="Short" />
 
-			<GroupBox Name="gbxInfos" Header="Infos" Grid.Row="2" Grid.ColumnSpan="4" Margin="5,5,5,5">
+			<GroupBox Name="gbxInfos" Header="Infos" Grid.Row="3" Grid.ColumnSpan="4" Margin="5,5,5,5">
 				<TextBox AcceptsReturn="True" Height="50" Width="500"
 						 Text="{Binding Path=CurrentEquipement.Commentaire}" />
 			</GroupBox>
