@@ -22,7 +22,13 @@
 
 	<DockPanel>
 		<my:Ribbon DockPanel.Dock="Top">
-			<my:RibbonTab Name="MainTab" Header="Accueil">
+			<my:Ribbon.ApplicationMenu>
+				<my:RibbonApplicationMenu>
+					<my:RibbonApplicationMenuItem Header="Quitter" />
+				</my:RibbonApplicationMenu>
+			</my:Ribbon.ApplicationMenu>
+			
+			<my:RibbonTab Name="TabMain" Header="Accueil">
 				<my:RibbonGroup Name="GrpInfosClub" Header="Infos Club">
 					<my:RibbonButton Height="40" Width="40" ToolTip="Infos Club"
 									 Command="{Binding Path=ShowUCCommand}"
@@ -32,7 +38,17 @@
 					</my:RibbonButton>
 				</my:RibbonGroup>
 
-				<my:RibbonGroup Name="GrpReferentiel" Header="Référentiel">
+				<my:RibbonGroup Name="About" Header="A propos">
+					<my:RibbonButton Height="40" Width="40"
+									 Command="{Binding Path=AboutBoxCommand}"
+									 LargeImageSource="/gestadh45.wpf;component/Images/btn_about.png" 
+									 SmallImageSource="/gestadh45.wpf;component/Images/btn_about.png">
+					</my:RibbonButton>
+				</my:RibbonGroup>
+			</my:RibbonTab>
+			
+			<my:RibbonTab Name="TabReferentiel" Header="Référentiel">
+				<my:RibbonGroup Name="GrpVilles" Header="Villes">
 					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Villes"
 										  CommandParameter="{x:Static b:CodesUC.ConsultationVilles}"
 										  LargeImageSource="/gestadh45.wpf;component/Images/btn_city.png" 
@@ -44,7 +60,9 @@
 							Command="{Binding Path=ShowUCCommand}"
 							CommandParameter="{x:Static b:CodesUC.FormulaireVille}" />
 					</my:RibbonSplitButton>
-
+				</my:RibbonGroup>
+				
+				<my:RibbonGroup Name="GrpSaisons" Header="Saisons">
 					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Saisons"
 										  CommandParameter="{x:Static b:CodesUC.ConsultationSaisons}"
 										  LargeImageSource="/gestadh45.wpf;component/Images/btn_saisons.png" 
@@ -56,7 +74,11 @@
 							Command="{Binding Path=ShowUCCommand}"
 							CommandParameter="{x:Static b:CodesUC.FormulaireSaison}" />
 					</my:RibbonSplitButton>
-
+				</my:RibbonGroup>
+			</my:RibbonTab>
+			
+			<my:RibbonTab Name="TabInscriptions" Header="Inscriptions">
+				<my:RibbonGroup Name="GrpGroupes" Header="Groupes">
 					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Groupes"
 										  CommandParameter="{x:Static b:CodesUC.ConsultationGroupes}"
 										  LargeImageSource="/gestadh45.wpf;component/Images/btn_groupes.png" 
@@ -69,8 +91,8 @@
 							CommandParameter="{x:Static b:CodesUC.FormulaireGroupe}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
-
-				<my:RibbonGroup Name="GrpGestion" Header="Gestion">
+				
+				<my:RibbonGroup Name="GrpAdherents" Header="Adhérents">
 					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Adhérents"
 										  CommandParameter="{x:Static b:CodesUC.ConsultationAdherents}"
 										  LargeImageSource="/gestadh45.wpf;component/Images/btn_adherents.png" 
@@ -82,7 +104,9 @@
 							Command="{Binding Path=ShowUCCommand}"
 							CommandParameter="{x:Static b:CodesUC.FormulaireAdherent}" />
 					</my:RibbonSplitButton>
+				</my:RibbonGroup>
 
+				<my:RibbonGroup Name="GrpInscriptions" Header="Inscriptions">
 					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Inscriptions"
 										  CommandParameter="{x:Static b:CodesUC.ConsultationInscriptions}"
 										  LargeImageSource="/gestadh45.wpf;component/Images/btn_inscriptions.png" 
@@ -96,7 +120,7 @@
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
 
-				<my:RibbonGroup Name="Stats" Header="Statistiques">
+				<my:RibbonGroup Name="GrpTools" Header="Outils">
 					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Statistiques"
 										  CommandParameter="{x:Static b:CodesUC.EcranStatistiques}"
 										  LargeImageSource="/gestadh45.wpf;component/Images/btn_statistiques.png" 
@@ -106,14 +130,10 @@
 							CommandParameter="{x:Static b:CodesUC.EcranStatistiques}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
-
-				<my:RibbonGroup Name="About" Header="A propos">
-					<my:RibbonButton Height="40" Width="40"
-									 Command="{Binding Path=AboutBoxCommand}"
-									 LargeImageSource="/gestadh45.wpf;component/Images/btn_about.png" 
-									 SmallImageSource="/gestadh45.wpf;component/Images/btn_about.png">
-					</my:RibbonButton>
-				</my:RibbonGroup>
+			</my:RibbonTab>
+			
+			<my:RibbonTab Name="TabEquipement" Header="EPI">
+				
 			</my:RibbonTab>
 		</my:Ribbon>
 		
