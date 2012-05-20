@@ -65,7 +65,7 @@ namespace gestadh45.business.ViewModel.MarquesVM
 		#endregion
 
 		private void PopulateMarques() {
-			this.Marques = this._repoMain.GetAll().OrderBy((m) => m.Libelle);
+			this.Marques = this._repoMain.GetAll().OrderBy((m) => m.ToString());
 		}
 
 		#region ShowDetailsCommand

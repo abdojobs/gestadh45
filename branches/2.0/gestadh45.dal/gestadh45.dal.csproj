@@ -52,6 +52,9 @@
     <Compile Include="Adherent.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Categorie.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Equipement.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
@@ -86,6 +89,7 @@
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PersonalizedObj\Adherent.cs" />
+    <Compile Include="PersonalizedObj\Categorie.cs" />
     <Compile Include="PersonalizedObj\Equipement.cs" />
     <Compile Include="PersonalizedObj\Groupe.cs" />
     <Compile Include="PersonalizedObj\InfosClub.cs" />

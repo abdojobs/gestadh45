@@ -118,6 +118,12 @@
     <Compile Include="UserControls\BtnAnnulerEnregistrerUC.xaml.cs">
       <DependentUpon>BtnAnnulerEnregistrerUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CategoriesUC\ConsultationCategoriesUC.xaml.cs">
+      <DependentUpon>ConsultationCategoriesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CategoriesUC\FormulaireCategorieUC.xaml.cs">
+      <DependentUpon>FormulaireCategorieUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\EquipementsUC\ConsultationEquipementsUC.xaml.cs">
       <DependentUpon>ConsultationEquipementsUC.xaml</DependentUpon>
     </Compile>
@@ -198,6 +204,14 @@
     <Page Include="UserControls\BtnAnnulerEnregistrerUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\CategoriesUC\ConsultationCategoriesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CategoriesUC\FormulaireCategorieUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\EquipementsUC\ConsultationEquipementsUC.xaml">
       <SubType>Designer</SubType>
@@ -363,6 +377,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_equipement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_categorie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_menu.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

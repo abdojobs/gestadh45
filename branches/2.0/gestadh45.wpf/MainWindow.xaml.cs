@@ -9,6 +9,7 @@ using gestadh45.business.PersonalizedMsg;
 using gestadh45.business.ViewModel;
 using gestadh45.dal;
 using gestadh45.wpf.UserControls.AdherentsUC;
+using gestadh45.wpf.UserControls.CategoriesUC;
 using gestadh45.wpf.UserControls.EquipementsUC;
 using gestadh45.wpf.UserControls.GroupesUC;
 using gestadh45.wpf.UserControls.InfosClubs;
@@ -170,6 +171,14 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireEquipement:
 					userControl = new FormulaireEquipementUC();
+					break;
+
+				case CodesUC.ConsultationCategories:
+					userControl = new ConsultationCategoriesUC();
+					break;
+
+				case CodesUC.FormulaireCategorie:
+					userControl = new FormulaireCategorieUC();
 					break;
 
 				default:
