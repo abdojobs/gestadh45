@@ -24,59 +24,15 @@
 		<my:Ribbon DockPanel.Dock="Top">
 			<my:Ribbon.ApplicationMenu>
 				<my:RibbonApplicationMenu Label="Menu" SmallImageSource="/gestadh45.wpf;component/Images/btn_menu.png">
+					<my:RibbonApplicationMenuItem Header="Infos club" 
+												  Command="{Binding Path=ShowUCCommand}"
+												  CommandParameter="{x:Static b:CodesUC.ConsultationInfosClub}" />
+					<my:RibbonApplicationMenuItem Header="A propos" 
+												  Command="{Binding Path=AboutBoxCommand}" />
 					<my:RibbonApplicationMenuItem Header="Quitter" Command="{Binding Path=CloseCommand}" />
 				</my:RibbonApplicationMenu>
 			</my:Ribbon.ApplicationMenu>
-			
-			<my:RibbonTab Name="TabMain" Header="Accueil">
-				<my:RibbonGroup Name="GrpInfosClub" Header="Infos Club">
-					<my:RibbonButton Height="40" Width="40" ToolTip="Infos Club"
-									 Command="{Binding Path=ShowUCCommand}"
-									 CommandParameter="{x:Static b:CodesUC.ConsultationInfosClub}" 
-									 LargeImageSource="/gestadh45.wpf;component/Images/btn_Home.png" 
-									 SmallImageSource="/gestadh45.wpf;component/Images/btn_Home.png">
-					</my:RibbonButton>
-				</my:RibbonGroup>
-
-				<my:RibbonGroup Name="About" Header="A propos">
-					<my:RibbonButton Height="40" Width="40"
-									 Command="{Binding Path=AboutBoxCommand}"
-									 LargeImageSource="/gestadh45.wpf;component/Images/btn_about.png" 
-									 SmallImageSource="/gestadh45.wpf;component/Images/btn_about.png">
-					</my:RibbonButton>
-				</my:RibbonGroup>
-			</my:RibbonTab>
-			
-			<my:RibbonTab Name="TabReferentiel" Header="Référentiel">
-				<my:RibbonGroup Name="GrpVilles" Header="Villes">
-					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Villes"
-										  CommandParameter="{x:Static b:CodesUC.ConsultationVilles}"
-										  LargeImageSource="/gestadh45.wpf;component/Images/btn_city.png" 
-										  SmallImageSource="/gestadh45.wpf;component/Images/btn_city.png">
-						<my:RibbonMenuItem Header="Consultation"
-							Command="{Binding Path=ShowUCCommand}"
-							CommandParameter="{x:Static b:CodesUC.ConsultationVilles}" />
-						<my:RibbonMenuItem Header="Ajout"
-							Command="{Binding Path=ShowUCCommand}"
-							CommandParameter="{x:Static b:CodesUC.FormulaireVille}" />
-					</my:RibbonSplitButton>
-				</my:RibbonGroup>
-				
-				<my:RibbonGroup Name="GrpSaisons" Header="Saisons">
-					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Saisons"
-										  CommandParameter="{x:Static b:CodesUC.ConsultationSaisons}"
-										  LargeImageSource="/gestadh45.wpf;component/Images/btn_saisons.png" 
-										  SmallImageSource="/gestadh45.wpf;component/Images/btn_saisons.png">
-						<my:RibbonMenuItem Header="Consultation"
-							Command="{Binding Path=ShowUCCommand}"
-							CommandParameter="{x:Static b:CodesUC.ConsultationSaisons}" />
-						<my:RibbonMenuItem Header="Ajout"
-							Command="{Binding Path=ShowUCCommand}"
-							CommandParameter="{x:Static b:CodesUC.FormulaireSaison}" />
-					</my:RibbonSplitButton>
-				</my:RibbonGroup>
-			</my:RibbonTab>
-			
+						
 			<my:RibbonTab Name="TabInscriptions" Header="Inscriptions">
 				<my:RibbonGroup Name="GrpGroupes" Header="Groupes">
 					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Groupes"
@@ -172,6 +128,36 @@
 						<my:RibbonMenuItem Header="Ajout"
 							Command="{Binding Path=ShowUCCommand}"
 							CommandParameter="{x:Static b:CodesUC.FormulaireEquipement}" />
+					</my:RibbonSplitButton>
+				</my:RibbonGroup>
+			</my:RibbonTab>
+			
+			<my:RibbonTab Name="TabReferentiel" Header="Référentiel">
+				<my:RibbonGroup Name="GrpVilles" Header="Villes">
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Villes"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationVilles}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_city.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_city.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationVilles}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireVille}" />
+					</my:RibbonSplitButton>
+				</my:RibbonGroup>
+
+				<my:RibbonGroup Name="GrpSaisons" Header="Saisons">
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Saisons"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationSaisons}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_saisons.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_saisons.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationSaisons}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireSaison}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
 			</my:RibbonTab>
