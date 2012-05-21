@@ -78,6 +78,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 
 		#region Constructeur
 		public ConsultationEquipementsVM() {
+			this.MasquerRebut = true;
 			this._repoMain = new Repository<Equipement>(this._context);
 			this.PopulateEquipements();
 			this.CreateDupliquerCommand();
