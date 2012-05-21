@@ -25,7 +25,7 @@
 				</i:Interaction.Triggers>
 			</TextBox>
 
-			<CheckBox Name="chbxMasquerRebut"
+			<CheckBox Name="chbxMasquerRebut" IsChecked="{Binding Path=MasquerRebut}"
 					  Margin="20,0,0,0" VerticalAlignment="Center"
 					  Command="{Binding Path=MasquerRebutCommand}"
 					  CommandParameter="{Binding ElementName=chbxMasquerRebut, Path=IsChecked}"/>
