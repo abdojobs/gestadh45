@@ -48,6 +48,7 @@ namespace gestadh45.wpf
 			Messenger.Default.Register<NMOpenWindow>(this, (msg) => this.OpenWindowUC(msg.CodeUC));
 			Messenger.Default.Register<NMShowUC<Adherent>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<Inscription>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
+			Messenger.Default.Register<NMShowUC<Equipement>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowAboutBox>(this, (msg) => this.ShowAboutBox());
 
 			// Abonnement aux messages pour les dialogues
@@ -84,6 +85,9 @@ namespace gestadh45.wpf
 			}
 			else if (codeUC.Equals(CodesUC.ConsultationAdherents) && objetUC is Adherent) {
 				this.contenu.Child = new ConsultationAdherentsUC(objetUC as Adherent);
+			}
+			else if (codeUC.Equals(CodesUC.FormulaireEquipement) && objetUC is Equipement) {
+				this.contenu.Child = new FormulaireEquipementUC(objetUC as Equipement);
 			}
 		}
 
