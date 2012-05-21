@@ -13,16 +13,24 @@
 		<TextBlock Text="Equipements" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
 				   Style="{DynamicResource ResourceKey=titreUC}" />
 
-		<TextBox Name="tbxFiltre" Margin="0,0,0,10" DockPanel.Dock="Top" Width="300" HorizontalAlignment="Left"
+		<StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+			<TextBox Name="tbxFiltre" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left"
 					 ToolTip="Saisissez une partie du numéro pour filtrer la liste">
-			<i:Interaction.Triggers>
-				<i:EventTrigger EventName="TextChanged">
-					<cmd:EventToCommand
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="TextChanged">
+						<cmd:EventToCommand
 						Command="{Binding Path=FilterCommand, Mode=OneWay}"
 						CommandParameter="{Binding ElementName=tbxFiltre, Path=Text}" />
-				</i:EventTrigger>
-			</i:Interaction.Triggers>
-		</TextBox>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</TextBox>
+
+			<CheckBox Name="chbxMasquerRebut"
+					  Margin="20,0,0,0" VerticalAlignment="Center"
+					  Command="{Binding Path=MasquerRebutCommand}"
+					  CommandParameter="{Binding ElementName=chbxMasquerRebut, Path=IsChecked}"/>
+			<TextBlock Text="Masquer le matériel au rebut" Margin="5,0,0,0"  VerticalAlignment="Center" />
+		</StackPanel>
 
 		<ListBox Name="lbxEquipements" Width="300"
 						ItemsSource="{Binding Path=Equipements}"
@@ -61,6 +69,7 @@
 					<TextBlock Style="{DynamicResource ResourceKey=labelForm}" Text="{Binding Path=SelectedEquipement}" />
 					<TextBlock Text="{Binding Path=SelectedEquipement.DateAchat, StringFormat='Acheté le : {0:dd/MM/yyyy}'}" />
 					<TextBlock Text="{Binding Path=SelectedEquipement.DateMiseEnService, StringFormat='Mis en service le : {0:dd/MM/yyyy}'}" />
+					<TextBlock Text="{Binding Path=SelectedEquipement.DateMiseAuRebut, StringFormat='Mis au rebut le : {0:dd/MM/yyyy}'}" />
 				</StackPanel>
 			</GroupBox>
 

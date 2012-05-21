@@ -101,6 +101,7 @@
           <Property Name="Commentaire" Type="ntext" />
           <Property Name="ID_Marque" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ID_Categorie" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="DateMiseAuRebut" Type="datetime" />
         </EntityType>
         <EntityType Name="Groupe">
           <Key>
@@ -622,6 +623,7 @@
           <NavigationProperty Name="Marque" Relationship="gestadh45Model.FK_Marque_Equipement" FromRole="Equipement" ToRole="Marque" />
           <Property Type="Guid" Name="ID_Categorie" Nullable="false" />
           <NavigationProperty Name="Categorie" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Equipement" ToRole="Categorie" />
+          <Property Type="DateTime" Name="DateMiseAuRebut" />
         </EntityType>
         <EntityType Name="Marque">
           <Key>
@@ -796,6 +798,7 @@
           <EntitySetMapping Name="Equipements">
             <EntityTypeMapping TypeName="gestadh45Model.Equipement">
               <MappingFragment StoreEntitySet="Equipement">
+                <ScalarProperty Name="DateMiseAuRebut" ColumnName="DateMiseAuRebut" />
                 <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
                 <ScalarProperty Name="ID_Marque" ColumnName="ID_Marque" />
                 <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />

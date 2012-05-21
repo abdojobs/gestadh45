@@ -23,6 +23,7 @@ namespace gestadh45.dal
         public string Commentaire { get; set; }
         public System.Guid ID_Marque { get; set; }
         public System.Guid ID_Categorie { get; set; }
+        public Nullable<System.DateTime> DateMiseAuRebut { get; set; }
     
         public virtual Marque Marque { get; set; }
         public virtual Categorie Categorie { get; set; }
