@@ -77,5 +77,14 @@ namespace gestadh45.business.ViewModel.VerificationsVM {
                 return ResourceManager.GetString("ErrEquipementObligatoire", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à La vérification a été supprimée.
+        /// </summary>
+        internal static string InfoVerificationSupprimee {
+            get {
+                return ResourceManager.GetString("InfoVerificationSupprimee", resourceCulture);
+            }
+        }
     }
 }

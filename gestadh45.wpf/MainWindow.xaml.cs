@@ -186,9 +186,9 @@ namespace gestadh45.wpf
 					userControl = new FormulaireCategorieUC();
 					break;
 
-				//case CodesUC.ConsultationVerifications:
-				//    userControl = new ConsultationVerificationsUC();
-				//    break;
+				case CodesUC.ConsultationVerifications:
+					userControl = new ConsultationVerificationsUC();
+					break;
 
 				case CodesUC.FormulaireVerification:
 					userControl = new FormulaireVerificationUC();

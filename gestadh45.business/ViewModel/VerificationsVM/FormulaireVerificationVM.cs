@@ -60,6 +60,8 @@ namespace gestadh45.business.ViewModel.VerificationsVM
 			this._repoVerification = new Repository<Verification>(this._context);
 			this._repoSaison = new Repository<Saison>(this._context);
 
+			this.UCParentCode = CodesUC.ConsultationVerifications;
+
 			this.PopulateCombos();
 
 			this.CurrentVerification = new Verification();
