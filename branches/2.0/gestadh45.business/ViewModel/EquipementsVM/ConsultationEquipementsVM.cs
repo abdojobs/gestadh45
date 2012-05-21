@@ -55,6 +55,23 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		}
 		#endregion
 
+		#region MasquerRebut
+		private bool _masquerRebut;
+
+		/// <summary>
+		/// Get or sets the MasquerRebut flag
+		/// </summary>
+		public bool MasquerRebut {
+			get { return this._masquerRebut; }
+			set {
+				if (this._masquerRebut != value) {
+					this._masquerRebut = value;
+					this.RaisePropertyChanged(() => this.MasquerRebut);
+				}
+			}
+		}
+		#endregion
+
 		#region Repository
 		private Repository<Equipement> _repoMain;
 		#endregion
@@ -64,15 +81,23 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 			this._repoMain = new Repository<Equipement>(this._context);
 			this.PopulateEquipements();
 			this.CreateDupliquerCommand();
+			this.CreateMasquerRebutCommand();
 		}
 		#endregion
 
 		private void PopulateEquipements(string filtre = null) {
+			this.Equipements = this._repoMain.GetAll().OrderBy(e => e.ToString());
+
+			// pour masquer les équipement au rebut, on filtre sur l'absence d'une date de mise au rebut
+			if (this.MasquerRebut) {
+				this.Equipements = this.Equipements.Where(e => !e.DateMiseAuRebut.HasValue).OrderBy(e => e.ToString());
+			}
+
+			// gestion du filtre
 			if (!string.IsNullOrEmpty(filtre)) {
-				this.Equipements = this._repoMain.GetAll().Where(e => e.ToString().ToUpperInvariant().Contains(filtre.ToUpperInvariant())).OrderBy(e => e.ToString());
+				this.Equipements = this.Equipements.Where(e => e.ToString().ToUpperInvariant().Contains(filtre.ToUpperInvariant())).OrderBy(e => e.ToString());
 			}
 			else {
-				this.Equipements = this._repoMain.GetAll().OrderBy(e => e.ToString());
 				Messenger.Default.Send(new NMClearFilter());
 			}
 		}
@@ -157,6 +182,26 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 			this.PopulateEquipements();
 			this.SelectedEquipement = this.Equipements.FirstOrDefault();
 			this.ShowUserNotification(ResEquipements.InfoEquipementDuplique);
+		}
+		#endregion
+
+		#region MasquerRebutCommand
+		public ICommand MasquerRebutCommand { get; set; }
+
+		private void CreateMasquerRebutCommand() {
+			this.MasquerRebutCommand = new RelayCommand<object>(
+				this.ExecuteMasquerRebutCommand,
+				this.CanExecuteMasquerRebutCommand
+			);
+		}
+
+		public bool CanExecuteMasquerRebutCommand(object masquerRebut) {
+			return true;
+		}
+
+		public void ExecuteMasquerRebutCommand(object masquerRebut) {
+			this.MasquerRebut = (bool)masquerRebut;
+			this.PopulateEquipements(null);
 		}
 		#endregion
 	}
