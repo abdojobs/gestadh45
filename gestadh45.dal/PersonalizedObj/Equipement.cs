@@ -11,7 +11,24 @@ namespace gestadh45.dal
 		/// A <see cref="System.String"/> that represents this instance.
 		/// </returns>
 		public override string ToString() {
-			return string.Format("{0} {1} - {2}", this.Marque.ToString(), this.Categorie.ToString(), this.Numero);
+			return string.Format("{0} ({1} {2})", this.Numero, this.Categorie.ToString(), this.Marque.ToString());
+		}
+
+		/// <summary>
+		/// Gets the libelle.
+		/// </summary>
+		public string Libelle {
+			get { return this.ToString(); }
+		}
+
+		/// <summary>
+		/// Gets a value indicating whether [est au rebut].
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if [est au rebut]; otherwise, <c>false</c>.
+		/// </value>
+		public bool EstAuRebut {
+			get { return !this.DateMiseAuRebut.HasValue; }
 		}
 
 		/// <summary>

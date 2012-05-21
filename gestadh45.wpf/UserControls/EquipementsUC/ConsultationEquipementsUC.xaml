@@ -42,6 +42,12 @@
 						CommandParameter="{Binding ElementName=lbxEquipements, Path=SelectedItem}" />
 				</i:EventTrigger>
 			</i:Interaction.Triggers>
+
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Path=Libelle}" Foreground="{Binding Path=EstAuRebut, Converter={StaticResource ResourceKey=boolToBrush}}" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
 		</ListBox>
 
 		<StackPanel DockPanel.Dock="Right" Orientation="Vertical" VerticalAlignment="Center" Margin="10,10,10,10">
