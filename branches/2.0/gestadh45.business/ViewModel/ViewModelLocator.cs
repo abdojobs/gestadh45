@@ -19,6 +19,7 @@ using gestadh45.business.ViewModel.VillesVM;
 using gestadh45.business.ViewModel.MarquesVM;
 using gestadh45.business.ViewModel.EquipementsVM;
 using gestadh45.business.ViewModel.CategoriesVM;
+using gestadh45.business.ViewModel.VerificationsVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -147,5 +148,20 @@ namespace gestadh45.business.ViewModel
 			}
 		}
 		#endregion
+
+		#region VerificationsVM
+		//public static ConsultationVerificationsVM ConsultationVerificationsVM {
+		//    get {
+		//        return new ConsultationVerificationsVM();
+		//    }
+		//}
+
+		public static FormulaireVerificationVM FormulaireVerificationVM {
+			get {
+				return new FormulaireVerificationVM();
+			}
+		}
+		#endregion
+
 	}
 }

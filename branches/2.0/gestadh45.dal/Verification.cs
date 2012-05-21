@@ -12,21 +12,17 @@ using System.Collections.Generic;
 
 namespace gestadh45.dal
 {
-    public partial class Saison
+    public partial class Verification
     {
-        public Saison()
-        {
-            this.Groupes = new HashSet<Groupe>();
-            this.Verifications = new HashSet<Verification>();
-        }
-    
         public System.Guid ID { get; set; }
-        public bool EstSaisonCourante { get; set; }
-        public int AnneeDebut { get; set; }
-        public Nullable<int> AnneeFin { get; set; }
+        public System.Guid ID_Equipement { get; set; }
+        public System.Guid ID_Saison { get; set; }
+        public System.DateTime DateVerification { get; set; }
+        public bool EtatOk { get; set; }
+        public string Commentaire { get; set; }
     
-        public virtual ICollection<Groupe> Groupes { get; set; }
-        public virtual ICollection<Verification> Verifications { get; set; }
+        public virtual Equipement Equipement { get; set; }
+        public virtual Saison Saison { get; set; }
     }
     
 }

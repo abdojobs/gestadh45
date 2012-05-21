@@ -20,6 +20,7 @@ using gestadh45.wpf.UserControls.StatistiquesUC;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
 using Forms = System.Windows.Forms;
+using gestadh45.wpf.UserControls.VerificationsUC;
 
 namespace gestadh45.wpf
 {
@@ -183,6 +184,14 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireCategorie:
 					userControl = new FormulaireCategorieUC();
+					break;
+
+				//case CodesUC.ConsultationVerifications:
+				//    userControl = new ConsultationVerificationsUC();
+				//    break;
+
+				case CodesUC.FormulaireVerification:
+					userControl = new FormulaireVerificationUC();
 					break;
 
 				default:

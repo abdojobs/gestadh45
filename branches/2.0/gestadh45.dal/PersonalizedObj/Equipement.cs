@@ -28,7 +28,7 @@ namespace gestadh45.dal
 		///   <c>true</c> if [est au rebut]; otherwise, <c>false</c>.
 		/// </value>
 		public bool EstAuRebut {
-			get { return !this.DateMiseAuRebut.HasValue; }
+			get { return this.DateMiseAuRebut.HasValue; }
 		}
 
 		/// <summary>

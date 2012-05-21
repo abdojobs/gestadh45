@@ -12,10 +12,10 @@ namespace gestadh45.wpf.Tools
 			}
 
 			if ((bool)value) {
-				return Brushes.Black;
+				return Brushes.Red;
 			}
 			else {
-				return Brushes.Red;
+				return Brushes.Black;
 			}
 		}
 

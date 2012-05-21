@@ -14,6 +14,11 @@ namespace gestadh45.dal
 {
     public partial class Equipement
     {
+        public Equipement()
+        {
+            this.Verifications = new HashSet<Verification>();
+        }
+    
         public System.Guid ID { get; set; }
         public string Numero { get; set; }
         public Nullable<System.DateTime> DateAchat { get; set; }
@@ -27,6 +32,7 @@ namespace gestadh45.dal
     
         public virtual Marque Marque { get; set; }
         public virtual Categorie Categorie { get; set; }
+        public virtual ICollection<Verification> Verifications { get; set; }
     }
     
 }

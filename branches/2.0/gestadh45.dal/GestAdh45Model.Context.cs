@@ -38,5 +38,6 @@ namespace gestadh45.dal
         public DbSet<Equipement> Equipements { get; set; }
         public DbSet<Marque> Marques { get; set; }
         public DbSet<Categorie> Categories { get; set; }
+        public DbSet<Verification> Verifications { get; set; }
     }
 }
