@@ -102,6 +102,7 @@
       <DependentUpon>AboutBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Tools\BooleanInversionConverter.cs" />
+    <Compile Include="Tools\BooleanToBrushConverter.cs" />
     <Compile Include="Tools\HexaColorStringToBrushConverter.cs" />
     <Compile Include="UCWindow.xaml.cs">
       <DependentUpon>UCWindow.xaml</DependentUpon>
