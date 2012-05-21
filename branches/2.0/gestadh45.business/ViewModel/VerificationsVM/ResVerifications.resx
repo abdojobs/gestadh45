@@ -123,4 +123,7 @@
   <data name="ErrEquipementObligatoire" xml:space="preserve">
     <value>L'équipement est obligatoire</value>
   </data>
+  <data name="InfoVerificationSupprimee" xml:space="preserve">
+    <value>La vérification a été supprimée</value>
+  </data>
 </root>

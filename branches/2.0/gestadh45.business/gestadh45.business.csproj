@@ -141,6 +141,7 @@
       <DependentUpon>ResSaisons.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Statistiques\EcranStatistiquesVM.cs" />
+    <Compile Include="ViewModel\VerificationsVM\ConsultationVerificationsVM.cs" />
     <Compile Include="ViewModel\VerificationsVM\FormulaireVerificationVM.cs" />
     <Compile Include="ViewModel\VerificationsVM\ResVerifications.Designer.cs">
       <AutoGen>True</AutoGen>

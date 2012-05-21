@@ -10,16 +10,16 @@
 */
 
 using gestadh45.business.ViewModel.AdherentsVM;
+using gestadh45.business.ViewModel.CategoriesVM;
+using gestadh45.business.ViewModel.EquipementsVM;
 using gestadh45.business.ViewModel.GroupesVM;
 using gestadh45.business.ViewModel.InfosClubVM;
 using gestadh45.business.ViewModel.InscriptionsVM;
+using gestadh45.business.ViewModel.MarquesVM;
 using gestadh45.business.ViewModel.SaisonsVM;
 using gestadh45.business.ViewModel.Statistiques;
-using gestadh45.business.ViewModel.VillesVM;
-using gestadh45.business.ViewModel.MarquesVM;
-using gestadh45.business.ViewModel.EquipementsVM;
-using gestadh45.business.ViewModel.CategoriesVM;
 using gestadh45.business.ViewModel.VerificationsVM;
+using gestadh45.business.ViewModel.VillesVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -150,11 +150,11 @@ namespace gestadh45.business.ViewModel
 		#endregion
 
 		#region VerificationsVM
-		//public static ConsultationVerificationsVM ConsultationVerificationsVM {
-		//    get {
-		//        return new ConsultationVerificationsVM();
-		//    }
-		//}
+		public static ConsultationVerificationsVM ConsultationVerificationsVM {
+			get {
+				return new ConsultationVerificationsVM();
+			}
+		}
 
 		public static FormulaireVerificationVM FormulaireVerificationVM {
 			get {
