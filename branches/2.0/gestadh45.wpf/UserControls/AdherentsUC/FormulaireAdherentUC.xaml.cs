@@ -16,7 +16,7 @@ namespace gestadh45.wpf.UserControls.AdherentsUC
 
 		public FormulaireAdherentUC(Adherent adherent) {
 			InitializeComponent();
-			this.DataContext = new FormulaireAdherentVM((Guid)adherent.ID);
+			this.DataContext = new FormulaireAdherentVM(adherent.ID);
 		}
 	}
 }
