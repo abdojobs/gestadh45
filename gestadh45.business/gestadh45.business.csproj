@@ -141,6 +141,12 @@
       <DependentUpon>ResSaisons.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Statistiques\EcranStatistiquesVM.cs" />
+    <Compile Include="ViewModel\VerificationsVM\FormulaireVerificationVM.cs" />
+    <Compile Include="ViewModel\VerificationsVM\ResVerifications.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResVerifications.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VillesVM\ConsultationVillesVM.cs" />
     <Compile Include="ViewModel\VillesVM\FormulaireVilleVM.cs" />
@@ -205,6 +211,10 @@
     <EmbeddedResource Include="ViewModel\SaisonsVM\ResSaisons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResSaisons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\VerificationsVM\ResVerifications.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResVerifications.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\VillesVM\ResVilles.resx">
       <Generator>ResXFileCodeGenerator</Generator>

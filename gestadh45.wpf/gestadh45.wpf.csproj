@@ -164,6 +164,9 @@
     <Compile Include="UserControls\StatistiquesUC\EcranStatistiquesUC.xaml.cs">
       <DependentUpon>EcranStatistiquesUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\VerificationsUC\FormulaireVerificationUC.xaml.cs">
+      <DependentUpon>FormulaireVerificationUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\VillesUC\ConsultationVillesUC.xaml.cs">
       <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
@@ -263,6 +266,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\StatistiquesUC\EcranStatistiquesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\VerificationsUC\FormulaireVerificationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -384,6 +391,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\btn_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_verification.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -91,7 +91,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 
 			// pour masquer les équipement au rebut, on filtre sur l'absence d'une date de mise au rebut
 			if (this.MasquerRebut) {
-				this.Equipements = this.Equipements.Where(e => !e.DateMiseAuRebut.HasValue).OrderBy(e => e.ToString());
+				this.Equipements = this.Equipements.Where(e => !e.EstAuRebut).OrderBy(e => e.ToString());
 			}
 
 			// gestion du filtre
