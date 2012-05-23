@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.StatistiquesUC.EcranStatistiquesUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+			 mc:Ignorable="d" 
+			 DataContext="{Binding Path=EcranStatistiquesVM, Source={StaticResource Locator}}"
+			 d:DesignHeight="400" d:DesignWidth="600">
+	<DockPanel>
+
+		<TextBlock Text="Statistiques" DockPanel.Dock="Top"
+				   VerticalAlignment="Top" 
+				   Margin="0,5,0,10" TextAlignment="Center" 
+				   Style="{DynamicResource ResourceKey=titreUC}" />
+		
+			<ComboBox Name="comboChoixGraph" ItemsSource="{Binding Path=ListeGraphs}" DockPanel.Dock="Top">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="SelectionChanged">
+						<cmd:EventToCommand 
+							Command="{Binding Path=ChangeChartCommand, Mode=OneWay}" 
+							CommandParameter="{Binding ElementName=comboChoixGraph, Path=SelectedItem}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</ComboBox>
+
+			<Separator Margin="0,10,0,10" />
+
+			<chartingToolkit:Chart Name="chart" Title="{Binding Path=TitreGraph}">
+				<chartingToolkit:Chart.Series>
+					<chartingToolkit:PieSeries Title="PieChart" 
+												ItemsSource="{Binding Path=ChartKeysValues}"
+												IndependentValueBinding="{Binding Path=Key}"
+												DependentValueBinding="{Binding Path=Value}" />
+				</chartingToolkit:Chart.Series>
+			</chartingToolkit:Chart>
+	</DockPanel>
+</UserControl>

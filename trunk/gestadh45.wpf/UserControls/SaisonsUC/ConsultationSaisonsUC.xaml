@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.Saisons.ConsultationSaisonsUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 mc:Ignorable="d" 
+			 DataContext="{Binding ConsultationSaisonsVM, Source={StaticResource Locator}}" 
+			 d:DesignHeight="400" d:DesignWidth="600">
+	<DockPanel Margin="5,5,5,5">
+		
+		<TextBlock Text="Saisons" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
+				   Style="{DynamicResource ResourceKey=titreUC}" />
+
+		<ListBox Name="lbxSaisons" Width="300" DockPanel.Dock="Left"
+					ItemsSource="{Binding Path=Saisons}"
+					SelectedItem="{Binding Path=Saison}">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="SelectionChanged">
+					<cmd:EventToCommand 
+						Command="{Binding Path=ShowDetailsCommand, Mode=OneWay}" 
+						CommandParameter="{Binding ElementName=lbxSaisons, Path=SelectedItem}" />
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</ListBox>
+
+		<uc:BtnAjouterEditerSupprimerUC 
+			DockPanel.Dock="Right" VerticalAlignment="Center" Margin="10,10,10,10"
+			OrientationUC="Vertical"
+			BtnAjouterVisibilite="Visible"
+			BtnModifierVisibilite="Collapsed"
+			BtnSupprimerVisibilite="Visible"
+			CmdAjouter="{Binding Path=CreateCommand}"
+			CmdSupprimer="{Binding Path=DeleteCommand}"
+			/>
+
+		<StackPanel DockPanel.Dock="Right" Margin="20,0,0,0">
+			<GroupBox Name="gbxInfos" Header="Informations" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					
+					<StackPanel Orientation="Horizontal">
+						<TextBlock FontWeight="Bold" FontSize="14">
+							<TextBlock.Text>
+								<MultiBinding StringFormat="{}{0} - {1}">
+									<Binding Path="SelectedSaison.AnneeDebut" />
+									<Binding Path="SelectedSaison.Fin" />
+								</MultiBinding>
+							</TextBlock.Text>
+						</TextBlock>
+					</StackPanel>
+					
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Année de début : " />
+						<TextBlock Text="{Binding Path=SelectedSaison.AnneeDebut}" />
+					</StackPanel>
+					
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Année de fin : " />
+						<TextBlock Text="{Binding Path=SelectedSaison.AnneeFin}" />
+					</StackPanel>
+					
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Saison courante : " />
+						<CheckBox IsChecked="{Binding Path=SelectedSaison.EstSaisonCourante}" 
+										IsHitTestVisible="False" Focusable="False" />
+					</StackPanel>
+					
+					<Button Name="btnSaisonCourante" ToolTip="Définir comme saison courante" 
+							Width="100" Height="20" Margin="0,5,0,5" 
+							Command="{Binding Path=SetSaisonCouranteCommand}" CommandParameter="{Binding ElementName=lbxSaisons, Path=SelectedItem}">
+						<TextBlock Text="Saison courante" />
+					</Button>
+					
+				</StackPanel>
+			</GroupBox>
+			
+			<Separator Height="2" />
+			
+			<GroupBox Name="gbxStats" Header="Stats" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Nb. saisons : " />
+						<TextBlock Text="{Binding ElementName=lbxSaisons, Path=Items.Count}" />
+					</StackPanel>
+				</StackPanel>
+			</GroupBox>
+			
+		</StackPanel>
+	</DockPanel>
+</UserControl>

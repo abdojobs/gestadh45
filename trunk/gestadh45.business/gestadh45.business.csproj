@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0964C348-005F-4329-A351-7DFCF43362AE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>gestadh45.business</RootNamespace>
+    <AssemblyName>gestadh45.business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\packages\MvvmLight.3.1.1\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\packages\MvvmLight.3.1.1\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\packages\MvvmLight.3.1.1\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodesUC.cs" />
+    <Compile Include="IhmObjects\ChoixGraphIhm.cs" />
+    <Compile Include="PersonalizedMsg\NMRefreshDatas.cs" />
+    <Compile Include="ViewModel\CategoriesVM\ConsultationCategoriesVM.cs" />
+    <Compile Include="ViewModel\CategoriesVM\FormulaireCategorieVM.cs" />
+    <Compile Include="ViewModel\CategoriesVM\ResCategories.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResCategories.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\EquipementsVM\ConsultationEquipementsVM.cs" />
+    <Compile Include="ViewModel\EquipementsVM\FormulaireEquipementVM.cs" />
+    <Compile Include="ViewModel\EquipementsVM\ResEquipements.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResEquipements.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\MarquesVM\ConsultationMarquesVM.cs" />
+    <Compile Include="ViewModel\MarquesVM\FormulaireMarqueVM.cs" />
+    <Compile Include="ViewModel\MarquesVM\ResMarques.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResMarques.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Statistiques\CodesGraphs.cs" />
+    <Compile Include="ViewModel\Statistiques\RessourcesStats.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RessourcesStats.resx</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalizedMsg\NMActionFileDialog.cs" />
+    <Compile Include="PersonalizedMsg\NMActionFolderDialog.cs" />
+    <Compile Include="PersonalizedMsg\NMClearFilter.cs" />
+    <Compile Include="PersonalizedMsg\NMCloseApplication.cs" />
+    <Compile Include="PersonalizedMsg\NMCloseWindow.cs" />
+    <Compile Include="PersonalizedMsg\NMOpenWindow.cs" />
+    <Compile Include="PersonalizedMsg\NMSelectionElement.cs" />
+    <Compile Include="PersonalizedMsg\NMShowAboutBox.cs" />
+    <Compile Include="PersonalizedMsg\NMShowInfosSaisonCourante.cs" />
+    <Compile Include="PersonalizedMsg\NMShowUC.cs" />
+    <Compile Include="PersonalizedMsg\NMType.cs" />
+    <Compile Include="PersonalizedMsg\NMUserNotification.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServicesAdapters\ServiceDocumentAdapter.cs" />
+    <Compile Include="ViewModel\AdherentsVM\ConsultationAdherentsVM.cs" />
+    <Compile Include="ViewModel\AdherentsVM\FormulaireAdherentVM.cs" />
+    <Compile Include="ViewModel\AdherentsVM\ResAdherents.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResAdherents.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\GroupesVM\ConsultationGroupesVM.cs" />
+    <Compile Include="ViewModel\GroupesVM\FormulaireGroupeVM.cs" />
+    <Compile Include="ViewModel\GroupesVM\ResGroupes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResGroupes.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\InfosClubVM\ConsultationInfosClubVM.cs" />
+    <Compile Include="ViewModel\InfosClubVM\FormulaireInfosClubVM.cs" />
+    <Compile Include="ViewModel\InfosClubVM\ResInfosClub.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResInfosClub.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\InscriptionsVM\ConsultationInscriptionsVM.cs" />
+    <Compile Include="ViewModel\InscriptionsVM\FormulaireInscriptionVM.cs" />
+    <Compile Include="ViewModel\InscriptionsVM\ResInscriptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResInscriptions.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SaisonsVM\ConsultationSaisonsVM.cs" />
+    <Compile Include="ViewModel\SaisonsVM\FormulaireSaisonVM.cs" />
+    <Compile Include="ViewModel\SaisonsVM\ResSaisons.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResSaisons.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\Statistiques\EcranStatistiquesVM.cs" />
+    <Compile Include="ViewModel\VerificationsVM\ConsultationVerificationsVM.cs" />
+    <Compile Include="ViewModel\VerificationsVM\FormulaireVerificationVM.cs" />
+    <Compile Include="ViewModel\VerificationsVM\ResVerifications.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResVerifications.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="ViewModel\VillesVM\ConsultationVillesVM.cs" />
+    <Compile Include="ViewModel\VillesVM\FormulaireVilleVM.cs" />
+    <Compile Include="ViewModel\VillesVM\ResVilles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResVilles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\VMApplicationBase.cs" />
+    <Compile Include="ViewModel\VMConsultationBase.cs" />
+    <Compile Include="ViewModel\VMFormulaireBase.cs" />
+    <Compile Include="ViewModel\VMUCBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\gestadh45.dal\gestadh45.dal.csproj">
+      <Project>{B592B627-A159-4936-92E8-EFF98114395C}</Project>
+      <Name>gestadh45.dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.services\gestadh45.services.csproj">
+      <Project>{3272969B-5D97-4067-B0CF-217D38263749}</Project>
+      <Name>gestadh45.services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ViewModel\CategoriesVM\ResCategories.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResCategories.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\EquipementsVM\ResEquipements.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResEquipements.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\MarquesVM\ResMarques.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResMarques.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\Statistiques\RessourcesStats.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>RessourcesStats.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\AdherentsVM\ResAdherents.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResAdherents.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\GroupesVM\ResGroupes.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResGroupes.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\InfosClubVM\ResInfosClub.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResInfosClub.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\InscriptionsVM\ResInscriptions.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResInscriptions.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\SaisonsVM\ResSaisons.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResSaisons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\VerificationsVM\ResVerifications.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResVerifications.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\VillesVM\ResVilles.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResVilles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

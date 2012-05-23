@@ -1,0 +1,103 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.EquipementsUC.ConsultationEquipementsUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 mc:Ignorable="d" 
+			 DataContext="{Binding Path=ConsultationEquipementsVM, Source={StaticResource Locator}}" 
+			 d:DesignHeight="400" d:DesignWidth="600">
+	<DockPanel Margin="5,5,5,5">
+		<TextBlock Text="Equipements" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
+				   Style="{DynamicResource ResourceKey=titreUC}" />
+
+		<StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+			<TextBox Name="tbxFiltre" Margin="0,0,0,10" Width="300" HorizontalAlignment="Left"
+					 ToolTip="Saisissez une partie du numéro pour filtrer la liste">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="TextChanged">
+						<cmd:EventToCommand
+						Command="{Binding Path=FilterCommand, Mode=OneWay}"
+						CommandParameter="{Binding ElementName=tbxFiltre, Path=Text}" />
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</TextBox>
+
+			<CheckBox Name="chbxMasquerRebut" IsChecked="{Binding Path=MasquerRebut}"
+					  Margin="20,0,0,0" VerticalAlignment="Center"
+					  Command="{Binding Path=MasquerRebutCommand}"
+					  CommandParameter="{Binding ElementName=chbxMasquerRebut, Path=IsChecked}"/>
+			<TextBlock Text="Masquer le matériel au rebut" Margin="5,0,0,0"  VerticalAlignment="Center" />
+		</StackPanel>
+
+		<ListBox Name="lbxEquipements" Width="300"
+						ItemsSource="{Binding Path=Equipements}"
+						SelectedItem="{Binding Path=SelectedEquipement}">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="SelectionChanged">
+					<cmd:EventToCommand 
+						Command="{Binding Path=ShowDetailsCommand, Mode=OneWay}" 
+						CommandParameter="{Binding ElementName=lbxEquipements, Path=SelectedItem}" />
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Path=Libelle}" Foreground="{Binding Path=EstAuRebut, Converter={StaticResource ResourceKey=boolToBrush}}" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<StackPanel DockPanel.Dock="Right" Orientation="Vertical" VerticalAlignment="Center" Margin="10,10,10,10">
+			<uc:BtnAjouterEditerSupprimerUC 
+					OrientationUC="Vertical"
+					BtnAjouterVisibilite="Visible"
+					BtnModifierVisibilite="Visible"
+					BtnSupprimerVisibilite="Visible"
+					CmdAjouter="{Binding Path=CreateCommand}"
+					CmdSupprimer="{Binding Path=DeleteCommand}"
+					CmdModifier="{Binding Path=EditCommand}"
+					/>
+
+			<Separator Margin="0,10,0,10" />
+
+			<Button ToolTip="Dupliquer cet équipement" Width="30" Height="30" Margin="0,5,0,0"
+							Command="{Binding Path=DupliquerCommand}">
+				<Image Source="/gestadh45.wpf;component/Images/btn_dupliquerAdherent.png" />
+			</Button>
+		</StackPanel>
+
+		<StackPanel DockPanel.Dock="Right" Margin="20,0,0,0" Orientation="Vertical">
+			<GroupBox Name="gbxEquipement" Header="Equipement" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<TextBlock Style="{DynamicResource ResourceKey=labelForm}" Text="{Binding Path=SelectedEquipement}" />
+					<TextBlock Text="{Binding Path=SelectedEquipement.DateAchat, StringFormat='Acheté le : {0:dd/MM/yyyy}'}" />
+					<TextBlock Text="{Binding Path=SelectedEquipement.DateMiseEnService, StringFormat='Mis en service le : {0:dd/MM/yyyy}'}" />
+					<TextBlock Text="{Binding Path=SelectedEquipement.DateMiseAuRebut, StringFormat='Mis au rebut le : {0:dd/MM/yyyy}'}" />
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox Name="gbxDivers" Header="Divers" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<TextBlock TextWrapping="Wrap" Text="{Binding Path=SelectedEquipement.Commentaire}" Margin="0,0,0,5" />
+					<TextBlock Text="{Binding Path=SelectedEquipement.DateCreation, StringFormat='Créé(e) le : {0:dd/MM/yyyy}'}" />
+					<TextBlock Text="{Binding Path=SelectedEquipement.DateModification, StringFormat='Modifié(e) le : {0:dd/MM/yyyy}'}" />
+				</StackPanel>
+			</GroupBox>
+
+			<Separator Height="2" />
+
+			<GroupBox Name="gbxStats" Header="Stats" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Nb. équipements : " />
+						<TextBlock Text="{Binding ElementName=lbxEquipements, Path=Items.Count}" />
+					</StackPanel>
+				</StackPanel>
+			</GroupBox>
+
+		</StackPanel>
+	</DockPanel>
+</UserControl>

@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{84C61230-A52C-4D2B-A2DB-11C65FD4D14C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>gestadh45.wpf</RootNamespace>
+    <AssemblyName>gestadh45.wpf</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>gestadh45.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\packages\MvvmLight.3.1.1\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4, Version=3.0.0.19994, Culture=neutral, PublicKeyToken=63eb5c012e0b3c1c, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLight.3.1.1\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="RibbonControlsLibrary, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Windows.Controls.DataVisualization.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.DataVisualization.3.5.50211.1\lib\System.Windows.Controls.DataVisualization.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Input.Toolkit">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity">
+      <HintPath>..\packages\MvvmLight.3.1.1\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFToolkit.3.5.50211.1\lib\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit.Extended, Version=1.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.1.6.0\lib\net40\WPFToolkit.Extended.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Compile Include="AboutBox.xaml.cs">
+      <DependentUpon>AboutBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\BooleanInversionConverter.cs" />
+    <Compile Include="Tools\BooleanToBrushConverter.cs" />
+    <Compile Include="Tools\HexaColorStringToBrushConverter.cs" />
+    <Compile Include="UCWindow.xaml.cs">
+      <DependentUpon>UCWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AdherentsUC\ConsultationAdherentsUC.xaml.cs">
+      <DependentUpon>ConsultationAdherentsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AdherentsUC\FormulaireAdherentUC.xaml.cs">
+      <DependentUpon>FormulaireAdherentUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BtnAjouterEditerSupprimerUC.xaml.cs">
+      <DependentUpon>BtnAjouterEditerSupprimerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BtnAnnulerEnregistrerUC.xaml.cs">
+      <DependentUpon>BtnAnnulerEnregistrerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CategoriesUC\ConsultationCategoriesUC.xaml.cs">
+      <DependentUpon>ConsultationCategoriesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CategoriesUC\FormulaireCategorieUC.xaml.cs">
+      <DependentUpon>FormulaireCategorieUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EquipementsUC\ConsultationEquipementsUC.xaml.cs">
+      <DependentUpon>ConsultationEquipementsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\EquipementsUC\FormulaireEquipementUC.xaml.cs">
+      <DependentUpon>FormulaireEquipementUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GroupesUC\ConsultationGroupesUC.xaml.cs">
+      <DependentUpon>ConsultationGroupesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\GroupesUC\FormulaireGroupeUC.xaml.cs">
+      <DependentUpon>FormulaireGroupeUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\InfosClubUC\ConsultationInfosClubUC.xaml.cs">
+      <DependentUpon>ConsultationInfosClubUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\InfosClubUC\FormulaireInfosClubUC.xaml.cs">
+      <DependentUpon>FormulaireInfosClubUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\InscriptionsUC\ConsultationInscriptionsUC.xaml.cs">
+      <DependentUpon>ConsultationInscriptionsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\InscriptionsUC\FormulaireInscriptionUC.xaml.cs">
+      <DependentUpon>FormulaireInscriptionUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MarquesUC\ConsultationMarquesUC.xaml.cs">
+      <DependentUpon>ConsultationMarquesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MarquesUC\FormulaireMarqueUC.xaml.cs">
+      <DependentUpon>FormulaireMarqueUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SaisonsUC\ConsultationSaisonsUC.xaml.cs">
+      <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\SaisonsUC\FormulaireSaisonUC.xaml.cs">
+      <DependentUpon>FormulaireSaisonUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\StatistiquesUC\EcranStatistiquesUC.xaml.cs">
+      <DependentUpon>EcranStatistiquesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VerificationsUC\ConsultationVerificationsUC.xaml.cs">
+      <DependentUpon>ConsultationVerificationsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VerificationsUC\FormulaireVerificationUC.xaml.cs">
+      <DependentUpon>FormulaireVerificationUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VillesUC\ConsultationVillesUC.xaml.cs">
+      <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\VillesUC\FormulaireVilleUC.xaml.cs">
+      <DependentUpon>FormulaireVilleUC.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AboutBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="UCWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AdherentsUC\ConsultationAdherentsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AdherentsUC\FormulaireAdherentUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\BtnAjouterEditerSupprimerUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\BtnAnnulerEnregistrerUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\CategoriesUC\ConsultationCategoriesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CategoriesUC\FormulaireCategorieUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EquipementsUC\ConsultationEquipementsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\EquipementsUC\FormulaireEquipementUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GroupesUC\ConsultationGroupesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\GroupesUC\FormulaireGroupeUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\InfosClubUC\ConsultationInfosClubUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\InfosClubUC\FormulaireInfosClubUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\InscriptionsUC\ConsultationInscriptionsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\InscriptionsUC\FormulaireInscriptionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MarquesUC\ConsultationMarquesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MarquesUC\FormulaireMarqueUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\SaisonsUC\ConsultationSaisonsUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\SaisonsUC\FormulaireSaisonUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\StatistiquesUC\EcranStatistiquesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\VerificationsUC\ConsultationVerificationsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\VerificationsUC\FormulaireVerificationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\VillesUC\ConsultationVillesUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\VillesUC\FormulaireVilleUC.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\gestadh45.business\gestadh45.business.csproj">
+      <Project>{0964C348-005F-4329-A351-7DFCF43362AE}</Project>
+      <Name>gestadh45.business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.dal\gestadh45.dal.csproj">
+      <Project>{B592B627-A159-4936-92E8-EFF98114395C}</Project>
+      <Name>gestadh45.dal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\gestadh45.services\gestadh45.services.csproj">
+      <Project>{3272969B-5D97-4067-B0CF-217D38263749}</Project>
+      <Name>gestadh45.services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="gestadh45.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_edit.png" />
+    <Resource Include="Images\btn_moins.png" />
+    <Resource Include="Images\btn_plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_annuler.png" />
+    <Resource Include="Images\btn_enregistrer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_add16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_city.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_saisons.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_adherents.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_inscrire.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_dupliquerAdherent.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_inscriptions.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_mails16.png" />
+    <Resource Include="Images\btn_pdf16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_groupes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_statistiques.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="AboutLogo.png">
+      <SubType>Image</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_about.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_marque.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_equipement.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_categorie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\btn_verification.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>del $(TargetDir)*.pdb
+del $(TargetDir)*.xml
+del $(TargetDir)App.config
+del $(TargetDir)packages.config
+del $(TargetDir)gestadh45.wpf.vshost.exe.config
+del $(TargetDir)gestadh45.wpf.vshost.exe
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
