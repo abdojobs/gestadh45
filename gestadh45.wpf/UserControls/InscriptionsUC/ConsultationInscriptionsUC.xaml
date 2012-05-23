@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.InscriptionsUC.ConsultationInscriptionsUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 xmlns:doc="clr-namespace:gestadh45.services.Documents;assembly=gestadh45.services" 
+			 mc:Ignorable="d" 
+			 DataContext="{Binding Path=ConsultationInscriptionsVM, Source={StaticResource Locator}}" 
+			 d:DesignHeight="500" d:DesignWidth="600">
+	<DockPanel Margin="5,5,5,5">
+		<TextBlock Text="Inscriptions" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
+				   Style="{DynamicResource ResourceKey=titreUC}" />
+
+		<TextBox Name="tbxFiltre" Margin="0,0,0,10" DockPanel.Dock="Top" Width="300" HorizontalAlignment="Left"
+				 ToolTip="Saisissez une partie du nom ou du prénom pour filtrer la liste">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="TextChanged">
+					<cmd:EventToCommand
+								Command="{Binding Path=FilterCommand, Mode=OneWay}"
+								CommandParameter="{Binding ElementName=tbxFiltre, Path=Text}" />
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</TextBox>
+
+		<ListBox Name="lbxInscriptions" Width="300" DockPanel.Dock="Left"
+				ItemsSource="{Binding Path=Inscriptions}"
+				SelectedItem="{Binding Path=SelectedInscription}">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="SelectionChanged">
+					<cmd:EventToCommand 
+					Command="{Binding Path=ShowDetailsCommand, Mode=OneWay}" 
+					CommandParameter="{Binding ElementName=lbxInscriptions, Path=SelectedItem}" />
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+			
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Path=Libelle}" Foreground="{Binding Path=StatutInscription.CodeCouleur, Converter={StaticResource ResourceKey=HexaToBrush}}" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		<StackPanel DockPanel.Dock="Right" Orientation="Vertical" VerticalAlignment="Center" Margin="10,10,10,10">
+			<uc:BtnAjouterEditerSupprimerUC 
+				OrientationUC="Vertical"
+				BtnAjouterVisibilite="Visible"
+				BtnModifierVisibilite="Visible"
+				BtnSupprimerVisibilite="Visible"
+				CmdAjouter="{Binding Path=CreateCommand}"
+				CmdSupprimer="{Binding Path=DeleteCommand}"
+				CmdModifier="{Binding Path=EditCommand}"
+				/>
+		</StackPanel>
+
+		<StackPanel DockPanel.Dock="Right" Margin="20,0,0,0" Orientation="Vertical">
+			<GroupBox Name="gbxAdherent" Header="Adhérent" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<StackPanel Orientation="Horizontal">
+						<Button Name="btnAfficherAdherent" Margin="5,5,10,5" 
+								Visibility="{Binding Path=ShowAdherentButton, Converter={StaticResource ResourceKey=boolToVisibility}}"
+								Command="{Binding Path=ShowDetailsAdherentCommand}">
+							<Image Source="/gestadh45.wpf;component/Images/btn_adherents.png" Height="8" Width="8" />
+						</Button>
+						
+						<TextBlock Style="{DynamicResource ResourceKey=labelForm}" VerticalAlignment="Center"
+								   Text="{Binding Path=SelectedInscription.Adherent}" />
+					</StackPanel>					
+
+					<TextBlock>
+						<TextBlock.Text>
+							<MultiBinding StringFormat="Né(e) le {0:dd/MM/yyyy} ({1} ans)">
+								<Binding Path="SelectedInscription.Adherent.DateNaissance" />
+								<Binding Path="SelectedInscription.Adherent.Age" />
+							</MultiBinding>
+						</TextBlock.Text>
+					</TextBlock>
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox Name="gbxInscription" Header="Inscription" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="{Binding Path=SelectedInscription.Groupe, StringFormat='Groupe : {0}'}" />
+					<TextBlock Text="{Binding Path=SelectedInscription.Groupe.Saison, StringFormat='Saison : {0}'}" />
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox Name="gbxDossier" Header="Dossier" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="Certificat médical : " />
+						<CheckBox IsChecked="{Binding Path=SelectedInscription.CertificatMedicalRemis}"
+											IsHitTestVisible="False" Focusable="False" />
+					</StackPanel>
+					
+					<TextBlock Text="{Binding Path=SelectedInscription.Cotisation, StringFormat='Cotisation : {0} euros'}" />
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox Name="gbxDivers" Header="Divers" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<TextBlock TextWrapping="Wrap" Text="{Binding Path=SelectedInscription.Commentaire}" Margin="0,0,0,5" />
+					<TextBlock Text="{Binding Path=SelectedInscription.DateCreation, StringFormat='Créé(e) le : {0:dd/MM/yyyy}'}" />
+					<TextBlock Text="{Binding Path=SelectedInscription.DateModification, StringFormat='Modifié(e) le : {0:dd/MM/yyyy}'}" />
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox Header="Outils" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical" Margin="0,5,0,5">
+					<StackPanel Orientation="Horizontal">
+						<Button Height="16" Width="16" ToolTip="Générer une fiche d'inscription au format PDF" 
+										CommandParameter="{x:Static doc:CodesDocument.FicheInscriptionPDF}" 
+										Command="{Binding Path=GenererDocumentCommand}">
+							<Image Source="/gestadh45.wpf;component/Images/btn_pdf16.png" />
+						</Button>
+						<TextBlock Text=" : Fiche d'inscription (pdf)" />
+					</StackPanel>
+
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+						<Button Height="16" Width="16" ToolTip="Générer une attestation d'inscription au format PDF" 
+										CommandParameter="{x:Static doc:CodesDocument.AttestationPDF}" 
+										Command="{Binding Path=GenererDocumentCommand}">
+							<Image Source="/gestadh45.wpf;component/Images/btn_pdf16.png" />
+						</Button>
+						<TextBlock Text=" : Attestation (pdf)" />
+					</StackPanel>
+
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+						<Button Height="16" Width="16" ToolTip="Générer la VCard de l'adhérent" 
+										Command="{Binding Path=GenererVCardCommand}">
+							<Image Source="/gestadh45.wpf;component/Images/btn_mails16.png" />
+						</Button>
+						<TextBlock Text=" : VCard (vcf)" />
+					</StackPanel>
+				</StackPanel>
+			</GroupBox>
+			
+			<Separator Height="2" />
+			
+			<GroupBox Name="gbxStats" Header="Stats" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="{Binding ElementName=lbxInscriptions, Path=Items.Count, StringFormat='Nb. inscriptions : {0}'}" />
+				</StackPanel>
+			</GroupBox>
+			
+		</StackPanel>
+	</DockPanel>
+</UserControl>
