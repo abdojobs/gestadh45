@@ -489,6 +489,8 @@
     <Content Include="gestadh45.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\btn_save.png" />
+    <Resource Include="Images\btn_saveAndJoin.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

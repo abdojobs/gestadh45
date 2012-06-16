@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
@@ -81,6 +83,7 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 			this.CurrentAdherent = new Adherent();
 			this.CurrentAdherent.DateNaissance = DateTime.Now;
 
+			this.CreateSaveAndJoinCommand();
 			Messenger.Default.Register<NMRefreshDatas>(this, m => this.PopulateCombos());
 		}
 
@@ -97,6 +100,7 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 
 			this.CurrentAdherent = this.repoAdherent.GetByKey(idAdherent);
 
+			this.CreateSaveAndJoinCommand();
 			Messenger.Default.Register<NMRefreshDatas>(this, m => this.PopulateCombos());
 		}
 		#endregion
@@ -189,6 +193,55 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 				this.repoAdherent.Save();
 
 				base.ExecuteSaveCommand();
+			}
+			else {
+				this.ShowUserNotifications(errors);
+			}			
+		}
+		#endregion
+
+		#region SaveAndJoinCommand
+		public ICommand SaveAndJoinCommand { get; set; }
+
+		private void CreateSaveAndJoinCommand() {
+			this.SaveAndJoinCommand = new RelayCommand(
+				this.ExecuteSaveAndJoinCommand, 
+				this.CanExecuteSaveAndJoinCommand
+			);
+		}
+
+		public bool CanExecuteSaveAndJoinCommand() {
+			return true;
+		}
+
+		public void ExecuteSaveAndJoinCommand() {
+			this.PrepareValuesForTreatment();
+			var errors = new List<string>();
+
+			if (this.CheckFormValidity(errors)) {
+				this.CurrentAdherent.DateModification = DateTime.Now;
+
+				if (this.IsEditMode) {
+					this.repoAdherent.Edit(this.CurrentAdherent);
+				}
+				else {
+					this.CurrentAdherent.ID = Guid.NewGuid();
+					this.CurrentAdherent.DateCreation = DateTime.Now;
+					this.repoAdherent.Add(this.CurrentAdherent);
+				}
+
+				this.repoAdherent.Save();
+
+				this.ClearUserNotifications();
+
+				if (this.IsWindowMode) {
+					Messenger.Default.Send(new NMRefreshDatas());
+					Messenger.Default.Send(new NMCloseWindow());
+				}
+
+				Messenger.Default.Send<NMShowUC<Adherent>>(
+					new NMShowUC<Adherent>(CodesUC.FormulaireInscription, this.CurrentAdherent)
+				);
 			}
 			else {
 				this.ShowUserNotifications(errors);

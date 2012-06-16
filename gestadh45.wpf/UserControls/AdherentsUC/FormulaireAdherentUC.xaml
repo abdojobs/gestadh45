@@ -13,11 +13,18 @@
 		<TextBlock Text="Adhérent" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
 				   Style="{DynamicResource ResourceKey=titreUC}" />
 
-		<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5"
+		<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+			<uc:BtnAnnulerEnregistrerUC HorizontalAlignment="Center" Margin="5,5,5,5"
 			CodeUCParent="{x:Static business:CodesUC.ConsultationAdherents}"
 			CmdAnnuler="{Binding Path=CancelCommand}"
 			CmdEnregistrer="{Binding Path=SaveCommand}"
 			/>
+
+			<Button ToolTip="Enregistrer et inscrire" Width="30" Height="30" Margin="10,5,5,5" 
+						Command="{Binding Path=SaveAndJoinCommand}">
+				<Image Source="/gestadh45.wpf;component/Images/btn_saveAndJoin.png" />
+			</Button>
+		</StackPanel>
 
 		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 

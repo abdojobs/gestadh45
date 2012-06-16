@@ -15,7 +15,7 @@
 			</Button>
 			<Button Name="btnEnregistrer" ToolTip="Enregistrer" Width="30" Height="30" Margin="5,5,10,5" 
 						Command="{Binding ElementName=BtnEnregistrerAnnuler, Path=CmdEnregistrer}">
-				<Image Source="/gestadh45.wpf;component/Images/btn_enregistrer.png" />
+				<Image Source="/gestadh45.wpf;component/Images/btn_save.png" />
 			</Button>
 		</StackPanel>
 	</Border>
