@@ -3,14 +3,24 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:b="clr-namespace:gestadh45.business;assembly=gestadh45.business"
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=EcranRepartitionAdherentsVM, Source={StaticResource Locator}}" 
 			 d:DesignHeight="500" d:DesignWidth="600">
 	<DockPanel>
-		<TextBlock Text="Répartition des effectifs" DockPanel.Dock="Top"
+		<StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center">
+			<TextBlock Text="Répartition des effectifs"
 				   VerticalAlignment="Top" 
 				   Margin="0,5,0,10" TextAlignment="Center" 
 				   Style="{DynamicResource ResourceKey=titreUC}" />
+
+			<Button ToolTip="Configurer les tranches d'âge" Width="30" Height="30" Margin="10,5,5,5"
+					Command="{Binding Path=ShowUCCommand}"
+					CommandParameter="{x:Static b:CodesUC.ConsultationTranchesAge}">
+				<Image Source="/gestadh45.wpf;component/Images/btn_configuration.png" />
+			</Button>
+		</StackPanel>
+		
 		
 		<DataGrid Name="dgTranchesEffectif" ItemsSource="{Binding Path=TranchesEffectif}" IsReadOnly="True" AutoGenerateColumns="False">
 			<DataGrid.Columns>
