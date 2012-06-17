@@ -65,6 +65,7 @@ namespace gestadh45.wpf
 				(msg) => this.ShowFolderBrowserDialog(msg.Execute)
 			);
 
+			this.ShowUC(CodesUC.ConsultationInfosClub);
 		}
 
 		private void ShowAboutBox() {
