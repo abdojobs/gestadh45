@@ -147,6 +147,13 @@
       <DependentUpon>ResSaisons.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\Statistiques\EcranStatistiquesVM.cs" />
+    <Compile Include="ViewModel\TranchesAgeVM\ConsultationTranchesAgeVM.cs" />
+    <Compile Include="ViewModel\TranchesAgeVM\FormulaireTrancheAgeVM.cs" />
+    <Compile Include="ViewModel\TranchesAgeVM\ResTranchesAge.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResTranchesAge.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\VerificationsVM\ConsultationVerificationsVM.cs" />
     <Compile Include="ViewModel\VerificationsVM\FormulaireVerificationVM.cs" />
     <Compile Include="ViewModel\VerificationsVM\ResVerifications.Designer.cs">
@@ -218,6 +225,10 @@
     <EmbeddedResource Include="ViewModel\SaisonsVM\ResSaisons.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResSaisons.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\TranchesAgeVM\ResTranchesAge.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResTranchesAge.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\VerificationsVM\ResVerifications.resx">
       <Generator>ResXFileCodeGenerator</Generator>

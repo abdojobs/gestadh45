@@ -178,6 +178,20 @@
 							CommandParameter="{x:Static b:CodesUC.FormulaireSaison}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
+
+				<my:RibbonGroup Name="GrpTranchesAge" Header="Tranches d'âge">
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Tranches d'âge"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationTranchesAge}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_tranchesAge.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_tranchesAge.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationTranchesAge}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireTrancheAge}" />
+					</my:RibbonSplitButton>
+				</my:RibbonGroup>
 			</my:RibbonTab>
 		</my:Ribbon>
 

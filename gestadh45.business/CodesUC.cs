@@ -23,6 +23,9 @@ namespace gestadh45.business
 
 		public const string EcranStatistiques = "EcranStatistiques";
 		public const string EcranRepartitionAdherents = "EcranRepartitionAdherents";
+
+		public const string ConsultationTranchesAge = "ConsultationTranchesAge";
+		public const string FormulaireTrancheAge = "FormulaireTrancheAge";
 	
 		public const string ConsultationMarques = "ConsultationMarques";
 		public const string FormulaireMarque = "FormulaireMarque";
