@@ -25,11 +25,14 @@
 				</i:Interaction.Triggers>
 			</TextBox>
 
-			<CheckBox Name="chbxMasquerRebut" IsChecked="{Binding Path=MasquerRebut}"
-					  Margin="20,0,0,0" VerticalAlignment="Center"
-					  Command="{Binding Path=MasquerRebutCommand}"
-					  CommandParameter="{Binding ElementName=chbxMasquerRebut, Path=IsChecked}"/>
-			<TextBlock Text="Masquer le matériel au rebut" Margin="5,0,0,0"  VerticalAlignment="Center" />
+			<ToggleButton Name="tgbMasquerRebut" Content="Masquer le matériel au rebut : " 
+						  HorizontalAlignment="Left" VerticalAlignment="Center" 
+						  Margin="20,0,0,0" Style="{DynamicResource SlidingToggleButton}" 
+						  BorderBrush="{x:Null}" Background="AliceBlue"
+						  Command="{Binding Path=MasquerRebutCommand}"
+						  CommandParameter="{Binding ElementName=tgbMasquerRebut, Path=IsChecked}"
+						  IsChecked="{Binding Path=MasquerRebut}"
+						  />
 		</StackPanel>
 
 		<ListBox Name="lbxEquipements" Width="300"

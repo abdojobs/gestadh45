@@ -9,11 +9,18 @@
 			 mc:Ignorable="d"
 			 xmlns:tools="clr-namespace:gestadh45.wpf.Tools">
   <Application.Resources>
-		<tools:BooleanInversionConverter x:Key="BooleanInversionConverter" />
-		<tools:HexaColorStringToBrushConverter x:Key="HexaToBrush" />
-		<BooleanToVisibilityConverter x:Key="boolToVisibility" />
-		<tools:BooleanToBrushConverter x:Key="boolToBrush" />
-	  
-		<vm:ViewModelLocator p4:Key="Locator" xmlns:p4="http://schemas.microsoft.com/winfx/2006/xaml" />
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="ToggleButton.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+
+			<tools:BooleanInversionConverter x:Key="BooleanInversionConverter" />
+			<tools:HexaColorStringToBrushConverter x:Key="HexaToBrush" />
+			<BooleanToVisibilityConverter x:Key="boolToVisibility" />
+			<tools:BooleanToBrushConverter x:Key="boolToBrush" />
+
+			<vm:ViewModelLocator p4:Key="Locator" xmlns:p4="http://schemas.microsoft.com/winfx/2006/xaml" />
+		</ResourceDictionary>
+
   </Application.Resources>
 </Application>
