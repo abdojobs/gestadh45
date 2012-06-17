@@ -84,6 +84,10 @@
 						<my:RibbonMenuItem Header="Graphiques"
 							Command="{Binding Path=ShowUCCommand}"
 							CommandParameter="{x:Static b:CodesUC.EcranStatistiques}" />
+
+						<my:RibbonMenuItem Header="Répartition des effectifs"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.EcranRepartitionAdherents}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
 			</my:RibbonTab>

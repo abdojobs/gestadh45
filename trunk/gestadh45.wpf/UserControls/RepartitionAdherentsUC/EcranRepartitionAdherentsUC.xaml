@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.RepartitionAdherentsUC.EcranRepartitionAdherentsUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 mc:Ignorable="d" 
+			 DataContext="{Binding Path=EcranRepartitionAdherentsVM, Source={StaticResource Locator}}" 
+			 d:DesignHeight="500" d:DesignWidth="600">
+	<DockPanel>
+		<TextBlock Text="Répartition des effectifs" DockPanel.Dock="Top"
+				   VerticalAlignment="Top" 
+				   Margin="0,5,0,10" TextAlignment="Center" 
+				   Style="{DynamicResource ResourceKey=titreUC}" />
+		
+		<DataGrid Name="dgTranchesEffectif" ItemsSource="{Binding Path=TranchesEffectif}" IsReadOnly="True" AutoGenerateColumns="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Tranche" Binding="{Binding Path=Libelle}">
+					<DataGridTextColumn.CellStyle>
+						<Style TargetType="{x:Type DataGridCell}">
+							<Setter Property="Background" Value="Gainsboro" />
+							<Setter Property="FontWeight" Value="Bold" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn Header="Résidents (H)" Binding="{Binding Path=EffectifResidentsH}" />
+				<DataGridTextColumn Header="Résidents (F)" Binding="{Binding Path=EffectifResidentsF}" />
+
+				<DataGridTextColumn Header="Total résidents" Binding="{Binding Path=EffectifTotalResidents}">
+					<DataGridTextColumn.CellStyle>
+						<Style TargetType="{x:Type DataGridCell}">
+							<Setter Property="Background" Value="LightGoldenrodYellow" />
+							<Setter Property="FontWeight" Value="Bold" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn Header="Extérieurs (H)" Binding="{Binding Path=EffectifExterieursH}" />
+				<DataGridTextColumn Header="Extérieurs (F)" Binding="{Binding Path=EffectifExterieursF}" />
+
+				<DataGridTextColumn Header="Total extérieurs" Binding="{Binding Path=EffectifTotalExterieurs}">
+					<DataGridTextColumn.CellStyle>
+						<Style TargetType="{x:Type DataGridCell}">
+							<Setter Property="Background" Value="LightGoldenrodYellow" />
+							<Setter Property="FontWeight" Value="Bold" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn Header="Total" Binding="{Binding Path=EffectifTotal}">
+					<DataGridTextColumn.CellStyle>
+						<Style TargetType="{x:Type DataGridCell}">
+							<Setter Property="Background" Value="LightBlue" />
+							<Setter Property="FontWeight" Value="Bold" />
+						</Style>
+					</DataGridTextColumn.CellStyle>
+				</DataGridTextColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+	</DockPanel>
+</UserControl>
