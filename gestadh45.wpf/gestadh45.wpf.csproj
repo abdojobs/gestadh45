@@ -126,6 +126,7 @@
     <Compile Include="AboutBox.xaml.cs">
       <DependentUpon>AboutBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EcranRepartitionAdherents.cs" />
     <Compile Include="Tools\BooleanInversionConverter.cs" />
     <Compile Include="Tools\BooleanToBrushConverter.cs" />
     <Compile Include="Tools\HexaColorStringToBrushConverter.cs" />
@@ -179,6 +180,9 @@
     </Compile>
     <Compile Include="UserControls\MarquesUC\FormulaireMarqueUC.xaml.cs">
       <DependentUpon>FormulaireMarqueUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RepartitionAdherentsUC\EcranRepartitionAdherentsUC.xaml.cs">
+      <DependentUpon>EcranRepartitionAdherentsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\SaisonsUC\ConsultationSaisonsUC.xaml.cs">
       <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
@@ -286,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MarquesUC\FormulaireMarqueUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\RepartitionAdherentsUC\EcranRepartitionAdherentsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

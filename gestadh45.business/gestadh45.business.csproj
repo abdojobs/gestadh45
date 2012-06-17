@@ -48,6 +48,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Windows.Interactivity">
@@ -64,6 +65,7 @@
   <ItemGroup>
     <Compile Include="CodesUC.cs" />
     <Compile Include="IhmObjects\ChoixGraphIhm.cs" />
+    <Compile Include="IhmObjects\TrancheEffectif.cs" />
     <Compile Include="PersonalizedMsg\NMRefreshDatas.cs" />
     <Compile Include="PersonalizedMsg\NMShowInfosDataSource.cs" />
     <Compile Include="ViewModel\CategoriesVM\ConsultationCategoriesVM.cs" />
@@ -87,6 +89,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResMarques.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\RepartitionAdherentsVM\EcranRepartitionAdherentsVM.cs" />
     <Compile Include="ViewModel\Statistiques\CodesGraphs.cs" />
     <Compile Include="ViewModel\Statistiques\RessourcesStats.Designer.cs">
       <AutoGen>True</AutoGen>

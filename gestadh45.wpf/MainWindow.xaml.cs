@@ -15,12 +15,13 @@ using gestadh45.wpf.UserControls.GroupesUC;
 using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.InscriptionsUC;
 using gestadh45.wpf.UserControls.MarquesUC;
+using gestadh45.wpf.UserControls.RepartitionAdherentsUC;
 using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls.StatistiquesUC;
+using gestadh45.wpf.UserControls.VerificationsUC;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
 using Forms = System.Windows.Forms;
-using gestadh45.wpf.UserControls.VerificationsUC;
 
 namespace gestadh45.wpf
 {
@@ -160,6 +161,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.EcranStatistiques:
 					userControl = new EcranStatistiquesUC();
+					break;
+
+				case CodesUC.EcranRepartitionAdherents:
+					userControl = new EcranRepartitionAdherentsUC();
 					break;
 
 				case CodesUC.ConsultationMarques:

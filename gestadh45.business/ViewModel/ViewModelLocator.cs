@@ -20,6 +20,7 @@ using gestadh45.business.ViewModel.SaisonsVM;
 using gestadh45.business.ViewModel.Statistiques;
 using gestadh45.business.ViewModel.VerificationsVM;
 using gestadh45.business.ViewModel.VillesVM;
+using gestadh45.business.ViewModel.RepartitionAdherentsVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -103,6 +104,14 @@ namespace gestadh45.business.ViewModel
 		public static EcranStatistiquesVM EcranStatistiquesVM {
 			get {
 				return new EcranStatistiquesVM();
+			}
+		}
+		#endregion
+
+		#region RepartitionAdherentsVM
+		public static EcranRepartitionAdherentsVM EcranRepartitionAdherentsVM {
+			get {
+				return new EcranRepartitionAdherentsVM();
 			}
 		}
 		#endregion
