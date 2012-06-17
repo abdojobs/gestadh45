@@ -1,5 +1,7 @@
 ﻿
 using gestadh45.dal;
+using GalaSoft.MvvmLight.Messaging;
+using gestadh45.business.PersonalizedMsg;
 namespace gestadh45.business.ViewModel
 {
 	public abstract class VMUCBase : VMApplicationBase
@@ -22,6 +24,9 @@ namespace gestadh45.business.ViewModel
 		public VMUCBase() {
 			this._context = new gestadh45Entities();
 			this.UCParentCode = CodesUC.ConsultationInfosClub;
+
+			// envoi du message d'affichage du datasource
+			Messenger.Default.Send(new NMShowInfosDataSource(this._context.Database.Connection.ConnectionString));
 		}
 	}
 }

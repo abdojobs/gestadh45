@@ -21,7 +21,7 @@
 	</Window.Resources>
 
 	<DockPanel>
-		<my:Ribbon DockPanel.Dock="Top">
+		<my:Ribbon DockPanel.Dock="Top" Title="{Binding Path=InfosDataSource}">
 			<my:Ribbon.ApplicationMenu>
 				<my:RibbonApplicationMenu Label="Menu" SmallImageSource="/gestadh45.wpf;component/Images/btn_menu.png">
 					<my:RibbonApplicationMenuItem Header="Infos club" 
@@ -176,7 +176,7 @@
 				</my:RibbonGroup>
 			</my:RibbonTab>
 		</my:Ribbon>
-		
+
 		<Border Margin="5,5,5,5" DockPanel.Dock="Bottom" BorderThickness="0.5" BorderBrush="#FF000000">
 			<TextBox Height="50" 
 				Text="{Binding Path=UserNotification}" 
