@@ -16,11 +16,12 @@ using gestadh45.business.ViewModel.GroupesVM;
 using gestadh45.business.ViewModel.InfosClubVM;
 using gestadh45.business.ViewModel.InscriptionsVM;
 using gestadh45.business.ViewModel.MarquesVM;
+using gestadh45.business.ViewModel.RepartitionAdherentsVM;
 using gestadh45.business.ViewModel.SaisonsVM;
 using gestadh45.business.ViewModel.Statistiques;
+using gestadh45.business.ViewModel.TranchesAgeVM;
 using gestadh45.business.ViewModel.VerificationsVM;
 using gestadh45.business.ViewModel.VillesVM;
-using gestadh45.business.ViewModel.RepartitionAdherentsVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -113,6 +114,16 @@ namespace gestadh45.business.ViewModel
 			get {
 				return new EcranRepartitionAdherentsVM();
 			}
+		}
+		#endregion
+
+		#region TranchesAgeVM
+		public static ConsultationTranchesAgeVM ConsultationTranchesAgeVM {
+			get { return new ConsultationTranchesAgeVM(); }
+		}
+
+		public static FormulaireTrancheAgeVM FormulaireTrancheAgeVM {
+			get { return new FormulaireTrancheAgeVM(); }
 		}
 		#endregion
 

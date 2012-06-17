@@ -32,7 +32,7 @@ namespace gestadh45.business.ViewModel.RepartitionAdherentsVM
 		private Ville _villeResident;
 		#endregion
 
-		#region DAOs
+		#region Repositories
 		private Repository<Inscription> _daoInscriptions;
 		private Repository<InfosClub> _daoInfosClub;
 		private Repository<TrancheAge> _daoTranchesAge;

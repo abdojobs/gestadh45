@@ -18,6 +18,7 @@ using gestadh45.wpf.UserControls.MarquesUC;
 using gestadh45.wpf.UserControls.RepartitionAdherentsUC;
 using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls.StatistiquesUC;
+using gestadh45.wpf.UserControls.TranchesAgeUC;
 using gestadh45.wpf.UserControls.VerificationsUC;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
@@ -165,6 +166,14 @@ namespace gestadh45.wpf
 
 				case CodesUC.EcranRepartitionAdherents:
 					userControl = new EcranRepartitionAdherentsUC();
+					break;
+
+				case CodesUC.ConsultationTranchesAge:
+					userControl = new ConsultationTranchesAgeUC();
+					break;
+
+				case CodesUC.FormulaireTrancheAge:
+					userControl = new FormulaireTrancheAgeUC();
 					break;
 
 				case CodesUC.ConsultationMarques:
