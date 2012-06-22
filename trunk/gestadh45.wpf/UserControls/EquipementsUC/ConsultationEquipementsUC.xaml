@@ -82,6 +82,12 @@
 				</StackPanel>
 			</GroupBox>
 
+			<GroupBox Name="gbxDureeVie" Header="Durée de vie" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="{Binding Path=SelectedEquipement.DateFinDeVie, StringFormat='Fin de vie le : {0:dd/MM/yyyy}'}" />
+				</StackPanel>
+			</GroupBox>
+
 			<GroupBox Name="gbxDivers" Header="Divers" Margin="0,0,0,10">
 				<StackPanel Orientation="Vertical">
 					<TextBlock TextWrapping="Wrap" Text="{Binding Path=SelectedEquipement.Commentaire}" Margin="0,0,0,5" />

@@ -39,5 +39,6 @@ namespace gestadh45.dal
         public DbSet<Marque> Marques { get; set; }
         public DbSet<Categorie> Categories { get; set; }
         public DbSet<Verification> Verifications { get; set; }
+        public DbSet<DureeDeVie> DureeDeVies { get; set; }
     }
 }
