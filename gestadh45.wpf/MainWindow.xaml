@@ -192,6 +192,20 @@
 							CommandParameter="{x:Static b:CodesUC.FormulaireTrancheAge}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
+
+				<my:RibbonGroup Name="GrpDureesDeVie" Header="Durées de vie">
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Durées de vie"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationDureesDeVie}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_warning.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_warning.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationDureesDeVie}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireDureeDeVie}" />
+					</my:RibbonSplitButton>
+				</my:RibbonGroup>
 			</my:RibbonTab>
 		</my:Ribbon>
 
