@@ -22,6 +22,7 @@ using gestadh45.business.ViewModel.Statistiques;
 using gestadh45.business.ViewModel.TranchesAgeVM;
 using gestadh45.business.ViewModel.VerificationsVM;
 using gestadh45.business.ViewModel.VillesVM;
+using gestadh45.business.ViewModel.DureesDeVieVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -183,5 +184,18 @@ namespace gestadh45.business.ViewModel
 		}
 		#endregion
 
+		#region DureesDeVieVM
+		public static ConsultationDureesDeVieVM ConsultationDureesDeVieVM {
+			get {
+				return new ConsultationDureesDeVieVM();
+			}
+		}
+
+		public static FormulaireDureeDeVieVM FormulaireDureeDeVieVM {
+			get {
+				return new FormulaireDureeDeVieVM();
+			}
+		}
+		#endregion
 	}
 }

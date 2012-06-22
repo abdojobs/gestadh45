@@ -10,6 +10,7 @@ using gestadh45.business.ViewModel;
 using gestadh45.dal;
 using gestadh45.wpf.UserControls.AdherentsUC;
 using gestadh45.wpf.UserControls.CategoriesUC;
+using gestadh45.wpf.UserControls.DureesDeVieUC;
 using gestadh45.wpf.UserControls.EquipementsUC;
 using gestadh45.wpf.UserControls.GroupesUC;
 using gestadh45.wpf.UserControls.InfosClubs;
@@ -93,6 +94,10 @@ namespace gestadh45.wpf
 			else if (codeUC.Equals(CodesUC.FormulaireEquipement) && objetUC is Equipement) {
 				this.contenu.Child = new FormulaireEquipementUC(objetUC as Equipement);
 			}
+			// TODO décommenter une fois créé
+			//else if (codeUC.Equals(CodesUC.FormulaireEquipement) && objetUC is DureeDeVie) {
+			//    this.contenu.Child = new FormulaireDureeDeVieUC(objetUC as DureeDeVie);
+			//}
 		}
 
 		private void OpenWindowUC(string codeUC) {
@@ -207,6 +212,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireVerification:
 					userControl = new FormulaireVerificationUC();
+					break;
+
+				case CodesUC.ConsultationDureesDeVie:
+					userControl = new ConsultationDureesDeVieUC();
 					break;
 
 				default:
