@@ -129,6 +129,12 @@
   <data name="ErrNumeroObligatoire" xml:space="preserve">
     <value>Le numéro est obligatoire</value>
   </data>
+  <data name="InfoDureeDeVieAtteinte" xml:space="preserve">
+    <value>Cet équipement a atteint sa durée de vie, pensez à le remplacer</value>
+  </data>
+  <data name="InfoDureeDeVieNonAtteinte" xml:space="preserve">
+    <value>Cet équipement n'a pas atteint sa durée de vie</value>
+  </data>
   <data name="InfoEquipementDuplique" xml:space="preserve">
     <value>L'équipement a été dupliqué</value>
   </data>
