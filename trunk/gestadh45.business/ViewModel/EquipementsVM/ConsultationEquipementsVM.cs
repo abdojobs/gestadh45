@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
+using System.Windows.Media;
 
 namespace gestadh45.business.ViewModel.EquipementsVM
 {
@@ -50,6 +51,23 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 				if (this._selectedEquipement != value) {
 					this._selectedEquipement = value;
 					this.RaisePropertyChanged(() => this.SelectedEquipement);
+				}
+			}
+		}
+		#endregion
+
+		#region InfoDureeDeVie
+		private string _infoDureeDeVie;
+
+		/// <summary>
+		/// Obtient/Définit l'information sur la durée de vie
+		/// </summary>
+		public string InfoDureeDeVie {
+			get { return this._infoDureeDeVie; }
+			set {
+				if (this._infoDureeDeVie != value) {
+					this._infoDureeDeVie = value;
+					this.RaisePropertyChanged(() => this.InfoDureeDeVie);
 				}
 			}
 		}
@@ -105,8 +123,10 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 
 		#region ShowDetailsCommand
 		public override void ExecuteShowDetailsCommand(object selectedItem) {
-			if (selectedItem is Adherent) {
+			if (selectedItem is Equipement) {
 				this.SelectedEquipement = selectedItem as Equipement;
+
+				this.InfoDureeDeVie = this.SelectedEquipement.FinDeVieAtteinte ? ResEquipements.InfoDureeDeVieAtteinte : ResEquipements.InfoDureeDeVieNonAtteinte;
 			}
 		}
 		#endregion

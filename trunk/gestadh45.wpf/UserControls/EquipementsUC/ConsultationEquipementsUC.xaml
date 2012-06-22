@@ -85,6 +85,7 @@
 			<GroupBox Name="gbxDureeVie" Header="Durée de vie" Margin="0,0,0,10">
 				<StackPanel Orientation="Vertical">
 					<TextBlock Text="{Binding Path=SelectedEquipement.DateFinDeVie, StringFormat='Fin de vie le : {0:dd/MM/yyyy}'}" />
+					<TextBlock Text="{Binding Path=InfoDureeDeVie}" Foreground="{Binding Path=SelectedEquipement.FinDeVieAtteinte, Converter={StaticResource ResourceKey=boolToBrush}}" />
 				</StackPanel>
 			</GroupBox>
 
