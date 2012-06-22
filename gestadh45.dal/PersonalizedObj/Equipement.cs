@@ -32,6 +32,36 @@ namespace gestadh45.dal
 		}
 
 		/// <summary>
+		/// Obtient la date de fin de vie de l'équipement en se basant (dans l'ordre) soit sur sa date d'achat, soit sur sa date demise en service, soit sur sa date de saisie dans la BDD.
+		/// </summary>
+		public DateTime DateFinDeVie {
+			get {
+				DateTime dateFinDeVie;
+
+				if (this.DateAchat.HasValue) {
+					dateFinDeVie = this.DateAchat.Value.AddYears(this.DureeDeVie.NbAnnee).AddMonths(this.DureeDeVie.NbMois);
+				}
+				else if (this.DateMiseEnService.HasValue) {
+					dateFinDeVie = this.DateMiseEnService.Value.AddYears(this.DureeDeVie.NbAnnee).AddMonths(this.DureeDeVie.NbMois);
+				}
+				else {
+					dateFinDeVie = this.DateCreation.AddYears(this.DureeDeVie.NbAnnee).AddMonths(this.DureeDeVie.NbMois);
+				}
+
+				return dateFinDeVie;
+			}
+		}
+
+		/// <summary>
+		/// Obtient un booléen indiquant si l'équipement a atteint sa fin de vie
+		/// </summary>
+		public bool FinDeVieAtteinte {
+			get {
+				return DateTime.Now > this.DateFinDeVie;
+			}
+		}
+
+		/// <summary>
 		/// Crée un nouvel objet qui est une copie de l'instance en cours.
 		/// </summary>
 		/// <returns>

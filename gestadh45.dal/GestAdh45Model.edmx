@@ -8,6 +8,7 @@
         <EntityContainer Name="gestadh45ModelStoreContainer">
           <EntitySet Name="Adherent" EntityType="gestadh45Model.Store.Adherent" store:Type="Tables" />
           <EntitySet Name="Categorie" EntityType="gestadh45Model.Store.Categorie" store:Type="Tables" />
+          <EntitySet Name="DureeDeVie" EntityType="gestadh45Model.Store.DureeDeVie" store:Type="Tables" />
           <EntitySet Name="Equipement" EntityType="gestadh45Model.Store.Equipement" store:Type="Tables" />
           <EntitySet Name="Groupe" EntityType="gestadh45Model.Store.Groupe" store:Type="Tables" />
           <EntitySet Name="InfosClub" EntityType="gestadh45Model.Store.InfosClub" store:Type="Tables" />
@@ -26,6 +27,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Categorie_Equipement" Association="gestadh45Model.Store.FK_Categorie_Equipement">
             <End Role="Categorie" EntitySet="Categorie" />
+            <End Role="Equipement" EntitySet="Equipement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DureeDeVie_Equipement" Association="gestadh45Model.Store.FK_DureeDeVie_Equipement">
+            <End Role="DureeDeVie" EntitySet="DureeDeVie" />
             <End Role="Equipement" EntitySet="Equipement" />
           </AssociationSet>
           <AssociationSet Name="FK_Equipement_Verification" Association="gestadh45Model.Store.FK_Equipement_Verification">
@@ -97,6 +102,15 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
+        <EntityType Name="DureeDeVie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="NbAnnee" Type="int" Nullable="false" />
+          <Property Name="NbMois" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Equipement">
           <Key>
             <PropertyRef Name="ID" />
@@ -111,6 +125,7 @@
           <Property Name="ID_Marque" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ID_Categorie" Type="uniqueidentifier" Nullable="false" />
           <Property Name="DateMiseAuRebut" Type="datetime" />
+          <Property Name="ID_DureeDeVie" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Groupe">
           <Key>
@@ -244,6 +259,18 @@
             </Principal>
             <Dependent Role="Equipement">
               <PropertyRef Name="ID_Categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DureeDeVie_Equipement">
+          <End Role="DureeDeVie" Type="gestadh45Model.Store.DureeDeVie" Multiplicity="1" />
+          <End Role="Equipement" Type="gestadh45Model.Store.Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DureeDeVie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="ID_DureeDeVie" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -433,6 +460,11 @@
           <AssociationSet Name="FK_Saison_Verification" Association="gestadh45Model.FK_Saison_Verification">
             <End Role="Saison" EntitySet="Saisons" />
             <End Role="Verification" EntitySet="Verifications" />
+          </AssociationSet>
+          <EntitySet Name="DureeDeVies" EntityType="gestadh45Model.DureeDeVie" />
+          <AssociationSet Name="FK_DureeDeVie_Equipement" Association="gestadh45Model.FK_DureeDeVie_Equipement">
+            <End Role="DureeDeVie" EntitySet="DureeDeVies" />
+            <End Role="Equipement" EntitySet="Equipements" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Adherent">
@@ -679,6 +711,8 @@
           <NavigationProperty Name="Categorie" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Equipement" ToRole="Categorie" />
           <Property Type="DateTime" Name="DateMiseAuRebut" />
           <NavigationProperty Name="Verifications" Relationship="gestadh45Model.FK_Equipement_Verification" FromRole="Equipement" ToRole="Verification" />
+          <Property Type="Guid" Name="ID_DureeDeVie" Nullable="false" />
+          <NavigationProperty Name="DureeDeVie" Relationship="gestadh45Model.FK_DureeDeVie_Equipement" FromRole="Equipement" ToRole="DureeDeVie" />
         </EntityType>
         <EntityType Name="Marque">
           <Key>
@@ -754,6 +788,28 @@
             </Principal>
             <Dependent Role="Verification">
               <PropertyRef Name="ID_Saison" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DureeDeVie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="NbAnnee" Nullable="false" />
+          <Property Type="Int32" Name="NbMois" Nullable="false" />
+          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_DureeDeVie_Equipement" FromRole="DureeDeVie" ToRole="Equipement" />
+        </EntityType>
+        <Association Name="FK_DureeDeVie_Equipement">
+          <End Type="gestadh45Model.DureeDeVie" Role="DureeDeVie" Multiplicity="1" />
+          <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DureeDeVie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="ID_DureeDeVie" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -890,6 +946,7 @@
           <EntitySetMapping Name="Equipements">
             <EntityTypeMapping TypeName="gestadh45Model.Equipement">
               <MappingFragment StoreEntitySet="Equipement">
+                <ScalarProperty Name="ID_DureeDeVie" ColumnName="ID_DureeDeVie" />
                 <ScalarProperty Name="DateMiseAuRebut" ColumnName="DateMiseAuRebut" />
                 <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
                 <ScalarProperty Name="ID_Marque" ColumnName="ID_Marque" />
@@ -927,6 +984,16 @@
                 <ScalarProperty Name="DateVerification" ColumnName="DateVerification" />
                 <ScalarProperty Name="ID_Saison" ColumnName="ID_Saison" />
                 <ScalarProperty Name="ID_Equipement" ColumnName="ID_Equipement" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DureeDeVies">
+            <EntityTypeMapping TypeName="gestadh45Model.DureeDeVie">
+              <MappingFragment StoreEntitySet="DureeDeVie">
+                <ScalarProperty Name="NbMois" ColumnName="NbMois" />
+                <ScalarProperty Name="NbAnnee" ColumnName="NbAnnee" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -979,8 +1046,8 @@
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_Groupe_Inscription" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="16.692047526041666" />
-          <ConnectorPoint PointX="6" PointY="16.692047526041666" />
-          <ConnectorPoint PointX="6" PointY="7.826396484375" />
+          <ConnectorPoint PointX="5.28125" PointY="16.692047526041666" />
+          <ConnectorPoint PointX="5.28125" PointY="7.826396484375" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_JourSemaine_Groupe" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="15.706492513020834" />
@@ -1011,12 +1078,12 @@
         <EntityTypeShape EntityType="gestadh45Model.Categorie" Width="1.5" PointX="8.375" PointY="0.875" Height="1.5956835937500031" />
         <AssociationConnector Association="gestadh45Model.FK_Categorie_Equipement" >
           <ConnectorPoint PointX="9.2499975" PointY="2.4706835937500031" />
-          <ConnectorPoint PointX="9.2499975" PointY="6.8384407552083344" />
-          <ConnectorPoint PointX="9.625" PointY="6.8384407552083344" />
+          <ConnectorPoint PointX="9.2499975" PointY="7.0307421875000014" />
+          <ConnectorPoint PointX="9.625" PointY="7.0307421875000014" />
         </AssociationConnector>
         <EntityTypeShape EntityType="gestadh45Model.Verification" Width="1.5" PointX="11.875" PointY="10.25" Height="2.5571907552083388" />
         <AssociationConnector Association="gestadh45Model.FK_Equipement_Verification" >
-          <ConnectorPoint PointX="10.375" PointY="7.5186979166666656" />
+          <ConnectorPoint PointX="10.375" PointY="7.90330078125" />
           <ConnectorPoint PointX="10.375" PointY="11.528595377604169" />
           <ConnectorPoint PointX="11.875" PointY="11.528595377604169" />
         </AssociationConnector>
@@ -1024,6 +1091,14 @@
           <ConnectorPoint PointX="2.25" PointY="18.747091471354164" />
           <ConnectorPoint PointX="12.625" PointY="18.747091471354164" />
           <ConnectorPoint PointX="12.625" PointY="12.807190755208339" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="gestadh45Model.DureeDeVie" Width="1.5" PointX="5.375" PointY="8.875" Height="1.9802864583333388" />
+        <AssociationConnector Association="gestadh45Model.FK_DureeDeVie_Equipement" >
+          <ConnectorPoint PointX="6.84375" PointY="8.875" />
+          <ConnectorPoint PointX="6.84375" PointY="4.21875" />
+          <ConnectorPoint PointX="9.1666641666666653" PointY="4.2187499999999991" />
+          <ConnectorPoint PointX="9.3333308333333331" PointY="4.21875" />
+          <ConnectorPoint PointX="9.625" PointY="4.21875" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
