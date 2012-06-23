@@ -11,7 +11,7 @@ namespace gestadh45.business.ViewModel.DureesDeVieVM
 		private IOrderedEnumerable<DureeDeVie> _dureesDeVie;
 
 		/// <summary>
-		/// Obtient/Définit la liste des durrées de vie
+		/// Obtient/Définit la liste des durées de vie
 		/// </summary>
 		public IOrderedEnumerable<DureeDeVie> DureesDeVie {
 			get { return this._dureesDeVie; }

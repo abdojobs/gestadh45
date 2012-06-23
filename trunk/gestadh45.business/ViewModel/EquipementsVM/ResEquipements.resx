@@ -120,6 +120,9 @@
   <data name="ErrCategorieObligatoire" xml:space="preserve">
     <value>La catégorie est obligatoire</value>
   </data>
+  <data name="ErrDureeDeVieObligatoire" xml:space="preserve">
+    <value>La durée de vie est obligatoire</value>
+  </data>
   <data name="ErrEquipementExiste" xml:space="preserve">
     <value>Cet équipement existe déja</value>
   </data>
