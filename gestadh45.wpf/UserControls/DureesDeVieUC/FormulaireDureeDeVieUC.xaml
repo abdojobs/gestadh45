@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.DureesDeVieUC.FormulaireDureeDeVieUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 xmlns:extToolkit="clr-namespace:Xceed.Wpf.Toolkit;assembly=WPFToolKit.Extended" 
+			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
+			 mc:Ignorable="d" 
+			 DataContext="{Binding Path=FormulaireDureeDeVieVM, Source={StaticResource Locator}}" 
+			 d:DesignHeight="400" d:DesignWidth="600">
+	<DockPanel>
+		<TextBlock Text="Durée de vie" DockPanel.Dock="Top"
+				   VerticalAlignment="Top" 
+				   Margin="0,5,0,10" TextAlignment="Center" 
+				   Style="{DynamicResource ResourceKey=titreUC}" />
+
+		<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5"
+				CodeUCParent="{x:Static business:CodesUC.ConsultationDureesDeVie}"
+				CmdAnnuler="{Binding Path=CancelCommand}"
+				CmdEnregistrer="{Binding Path=SaveCommand}"
+				/>
+
+		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
+
+		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+			<StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+				<TextBlock Text="Libellé : " Width="150" VerticalAlignment="Center"/>
+				<TextBox Text="{Binding Path=CurrentDureeDeVie.Libelle}" MaxLength="50" Width="200" />
+			</StackPanel>
+			
+			<StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+				<TextBlock Text="Nb. Années : " Width="150" VerticalAlignment="Center"/>
+				<extToolkit:IntegerUpDown Width="50"
+										Minimum="0" Maximum="99"
+										Value="{Binding Path=CurrentDureeDeVie.NbAnnee}" 
+										Text="{Binding Path=CurrentDureeDeVie.NbAnnee}" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="5,5,5,5">
+				<TextBlock Text="Nb. mois : " Width="150" VerticalAlignment="Center" />
+				<extToolkit:IntegerUpDown Width="50"
+										Minimum="0" Maximum="99"
+										Value="{Binding Path=CurrentDureeDeVie.NbMois}" 
+										Text="{Binding Path=CurrentDureeDeVie.NbMois}" />
+			</StackPanel>
+		</StackPanel>
+	</DockPanel>
+</UserControl>
