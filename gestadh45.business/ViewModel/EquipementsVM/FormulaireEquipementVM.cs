@@ -55,6 +55,23 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		}
 		#endregion
 
+		#region DureesDeVie
+		private IOrderedEnumerable<DureeDeVie> _dureesDeVie;
+
+		/// <summary>
+		/// Obtient/Définit la liste des durées de vie
+		/// </summary>
+		public IOrderedEnumerable<DureeDeVie> DureesDeVie {
+			get { return this._dureesDeVie; }
+			set {
+				if (this._dureesDeVie != value) {
+					this._dureesDeVie = value;
+					this.RaisePropertyChanged(() => this.DureesDeVie);
+				}
+			}
+		}
+		#endregion
+
 		#region CurrentEquipement
 		private Equipement _currentEquipement;
 
@@ -82,6 +99,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		private Repository<Marque> _repoMarque;
 		private Repository<Equipement> _repoEquipement;
 		private Repository<Categorie> _repoCategorie;
+		private Repository<DureeDeVie> _repoDureeDeVie;
 		#endregion
 
 		#region Constructeurs
@@ -121,11 +139,13 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 			this._repoEquipement = new Repository<Equipement>(this._context);
 			this._repoMarque = new Repository<Marque>(this._context);
 			this._repoCategorie = new Repository<Categorie>(this._context);
+			this._repoDureeDeVie = new Repository<DureeDeVie>(this._context);
 		}
 
 		private void PopulateCombos() {
 			this.Marques = this._repoMarque.GetAll().OrderBy(m => m.ToString());
 			this.Categories = this._repoCategorie.GetAll().OrderBy(c => c.ToString());
+			this.DureesDeVie = this._repoDureeDeVie.GetAll().OrderBy(d => d.Libelle);
 		}
 
 		/// <summary>
@@ -153,6 +173,10 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 
 			if (this.CurrentEquipement.Categorie == null) {
 				errors.Add(ResEquipements.ErrCategorieObligatoire);
+			}
+
+			if (this.CurrentEquipement.DureeDeVie == null) {
+				errors.Add(ResEquipements.ErrDureeDeVieObligatoire);
 			}
 
 			if (errors.Count == 0 && !this.IsEditMode && this.CurrentElementExists()) {
