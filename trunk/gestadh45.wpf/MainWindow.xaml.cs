@@ -53,6 +53,7 @@ namespace gestadh45.wpf
 			Messenger.Default.Register<NMShowUC<Adherent>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<Inscription>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<Equipement>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
+			Messenger.Default.Register<NMShowUC<DureeDeVie>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowAboutBox>(this, (msg) => this.ShowAboutBox());
 
 			// Abonnement aux messages pour les dialogues
@@ -94,10 +95,9 @@ namespace gestadh45.wpf
 			else if (codeUC.Equals(CodesUC.FormulaireEquipement) && objetUC is Equipement) {
 				this.contenu.Child = new FormulaireEquipementUC(objetUC as Equipement);
 			}
-			// TODO décommenter une fois créé
-			//else if (codeUC.Equals(CodesUC.FormulaireEquipement) && objetUC is DureeDeVie) {
-			//    this.contenu.Child = new FormulaireDureeDeVieUC(objetUC as DureeDeVie);
-			//}
+			else if (codeUC.Equals(CodesUC.FormulaireDureeDeVie) && objetUC is DureeDeVie) {
+			    this.contenu.Child = new FormulaireDureeDeVieUC(objetUC as DureeDeVie);
+			}
 		}
 
 		private void OpenWindowUC(string codeUC) {
@@ -216,6 +216,10 @@ namespace gestadh45.wpf
 
 				case CodesUC.ConsultationDureesDeVie:
 					userControl = new ConsultationDureesDeVieUC();
+					break;
+
+				case CodesUC.FormulaireDureeDeVie:
+					userControl = new FormulaireDureeDeVieUC();
 					break;
 
 				default:

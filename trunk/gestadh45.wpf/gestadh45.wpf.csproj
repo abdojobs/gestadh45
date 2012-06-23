@@ -154,6 +154,9 @@
     <Compile Include="UserControls\DureesDeVieUC\ConsultationDureesDeVieUC.xaml.cs">
       <DependentUpon>ConsultationDureesDeVieUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\DureesDeVieUC\FormulaireDureeDeVieUC.xaml.cs">
+      <DependentUpon>FormulaireDureeDeVieUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\EquipementsUC\ConsultationEquipementsUC.xaml.cs">
       <DependentUpon>ConsultationEquipementsUC.xaml</DependentUpon>
     </Compile>
@@ -263,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\DureesDeVieUC\ConsultationDureesDeVieUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\DureesDeVieUC\FormulaireDureeDeVieUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

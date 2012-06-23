@@ -35,6 +35,7 @@
 				BtnSupprimerVisibilite="Visible"
 				CmdAjouter="{Binding Path=CreateCommand}"
 				CmdSupprimer="{Binding Path=DeleteCommand}"
+				CmdModifier="{Binding Path=EditCommand}"
 				/>
 		</StackPanel>
 
