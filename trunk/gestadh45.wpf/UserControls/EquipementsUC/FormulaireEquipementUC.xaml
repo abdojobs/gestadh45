@@ -38,8 +38,7 @@
 
 			<TextBlock Grid.Row="0" Grid.Column="0" Text="Numéro : " VerticalAlignment="Center" />
 			<TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" CharacterCasing="Upper" 
-					 Text="{Binding Path=CurrentEquipement.Numero}"
-					 IsEnabled="{Binding Path=IsEditMode, Converter={StaticResource ResourceKey=BooleanInversionConverter}}"/>
+					 Text="{Binding Path=CurrentEquipement.Numero}"/>
 
 			<TextBlock Grid.Row="0" Grid.Column="2" Margin="20,0,0,0"
 					   Text="Date d'achat : " VerticalAlignment="Center" />

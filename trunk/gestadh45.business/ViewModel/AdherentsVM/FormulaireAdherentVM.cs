@@ -124,6 +124,7 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 			return this.repoAdherent.GetAll().Where(
 					a => a.Nom.Equals(this.CurrentAdherent.Nom, StringComparison.OrdinalIgnoreCase)
 					&& a.Prenom.Equals(this.CurrentAdherent.Prenom, StringComparison.OrdinalIgnoreCase)
+					&& a.ID != this.CurrentAdherent.ID
 				).Count() != 0;
 		}
 
@@ -153,7 +154,7 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 				errors.Add(ResAdherents.ErrVilleObligatoire);
 			}
 
-			if (errors.Count == 0 && !this.IsEditMode && this.CurrentElementExists()) {
+			if (errors.Count == 0 && this.CurrentElementExists()) {
 				errors.Add(ResAdherents.ErrAdherentExiste);
 			}
 

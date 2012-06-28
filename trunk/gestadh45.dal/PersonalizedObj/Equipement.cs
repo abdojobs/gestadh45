@@ -79,7 +79,8 @@ namespace gestadh45.dal
 
 				DateAchat = this.DateAchat,
 				DateMiseEnService =  this.DateMiseEnService,
-				Commentaire = this.Commentaire
+				Commentaire = this.Commentaire,
+				ID_DureeDeVie = this.ID_DureeDeVie
 			};
 		}
 	}
