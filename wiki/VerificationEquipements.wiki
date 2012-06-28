@@ -7,19 +7,18 @@ La vérification fonctionne sur le principe de campagne auxquelles sont associé
 == Details ==
 On commence par créer une campagne de vérification (avec une date et un responsable).
 
-La création d'une campagne entraîne automatiquement la création de vérifications pour chaque équipement (hors rebut), initialisée avec le statut "A vérifier" (statut par défaut)
+La création d'une campagne entraîne automatiquement la création de vérifications pour chaque équipement (hors rebut) sans statuts
 
 Les statuts disponibles sont : 
-
-- "A vérifier" (défaut)
 
 - "OK"
 
 - "A surveiller"
 
-- "Mis au rebut"
+- "Mis au rebut" (ce statut concernera aussi le matériel perdu)
 
-Les statuts feront partie des données de référence et seront paramétrables via un ensemble d'écran consultation/formulaire. (un flag "default" sera présent pour définir le statut par défaut, sur le même principe que le flag "EstSaisonCourante")
+
+Les statuts feront partie des données de référence et seront paramétrables via un ensemble d'écran consultation/formulaire. 
 
 Des rapports seront générés à partir des campagnes de vérification (inventaire, résumé des vérif...)
 
@@ -27,4 +26,4 @@ Une fois toutes les vérifications effectuées, la campagne pourra être fermée
 
 - Impossible de créer une nouvelle campagne si il en existe déjà une ouverte
 
-- Impossible de fermer une campagne si elle possède au moins une vérification avec le statut par défaut
+- Impossible de fermer une campagne si elle possède au moins une vérification sans statut
