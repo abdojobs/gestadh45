@@ -155,6 +155,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		protected override bool CurrentElementExists() {
 			return this._repoEquipement.GetAll().Where(
 					e => e.Numero.Equals(this.CurrentEquipement.Numero, StringComparison.OrdinalIgnoreCase)
+						&& e.ID != this.CurrentEquipement.ID
 				).Count() != 0;
 		}
 
@@ -179,7 +180,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 				errors.Add(ResEquipements.ErrDureeDeVieObligatoire);
 			}
 
-			if (errors.Count == 0 && !this.IsEditMode && this.CurrentElementExists()) {
+			if (errors.Count == 0 && this.CurrentElementExists()) {
 				errors.Add(ResEquipements.ErrEquipementExiste);
 			}
 
