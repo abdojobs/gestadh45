@@ -1,0 +1,15 @@
+#Conception de la partie "Vérification des équipements"
+
+= Introduction =
+
+La vérification fonctionne sur le principe de campagne auxquelles sont associées les vérification de chaque équipement en activité.
+
+= Details =
+On commence par créer une campagne de vérification (avec une date et un responsable).
+La création d'une campagne entraîne automatiquement la création de vérifications pour chaque équipement (hors rebut), initialisée avec le statut "A vérifier" (statut par défaut)
+
+Les statuts disponibles sont : 
+* "A vérifier" (défaut)
+* "OK"
+* "A surveiller"
+* "Mis au rebut"
