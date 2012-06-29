@@ -7,22 +7,26 @@ La vérification fonctionne sur le principe de campagne auxquelles sont associé
 == Details ==
  * On commence par créer une campagne de vérification (avec une date et un responsable).
 
- * La création d'une campagne entraîne automatiquement la création de vérifications pour chaque équipement (hors rebut) sans statuts
+ * A la création d'une campagne, on sélectionnera les équipements à vérifier parmi une liste (hors rebut)
+
+ * A l'enregistrement de la campagne, une vérification sera automatiquement créée pour chaque équipement sélectionné
+
+ * Lors de sa création, une vérification se voit automatiquement attribuer le statut par défaut : "A vérifier"
 
  * Les statuts disponibles sont : 
-  # aucun statut (par défaut)
+  # "A vérifier" (par défaut)
   # "OK"
   # "A surveiller"
-  # "Mis au rebut" (ce statut concernera aussi le matériel perdu)
+  # "Mis au rebut"
 
 
- * Les statuts feront partie des données de référence mais ne seront pas modifiables (pas d'écrans de gestion)
+ * Les statuts feront partie des données de référence mais ne seront pas modifiables (pas d'écran de gestion)
 
- * Des rapports seront générés à partir des campagnes de vérification (inventaire, résumé des vérif, liste rebuts...)
+ * Des rapports pourront êtres généré à partir des campagnes de vérification (inventaire, résumé des vérif, liste rebuts...)
 
  * Une fois toutes les vérifications effectuées, la campagne pourra être fermée (flag "Est fermée") : 
   # Impossible de créer une nouvelle campagne si il en existe déjà une ouverte
-  # Impossible de fermer une campagne si elle possède au moins une vérification sans statut
+  # Impossible de fermer une campagne si elle possède au moins une vérification ayant le statut par défaut ("A vérifier")
   # Impossible de supprimer une campagne à partir du moment où elle est fermée
 
 == Ecrans ==
@@ -35,8 +39,9 @@ La vérification fonctionne sur le principe de campagne auxquelles sont associé
 
 *FormulaireCampagneVerificationUC*
  * Ecran accessible uniquement via les boutons "Ajouter" et "Editer" de l'écran de consultation
- * Ecran de formulaire standard
+ * Ecran de formulaire avec une "picklist" pour le choix des équipements à inclure
  * Permet de créer ou éditer une campagne (ou la fermer)
+ * En mode édition, on ne peut pas modifier la liste des équipements (sauf si c'est facile à implémenter)
 
 *ConsultationVerificationsUC*
  * Ecran accessible uniquement depuis l'écran de consultation des campagnes (bouton "Détails")
