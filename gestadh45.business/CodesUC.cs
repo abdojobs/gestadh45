@@ -41,5 +41,8 @@ namespace gestadh45.business
 
 		public const string ConsultationDureesDeVie = "ConsultationDureesDeVie";
 		public const string FormulaireDureeDeVie = "FormulaireDureeDeVie";
+
+		public const string ConsultationCampagnesVerification = "ConsultationCampagnesVerification";
+		public const string FormulaireCampagneVerification = "FormulaireCampagneVerification";
 	}
 }

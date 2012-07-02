@@ -36,7 +36,7 @@ namespace gestadh45.business.ViewModel.DureesDeVieVM
 		}
 
 		/// <summary>
-		/// COnstructeur pour le mode édition
+		/// Constructeur pour le mode édition
 		/// </summary>
 		/// <param name="idDureeDeVie">ID de l'objet à éditer</param>
 		public FormulaireDureeDeVieVM(Guid idDureeDeVie) {

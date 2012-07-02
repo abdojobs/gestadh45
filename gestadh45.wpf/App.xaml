@@ -19,6 +19,11 @@
 			<BooleanToVisibilityConverter x:Key="boolToVisibility" />
 			<tools:BooleanToBrushConverter x:Key="boolToBrush" />
 
+			<tools:ValueConverterGroup x:Key="InvertAndVisibilitate">
+				<tools:BooleanInversionConverter />
+				<BooleanToVisibilityConverter />
+			</tools:ValueConverterGroup>
+
 			<vm:ViewModelLocator p4:Key="Locator" xmlns:p4="http://schemas.microsoft.com/winfx/2006/xaml" />
 		</ResourceDictionary>
 

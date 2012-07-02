@@ -10,7 +10,9 @@
 */
 
 using gestadh45.business.ViewModel.AdherentsVM;
+using gestadh45.business.ViewModel.CampagnesVerificationVM;
 using gestadh45.business.ViewModel.CategoriesVM;
+using gestadh45.business.ViewModel.DureesDeVieVM;
 using gestadh45.business.ViewModel.EquipementsVM;
 using gestadh45.business.ViewModel.GroupesVM;
 using gestadh45.business.ViewModel.InfosClubVM;
@@ -20,9 +22,7 @@ using gestadh45.business.ViewModel.RepartitionAdherentsVM;
 using gestadh45.business.ViewModel.SaisonsVM;
 using gestadh45.business.ViewModel.Statistiques;
 using gestadh45.business.ViewModel.TranchesAgeVM;
-using gestadh45.business.ViewModel.VerificationsVM;
 using gestadh45.business.ViewModel.VillesVM;
-using gestadh45.business.ViewModel.DureesDeVieVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -171,17 +171,17 @@ namespace gestadh45.business.ViewModel
 		#endregion
 
 		#region VerificationsVM
-		public static ConsultationVerificationsVM ConsultationVerificationsVM {
-			get {
-				return new ConsultationVerificationsVM();
-			}
-		}
+		//public static ConsultationVerificationsVM ConsultationVerificationsVM {
+		//    get {
+		//        return new ConsultationVerificationsVM();
+		//    }
+		//}
 
-		public static FormulaireVerificationVM FormulaireVerificationVM {
-			get {
-				return new FormulaireVerificationVM();
-			}
-		}
+		//public static FormulaireVerificationVM FormulaireVerificationVM {
+		//    get {
+		//        return new FormulaireVerificationVM();
+		//    }
+		//}
 		#endregion
 
 		#region DureesDeVieVM
@@ -195,6 +195,16 @@ namespace gestadh45.business.ViewModel
 			get {
 				return new FormulaireDureeDeVieVM();
 			}
+		}
+		#endregion
+
+		#region CampagnesVerificationVM
+		public static ConsultationCampagnesVerificationVM ConsultationCampagnesVerificationVM {
+			get { return new ConsultationCampagnesVerificationVM(); }
+		}
+
+		public static FormulaireCampagneVerificationVM FormulaireCampagneVerificationVM  {
+			get { return new FormulaireCampagneVerificationVM(); }
 		}
 		#endregion
 	}

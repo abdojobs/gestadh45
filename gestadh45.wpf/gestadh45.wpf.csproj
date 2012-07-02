@@ -130,6 +130,7 @@
     <Compile Include="Tools\BooleanInversionConverter.cs" />
     <Compile Include="Tools\BooleanToBrushConverter.cs" />
     <Compile Include="Tools\HexaColorStringToBrushConverter.cs" />
+    <Compile Include="Tools\ValueConverterGroup.cs" />
     <Compile Include="UCWindow.xaml.cs">
       <DependentUpon>UCWindow.xaml</DependentUpon>
     </Compile>
@@ -144,6 +145,12 @@
     </Compile>
     <Compile Include="UserControls\BtnAnnulerEnregistrerUC.xaml.cs">
       <DependentUpon>BtnAnnulerEnregistrerUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CampagnesVerificationUC\ConsultationCampagnesVerificationUC.xaml.cs">
+      <DependentUpon>ConsultationCampagnesVerificationUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CampagnesVerificationUC\FormulaireCampagneVerificationUC.xaml.cs">
+      <DependentUpon>FormulaireCampagneVerificationUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CategoriesUC\ConsultationCategoriesUC.xaml.cs">
       <DependentUpon>ConsultationCategoriesUC.xaml</DependentUpon>
@@ -205,12 +212,6 @@
     <Compile Include="UserControls\TranchesAgeUC\FormulaireTrancheAgeUC.xaml.cs">
       <DependentUpon>FormulaireTrancheAgeUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\VerificationsUC\ConsultationVerificationsUC.xaml.cs">
-      <DependentUpon>ConsultationVerificationsUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\VerificationsUC\FormulaireVerificationUC.xaml.cs">
-      <DependentUpon>FormulaireVerificationUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\VillesUC\ConsultationVillesUC.xaml.cs">
       <DependentUpon>ConsultationVillesUC.xaml</DependentUpon>
     </Compile>
@@ -256,6 +257,14 @@
     <Page Include="UserControls\BtnAnnulerEnregistrerUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UserControls\CampagnesVerificationUC\ConsultationCampagnesVerificationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CampagnesVerificationUC\FormulaireCampagneVerificationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\CategoriesUC\ConsultationCategoriesUC.xaml">
       <SubType>Designer</SubType>
@@ -334,14 +343,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\TranchesAgeUC\FormulaireTrancheAgeUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\VerificationsUC\ConsultationVerificationsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\VerificationsUC\FormulaireVerificationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -536,7 +537,9 @@
     <Resource Include="Images\btn_save.png" />
     <Resource Include="Images\btn_saveAndJoin.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UserControls\VerificationsUC\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>del $(TargetDir)*.pdb

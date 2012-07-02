@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace gestadh45.wpf.UserControls.VerificationsUC
+namespace gestadh45.wpf.UserControls.CampagnesVerificationUC
 {
 	/// <summary>
-	/// Logique d'interaction pour ConsultationVerificationsUC.xaml
+	/// Logique d'interaction pour ConsultationCampagnesVerificationUC.xaml
 	/// </summary>
-	public partial class ConsultationVerificationsUC : UserControl
+	public partial class ConsultationCampagnesVerificationUC : UserControl
 	{
-		public ConsultationVerificationsUC() {
+		public ConsultationCampagnesVerificationUC() {
 			InitializeComponent();
 		}
 	}

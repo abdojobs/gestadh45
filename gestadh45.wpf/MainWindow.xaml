@@ -137,15 +137,9 @@
 
 				<my:RibbonGroup Name="GrpVerifications" Header="Verifications">
 					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Vérifications"
-										  CommandParameter="{x:Static b:CodesUC.ConsultationVerifications}"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationCampagnesVerification}"
 										  LargeImageSource="/gestadh45.wpf;component/Images/btn_verification.png" 
 										  SmallImageSource="/gestadh45.wpf;component/Images/btn_verification.png">
-						<my:RibbonMenuItem Header="Consultation"
-							Command="{Binding Path=ShowUCCommand}"
-							CommandParameter="{x:Static b:CodesUC.ConsultationVerifications}" />
-						<my:RibbonMenuItem Header="Ajout"
-							Command="{Binding Path=ShowUCCommand}"
-							CommandParameter="{x:Static b:CodesUC.FormulaireVerification}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
 			</my:RibbonTab>

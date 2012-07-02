@@ -12,17 +12,18 @@ using System.Collections.Generic;
 
 namespace gestadh45.dal
 {
-    public partial class Verification
+    public partial class StatutVerification
     {
-        public System.Guid ID { get; set; }
-        public System.Guid ID_Equipement { get; set; }
-        public string Commentaire { get; set; }
-        public System.Guid ID_StatutVerification { get; set; }
-        public System.Guid ID_CampagneVerification { get; set; }
+        public StatutVerification()
+        {
+            this.Verifications = new HashSet<Verification>();
+        }
     
-        public virtual StatutVerification StatutVerification { get; set; }
-        public virtual Equipement Equipement { get; set; }
-        public virtual CampagneVerification CampagneVerification { get; set; }
+        public System.Guid ID { get; set; }
+        public string Libelle { get; set; }
+        public bool EstDefaut { get; set; }
+    
+        public virtual ICollection<Verification> Verifications { get; set; }
     }
     
 }

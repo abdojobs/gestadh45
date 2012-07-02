@@ -17,7 +17,6 @@ namespace gestadh45.dal
         public Saison()
         {
             this.Groupes = new HashSet<Groupe>();
-            this.Verifications = new HashSet<Verification>();
         }
     
         public System.Guid ID { get; set; }
@@ -26,7 +25,6 @@ namespace gestadh45.dal
         public Nullable<int> AnneeFin { get; set; }
     
         public virtual ICollection<Groupe> Groupes { get; set; }
-        public virtual ICollection<Verification> Verifications { get; set; }
     }
     
 }

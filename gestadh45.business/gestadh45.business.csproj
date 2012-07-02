@@ -68,6 +68,13 @@
     <Compile Include="IhmObjects\TrancheEffectif.cs" />
     <Compile Include="PersonalizedMsg\NMRefreshDatas.cs" />
     <Compile Include="PersonalizedMsg\NMShowInfosDataSource.cs" />
+    <Compile Include="ViewModel\CampagnesVerificationVM\ConsultationCampagnesVerificationVM.cs" />
+    <Compile Include="ViewModel\CampagnesVerificationVM\FormulaireCampagneVerificationVM.cs" />
+    <Compile Include="ViewModel\CampagnesVerificationVM\ResCampagnesVerification.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResCampagnesVerification.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\CategoriesVM\ConsultationCategoriesVM.cs" />
     <Compile Include="ViewModel\CategoriesVM\FormulaireCategorieVM.cs" />
     <Compile Include="ViewModel\CategoriesVM\ResCategories.Designer.cs">
@@ -161,13 +168,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResTranchesAge.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\VerificationsVM\ConsultationVerificationsVM.cs" />
-    <Compile Include="ViewModel\VerificationsVM\FormulaireVerificationVM.cs" />
-    <Compile Include="ViewModel\VerificationsVM\ResVerifications.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResVerifications.resx</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="ViewModel\VillesVM\ConsultationVillesVM.cs" />
     <Compile Include="ViewModel\VillesVM\FormulaireVilleVM.cs" />
@@ -185,7 +185,9 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModel\VerificationsVM\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\gestadh45.dal\gestadh45.dal.csproj">
       <Project>{B592B627-A159-4936-92E8-EFF98114395C}</Project>
@@ -197,6 +199,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ViewModel\CampagnesVerificationVM\ResCampagnesVerification.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResCampagnesVerification.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\CategoriesVM\ResCategories.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResCategories.Designer.cs</LastGenOutput>
@@ -240,10 +246,6 @@
     <EmbeddedResource Include="ViewModel\TranchesAgeVM\ResTranchesAge.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResTranchesAge.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewModel\VerificationsVM\ResVerifications.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResVerifications.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\VillesVM\ResVilles.resx">
       <Generator>ResXFileCodeGenerator</Generator>

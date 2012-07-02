@@ -7,6 +7,7 @@
     <Schema Namespace="gestadh45Model.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="gestadh45ModelStoreContainer">
           <EntitySet Name="Adherent" EntityType="gestadh45Model.Store.Adherent" store:Type="Tables" />
+          <EntitySet Name="CampagneVerification" EntityType="gestadh45Model.Store.CampagneVerification" store:Type="Tables" />
           <EntitySet Name="Categorie" EntityType="gestadh45Model.Store.Categorie" store:Type="Tables" />
           <EntitySet Name="DureeDeVie" EntityType="gestadh45Model.Store.DureeDeVie" store:Type="Tables" />
           <EntitySet Name="Equipement" EntityType="gestadh45Model.Store.Equipement" store:Type="Tables" />
@@ -18,12 +19,17 @@
           <EntitySet Name="Saison" EntityType="gestadh45Model.Store.Saison" store:Type="Tables" />
           <EntitySet Name="Sexe" EntityType="gestadh45Model.Store.Sexe" store:Type="Tables" />
           <EntitySet Name="StatutInscription" EntityType="gestadh45Model.Store.StatutInscription" store:Type="Tables" />
+          <EntitySet Name="StatutVerification" EntityType="gestadh45Model.Store.StatutVerification" store:Type="Tables" />
           <EntitySet Name="TrancheAge" EntityType="gestadh45Model.Store.TrancheAge" store:Type="Tables" />
           <EntitySet Name="Verification" EntityType="gestadh45Model.Store.Verification" store:Type="Tables" />
           <EntitySet Name="Ville" EntityType="gestadh45Model.Store.Ville" store:Type="Tables" />
           <AssociationSet Name="FK_Adherent_Inscription" Association="gestadh45Model.Store.FK_Adherent_Inscription">
             <End Role="Adherent" EntitySet="Adherent" />
             <End Role="Inscription" EntitySet="Inscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Campagne_Verification" Association="gestadh45Model.Store.FK_Campagne_Verification">
+            <End Role="CampagneVerification" EntitySet="CampagneVerification" />
+            <End Role="Verification" EntitySet="Verification" />
           </AssociationSet>
           <AssociationSet Name="FK_Categorie_Equipement" Association="gestadh45Model.Store.FK_Categorie_Equipement">
             <End Role="Categorie" EntitySet="Categorie" />
@@ -53,13 +59,13 @@
             <End Role="Saison" EntitySet="Saison" />
             <End Role="Groupe" EntitySet="Groupe" />
           </AssociationSet>
-          <AssociationSet Name="FK_Saison_Verification" Association="gestadh45Model.Store.FK_Saison_Verification">
-            <End Role="Saison" EntitySet="Saison" />
-            <End Role="Verification" EntitySet="Verification" />
-          </AssociationSet>
           <AssociationSet Name="FK_Sexe_Adherent" Association="gestadh45Model.Store.FK_Sexe_Adherent">
             <End Role="Sexe" EntitySet="Sexe" />
             <End Role="Adherent" EntitySet="Adherent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statut_Verification" Association="gestadh45Model.Store.FK_Statut_Verification">
+            <End Role="StatutVerification" EntitySet="StatutVerification" />
+            <End Role="Verification" EntitySet="Verification" />
           </AssociationSet>
           <AssociationSet Name="FK_StatutInscription_Inscription" Association="gestadh45Model.Store.FK_StatutInscription_Inscription">
             <End Role="StatutInscription" EntitySet="StatutInscription" />
@@ -95,6 +101,16 @@
           <Property Name="Mail2" Type="nvarchar" MaxLength="100" />
           <Property Name="Mail3" Type="nvarchar" MaxLength="100" />
         </EntityType>
+        <EntityType Name="CampagneVerification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Responsable" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="EstFermee" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Categorie">
           <Key>
             <PropertyRef Name="ID" />
@@ -108,7 +124,7 @@
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="NbAnnee" Type="int" Nullable="false" />
+          <Property Name="NbAnnees" Type="int" Nullable="false" />
           <Property Name="NbMois" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Equipement">
@@ -211,6 +227,14 @@
           <Property Name="CodeCouleur" Type="nvarchar" Nullable="false" MaxLength="7" />
           <Property Name="Ordre" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="StatutVerification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="EstDefaut" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="TrancheAge">
           <Key>
             <PropertyRef Name="ID" />
@@ -225,10 +249,9 @@
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ID_Equipement" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ID_Saison" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="DateVerification" Type="datetime" Nullable="false" />
-          <Property Name="EtatOk" Type="bit" Nullable="false" />
           <Property Name="Commentaire" Type="nvarchar" MaxLength="100" />
+          <Property Name="ID_StatutVerification" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID_CampagneVerification" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Ville">
           <Key>
@@ -247,6 +270,18 @@
             </Principal>
             <Dependent Role="Inscription">
               <PropertyRef Name="ID_Adherent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Campagne_Verification">
+          <End Role="CampagneVerification" Type="gestadh45Model.Store.CampagneVerification" Multiplicity="1" />
+          <End Role="Verification" Type="gestadh45Model.Store.Verification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CampagneVerification">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Verification">
+              <PropertyRef Name="ID_CampagneVerification" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -334,18 +369,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Saison_Verification">
-          <End Role="Saison" Type="gestadh45Model.Store.Saison" Multiplicity="1" />
-          <End Role="Verification" Type="gestadh45Model.Store.Verification" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Saison">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Verification">
-              <PropertyRef Name="ID_Saison" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Sexe_Adherent">
           <End Role="Sexe" Type="gestadh45Model.Store.Sexe" Multiplicity="1" />
           <End Role="Adherent" Type="gestadh45Model.Store.Adherent" Multiplicity="*" />
@@ -355,6 +378,18 @@
             </Principal>
             <Dependent Role="Adherent">
               <PropertyRef Name="ID_Sexe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statut_Verification">
+          <End Role="StatutVerification" Type="gestadh45Model.Store.StatutVerification" Multiplicity="1" />
+          <End Role="Verification" Type="gestadh45Model.Store.Verification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatutVerification">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Verification">
+              <PropertyRef Name="ID_StatutVerification" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -441,30 +476,36 @@
             <End Role="StatutInscription" EntitySet="StatutInscriptions" />
             <End Role="Inscription" EntitySet="Inscriptions" />
           </AssociationSet>
-          <EntitySet Name="Equipements" EntityType="gestadh45Model.Equipement" />
           <EntitySet Name="Marques" EntityType="gestadh45Model.Marque" />
-          <AssociationSet Name="FK_Marque_Equipement" Association="gestadh45Model.FK_Marque_Equipement">
-            <End Role="Marque" EntitySet="Marques" />
-            <End Role="Equipement" EntitySet="Equipements" />
-          </AssociationSet>
           <EntitySet Name="Categories" EntityType="gestadh45Model.Categorie" />
+          <EntitySet Name="StatutVerifications" EntityType="gestadh45Model.StatutVerification" />
+          <EntitySet Name="Verifications" EntityType="gestadh45Model.Verification" />
+          <AssociationSet Name="FK_Statut_Verification" Association="gestadh45Model.FK_Statut_Verification">
+            <End Role="StatutVerification" EntitySet="StatutVerifications" />
+            <End Role="Verification" EntitySet="Verifications" />
+          </AssociationSet>
+          <EntitySet Name="DureeDeVies" EntityType="gestadh45Model.DureeDeVie" />
+          <EntitySet Name="Equipements" EntityType="gestadh45Model.Equipement" />
           <AssociationSet Name="FK_Categorie_Equipement" Association="gestadh45Model.FK_Categorie_Equipement">
             <End Role="Categorie" EntitySet="Categories" />
             <End Role="Equipement" EntitySet="Equipements" />
           </AssociationSet>
-          <EntitySet Name="Verifications" EntityType="gestadh45Model.Verification" />
+          <AssociationSet Name="FK_DureeDeVie_Equipement" Association="gestadh45Model.FK_DureeDeVie_Equipement">
+            <End Role="DureeDeVie" EntitySet="DureeDeVies" />
+            <End Role="Equipement" EntitySet="Equipements" />
+          </AssociationSet>
           <AssociationSet Name="FK_Equipement_Verification" Association="gestadh45Model.FK_Equipement_Verification">
             <End Role="Equipement" EntitySet="Equipements" />
             <End Role="Verification" EntitySet="Verifications" />
           </AssociationSet>
-          <AssociationSet Name="FK_Saison_Verification" Association="gestadh45Model.FK_Saison_Verification">
-            <End Role="Saison" EntitySet="Saisons" />
-            <End Role="Verification" EntitySet="Verifications" />
-          </AssociationSet>
-          <EntitySet Name="DureeDeVies" EntityType="gestadh45Model.DureeDeVie" />
-          <AssociationSet Name="FK_DureeDeVie_Equipement" Association="gestadh45Model.FK_DureeDeVie_Equipement">
-            <End Role="DureeDeVie" EntitySet="DureeDeVies" />
+          <AssociationSet Name="FK_Marque_Equipement" Association="gestadh45Model.FK_Marque_Equipement">
+            <End Role="Marque" EntitySet="Marques" />
             <End Role="Equipement" EntitySet="Equipements" />
+          </AssociationSet>
+          <EntitySet Name="CampagneVerifications" EntityType="gestadh45Model.CampagneVerification" />
+          <AssociationSet Name="FK_Campagne_Verification" Association="gestadh45Model.FK_Campagne_Verification">
+            <End Role="CampagneVerification" EntitySet="CampagneVerifications" />
+            <End Role="Verification" EntitySet="Verifications" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Adherent">
@@ -559,7 +600,6 @@
           <Property Name="AnneeDebut" Type="Int32" Nullable="false" />
           <Property Name="AnneeFin" Type="Int32" />
           <NavigationProperty Name="Groupes" Relationship="gestadh45Model.FK_Saison_Groupe" FromRole="Saison" ToRole="Groupe" />
-          <NavigationProperty Name="Verifications" Relationship="gestadh45Model.FK_Saison_Verification" FromRole="Saison" ToRole="Verification" />
         </EntityType>
         <EntityType Name="Sexe">
           <Key>
@@ -694,6 +734,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Marque">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_Marque_Equipement" FromRole="Marque" ToRole="Equipement" />
+        </EntityType>
+        <EntityType Name="Categorie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Categorie" ToRole="Equipement" />
+        </EntityType>
+        <EntityType Name="StatutVerification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="EstDefaut" Nullable="false" />
+          <NavigationProperty Name="Verifications" Relationship="gestadh45Model.FK_Statut_Verification" FromRole="StatutVerification" ToRole="Verification" />
+        </EntityType>
+        <EntityType Name="Verification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="Guid" Name="ID_Equipement" Nullable="false" />
+          <Property Type="String" Name="Commentaire" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="ID_StatutVerification" Nullable="false" />
+          <Property Type="Guid" Name="ID_CampagneVerification" Nullable="false" />
+          <NavigationProperty Name="StatutVerification" Relationship="gestadh45Model.FK_Statut_Verification" FromRole="Verification" ToRole="StatutVerification" />
+          <NavigationProperty Name="Equipement" Relationship="gestadh45Model.FK_Equipement_Verification" FromRole="Verification" ToRole="Equipement" />
+          <NavigationProperty Name="CampagneVerification" Relationship="gestadh45Model.FK_Campagne_Verification" FromRole="Verification" ToRole="CampagneVerification" />
+        </EntityType>
+        <Association Name="FK_Statut_Verification">
+          <End Type="gestadh45Model.StatutVerification" Role="StatutVerification" Multiplicity="1" />
+          <End Type="gestadh45Model.Verification" Role="Verification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatutVerification">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Verification">
+              <PropertyRef Name="ID_StatutVerification" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DureeDeVie">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="NbAnnees" Nullable="false" />
+          <Property Type="Int32" Name="NbMois" Nullable="false" />
+          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_DureeDeVie_Equipement" FromRole="DureeDeVie" ToRole="Equipement" />
+        </EntityType>
         <EntityType Name="Equipement">
           <Key>
             <PropertyRef Name="ID" />
@@ -706,41 +806,13 @@
           <Property Type="DateTime" Name="DateModification" Nullable="false" />
           <Property Type="String" Name="Commentaire" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Guid" Name="ID_Marque" Nullable="false" />
-          <NavigationProperty Name="Marque" Relationship="gestadh45Model.FK_Marque_Equipement" FromRole="Equipement" ToRole="Marque" />
           <Property Type="Guid" Name="ID_Categorie" Nullable="false" />
-          <NavigationProperty Name="Categorie" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Equipement" ToRole="Categorie" />
           <Property Type="DateTime" Name="DateMiseAuRebut" />
-          <NavigationProperty Name="Verifications" Relationship="gestadh45Model.FK_Equipement_Verification" FromRole="Equipement" ToRole="Verification" />
           <Property Type="Guid" Name="ID_DureeDeVie" Nullable="false" />
+          <NavigationProperty Name="Categorie" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Equipement" ToRole="Categorie" />
           <NavigationProperty Name="DureeDeVie" Relationship="gestadh45Model.FK_DureeDeVie_Equipement" FromRole="Equipement" ToRole="DureeDeVie" />
-        </EntityType>
-        <EntityType Name="Marque">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Guid" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_Marque_Equipement" FromRole="Marque" ToRole="Equipement" />
-        </EntityType>
-        <Association Name="FK_Marque_Equipement">
-          <End Type="gestadh45Model.Marque" Role="Marque" Multiplicity="1" />
-          <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Marque">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Equipement">
-              <PropertyRef Name="ID_Marque" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Categorie">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Guid" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Categorie" ToRole="Equipement" />
+          <NavigationProperty Name="Verifications" Relationship="gestadh45Model.FK_Equipement_Verification" FromRole="Equipement" ToRole="Verification" />
+          <NavigationProperty Name="Marque" Relationship="gestadh45Model.FK_Marque_Equipement" FromRole="Equipement" ToRole="Marque" />
         </EntityType>
         <Association Name="FK_Categorie_Equipement">
           <End Type="gestadh45Model.Categorie" Role="Categorie" Multiplicity="1" />
@@ -754,19 +826,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Verification">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Guid" Name="ID" Nullable="false" />
-          <Property Type="Guid" Name="ID_Equipement" Nullable="false" />
-          <Property Type="Guid" Name="ID_Saison" Nullable="false" />
-          <Property Type="DateTime" Name="DateVerification" Nullable="false" />
-          <Property Type="Boolean" Name="EtatOk" Nullable="false" />
-          <Property Type="String" Name="Commentaire" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Equipement" Relationship="gestadh45Model.FK_Equipement_Verification" FromRole="Verification" ToRole="Equipement" />
-          <NavigationProperty Name="Saison" Relationship="gestadh45Model.FK_Saison_Verification" FromRole="Verification" ToRole="Saison" />
-        </EntityType>
+        <Association Name="FK_DureeDeVie_Equipement">
+          <End Type="gestadh45Model.DureeDeVie" Role="DureeDeVie" Multiplicity="1" />
+          <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DureeDeVie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="ID_DureeDeVie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Equipement_Verification">
           <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="1" />
           <End Type="gestadh45Model.Verification" Role="Verification" Multiplicity="*" />
@@ -779,37 +850,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Saison_Verification">
-          <End Type="gestadh45Model.Saison" Role="Saison" Multiplicity="1" />
-          <End Type="gestadh45Model.Verification" Role="Verification" Multiplicity="*" />
+        <Association Name="FK_Marque_Equipement">
+          <End Type="gestadh45Model.Marque" Role="Marque" Multiplicity="1" />
+          <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Saison">
+            <Principal Role="Marque">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Verification">
-              <PropertyRef Name="ID_Saison" />
+            <Dependent Role="Equipement">
+              <PropertyRef Name="ID_Marque" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="DureeDeVie">
+        <EntityType Name="CampagneVerification">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Type="Guid" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="NbAnnee" Nullable="false" />
-          <Property Type="Int32" Name="NbMois" Nullable="false" />
-          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_DureeDeVie_Equipement" FromRole="DureeDeVie" ToRole="Equipement" />
+          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Responsable" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Boolean" Name="EstFermee" Nullable="false" />
+          <NavigationProperty Name="Verifications" Relationship="gestadh45Model.FK_Campagne_Verification" FromRole="CampagneVerification" ToRole="Verification" />
         </EntityType>
-        <Association Name="FK_DureeDeVie_Equipement">
-          <End Type="gestadh45Model.DureeDeVie" Role="DureeDeVie" Multiplicity="1" />
-          <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="*" />
+        <Association Name="FK_Campagne_Verification">
+          <End Type="gestadh45Model.CampagneVerification" Role="CampagneVerification" Multiplicity="1" />
+          <End Type="gestadh45Model.Verification" Role="Verification" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DureeDeVie">
+            <Principal Role="CampagneVerification">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Equipement">
-              <PropertyRef Name="ID_DureeDeVie" />
+            <Dependent Role="Verification">
+              <PropertyRef Name="ID_CampagneVerification" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -943,6 +1015,52 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Marques">
+            <EntityTypeMapping TypeName="gestadh45Model.Marque">
+              <MappingFragment StoreEntitySet="Marque">
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="gestadh45Model.Categorie">
+              <MappingFragment StoreEntitySet="Categorie">
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatutVerifications">
+            <EntityTypeMapping TypeName="gestadh45Model.StatutVerification">
+              <MappingFragment StoreEntitySet="StatutVerification">
+                <ScalarProperty Name="EstDefaut" ColumnName="EstDefaut" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Verifications">
+            <EntityTypeMapping TypeName="gestadh45Model.Verification">
+              <MappingFragment StoreEntitySet="Verification">
+                <ScalarProperty Name="ID_CampagneVerification" ColumnName="ID_CampagneVerification" />
+                <ScalarProperty Name="ID_StatutVerification" ColumnName="ID_StatutVerification" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+                <ScalarProperty Name="ID_Equipement" ColumnName="ID_Equipement" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DureeDeVies">
+            <EntityTypeMapping TypeName="gestadh45Model.DureeDeVie">
+              <MappingFragment StoreEntitySet="DureeDeVie">
+                <ScalarProperty Name="NbMois" ColumnName="NbMois" />
+                <ScalarProperty Name="NbAnnees" ColumnName="NbAnnees" />
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Equipements">
             <EntityTypeMapping TypeName="gestadh45Model.Equipement">
               <MappingFragment StoreEntitySet="Equipement">
@@ -960,39 +1078,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Marques">
-            <EntityTypeMapping TypeName="gestadh45Model.Marque">
-              <MappingFragment StoreEntitySet="Marque">
-                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="gestadh45Model.Categorie">
-              <MappingFragment StoreEntitySet="Categorie">
-                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Verifications">
-            <EntityTypeMapping TypeName="gestadh45Model.Verification">
-              <MappingFragment StoreEntitySet="Verification">
-                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
-                <ScalarProperty Name="EtatOk" ColumnName="EtatOk" />
-                <ScalarProperty Name="DateVerification" ColumnName="DateVerification" />
-                <ScalarProperty Name="ID_Saison" ColumnName="ID_Saison" />
-                <ScalarProperty Name="ID_Equipement" ColumnName="ID_Equipement" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DureeDeVies">
-            <EntityTypeMapping TypeName="gestadh45Model.DureeDeVie">
-              <MappingFragment StoreEntitySet="DureeDeVie">
-                <ScalarProperty Name="NbMois" ColumnName="NbMois" />
-                <ScalarProperty Name="NbAnnee" ColumnName="NbAnnee" />
+          <EntitySetMapping Name="CampagneVerifications">
+            <EntityTypeMapping TypeName="gestadh45Model.CampagneVerification">
+              <MappingFragment StoreEntitySet="CampagneVerification">
+                <ScalarProperty Name="EstFermee" ColumnName="EstFermee" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Responsable" ColumnName="Responsable" />
                 <ScalarProperty Name="Libelle" ColumnName="Libelle" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
@@ -1046,8 +1137,8 @@
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_Groupe_Inscription" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="16.692047526041666" />
-          <ConnectorPoint PointX="5.28125" PointY="16.692047526041666" />
-          <ConnectorPoint PointX="5.28125" PointY="7.826396484375" />
+          <ConnectorPoint PointX="6" PointY="16.692047526041666" />
+          <ConnectorPoint PointX="6" PointY="7.826396484375" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_JourSemaine_Groupe" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="15.706492513020834" />
@@ -1067,38 +1158,51 @@
           <ConnectorPoint PointX="5.46875" PointY="0.96875" />
           <ConnectorPoint PointX="5.46875" PointY="4.5" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="gestadh45Model.Equipement" Width="1.5" PointX="9.625" PointY="4" Height="2.7494921875000031" />
         <EntityTypeShape EntityType="gestadh45Model.Marque" Width="1.5" PointX="7.375" PointY="4.5" Height="1.5956835937500031" />
-        <AssociationConnector Association="gestadh45Model.FK_Marque_Equipement" >
-          <ConnectorPoint PointX="8.875" PointY="5.2978417968750016" />
-          <ConnectorPoint PointX="9.1666641666666653" PointY="5.2978417968750007" />
-          <ConnectorPoint PointX="9.3333308333333331" PointY="5.2978417968750016" />
-          <ConnectorPoint PointX="9.625" PointY="5.2978417968750016" />
-        </AssociationConnector>
         <EntityTypeShape EntityType="gestadh45Model.Categorie" Width="1.5" PointX="8.375" PointY="0.875" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="gestadh45Model.StatutVerification" Width="1.5" PointX="9.625" PointY="12.5" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="gestadh45Model.Verification" Width="1.5" PointX="11.875" PointY="4.625" Height="2.5571907552083388" />
+        <AssociationConnector Association="gestadh45Model.FK_Statut_Verification" >
+          <ConnectorPoint PointX="10.09375" PointY="12.5" />
+          <ConnectorPoint PointX="10.09375" PointY="5.5207497795170806" />
+          <ConnectorPoint PointX="10.947914666666666" PointY="5.52074977951708" />
+          <ConnectorPoint PointX="11.114581333333334" PointY="5.5207497795170806" />
+          <ConnectorPoint PointX="11.416666666666666" PointY="5.52074977951708" />
+          <ConnectorPoint PointX="11.583333333333334" PointY="5.5207497795170806" />
+          <ConnectorPoint PointX="11.875" PointY="5.5207497795170806" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="gestadh45Model.DureeDeVie" Width="1.5" PointX="8.375" PointY="17" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="gestadh45Model.Equipement" Width="1.5" PointX="10.625" PointY="0.75" Height="3.9033007812500031" />
         <AssociationConnector Association="gestadh45Model.FK_Categorie_Equipement" >
-          <ConnectorPoint PointX="9.2499975" PointY="2.4706835937500031" />
-          <ConnectorPoint PointX="9.2499975" PointY="7.0307421875000014" />
-          <ConnectorPoint PointX="9.625" PointY="7.0307421875000014" />
+          <ConnectorPoint PointX="9.875" PointY="1.672841796875" />
+          <ConnectorPoint PointX="10.625" PointY="1.672841796875" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="gestadh45Model.Verification" Width="1.5" PointX="11.875" PointY="10.25" Height="2.5571907552083388" />
-        <AssociationConnector Association="gestadh45Model.FK_Equipement_Verification" >
-          <ConnectorPoint PointX="10.375" PointY="7.90330078125" />
-          <ConnectorPoint PointX="10.375" PointY="11.528595377604169" />
-          <ConnectorPoint PointX="11.875" PointY="11.528595377604169" />
-        </AssociationConnector>
-        <AssociationConnector Association="gestadh45Model.FK_Saison_Verification" >
-          <ConnectorPoint PointX="2.25" PointY="18.747091471354164" />
-          <ConnectorPoint PointX="12.625" PointY="18.747091471354164" />
-          <ConnectorPoint PointX="12.625" PointY="12.807190755208339" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="gestadh45Model.DureeDeVie" Width="1.5" PointX="5.375" PointY="8.875" Height="1.9802864583333388" />
         <AssociationConnector Association="gestadh45Model.FK_DureeDeVie_Equipement" >
-          <ConnectorPoint PointX="6.84375" PointY="8.875" />
-          <ConnectorPoint PointX="6.84375" PointY="4.21875" />
-          <ConnectorPoint PointX="9.1666641666666653" PointY="4.2187499999999991" />
-          <ConnectorPoint PointX="9.3333308333333331" PointY="4.21875" />
-          <ConnectorPoint PointX="9.625" PointY="4.21875" />
+          <ConnectorPoint PointX="9.875" PointY="17.990143229166669" />
+          <ConnectorPoint PointX="11.5" PointY="17.990143229166669" />
+          <ConnectorPoint PointX="11.5" PointY="4.6533007812500031" />
+        </AssociationConnector>
+        <AssociationConnector Association="gestadh45Model.FK_Equipement_Verification" >
+          <ConnectorPoint PointX="11.031248" PointY="4.6533007812500031" />
+          <ConnectorPoint PointX="11.031248" PointY="6.3827222673627073" />
+          <ConnectorPoint PointX="11.416666666666666" PointY="6.3827222673627064" />
+          <ConnectorPoint PointX="11.583333333333334" PointY="6.3827222673627073" />
+          <ConnectorPoint PointX="11.875" PointY="6.3827222673627073" />
+        </AssociationConnector>
+        <AssociationConnector Association="gestadh45Model.FK_Marque_Equipement" >
+          <ConnectorPoint PointX="7.84375" PointY="4.5" />
+          <ConnectorPoint PointX="7.84375" PointY="3.516591296875" />
+          <ConnectorPoint PointX="10.625" PointY="3.516591296875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="gestadh45Model.CampagneVerification" Width="1.5" PointX="7.375" PointY="7.875" Height="2.1725878906250031" />
+        <AssociationConnector Association="gestadh45Model.FK_Campagne_Verification" >
+          <ConnectorPoint PointX="8.875" PointY="8.9612939453125016" />
+          <ConnectorPoint PointX="10.010416666666666" PointY="8.9612939453125016" />
+          <ConnectorPoint PointX="10.177083333333334" PointY="8.9612939453125016" />
+          <ConnectorPoint PointX="11.416666666666666" PointY="8.9612939453125016" />
+          <ConnectorPoint PointX="11.583333333333334" PointY="8.9612939453125016" />
+          <ConnectorPoint PointX="12.625" PointY="8.9612939453125016" />
+          <ConnectorPoint PointX="12.625" PointY="7.1821907552083326" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>
