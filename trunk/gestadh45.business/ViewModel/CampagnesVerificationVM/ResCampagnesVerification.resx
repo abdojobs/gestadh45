@@ -117,13 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ErrCommentaireRebutObligatoire" xml:space="preserve">
-    <value>Le commentaire est obligatoire en cas de mise au rebut</value>
+  <data name="ErrAucunEquipement" xml:space="preserve">
+    <value>Sélectionner au moins un équipement à vérifier</value>
   </data>
-  <data name="ErrEquipementObligatoire" xml:space="preserve">
-    <value>L'équipement est obligatoire</value>
+  <data name="ErrLibelleObligatoire" xml:space="preserve">
+    <value>Le libellé est obligatoire</value>
   </data>
-  <data name="InfoVerificationSupprimee" xml:space="preserve">
-    <value>La vérification a été supprimée</value>
+  <data name="ErrResponsableObligatoire" xml:space="preserve">
+    <value>Le responsable est obligatoire</value>
+  </data>
+  <data name="InfoCampagneVerificationSupprimee" xml:space="preserve">
+    <value>La campagne de vérification a été supprimée</value>
   </data>
 </root>

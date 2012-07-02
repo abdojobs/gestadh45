@@ -1,7 +1,7 @@
 ﻿
 namespace gestadh45.dal
 {
-	public partial class Verification
+	public partial class CampagneVerification
 	{
 		/// <summary>
 		/// Returns a <see cref="System.String"/> that represents this instance.
@@ -10,7 +10,7 @@ namespace gestadh45.dal
 		/// A <see cref="System.String"/> that represents this instance.
 		/// </returns>
 		public override string ToString() {
-			return string.Format("{0} : {1} - {2}", this.CampagneVerification.Date.ToShortDateString(), this.Equipement.Categorie.Libelle, this.Equipement.Numero);
+			return string.Format("{0} - {1}", this.Date.ToShortDateString(), this.Libelle);
 		}
 	}
 }

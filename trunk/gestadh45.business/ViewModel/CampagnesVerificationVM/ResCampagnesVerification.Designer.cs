@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gestadh45.business.ViewModel.VerificationsVM {
+namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace gestadh45.business.ViewModel.VerificationsVM {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResVerifications {
+    internal class ResCampagnesVerification {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResVerifications() {
+        internal ResCampagnesVerification() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace gestadh45.business.ViewModel.VerificationsVM {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.VerificationsVM.ResVerifications", typeof(ResVerifications).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.CampagnesVerificationVM.ResCampagnesVerification", typeof(ResCampagnesVerification).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,38 @@ namespace gestadh45.business.ViewModel.VerificationsVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le commentaire est obligatoire en cas de mise au rebut.
+        ///   Recherche une chaîne localisée semblable à Sélectionner au moins un équipement à vérifier.
         /// </summary>
-        internal static string ErrCommentaireRebutObligatoire {
+        internal static string ErrAucunEquipement {
             get {
-                return ResourceManager.GetString("ErrCommentaireRebutObligatoire", resourceCulture);
+                return ResourceManager.GetString("ErrAucunEquipement", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à L&apos;équipement est obligatoire.
+        ///   Recherche une chaîne localisée semblable à Le libellé est obligatoire.
         /// </summary>
-        internal static string ErrEquipementObligatoire {
+        internal static string ErrLibelleObligatoire {
             get {
-                return ResourceManager.GetString("ErrEquipementObligatoire", resourceCulture);
+                return ResourceManager.GetString("ErrLibelleObligatoire", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à La vérification a été supprimée.
+        ///   Recherche une chaîne localisée semblable à Le responsable est obligatoire.
         /// </summary>
-        internal static string InfoVerificationSupprimee {
+        internal static string ErrResponsableObligatoire {
             get {
-                return ResourceManager.GetString("InfoVerificationSupprimee", resourceCulture);
+                return ResourceManager.GetString("ErrResponsableObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à La campagne de vérification a été supprimée.
+        /// </summary>
+        internal static string InfoCampagneVerificationSupprimee {
+            get {
+                return ResourceManager.GetString("InfoCampagneVerificationSupprimee", resourceCulture);
             }
         }
     }

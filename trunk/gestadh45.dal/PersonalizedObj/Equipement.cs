@@ -39,13 +39,13 @@ namespace gestadh45.dal
 				DateTime dateFinDeVie;
 
 				if (this.DateAchat.HasValue) {
-					dateFinDeVie = this.DateAchat.Value.AddYears(this.DureeDeVie.NbAnnee).AddMonths(this.DureeDeVie.NbMois);
+					dateFinDeVie = this.DateAchat.Value.AddYears(this.DureeDeVie.NbAnnees).AddMonths(this.DureeDeVie.NbMois);
 				}
 				else if (this.DateMiseEnService.HasValue) {
-					dateFinDeVie = this.DateMiseEnService.Value.AddYears(this.DureeDeVie.NbAnnee).AddMonths(this.DureeDeVie.NbMois);
+					dateFinDeVie = this.DateMiseEnService.Value.AddYears(this.DureeDeVie.NbAnnees).AddMonths(this.DureeDeVie.NbMois);
 				}
 				else {
-					dateFinDeVie = this.DateCreation.AddYears(this.DureeDeVie.NbAnnee).AddMonths(this.DureeDeVie.NbMois);
+					dateFinDeVie = this.DateCreation.AddYears(this.DureeDeVie.NbAnnees).AddMonths(this.DureeDeVie.NbMois);
 				}
 
 				return dateFinDeVie;

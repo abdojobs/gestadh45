@@ -21,7 +21,7 @@ namespace gestadh45.dal
     
         public System.Guid ID { get; set; }
         public string Libelle { get; set; }
-        public int NbAnnee { get; set; }
+        public int NbAnnees { get; set; }
         public int NbMois { get; set; }
     
         public virtual ICollection<Equipement> Equipements { get; set; }

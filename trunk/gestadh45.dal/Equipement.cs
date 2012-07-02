@@ -31,10 +31,10 @@ namespace gestadh45.dal
         public Nullable<System.DateTime> DateMiseAuRebut { get; set; }
         public System.Guid ID_DureeDeVie { get; set; }
     
-        public virtual Marque Marque { get; set; }
         public virtual Categorie Categorie { get; set; }
-        public virtual ICollection<Verification> Verifications { get; set; }
         public virtual DureeDeVie DureeDeVie { get; set; }
+        public virtual ICollection<Verification> Verifications { get; set; }
+        public virtual Marque Marque { get; set; }
     }
     
 }

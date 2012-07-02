@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.CampagnesVerificationUC.FormulaireCampagneVerificationUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
+			 mc:Ignorable="d" 
+			 DataContext="{Binding Path=FormulaireCampagneVerificationVM, Source={StaticResource ResourceKey=Locator}}" 
+			 d:DesignHeight="450" d:DesignWidth="600">
+	<DockPanel>
+		<TextBlock Text="Campagne de vérification" DockPanel.Dock="Top"
+				   VerticalAlignment="Top" 
+				   Margin="0,5,0,10" TextAlignment="Center" 
+				   Style="{DynamicResource ResourceKey=titreUC}" />
+
+		<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5"
+				CodeUCParent="{x:Static business:CodesUC.ConsultationCampagnesVerification}"
+				CmdAnnuler="{Binding Path=CancelCommand}"
+				CmdEnregistrer="{Binding Path=SaveCommand}"
+				/>
+
+		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
+
+		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Libellé : " Width="100" />
+				<TextBox Text="{Binding Path=CurrentCampagneVerification.Libelle}" MaxLength="100" Width="400" />
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Responsable : " Width="100" />
+				<TextBox Text="{Binding Path=CurrentCampagneVerification.Responsable}" MaxLength="100" Width="200" />
+				<TextBlock Text="{Binding Path=CurrentCampagneVerification.Date, StringFormat='Date : {0:dd/MM/yyyy}'}" Margin="20,0,0,0" />
+			</StackPanel>
+
+			<Separator Margin="0,20,0,20" />
+
+			<ListBox Width="300" ItemsSource="{Binding Path=EquipementsInclus}" IsEnabled="False" Visibility="{Binding Path=IsEditMode, Converter={StaticResource ResourceKey=boolToVisibility}}" />
+
+			<Grid Margin="10,0,10,0" HorizontalAlignment="Center" Visibility="{Binding Path=IsEditMode, Converter={StaticResource ResourceKey=InvertAndVisibilitate}}">				
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="300" />
+					<ColumnDefinition Width="100" />
+					<ColumnDefinition Width="300" />
+				</Grid.ColumnDefinitions>
+				
+				<Grid.RowDefinitions>
+					<RowDefinition />
+					<RowDefinition MinHeight="35" />
+					<RowDefinition MinHeight="35" />
+					<RowDefinition MinHeight="35" />
+					<RowDefinition MinHeight="35" />
+				</Grid.RowDefinitions>
+
+				<TextBlock Grid.Row="0" Grid.Column="0" Text="Disponibles" HorizontalAlignment="Center" />
+				<TextBlock Grid.Row="0" Grid.Column="2" Text="Sélectionnés" HorizontalAlignment="Center" />
+				
+				<ListBox Name="lbxEquipDisponibles" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4"
+						 ItemsSource="{Binding Path=EquipementsDisponibles}"
+						/>
+
+				<ListBox Name="lbxEquipInclus" Grid.Row="1" Grid.Column="2" Grid.RowSpan="4"
+						 ItemsSource="{Binding Path=EquipementsInclus}" />
+
+				<Button Name="btnAdd" Grid.Row="1" Grid.Column="1" Width="40" Height="25" 
+						HorizontalAlignment="Center" VerticalAlignment="Center"
+						Command="{Binding Path=AddEquipementCommand}"
+						CommandParameter="{Binding ElementName=lbxEquipDisponibles, Path=SelectedItem}">
+					<TextBlock Text="&gt;" />
+				</Button>
+
+				<Button Name="btnAddAll" Grid.Row="2" Grid.Column="1" Width="40" Height="25" 
+						HorizontalAlignment="Center" VerticalAlignment="Center"
+						Command="{Binding Path=AddAllEquipementsCommand}">
+					<TextBlock Text="&gt;&gt;" />
+				</Button>
+
+				<Button Name="btnRemoveAll" Grid.Row="3" Grid.Column="1" Width="40" Height="25" 
+						HorizontalAlignment="Center"  VerticalAlignment="Center"
+						Command="{Binding Path=RemoveAllEquipementsCommand}">
+					<TextBlock Text="&lt;&lt;" />
+				</Button>
+
+				<Button Name="btnRemove" Grid.Row="4" Grid.Column="1" Width="40" Height="25" 
+						HorizontalAlignment="Center" VerticalAlignment="Center"
+						Command="{Binding Path=RemoveEquipementCommand}"
+						CommandParameter="{Binding ElementName=lbxEquipInclus, Path=SelectedItem}">
+					<TextBlock Text="&lt;" />
+				</Button>
+			</Grid>
+		</StackPanel>
+	</DockPanel>
+</UserControl>
