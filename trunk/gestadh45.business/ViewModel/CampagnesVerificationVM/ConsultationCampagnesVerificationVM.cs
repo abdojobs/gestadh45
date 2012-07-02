@@ -2,6 +2,8 @@
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
 
 namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 {
@@ -56,6 +58,7 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		public ConsultationCampagnesVerificationVM() {
 			this.CreateRepositories();
 			this.PopulateCampagnesVerification();
+			this.CreateSaisirCommand();
 		}
 		#endregion
 
@@ -124,6 +127,32 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 
 		public override void ExecuteCreateCommand() {
 			this.ShowUC(CodesUC.FormulaireCampagneVerification);
+		}
+		#endregion
+
+		#region SaisirCommand
+		public ICommand SaisirCommand { get; set; }
+
+		private void CreateSaisirCommand() {
+			this.SaisirCommand = new RelayCommand(
+				this.ExecuteSaisirCommand,
+				this.CanExecuteSaisirCommand
+			);
+		}
+
+		public bool CanExecuteSaisirCommand() {
+			return this.SelectedCampagneVerification != null && !this.SelectedCampagneVerification.EstFermee;
+		}
+
+		public void ExecuteSaisirCommand() {
+			if (this.SelectedCampagneVerification != null && !this.SelectedCampagneVerification.EstFermee) {
+				Messenger.Default.Send(
+					new NMShowUC<CampagneVerification>(
+						CodesUC.SaisieVerifications, 
+						this.SelectedCampagneVerification
+					)
+				);
+			}
 		}
 		#endregion
 	}
