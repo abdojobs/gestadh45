@@ -44,5 +44,6 @@ namespace gestadh45.business
 
 		public const string ConsultationCampagnesVerification = "ConsultationCampagnesVerification";
 		public const string FormulaireCampagneVerification = "FormulaireCampagneVerification";
+		public const string SaisieVerifications = "SaisieVerifications";
 	}
 }

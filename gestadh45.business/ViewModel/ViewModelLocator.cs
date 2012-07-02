@@ -170,20 +170,6 @@ namespace gestadh45.business.ViewModel
 		}
 		#endregion
 
-		#region VerificationsVM
-		//public static ConsultationVerificationsVM ConsultationVerificationsVM {
-		//    get {
-		//        return new ConsultationVerificationsVM();
-		//    }
-		//}
-
-		//public static FormulaireVerificationVM FormulaireVerificationVM {
-		//    get {
-		//        return new FormulaireVerificationVM();
-		//    }
-		//}
-		#endregion
-
 		#region DureesDeVieVM
 		public static ConsultationDureesDeVieVM ConsultationDureesDeVieVM {
 			get {

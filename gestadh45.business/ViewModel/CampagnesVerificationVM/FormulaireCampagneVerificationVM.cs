@@ -245,6 +245,19 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		}
 		#endregion
 
+		#region CancelCommand
+		/// <summary>
+		/// Si on annule la saisie en mode édition, il faut s'assurer de rafraîchir l'objet courant avec ses valeurs d'origine (Reload)
+		/// </summary>
+		public override void ExecuteCancelCommand() {
+			if (this.IsEditMode) {
+				this._repoCampagneVerification.Reload(this.CurrentCampagneVerification);
+			}
+
+			base.ExecuteCancelCommand();
+		}
+		#endregion
+
 		#region SaveCommand
 		public override void ExecuteSaveCommand() {
 			var errors = new List<string>();

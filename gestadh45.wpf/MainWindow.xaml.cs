@@ -102,6 +102,9 @@ namespace gestadh45.wpf
 			else if (codeUC.Equals(CodesUC.FormulaireCampagneVerification) && objetUC is CampagneVerification) {
 				this.contenu.Child = new FormulaireCampagneVerificationUC(objetUC as CampagneVerification);
 			}
+			else if (codeUC.Equals(CodesUC.SaisieVerifications) && objetUC is CampagneVerification) {
+				this.contenu.Child = new SaisieVerificationsUC(objetUC as CampagneVerification);
+			}
 		}
 
 		private void OpenWindowUC(string codeUC) {

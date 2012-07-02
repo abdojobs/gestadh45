@@ -136,11 +136,11 @@
 				</my:RibbonGroup>
 
 				<my:RibbonGroup Name="GrpVerifications" Header="Verifications">
-					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Vérifications"
+					<my:RibbonButton Command="{Binding Path=ShowUCCommand}" ToolTip="Vérifications"
 										  CommandParameter="{x:Static b:CodesUC.ConsultationCampagnesVerification}"
 										  LargeImageSource="/gestadh45.wpf;component/Images/btn_verification.png" 
 										  SmallImageSource="/gestadh45.wpf;component/Images/btn_verification.png">
-					</my:RibbonSplitButton>
+					</my:RibbonButton>
 				</my:RibbonGroup>
 			</my:RibbonTab>
 			
