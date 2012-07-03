@@ -544,9 +544,7 @@
     <Resource Include="Images\btn_save.png" />
     <Resource Include="Images\btn_saveAndJoin.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\VerificationsUC\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>del $(TargetDir)*.pdb
