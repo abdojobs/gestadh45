@@ -28,8 +28,23 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		}
 		#endregion
 
-		#region Repository
+		#region Statutsverification
+		private IOrderedEnumerable<StatutVerification> _statutsVerification;
+
+		public IOrderedEnumerable<StatutVerification> StatutsVerification {
+			get { return this._statutsVerification; }
+			set {
+				if (this._statutsVerification != value) {
+					this._statutsVerification = value;
+					this.RaisePropertyChanged(() => this.StatutsVerification);
+				}
+			}
+		}
+		#endregion
+
+		#region Repositories
 		private Repository<CampagneVerification> _repoCampagneVerification;
+		private Repository<StatutVerification> _repoStatutsVerification;
 		#endregion
 
 		#region Constructeur
@@ -38,7 +53,9 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			this.IsEditMode = true;
 
 			this._repoCampagneVerification = new Repository<CampagneVerification>(this._context);
+			this._repoStatutsVerification = new Repository<StatutVerification>(this._context);
 
+			this.StatutsVerification = this._repoStatutsVerification.GetAll().OrderBy(s => s.Libelle);
 			this.CurrentCampagneVerification = this._repoCampagneVerification.GetByKey(idCampagneVerification);
 		}
 		#endregion

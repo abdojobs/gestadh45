@@ -3,6 +3,7 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:campagneUc="clr-namespace:gestadh45.wpf.UserControls.CampagnesVerificationUC"
 			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
 			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
 			 mc:Ignorable="d" 
@@ -21,7 +22,7 @@
 
 		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 
-		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+		<StackPanel Orientation="Vertical" HorizontalAlignment="Center" MinWidth="400">
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 				<TextBlock Text="{Binding Path=CurrentCampagneVerification.Responsable, StringFormat='Responsable : {0}'}" />
 				<TextBlock Text="{Binding Path=CurrentCampagneVerification.Date, StringFormat='Date : {0:dd/MM/yyyy}'}" Margin="20,0,0,0" />
@@ -29,7 +30,18 @@
 
 			<Separator Margin="0,20,0,20" />
 
-			<ListBox ItemsSource="{Binding Path=CurrentCampagneVerification.Verifications}" />			
+			<ListBox ItemsSource="{Binding Path=CurrentCampagneVerification.Verifications}">
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal">
+							<TextBlock Text="{Binding Path=Equipement.Numero}" />
+							<ComboBox 
+								ItemsSource="{Binding Path=StatutsVerification, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type campagneUc:SaisieVerificationsUC}}}"
+								SelectedItem="{Binding Path=StatutVerification}" />
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
+			</ListBox>
 		</StackPanel>
 
 	</DockPanel>
