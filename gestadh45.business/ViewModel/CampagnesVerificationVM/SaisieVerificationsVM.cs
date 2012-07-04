@@ -55,7 +55,7 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			this._repoCampagneVerification = new Repository<CampagneVerification>(this._context);
 			this._repoStatutsVerification = new Repository<StatutVerification>(this._context);
 
-			this.StatutsVerification = this._repoStatutsVerification.GetAll().OrderBy(s => s.Libelle);
+			this.StatutsVerification = this._repoStatutsVerification.GetAll().OrderBy(s => !s.EstDefaut).ThenBy(s => s.Libelle);
 			this.CurrentCampagneVerification = this._repoCampagneVerification.GetByKey(idCampagneVerification);
 		}
 		#endregion
