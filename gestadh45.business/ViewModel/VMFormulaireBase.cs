@@ -25,23 +25,6 @@ namespace gestadh45.business.ViewModel
 		}
 		#endregion
 
-		#region Errors
-		private List<string> _errors;
-
-		/// <summary>
-		/// Obtient/Définit la liste des erreurs du formulaire
-		/// </summary>
-		public List<string> Errors {
-			get { return this._errors; }
-			set {
-				if (this._errors != value) {
-					this._errors = value;
-					this.RaisePropertyChanged(() => this.Errors);
-				}
-			}
-		}
-		#endregion
-
 		public VMFormulaireBase() {
 			this.CreateSaveCommand();
 			this.CreateCancelCommand();

@@ -120,6 +120,9 @@
   <data name="ErrAucunEquipement" xml:space="preserve">
     <value>Sélectionner au moins un équipement à vérifier</value>
   </data>
+  <data name="ErrEquipementNonVerifie" xml:space="preserve">
+    <value>Tous les équipements doivent êtres vérifiés avant de clore cette campagne</value>
+  </data>
   <data name="ErrLibelleObligatoire" xml:space="preserve">
     <value>Le libellé est obligatoire</value>
   </data>

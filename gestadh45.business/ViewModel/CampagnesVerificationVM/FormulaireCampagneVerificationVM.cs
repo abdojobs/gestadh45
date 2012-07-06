@@ -88,7 +88,8 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 
 			this._allEquipements = this._repoEquipement.GetAll().Where(e => !e.EstAuRebut).ToList();
 
-			this.FillEquipementsDisponiblesList();
+			//this.FillEquipementsDisponiblesList();
+			this.FillEquipementInclusList();
 			this.CreateCommands();
 
 			this.CurrentCampagneVerification = new CampagneVerification()

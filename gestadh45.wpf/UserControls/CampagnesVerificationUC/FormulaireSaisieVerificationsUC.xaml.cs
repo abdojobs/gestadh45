@@ -7,11 +7,11 @@ namespace gestadh45.wpf.UserControls.CampagnesVerificationUC
 	/// <summary>
 	/// Logique d'interaction pour SaisieVerificationsUC.xaml
 	/// </summary>
-	public partial class SaisieVerificationsUC : UserControl
+	public partial class FormulaireSaisieVerificationsUC : UserControl
 	{
-		public SaisieVerificationsUC(CampagneVerification campagneVerification) {
+		public FormulaireSaisieVerificationsUC(CampagneVerification campagneVerification) {
 			InitializeComponent();
-			this.DataContext = new SaisieVerificationsVM(campagneVerification.ID);
+			this.DataContext = new FormulaireSaisieVerificationsVM(campagneVerification.ID);
 		}
 	}
 }

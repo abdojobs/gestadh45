@@ -38,7 +38,7 @@
 
 			<ListBox Width="300" ItemsSource="{Binding Path=EquipementsInclus}" IsEnabled="False" Visibility="{Binding Path=IsEditMode, Converter={StaticResource ResourceKey=boolToVisibility}}" />
 
-			<Grid Margin="10,0,10,0" HorizontalAlignment="Center" Visibility="{Binding Path=IsEditMode, Converter={StaticResource ResourceKey=InvertAndVisibilitate}}">				
+			<Grid Margin="10,0,10,0" HorizontalAlignment="Center" IsEnabled="False">				
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="300" />
 					<ColumnDefinition Width="100" />
