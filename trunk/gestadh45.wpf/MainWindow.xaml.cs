@@ -102,8 +102,8 @@ namespace gestadh45.wpf
 			else if (codeUC.Equals(CodesUC.FormulaireCampagneVerification) && objetUC is CampagneVerification) {
 				this.contenu.Child = new FormulaireCampagneVerificationUC(objetUC as CampagneVerification);
 			}
-			else if (codeUC.Equals(CodesUC.SaisieVerifications) && objetUC is CampagneVerification) {
-				this.contenu.Child = new SaisieVerificationsUC(objetUC as CampagneVerification);
+			else if (codeUC.Equals(CodesUC.FormulaireSaisieVerifications) && objetUC is CampagneVerification) {
+				this.contenu.Child = new FormulaireSaisieVerificationsUC(objetUC as CampagneVerification);
 			}
 		}
 
@@ -212,14 +212,6 @@ namespace gestadh45.wpf
 				case CodesUC.FormulaireCategorie:
 					userControl = new FormulaireCategorieUC();
 					break;
-
-				//case CodesUC.ConsultationVerifications:
-				//    userControl = new ConsultationVerificationsUC();
-				//    break;
-
-				//case CodesUC.FormulaireVerification:
-				//    userControl = new FormulaireVerificationUC();
-				//    break;
 
 				case CodesUC.ConsultationDureesDeVie:
 					userControl = new ConsultationDureesDeVieUC();

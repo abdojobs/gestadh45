@@ -75,7 +75,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResCampagnesVerification.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\CampagnesVerificationVM\SaisieVerificationsVM.cs" />
+    <Compile Include="ViewModel\CampagnesVerificationVM\FormulaireSaisieVerificationsVM.cs" />
     <Compile Include="ViewModel\CategoriesVM\ConsultationCategoriesVM.cs" />
     <Compile Include="ViewModel\CategoriesVM\FormulaireCategorieVM.cs" />
     <Compile Include="ViewModel\CategoriesVM\ResCategories.Designer.cs">

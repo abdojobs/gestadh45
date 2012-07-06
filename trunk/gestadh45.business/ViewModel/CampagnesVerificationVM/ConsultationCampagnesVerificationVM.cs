@@ -107,11 +107,11 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 
 		#region EditCommand
 		public override bool CanExecuteEditCommand() {
-			return this.SelectedCampagneVerification != null;
+			return this.SelectedCampagneVerification != null && !this.SelectedCampagneVerification.EstFermee;
 		}
 
 		public override void ExecuteEditCommand() {
-			if (this.SelectedCampagneVerification != null) {
+			if (this.SelectedCampagneVerification != null && !this.SelectedCampagneVerification.EstFermee) {
 				Messenger.Default.Send<NMShowUC<CampagneVerification>>(
 					new NMShowUC<CampagneVerification>(CodesUC.FormulaireCampagneVerification, this.SelectedCampagneVerification)
 				);
@@ -148,7 +148,7 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			if (this.SelectedCampagneVerification != null && !this.SelectedCampagneVerification.EstFermee) {
 				Messenger.Default.Send(
 					new NMShowUC<CampagneVerification>(
-						CodesUC.SaisieVerifications, 
+						CodesUC.FormulaireSaisieVerifications, 
 						this.SelectedCampagneVerification
 					)
 				);

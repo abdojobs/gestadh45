@@ -152,8 +152,8 @@
     <Compile Include="UserControls\CampagnesVerificationUC\FormulaireCampagneVerificationUC.xaml.cs">
       <DependentUpon>FormulaireCampagneVerificationUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CampagnesVerificationUC\SaisieVerificationsUC.xaml.cs">
-      <DependentUpon>SaisieVerificationsUC.xaml</DependentUpon>
+    <Compile Include="UserControls\CampagnesVerificationUC\FormulaireSaisieVerificationsUC.xaml.cs">
+      <DependentUpon>FormulaireSaisieVerificationsUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\CategoriesUC\ConsultationCategoriesUC.xaml.cs">
       <DependentUpon>ConsultationCategoriesUC.xaml</DependentUpon>
@@ -269,7 +269,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\CampagnesVerificationUC\SaisieVerificationsUC.xaml">
+    <Page Include="UserControls\CampagnesVerificationUC\FormulaireSaisieVerificationsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -538,6 +538,7 @@
     <Content Include="gestadh45.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\btn_lock.png" />
     <Resource Include="Images\btn_warning.png" />
     <Resource Include="Images\btn_configuration.png" />
     <Resource Include="Images\btn_tranchesAge.png" />
