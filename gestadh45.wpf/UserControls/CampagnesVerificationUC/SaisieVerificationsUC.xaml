@@ -34,11 +34,14 @@
 				<ListBox Name="lbxVerifications" Width="300" 
 						 ItemsSource="{Binding Path=CurrentCampagneVerification.Verifications}" />
 
-				<StackPanel Orientation="Vertical">
+				<StackPanel Orientation="Vertical" Width="150" Margin="20,0,0,0">
 					<TextBlock Text="{Binding ElementName=lbxVerifications, Path=SelectedItem.Equipement}" />
 					<ComboBox 
 						ItemsSource="{Binding Path=StatutsVerification}"
 						SelectedItem="{Binding ElementName=lbxVerifications, Path=SelectedItem.StatutVerification}" />
+					
+					<TextBox Width="150" Height="150"
+						Text="{Binding ElementName=lbxVerifications, Path=SelectedItem.Commentaire}" AcceptsReturn="True" />
 				</StackPanel>
 			</StackPanel>
 
