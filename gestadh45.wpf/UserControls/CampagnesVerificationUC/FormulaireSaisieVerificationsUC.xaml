@@ -41,7 +41,8 @@
 			
 			<StackPanel Orientation="Horizontal">
 				<ListBox Name="lbxVerifications" Width="300" 
-						 ItemsSource="{Binding Path=CurrentCampagneVerification.Verifications}" />
+						 ItemsSource="{Binding Path=CurrentCampagneVerification.Verifications}"
+						 DisplayMemberPath="Equipement"/>
 
 				<StackPanel Orientation="Vertical" Width="150" Margin="20,0,0,0">
 					<TextBlock Text="{Binding ElementName=lbxVerifications, Path=SelectedItem.Equipement}" />
