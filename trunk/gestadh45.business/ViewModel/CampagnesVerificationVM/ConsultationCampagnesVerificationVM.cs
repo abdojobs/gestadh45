@@ -87,8 +87,8 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		public override void ExecuteDeleteCommand() {
 			if (this.SelectedCampagneVerification != null) {
 				// suppression des verifications associées
-				for (int i = 0; i < this.SelectedCampagneVerification.Verifications.Count; i++) {
-					this._repoVerifications.Delete(this.SelectedCampagneVerification.Verifications.ElementAt(i));
+				while (this.SelectedCampagneVerification.Verifications.Count > 0) {
+					this._repoVerifications.Delete(this.SelectedCampagneVerification.Verifications.First());
 				}
 
 				this._repoVerifications.Save();
