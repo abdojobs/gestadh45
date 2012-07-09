@@ -36,59 +36,7 @@
 
 			<Separator Margin="0,20,0,20" />
 
-			<ListBox Width="300" ItemsSource="{Binding Path=EquipementsInclus}" IsEnabled="False" Visibility="{Binding Path=IsEditMode, Converter={StaticResource ResourceKey=boolToVisibility}}" />
-
-			<Grid Margin="10,0,10,0" HorizontalAlignment="Center" IsEnabled="False">				
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="300" />
-					<ColumnDefinition Width="100" />
-					<ColumnDefinition Width="300" />
-				</Grid.ColumnDefinitions>
-				
-				<Grid.RowDefinitions>
-					<RowDefinition />
-					<RowDefinition MinHeight="35" />
-					<RowDefinition MinHeight="35" />
-					<RowDefinition MinHeight="35" />
-					<RowDefinition MinHeight="35" />
-				</Grid.RowDefinitions>
-
-				<TextBlock Grid.Row="0" Grid.Column="0" Text="Disponibles" HorizontalAlignment="Center" />
-				<TextBlock Grid.Row="0" Grid.Column="2" Text="Sélectionnés" HorizontalAlignment="Center" />
-				
-				<ListBox Name="lbxEquipDisponibles" Grid.Row="1" Grid.Column="0" Grid.RowSpan="4"
-						 ItemsSource="{Binding Path=EquipementsDisponibles}"
-						/>
-
-				<ListBox Name="lbxEquipInclus" Grid.Row="1" Grid.Column="2" Grid.RowSpan="4"
-						 ItemsSource="{Binding Path=EquipementsInclus}" />
-
-				<Button Name="btnAdd" Grid.Row="1" Grid.Column="1" Width="40" Height="25" 
-						HorizontalAlignment="Center" VerticalAlignment="Center"
-						Command="{Binding Path=AddEquipementCommand}"
-						CommandParameter="{Binding ElementName=lbxEquipDisponibles, Path=SelectedItem}">
-					<TextBlock Text="&gt;" />
-				</Button>
-
-				<Button Name="btnAddAll" Grid.Row="2" Grid.Column="1" Width="40" Height="25" 
-						HorizontalAlignment="Center" VerticalAlignment="Center"
-						Command="{Binding Path=AddAllEquipementsCommand}">
-					<TextBlock Text="&gt;&gt;" />
-				</Button>
-
-				<Button Name="btnRemoveAll" Grid.Row="3" Grid.Column="1" Width="40" Height="25" 
-						HorizontalAlignment="Center"  VerticalAlignment="Center"
-						Command="{Binding Path=RemoveAllEquipementsCommand}">
-					<TextBlock Text="&lt;&lt;" />
-				</Button>
-
-				<Button Name="btnRemove" Grid.Row="4" Grid.Column="1" Width="40" Height="25" 
-						HorizontalAlignment="Center" VerticalAlignment="Center"
-						Command="{Binding Path=RemoveEquipementCommand}"
-						CommandParameter="{Binding ElementName=lbxEquipInclus, Path=SelectedItem}">
-					<TextBlock Text="&lt;" />
-				</Button>
-			</Grid>
+			<ListBox Width="300" ItemsSource="{Binding Path=EquipementsInclus}" IsEnabled="False" MinHeight="200" />
 		</StackPanel>
 	</DockPanel>
 </UserControl>

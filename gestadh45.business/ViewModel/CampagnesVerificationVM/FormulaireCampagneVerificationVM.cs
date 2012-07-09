@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using gestadh45.dal;
 
 namespace gestadh45.business.ViewModel.CampagnesVerificationVM
@@ -25,26 +23,6 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 				if (this._currentCampagneVerification != value) {
 					this._currentCampagneVerification = value;
 					this.RaisePropertyChanged(() => this.CurrentCampagneVerification);
-				}
-			}
-		}
-		#endregion
-
-		#region EquipementsDisponibles
-		private ObservableCollection<Equipement> _equipementsDisponibles;
-
-		/// <summary>
-		/// Gets or sets the equipements disponibles.
-		/// </summary>
-		/// <value>
-		/// The equipements disponibles.
-		/// </value>
-		public ObservableCollection<Equipement> EquipementsDisponibles {
-			get { return this._equipementsDisponibles; }
-			set {
-				if (this._equipementsDisponibles != value) {
-					this._equipementsDisponibles = value;
-					this.RaisePropertyChanged(() => this.EquipementsDisponibles);
 				}
 			}
 		}
@@ -77,8 +55,6 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		private Repository<Verification> _repoVerifications;
 		#endregion
 
-		private IList<Equipement> _allEquipements;
-
 		#region constructeurs
 		public FormulaireCampagneVerificationVM() {
 			this.UCParentCode = CodesUC.ConsultationCampagnesVerification;
@@ -86,16 +62,14 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 
 			this.CreateRepositories();
 
-			this._allEquipements = this._repoEquipement.GetAll().Where(e => !e.EstAuRebut).ToList();
-
-			//this.FillEquipementsDisponiblesList();
-			this.FillEquipementInclusList();
-			this.CreateCommands();
-
 			this.CurrentCampagneVerification = new CampagneVerification()
 			{
 				Date = DateTime.Now
 			};
+
+			this.EquipementsInclus = new ObservableCollection<Equipement>(
+				this._repoEquipement.GetAll().Where(e => !e.EstAuRebut).ToList()
+			);
 		}
 
 		/// <summary>
@@ -107,16 +81,13 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			this.IsEditMode = true;
 
 			this.CreateRepositories();
-			this.CreateCommands();
 
 			this.CurrentCampagneVerification = this._repoCampagneVerification.GetByKey(idCampagneVerification);
 
-			this._allEquipements = new List<Equipement>();
+			this.EquipementsInclus = new ObservableCollection<Equipement>();
 			foreach (var verif in this.CurrentCampagneVerification.Verifications) {
-				this._allEquipements.Add(verif.Equipement);
+				this.EquipementsInclus.Add(verif.Equipement);
 			}
-
-			this.FillEquipementInclusList();
 		}
 		#endregion
 
@@ -125,16 +96,6 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			this._repoEquipement = new Repository<Equipement>(this._context);
 			this._repoStatutsVerifications = new Repository<StatutVerification>(this._context);
 			this._repoVerifications = new Repository<Verification>(this._context);
-		}
-
-		private void FillEquipementsDisponiblesList() {
-			this.EquipementsDisponibles = new ObservableCollection<Equipement>(this._allEquipements);
-			this.EquipementsInclus = new ObservableCollection<Equipement>();
-		}
-
-		private void FillEquipementInclusList() {
-			this.EquipementsDisponibles = new ObservableCollection<Equipement>();
-			this.EquipementsInclus = new ObservableCollection<Equipement>(this._allEquipements);
 		}
 
 		protected override bool CheckFormValidity(List<string> errors) {			
@@ -152,99 +113,6 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 
 			return errors.Count == 0;
 		}
-
-		private void CreateCommands() {
-			this.CreateAddEquipementCommand();
-			this.CreateAddAllEquipementsCommand();
-			this.CreateRemoveEquipementCommand();
-			this.CreateRemoveAllEquipementsCommand();
-		}
-
-		#region AddEquipementCommand
-		public ICommand AddEquipementCommand { get; set; }
-
-		private void CreateAddEquipementCommand() {
-			this.AddEquipementCommand = new RelayCommand<Equipement>(
-				this.ExecuteAddEquipementCommand,
-				this.CanExecuteAddEquipementCommand
-			);
-		}
-
-		public bool CanExecuteAddEquipementCommand(Equipement equip) {
-			return !this.IsEditMode && equip != null;
-		}
-
-		public void ExecuteAddEquipementCommand(Equipement equip) {
-			if (!this.IsEditMode && equip != null) {
-				this.EquipementsDisponibles.Remove(equip);
-				this.EquipementsInclus.Add(equip);
-			}
-		}
-		#endregion
-
-		#region AddAllEquipementsCommand
-		public ICommand AddAllEquipementsCommand { get; set; }
-
-		private void CreateAddAllEquipementsCommand() {
-			this.AddAllEquipementsCommand = new RelayCommand(
-				this.ExecuteAddAllEquipementsCommand,
-				this.CanExecuteAddAllEquipementsCommand
-			);
-		}
-
-		public bool CanExecuteAddAllEquipementsCommand() {
-			return !this.IsEditMode;
-		}
-
-		public void ExecuteAddAllEquipementsCommand() {
-			if (!this.IsEditMode) {
-				this.FillEquipementInclusList();
-			}
-		}
-		#endregion
-
-		#region RemoveEquipementCommand
-		public ICommand RemoveEquipementCommand { get; set; }
-
-		private void CreateRemoveEquipementCommand() {
-			this.RemoveEquipementCommand = new RelayCommand<Equipement>(
-				this.ExecuteRemoveEquipementCommand,
-				this.CanExecuteRemoveEquipementCommand
-			);
-		}
-
-		public bool CanExecuteRemoveEquipementCommand(Equipement equip) {
-			return !this.IsEditMode && equip != null;
-		}
-
-		public void ExecuteRemoveEquipementCommand(Equipement equip) {
-			if (!this.IsEditMode && equip != null) {
-				this.EquipementsInclus.Remove(equip);
-				this.EquipementsDisponibles.Add(equip);
-			}
-		}
-		#endregion
-
-		#region RemoveAllEquipementsCommand
-		public ICommand RemoveAllEquipementsCommand { get; set; }
-
-		private void CreateRemoveAllEquipementsCommand() {
-			this.RemoveAllEquipementsCommand = new RelayCommand(
-				this.ExecuteRemoveAllEquipementsCommand,
-				this.CanExecuteRemoveAllEquipementsCommand
-			);
-		}
-
-		public bool CanExecuteRemoveAllEquipementsCommand() {
-			return !this.IsEditMode;
-		}
-
-		public void ExecuteRemoveAllEquipementsCommand() {
-			if (!this.IsEditMode) {
-				this.FillEquipementsDisponiblesList();
-			}
-		}
-		#endregion
 
 		#region CancelCommand
 		/// <summary>
