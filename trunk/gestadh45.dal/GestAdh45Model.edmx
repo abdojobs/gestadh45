@@ -234,6 +234,8 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="EstDefaut" Type="bit" Nullable="false" />
+          <Property Name="CommentaireObligatoire" Type="bit" Nullable="false" />
+          <Property Name="CodeCouleur" Type="nvarchar" Nullable="false" MaxLength="7" />
         </EntityType>
         <EntityType Name="TrancheAge">
           <Key>
@@ -758,6 +760,8 @@
           <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="EstDefaut" Nullable="false" />
           <NavigationProperty Name="Verifications" Relationship="gestadh45Model.FK_Statut_Verification" FromRole="StatutVerification" ToRole="Verification" />
+          <Property Type="Boolean" Name="CommentaireObligatoire" Nullable="false" />
+          <Property Type="String" Name="CodeCouleur" Nullable="false" MaxLength="7" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Verification">
           <Key>
@@ -1034,6 +1038,8 @@
           <EntitySetMapping Name="StatutVerifications">
             <EntityTypeMapping TypeName="gestadh45Model.StatutVerification">
               <MappingFragment StoreEntitySet="StatutVerification">
+                <ScalarProperty Name="CodeCouleur" ColumnName="CodeCouleur" />
+                <ScalarProperty Name="CommentaireObligatoire" ColumnName="CommentaireObligatoire" />
                 <ScalarProperty Name="EstDefaut" ColumnName="EstDefaut" />
                 <ScalarProperty Name="Libelle" ColumnName="Libelle" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

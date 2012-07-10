@@ -98,6 +98,13 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			this._repoVerifications = new Repository<Verification>(this._context);
 		}
 
+		protected override bool CurrentElementExists() {
+			return this._repoCampagneVerification.GetAll().Count(
+				c => c.Libelle.ToUpperInvariant().Equals(this.CurrentCampagneVerification.Libelle.ToUpperInvariant())
+					&& c.Date.Equals(this.CurrentCampagneVerification.Date)
+			) > 0;
+		}
+
 		protected override bool CheckFormValidity(List<string> errors) {			
 			if (string.IsNullOrWhiteSpace(this.CurrentCampagneVerification.Libelle)) {
 				errors.Add(ResCampagnesVerification.ErrLibelleObligatoire);
@@ -109,6 +116,10 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 
 			if (!this.IsEditMode && this.EquipementsInclus.Count == 0) {
 				errors.Add(ResCampagnesVerification.ErrAucunEquipement);
+			}
+
+			if (this.CurrentElementExists()) {
+				errors.Add(ResCampagnesVerification.ErrCampagneExiste);
 			}
 
 			return errors.Count == 0;

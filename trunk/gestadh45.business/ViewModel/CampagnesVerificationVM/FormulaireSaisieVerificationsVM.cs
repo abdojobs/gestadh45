@@ -65,10 +65,20 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		#endregion
 
 		protected override bool CheckFormValidity(List<string> errors) {
+			foreach (Verification verif in this.CurrentCampagneVerification.Verifications) {
+				if (verif.StatutVerification.CommentaireObligatoire && string.IsNullOrWhiteSpace(verif.Commentaire)) {
+					errors.Add(string.Format(ResCampagnesVerification.ErrCommentaireObligatoire, verif.Equipement.ToString()));
+				}
+			}
+			
+			return errors.Count == 0;
+		}
+
+		private bool CheckCloseConditions(List<string> errors) {
 			if (this.CurrentCampagneVerification.Verifications.Count(v => v.StatutVerification.EstDefaut) > 0) {
 				errors.Add(ResCampagnesVerification.ErrEquipementNonVerifie);
 			}
-			
+
 			return errors.Count == 0;
 		}
 
@@ -87,10 +97,17 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 
 		#region SaveCommand
 		public override void ExecuteSaveCommand() {
-			this._repoCampagneVerification.Edit(this.CurrentCampagneVerification);
-			this._repoCampagneVerification.Save();
-			
-			base.ExecuteSaveCommand();
+			var errors = new List<string>();
+
+			if (this.CheckFormValidity(errors)) {
+				this._repoCampagneVerification.Edit(this.CurrentCampagneVerification);
+				this._repoCampagneVerification.Save();
+
+				base.ExecuteSaveCommand();
+			}
+			else {
+				this.ShowUserNotifications(errors);
+			}
 		}
 		#endregion
 
@@ -111,7 +128,7 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		public void ExecuteClotureCommand() {
 			var errors = new List<string>();
 
-			if (this.CheckFormValidity(errors)) {
+			if (this.CheckCloseConditions(errors)) {
 				this.CurrentCampagneVerification.EstFermee = true;
 				this.ExecuteSaveCommand();
 			}

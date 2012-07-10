@@ -22,6 +22,8 @@ namespace gestadh45.dal
         public System.Guid ID { get; set; }
         public string Libelle { get; set; }
         public bool EstDefaut { get; set; }
+        public bool CommentaireObligatoire { get; set; }
+        public string CodeCouleur { get; set; }
     
         public virtual ICollection<Verification> Verifications { get; set; }
     }
