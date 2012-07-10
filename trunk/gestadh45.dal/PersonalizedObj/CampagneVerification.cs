@@ -12,5 +12,19 @@ namespace gestadh45.dal
 		public override string ToString() {
 			return string.Format("{0} - {1}", this.Date.ToShortDateString(), this.Libelle);
 		}
+
+		/// <summary>
+		/// Obtient le nombre d'équipements (vérificatioons) inclus dans cette campagne
+		/// </summary>
+		public int NbEquipements {
+			get { return this.Verifications.Count; }
+		}
+
+		/// <summary>
+		/// Obtient un libellé définissant le statut (Ouverte/Fermée)
+		/// </summary>
+		public string LibelleStatut {
+			get { return this.EstFermee ? "Fermée" : "Ouverte"; }
+		}
 	}
 }

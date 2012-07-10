@@ -14,6 +14,15 @@
 				   Margin="0,5,0,10" TextAlignment="Center" 
 				   Style="{DynamicResource ResourceKey=titreUC}" />
 
+		<StackPanel Orientation="Horizontal" Margin="0,5,0,5" DockPanel.Dock="Top">
+			<TextBlock Text="{Binding Path=CurrentCampagneVerification.Responsable, StringFormat='Responsable : {0}'}" />
+			<TextBlock Text="{Binding Path=CurrentCampagneVerification.Date, StringFormat='Date : {0:dd/MM/yyyy}'}" Margin="20,0,0,0" />
+		</StackPanel>
+
+		<ListBox Name="lbxVerifications" Width="300" DockPanel.Dock="Left"
+						 ItemsSource="{Binding Path=CurrentCampagneVerification.Verifications}"
+						 DisplayMemberPath="Equipement"/>
+		
 		<StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5">
 			<uc:BtnAnnulerEnregistrerUC
 				CodeUCParent="{x:Static business:CodesUC.ConsultationCampagnesVerification}"
@@ -26,35 +35,25 @@
 			<Button Width="30" Height="30" Command="{Binding Path=ClotureCommand}">
 				<Image Source="/gestadh45.wpf;component/Images/btn_lock.png" />
 			</Button>
-		</StackPanel>
-		
+		</StackPanel>		
 
 		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 
-		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
-				<TextBlock Text="{Binding Path=CurrentCampagneVerification.Responsable, StringFormat='Responsable : {0}'}" />
-				<TextBlock Text="{Binding Path=CurrentCampagneVerification.Date, StringFormat='Date : {0:dd/MM/yyyy}'}" Margin="20,0,0,0" />
-			</StackPanel>
-
-			<Separator Margin="0,20,0,20" />
-			
-			<StackPanel Orientation="Horizontal">
-				<ListBox Name="lbxVerifications" Width="300" 
-						 ItemsSource="{Binding Path=CurrentCampagneVerification.Verifications}"
-						 DisplayMemberPath="Equipement"/>
-
-				<StackPanel Orientation="Vertical" Width="150" Margin="20,0,0,0">
-					<TextBlock Text="{Binding ElementName=lbxVerifications, Path=SelectedItem.Equipement}" />
-					<ComboBox 
-						ItemsSource="{Binding Path=StatutsVerification}"
-						SelectedItem="{Binding ElementName=lbxVerifications, Path=SelectedItem.StatutVerification}" />
+		<StackPanel Orientation="Vertical" Margin="20,0,0,0">
+			<TextBlock Margin="0,0,0,10" FontWeight="Bold"
+				Text="{Binding ElementName=lbxVerifications, Path=SelectedItem.Equipement}" />
 					
-					<TextBox Width="150" Height="150"
-						Text="{Binding ElementName=lbxVerifications, Path=SelectedItem.Commentaire}" AcceptsReturn="True" />
-				</StackPanel>
-			</StackPanel>
-
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Etat : " VerticalAlignment="Center" />
+				<ComboBox Width="150" Margin="5,0,0,0"
+					ItemsSource="{Binding Path=StatutsVerification}"
+					SelectedItem="{Binding ElementName=lbxVerifications, Path=SelectedItem.StatutVerification}" />
+			</StackPanel>					
+					
+			<TextBlock Text="Commentaire : " Margin="0,10,0,0" />
+					
+			<TextBox Height="50"
+				Text="{Binding ElementName=lbxVerifications, Path=SelectedItem.Commentaire}" AcceptsReturn="True" />
 		</StackPanel>
 
 	</DockPanel>
