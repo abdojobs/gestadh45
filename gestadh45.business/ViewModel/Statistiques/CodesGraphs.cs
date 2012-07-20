@@ -7,5 +7,6 @@ namespace gestadh45.business.ViewModel.Statistiques
 		public const string RepartitionHommesFemmes = "RepartitionHommesFemmes";
 		public const string RepartitionMajeursMineurs = "RepartitionMajeursMineurs";
 		public const string RepartitionResidentsExterieurs = "RepartitionResidentsExterieurs";
+		public const string RepartitionAdherentsVilles = "RepartitionAdherentsVilles";
 	}
 }

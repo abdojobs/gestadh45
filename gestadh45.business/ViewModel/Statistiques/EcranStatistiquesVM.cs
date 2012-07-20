@@ -83,6 +83,7 @@ namespace gestadh45.business.ViewModel.Statistiques
 		private Repository<Groupe> repoGroupes;
 		private Repository<Sexe> repoSexes;
 		private Repository<InfosClub> repoInfosClub;
+		private Repository<Ville> _repoVilles;
 		#endregion
 
 		#region private fields
@@ -95,6 +96,7 @@ namespace gestadh45.business.ViewModel.Statistiques
 			this.repoGroupes = new Repository<Groupe>(this._context);
 			this.repoSexes = new Repository<Sexe>(this._context);
 			this.repoInfosClub = new Repository<InfosClub>(this._context);
+			this._repoVilles = new Repository<Ville>(this._context);
 
 			this._groupesSaisonCourante = this.repoGroupes.GetAll()
 				.Where(grp => grp.Saison.EstSaisonCourante)
@@ -147,6 +149,10 @@ namespace gestadh45.business.ViewModel.Statistiques
 					this.ChartKeysValues = this.GetRepartitionResidentsExterieurs();
 					break;
 
+				case CodesGraphs.RepartitionAdherentsVilles:
+					this.ChartKeysValues = this.GetRepartitionAdherentsVilles();
+					break;
+
 				default:
 					this.ChartKeysValues.Clear();
 					this.ChartKeysValues = null;
@@ -161,6 +167,7 @@ namespace gestadh45.business.ViewModel.Statistiques
 			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionHommesFemmes));
 			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionMajeursMineurs));
 			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionResidentsExterieurs));
+			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionAdherentsVilles));
 		}
 
 		#region Alimentation des graphs
@@ -214,6 +221,17 @@ namespace gestadh45.business.ViewModel.Statistiques
 
 			keyValues.Add(new KeyValuePair<string, int>(RessourcesStats.LibelleResidents, nbResidents));
 			keyValues.Add(new KeyValuePair<string, int>(RessourcesStats.LibelleExtérieurs, nbExterieurs));
+
+			return keyValues;
+		}
+
+		private List<KeyValuePair<string, int>> GetRepartitionAdherentsVilles() {
+			List<KeyValuePair<string, int>> keyValues = new List<KeyValuePair<string, int>>();
+
+			foreach (Ville ville in this._repoVilles.GetAll()) {
+				var nbAdh = this._inscriptionsSaisonCourante.Count(i => i.Adherent.Ville.ID == ville.ID);
+				keyValues.Add(new KeyValuePair<string, int>(ville.Libelle, nbAdh));
+			}
 
 			return keyValues;
 		}
