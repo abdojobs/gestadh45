@@ -126,7 +126,6 @@
     <Compile Include="AboutBox.xaml.cs">
       <DependentUpon>AboutBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="EcranRepartitionAdherents.cs" />
     <Compile Include="Tools\BooleanInversionConverter.cs" />
     <Compile Include="Tools\BooleanToBrushConverter.cs" />
     <Compile Include="Tools\HexaColorStringToBrushConverter.cs" />
