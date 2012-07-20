@@ -132,6 +132,9 @@
   <data name="RemplissageGroupes" xml:space="preserve">
     <value>Remplissage des groupes</value>
   </data>
+  <data name="RepartitionAdherentsVilles" xml:space="preserve">
+    <value>Répartition des adhérents par ville</value>
+  </data>
   <data name="RepartitionHommesFemmes" xml:space="preserve">
     <value>Répartition H/F</value>
   </data>
