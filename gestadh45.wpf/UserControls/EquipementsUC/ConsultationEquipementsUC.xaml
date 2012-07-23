@@ -78,7 +78,6 @@
 					<TextBlock Style="{DynamicResource ResourceKey=labelForm}" Text="{Binding Path=SelectedEquipement}" />
 					<TextBlock Text="{Binding Path=SelectedEquipement.DateAchat, StringFormat='Acheté le : {0:dd/MM/yyyy}'}" />
 					<TextBlock Text="{Binding Path=SelectedEquipement.DateMiseEnService, StringFormat='Mis en service le : {0:dd/MM/yyyy}'}" />
-					<TextBlock Text="{Binding Path=SelectedEquipement.DateMiseAuRebut, StringFormat='Mis au rebut le : {0:dd/MM/yyyy}'}" />
 				</StackPanel>
 			</GroupBox>
 

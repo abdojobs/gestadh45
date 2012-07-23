@@ -86,13 +86,6 @@
 				</Button>
 			</StackPanel>
 
-			<TextBlock Grid.Row="2" Grid.Column="2" Margin="20,0,0,0"
-					   Text="Date de mise au rebut : " VerticalAlignment="Center" />
-			<DatePicker Grid.Row="2" Grid.Column="3" 
-								DisplayDate="{Binding Path=CurrentEquipement.DateMiseAuRebut}" 
-								SelectedDate="{Binding Path=CurrentEquipement.DateMiseAuRebut}"
-								SelectedDateFormat="Short" />
-
 			<TextBlock Grid.Row="3" Grid.Column="0" Text="Durée de vie : " 
 					   VerticalAlignment="Center"
 					   Margin="0,5,0,5"/>

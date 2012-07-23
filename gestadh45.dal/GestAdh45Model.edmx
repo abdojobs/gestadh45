@@ -140,7 +140,6 @@
           <Property Name="Commentaire" Type="ntext" />
           <Property Name="ID_Marque" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ID_Categorie" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="DateMiseAuRebut" Type="datetime" />
           <Property Name="ID_DureeDeVie" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Groupe">
@@ -236,6 +235,7 @@
           <Property Name="EstDefaut" Type="bit" Nullable="false" />
           <Property Name="CommentaireObligatoire" Type="bit" Nullable="false" />
           <Property Name="CodeCouleur" Type="nvarchar" Nullable="false" MaxLength="7" />
+          <Property Name="EstActif" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TrancheAge">
           <Key>
@@ -762,6 +762,7 @@
           <NavigationProperty Name="Verifications" Relationship="gestadh45Model.FK_Statut_Verification" FromRole="StatutVerification" ToRole="Verification" />
           <Property Type="Boolean" Name="CommentaireObligatoire" Nullable="false" />
           <Property Type="String" Name="CodeCouleur" Nullable="false" MaxLength="7" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="EstActif" Nullable="false" />
         </EntityType>
         <EntityType Name="Verification">
           <Key>
@@ -811,7 +812,6 @@
           <Property Type="String" Name="Commentaire" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Guid" Name="ID_Marque" Nullable="false" />
           <Property Type="Guid" Name="ID_Categorie" Nullable="false" />
-          <Property Type="DateTime" Name="DateMiseAuRebut" />
           <Property Type="Guid" Name="ID_DureeDeVie" Nullable="false" />
           <NavigationProperty Name="Categorie" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Equipement" ToRole="Categorie" />
           <NavigationProperty Name="DureeDeVie" Relationship="gestadh45Model.FK_DureeDeVie_Equipement" FromRole="Equipement" ToRole="DureeDeVie" />
@@ -1038,6 +1038,7 @@
           <EntitySetMapping Name="StatutVerifications">
             <EntityTypeMapping TypeName="gestadh45Model.StatutVerification">
               <MappingFragment StoreEntitySet="StatutVerification">
+                <ScalarProperty Name="EstActif" ColumnName="EstActif" />
                 <ScalarProperty Name="CodeCouleur" ColumnName="CodeCouleur" />
                 <ScalarProperty Name="CommentaireObligatoire" ColumnName="CommentaireObligatoire" />
                 <ScalarProperty Name="EstDefaut" ColumnName="EstDefaut" />
@@ -1071,7 +1072,6 @@
             <EntityTypeMapping TypeName="gestadh45Model.Equipement">
               <MappingFragment StoreEntitySet="Equipement">
                 <ScalarProperty Name="ID_DureeDeVie" ColumnName="ID_DureeDeVie" />
-                <ScalarProperty Name="DateMiseAuRebut" ColumnName="DateMiseAuRebut" />
                 <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
                 <ScalarProperty Name="ID_Marque" ColumnName="ID_Marque" />
                 <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
@@ -1170,35 +1170,35 @@
         <EntityTypeShape EntityType="gestadh45Model.Verification" Width="1.5" PointX="11.875" PointY="4.625" Height="2.5571907552083388" />
         <AssociationConnector Association="gestadh45Model.FK_Statut_Verification" >
           <ConnectorPoint PointX="10.09375" PointY="12.5" />
-          <ConnectorPoint PointX="10.09375" PointY="5.5207497795170806" />
-          <ConnectorPoint PointX="10.947914666666666" PointY="5.52074977951708" />
-          <ConnectorPoint PointX="11.114581333333334" PointY="5.5207497795170806" />
-          <ConnectorPoint PointX="11.416666666666666" PointY="5.52074977951708" />
-          <ConnectorPoint PointX="11.583333333333334" PointY="5.5207497795170806" />
-          <ConnectorPoint PointX="11.875" PointY="5.5207497795170806" />
+          <ConnectorPoint PointX="10.09375" PointY="5.5180090243063544" />
+          <ConnectorPoint PointX="10.947914666666666" PointY="5.5180090243063535" />
+          <ConnectorPoint PointX="11.114581333333334" PointY="5.5180090243063544" />
+          <ConnectorPoint PointX="11.416666666666666" PointY="5.5180090243063535" />
+          <ConnectorPoint PointX="11.583333333333334" PointY="5.5180090243063544" />
+          <ConnectorPoint PointX="11.875" PointY="5.5180090243063544" />
         </AssociationConnector>
         <EntityTypeShape EntityType="gestadh45Model.DureeDeVie" Width="1.5" PointX="8.375" PointY="17" Height="1.9802864583333388" />
-        <EntityTypeShape EntityType="gestadh45Model.Equipement" Width="1.5" PointX="10.625" PointY="0.75" Height="3.9033007812500031" />
+        <EntityTypeShape EntityType="gestadh45Model.Equipement" Width="1.5" PointX="10.625" PointY="0.75" Height="3.7109993489583326" />
         <AssociationConnector Association="gestadh45Model.FK_Categorie_Equipement" >
-          <ConnectorPoint PointX="9.875" PointY="1.672841796875" />
-          <ConnectorPoint PointX="10.625" PointY="1.672841796875" />
+          <ConnectorPoint PointX="9.875" PointY="1.6728417968750016" />
+          <ConnectorPoint PointX="10.625" PointY="1.6728417968750016" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_DureeDeVie_Equipement" >
           <ConnectorPoint PointX="9.875" PointY="17.990143229166669" />
           <ConnectorPoint PointX="11.5" PointY="17.990143229166669" />
-          <ConnectorPoint PointX="11.5" PointY="4.6533007812500031" />
+          <ConnectorPoint PointX="11.5" PointY="4.4609993489583326" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_Equipement_Verification" >
-          <ConnectorPoint PointX="11.031248" PointY="4.6533007812500031" />
-          <ConnectorPoint PointX="11.031248" PointY="6.3827222673627073" />
-          <ConnectorPoint PointX="11.416666666666666" PointY="6.3827222673627064" />
-          <ConnectorPoint PointX="11.583333333333334" PointY="6.3827222673627073" />
-          <ConnectorPoint PointX="11.875" PointY="6.3827222673627073" />
+          <ConnectorPoint PointX="11.031248" PointY="4.4609993489583326" />
+          <ConnectorPoint PointX="11.031248" PointY="6.3813518897573474" />
+          <ConnectorPoint PointX="11.416666666666666" PointY="6.3813518897573465" />
+          <ConnectorPoint PointX="11.583333333333334" PointY="6.3813518897573474" />
+          <ConnectorPoint PointX="11.875" PointY="6.3813518897573474" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_Marque_Equipement" >
           <ConnectorPoint PointX="7.84375" PointY="4.5" />
-          <ConnectorPoint PointX="7.84375" PointY="3.516591296875" />
-          <ConnectorPoint PointX="10.625" PointY="3.516591296875" />
+          <ConnectorPoint PointX="7.84375" PointY="3.4970914713541679" />
+          <ConnectorPoint PointX="10.625" PointY="3.4970914713541679" />
         </AssociationConnector>
         <EntityTypeShape EntityType="gestadh45Model.CampagneVerification" Width="1.5" PointX="7.375" PointY="7.875" Height="2.1725878906250031" />
         <AssociationConnector Association="gestadh45Model.FK_Campagne_Verification" >
