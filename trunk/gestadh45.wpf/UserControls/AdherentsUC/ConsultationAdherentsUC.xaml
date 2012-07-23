@@ -33,6 +33,10 @@
 					Command="{Binding Path=ShowDetailsCommand, Mode=OneWay}" 
 					CommandParameter="{Binding ElementName=lbxAdherents, Path=SelectedItem}" />
 				</i:EventTrigger>
+				<i:EventTrigger EventName="MouseDoubleClick">
+					<cmd:EventToCommand 
+						Command="{Binding Path=EditCommand, Mode=OneWay}" />
+				</i:EventTrigger>
 			</i:Interaction.Triggers>
 		</ListBox>
 
