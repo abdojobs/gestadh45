@@ -29,7 +29,8 @@ namespace gestadh45.dal
 		///   <c>true</c> if [est au rebut]; otherwise, <c>false</c>.
 		/// </value>
 		public bool EstAuRebut {
-			get { return this.Verifications.Count(v => !v.StatutVerification.EstActif) == 0; }
+			// TODO bouchon
+			get { return false; }
 		}
 
 		/// <summary>
@@ -41,9 +42,6 @@ namespace gestadh45.dal
 
 				if (this.DateAchat.HasValue) {
 					dateFinDeVie = this.DateAchat.Value.AddYears(this.DureeDeVie.NbAnnees).AddMonths(this.DureeDeVie.NbMois);
-				}
-				else if (this.DateMiseEnService.HasValue) {
-					dateFinDeVie = this.DateMiseEnService.Value.AddYears(this.DureeDeVie.NbAnnees).AddMonths(this.DureeDeVie.NbMois);
 				}
 				else {
 					dateFinDeVie = this.DateCreation.AddYears(this.DureeDeVie.NbAnnees).AddMonths(this.DureeDeVie.NbMois);
@@ -79,7 +77,6 @@ namespace gestadh45.dal
 				DateModification = DateTime.Now,
 
 				DateAchat = this.DateAchat,
-				DateMiseEnService =  this.DateMiseEnService,
 				Commentaire = this.Commentaire,
 				ID_DureeDeVie = this.ID_DureeDeVie
 			};

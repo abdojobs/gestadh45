@@ -145,15 +145,6 @@
     <Compile Include="UserControls\BtnAnnulerEnregistrerUC.xaml.cs">
       <DependentUpon>BtnAnnulerEnregistrerUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\CampagnesVerificationUC\ConsultationCampagnesVerificationUC.xaml.cs">
-      <DependentUpon>ConsultationCampagnesVerificationUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\CampagnesVerificationUC\FormulaireCampagneVerificationUC.xaml.cs">
-      <DependentUpon>FormulaireCampagneVerificationUC.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\CampagnesVerificationUC\FormulaireSaisieVerificationsUC.xaml.cs">
-      <DependentUpon>FormulaireSaisieVerificationsUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\CategoriesUC\ConsultationCategoriesUC.xaml.cs">
       <DependentUpon>ConsultationCategoriesUC.xaml</DependentUpon>
     </Compile>
@@ -259,18 +250,6 @@
     <Page Include="UserControls\BtnAnnulerEnregistrerUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\CampagnesVerificationUC\ConsultationCampagnesVerificationUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\CampagnesVerificationUC\FormulaireCampagneVerificationUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\CampagnesVerificationUC\FormulaireSaisieVerificationsUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\CategoriesUC\ConsultationCategoriesUC.xaml">
       <SubType>Designer</SubType>

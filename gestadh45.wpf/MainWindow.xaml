@@ -134,14 +134,6 @@
 							CommandParameter="{x:Static b:CodesUC.FormulaireEquipement}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
-
-				<my:RibbonGroup Name="GrpVerifications" Header="Verifications">
-					<my:RibbonButton Command="{Binding Path=ShowUCCommand}" ToolTip="Vérifications"
-										  CommandParameter="{x:Static b:CodesUC.ConsultationCampagnesVerification}"
-										  LargeImageSource="/gestadh45.wpf;component/Images/btn_verification.png" 
-										  SmallImageSource="/gestadh45.wpf;component/Images/btn_verification.png">
-					</my:RibbonButton>
-				</my:RibbonGroup>
 			</my:RibbonTab>
 			
 			<my:RibbonTab Name="TabReferentiel" Header="Référentiel">

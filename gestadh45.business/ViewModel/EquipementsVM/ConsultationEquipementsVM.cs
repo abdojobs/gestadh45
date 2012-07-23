@@ -133,7 +133,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 
 		#region DeleteCommand
 		public override bool CanExecuteDeleteCommand() {
-			return this.SelectedEquipement != null && this.SelectedEquipement.Verifications.Count == 0;
+			return this.SelectedEquipement != null;
 		}
 
 		public override void ExecuteDeleteCommand() {
