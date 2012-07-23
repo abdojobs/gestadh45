@@ -1,5 +1,6 @@
 ﻿
 using System;
+using System.Linq;
 namespace gestadh45.dal
 {
 	public partial class Equipement : ICloneable
@@ -28,7 +29,7 @@ namespace gestadh45.dal
 		///   <c>true</c> if [est au rebut]; otherwise, <c>false</c>.
 		/// </value>
 		public bool EstAuRebut {
-			get { return this.DateMiseAuRebut.HasValue; }
+			get { return this.Verifications.Count(v => !v.StatutVerification.EstActif) == 0; }
 		}
 
 		/// <summary>

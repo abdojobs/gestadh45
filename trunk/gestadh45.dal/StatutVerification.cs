@@ -24,6 +24,7 @@ namespace gestadh45.dal
         public bool EstDefaut { get; set; }
         public bool CommentaireObligatoire { get; set; }
         public string CodeCouleur { get; set; }
+        public bool EstActif { get; set; }
     
         public virtual ICollection<Verification> Verifications { get; set; }
     }
