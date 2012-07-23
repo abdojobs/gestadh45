@@ -9,7 +9,6 @@ using gestadh45.business.PersonalizedMsg;
 using gestadh45.business.ViewModel;
 using gestadh45.dal;
 using gestadh45.wpf.UserControls.AdherentsUC;
-using gestadh45.wpf.UserControls.CampagnesVerificationUC;
 using gestadh45.wpf.UserControls.CategoriesUC;
 using gestadh45.wpf.UserControls.DureesDeVieUC;
 using gestadh45.wpf.UserControls.EquipementsUC;
@@ -54,7 +53,6 @@ namespace gestadh45.wpf
 			Messenger.Default.Register<NMShowUC<Inscription>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<Equipement>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<DureeDeVie>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
-			Messenger.Default.Register<NMShowUC<CampagneVerification>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowAboutBox>(this, (msg) => this.ShowAboutBox());
 
 			// Abonnement aux messages pour les dialogues
@@ -98,12 +96,6 @@ namespace gestadh45.wpf
 			}
 			else if (codeUC.Equals(CodesUC.FormulaireDureeDeVie) && objetUC is DureeDeVie) {
 			    this.contenu.Child = new FormulaireDureeDeVieUC(objetUC as DureeDeVie);
-			}
-			else if (codeUC.Equals(CodesUC.FormulaireCampagneVerification) && objetUC is CampagneVerification) {
-				this.contenu.Child = new FormulaireCampagneVerificationUC(objetUC as CampagneVerification);
-			}
-			else if (codeUC.Equals(CodesUC.FormulaireSaisieVerifications) && objetUC is CampagneVerification) {
-				this.contenu.Child = new FormulaireSaisieVerificationsUC(objetUC as CampagneVerification);
 			}
 		}
 
@@ -219,14 +211,6 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireDureeDeVie:
 					userControl = new FormulaireDureeDeVieUC();
-					break;
-
-				case CodesUC.ConsultationCampagnesVerification:
-					userControl = new ConsultationCampagnesVerificationUC();
-					break;
-
-				case CodesUC.FormulaireCampagneVerification:
-					userControl = new FormulaireCampagneVerificationUC();
 					break;
 
 				default:
