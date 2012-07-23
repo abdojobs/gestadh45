@@ -79,6 +79,15 @@
 				</Button>
 			</StackPanel>
 
+			<TextBlock Grid.Row="2" Grid.Column="0" Text="Couleurs : "
+					   VerticalAlignment="Center" />
+
+			<StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+				<ComboBox Name="cmbCouleurs" Width="125"
+								ItemsSource="{Binding Path=Couleurs}"
+								SelectedItem="{Binding Path=CurrentEquipement.Couleur}" />
+			</StackPanel>
+
 			<TextBlock Grid.Row="3" Grid.Column="0" Text="Durée de vie : " 
 					   VerticalAlignment="Center"
 					   Margin="0,5,0,5"/>

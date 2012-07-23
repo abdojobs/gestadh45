@@ -23,10 +23,12 @@ namespace gestadh45.dal
         public System.Guid ID_Marque { get; set; }
         public System.Guid ID_Categorie { get; set; }
         public System.Guid ID_DureeDeVie { get; set; }
+        public Nullable<System.Guid> ID_Couleurs { get; set; }
     
         public virtual Categorie Categorie { get; set; }
         public virtual DureeDeVie DureeDeVie { get; set; }
         public virtual Marque Marque { get; set; }
+        public virtual Couleur Couleur { get; set; }
     }
     
 }

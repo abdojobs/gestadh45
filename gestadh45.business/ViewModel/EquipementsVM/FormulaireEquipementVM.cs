@@ -72,6 +72,25 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		}
 		#endregion
 
+		
+		#region Couleurs
+		private IOrderedEnumerable<Couleur> _couleurs;
+
+		/// <summary>
+		/// Obtient/Définit la liste des couleurs
+		/// </summary>
+		public IOrderedEnumerable<Couleur> Couleurs {
+			get { return this._couleurs; }
+			set {
+				if (this._couleurs != value) {
+					this._couleurs = value;
+					this.RaisePropertyChanged(() => this.Couleurs);
+				}
+			}
+		}
+		#endregion
+				
+
 		#region CurrentEquipement
 		private Equipement _currentEquipement;
 
@@ -100,6 +119,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		private Repository<Equipement> _repoEquipement;
 		private Repository<Categorie> _repoCategorie;
 		private Repository<DureeDeVie> _repoDureeDeVie;
+		private Repository<Couleur> _repoCouleur;
 		#endregion
 
 		#region Constructeurs
@@ -140,12 +160,14 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 			this._repoMarque = new Repository<Marque>(this._context);
 			this._repoCategorie = new Repository<Categorie>(this._context);
 			this._repoDureeDeVie = new Repository<DureeDeVie>(this._context);
+			this._repoCouleur = new Repository<Couleur>(this._context);
 		}
 
 		private void PopulateCombos() {
 			this.Marques = this._repoMarque.GetAll().OrderBy(m => m.ToString());
 			this.Categories = this._repoCategorie.GetAll().OrderBy(c => c.ToString());
 			this.DureesDeVie = this._repoDureeDeVie.GetAll().OrderBy(d => d.Libelle);
+			this.Couleurs = this._repoCouleur.GetAll().OrderBy(c => c.ToString());
 		}
 
 		/// <summary>
