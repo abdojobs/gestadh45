@@ -23,17 +23,6 @@ namespace gestadh45.dal
 		}
 
 		/// <summary>
-		/// Gets a value indicating whether [est au rebut].
-		/// </summary>
-		/// <value>
-		///   <c>true</c> if [est au rebut]; otherwise, <c>false</c>.
-		/// </value>
-		public bool EstAuRebut {
-			// TODO bouchon
-			get { return false; }
-		}
-
-		/// <summary>
 		/// Obtient la date de fin de vie de l'équipement en se basant (dans l'ordre) soit sur sa date d'achat, soit sur sa date demise en service, soit sur sa date de saisie dans la BDD.
 		/// </summary>
 		public DateTime DateFinDeVie {
