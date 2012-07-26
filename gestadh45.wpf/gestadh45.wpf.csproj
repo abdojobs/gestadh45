@@ -181,6 +181,12 @@
     <Compile Include="UserControls\InscriptionsUC\FormulaireInscriptionUC.xaml.cs">
       <DependentUpon>FormulaireInscriptionUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\MainScreenUC\FormulaireInitialisationDatabaseUC.xaml.cs">
+      <DependentUpon>FormulaireInitialisationDatabaseUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\MainScreenUC\MainScreenCheckUC.xaml.cs">
+      <DependentUpon>MainScreenCheckUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MarquesUC\ConsultationMarquesUC.xaml.cs">
       <DependentUpon>ConsultationMarquesUC.xaml</DependentUpon>
     </Compile>
@@ -296,6 +302,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\InscriptionsUC\FormulaireInscriptionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainScreenUC\FormulaireInitialisationDatabaseUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\MainScreenUC\MainScreenCheckUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
