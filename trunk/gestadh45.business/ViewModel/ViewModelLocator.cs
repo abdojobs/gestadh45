@@ -22,6 +22,7 @@ using gestadh45.business.ViewModel.SaisonsVM;
 using gestadh45.business.ViewModel.Statistiques;
 using gestadh45.business.ViewModel.TranchesAgeVM;
 using gestadh45.business.ViewModel.VillesVM;
+using gestadh45.business.ViewModel.MainScreenVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -179,6 +180,20 @@ namespace gestadh45.business.ViewModel
 		public static FormulaireDureeDeVieVM FormulaireDureeDeVieVM {
 			get {
 				return new FormulaireDureeDeVieVM();
+			}
+		}
+		#endregion
+
+		#region MainScreenVM
+		public static MainScreenCheckVM MainScreenCheckVM {
+			get {
+				return new MainScreenCheckVM();
+			}
+		}
+
+		public static FormulaireInitialisationDatabaseVM FormulaireInitialisationDatabaseVM {
+			get {
+				return new FormulaireInitialisationDatabaseVM();
 			}
 		}
 		#endregion

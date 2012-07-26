@@ -21,7 +21,7 @@
 	</Window.Resources>
 
 	<DockPanel>
-		<my:Ribbon DockPanel.Dock="Top" Title="{Binding Path=InfosDataSource}">
+		<my:Ribbon DockPanel.Dock="Top" Title="{Binding Path=InfosDataSource}" IsEnabled="{Binding Path=MainMenuEnabled}">
 			<my:Ribbon.ApplicationMenu>
 				<my:RibbonApplicationMenu Label="Menu" SmallImageSource="/gestadh45.wpf;component/Images/btn_menu.png">
 					<my:RibbonApplicationMenuItem Header="Infos club" 

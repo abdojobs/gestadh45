@@ -23,6 +23,7 @@ using gestadh45.wpf.UserControls.TranchesAgeUC;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
 using Forms = System.Windows.Forms;
+using gestadh45.wpf.UserControls.MainScreenUC;
 
 namespace gestadh45.wpf
 {
@@ -66,7 +67,7 @@ namespace gestadh45.wpf
 				(msg) => this.ShowFolderBrowserDialog(msg.Execute)
 			);
 
-			this.ShowUC(CodesUC.ConsultationInfosClub);
+			this.ShowUC(CodesUC.MainScreenCheck);
 		}
 
 		private void ShowAboutBox() {
@@ -213,8 +214,13 @@ namespace gestadh45.wpf
 					userControl = new FormulaireDureeDeVieUC();
 					break;
 
+				case CodesUC.FormulaireInitialisationDatabase:
+					userControl = new FormulaireInitialisationDatabaseUC();
+					break;
+
+				case CodesUC.MainScreenCheck:
 				default:
-					userControl = new ConsultationInfosClubUC();
+					userControl = new MainScreenCheckUC();
 					break;
 			}
 

@@ -61,6 +61,25 @@ namespace gestadh45.business.ViewModel
 		}
 		#endregion
 
+
+		#region MainMenuEnabled
+		private bool _mainMenuEnabled;
+
+		/// <summary>
+		/// Obtient/Définit un booléen indiquant si le menu principal est activé
+		/// </summary>
+		public bool MainMenuEnabled {
+			get { return this._mainMenuEnabled; }
+			set {
+				if (this._mainMenuEnabled != value) {
+					this._mainMenuEnabled = value;
+					this.RaisePropertyChanged(() => this.MainMenuEnabled);
+				}
+			}
+		}
+		#endregion
+				
+
 		/// <summary>
 		/// Initializes a new instance of the MainViewModel class.
 		/// </summary>
@@ -81,6 +100,11 @@ namespace gestadh45.business.ViewModel
 			Messenger.Default.Register<NMUserNotification>(
 				this,
 				(msg) => this.UpdateUserNotification(msg.Text)
+			);
+
+			Messenger.Default.Register<NMMainMenuState>(
+				this,
+				msg => this.SetMainMenuState(msg.Enabled)
 			);
 		}
 
@@ -129,6 +153,10 @@ namespace gestadh45.business.ViewModel
 
 		private void UpdateUserNotification(string notification) {
 			this.UserNotification = notification;
+		}
+
+		private void SetMainMenuState(bool enabled) {
+			this.MainMenuEnabled = enabled;
 		}
 	}
 }
