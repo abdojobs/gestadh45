@@ -79,13 +79,20 @@
 				</Button>
 			</StackPanel>
 
-			<TextBlock Grid.Row="2" Grid.Column="0" Text="Couleurs : "
+			<TextBlock Grid.Row="2" Grid.Column="0" Text="Modèle : "
 					   VerticalAlignment="Center" />
 
 			<StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
 				<ComboBox Name="cmbCouleurs" Width="125"
-								ItemsSource="{Binding Path=Couleurs}"
-								SelectedItem="{Binding Path=CurrentEquipement.Couleur}" />
+								ItemsSource="{Binding Path=Modeles}"
+								SelectedItem="{Binding Path=CurrentEquipement.Modele}" />
+				<!--<Button ToolTip="Ajouter un modèle" HorizontalAlignment="Center" 
+							Width="18" Height="18" 
+							Command="{Binding Path=OpenWindowCommand}"
+							CommandParameter="{x:Static business:CodesUC.FormulaireModele}" 
+							Margin="5,0,0,0">
+					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
+				</Button>-->
 			</StackPanel>
 
 			<TextBlock Grid.Row="3" Grid.Column="0" Text="Durée de vie : " 
