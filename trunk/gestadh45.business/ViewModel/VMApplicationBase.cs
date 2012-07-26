@@ -63,7 +63,6 @@ namespace gestadh45.business.ViewModel
 		}
 
 		public bool CanExecuteShowUCCommand(string pCodeUC) {
-			// TODO condition ici pour vérifier qu'on est connecté à la BDD
 			return true;
 		}
 
