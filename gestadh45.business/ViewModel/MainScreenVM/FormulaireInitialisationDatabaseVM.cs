@@ -29,6 +29,7 @@ namespace gestadh45.business.ViewModel.MainScreenVM
 		
 		#region Repository
 		private Repository<InfosClub> _repoInfosClub;
+		private Repository<Saison> _repoSaisons;
 		#endregion
 
 		#region constructeur
@@ -36,6 +37,7 @@ namespace gestadh45.business.ViewModel.MainScreenVM
 			this.UCParentCode = CodesUC.ConsultationInfosClub;
 			this.IsEditMode = false;
 			this._repoInfosClub = new Repository<InfosClub>(this._context);
+			this._repoSaisons = new Repository<Saison>(this._context);
 
 			// on supprime toute trace d'infos club existant (i il y en a)
 			this.CleanInfosClub();
@@ -73,6 +75,17 @@ namespace gestadh45.business.ViewModel.MainScreenVM
 				this.CurrentInfosClub.ID = Guid.NewGuid();
 				this._repoInfosClub.Add(this.CurrentInfosClub);
 				this._repoInfosClub.Save();
+
+				// on créé aussi la saison courante
+				var saison = new Saison()
+				{
+					ID = Guid.NewGuid(),
+					AnneeDebut = DateTime.Now.Year,
+					AnneeFin = DateTime.Now.Year + 1,
+					EstSaisonCourante = true
+				};
+				this._repoSaisons.Add(saison);
+				this._repoSaisons.Save();
 
 				Messenger.Default.Send(new NMMainMenuState(true));
 			

@@ -22,7 +22,7 @@
 
 		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
 			<TextBlock Text="Veuillez renseigner le(s) champ(s) ci-dessous afin d'initialiser la base pour une première utilisation." />
-			
+			<TextBlock Text="La saison courante sera automatiquement créée" />
 			<Separator Margin="0,10,0,10" />
 			
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5" HorizontalAlignment="Center">
