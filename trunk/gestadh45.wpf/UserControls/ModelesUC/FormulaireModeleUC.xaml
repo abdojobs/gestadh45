@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.ModelesUC.FormulaireModeleUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
+			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 mc:Ignorable="d" 
+			 DataContext="{Binding Path=FormulaireModeleVM, Source={StaticResource Locator}}" 
+			 d:DesignHeight="400" d:DesignWidth="600">
+	<DockPanel Margin="5,5,5,5">
+		<TextBlock Text="Modèle" DockPanel.Dock="Top" HorizontalAlignment="Stretch" 
+					Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+
+		<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5" 
+			CodeUCParent="{x:Static business:CodesUC.ConsultationModeles}"
+			CmdAnnuler="{Binding Path=CancelCommand}"
+			CmdEnregistrer="{Binding Path=SaveCommand}"
+			/>
+
+		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
+
+		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Catégorie : " Width="100" />
+				<ComboBox Name="cmbCategories" Width="125"
+								ItemsSource="{Binding Path=Categories}"
+								SelectedItem="{Binding Path=CurrentModele.Categorie}" />
+				<Button ToolTip="Ajouter une marque" HorizontalAlignment="Center" 
+							Width="18" Height="18" 
+							Command="{Binding Path=OpenWindowCommand}"
+							CommandParameter="{x:Static business:CodesUC.FormulaireCategorie}" 
+							Margin="5,0,0,0">
+					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
+				</Button>
+			</StackPanel>
+			
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Nom : " Width="100" />
+				<TextBox Width="200" MaxLength="50" CharacterCasing="Upper" Text="{Binding Path=CurrentModele.Nom}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Couleur 1 : " Width="100" />
+				<TextBox Width="200" MaxLength="50" CharacterCasing="Upper" Text="{Binding Path=CurrentModele.Couleur1}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Couleur 2 : " Width="100" />
+				<TextBox Width="200" MaxLength="50" CharacterCasing="Upper" Text="{Binding Path=CurrentModele.Couleur2}" />
+			</StackPanel>
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Couleur 3 : " Width="100" />
+				<TextBox Width="200" MaxLength="50" CharacterCasing="Upper" Text="{Binding Path=CurrentModele.Couleur3}" />
+			</StackPanel>
+		</StackPanel>
+	</DockPanel>
+</UserControl>

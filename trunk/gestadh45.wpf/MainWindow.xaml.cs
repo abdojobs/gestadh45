@@ -15,7 +15,9 @@ using gestadh45.wpf.UserControls.EquipementsUC;
 using gestadh45.wpf.UserControls.GroupesUC;
 using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.InscriptionsUC;
+using gestadh45.wpf.UserControls.MainScreenUC;
 using gestadh45.wpf.UserControls.MarquesUC;
+using gestadh45.wpf.UserControls.ModelesUC;
 using gestadh45.wpf.UserControls.RepartitionAdherentsUC;
 using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls.StatistiquesUC;
@@ -23,7 +25,6 @@ using gestadh45.wpf.UserControls.TranchesAgeUC;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
 using Forms = System.Windows.Forms;
-using gestadh45.wpf.UserControls.MainScreenUC;
 
 namespace gestadh45.wpf
 {
@@ -216,6 +217,14 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireInitialisationDatabase:
 					userControl = new FormulaireInitialisationDatabaseUC();
+					break;
+
+				case CodesUC.ConsultationModeles:
+					userControl = new ConsultationModelesUC();
+					break;
+
+				case CodesUC.FormulaireModele:
+					userControl = new FormulaireModeleUC();
 					break;
 
 				case CodesUC.MainScreenCheck:

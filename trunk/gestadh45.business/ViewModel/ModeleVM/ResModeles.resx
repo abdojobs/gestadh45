@@ -117,31 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ErrDureeDeVieObligatoire" xml:space="preserve">
-    <value>La durée de vie est obligatoire</value>
+  <data name="ErrCategorieObligatoire" xml:space="preserve">
+    <value>La catégorie est obligatoire</value>
   </data>
-  <data name="ErrEquipementExiste" xml:space="preserve">
-    <value>Cet équipement existe déja</value>
+  <data name="ErrCouleurObligatoire" xml:space="preserve">
+    <value>Le modèle doit comporter au moins une couleur</value>
   </data>
-  <data name="ErrMarqueObligatoire" xml:space="preserve">
-    <value>La marque est obligatoire</value>
+  <data name="ErrModeleExiste" xml:space="preserve">
+    <value>Ce modèle existe déjà (nom + couleurs)</value>
   </data>
-  <data name="ErrModeleObligatoire" xml:space="preserve">
-    <value>Le modèle est obligatoire</value>
+  <data name="ErrNomObligatoire" xml:space="preserve">
+    <value>Le nom du modèle est obligatoire</value>
   </data>
-  <data name="ErrNumeroObligatoire" xml:space="preserve">
-    <value>Le numéro est obligatoire</value>
-  </data>
-  <data name="InfoDureeDeVieAtteinte" xml:space="preserve">
-    <value>Cet équipement a atteint sa durée de vie, pensez à le remplacer</value>
-  </data>
-  <data name="InfoDureeDeVieNonAtteinte" xml:space="preserve">
-    <value>Cet équipement n'a pas atteint sa durée de vie</value>
-  </data>
-  <data name="InfoEquipementDuplique" xml:space="preserve">
-    <value>L'équipement a été dupliqué</value>
-  </data>
-  <data name="InfoEquipementSupprime" xml:space="preserve">
-    <value>L'équipement a été supprimé</value>
+  <data name="InfoModeleSupprime" xml:space="preserve">
+    <value>le modèle a été supprimé</value>
   </data>
 </root>

@@ -16,13 +16,13 @@ namespace gestadh45.dal
     {
         public Categorie()
         {
-            this.Equipements = new HashSet<Equipement>();
+            this.Modeles = new HashSet<Modele>();
         }
     
         public System.Guid ID { get; set; }
         public string Libelle { get; set; }
     
-        public virtual ICollection<Equipement> Equipements { get; set; }
+        public virtual ICollection<Modele> Modeles { get; set; }
     }
     
 }

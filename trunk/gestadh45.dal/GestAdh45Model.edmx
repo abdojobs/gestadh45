@@ -8,7 +8,6 @@
         <EntityContainer Name="gestadh45ModelStoreContainer">
           <EntitySet Name="Adherent" EntityType="gestadh45Model.Store.Adherent" store:Type="Tables" />
           <EntitySet Name="Categorie" EntityType="gestadh45Model.Store.Categorie" store:Type="Tables" />
-          <EntitySet Name="Couleurs" EntityType="gestadh45Model.Store.Couleurs" store:Type="Tables" />
           <EntitySet Name="DureeDeVie" EntityType="gestadh45Model.Store.DureeDeVie" store:Type="Tables" />
           <EntitySet Name="Equipement" EntityType="gestadh45Model.Store.Equipement" store:Type="Tables" />
           <EntitySet Name="Groupe" EntityType="gestadh45Model.Store.Groupe" store:Type="Tables" />
@@ -16,6 +15,7 @@
           <EntitySet Name="Inscription" EntityType="gestadh45Model.Store.Inscription" store:Type="Tables" />
           <EntitySet Name="JourSemaine" EntityType="gestadh45Model.Store.JourSemaine" store:Type="Tables" />
           <EntitySet Name="Marque" EntityType="gestadh45Model.Store.Marque" store:Type="Tables" />
+          <EntitySet Name="Modele" EntityType="gestadh45Model.Store.Modele" store:Type="Tables" />
           <EntitySet Name="Saison" EntityType="gestadh45Model.Store.Saison" store:Type="Tables" />
           <EntitySet Name="Sexe" EntityType="gestadh45Model.Store.Sexe" store:Type="Tables" />
           <EntitySet Name="StatutInscription" EntityType="gestadh45Model.Store.StatutInscription" store:Type="Tables" />
@@ -25,13 +25,9 @@
             <End Role="Adherent" EntitySet="Adherent" />
             <End Role="Inscription" EntitySet="Inscription" />
           </AssociationSet>
-          <AssociationSet Name="FK_Categorie_Equipement" Association="gestadh45Model.Store.FK_Categorie_Equipement">
+          <AssociationSet Name="FK_Categorie_Modele" Association="gestadh45Model.Store.FK_Categorie_Modele">
             <End Role="Categorie" EntitySet="Categorie" />
-            <End Role="Equipement" EntitySet="Equipement" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Couleurs_Equipement" Association="gestadh45Model.Store.FK_Couleurs_Equipement">
-            <End Role="Couleurs" EntitySet="Couleurs" />
-            <End Role="Equipement" EntitySet="Equipement" />
+            <End Role="Modele" EntitySet="Modele" />
           </AssociationSet>
           <AssociationSet Name="FK_DureeDeVie_Equipement" Association="gestadh45Model.Store.FK_DureeDeVie_Equipement">
             <End Role="DureeDeVie" EntitySet="DureeDeVie" />
@@ -47,6 +43,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Marque_Equipement" Association="gestadh45Model.Store.FK_Marque_Equipement">
             <End Role="Marque" EntitySet="Marque" />
+            <End Role="Equipement" EntitySet="Equipement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Modele_Equipement" Association="gestadh45Model.Store.FK_Modele_Equipement">
+            <End Role="Modele" EntitySet="Modele" />
             <End Role="Equipement" EntitySet="Equipement" />
           </AssociationSet>
           <AssociationSet Name="FK_Saison_Groupe" Association="gestadh45Model.Store.FK_Saison_Groupe">
@@ -98,15 +98,6 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
-        <EntityType Name="Couleurs">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Couleur1" Type="nvarchar" Nullable="false" MaxLength="20" />
-          <Property Name="Couleur2" Type="nvarchar" MaxLength="20" />
-          <Property Name="Couleur3" Type="nvarchar" MaxLength="20" />
-        </EntityType>
         <EntityType Name="DureeDeVie">
           <Key>
             <PropertyRef Name="ID" />
@@ -127,9 +118,8 @@
           <Property Name="DateModification" Type="datetime" Nullable="false" />
           <Property Name="Commentaire" Type="ntext" />
           <Property Name="ID_Marque" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ID_Categorie" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ID_DureeDeVie" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ID_Couleurs" Type="uniqueidentifier" />
+          <Property Name="ID_Modele" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Groupe">
           <Key>
@@ -189,6 +179,17 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="100" />
         </EntityType>
+        <EntityType Name="Modele">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Nom" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Couleur1" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Couleur2" Type="nvarchar" MaxLength="20" />
+          <Property Name="Couleur3" Type="nvarchar" MaxLength="20" />
+          <Property Name="ID_Categorie" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="Saison">
           <Key>
             <PropertyRef Name="ID" />
@@ -243,27 +244,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Categorie_Equipement">
+        <Association Name="FK_Categorie_Modele">
           <End Role="Categorie" Type="gestadh45Model.Store.Categorie" Multiplicity="1" />
-          <End Role="Equipement" Type="gestadh45Model.Store.Equipement" Multiplicity="*" />
+          <End Role="Modele" Type="gestadh45Model.Store.Modele" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categorie">
               <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Equipement">
+            <Dependent Role="Modele">
               <PropertyRef Name="ID_Categorie" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Couleurs_Equipement">
-          <End Role="Couleurs" Type="gestadh45Model.Store.Couleurs" Multiplicity="0..1" />
-          <End Role="Equipement" Type="gestadh45Model.Store.Equipement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Couleurs">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Equipement">
-              <PropertyRef Name="ID_Couleurs" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -312,6 +301,18 @@
             </Principal>
             <Dependent Role="Equipement">
               <PropertyRef Name="ID_Marque" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Modele_Equipement">
+          <End Role="Modele" Type="gestadh45Model.Store.Modele" Multiplicity="1" />
+          <End Role="Equipement" Type="gestadh45Model.Store.Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modele">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="ID_Modele" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -426,10 +427,6 @@
           <EntitySet Name="Categories" EntityType="gestadh45Model.Categorie" />
           <EntitySet Name="DureeDeVies" EntityType="gestadh45Model.DureeDeVie" />
           <EntitySet Name="Equipements" EntityType="gestadh45Model.Equipement" />
-          <AssociationSet Name="FK_Categorie_Equipement" Association="gestadh45Model.FK_Categorie_Equipement">
-            <End Role="Categorie" EntitySet="Categories" />
-            <End Role="Equipement" EntitySet="Equipements" />
-          </AssociationSet>
           <AssociationSet Name="FK_DureeDeVie_Equipement" Association="gestadh45Model.FK_DureeDeVie_Equipement">
             <End Role="DureeDeVie" EntitySet="DureeDeVies" />
             <End Role="Equipement" EntitySet="Equipements" />
@@ -438,9 +435,13 @@
             <End Role="Marque" EntitySet="Marques" />
             <End Role="Equipement" EntitySet="Equipements" />
           </AssociationSet>
-          <EntitySet Name="Couleurs" EntityType="gestadh45Model.Couleur" />
-          <AssociationSet Name="FK_Couleurs_Equipement" Association="gestadh45Model.FK_Couleurs_Equipement">
-            <End Role="Couleur" EntitySet="Couleurs" />
+          <EntitySet Name="Modeles" EntityType="gestadh45Model.Modele" />
+          <AssociationSet Name="FK_Categorie_Modele" Association="gestadh45Model.FK_Categorie_Modele">
+            <End Role="Categorie" EntitySet="Categories" />
+            <End Role="Modele" EntitySet="Modeles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Modele_Equipement" Association="gestadh45Model.FK_Modele_Equipement">
+            <End Role="Modele" EntitySet="Modeles" />
             <End Role="Equipement" EntitySet="Equipements" />
           </AssociationSet>
         </EntityContainer>
@@ -684,7 +685,7 @@
           </Key>
           <Property Type="Guid" Name="ID" Nullable="false" />
           <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Categorie" ToRole="Equipement" />
+          <NavigationProperty Name="Modeles" Relationship="gestadh45Model.FK_Categorie_Modele" FromRole="Categorie" ToRole="Modele" />
         </EntityType>
         <EntityType Name="DureeDeVie">
           <Key>
@@ -707,26 +708,12 @@
           <Property Type="DateTime" Name="DateModification" Nullable="false" />
           <Property Type="String" Name="Commentaire" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Guid" Name="ID_Marque" Nullable="false" />
-          <Property Type="Guid" Name="ID_Categorie" Nullable="false" />
           <Property Type="Guid" Name="ID_DureeDeVie" Nullable="false" />
-          <NavigationProperty Name="Categorie" Relationship="gestadh45Model.FK_Categorie_Equipement" FromRole="Equipement" ToRole="Categorie" />
           <NavigationProperty Name="DureeDeVie" Relationship="gestadh45Model.FK_DureeDeVie_Equipement" FromRole="Equipement" ToRole="DureeDeVie" />
           <NavigationProperty Name="Marque" Relationship="gestadh45Model.FK_Marque_Equipement" FromRole="Equipement" ToRole="Marque" />
-          <Property Type="Guid" Name="ID_Couleurs" />
-          <NavigationProperty Name="Couleur" Relationship="gestadh45Model.FK_Couleurs_Equipement" FromRole="Equipement" ToRole="Couleur" />
+          <Property Type="Guid" Name="ID_Modele" Nullable="false" />
+          <NavigationProperty Name="Modele" Relationship="gestadh45Model.FK_Modele_Equipement" FromRole="Equipement" ToRole="Modele" />
         </EntityType>
-        <Association Name="FK_Categorie_Equipement">
-          <End Type="gestadh45Model.Categorie" Role="Categorie" Multiplicity="1" />
-          <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categorie">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Equipement">
-              <PropertyRef Name="ID_Categorie" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DureeDeVie_Equipement">
           <End Type="gestadh45Model.DureeDeVie" Role="DureeDeVie" Multiplicity="1" />
           <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="*" />
@@ -751,25 +738,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Couleur">
+        <EntityType Name="Modele">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Nom" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Couleur1" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Couleur2" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Couleur3" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_Couleurs_Equipement" FromRole="Couleur" ToRole="Equipement" />
+          <Property Type="Guid" Name="ID_Categorie" Nullable="false" />
+          <NavigationProperty Name="Categorie" Relationship="gestadh45Model.FK_Categorie_Modele" FromRole="Modele" ToRole="Categorie" />
+          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_Modele_Equipement" FromRole="Modele" ToRole="Equipement" />
         </EntityType>
-        <Association Name="FK_Couleurs_Equipement">
-          <End Type="gestadh45Model.Couleur" Role="Couleur" Multiplicity="0..1" />
+        <Association Name="FK_Categorie_Modele">
+          <End Type="gestadh45Model.Categorie" Role="Categorie" Multiplicity="1" />
+          <End Type="gestadh45Model.Modele" Role="Modele" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categorie">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Modele">
+              <PropertyRef Name="ID_Categorie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Modele_Equipement">
+          <End Type="gestadh45Model.Modele" Role="Modele" Multiplicity="1" />
           <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Couleur">
+            <Principal Role="Modele">
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Equipement">
-              <PropertyRef Name="ID_Couleurs" />
+              <PropertyRef Name="ID_Modele" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -932,9 +934,8 @@
           <EntitySetMapping Name="Equipements">
             <EntityTypeMapping TypeName="gestadh45Model.Equipement">
               <MappingFragment StoreEntitySet="Equipement">
-                <ScalarProperty Name="ID_Couleurs" ColumnName="ID_Couleurs" />
+                <ScalarProperty Name="ID_Modele" ColumnName="ID_Modele" />
                 <ScalarProperty Name="ID_DureeDeVie" ColumnName="ID_DureeDeVie" />
-                <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
                 <ScalarProperty Name="ID_Marque" ColumnName="ID_Marque" />
                 <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
                 <ScalarProperty Name="DateModification" ColumnName="DateModification" />
@@ -945,12 +946,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Couleurs">
-            <EntityTypeMapping TypeName="gestadh45Model.Couleur">
-              <MappingFragment StoreEntitySet="Couleurs">
+          <EntitySetMapping Name="Modeles">
+            <EntityTypeMapping TypeName="gestadh45Model.Modele">
+              <MappingFragment StoreEntitySet="Modele">
+                <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
                 <ScalarProperty Name="Couleur3" ColumnName="Couleur3" />
                 <ScalarProperty Name="Couleur2" ColumnName="Couleur2" />
                 <ScalarProperty Name="Couleur1" ColumnName="Couleur1" />
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1028,26 +1031,26 @@
         <EntityTypeShape EntityType="gestadh45Model.Categorie" Width="1.5" PointX="8.375" PointY="0.875" Height="1.5956835937500031" />
         <EntityTypeShape EntityType="gestadh45Model.DureeDeVie" Width="1.5" PointX="13.875" PointY="2.125" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="gestadh45Model.Equipement" Width="1.5" PointX="10.625" PointY="0.75" Height="3.3263964843749996" />
-        <AssociationConnector Association="gestadh45Model.FK_Categorie_Equipement" >
-          <ConnectorPoint PointX="9.875" PointY="1.6728417968750016" />
-          <ConnectorPoint PointX="10.625" PointY="1.6728417968750016" />
-        </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_DureeDeVie_Equipement" >
-          <ConnectorPoint PointX="13.875" PointY="3.1151432291666694" />
-          <ConnectorPoint PointX="12.125" PointY="3.1151432291666694" />
+          <ConnectorPoint PointX="13.875" PointY="3.1006982421875" />
+          <ConnectorPoint PointX="12.125" PointY="3.1006982421875" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_Marque_Equipement" >
           <ConnectorPoint PointX="8.875" PointY="5.2978417968750016" />
-          <ConnectorPoint PointX="10.885414166666665" PointY="5.2978417968750007" />
-          <ConnectorPoint PointX="11.052080833333333" PointY="5.2978417968750016" />
-          <ConnectorPoint PointX="11.375" PointY="5.2978417968750016" />
-          <ConnectorPoint PointX="11.375" PointY="4.4609993489583326" />
+          <ConnectorPoint PointX="9.3229166666666661" PointY="5.2978417968750007" />
+          <ConnectorPoint PointX="9.4895833333333339" PointY="5.2978417968750016" />
+          <ConnectorPoint PointX="11.128902968750001" PointY="5.2978417968750016" />
+          <ConnectorPoint PointX="11.128902968750001" PointY="4.076396484375" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="gestadh45Model.Couleur" Width="1.5" PointX="7.375" PointY="7.875" Height="1.9802864583333388" />
-        <AssociationConnector Association="gestadh45Model.FK_Couleurs_Equipement" >
-          <ConnectorPoint PointX="8.875" PointY="8.86514322916667" />
-          <ConnectorPoint PointX="10.9687475" PointY="8.86514322916667" />
-          <ConnectorPoint PointX="10.9687475" PointY="4.4609993489583326" />
+        <EntityTypeShape EntityType="gestadh45Model.Modele" Width="1.5" PointX="10.625" PointY="6.375" Height="2.3648893229166674" />
+        <AssociationConnector Association="gestadh45Model.FK_Categorie_Modele" >
+          <ConnectorPoint PointX="9.40625" PointY="2.4706835937500031" />
+          <ConnectorPoint PointX="9.40625" PointY="7.6535953776041667" />
+          <ConnectorPoint PointX="10.625" PointY="7.6535953776041667" />
+        </AssociationConnector>
+        <AssociationConnector Association="gestadh45Model.FK_Modele_Equipement" >
+          <ConnectorPoint PointX="11.689451484375" PointY="6.375" />
+          <ConnectorPoint PointX="11.689451484375" PointY="4.076396484375" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

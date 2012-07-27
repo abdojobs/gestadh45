@@ -104,6 +104,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResMarques.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ModeleVM\ConsultationModelesVM.cs" />
+    <Compile Include="ViewModel\ModeleVM\FormulaireModeleVM.cs" />
+    <Compile Include="ViewModel\ModeleVM\ResModeles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResModeles.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\RepartitionAdherentsVM\EcranRepartitionAdherentsVM.cs" />
     <Compile Include="ViewModel\Statistiques\CodesGraphs.cs" />
     <Compile Include="ViewModel\Statistiques\RessourcesStats.Designer.cs">
@@ -217,6 +224,10 @@
     <EmbeddedResource Include="ViewModel\MarquesVM\ResMarques.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResMarques.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\ModeleVM\ResModeles.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResModeles.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\Statistiques\RessourcesStats.resx">
       <Generator>ResXFileCodeGenerator</Generator>

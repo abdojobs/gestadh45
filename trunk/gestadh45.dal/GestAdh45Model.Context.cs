@@ -39,6 +39,6 @@ namespace gestadh45.dal
         public DbSet<Categorie> Categories { get; set; }
         public DbSet<DureeDeVie> DureeDeVies { get; set; }
         public DbSet<Equipement> Equipements { get; set; }
-        public DbSet<Couleur> Couleurs { get; set; }
+        public DbSet<Modele> Modeles { get; set; }
     }
 }

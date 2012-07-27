@@ -12,18 +12,21 @@ using System.Collections.Generic;
 
 namespace gestadh45.dal
 {
-    public partial class Couleur
+    public partial class Modele
     {
-        public Couleur()
+        public Modele()
         {
             this.Equipements = new HashSet<Equipement>();
         }
     
         public System.Guid ID { get; set; }
+        public string Nom { get; set; }
         public string Couleur1 { get; set; }
         public string Couleur2 { get; set; }
         public string Couleur3 { get; set; }
+        public System.Guid ID_Categorie { get; set; }
     
+        public virtual Categorie Categorie { get; set; }
         public virtual ICollection<Equipement> Equipements { get; set; }
     }
     

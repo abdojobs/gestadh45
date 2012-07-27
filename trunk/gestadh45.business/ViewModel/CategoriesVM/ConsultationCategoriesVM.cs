@@ -78,7 +78,7 @@ namespace gestadh45.business.ViewModel.CategoriesVM
 
 		#region DeleteCommand
 		public override bool CanExecuteDeleteCommand() {
-			return this.SelectedCategorie != null && this.SelectedCategorie.Equipements.Count == 0;
+			return this.SelectedCategorie != null && this.SelectedCategorie.Modeles.Count == 0;
 		}
 
 		public override void ExecuteDeleteCommand() {
