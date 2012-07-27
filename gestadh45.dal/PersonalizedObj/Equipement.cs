@@ -12,7 +12,7 @@ namespace gestadh45.dal
 		/// A <see cref="System.String"/> that represents this instance.
 		/// </returns>
 		public override string ToString() {
-			return string.Format("{0} - {1} {2} {3}", this.Numero, this.Categorie.ToString(), this.Marque.ToString(), this.Couleur.ToString());
+			return string.Format("{0} - {1} {2} {3}", this.Numero, this.Modele.Categorie.ToString(), this.Marque.ToString(), this.Modele.ToString());
 		}
 
 		/// <summary>
@@ -61,7 +61,7 @@ namespace gestadh45.dal
 				ID = Guid.NewGuid(),
 				Numero = string.Copy(this.Numero),
 				ID_Marque = this.ID_Marque,
-				ID_Categorie = this.ID_Categorie,
+				ID_Modele = this.ID_Modele,
 				DateCreation = DateTime.Now,
 				DateModification = DateTime.Now,
 

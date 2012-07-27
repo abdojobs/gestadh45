@@ -32,29 +32,6 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		}
 		#endregion
 
-		#region Categories
-		private IOrderedEnumerable<Categorie> _categories;
-
-		/// <summary>
-		/// Gets or sets the categories.
-		/// </summary>
-		/// <value>
-		/// The categories.
-		/// </value>
-		public IOrderedEnumerable<Categorie> Categories {
-			get {
-				return this._categories;
-			}
-
-			set {
-				if (this._categories != value) {
-					this._categories = value;
-					this.RaisePropertyChanged(() => this.Categories);
-				}
-			}
-		}
-		#endregion
-
 		#region DureesDeVie
 		private IOrderedEnumerable<DureeDeVie> _dureesDeVie;
 
@@ -73,18 +50,18 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		#endregion
 
 		
-		#region Couleurs
-		private IOrderedEnumerable<Couleur> _couleurs;
+		#region Modeles
+		private IOrderedEnumerable<Modele> _modeles;
 
 		/// <summary>
 		/// Obtient/Définit la liste des couleurs
 		/// </summary>
-		public IOrderedEnumerable<Couleur> Couleurs {
-			get { return this._couleurs; }
+		public IOrderedEnumerable<Modele> Modeles {
+			get { return this._modeles; }
 			set {
-				if (this._couleurs != value) {
-					this._couleurs = value;
-					this.RaisePropertyChanged(() => this.Couleurs);
+				if (this._modeles != value) {
+					this._modeles = value;
+					this.RaisePropertyChanged(() => this.Modeles);
 				}
 			}
 		}
@@ -117,9 +94,8 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		#region Repositories
 		private Repository<Marque> _repoMarque;
 		private Repository<Equipement> _repoEquipement;
-		private Repository<Categorie> _repoCategorie;
 		private Repository<DureeDeVie> _repoDureeDeVie;
-		private Repository<Couleur> _repoCouleur;
+		private Repository<Modele> _repoModele;
 		#endregion
 
 		#region Constructeurs
@@ -158,16 +134,14 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		private void CreateRepositories() {
 			this._repoEquipement = new Repository<Equipement>(this._context);
 			this._repoMarque = new Repository<Marque>(this._context);
-			this._repoCategorie = new Repository<Categorie>(this._context);
 			this._repoDureeDeVie = new Repository<DureeDeVie>(this._context);
-			this._repoCouleur = new Repository<Couleur>(this._context);
+			this._repoModele = new Repository<Modele>(this._context);
 		}
 
 		private void PopulateCombos() {
 			this.Marques = this._repoMarque.GetAll().OrderBy(m => m.ToString());
-			this.Categories = this._repoCategorie.GetAll().OrderBy(c => c.ToString());
 			this.DureesDeVie = this._repoDureeDeVie.GetAll().OrderBy(d => d.Libelle);
-			this.Couleurs = this._repoCouleur.GetAll().OrderBy(c => c.ToString());
+			this.Modeles = this._repoModele.GetAll().OrderBy(c => c.ToString());
 		}
 
 		/// <summary>
@@ -194,8 +168,8 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 				errors.Add(ResEquipements.ErrMarqueObligatoire);
 			}
 
-			if (this.CurrentEquipement.Categorie == null) {
-				errors.Add(ResEquipements.ErrCategorieObligatoire);
+			if (this.CurrentEquipement.Modele == null) {
+				errors.Add(ResEquipements.ErrModeleObligatoire);
 			}
 
 			if (this.CurrentEquipement.DureeDeVie == null) {

@@ -193,6 +193,12 @@
     <Compile Include="UserControls\MarquesUC\FormulaireMarqueUC.xaml.cs">
       <DependentUpon>FormulaireMarqueUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\ModelesUC\ConsultationModelesUC.xaml.cs">
+      <DependentUpon>ConsultationModelesUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ModelesUC\FormulaireModeleUC.xaml.cs">
+      <DependentUpon>FormulaireModeleUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\RepartitionAdherentsUC\EcranRepartitionAdherentsUC.xaml.cs">
       <DependentUpon>EcranRepartitionAdherentsUC.xaml</DependentUpon>
     </Compile>
@@ -318,6 +324,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MarquesUC\FormulaireMarqueUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ModelesUC\ConsultationModelesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\ModelesUC\FormulaireModeleUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -530,6 +544,7 @@
     <Content Include="gestadh45.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\btn_modele.png" />
     <Resource Include="Images\btn_lock.png" />
     <Resource Include="Images\btn_warning.png" />
     <Resource Include="Images\btn_configuration.png" />

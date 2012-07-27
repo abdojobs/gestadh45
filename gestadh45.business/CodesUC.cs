@@ -48,5 +48,8 @@ namespace gestadh45.business
 
 		public const string MainScreenCheck = "MainScreenCheck";
 		public const string FormulaireInitialisationDatabase = "FormulaireInitialisationDatabase";
+
+		public const string ConsultationModeles = "ConsultationModeles";
+		public const string FormulaireModele = "FormulaireModele";
 	}
 }

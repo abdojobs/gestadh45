@@ -16,13 +16,14 @@ using gestadh45.business.ViewModel.EquipementsVM;
 using gestadh45.business.ViewModel.GroupesVM;
 using gestadh45.business.ViewModel.InfosClubVM;
 using gestadh45.business.ViewModel.InscriptionsVM;
+using gestadh45.business.ViewModel.MainScreenVM;
 using gestadh45.business.ViewModel.MarquesVM;
+using gestadh45.business.ViewModel.ModeleVM;
 using gestadh45.business.ViewModel.RepartitionAdherentsVM;
 using gestadh45.business.ViewModel.SaisonsVM;
 using gestadh45.business.ViewModel.Statistiques;
 using gestadh45.business.ViewModel.TranchesAgeVM;
 using gestadh45.business.ViewModel.VillesVM;
-using gestadh45.business.ViewModel.MainScreenVM;
 
 namespace gestadh45.business.ViewModel
 {
@@ -195,6 +196,16 @@ namespace gestadh45.business.ViewModel
 			get {
 				return new FormulaireInitialisationDatabaseVM();
 			}
+		}
+		#endregion
+
+		#region ModelesVM
+		public static ConsultationModelesVM ConsultationModelesVM {
+			get { return new ConsultationModelesVM(); }
+		}
+
+		public static FormulaireModeleVM FormulaireModeleVM {
+			get { return new FormulaireModeleVM(); }
 		}
 		#endregion
 	}

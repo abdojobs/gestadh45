@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gestadh45.business.ViewModel.EquipementsVM {
+namespace gestadh45.business.ViewModel.ModeleVM {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResEquipements {
+    internal class ResModeles {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResEquipements() {
+        internal ResModeles() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.EquipementsVM.ResEquipements", typeof(ResEquipements).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.ModeleVM.ResModeles", typeof(ResModeles).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,83 +61,47 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à La durée de vie est obligatoire.
+        ///   Recherche une chaîne localisée semblable à La catégorie est obligatoire.
         /// </summary>
-        internal static string ErrDureeDeVieObligatoire {
+        internal static string ErrCategorieObligatoire {
             get {
-                return ResourceManager.GetString("ErrDureeDeVieObligatoire", resourceCulture);
+                return ResourceManager.GetString("ErrCategorieObligatoire", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Cet équipement existe déja.
+        ///   Recherche une chaîne localisée semblable à Le modèle doit comporter au moins une couleur.
         /// </summary>
-        internal static string ErrEquipementExiste {
+        internal static string ErrCouleurObligatoire {
             get {
-                return ResourceManager.GetString("ErrEquipementExiste", resourceCulture);
+                return ResourceManager.GetString("ErrCouleurObligatoire", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à La marque est obligatoire.
+        ///   Recherche une chaîne localisée semblable à Ce modèle existe déjà (nom + couleurs).
         /// </summary>
-        internal static string ErrMarqueObligatoire {
+        internal static string ErrModeleExiste {
             get {
-                return ResourceManager.GetString("ErrMarqueObligatoire", resourceCulture);
+                return ResourceManager.GetString("ErrModeleExiste", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le modèle est obligatoire.
+        ///   Recherche une chaîne localisée semblable à Le nom du modèle est obligatoire.
         /// </summary>
-        internal static string ErrModeleObligatoire {
+        internal static string ErrNomObligatoire {
             get {
-                return ResourceManager.GetString("ErrModeleObligatoire", resourceCulture);
+                return ResourceManager.GetString("ErrNomObligatoire", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le numéro est obligatoire.
+        ///   Recherche une chaîne localisée semblable à le modèle a été supprimé.
         /// </summary>
-        internal static string ErrNumeroObligatoire {
+        internal static string InfoModeleSupprime {
             get {
-                return ResourceManager.GetString("ErrNumeroObligatoire", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Cet équipement a atteint sa durée de vie, pensez à le remplacer.
-        /// </summary>
-        internal static string InfoDureeDeVieAtteinte {
-            get {
-                return ResourceManager.GetString("InfoDureeDeVieAtteinte", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Cet équipement n&apos;a pas atteint sa durée de vie.
-        /// </summary>
-        internal static string InfoDureeDeVieNonAtteinte {
-            get {
-                return ResourceManager.GetString("InfoDureeDeVieNonAtteinte", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à L&apos;équipement a été dupliqué.
-        /// </summary>
-        internal static string InfoEquipementDuplique {
-            get {
-                return ResourceManager.GetString("InfoEquipementDuplique", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à L&apos;équipement a été supprimé.
-        /// </summary>
-        internal static string InfoEquipementSupprime {
-            get {
-                return ResourceManager.GetString("InfoEquipementSupprime", resourceCulture);
+                return ResourceManager.GetString("InfoModeleSupprime", resourceCulture);
             }
         }
     }
