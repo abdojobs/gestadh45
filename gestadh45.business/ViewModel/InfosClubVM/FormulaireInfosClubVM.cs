@@ -56,11 +56,6 @@ namespace gestadh45.business.ViewModel.InfosClubVM
 			this.InfosClub = repoMain.GetFirst();
 			this.PopulatesVilles();
 
-			Messenger.Default.Register<NMSelectionElement<Ville>>(
-				this, 
-				(msg) => this.SelectVille(msg.Content)
-			);
-
 			Messenger.Default.Register<NMRefreshDatas>(this, m => this.PopulatesVilles());
 		}
 
@@ -92,11 +87,6 @@ namespace gestadh45.business.ViewModel.InfosClubVM
 
 		private void PopulatesVilles() {
 			this.Villes = this.repoVille.GetAll().OrderBy((v) => v.Libelle);
-		}
-
-		private void SelectVille(Ville ville) {
-			this.InfosClub.Ville = ville;
-			this.RaisePropertyChanged(() => this.InfosClub);
 		}
 
 		protected override bool CheckFormValidity(List<string> errors) {
