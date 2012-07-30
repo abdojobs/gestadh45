@@ -4,7 +4,6 @@ using System.Windows.Controls;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.business.ViewModel;
-using System.Linq;
 
 namespace gestadh45.wpf
 {

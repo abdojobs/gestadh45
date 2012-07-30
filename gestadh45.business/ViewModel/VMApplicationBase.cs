@@ -27,30 +27,8 @@ namespace gestadh45.business.ViewModel
 		}
 
 		public VMApplicationBase() {
-			this.CreateOpenWindowCommand();
 			this.CreateShowUCCommand();
 		}
-
-		#region OpenWindowCommand
-		public ICommand OpenWindowCommand { get; internal set; }
-
-		protected void CreateOpenWindowCommand() {
-			this.OpenWindowCommand = new RelayCommand<string>(
-				this.ExecuteOpenWindowCommand,
-				this.CanExecuteOpenWindowCommand
-			);
-		}
-
-		public virtual bool CanExecuteOpenWindowCommand(string codeUC) {
-			return true;
-		}
-
-		public virtual void ExecuteOpenWindowCommand(string codeUC) {
-			Messenger.Default.Send<NMOpenWindow>(
-				new NMOpenWindow(codeUC)
-			);
-		}
-		#endregion
 
 		#region ShowUCCommand
 		public ICommand ShowUCCommand { get; internal set; }

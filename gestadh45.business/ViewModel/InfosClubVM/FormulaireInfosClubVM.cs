@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Windows.Data;
+using System.Linq;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
 using gestadh45.dal;
-using System.Linq;
 
 namespace gestadh45.business.ViewModel.InfosClubVM
 {
@@ -89,15 +87,6 @@ namespace gestadh45.business.ViewModel.InfosClubVM
 			else {
 				this.ShowUserNotifications(errors);
 			}
-		}
-		#endregion
-
-		#region PopupVilleCommand
-		public override void ExecutePopupVilleCommand() {
-			base.ExecutePopupVilleCommand();
-
-			// rafraichissement de la liste des villes
-			this.PopulatesVilles();
 		}
 		#endregion
 
