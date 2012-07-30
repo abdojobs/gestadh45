@@ -50,7 +50,7 @@ namespace gestadh45.wpf
 			// Abonnement aux messages
 			Messenger.Default.Register<NMCloseApplication>(this, (msg) => this.Exit());
 			Messenger.Default.Register<NMShowUC>(this, (msg) => this.ShowUC(msg.CodeUC));
-			Messenger.Default.Register<NMOpenWindow>(this, (msg) => this.OpenWindowUC(msg.CodeUC));
+			Messenger.Default.Register<NMOpenWindow>(this, (msg) => this.OpenWindowUC(msg.CodeUC, msg.ParentGuid));
 			Messenger.Default.Register<NMShowUC<Adherent>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<Inscription>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<Equipement>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
@@ -101,10 +101,11 @@ namespace gestadh45.wpf
 			}
 		}
 
-		private void OpenWindowUC(string codeUC) {
-			UserControl uc = this.GetUCFromCode(codeUC);
+		private void OpenWindowUC(string codeUC, Guid parentGuid) {
+			var uc = this.GetUCFromCode(codeUC);
 
 			((VMUCBase)uc.DataContext).IsWindowMode = true;
+			((VMUCBase)uc.DataContext).UCParentGuid = parentGuid;
 
 			UCWindow window = new UCWindow(uc);
 			window.ShowDialog();

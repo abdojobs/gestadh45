@@ -235,11 +235,6 @@ namespace gestadh45.business.ViewModel.AdherentsVM
 
 				this.ClearUserNotifications();
 
-				if (this.IsWindowMode) {
-					Messenger.Default.Send(new NMRefreshDatas());
-					Messenger.Default.Send(new NMCloseWindow(this.UCGuid));
-				}
-
 				Messenger.Default.Send<NMShowUC<Adherent>>(
 					new NMShowUC<Adherent>(CodesUC.FormulaireInscription, this.CurrentAdherent)
 				);
