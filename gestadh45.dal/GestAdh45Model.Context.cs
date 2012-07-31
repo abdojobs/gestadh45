@@ -43,5 +43,6 @@ namespace gestadh45.dal
         public DbSet<TrancheAge> TrancheAges { get; set; }
         public DbSet<Verification> Verifications { get; set; }
         public DbSet<Ville> Villes { get; set; }
+        public DbSet<Localisation> Localisations { get; set; }
     }
 }

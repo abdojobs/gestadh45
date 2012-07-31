@@ -20,38 +20,43 @@
 			/>
 
 		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
-		
-		<Grid>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="100" />
-				<ColumnDefinition />
-				<ColumnDefinition Width="160" />
-				<ColumnDefinition />
-			</Grid.ColumnDefinitions>
-			<Grid.RowDefinitions>
-				<RowDefinition Height="auto" />
-				<RowDefinition Height="auto" />
-				<RowDefinition Height="auto" />
-				<RowDefinition Height="auto" />
-				<RowDefinition Height="auto" />
-			</Grid.RowDefinitions>
 
-			<TextBlock Grid.Row="0" Grid.Column="0" Text="Numéro : " VerticalAlignment="Center" />
-			<TextBox Grid.Row="0" Grid.Column="1" MaxLength="50" CharacterCasing="Upper" 
-					 Text="{Binding Path=CurrentEquipement.Numero}"/>
+		<StackPanel Orientation="Vertical" Margin="0,5,0,5" HorizontalAlignment="Center">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Numéro : " VerticalAlignment="Center" Width="125" />
+				<TextBox MaxLength="50" CharacterCasing="Upper"  Width="150"
+					 Text="{Binding Path=CurrentEquipement.Numero}" IsEnabled="{Binding Path=CurrentEquipement.EstEditableCaracteristiques}"/>
+			</StackPanel>
 
-			<TextBlock Grid.Row="0" Grid.Column="2" Margin="20,0,0,0"
-					   Text="Date d'achat : " VerticalAlignment="Center" />
-			<DatePicker Grid.Row="0" Grid.Column="3" 
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Date d'achat : " VerticalAlignment="Center" Width="125" />
+				<DatePicker 
 								DisplayDate="{Binding Path=CurrentEquipement.DateAchat}" 
 								SelectedDate="{Binding Path=CurrentEquipement.DateAchat}"
-								SelectedDateFormat="Short" />
+								SelectedDateFormat="Short"
+								IsEnabled="{Binding Path=CurrentEquipement.EstEditableCaracteristiques}"/>
+			</StackPanel>
 
-			<TextBlock Grid.Row="1" Grid.Column="0" Text="Modèle : "
-					   VerticalAlignment="Center" />
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Modèle : " VerticalAlignment="Center" Width="125" />
 
-			<StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
-				<ComboBox Name="cmbCouleurs" Width="300"
+				<ComboBox Name="cmbModeles" Width="300"
+						  ItemsSource="{Binding Path=Modeles}"
+						  SelectedItem="{Binding Path=CurrentEquipement.Modele}"
+						  IsEnabled="{Binding Path=CurrentEquipement.EstEditableCaracteristiques}"/>
+				<Button ToolTip="Ajouter un modèle" HorizontalAlignment="Center" 
+						Width="18" Height="18" 
+						Command="{Binding Path=OpenWindowCommand}"
+						CommandParameter="{x:Static business:CodesUC.FormulaireModele}" 
+						Margin="5,0,0,0">
+					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
+				</Button>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal"  Margin="0,5,0,5">
+				<TextBlock Text="Localisation : " VerticalAlignment="Center" Width="125" />
+
+				<ComboBox Name="cmbLocalisation" Width="300"
 								ItemsSource="{Binding Path=Modeles}"
 								SelectedItem="{Binding Path=CurrentEquipement.Modele}" />
 				<Button ToolTip="Ajouter un modèle" HorizontalAlignment="Center" 
@@ -63,10 +68,10 @@
 				</Button>
 			</StackPanel>
 
-			<GroupBox Name="gbxInfos" Header="Infos" Grid.Row="2" Grid.ColumnSpan="4" Margin="5,5,5,5">
+			<GroupBox Name="gbxInfos" Header="Infos" Margin="5,5,5,5">
 				<TextBox AcceptsReturn="True" Height="50" Width="500"
 						 Text="{Binding Path=CurrentEquipement.Commentaire}" />
 			</GroupBox>
-		</Grid>
+		</StackPanel>
 	</DockPanel>
 </UserControl>

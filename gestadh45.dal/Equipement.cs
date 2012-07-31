@@ -26,9 +26,11 @@ namespace gestadh45.dal
         public System.DateTime DateModification { get; set; }
         public string Commentaire { get; set; }
         public System.Guid ID_Modele { get; set; }
+        public System.Guid ID_Localisation { get; set; }
     
         public virtual ICollection<Verification> Verifications { get; set; }
         public virtual Modele Modele { get; set; }
+        public virtual Localisation Localisation { get; set; }
     }
     
 }

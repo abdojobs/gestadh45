@@ -15,6 +15,7 @@
           <EntitySet Name="InfosClub" EntityType="gestadh45Model.Store.InfosClub" store:Type="Tables" />
           <EntitySet Name="Inscription" EntityType="gestadh45Model.Store.Inscription" store:Type="Tables" />
           <EntitySet Name="JourSemaine" EntityType="gestadh45Model.Store.JourSemaine" store:Type="Tables" />
+          <EntitySet Name="Localisation" EntityType="gestadh45Model.Store.Localisation" store:Type="Tables" />
           <EntitySet Name="Marque" EntityType="gestadh45Model.Store.Marque" store:Type="Tables" />
           <EntitySet Name="Modele" EntityType="gestadh45Model.Store.Modele" store:Type="Tables" />
           <EntitySet Name="Saison" EntityType="gestadh45Model.Store.Saison" store:Type="Tables" />
@@ -51,6 +52,10 @@
           <AssociationSet Name="FK_JourSemaine_Groupe" Association="gestadh45Model.Store.FK_JourSemaine_Groupe">
             <End Role="JourSemaine" EntitySet="JourSemaine" />
             <End Role="Groupe" EntitySet="Groupe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Localisation_Equipement" Association="gestadh45Model.Store.FK_Localisation_Equipement">
+            <End Role="Localisation" EntitySet="Localisation" />
+            <End Role="Equipement" EntitySet="Equipement" />
           </AssociationSet>
           <AssociationSet Name="FK_Marque_Modele" Association="gestadh45Model.Store.FK_Marque_Modele">
             <End Role="Marque" EntitySet="Marque" />
@@ -142,6 +147,7 @@
           <Property Name="DateModification" Type="datetime" Nullable="false" />
           <Property Name="Commentaire" Type="ntext" />
           <Property Name="ID_Modele" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID_Localisation" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Groupe">
           <Key>
@@ -192,6 +198,13 @@
           </Key>
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Numero" Type="int" Nullable="false" />
+          <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Localisation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Libelle" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="Marque">
@@ -356,6 +369,18 @@
             </Principal>
             <Dependent Role="Groupe">
               <PropertyRef Name="ID_JourSemaine" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Localisation_Equipement">
+          <End Role="Localisation" Type="gestadh45Model.Store.Localisation" Multiplicity="1" />
+          <End Role="Equipement" Type="gestadh45Model.Store.Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localisation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="ID_Localisation" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -538,6 +563,11 @@
             <End Role="StatutVerification" EntitySet="StatutVerifications" />
             <End Role="Verification" EntitySet="Verifications" />
           </AssociationSet>
+          <EntitySet Name="Localisations" EntityType="gestadh45Model.Localisation" />
+          <AssociationSet Name="FK_Localisation_Equipement" Association="gestadh45Model.FK_Localisation_Equipement">
+            <End Role="Localisation" EntitySet="Localisations" />
+            <End Role="Equipement" EntitySet="Equipements" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Adherent">
           <Key>
@@ -605,6 +635,8 @@
           <Property Type="Guid" Name="ID_Modele" Nullable="false" />
           <NavigationProperty Name="Verifications" Relationship="gestadh45Model.FK_Equipement_Verification" FromRole="Equipement" ToRole="Verification" />
           <NavigationProperty Name="Modele" Relationship="gestadh45Model.FK_Modele_Equipement" FromRole="Equipement" ToRole="Modele" />
+          <Property Type="Guid" Name="ID_Localisation" Nullable="false" />
+          <NavigationProperty Name="Localisation" Relationship="gestadh45Model.FK_Localisation_Equipement" FromRole="Equipement" ToRole="Localisation" />
         </EntityType>
         <EntityType Name="Groupe">
           <Key>
@@ -939,6 +971,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Localisation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Guid" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Libelle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Equipements" Relationship="gestadh45Model.FK_Localisation_Equipement" FromRole="Localisation" ToRole="Equipement" />
+        </EntityType>
+        <Association Name="FK_Localisation_Equipement">
+          <End Type="gestadh45Model.Localisation" Role="Localisation" Multiplicity="1" />
+          <End Type="gestadh45Model.Equipement" Role="Equipement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Localisation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Equipement">
+              <PropertyRef Name="ID_Localisation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -998,6 +1050,7 @@
           <EntitySetMapping Name="Equipements">
             <EntityTypeMapping TypeName="gestadh45Model.Equipement">
               <MappingFragment StoreEntitySet="Equipement">
+                <ScalarProperty Name="ID_Localisation" ColumnName="ID_Localisation" />
                 <ScalarProperty Name="ID_Modele" ColumnName="ID_Modele" />
                 <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
                 <ScalarProperty Name="DateModification" ColumnName="DateModification" />
@@ -1153,6 +1206,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Localisations">
+            <EntityTypeMapping TypeName="gestadh45Model.Localisation">
+              <MappingFragment StoreEntitySet="Localisation">
+                <ScalarProperty Name="Libelle" ColumnName="Libelle" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1226,8 +1287,8 @@
           <ConnectorPoint PointX="9.75" PointY="1.7017976888020812" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_Modele_Equipement" >
-          <ConnectorPoint PointX="6.75" PointY="2.4997460937500051" />
-          <ConnectorPoint PointX="7.5" PointY="2.4997460937500051" />
+          <ConnectorPoint PointX="6.75" PointY="2.5333968098958337" />
+          <ConnectorPoint PointX="7.5" PointY="2.5333968098958337" />
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_Groupe_Inscription" >
           <ConnectorPoint PointX="13.5" PointY="20.317047526041662" />
@@ -1254,6 +1315,8 @@
         </AssociationConnector>
         <AssociationConnector Association="gestadh45Model.FK_Marque_Modele" >
           <ConnectorPoint PointX="4.5" PointY="6.422841796874998" />
+          <ConnectorPoint PointX="4.635416666666667" PointY="6.4228417968749971" />
+          <ConnectorPoint PointX="4.802083333333333" PointY="6.422841796874998" />
           <ConnectorPoint PointX="6" PointY="6.422841796874998" />
           <ConnectorPoint PointX="6" PointY="3.9417936197916674" />
         </AssociationConnector>
@@ -1262,6 +1325,14 @@
           <ConnectorPoint PointX="9.5625" PointY="6.9998066923076934" />
           <ConnectorPoint PointX="9.5625" PointY="3.0741450664062371" />
           <ConnectorPoint PointX="9.75" PointY="3.0741450664062371" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="gestadh45Model.Localisation" Width="1.5" PointX="3.375" PointY="8.875" Height="1.5956835937500031" />
+        <AssociationConnector Association="gestadh45Model.FK_Localisation_Equipement" >
+          <ConnectorPoint PointX="4.71875" PointY="8.875" />
+          <ConnectorPoint PointX="4.71875" PointY="4.1316943359375" />
+          <ConnectorPoint PointX="5.916666666666667" PointY="4.1316943359374987" />
+          <ConnectorPoint PointX="6.083333333333333" PointY="4.1316943359375" />
+          <ConnectorPoint PointX="7.5" PointY="4.1316943359375" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

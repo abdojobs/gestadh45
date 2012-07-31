@@ -151,7 +151,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 
 		#region EditCommand
 		public override bool CanExecuteEditCommand() {
-			return this.SelectedEquipement != null;
+			return this.SelectedEquipement != null && !this.SelectedEquipement.EstAuRebut;
 		}
 
 		public override void ExecuteEditCommand() {
