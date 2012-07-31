@@ -132,6 +132,9 @@ namespace gestadh45.business.ViewModel.Statistiques
 		public void ExecuteChangeChartCommand(ChoixGraphIhm choixGraph) {
 			this.TitreGraph = choixGraph.ToString();
 
+			// HACK pour contourner le problème de refresh du graph
+			this.ChartKeysValues = new List<KeyValuePair<string, int>>();
+
 			switch (choixGraph.Code) {
 				case CodesGraphs.RemplissageGroupes:
 					this.ChartKeysValues = this.GetRemplissageGroupes();

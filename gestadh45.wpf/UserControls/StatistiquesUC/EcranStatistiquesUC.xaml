@@ -6,6 +6,7 @@
 			 xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
 			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4" 
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+			 xmlns:customControls="clr-namespace:Controls;assembly=Controls"
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=EcranStatistiquesVM, Source={StaticResource Locator}}"
 			 d:DesignHeight="400" d:DesignWidth="600">
@@ -28,13 +29,17 @@
 
 			<Separator Margin="0,10,0,10" />
 
-			<chartingToolkit:Chart Name="chart" Title="{Binding Path=TitreGraph}">
-				<chartingToolkit:Chart.Series>
-					<chartingToolkit:PieSeries Title="PieChart" 
-												ItemsSource="{Binding Path=ChartKeysValues}"
-												IndependentValueBinding="{Binding Path=Key}"
-												DependentValueBinding="{Binding Path=Value}" />
-				</chartingToolkit:Chart.Series>
-			</chartingToolkit:Chart>
+		<customControls:LabeledPieChart x:Name="TestPieChart" Title="{Binding Path=TitreGraph}">
+			<customControls:LabeledPieChart.Series>
+				<customControls:LabeledPieSeries Name="labeledPieSeries"
+												 ItemsSource="{Binding Path=ChartKeysValues}"
+												 IndependentValueBinding="{Binding Path=Key}"
+												 DependentValueBinding="{Binding Path=Value}"
+												 IsSelectionEnabled="True"
+												 PieChartLabelStyle="{DynamicResource ResourceKey=pieChartLabelStyle}"
+												 PieChartLabelItemTemplate="{DynamicResource ResourceKey=pieChartLabelDataTemplate}"
+												 LabelDisplayMode="Connected" />
+			</customControls:LabeledPieChart.Series>			
+		</customControls:LabeledPieChart>
 	</DockPanel>
 </UserControl>

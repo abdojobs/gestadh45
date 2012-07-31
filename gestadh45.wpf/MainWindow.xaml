@@ -3,6 +3,8 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
 		xmlns:b="clr-namespace:gestadh45.business;assembly=gestadh45.business"
+		xmlns:customControls="clr-namespace:Controls;assembly=Controls"
+		xmlns:gen="clr-namespace:System.Collections.Generic;assembly=mscorlib"
 		Title="GestAdh45" MinHeight="500" MinWidth="705"
 		DataContext="{Binding Path=MainVM, Source={StaticResource ResourceKey=Locator}}" 
 		Icon="/gestadh45.wpf;component/gestadh45.ico" 
@@ -18,6 +20,21 @@
 			<Setter Property="FontSize" Value="14" />
 			<Setter Property="FontWeight" Value="Bold" />
 		</Style>
+
+		<Style TargetType="{x:Type customControls:PieChartLabel}" x:Key="pieChartLabelStyle">
+			<!--<Setter Property="LineStrokeThickness" Value="2"/>
+			<Setter Property="LineStroke" Value="Black"/>-->
+		</Style>
+
+		<DataTemplate DataType="{x:Type TypeName=gen:KeyValuePair`2}" x:Key="pieChartLabelDataTemplate">
+			<Border BorderThickness="1" BorderBrush="Gray">
+				<StackPanel Background="White" Orientation="Horizontal">
+					<TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType={x:Type customControls:PieChartLabel}}, Path=FormattedRatio}" VerticalAlignment="Center" Margin="5,0,5,0" />
+					<TextBlock Text="- " />
+					<TextBlock Text="{Binding Key}" Margin="0,0,5,0"/>
+				</StackPanel>
+			</Border>
+		</DataTemplate>
 	</Window.Resources>
 
 	<DockPanel>
