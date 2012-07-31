@@ -123,6 +123,9 @@
   <data name="ErrCouleurObligatoire" xml:space="preserve">
     <value>Le modèle doit comporter au moins une couleur</value>
   </data>
+  <data name="ErrMarqueObligatoire" xml:space="preserve">
+    <value>La marque est obligatoire</value>
+  </data>
   <data name="ErrModeleExiste" xml:space="preserve">
     <value>Ce modèle existe déjà (nom + couleurs)</value>
   </data>

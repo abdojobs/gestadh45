@@ -7,6 +7,24 @@ namespace gestadh45.business.ViewModel.CategoriesVM
 {
 	public class FormulaireCategorieVM : VMFormulaireBase
 	{
+		#region DureesDeVie
+		private IOrderedEnumerable<DureeDeVie> _dureesDeVie;
+
+		/// <summary>
+		/// Obtient/Définit la liste des durées de vie
+		/// </summary>
+		public IOrderedEnumerable<DureeDeVie> DureesDeVie {
+			get { return this._dureesDeVie; }
+			set {
+				if (this._dureesDeVie != value) {
+					this._dureesDeVie = value;
+					this.RaisePropertyChanged(() => this.DureesDeVie);
+				}
+			}
+		}
+		#endregion
+
+		
 		#region CurrentCategorie
 		private Categorie _currentCategorie;
 
@@ -32,13 +50,18 @@ namespace gestadh45.business.ViewModel.CategoriesVM
 
 		#region Repository
 		private Repository<Categorie> _repoCategorie;
+		private Repository<DureeDeVie> _repoDureesDeVie;
 		#endregion
 
 		#region Constructeur
 		public FormulaireCategorieVM() {
 			this._repoCategorie = new Repository<Categorie>(this._context);
+			this._repoDureesDeVie = new Repository<DureeDeVie>(this._context);
+
 			this.CurrentCategorie = new Categorie();
 			this.UCParentCode = CodesUC.ConsultationCategories;
+
+			this.DureesDeVie = this._repoDureesDeVie.GetAll().OrderBy(d => d.Libelle);
 		}
 		#endregion
 
@@ -64,6 +87,10 @@ namespace gestadh45.business.ViewModel.CategoriesVM
 		protected override bool CheckFormValidity(List<string> errors) {
 			if (string.IsNullOrWhiteSpace(this.CurrentCategorie.Libelle)) {
 				errors.Add(ResCategories.ErrLibelleObligatoire);
+			}
+
+			if (this.CurrentCategorie.DureeDeVie == null) {
+				errors.Add(ResCategories.ErrDureeDeVieObligatoire);
 			}
 
 			if (errors.Count == 0 && this.CurrentElementExists()) {

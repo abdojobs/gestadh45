@@ -26,19 +26,22 @@ namespace gestadh45.dal
         }
     
         public DbSet<Adherent> Adherents { get; set; }
+        public DbSet<CampagneVerification> CampagneVerifications { get; set; }
+        public DbSet<Categorie> Categories { get; set; }
+        public DbSet<DureeDeVie> DureeDeVies { get; set; }
+        public DbSet<Equipement> Equipements { get; set; }
         public DbSet<Groupe> Groupes { get; set; }
         public DbSet<InfosClub> InfosClubs { get; set; }
         public DbSet<Inscription> Inscriptions { get; set; }
         public DbSet<JourSemaine> JourSemaines { get; set; }
+        public DbSet<Marque> Marques { get; set; }
+        public DbSet<Modele> Modeles { get; set; }
         public DbSet<Saison> Saisons { get; set; }
         public DbSet<Sexe> Sexes { get; set; }
         public DbSet<StatutInscription> StatutInscriptions { get; set; }
+        public DbSet<StatutVerification> StatutVerifications { get; set; }
         public DbSet<TrancheAge> TrancheAges { get; set; }
+        public DbSet<Verification> Verifications { get; set; }
         public DbSet<Ville> Villes { get; set; }
-        public DbSet<Marque> Marques { get; set; }
-        public DbSet<Categorie> Categories { get; set; }
-        public DbSet<DureeDeVie> DureeDeVies { get; set; }
-        public DbSet<Equipement> Equipements { get; set; }
-        public DbSet<Modele> Modeles { get; set; }
     }
 }

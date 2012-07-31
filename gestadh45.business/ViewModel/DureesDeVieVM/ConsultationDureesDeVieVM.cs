@@ -66,7 +66,7 @@ namespace gestadh45.business.ViewModel.DureesDeVieVM
 
 		#region DeleteCommand
 		public override bool CanExecuteDeleteCommand() {
-			return this.SelectedDureeDeVie != null && this.SelectedDureeDeVie.Equipements.Count == 0;
+			return this.SelectedDureeDeVie != null && this.SelectedDureeDeVie.Categories.Count == 0;
 		}
 
 		public override void ExecuteDeleteCommand() {

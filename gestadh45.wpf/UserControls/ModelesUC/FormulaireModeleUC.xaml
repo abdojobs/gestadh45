@@ -20,7 +20,7 @@
 
 		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 
-		<StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+		<StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="0,5,0,5">
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="Catégorie : " Width="100" />
 				<ComboBox Name="cmbCategories" Width="125"
@@ -34,7 +34,21 @@
 					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
 				</Button>
 			</StackPanel>
-			
+
+			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
+				<TextBlock Text="Marque : " Width="100" />
+				<ComboBox Name="cmbMarques" Width="125"
+								ItemsSource="{Binding Path=Marques}"
+								SelectedItem="{Binding Path=CurrentModele.Marque}" />
+				<Button ToolTip="Ajouter une marque" HorizontalAlignment="Center" 
+							Width="18" Height="18" 
+							Command="{Binding Path=OpenWindowCommand}"
+							CommandParameter="{x:Static business:CodesUC.FormulaireMarque}" 
+							Margin="5,0,0,0">
+					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
+				</Button>
+			</StackPanel>
+
 			<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 				<TextBlock Text="Nom : " Width="100" />
 				<TextBox Width="200" MaxLength="50" CharacterCasing="Upper" Text="{Binding Path=CurrentModele.Nom}" />

@@ -27,6 +27,28 @@ namespace gestadh45.business.ViewModel.ModeleVM
 		}
 		#endregion
 
+		#region Marques
+		private IOrderedEnumerable<Marque> _marques;
+
+		/// <summary>
+		/// Gets or sets the marques.
+		/// </summary>
+		/// <value>
+		/// The marques.
+		/// </value>
+		public IOrderedEnumerable<Marque> Marques {
+			get {
+				return this._marques;
+			}
+
+			set {
+				if (this._marques != value) {
+					this._marques = value;
+					this.RaisePropertyChanged(() => this.Marques);
+				}
+			}
+		}
+		#endregion
 
 		#region CurrentModele
 		private Modele _currentModele;
@@ -48,12 +70,14 @@ namespace gestadh45.business.ViewModel.ModeleVM
 		#region Repositories
 		private Repository<Modele> _repoModele;
 		private Repository<Categorie> _repoCategories;
+		private Repository<Marque> _repoMarques;
 		#endregion
 
 		#region Constructeur
 		public FormulaireModeleVM() {
 			this._repoModele = new Repository<Modele>(this._context);
 			this._repoCategories = new Repository<Categorie>(this._context);
+			this._repoMarques = new Repository<Marque>(this._context);
 
 			this.CurrentModele = new Modele();
 			this.UCParentCode = CodesUC.ConsultationModeles;
@@ -65,6 +89,7 @@ namespace gestadh45.business.ViewModel.ModeleVM
 
 		private void PopulateCombo() {
 			this.Categories = this._repoCategories.GetAll().OrderBy(c => c.Libelle);
+			this.Marques = this._repoMarques.GetAll().OrderBy(m => m.Libelle);
 		}
 
 		#region SaveCommand
@@ -108,6 +133,10 @@ namespace gestadh45.business.ViewModel.ModeleVM
 
 			if (this.CurrentModele.Categorie == null) {
 				errors.Add(ResModeles.ErrCategorieObligatoire);
+			}
+
+			if (this.CurrentModele.Marque == null) {
+				errors.Add(ResModeles.ErrMarqueObligatoire);
 			}
 
 			if (errors.Count == 0 && this.CurrentElementExists()) {
