@@ -69,6 +69,13 @@ namespace gestadh45.dal
 		}
 
 		/// <summary>
+		/// Obtient un booléen indiquant si les caractéristiques de l'équipement sont éditables
+		/// </summary>
+		public bool EstEditableCaracteristiques {
+			get { return this.Verifications.Count == 0; }
+		}
+
+		/// <summary>
 		/// Crée un nouvel objet qui est une copie de l'instance en cours.
 		/// </summary>
 		/// <returns>
