@@ -61,29 +61,11 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à La durée de vie est obligatoire.
-        /// </summary>
-        internal static string ErrDureeDeVieObligatoire {
-            get {
-                return ResourceManager.GetString("ErrDureeDeVieObligatoire", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à Cet équipement existe déja.
         /// </summary>
         internal static string ErrEquipementExiste {
             get {
                 return ResourceManager.GetString("ErrEquipementExiste", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à La marque est obligatoire.
-        /// </summary>
-        internal static string ErrMarqueObligatoire {
-            get {
-                return ResourceManager.GetString("ErrMarqueObligatoire", resourceCulture);
             }
         }
         

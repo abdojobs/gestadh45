@@ -14,18 +14,20 @@ namespace gestadh45.dal
 {
     public partial class Equipement
     {
+        public Equipement()
+        {
+            this.Verifications = new HashSet<Verification>();
+        }
+    
         public System.Guid ID { get; set; }
         public string Numero { get; set; }
         public Nullable<System.DateTime> DateAchat { get; set; }
         public System.DateTime DateCreation { get; set; }
         public System.DateTime DateModification { get; set; }
         public string Commentaire { get; set; }
-        public System.Guid ID_Marque { get; set; }
-        public System.Guid ID_DureeDeVie { get; set; }
         public System.Guid ID_Modele { get; set; }
     
-        public virtual DureeDeVie DureeDeVie { get; set; }
-        public virtual Marque Marque { get; set; }
+        public virtual ICollection<Verification> Verifications { get; set; }
         public virtual Modele Modele { get; set; }
     }
     

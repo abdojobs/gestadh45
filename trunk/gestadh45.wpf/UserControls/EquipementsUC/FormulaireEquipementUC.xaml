@@ -46,9 +46,12 @@
 								DisplayDate="{Binding Path=CurrentEquipement.DateAchat}" 
 								SelectedDate="{Binding Path=CurrentEquipement.DateAchat}"
 								SelectedDateFormat="Short" />
-			
-			<StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-				<ComboBox Name="cmbCouleurs" Width="125"
+
+			<TextBlock Grid.Row="1" Grid.Column="0" Text="Modèle : "
+					   VerticalAlignment="Center" />
+
+			<StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+				<ComboBox Name="cmbCouleurs" Width="300"
 								ItemsSource="{Binding Path=Modeles}"
 								SelectedItem="{Binding Path=CurrentEquipement.Modele}" />
 				<Button ToolTip="Ajouter un modèle" HorizontalAlignment="Center" 
@@ -60,45 +63,7 @@
 				</Button>
 			</StackPanel>
 
-			<TextBlock Grid.Row="1" Grid.Column="2" Text="Marque : " Margin="20,0,0,0"
-					   VerticalAlignment="Center" />
-
-			<StackPanel Grid.Row="1" Grid.Column="3" Orientation="Horizontal">
-				<ComboBox Name="cmbMarques" Width="125"
-								ItemsSource="{Binding Path=Marques}"
-								SelectedItem="{Binding Path=CurrentEquipement.Marque}" />
-				<Button ToolTip="Ajouter une marque" HorizontalAlignment="Center" 
-							Width="18" Height="18" 
-							Command="{Binding Path=OpenWindowCommand}"
-							CommandParameter="{x:Static business:CodesUC.FormulaireMarque}" 
-							Margin="5,0,0,0">
-					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
-				</Button>
-			</StackPanel>
-
-			<TextBlock Grid.Row="1" Grid.Column="0" Text="Modèle : "
-					   VerticalAlignment="Center" />
-
-			<TextBlock Grid.Row="3" Grid.Column="0" Text="Durée de vie : " 
-					   VerticalAlignment="Center"
-					   Margin="0,5,0,5"/>
-
-			<StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,5,0,5">
-				<ComboBox Name="cmbDureeDeVie" Width="250"
-								ItemsSource="{Binding Path=DureesDeVie}"
-								SelectedItem="{Binding Path=CurrentEquipement.DureeDeVie}" />
-				<Button ToolTip="Ajouter une marque" HorizontalAlignment="Center" 
-							Width="18" Height="18" 
-							Command="{Binding Path=OpenWindowCommand}"
-							CommandParameter="{x:Static business:CodesUC.FormulaireDureeDeVie}" 
-							Margin="5,0,0,0">
-					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
-				</Button>
-			</StackPanel>
-
-			
-
-			<GroupBox Name="gbxInfos" Header="Infos" Grid.Row="4" Grid.ColumnSpan="4" Margin="5,5,5,5">
+			<GroupBox Name="gbxInfos" Header="Infos" Grid.Row="2" Grid.ColumnSpan="4" Margin="5,5,5,5">
 				<TextBox AcceptsReturn="True" Height="50" Width="500"
 						 Text="{Binding Path=CurrentEquipement.Commentaire}" />
 			</GroupBox>

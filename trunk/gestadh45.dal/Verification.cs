@@ -12,19 +12,17 @@ using System.Collections.Generic;
 
 namespace gestadh45.dal
 {
-    public partial class Categorie
+    public partial class Verification
     {
-        public Categorie()
-        {
-            this.Modeles = new HashSet<Modele>();
-        }
-    
         public System.Guid ID { get; set; }
-        public string Libelle { get; set; }
-        public System.Guid ID_DureeDeVie { get; set; }
+        public System.Guid ID_Equipement { get; set; }
+        public System.Guid ID_StatutVerification { get; set; }
+        public System.Guid ID_CampagneVerification { get; set; }
+        public string Commentaire { get; set; }
     
-        public virtual ICollection<Modele> Modeles { get; set; }
-        public virtual DureeDeVie DureeDeVie { get; set; }
+        public virtual CampagneVerification CampagneVerification { get; set; }
+        public virtual Equipement Equipement { get; set; }
+        public virtual StatutVerification StatutVerification { get; set; }
     }
     
 }

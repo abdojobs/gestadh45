@@ -78,7 +78,7 @@ namespace gestadh45.business.ViewModel.MarquesVM
 
 		#region DeleteCommand
 		public override bool CanExecuteDeleteCommand() {
-			return this.SelectedMarque != null && this.SelectedMarque.Equipements.Count == 0;
+			return this.SelectedMarque != null && this.SelectedMarque.Modeles.Count == 0;
 		}
 
 		public override void ExecuteDeleteCommand() {

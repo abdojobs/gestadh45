@@ -79,6 +79,15 @@ namespace gestadh45.business.ViewModel.ModeleVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à La marque est obligatoire.
+        /// </summary>
+        internal static string ErrMarqueObligatoire {
+            get {
+                return ResourceManager.GetString("ErrMarqueObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Ce modèle existe déjà (nom + couleurs).
         /// </summary>
         internal static string ErrModeleExiste {

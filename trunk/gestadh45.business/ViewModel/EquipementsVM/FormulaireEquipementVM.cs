@@ -9,47 +9,6 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 {
 	public class FormulaireEquipementVM : VMFormulaireBase
 	{
-		#region Marques
-		private IOrderedEnumerable<Marque> _marques;
-
-		/// <summary>
-		/// Gets or sets the marques.
-		/// </summary>
-		/// <value>
-		/// The marques.
-		/// </value>
-		public IOrderedEnumerable<Marque> Marques {
-			get {
-				return this._marques;
-			}
-
-			set {
-				if (this._marques != value) {
-					this._marques = value;
-					this.RaisePropertyChanged(() => this.Marques);
-				}
-			}
-		}
-		#endregion
-
-		#region DureesDeVie
-		private IOrderedEnumerable<DureeDeVie> _dureesDeVie;
-
-		/// <summary>
-		/// Obtient/Définit la liste des durées de vie
-		/// </summary>
-		public IOrderedEnumerable<DureeDeVie> DureesDeVie {
-			get { return this._dureesDeVie; }
-			set {
-				if (this._dureesDeVie != value) {
-					this._dureesDeVie = value;
-					this.RaisePropertyChanged(() => this.DureesDeVie);
-				}
-			}
-		}
-		#endregion
-
-		
 		#region Modeles
 		private IOrderedEnumerable<Modele> _modeles;
 
@@ -65,8 +24,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 				}
 			}
 		}
-		#endregion
-				
+		#endregion				
 
 		#region CurrentEquipement
 		private Equipement _currentEquipement;
@@ -92,9 +50,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		#endregion
 
 		#region Repositories
-		private Repository<Marque> _repoMarque;
 		private Repository<Equipement> _repoEquipement;
-		private Repository<DureeDeVie> _repoDureeDeVie;
 		private Repository<Modele> _repoModele;
 		#endregion
 
@@ -133,14 +89,10 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 
 		private void CreateRepositories() {
 			this._repoEquipement = new Repository<Equipement>(this._context);
-			this._repoMarque = new Repository<Marque>(this._context);
-			this._repoDureeDeVie = new Repository<DureeDeVie>(this._context);
 			this._repoModele = new Repository<Modele>(this._context);
 		}
 
 		private void PopulateCombos() {
-			this.Marques = this._repoMarque.GetAll().OrderBy(m => m.ToString());
-			this.DureesDeVie = this._repoDureeDeVie.GetAll().OrderBy(d => d.Libelle);
 			this.Modeles = this._repoModele.GetAll().OrderBy(c => c.ToString());
 		}
 
@@ -164,16 +116,8 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 				errors.Add(ResEquipements.ErrNumeroObligatoire);
 			}
 
-			if (this.CurrentEquipement.Marque == null) {
-				errors.Add(ResEquipements.ErrMarqueObligatoire);
-			}
-
 			if (this.CurrentEquipement.Modele == null) {
 				errors.Add(ResEquipements.ErrModeleObligatoire);
-			}
-
-			if (this.CurrentEquipement.DureeDeVie == null) {
-				errors.Add(ResEquipements.ErrDureeDeVieObligatoire);
 			}
 
 			if (errors.Count == 0 && this.CurrentElementExists()) {

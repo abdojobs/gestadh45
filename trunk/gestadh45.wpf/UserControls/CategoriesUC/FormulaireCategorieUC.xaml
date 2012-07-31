@@ -25,6 +25,20 @@
 				<TextBlock Text="Libellé : " Width="100" />
 				<TextBox Width="200" MaxLength="50" CharacterCasing="Upper" Text="{Binding Path=CurrentCategorie.Libelle}" />
 			</StackPanel>
+
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="Durée de vie : " Width="100" />
+				<ComboBox Name="cmbDureesDeVie" Width="125"
+								ItemsSource="{Binding Path=DureesDeVie}"
+								SelectedItem="{Binding Path=CurrentModele.DureeDeVie}" />
+				<Button ToolTip="Ajouter une marque" HorizontalAlignment="Center" 
+							Width="18" Height="18" 
+							Command="{Binding Path=OpenWindowCommand}"
+							CommandParameter="{x:Static business:CodesUC.FormulaireDureeDeVie}" 
+							Margin="5,0,0,0">
+					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
+				</Button>
+			</StackPanel>
 		</StackPanel>
 	</DockPanel>
 </UserControl>

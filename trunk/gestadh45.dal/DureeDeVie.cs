@@ -16,7 +16,7 @@ namespace gestadh45.dal
     {
         public DureeDeVie()
         {
-            this.Equipements = new HashSet<Equipement>();
+            this.Categories = new HashSet<Categorie>();
         }
     
         public System.Guid ID { get; set; }
@@ -24,7 +24,7 @@ namespace gestadh45.dal
         public int NbAnnees { get; set; }
         public int NbMois { get; set; }
     
-        public virtual ICollection<Equipement> Equipements { get; set; }
+        public virtual ICollection<Categorie> Categories { get; set; }
     }
     
 }

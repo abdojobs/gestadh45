@@ -8,7 +8,7 @@ namespace gestadh45.dal
 		/// </summary>
 		/// <returns></returns>
 		public override string ToString() {
-			return string.Format("{0} {1}", this.Nom, this.DescriptionCouleur);
+			return string.Format("{0} {1} {2} {3}", this.Categorie.ToString(), this.Marque.ToString(), this.Nom, this.DescriptionCouleur);
 		}
 
 		/// <summary>

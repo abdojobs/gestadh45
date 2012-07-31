@@ -54,6 +54,9 @@
     <Compile Include="Adherent.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="CampagneVerification.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Categorie.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
@@ -97,6 +100,7 @@
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PersonalizedObj\Adherent.cs" />
+    <Compile Include="PersonalizedObj\CampagneVerification.cs" />
     <Compile Include="PersonalizedObj\Categorie.cs" />
     <Compile Include="PersonalizedObj\DureeDeVie.cs" />
     <Compile Include="PersonalizedObj\Equipement.cs" />
@@ -109,7 +113,9 @@
     <Compile Include="PersonalizedObj\Saison.cs" />
     <Compile Include="PersonalizedObj\Sexe.cs" />
     <Compile Include="PersonalizedObj\StatutInscription.cs" />
+    <Compile Include="PersonalizedObj\StatutVerification.cs" />
     <Compile Include="PersonalizedObj\TrancheAge.cs" />
+    <Compile Include="PersonalizedObj\Verification.cs" />
     <Compile Include="PersonalizedObj\Ville.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
@@ -122,7 +128,13 @@
     <Compile Include="StatutInscription.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="StatutVerification.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="TrancheAge.cs">
+      <DependentUpon>GestAdh45Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Verification.cs">
       <DependentUpon>GestAdh45Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Ville.cs">
