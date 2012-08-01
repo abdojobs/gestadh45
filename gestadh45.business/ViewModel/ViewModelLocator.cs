@@ -16,6 +16,7 @@ using gestadh45.business.ViewModel.EquipementsVM;
 using gestadh45.business.ViewModel.GroupesVM;
 using gestadh45.business.ViewModel.InfosClubVM;
 using gestadh45.business.ViewModel.InscriptionsVM;
+using gestadh45.business.ViewModel.LocalisationVM;
 using gestadh45.business.ViewModel.MainScreenVM;
 using gestadh45.business.ViewModel.MarquesVM;
 using gestadh45.business.ViewModel.ModeleVM;
@@ -206,6 +207,16 @@ namespace gestadh45.business.ViewModel
 
 		public static FormulaireModeleVM FormulaireModeleVM {
 			get { return new FormulaireModeleVM(); }
+		}
+		#endregion
+
+		#region LocalisationsVM
+		public static ConsultationLocalisationsVM ConsultationLocalisationsVM {
+			get { return new ConsultationLocalisationsVM(); }
+		}
+
+		public static FormulaireLocalisationVM FormulaireLocalisationVM {
+			get { return new FormulaireLocalisationVM(); }
 		}
 		#endregion
 	}

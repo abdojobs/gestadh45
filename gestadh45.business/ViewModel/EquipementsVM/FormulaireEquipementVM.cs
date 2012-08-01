@@ -26,6 +26,25 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		}
 		#endregion				
 
+
+		#region Localisations
+		private IOrderedEnumerable<Localisation> _localisations;
+
+		/// <summary>
+		/// Obtient/Définit la liste des localisations
+		/// </summary>
+		public IOrderedEnumerable<Localisation> Localisations {
+			get { return this._localisations; }
+			set {
+				if (this._localisations != value) {
+					this._localisations = value;
+					this.RaisePropertyChanged(() => this.Localisations);
+				}
+			}
+		}
+		#endregion
+				
+
 		#region CurrentEquipement
 		private Equipement _currentEquipement;
 
@@ -52,6 +71,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		#region Repositories
 		private Repository<Equipement> _repoEquipement;
 		private Repository<Modele> _repoModele;
+		private Repository<Localisation> _repoLocalisation;
 		#endregion
 
 		#region Constructeurs
@@ -90,10 +110,12 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		private void CreateRepositories() {
 			this._repoEquipement = new Repository<Equipement>(this._context);
 			this._repoModele = new Repository<Modele>(this._context);
+			this._repoLocalisation = new Repository<Localisation>(this._context);
 		}
 
 		private void PopulateCombos() {
 			this.Modeles = this._repoModele.GetAll().OrderBy(c => c.ToString());
+			this.Localisations = this._repoLocalisation.GetAll().OrderBy(l => l.Libelle);
 		}
 
 		/// <summary>

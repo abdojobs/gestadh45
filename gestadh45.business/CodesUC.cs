@@ -46,6 +46,9 @@ namespace gestadh45.business
 		public const string FormulaireCampagneVerification = "FormulaireCampagneVerification";
 		public const string FormulaireSaisieVerifications = "FormulaireSaisieVerifications";
 
+		public const string ConsultationLocalisations = "ConsultationLocalisations";
+		public const string FormulaireLocalisation = "FormulaireLocalisation";
+
 		public const string MainScreenCheck = "MainScreenCheck";
 		public const string FormulaireInitialisationDatabase = "FormulaireInitialisationDatabase";
 

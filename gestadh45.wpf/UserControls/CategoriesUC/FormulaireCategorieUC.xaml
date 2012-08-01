@@ -30,7 +30,7 @@
 				<TextBlock Text="Durée de vie : " Width="100" />
 				<ComboBox Name="cmbDureesDeVie" Width="125"
 								ItemsSource="{Binding Path=DureesDeVie}"
-								SelectedItem="{Binding Path=CurrentModele.DureeDeVie}" />
+								SelectedItem="{Binding Path=CurrentCategorie.DureeDeVie}" />
 				<Button ToolTip="Ajouter une marque" HorizontalAlignment="Center" 
 							Width="18" Height="18" 
 							Command="{Binding Path=OpenWindowCommand}"

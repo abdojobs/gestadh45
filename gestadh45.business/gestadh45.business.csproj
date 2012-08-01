@@ -90,6 +90,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResEquipements.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\LocalisationVM\ConsultationLocalisationsVM.cs" />
+    <Compile Include="ViewModel\LocalisationVM\FormulaireLocalisationVM.cs" />
+    <Compile Include="ViewModel\LocalisationVM\ResLocalisation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResLocalisation.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MainScreenVM\FormulaireInitialisationDatabaseVM.cs" />
     <Compile Include="ViewModel\MainScreenVM\MainScreenCheckVM.cs" />
     <Compile Include="ViewModel\MainScreenVM\ResMainScreen.Designer.cs">
@@ -216,6 +223,10 @@
     <EmbeddedResource Include="ViewModel\EquipementsVM\ResEquipements.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResEquipements.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\LocalisationVM\ResLocalisation.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResLocalisation.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\MainScreenVM\ResMainScreen.resx">
       <Generator>ResXFileCodeGenerator</Generator>

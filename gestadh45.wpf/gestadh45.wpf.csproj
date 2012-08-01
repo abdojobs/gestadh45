@@ -184,6 +184,12 @@
     <Compile Include="UserControls\InscriptionsUC\FormulaireInscriptionUC.xaml.cs">
       <DependentUpon>FormulaireInscriptionUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\LocalisationUC\ConsultationLocalisationsUC.xaml.cs">
+      <DependentUpon>ConsultationLocalisationsUC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\LocalisationUC\FormulaireLocalisationUC.xaml.cs">
+      <DependentUpon>FormulaireLocalisationUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MainScreenUC\FormulaireInitialisationDatabaseUC.xaml.cs">
       <DependentUpon>FormulaireInitialisationDatabaseUC.xaml</DependentUpon>
     </Compile>
@@ -311,6 +317,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\InscriptionsUC\FormulaireInscriptionUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\LocalisationUC\ConsultationLocalisationsUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\LocalisationUC\FormulaireLocalisationUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -547,6 +561,7 @@
     <Content Include="gestadh45.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\btn_localisation.png" />
     <Resource Include="Images\btn_modele.png" />
     <Resource Include="Images\btn_lock.png" />
     <Resource Include="Images\btn_warning.png" />
