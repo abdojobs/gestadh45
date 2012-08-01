@@ -15,6 +15,7 @@ using gestadh45.wpf.UserControls.EquipementsUC;
 using gestadh45.wpf.UserControls.GroupesUC;
 using gestadh45.wpf.UserControls.InfosClubs;
 using gestadh45.wpf.UserControls.InscriptionsUC;
+using gestadh45.wpf.UserControls.LocalisationUC;
 using gestadh45.wpf.UserControls.MainScreenUC;
 using gestadh45.wpf.UserControls.MarquesUC;
 using gestadh45.wpf.UserControls.ModelesUC;
@@ -226,6 +227,14 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireModele:
 					userControl = new FormulaireModeleUC();
+					break;
+
+				case CodesUC.ConsultationLocalisations:
+					userControl = new ConsultationLocalisationsUC();
+					break;
+
+				case CodesUC.FormulaireLocalisation:
+					userControl = new FormulaireLocalisationUC();
 					break;
 
 				case CodesUC.MainScreenCheck:

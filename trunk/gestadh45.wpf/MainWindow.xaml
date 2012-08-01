@@ -223,6 +223,20 @@
 							CommandParameter="{x:Static b:CodesUC.FormulaireCategorie}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
+
+				<my:RibbonGroup Name="GrpLocalisation" Header="Localisations">
+					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Localisations"
+										  CommandParameter="{x:Static b:CodesUC.ConsultationLocalisations}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_localisation.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_localisation.png">
+						<my:RibbonMenuItem Header="Consultation"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.ConsultationLocalisations}" />
+						<my:RibbonMenuItem Header="Ajout"
+							Command="{Binding Path=ShowUCCommand}"
+							CommandParameter="{x:Static b:CodesUC.FormulaireLocalisation}" />
+					</my:RibbonSplitButton>
+				</my:RibbonGroup>
 			</my:RibbonTab>
 		</my:Ribbon>
 

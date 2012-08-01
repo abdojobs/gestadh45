@@ -57,12 +57,12 @@
 				<TextBlock Text="Localisation : " VerticalAlignment="Center" Width="125" />
 
 				<ComboBox Name="cmbLocalisation" Width="300"
-								ItemsSource="{Binding Path=Modeles}"
-								SelectedItem="{Binding Path=CurrentEquipement.Modele}" />
+								ItemsSource="{Binding Path=Localisations}"
+								SelectedItem="{Binding Path=CurrentEquipement.Localisation}" />
 				<Button ToolTip="Ajouter un modèle" HorizontalAlignment="Center" 
 							Width="18" Height="18" 
 							Command="{Binding Path=OpenWindowCommand}"
-							CommandParameter="{x:Static business:CodesUC.FormulaireModele}" 
+							CommandParameter="{x:Static business:CodesUC.FormulaireLocalisation}" 
 							Margin="5,0,0,0">
 					<Image Source="/gestadh45.wpf;component/Images/btn_add16.png" />
 				</Button>
