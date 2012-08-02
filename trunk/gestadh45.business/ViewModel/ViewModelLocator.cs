@@ -10,6 +10,7 @@
 */
 
 using gestadh45.business.ViewModel.AdherentsVM;
+using gestadh45.business.ViewModel.CampagnesVerificationVM;
 using gestadh45.business.ViewModel.CategoriesVM;
 using gestadh45.business.ViewModel.DureesDeVieVM;
 using gestadh45.business.ViewModel.EquipementsVM;
@@ -217,6 +218,16 @@ namespace gestadh45.business.ViewModel
 
 		public static FormulaireLocalisationVM FormulaireLocalisationVM {
 			get { return new FormulaireLocalisationVM(); }
+		}
+		#endregion
+
+		#region CampagnesVerificationVM
+		public static ConsultationCampagnesVerificationVM ConsultationCampagnesVerificationVM {
+			get { return new ConsultationCampagnesVerificationVM(); }
+		}
+
+		public static FormulaireCreationCampagneVerificationVM FormulaireCreationCampagneVerificationVM {
+			get { return new FormulaireCreationCampagneVerificationVM(); }
 		}
 		#endregion
 	}
