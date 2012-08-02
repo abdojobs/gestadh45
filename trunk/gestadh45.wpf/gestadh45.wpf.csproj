@@ -154,6 +154,9 @@
     <Compile Include="UserControls\CampagnesVerificationUC\FormulaireCreationCampagneVerificationUC.xaml.cs">
       <DependentUpon>FormulaireCreationCampagneVerificationUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CampagnesVerificationUC\FormulaireSaisieVerificationsUC.xaml.cs">
+      <DependentUpon>FormulaireSaisieVerificationsUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\CategoriesUC\ConsultationCategoriesUC.xaml.cs">
       <DependentUpon>ConsultationCategoriesUC.xaml</DependentUpon>
     </Compile>
@@ -283,6 +286,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\CampagnesVerificationUC\FormulaireCreationCampagneVerificationUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CampagnesVerificationUC\FormulaireSaisieVerificationsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
