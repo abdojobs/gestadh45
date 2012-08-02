@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.CampagnesVerificationUC.FormulaireSaisieVerificationsUC"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 mc:Ignorable="d" 
+			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
+			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="400" d:DesignWidth="600">
+	<DockPanel Margin="5,5,5,5">
+		<TextBlock Text="Saisie des vérifications" DockPanel.Dock="Top" HorizontalAlignment="Stretch" 
+					Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
+
+		<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5" 
+			CodeUCParent="{x:Static business:CodesUC.ConsultationCampagnesVerification}"
+			CmdAnnuler="{Binding Path=CancelCommand}"
+			CmdEnregistrer="{Binding Path=SaveCommand}"
+			/>
+
+		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
+
+		<ListBox Name="lbxItems" Width="300"
+						ItemsSource="{Binding Path=CampagnesVerification}"
+						SelectedItem="{Binding Path=SelectedCampagneVerification}">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="SelectionChanged">
+					<cmd:EventToCommand 
+						Command="{Binding Path=ShowDetailsCommand, Mode=OneWay}" 
+						CommandParameter="{Binding ElementName=lbxItems, Path=SelectedItem}" />
+				</i:EventTrigger>
+				<i:EventTrigger EventName="MouseDoubleClick">
+					<cmd:EventToCommand 
+						Command="{Binding Path=SaisirCommand, Mode=OneWay}" />
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<TextBlock Text="{Binding Path=Libelle}" Foreground="{Binding Path=EstValidee, Converter={StaticResource ResourceKey=boolToBrush}}" />
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+	</DockPanel>
+</UserControl>

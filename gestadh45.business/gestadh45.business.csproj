@@ -71,6 +71,7 @@
     <Compile Include="PersonalizedMsg\NMShowInfosDataSource.cs" />
     <Compile Include="ViewModel\CampagnesVerificationVM\ConsultationCampagnesVerificationVM.cs" />
     <Compile Include="ViewModel\CampagnesVerificationVM\FormulaireCreationCampagneVerificationVM.cs" />
+    <Compile Include="ViewModel\CampagnesVerificationVM\FormulaireSaisieVerificationsVM.cs" />
     <Compile Include="ViewModel\CampagnesVerificationVM\ResCampagnesVerification.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
