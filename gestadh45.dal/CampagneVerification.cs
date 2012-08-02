@@ -22,6 +22,7 @@ namespace gestadh45.dal
         public System.Guid ID { get; set; }
         public System.DateTime Date { get; set; }
         public string Responsable { get; set; }
+        public bool EstValidee { get; set; }
     
         public virtual ICollection<Verification> Verifications { get; set; }
     }

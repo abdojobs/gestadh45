@@ -42,10 +42,6 @@ namespace gestadh45.business
 		public const string ConsultationDureesDeVie = "ConsultationDureesDeVie";
 		public const string FormulaireDureeDeVie = "FormulaireDureeDeVie";
 
-		public const string ConsultationCampagnesVerification = "ConsultationCampagnesVerification";
-		public const string FormulaireCampagneVerification = "FormulaireCampagneVerification";
-		public const string FormulaireSaisieVerifications = "FormulaireSaisieVerifications";
-
 		public const string ConsultationLocalisations = "ConsultationLocalisations";
 		public const string FormulaireLocalisation = "FormulaireLocalisation";
 
@@ -54,5 +50,9 @@ namespace gestadh45.business
 
 		public const string ConsultationModeles = "ConsultationModeles";
 		public const string FormulaireModele = "FormulaireModele";
+
+		public const string ConsultationCampagnesVerification = "ConsultationCampagnesVerification";
+		public const string FormulaireCreationCampagneVerification = "FormulaireCreationCampagneVerification";
+		public const string FormulaireSaisieCampagneVerification = "FormulaireSaisieCampagneVerification";
 	}
 }

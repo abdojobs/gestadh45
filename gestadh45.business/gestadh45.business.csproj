@@ -69,6 +69,13 @@
     <Compile Include="PersonalizedMsg\NMMainMenuState.cs" />
     <Compile Include="PersonalizedMsg\NMRefreshDatas.cs" />
     <Compile Include="PersonalizedMsg\NMShowInfosDataSource.cs" />
+    <Compile Include="ViewModel\CampagnesVerificationVM\ConsultationCampagnesVerificationVM.cs" />
+    <Compile Include="ViewModel\CampagnesVerificationVM\FormulaireCreationCampagneVerificationVM.cs" />
+    <Compile Include="ViewModel\CampagnesVerificationVM\ResCampagnesVerification.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResCampagnesVerification.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\CategoriesVM\ConsultationCategoriesVM.cs" />
     <Compile Include="ViewModel\CategoriesVM\FormulaireCategorieVM.cs" />
     <Compile Include="ViewModel\CategoriesVM\ResCategories.Designer.cs">
@@ -212,6 +219,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ViewModel\CampagnesVerificationVM\ResCampagnesVerification.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResCampagnesVerification.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\CategoriesVM\ResCategories.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResCategories.Designer.cs</LastGenOutput>

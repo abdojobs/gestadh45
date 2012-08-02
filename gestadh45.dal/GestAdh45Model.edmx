@@ -118,6 +118,7 @@
           <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="Responsable" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="EstValidee" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Categorie">
           <Key>
@@ -601,6 +602,7 @@
           <Property Type="DateTime" Name="Date" Nullable="false" />
           <Property Type="String" Name="Responsable" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Verifications" Relationship="gestadh45Model.FK_CampagneVerification_Verification" FromRole="CampagneVerification" ToRole="Verification" />
+          <Property Type="Boolean" Name="EstValidee" Nullable="false" />
         </EntityType>
         <EntityType Name="Categorie">
           <Key>
@@ -1022,6 +1024,7 @@
           <EntitySetMapping Name="CampagneVerifications">
             <EntityTypeMapping TypeName="gestadh45Model.CampagneVerification">
               <MappingFragment StoreEntitySet="CampagneVerification">
+                <ScalarProperty Name="EstValidee" ColumnName="EstValidee" />
                 <ScalarProperty Name="Responsable" ColumnName="Responsable" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

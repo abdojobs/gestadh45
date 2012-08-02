@@ -9,6 +9,7 @@ using gestadh45.business.PersonalizedMsg;
 using gestadh45.business.ViewModel;
 using gestadh45.dal;
 using gestadh45.wpf.UserControls.AdherentsUC;
+using gestadh45.wpf.UserControls.CampagnesVerificationUC;
 using gestadh45.wpf.UserControls.CategoriesUC;
 using gestadh45.wpf.UserControls.DureesDeVieUC;
 using gestadh45.wpf.UserControls.EquipementsUC;
@@ -235,6 +236,14 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireLocalisation:
 					userControl = new FormulaireLocalisationUC();
+					break;
+
+				case CodesUC.ConsultationCampagnesVerification:
+					userControl = new ConsultationCampagnesVerificationUC();
+					break;
+
+				case CodesUC.FormulaireCreationCampagneVerification:
+					userControl = new FormulaireCreationCampagneVerificationUC();
 					break;
 
 				case CodesUC.MainScreenCheck:
