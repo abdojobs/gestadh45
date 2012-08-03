@@ -1,6 +1,6 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using gestadh45.business.ViewModel.CampagnesVerificationVM;
+using gestadh45.dal;
 
 namespace gestadh45.wpf.UserControls.CampagnesVerificationUC
 {
@@ -9,10 +9,10 @@ namespace gestadh45.wpf.UserControls.CampagnesVerificationUC
 	/// </summary>
 	public partial class FormulaireSaisieVerificationsUC : UserControl
 	{
-		public FormulaireSaisieVerificationsUC(Guid idCampagneVerification) {
+		public FormulaireSaisieVerificationsUC(CampagneVerification campagne) {
 			InitializeComponent();
 
-			this.DataContext = new FormulaireSaisieVerificationsVM(idCampagneVerification);
+			this.DataContext = new FormulaireSaisieVerificationsVM(campagne.ID);
 		}
 	}
 }

@@ -3,7 +3,8 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-			 mc:Ignorable="d" 
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
 			 xmlns:business="clr-namespace:gestadh45.business;assembly=gestadh45.business"
 			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
 			 mc:Ignorable="d" 
@@ -21,23 +22,19 @@
 		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 
 		<ListBox Name="lbxItems" Width="300"
-						ItemsSource="{Binding Path=CampagnesVerification}"
-						SelectedItem="{Binding Path=SelectedCampagneVerification}">
+						ItemsSource="{Binding Path=CampagnesVerification.Verifications}"
+						SelectedItem="{Binding Path=SelectedVerification}">
 			<i:Interaction.Triggers>
 				<i:EventTrigger EventName="SelectionChanged">
 					<cmd:EventToCommand 
 						Command="{Binding Path=ShowDetailsCommand, Mode=OneWay}" 
 						CommandParameter="{Binding ElementName=lbxItems, Path=SelectedItem}" />
 				</i:EventTrigger>
-				<i:EventTrigger EventName="MouseDoubleClick">
-					<cmd:EventToCommand 
-						Command="{Binding Path=SaisirCommand, Mode=OneWay}" />
-				</i:EventTrigger>
 			</i:Interaction.Triggers>
 
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<TextBlock Text="{Binding Path=Libelle}" Foreground="{Binding Path=EstValidee, Converter={StaticResource ResourceKey=boolToBrush}}" />
+					<TextBlock Text="{Binding Path=Equipement}" />
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
