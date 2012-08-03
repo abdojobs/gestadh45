@@ -101,6 +101,9 @@ namespace gestadh45.wpf
 			else if (codeUC.Equals(CodesUC.FormulaireDureeDeVie) && objetUC is DureeDeVie) {
 			    this.contenu.Child = new FormulaireDureeDeVieUC(objetUC as DureeDeVie);
 			}
+			else if (codeUC.Equals(CodesUC.FormulaireSaisieCampagneVerification) && objetUC is CampagneVerification) {
+				this.contenu.Child = new FormulaireSaisieVerificationsUC(objetUC as CampagneVerification);
+			}
 		}
 
 		private void OpenWindowUC(string codeUC, Guid parentGuid) {
