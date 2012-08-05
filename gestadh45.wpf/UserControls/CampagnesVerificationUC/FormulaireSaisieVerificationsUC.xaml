@@ -21,8 +21,8 @@
 
 		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 
-		<ListBox Name="lbxItems" Width="300"
-						ItemsSource="{Binding Path=CampagnesVerification.Verifications}"
+		<ListBox Name="lbxItems" Width="300" DockPanel.Dock="Left"
+						ItemsSource="{Binding Path=CurrentCampagneVerification.Verifications}"
 						SelectedItem="{Binding Path=SelectedVerification}">
 			<i:Interaction.Triggers>
 				<i:EventTrigger EventName="SelectionChanged">
@@ -38,5 +38,24 @@
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
+
+		<StackPanel DockPanel.Dock="Right" Orientation="Vertical" Margin="20,0,0,0">
+			<GroupBox Name="gbxEquipement" Header="Equipement" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<TextBlock Text="{Binding ElementName=lbxItems, Path=SelectedItem.Equipement.Libelle}" />
+					<TextBlock Text="{Binding ElementName=lbxItems, Path=SelectedItem.Equipement.DateAchat, StringFormat='Date d\'achat : {0:dd/MM/yyyy}'}" />
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox Name="gbxVerification" Header="Vérification" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<ComboBox Name="cmbStatutsVerifications"
+							  ItemsSource="{Binding Path=StatutsVerification}"
+							  SelectedItem="{Binding ElementName=lbxItems, Path=SelectedItem.StatutVerification}" />
+					<TextBox AcceptsReturn="True" Height="50" Margin="0,10,0,0"
+						 Text="{Binding ElementName=lbxItems, Path=SelectedItem.Commentaire}" />
+				</StackPanel>
+			</GroupBox>
+		</StackPanel>
 	</DockPanel>
 </UserControl>

@@ -58,7 +58,7 @@
 			<GroupBox Name="gbxCampagne" Header="Campagne" Margin="0,0,0,10">
 				<StackPanel Orientation="Vertical">
 					<TextBlock Style="{DynamicResource ResourceKey=labelForm}" Text="{Binding Path=SelectedCampagneVerification}" />
-					<TextBlock Text="{Binding Path=SelectedCampagneVerification.Date, StringFormat='Date: {0:dd/MM/yyyy}'}" />
+					<TextBlock Text="{Binding Path=SelectedCampagneVerification.Date, StringFormat='Date : {0:dd/MM/yyyy}'}" />
 					<TextBlock Text="{Binding Path=SelectedCampagneVerification.Responsable, StringFormat='Responsable : {0}'}" />
 					<TextBlock Text="{Binding Path=SelectedCampagneVerification.NbEquipements, StringFormat='Nb. équipements : {0}'}" />
 				</StackPanel>

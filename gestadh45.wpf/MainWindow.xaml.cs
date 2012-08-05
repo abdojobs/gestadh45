@@ -57,6 +57,7 @@ namespace gestadh45.wpf
 			Messenger.Default.Register<NMShowUC<Inscription>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<Equipement>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<DureeDeVie>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
+			Messenger.Default.Register<NMShowUC<CampagneVerification>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowAboutBox>(this, (msg) => this.ShowAboutBox());
 
 			// Abonnement aux messages pour les dialogues
