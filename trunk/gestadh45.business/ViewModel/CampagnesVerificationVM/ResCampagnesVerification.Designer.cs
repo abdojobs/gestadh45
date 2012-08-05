@@ -61,6 +61,15 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Commentaire obligatoire pour l&apos;équipement &quot;{0}&quot;.
+        /// </summary>
+        internal static string ErrCommentaireObligatoire {
+            get {
+                return ResourceManager.GetString("ErrCommentaireObligatoire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Le responsable est obligatoire.
         /// </summary>
         internal static string ErrResponsableObligatoire {

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using gestadh45.dal;
+using System.Collections.Generic;
 
 namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 {
@@ -22,19 +24,18 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		}
 		#endregion
 
-
-		#region SelectedVerification
-		private Verification _selectedVerification;
+		#region StatutsVerification
+		private IOrderedEnumerable<StatutVerification> _statutsVerifications;
 
 		/// <summary>
-		/// Obtient/Définit la vérification sélectionnée
+		/// Obtient/Définit la liste des statuts de vérification
 		/// </summary>
-		public Verification SelectedVerification {
-			get { return this._selectedVerification; }
+		public IOrderedEnumerable<StatutVerification> StatutsVerification {
+			get { return this._statutsVerifications; }
 			set {
-				if (this._selectedVerification != value) {
-					this._selectedVerification = value;
-					this.RaisePropertyChanged(() => this.SelectedVerification);
+				if (this._statutsVerifications != value) {
+					this._statutsVerifications = value;
+					this.RaisePropertyChanged(() => this.StatutsVerification);
 				}
 			}
 		}
@@ -42,6 +43,7 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 
 		#region Repositories
 		private Repository<CampagneVerification> _repoCampagneVerification;
+		private Repository<StatutVerification> _repoStatutsVerification;
 		#endregion
 
 		#region Constructeur
@@ -50,19 +52,43 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			this.IsEditMode = true;
 
 			this.CreateRepositories();
+			this.CurrentCampagneVerification = this._repoCampagneVerification.GetByKey(idCampagne);
+			this.PopulateCombos();
 		}
 		#endregion
 
 		private void CreateRepositories() {
 			this._repoCampagneVerification = new Repository<CampagneVerification>(this._context);
+			this._repoStatutsVerification = new Repository<StatutVerification>(this._context);
+		}
+
+		private void PopulateCombos() {			
+			this.StatutsVerification = this._repoStatutsVerification.GetAll().OrderBy(s => s.EstDefaut).ThenBy(s => s.Libelle);
+		}
+
+		protected override bool CheckFormValidity(List<string> errors) {
+			foreach (Verification verif in this.CurrentCampagneVerification.Verifications) {
+				if (verif.StatutVerification.EstCommentaireObligatoire && string.IsNullOrWhiteSpace(verif.Commentaire)) {
+					errors.Add(string.Format(ResCampagnesVerification.ErrCommentaireObligatoire, verif.Equipement.Libelle));
+				}
+			}
+
+			return errors.Count == 0;
 		}
 
 		#region SaveCommand
 		public override void ExecuteSaveCommand() {
-			this._repoCampagneVerification.Edit(this.CurrentCampagneVerification);
-			this._repoCampagneVerification.Save();
+			var errors = new List<string>();
 
-			base.ExecuteSaveCommand();
+			if (this.CheckFormValidity(errors)) {
+				this._repoCampagneVerification.Edit(this.CurrentCampagneVerification);
+				this._repoCampagneVerification.Save();
+
+				base.ExecuteSaveCommand();
+			}
+			else {
+				this.ShowUserNotifications(errors);
+			}
 		}
 		#endregion
 	}
