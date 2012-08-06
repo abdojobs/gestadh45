@@ -76,6 +76,16 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			return errors.Count == 0;
 		}
 
+		#region CancelCommand
+		public override void ExecuteCancelCommand() {
+			if (IsEditMode) {
+				this._repoCampagneVerification.Reload(this.CurrentCampagneVerification);
+			}
+
+			base.ExecuteCancelCommand();
+		}
+		#endregion
+
 		#region SaveCommand
 		public override void ExecuteSaveCommand() {
 			var errors = new List<string>();
