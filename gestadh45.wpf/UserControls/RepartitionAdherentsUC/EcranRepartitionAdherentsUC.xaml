@@ -7,7 +7,7 @@
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=EcranRepartitionAdherentsVM, Source={StaticResource Locator}}" 
 			 d:DesignHeight="500" d:DesignWidth="600">
-	<DockPanel>
+	<DockPanel Margin="5,5,5,5">
 		<StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center" VerticalAlignment="Center">
 			<TextBlock Text="Répartition des effectifs"
 				   VerticalAlignment="Top" 

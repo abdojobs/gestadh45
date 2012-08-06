@@ -128,7 +128,8 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 
 		#region DeleteCommand
 		public override bool CanExecuteDeleteCommand() {
-			return this.SelectedEquipement != null;
+			// un élément ne peut être supprimé que s'il n'a encore jamais fait l'objet de vérification
+			return this.SelectedEquipement != null && this.SelectedEquipement.Verifications.Count == 0;
 		}
 
 		public override void ExecuteDeleteCommand() {
