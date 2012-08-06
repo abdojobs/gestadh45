@@ -1,7 +1,11 @@
 ﻿using System;
-using System.Linq;
-using gestadh45.dal;
 using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using gestadh45.business.PersonalizedMsg;
+using gestadh45.dal;
 
 namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 {
@@ -54,6 +58,8 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			this.CreateRepositories();
 			this.CurrentCampagneVerification = this._repoCampagneVerification.GetByKey(idCampagne);
 			this.PopulateCombos();
+
+			this.CreateValidateCommand();
 		}
 		#endregion
 
@@ -99,6 +105,29 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			else {
 				this.ShowUserNotifications(errors);
 			}
+		}
+		#endregion
+		#region ValidateCommand
+		public ICommand ValidateCommand { get; set; }
+
+		private void CreateValidateCommand() {
+			this.ValidateCommand = new RelayCommand(
+				this.ExecuteValidateCommand,
+				this.CanExecuteValidateCommand
+			);
+		}
+
+		public bool CanExecuteValidateCommand() {
+			// On ne peut valider une campagne que si toutes ses vérifications ont été saisies (i.e. : aucune vérif n'a le statut par défaut)
+			return this.CurrentCampagneVerification.Verifications.Count(v => v.StatutVerification.EstDefaut) == 0;
+		}
+
+		public void ExecuteValidateCommand() {
+			this.CurrentCampagneVerification.EstValidee = true;
+			this._repoCampagneVerification.Edit(this.CurrentCampagneVerification);
+			this._repoCampagneVerification.Save();
+
+			Messenger.Default.Send(new NMShowUC(CodesUC.ConsultationCampagnesVerification));
 		}
 		#endregion
 	}
