@@ -13,11 +13,22 @@
 		<TextBlock Text="Saisie des vérifications" DockPanel.Dock="Top" HorizontalAlignment="Stretch" 
 					Margin="0,5,0,10" TextAlignment="Center" FontWeight="Bold" FontSize="18" />
 
-		<uc:BtnAnnulerEnregistrerUC DockPanel.Dock="Bottom" HorizontalAlignment="Center" Margin="5,5,5,5" 
-			CodeUCParent="{x:Static business:CodesUC.ConsultationCampagnesVerification}"
-			CmdAnnuler="{Binding Path=CancelCommand}"
-			CmdEnregistrer="{Binding Path=SaveCommand}"
+		<StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5,5,5,5">
+			<uc:BtnAnnulerEnregistrerUC
+				CodeUCParent="{x:Static business:CodesUC.ConsultationCampagnesVerification}"
+				CmdAnnuler="{Binding Path=CancelCommand}"
+				CmdEnregistrer="{Binding Path=SaveCommand}"
 			/>
+			
+			<Separator />
+
+			<Separator Margin="0,10,0,10" />
+
+			<Button ToolTip="Valider la campagne" Width="30" Height="30" Margin="20,0,0,0"
+					Command="{Binding Path=ValidateCommand}">
+				<Image Source="/gestadh45.wpf;component/Images/btn_verrou.png" />
+			</Button>
+		</StackPanel>
 
 		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 

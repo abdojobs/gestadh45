@@ -582,6 +582,7 @@
     <Content Include="gestadh45.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\btn_verrou.png" />
     <Resource Include="Images\btn_localisation.png" />
     <Resource Include="Images\btn_modele.png" />
     <Resource Include="Images\btn_lock.png" />
