@@ -57,6 +57,8 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 
 			this.CreateRepositories();
 			this.CurrentCampagneVerification = this._repoCampagneVerification.GetByKey(idCampagne);
+			this.CurrentCampagneVerification.Verifications = this.CurrentCampagneVerification.Verifications.OrderBy(v => v.Equipement.Numero).ToList();
+
 			this.PopulateCombos();
 
 			this.CreateValidateCommand();

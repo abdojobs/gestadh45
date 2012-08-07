@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using gestadh45.dal;
+using GalaSoft.MvvmLight.Messaging;
+using gestadh45.business.PersonalizedMsg;
 
 namespace gestadh45.business.ViewModel.CategoriesVM
 {
@@ -61,9 +63,13 @@ namespace gestadh45.business.ViewModel.CategoriesVM
 			this.CurrentCategorie = new Categorie();
 			this.UCParentCode = CodesUC.ConsultationCategories;
 
-			this.DureesDeVie = this._repoDureesDeVie.GetAll().OrderBy(d => d.Libelle);
+			Messenger.Default.Register<NMRefreshDatas>(this, m => this.PopulateCombo());			
 		}
 		#endregion
+
+		private void PopulateCombo() {
+			this.DureesDeVie = this._repoDureesDeVie.GetAll().OrderBy(d => d.Libelle);
+		}
 
 		#region SaveCommand
 		public override void ExecuteSaveCommand() {
