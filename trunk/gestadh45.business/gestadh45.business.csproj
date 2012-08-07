@@ -69,6 +69,7 @@
     <Compile Include="PersonalizedMsg\NMMainMenuState.cs" />
     <Compile Include="PersonalizedMsg\NMRefreshDatas.cs" />
     <Compile Include="PersonalizedMsg\NMShowInfosDataSource.cs" />
+    <Compile Include="ServicesAdapters\ServiceReportingAdapter.cs" />
     <Compile Include="ViewModel\CampagnesVerificationVM\ConsultationCampagnesVerificationVM.cs" />
     <Compile Include="ViewModel\CampagnesVerificationVM\FormulaireCreationCampagneVerificationVM.cs" />
     <Compile Include="ViewModel\CampagnesVerificationVM\FormulaireSaisieVerificationsVM.cs" />

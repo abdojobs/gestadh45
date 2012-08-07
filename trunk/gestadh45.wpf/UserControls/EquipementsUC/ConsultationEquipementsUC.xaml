@@ -6,6 +6,7 @@
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
 			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 xmlns:report="clr-namespace:gestadh45.services.Reporting;assembly=gestadh45.services"
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=ConsultationEquipementsVM, Source={StaticResource Locator}}" 
 			 d:DesignHeight="400" d:DesignWidth="600">
@@ -98,6 +99,19 @@
 					<TextBlock TextWrapping="Wrap" Text="{Binding Path=SelectedEquipement.Commentaire}" Margin="0,0,0,5" />
 					<TextBlock Text="{Binding Path=SelectedEquipement.DateCreation, StringFormat='Créé(e) le : {0:dd/MM/yyyy}'}" />
 					<TextBlock Text="{Binding Path=SelectedEquipement.DateModification, StringFormat='Modifié(e) le : {0:dd/MM/yyyy}'}" />
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox Name="gbxReport" Header="Rapports" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<StackPanel Orientation="Horizontal">
+						<Button Height="16" Width="16" ToolTip="Inventaire simple (Excel)"
+										Command="{Binding Path=ReportCommand}"
+										CommandParameter="{x:Static report:CodesReport.InventaireSimpleEquipementExcel}" >
+							<Image Source="/gestadh45.wpf;component/Images/btn_xlsx16.png" />
+						</Button>
+						<TextBlock Text=" : Inventaire simple (Excel)" />
+					</StackPanel>
 				</StackPanel>
 			</GroupBox>
 

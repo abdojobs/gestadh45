@@ -3,8 +3,12 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
+using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
-using System.Windows.Media;
+using gestadh45.services.Reporting;
+using gestadh45.services.Reporting.Templates;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace gestadh45.business.ViewModel.EquipementsVM
 {
@@ -101,6 +105,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 			this.PopulateEquipements();
 			this.CreateDupliquerCommand();
 			this.CreateMasquerRebutCommand();
+			this.CreateReportCommand();
 		}
 		#endregion
 
@@ -224,6 +229,32 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		public void ExecuteMasquerRebutCommand(object masquerRebut) {
 			this.MasquerRebut = (bool)masquerRebut;
 			this.PopulateEquipements(null);
+		}
+		#endregion
+
+		#region ReportCommand
+		public ICommand ReportCommand { get; set; }
+
+		private void CreateReportCommand() {
+			this.ReportCommand = new RelayCommand<string>(
+				this.ExecuteReportCommand,
+				this.CanExecuteReportCommand
+			);
+		}
+
+		public bool CanExecuteReportCommand(string codeReport) {
+			return true;
+		}
+
+		public void ExecuteReportCommand(string codeReport) {
+			// TODO améliorer
+			if (codeReport.Equals(CodesReport.InventaireSimpleEquipementExcel)) {
+				var gen = new ReportGenerator<ReportInventaireEquipementSimple>(
+					ServiceReportingAdapter.EquipementToReportInventaireEquipementSimple(this.Equipements.ToList()),
+					"report.xlsx"
+				);
+				gen.GenerateExcelReport();
+			}
 		}
 		#endregion
 	}
