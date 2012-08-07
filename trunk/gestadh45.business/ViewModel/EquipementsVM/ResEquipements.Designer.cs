@@ -61,7 +61,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Cet équipement existe déja.
+        ///   Recherche une chaîne localisée semblable à Il existe déjà un équipement portant le numéro {0}.
         /// </summary>
         internal static string ErrEquipementExiste {
             get {
