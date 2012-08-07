@@ -143,7 +143,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 			}
 
 			if (errors.Count == 0 && this.CurrentElementExists()) {
-				errors.Add(ResEquipements.ErrEquipementExiste);
+				errors.Add(string.Format(ResEquipements.ErrEquipementExiste, this.CurrentEquipement.Numero));
 			}
 
 			return errors.Count == 0;
