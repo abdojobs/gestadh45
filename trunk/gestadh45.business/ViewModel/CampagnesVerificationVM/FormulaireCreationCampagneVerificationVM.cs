@@ -59,6 +59,7 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			foreach (var equip in this._repoEquipement.GetAll().Where(e => !e.EstAuRebut)) {
 				var verif = new Verification()
 				{
+					ID = Guid.NewGuid(),
 					CampagneVerification = this.CurrentCampagneVerification,
 					Equipement = equip,
 					StatutVerification = defautStatut

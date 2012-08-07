@@ -114,12 +114,12 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 
 			// pour masquer les équipement au rebut, on filtre sur l'absence d'une date de mise au rebut
 			if (this.MasquerRebut) {
-				this.Equipements = this.Equipements.Where(e => !e.EstAuRebut).OrderBy(e => e.ToString());
+				this.Equipements = this.Equipements.Where(e => !e.EstAuRebut).OrderBy(e => e.Numero);
 			}
 
 			// gestion du filtre
 			if (!string.IsNullOrEmpty(filtre)) {
-				this.Equipements = this.Equipements.Where(e => e.ToString().ToUpperInvariant().Contains(filtre.ToUpperInvariant())).OrderBy(e => e.ToString());
+				this.Equipements = this.Equipements.Where(e => e.ToString().ToUpperInvariant().Contains(filtre.ToUpperInvariant())).OrderBy(e => e.Numero);
 			}
 			else {
 				Messenger.Default.Send(new NMClearFilter());
