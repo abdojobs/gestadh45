@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProductVersion>1.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{30146f2b-7b67-425a-b84a-252523bcf4fe}</ProjectGuid>
+    <AssemblyName>gestadh45.innosetup</AssemblyName>
+    <Name>gestadh45.innosetup</Name>
+    <RootNamespace>gestadh45.innosetup</RootNamespace>
+    <CompilerOutput>
+    </CompilerOutput>
+    <CompilerBaseFileName>
+    </CompilerBaseFileName>
+    <CompilerSignTool>
+    </CompilerSignTool>
+    <DirectivesSymbol>
+    </DirectivesSymbol>
+    <DirectivesOption>
+    </DirectivesOption>
+    <DirectivesParseOption>
+    </DirectivesParseOption>
+    <DirectivesInclude>
+    </DirectivesInclude>
+    <DirectivesInlineStart>
+    </DirectivesInlineStart>
+    <DirectivesInlineEnd>
+    </DirectivesInlineEnd>
+    <RunInstaller>No</RunInstaller>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>
+    </OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>
+    </OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Setup64.iss">
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Setup86.iss">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\VisualInstaller\InnoSetupProject.targets" />
+</Project>
