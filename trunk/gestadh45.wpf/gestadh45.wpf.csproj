@@ -59,8 +59,8 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\..\Downloads\PieChartWithLabelsWPF\PieChartWithLabels - WPF\Controls\bin\Debug\Controls.dll</HintPath>
+    <Reference Include="Controls">
+      <HintPath>..\..\..\..\..\..\..\Downloads\PieChartWithLabelsWPF\PieChartWithLabels - WPF\Controls\bin\Debug\Controls.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -74,7 +74,9 @@
     </Reference>
     <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="PresentationFramework.Aero" />
-    <Reference Include="RibbonControlsLibrary, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="RibbonControlsLibrary">
+      <HintPath>bin\Debug\RibbonControlsLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data">
@@ -601,7 +603,7 @@ del $(TargetDir)App.config
 del $(TargetDir)packages.config
 del $(TargetDir)gestadh45.wpf.vshost.exe.config
 del $(TargetDir)gestadh45.wpf.vshost.exe
-</PostBuildEvent>
+copy $(ProjectDir)gestadh45.ico $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
