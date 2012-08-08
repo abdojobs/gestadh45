@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 namespace gestadh45.dal
 {
 	public partial class Modele
@@ -22,16 +23,25 @@ namespace gestadh45.dal
 		/// Obtient la liste des couleurs concaténées
 		/// </summary>
 		public string DescriptionCouleur {
-			get {
-				var descriptionCouleur = string.Concat(this.Couleur1, "/", this.Couleur2, "/", this.Couleur3);
-				descriptionCouleur = descriptionCouleur.Replace("//", "/");
+			get { return this.ConcatColors(); }
+		}
 
-				if (descriptionCouleur.EndsWith("/")) {
-					descriptionCouleur = descriptionCouleur.Substring(0, descriptionCouleur.Length - 1);
-				}
+		private string ConcatColors() {
+			var couleurs = new List<string>();
 
-				return descriptionCouleur;
+			if (!string.IsNullOrWhiteSpace(this.Couleur1)) {
+				couleurs.Add(this.Couleur1);
 			}
+
+			if (!string.IsNullOrWhiteSpace(this.Couleur2)) {
+				couleurs.Add(this.Couleur2);
+			}
+
+			if (!string.IsNullOrWhiteSpace(this.Couleur3)) {
+				couleurs.Add(this.Couleur3);
+			}
+
+			return string.Join("/", couleurs);
 		}
 	}
 }
