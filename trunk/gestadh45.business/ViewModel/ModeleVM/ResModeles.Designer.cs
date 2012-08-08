@@ -70,15 +70,6 @@ namespace gestadh45.business.ViewModel.ModeleVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le modèle doit comporter au moins une couleur.
-        /// </summary>
-        internal static string ErrCouleurObligatoire {
-            get {
-                return ResourceManager.GetString("ErrCouleurObligatoire", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à La marque est obligatoire.
         /// </summary>
         internal static string ErrMarqueObligatoire {

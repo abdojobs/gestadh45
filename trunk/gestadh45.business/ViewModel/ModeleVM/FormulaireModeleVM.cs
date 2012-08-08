@@ -116,19 +116,16 @@ namespace gestadh45.business.ViewModel.ModeleVM
 		}
 
 		protected override bool CurrentElementExists() {
+			// critères d'unicité : marque + nom du modèle
 			return this._repoModele.GetAll().Where(
 					m => m.Nom.Equals(this.CurrentModele.Nom, StringComparison.OrdinalIgnoreCase)
-						&& m.DescriptionCouleur.Equals(this.CurrentModele.DescriptionCouleur, StringComparison.OrdinalIgnoreCase)
+						&& m.Marque.ID == this.CurrentModele.Marque.ID
 				).Count() != 0;
 		}
 
 		protected override bool CheckFormValidity(List<string> errors) {
 			if (string.IsNullOrWhiteSpace(this.CurrentModele.Nom)) {
 				errors.Add(ResModeles.ErrNomObligatoire);
-			}
-
-			if (string.IsNullOrWhiteSpace(this.CurrentModele.Couleur1)) {
-				errors.Add(ResModeles.ErrCouleurObligatoire);
 			}
 
 			if (this.CurrentModele.Categorie == null) {
