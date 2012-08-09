@@ -247,14 +247,24 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		}
 
 		public void ExecuteReportCommand(string codeReport) {
-			// TODO améliorer
-			if (codeReport.Equals(CodesReport.InventaireSimpleEquipementExcel)) {
-				var gen = new ReportGenerator<ReportInventaireEquipementSimple>(
-					ServiceReportingAdapter.EquipementToReportInventaireEquipementSimple(this.Equipements.ToList()),
-					"report.xlsx"
-				);
-				gen.GenerateExcelReport();
+			switch (codeReport) {
+				case CodesReport.InventaireSimpleEquipementExcel:
+					Messenger.Default.Send(new NMActionFileDialog<string>(".xlsx", "Inventaire", this.GenerateReportInventaireEquipementSimple));
+					break;
+
+				default:
+					break;
 			}
+		}
+
+		private void GenerateReportInventaireEquipementSimple(string nomFichier) {
+			var gen = new ReportGenerator<ReportInventaireEquipementSimple>(
+					ServiceReportingAdapter.EquipementToReportInventaireEquipementSimple(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
+					nomFichier
+				);
+			gen.GenerateExcelReport();
+
+			this.ShowUserNotification(string.Format(ResEquipements.InfoRapportGenere, nomFichier));
 		}
 		#endregion
 	}

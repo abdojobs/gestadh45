@@ -122,5 +122,14 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
                 return ResourceManager.GetString("InfoEquipementSupprime", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Le rapport &quot;{0}&quot; a été généré.
+        /// </summary>
+        internal static string InfoRapportGenere {
+            get {
+                return ResourceManager.GetString("InfoRapportGenere", resourceCulture);
+            }
+        }
     }
 }

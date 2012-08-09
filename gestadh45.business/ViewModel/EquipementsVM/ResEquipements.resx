@@ -138,4 +138,7 @@
   <data name="InfoEquipementSupprime" xml:space="preserve">
     <value>L'équipement a été supprimé</value>
   </data>
+  <data name="InfoRapportGenere" xml:space="preserve">
+    <value>Le rapport "{0}" a été généré</value>
+  </data>
 </root>
