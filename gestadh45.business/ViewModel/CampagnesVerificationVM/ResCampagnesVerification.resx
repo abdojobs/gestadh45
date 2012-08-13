@@ -126,4 +126,7 @@
   <data name="InfoCampagneSupprimee" xml:space="preserve">
     <value>La campagne de vérification a été supprimée</value>
   </data>
+  <data name="InfoRapportGenere" xml:space="preserve">
+    <value>Le rapport "{0}" a été généré</value>
+  </data>
 </root>

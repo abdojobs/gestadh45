@@ -6,6 +6,7 @@
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
 			 xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
 			 xmlns:uc="clr-namespace:gestadh45.wpf.UserControls"
+			 xmlns:report="clr-namespace:gestadh45.services.Reporting;assembly=gestadh45.services"
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=ConsultationCampagnesVerificationVM, Source={StaticResource ResourceKey=Locator}}" 
 			 d:DesignHeight="400" d:DesignWidth="600">
@@ -64,6 +65,19 @@
 				</StackPanel>
 			</GroupBox>
 
+			<GroupBox Name="gbxReport" Header="Rapports" Margin="0,0,0,10">
+				<StackPanel Orientation="Vertical">
+					<StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+						<Button Height="16" Width="16" ToolTip="Export (Excel)"
+										Command="{Binding Path=ReportCommand}"
+										CommandParameter="{x:Static report:CodesReport.VerificationEquipementExcel}" >
+							<Image Source="/gestadh45.wpf;component/Images/btn_xlsx16.png" />
+						</Button>
+						<TextBlock Text=" : Export (Excel)" />
+					</StackPanel>
+				</StackPanel>
+			</GroupBox>
+			
 			<Separator Height="2" />
 
 			<GroupBox Name="gbxStats" Header="Stats" Margin="0,0,0,10">
