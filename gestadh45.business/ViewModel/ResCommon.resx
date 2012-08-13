@@ -120,4 +120,7 @@
   <data name="ExtensionExcel" xml:space="preserve">
     <value>.xlsx</value>
   </data>
+  <data name="InfoRapportGenere" xml:space="preserve">
+    <value>Le rapport "{0}" a été généré</value>
+  </data>
 </root>

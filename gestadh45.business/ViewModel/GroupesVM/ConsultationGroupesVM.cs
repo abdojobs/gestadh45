@@ -9,8 +9,9 @@ using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
 using gestadh45.services.Documents;
 using gestadh45.services.Documents.Templates;
+using gestadh45.services.Reporting;
+using gestadh45.services.Reporting.Templates;
 using gestadh45.services.VCards;
-using System;
 
 namespace gestadh45.business.ViewModel.GroupesVM
 {
@@ -265,6 +266,44 @@ namespace gestadh45.business.ViewModel.GroupesVM
 				}
 
 				this.ShowUserNotification(string.Format(ResGroupes.InfosVCardsUniqueGenerees, this.SelectedGroupe.Inscriptions.Count().ToString()));
+			}
+		}
+		#endregion
+
+		#region ReportCommand
+		public override bool CanExecuteReportCommand(string codeReport) {
+			return this.SelectedGroupe != null;
+		}
+
+		public override void ExecuteReportCommand(string codeReport) {
+			switch (codeReport) {
+				case CodesReport.ListeAdherents:
+					Messenger.Default.Send(
+						new NMActionFileDialog<string>(
+							ResCommon.ExtensionExcel, 
+							string.Format(ResGroupes.NomFichierRapportListeAdherents, this.SelectedGroupe.Libelle), 
+							this.GenerateReportListeAdherentsGroupe
+						)
+					);
+					break;
+
+				default:
+					break;
+			}
+		}
+
+		private void GenerateReportListeAdherentsGroupe(string nomFichier) {
+			if (nomFichier != null) {
+				var gen = new ReportGenerator<ReportListeAdherents>(
+						ServiceReportingAdapter.GroupeToReportListeAdherents(this.SelectedGroupe),
+						nomFichier
+					);
+
+				gen.SetTitle(ResGroupes.TitreRapportListeAdherents);
+				gen.SetSubTitle(string.Format(ResGroupes.SousTitreRapportListeAdherents, this.SelectedGroupe.Inscriptions.Count()));
+				gen.GenerateExcelReport();
+
+				this.ShowUserNotification(string.Format(ResCommon.InfoRapportGenere, nomFichier));
 			}
 		}
 		#endregion

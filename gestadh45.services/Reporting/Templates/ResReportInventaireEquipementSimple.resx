@@ -117,25 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ErrCommentaireObligatoire" xml:space="preserve">
-    <value>Commentaire obligatoire pour l'équipement "{0}"</value>
+  <data name="HeaderCategorie" xml:space="preserve">
+    <value>Catégorie</value>
   </data>
-  <data name="ErrResponsableObligatoire" xml:space="preserve">
-    <value>Le responsable est obligatoire</value>
+  <data name="HeaderDateAchat" xml:space="preserve">
+    <value>Date d'achat</value>
   </data>
-  <data name="InfoCampagneSupprimee" xml:space="preserve">
-    <value>La campagne de vérification a été supprimée</value>
+  <data name="HeaderLocalisation" xml:space="preserve">
+    <value>Localisation</value>
   </data>
-  <data name="NomFichierRapportCampagneVerification" xml:space="preserve">
-    <value>{0} - Campagne de vérification</value>
+  <data name="HeaderMarque" xml:space="preserve">
+    <value>Marque</value>
   </data>
-  <data name="SousTitreRapportVerificationEquipement" xml:space="preserve">
-    <value>{0} ({1} équipements)</value>
+  <data name="HeaderModele" xml:space="preserve">
+    <value>Modèle</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TitreRapportVerificationEquipement" xml:space="preserve">
-    <value>Campagne de vérification du {0}</value>
+  <data name="HeaderNumero" xml:space="preserve">
+    <value>N°</value>
   </data>
 </root>

@@ -162,13 +162,18 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			}
 		}
 		private void GenerateReportCampagneVerification(string nomFichier) {
-			var gen = new ReportGenerator<ReportVerificationEquipement>(
-					ServiceReportingAdapter.CampagneVerificationToReportVerificationEquipement(this.SelectedCampagneVerification),
-					nomFichier
-				);
-			gen.GenerateExcelReport();
+			if (nomFichier != null) {
+				var gen = new ReportGenerator<ReportVerificationEquipement>(
+						ServiceReportingAdapter.CampagneVerificationToReportVerificationEquipement(this.SelectedCampagneVerification),
+						nomFichier
+					);
 
-			this.ShowUserNotification(string.Format(ResCampagnesVerification.InfoRapportGenere, nomFichier));
+				gen.SetTitle(string.Format(ResCampagnesVerification.TitreRapportVerificationEquipement, this.SelectedCampagneVerification.Date.ToShortDateString()));
+				gen.SetSubTitle(string.Format(ResCampagnesVerification.SousTitreRapportVerificationEquipement, this.SelectedCampagneVerification.Responsable, this.SelectedCampagneVerification.NbEquipements));
+				gen.GenerateExcelReport();
+
+				this.ShowUserNotification(string.Format(ResCommon.InfoRapportGenere, nomFichier));
+			}
 		}
 
 		#endregion

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
+namespace gestadh45.services.Reporting.Templates {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResCampagnesVerification {
+    public class ResReportInventaireEquipementComplet {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResCampagnesVerification() {
+        internal ResReportInventaireEquipementComplet() {
         }
         
         /// <summary>
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.CampagnesVerificationVM.ResCampagnesVerification", typeof(ResCampagnesVerification).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.services.Reporting.Templates.ResReportInventaireEquipementComplet", typeof(ResReportInventaireEquipementComplet).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,65 +61,74 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Commentaire obligatoire pour l&apos;équipement &quot;{0}&quot;.
+        ///   Recherche une chaîne localisée semblable à Catégorie.
         /// </summary>
-        internal static string ErrCommentaireObligatoire {
+        public static string HeaderCategorie {
             get {
-                return ResourceManager.GetString("ErrCommentaireObligatoire", resourceCulture);
+                return ResourceManager.GetString("HeaderCategorie", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le responsable est obligatoire.
+        ///   Recherche une chaîne localisée semblable à Date d&apos;achat.
         /// </summary>
-        internal static string ErrResponsableObligatoire {
+        public static string HeaderDateAchat {
             get {
-                return ResourceManager.GetString("ErrResponsableObligatoire", resourceCulture);
+                return ResourceManager.GetString("HeaderDateAchat", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à La campagne de vérification a été supprimée.
+        ///   Recherche une chaîne localisée semblable à Dernière vérification.
         /// </summary>
-        internal static string InfoCampagneSupprimee {
+        public static string HeaderDateDerniereVerification {
             get {
-                return ResourceManager.GetString("InfoCampagneSupprimee", resourceCulture);
+                return ResourceManager.GetString("HeaderDateDerniereVerification", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à {0} - Campagne de vérification.
+        ///   Recherche une chaîne localisée semblable à Localisation.
         /// </summary>
-        internal static string NomFichierRapportCampagneVerification {
+        public static string HeaderLocalisation {
             get {
-                return ResourceManager.GetString("NomFichierRapportCampagneVerification", resourceCulture);
+                return ResourceManager.GetString("HeaderLocalisation", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à {0} ({1} équipements).
+        ///   Recherche une chaîne localisée semblable à Marque.
         /// </summary>
-        internal static string SousTitreRapportVerificationEquipement {
+        public static string HeaderMarque {
             get {
-                return ResourceManager.GetString("SousTitreRapportVerificationEquipement", resourceCulture);
+                return ResourceManager.GetString("HeaderMarque", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .
+        ///   Recherche une chaîne localisée semblable à Modèle.
         /// </summary>
-        internal static string String1 {
+        public static string HeaderModele {
             get {
-                return ResourceManager.GetString("String1", resourceCulture);
+                return ResourceManager.GetString("HeaderModele", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Campagne de vérification du {0}.
+        ///   Recherche une chaîne localisée semblable à N°.
         /// </summary>
-        internal static string TitreRapportVerificationEquipement {
+        public static string HeaderNumero {
             get {
-                return ResourceManager.GetString("TitreRapportVerificationEquipement", resourceCulture);
+                return ResourceManager.GetString("HeaderNumero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Statut.
+        /// </summary>
+        public static string HeaderStatutDerniereVerification {
+            get {
+                return ResourceManager.GetString("HeaderStatutDerniereVerification", resourceCulture);
             }
         }
     }
