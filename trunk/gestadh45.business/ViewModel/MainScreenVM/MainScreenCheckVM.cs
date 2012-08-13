@@ -18,6 +18,8 @@ namespace gestadh45.business.ViewModel.MainScreenVM
 		#endregion
 
 		public void DoCheck() {
+			
+
 			this._repoInfosClub = new Repository<InfosClub>(this._context);
 
 			if (this.CheckDatabase()) {
@@ -36,15 +38,11 @@ namespace gestadh45.business.ViewModel.MainScreenVM
 		/// <returns>True si les infos sont présentes, False sinon</returns>
 		private bool CheckDatabase() {
 			var result = false;
-			var infosClubPresentes = this._repoInfosClub.GetAll().Count() > 0;
+			var infosClub = this._repoInfosClub.GetFirst();
 
-			if (infosClubPresentes) {
-				var infosClub = this._repoInfosClub.GetFirst();
-
-				result = infosClub != null;
-				result = result && infosClub.ID != null;
-				result = result && !string.IsNullOrWhiteSpace(infosClub.Nom);
-			}
+			result = infosClub != null;
+			result = result && infosClub.ID != null;
+			result = result && !string.IsNullOrWhiteSpace(infosClub.Nom);
 
 			return result;
 		}
