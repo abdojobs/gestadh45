@@ -2,7 +2,7 @@
 using gestadh45.services.Documents.Templates;
 using MigraDoc.DocumentObjectModel;
 
-namespace gestadh45.service.Documents.Templates
+namespace gestadh45.services.Documents.Templates
 {
 	public class InscriptionDocument : GeneriqueDocument
 	{
