@@ -42,6 +42,9 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Setup' ">
+    <OutputPath>bin\Setup\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Setup64.iss">
     </Compile>

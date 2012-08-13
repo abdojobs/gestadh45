@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Setup|AnyCPU'">
+    <OutputPath>bin\Setup\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML">
       <HintPath>..\packages\DoddleReport.OpenXml.1.3\lib\net40\ClosedXML.dll</HintPath>
