@@ -95,8 +95,14 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 
 		public override void ExecuteDeleteCommand() {
 			if (this.SelectedCampagneVerification != null && !this.SelectedCampagneVerification.EstValidee) {
+				Messenger.Default.Send(new NMAskConfirmationDialog<bool>(this.ExecuteDeleteCommandCallBack, ResCampagnesVerification.TexteConfirmationSuppression));
+			}
+		}
+
+		private void ExecuteDeleteCommandCallBack(bool deleteConfirmation) {
+			if (deleteConfirmation) {
 				this.DeleteVerifications();
-				
+
 				this._repoMain.Delete(this.SelectedCampagneVerification);
 				this._repoMain.Save();
 
@@ -106,6 +112,7 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			}
 		}
 		#endregion
+	
 		#region CreateCommand
 		public override bool CanExecuteCreateCommand() {
 			return this._repoMain.GetAll().Count(c => !c.EstValidee) == 0; // on ne peut créer une nouvelle campagne que si il n'en existe aucune non validée
@@ -161,6 +168,7 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 					break;
 			}
 		}
+
 		private void GenerateReportCampagneVerification(string nomFichier) {
 			if (nomFichier != null) {
 				var gen = new ReportGenerator<ReportVerificationEquipement>(
@@ -175,7 +183,6 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 				this.ShowUserNotification(string.Format(ResCommon.InfoRapportGenere, nomFichier));
 			}
 		}
-
 		#endregion
 	}
 }

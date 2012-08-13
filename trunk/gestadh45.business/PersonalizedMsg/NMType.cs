@@ -17,5 +17,6 @@ namespace gestadh45.business.PersonalizedMsg
 		public const string NMRefreshDatas = "NMRefreshDatas";
 		public const string NMShowInfosDataSource = "NMShowInfosDataSource";
 		public const string NMMainMenuState = "NMMainMenuState";
+		public const string NMAskConfirmationDialog = "NMAskConfirmationDialog";
 	}
 }

@@ -115,6 +115,15 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Etes-vous sûr de vouloir supprimer cette campagne?.
+        /// </summary>
+        internal static string TexteConfirmationSuppression {
+            get {
+                return ResourceManager.GetString("TexteConfirmationSuppression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Campagne de vérification du {0}.
         /// </summary>
         internal static string TitreRapportVerificationEquipement {
