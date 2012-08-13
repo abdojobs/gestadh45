@@ -7,8 +7,6 @@ using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
 using gestadh45.services.Reporting;
 using gestadh45.services.Reporting.Templates;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace gestadh45.business.ViewModel.EquipementsVM
 {
@@ -105,7 +103,6 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 			this.PopulateEquipements();
 			this.CreateDupliquerCommand();
 			this.CreateMasquerRebutCommand();
-			this.CreateReportCommand();
 		}
 		#endregion
 
@@ -233,20 +230,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		#endregion
 
 		#region ReportCommand
-		public ICommand ReportCommand { get; set; }
-
-		private void CreateReportCommand() {
-			this.ReportCommand = new RelayCommand<string>(
-				this.ExecuteReportCommand,
-				this.CanExecuteReportCommand
-			);
-		}
-
-		public bool CanExecuteReportCommand(string codeReport) {
-			return true;
-		}
-
-		public void ExecuteReportCommand(string codeReport) {
+		public override void ExecuteReportCommand(string codeReport) {
 			switch (codeReport) {
 				case CodesReport.InventaireSimpleEquipementExcel:
 					Messenger.Default.Send(new NMActionFileDialog<string>(".xlsx", "Inventaire", this.GenerateReportInventaireEquipementSimple));

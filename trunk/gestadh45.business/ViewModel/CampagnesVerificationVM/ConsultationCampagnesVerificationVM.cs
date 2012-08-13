@@ -3,7 +3,10 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.PersonalizedMsg;
+using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
+using gestadh45.services.Reporting;
+using gestadh45.services.Reporting.Templates;
 
 namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 {
@@ -135,6 +138,33 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 				new NMShowUC<CampagneVerification>(CodesUC.FormulaireSaisieCampagneVerification, this.SelectedCampagneVerification)
 			);
 		}
+		#endregion
+
+		#region ReportCommand
+		public override bool CanExecuteReportCommand(string codeReport) {
+			return this.SelectedCampagneVerification != null;
+		}
+
+		public override void ExecuteReportCommand(string codeReport) {
+			switch (codeReport) {
+				case CodesReport.VerificationEquipementExcel:
+					Messenger.Default.Send(new NMActionFileDialog<string>(".xlsx", "Campagne", this.GenerateReportCampagneVerification));
+					break;
+
+				default:
+					break;
+			}
+		}
+		private void GenerateReportCampagneVerification(string nomFichier) {
+			var gen = new ReportGenerator<ReportVerificationEquipement>(
+					ServiceReportingAdapter.CampagneVerificationToReportVerificationEquipement(this.SelectedCampagneVerification),
+					nomFichier
+				);
+			gen.GenerateExcelReport();
+
+			this.ShowUserNotification(string.Format(ResCampagnesVerification.InfoRapportGenere, nomFichier));
+		}
+
 		#endregion
 	}
 }

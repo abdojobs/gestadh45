@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using gestadh45.dal;
 using gestadh45.services.Reporting.Templates;
-using System.Linq;
 
 namespace gestadh45.business.ServicesAdapters
 {
@@ -45,6 +45,25 @@ namespace gestadh45.business.ServicesAdapters
 
 				item.DateDerniereVerification = lastVerif.CampagneVerification.Date.ToShortDateString();
 				item.StatutDerniereVerification = lastVerif.StatutVerification.Libelle;
+
+				result.Add(item);
+			}
+
+			return result;
+		}
+
+		public static ICollection<ReportVerificationEquipement> CampagneVerificationToReportVerificationEquipement(CampagneVerification campagne) {
+			var result = new List<ReportVerificationEquipement>();
+
+			foreach (var verif in campagne.Verifications) {
+				var item = new ReportVerificationEquipement()
+				{
+					Categorie = verif.Equipement.Modele.Categorie.Libelle,
+					Marque = verif.Equipement.Modele.Marque.Libelle,
+					Modele = verif.Equipement.Modele.LibelleCourt,
+					Numero = verif.Equipement.Numero,
+					StatutVerification = verif.StatutVerification.Libelle
+				};
 
 				result.Add(item);
 			}

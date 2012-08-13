@@ -39,6 +39,7 @@ namespace gestadh45.business.ViewModel
 			this.UCParentCode = CodesUC.ConsultationInfosClub;
 			this.UCGuid = Guid.NewGuid();
 			this.CreateOpenWindowCommand();
+			this.CreateReportCommand();
 
 			// envoi du message d'affichage du datasource
 			Messenger.Default.Send(new NMShowInfosDataSource(this._context.Database.Connection.ConnectionString));
@@ -63,6 +64,23 @@ namespace gestadh45.business.ViewModel
 				new NMOpenWindow(Tuple.Create(codeUc, this.UCGuid))
 			);
 		}
+		#endregion
+
+		#region ReportCommand
+		public ICommand ReportCommand { get; set; }
+
+		protected void CreateReportCommand() {
+			this.ReportCommand = new RelayCommand<string>(
+				this.ExecuteReportCommand,
+				this.CanExecuteReportCommand
+			);
+		}
+
+		public virtual bool CanExecuteReportCommand(string codeReport) {
+			return true;
+		}
+
+		public virtual void ExecuteReportCommand(string codeReport) { }
 		#endregion
 	}
 }
