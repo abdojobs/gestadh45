@@ -131,5 +131,23 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
                 return ResourceManager.GetString("InfoRapportGenere", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inventaire complet.
+        /// </summary>
+        internal static string NomFichierRapportInventaireComplet {
+            get {
+                return ResourceManager.GetString("NomFichierRapportInventaireComplet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inventaire simple.
+        /// </summary>
+        internal static string NomFichierRapportInventaireSimple {
+            get {
+                return ResourceManager.GetString("NomFichierRapportInventaireSimple", resourceCulture);
+            }
+        }
     }
 }

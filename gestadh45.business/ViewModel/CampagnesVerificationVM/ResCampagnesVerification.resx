@@ -129,4 +129,7 @@
   <data name="InfoRapportGenere" xml:space="preserve">
     <value>Le rapport "{0}" a été généré</value>
   </data>
+  <data name="NomFichierRapportCampagneVerification" xml:space="preserve">
+    <value>{0} - Campagne de vérification</value>
+  </data>
 </root>

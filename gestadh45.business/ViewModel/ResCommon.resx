@@ -117,34 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ErrEquipementExiste" xml:space="preserve">
-    <value>Il existe déjà un équipement portant le numéro {0}</value>
-  </data>
-  <data name="ErrModeleObligatoire" xml:space="preserve">
-    <value>Le modèle est obligatoire</value>
-  </data>
-  <data name="ErrNumeroObligatoire" xml:space="preserve">
-    <value>Le numéro est obligatoire</value>
-  </data>
-  <data name="InfoDureeDeVieAtteinte" xml:space="preserve">
-    <value>Cet équipement a atteint sa durée de vie, pensez à le remplacer</value>
-  </data>
-  <data name="InfoDureeDeVieNonAtteinte" xml:space="preserve">
-    <value>Cet équipement n'a pas atteint sa durée de vie</value>
-  </data>
-  <data name="InfoEquipementDuplique" xml:space="preserve">
-    <value>L'équipement a été dupliqué</value>
-  </data>
-  <data name="InfoEquipementSupprime" xml:space="preserve">
-    <value>L'équipement a été supprimé</value>
-  </data>
-  <data name="InfoRapportGenere" xml:space="preserve">
-    <value>Le rapport "{0}" a été généré</value>
-  </data>
-  <data name="NomFichierRapportInventaireComplet" xml:space="preserve">
-    <value>Inventaire complet</value>
-  </data>
-  <data name="NomFichierRapportInventaireSimple" xml:space="preserve">
-    <value>Inventaire simple</value>
+  <data name="ExtensionExcel" xml:space="preserve">
+    <value>.xlsx</value>
   </data>
 </root>

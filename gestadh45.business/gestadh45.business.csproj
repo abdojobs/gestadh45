@@ -127,6 +127,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResModeles.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ResCommon.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResCommon.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\RepartitionAdherentsVM\EcranRepartitionAdherentsVM.cs" />
     <Compile Include="ViewModel\Statistiques\CodesGraphs.cs" />
     <Compile Include="ViewModel\Statistiques\RessourcesStats.Designer.cs">
@@ -252,6 +257,10 @@
     <EmbeddedResource Include="ViewModel\ModeleVM\ResModeles.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResModeles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\ResCommon.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResCommon.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\Statistiques\RessourcesStats.resx">
       <Generator>ResXFileCodeGenerator</Generator>
