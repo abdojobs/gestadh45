@@ -14,6 +14,10 @@ namespace gestadh45.services.Reporting
 		public ReportGenerator(ICollection<T> items, string saveFilePath) {
 			this._report = new Report(items.ToReportSource());
 			this._saveFilepath = saveFilePath;
+
+			foreach (var field in this._report.DataFields) {
+				field.HeaderStyle.Bold = true;
+			}
 		}
 
 		#region Personalization
