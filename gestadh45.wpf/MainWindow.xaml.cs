@@ -59,6 +59,7 @@ namespace gestadh45.wpf
 			Messenger.Default.Register<NMShowUC<DureeDeVie>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowUC<CampagneVerification>>(this, (msg) => this.ShowUCWithParameters(msg.CodeUC, msg.Content));
 			Messenger.Default.Register<NMShowAboutBox>(this, (msg) => this.ShowAboutBox());
+			Messenger.Default.Register<NMAskConfirmationDialog<bool>>(this, msg => this.ShowConfirmationDialog(msg.Execute, msg.Text));
 
 			// Abonnement aux messages pour les dialogues
 			Messenger.Default.Register<NMActionFileDialog<string>>(
@@ -287,6 +288,12 @@ namespace gestadh45.wpf
 			string selectedFolder = (dialog.ShowDialog() == Forms.DialogResult.OK) ? dialog.SelectedPath : null;
 
 			callback(selectedFolder);
+		}
+
+		private void ShowConfirmationDialog(Action<bool> callback, string text) {
+			var response = MessageBox.Show(text, "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+
+			callback(response == MessageBoxResult.Yes);
 		}
 	}
 }
