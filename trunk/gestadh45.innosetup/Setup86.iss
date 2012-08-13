@@ -76,6 +76,8 @@ Source: "{#SourceFilePath}\gestadh45.sdf"; DestDir: "{app}"; Flags: ignoreversio
 Source: "{#SourceFilePath}\gestadh45.services.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourceFilePath}\NLog.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourceFilePath}\NLog.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\DoddleReport.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\DoddleReport.OpenXml.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourceFilePath}\gestadh45.wpf.exe"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

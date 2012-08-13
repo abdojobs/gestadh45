@@ -58,6 +58,9 @@
   <PropertyGroup>
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Setup|x86'">
+    <OutputPath>bin\x86\Setup\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Controls">
       <HintPath>..\..\..\..\..\..\..\Downloads\PieChartWithLabelsWPF\PieChartWithLabels - WPF\Controls\bin\Debug\Controls.dll</HintPath>
