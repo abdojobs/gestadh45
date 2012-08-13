@@ -113,13 +113,27 @@ namespace gestadh45.business.ViewModel.ModeleVM
 
 		protected override void PrepareValuesForTreatment() {
 			this.CurrentModele.Nom = (this.CurrentModele.Nom == null) ? null : this.CurrentModele.Nom.ToUpperInvariant();
+
+			// on remplace les null par des chaines vides (histoire de faciliter la comparaison ultérieure)
+			this.CurrentModele.Couleur1 = this.CurrentModele.Couleur1 ?? string.Empty;
+			this.CurrentModele.Couleur2 = this.CurrentModele.Couleur2 ?? string.Empty;
+			this.CurrentModele.Couleur3 = this.CurrentModele.Couleur3 ?? string.Empty;
+
+			// on trim les valeurs
+			this.CurrentModele.Couleur1 = this.CurrentModele.Couleur1.Trim();
+			this.CurrentModele.Couleur2 = this.CurrentModele.Couleur2.Trim();
+			this.CurrentModele.Couleur3 = this.CurrentModele.Couleur3.Trim();
 		}
 
 		protected override bool CurrentElementExists() {
-			// critères d'unicité : marque + nom du modèle
+			// critères d'unicité : catégorie + marque + nom du modèle + couleur1 + couleur2 + couleur3
 			return this._repoModele.GetAll().Where(
 					m => m.Nom.Equals(this.CurrentModele.Nom, StringComparison.OrdinalIgnoreCase)
 						&& m.Marque.ID == this.CurrentModele.Marque.ID
+						&& m.Categorie.ID == this.CurrentModele.Categorie.ID
+						&& m.Couleur1.Equals(this.CurrentModele.Couleur1, StringComparison.OrdinalIgnoreCase)
+						&& m.Couleur2.Equals(this.CurrentModele.Couleur2, StringComparison.OrdinalIgnoreCase)
+						&& m.Couleur3.Equals(this.CurrentModele.Couleur3, StringComparison.OrdinalIgnoreCase)
 				).Count() != 0;
 		}
 
@@ -136,7 +150,7 @@ namespace gestadh45.business.ViewModel.ModeleVM
 				errors.Add(ResModeles.ErrMarqueObligatoire);
 			}
 
-			if (errors.Count == 0 && this.CurrentElementExists()) {
+			if (errors.Count == 0 && this.CurrentElementExists()){ 
 				errors.Add(ResModeles.ErrModeleExiste);
 			}
 

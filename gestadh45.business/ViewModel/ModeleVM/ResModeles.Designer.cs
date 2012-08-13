@@ -79,7 +79,7 @@ namespace gestadh45.business.ViewModel.ModeleVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Ce modèle existe déjà (nom + couleurs).
+        ///   Recherche une chaîne localisée semblable à Ce modèle existe déjà (catégorie + marque + nom + couleurs).
         /// </summary>
         internal static string ErrModeleExiste {
             get {

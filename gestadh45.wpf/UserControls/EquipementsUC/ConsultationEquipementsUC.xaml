@@ -112,6 +112,15 @@
 						</Button>
 						<TextBlock Text=" : Inventaire simple (Excel)" />
 					</StackPanel>
+
+					<StackPanel Orientation="Horizontal">
+						<Button Height="16" Width="16" ToolTip="Inventaire complet (Excel)"
+										Command="{Binding Path=ReportCommand}"
+										CommandParameter="{x:Static report:CodesReport.InventaireCompletEquipementExcel}" >
+							<Image Source="/gestadh45.wpf;component/Images/btn_xlsx16.png" />
+						</Button>
+						<TextBlock Text=" : Inventaire complet (Excel)" />
+					</StackPanel>
 				</StackPanel>
 			</GroupBox>
 
