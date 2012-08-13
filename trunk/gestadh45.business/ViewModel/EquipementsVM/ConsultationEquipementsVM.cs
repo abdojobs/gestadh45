@@ -250,6 +250,9 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 					ServiceReportingAdapter.EquipementToReportInventaireEquipementSimple(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
 					nomFichier
 				);
+
+			gen.SetTitle("Inventaire");
+			gen.SetSubTitle(string.Format("({0} équipements)", this.Equipements.Count()));
 			gen.GenerateExcelReport();
 
 			this.ShowUserNotification(string.Format(ResEquipements.InfoRapportGenere, nomFichier));
@@ -260,6 +263,9 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 					ServiceReportingAdapter.EquipementToReportInventaireEquipementComplet(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
 					nomFichier
 				);
+
+			gen.SetTitle("Inventaire (détaillé)");
+			gen.SetSubTitle(string.Format("({0} équipements)", this.Equipements.Count()));
 			gen.GenerateExcelReport();
 
 			this.ShowUserNotification(string.Format(ResEquipements.InfoRapportGenere, nomFichier));

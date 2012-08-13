@@ -56,13 +56,13 @@ namespace gestadh45.dal
 		/// <value>
 		///   <c>true</c> si l'équipement est au rebut, <c>false</c> sinon.
 		/// </value>
-		/// <remarks>Un équipement est au rebut si il a au moins une vérification et que sa dernière vérification à le statut rebut</remarks>
+		/// <remarks>Un équipement est au rebut si il a au moins une vérification validée et que sa dernière vérification validée à le statut rebut</remarks>
 		public bool EstAuRebut {
 			get {
-				return this.Verifications.Count > 0 
+				return this.Verifications.Count(v => v.CampagneVerification.EstValidee) > 0 
 					&& this.Verifications
 					.OrderByDescending(v => v.CampagneVerification.Date)
-					.First()
+					.First(v => v.CampagneVerification.EstValidee)
 					.StatutVerification
 					.EstRebut;
 			}

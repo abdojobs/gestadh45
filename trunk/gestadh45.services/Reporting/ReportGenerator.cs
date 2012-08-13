@@ -16,6 +16,25 @@ namespace gestadh45.services.Reporting
 			this._saveFilepath = saveFilePath;
 		}
 
+		#region Personalization
+		public void SetTitle(string reportTitle) {
+			this._report.TextFields.Title = reportTitle;
+		}
+
+		public void SetSubTitle(string reportSubTitle) {
+			this._report.TextFields.SubTitle = reportSubTitle;
+		}
+
+		public void SetHeader(string reportHeader) {
+			this._report.TextFields.Header = reportHeader;
+		}
+
+		public void SetFooter(string reportFooter) {
+			this._report.TextFields.Footer = reportFooter;
+		}
+		#endregion
+
+		#region Generation
 		public void GenerateHTMLReport() {
 			using (var fs = new StreamWriter(this._saveFilepath)) {
 				var writer = new HtmlReportWriter();
@@ -29,5 +48,6 @@ namespace gestadh45.services.Reporting
 				writer.WriteReport(this._report, fs.BaseStream);
 			}
 		}
+		#endregion
 	}
 }
