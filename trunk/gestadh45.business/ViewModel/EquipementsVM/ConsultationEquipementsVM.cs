@@ -233,11 +233,11 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		public override void ExecuteReportCommand(string codeReport) {
 			switch (codeReport) {
 				case CodesReport.InventaireSimpleEquipementExcel:
-					Messenger.Default.Send(new NMActionFileDialog<string>(".xlsx", "Inventaire", this.GenerateReportInventaireEquipementSimple));
+					Messenger.Default.Send(new NMActionFileDialog<string>(ResCommon.ExtensionExcel, ResEquipements.NomFichierRapportInventaireSimple, this.GenerateReportInventaireEquipementSimple));
 					break;
 
 				case CodesReport.InventaireCompletEquipementExcel:
-					Messenger.Default.Send(new NMActionFileDialog<string>(".xlsx", "Inventaire", this.GenerateReportInventaireEquipementComplet));
+					Messenger.Default.Send(new NMActionFileDialog<string>(ResCommon.ExtensionExcel, ResEquipements.NomFichierRapportInventaireComplet, this.GenerateReportInventaireEquipementComplet));
 					break;
 
 				default:

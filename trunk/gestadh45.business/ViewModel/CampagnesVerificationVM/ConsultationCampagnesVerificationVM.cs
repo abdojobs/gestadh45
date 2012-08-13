@@ -148,7 +148,13 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		public override void ExecuteReportCommand(string codeReport) {
 			switch (codeReport) {
 				case CodesReport.VerificationEquipementExcel:
-					Messenger.Default.Send(new NMActionFileDialog<string>(".xlsx", "Campagne", this.GenerateReportCampagneVerification));
+					Messenger.Default.Send(
+							new NMActionFileDialog<string>(
+							ResCommon.ExtensionExcel, 
+							string.Format(ResCampagnesVerification.NomFichierRapportCampagneVerification, this.SelectedCampagneVerification.Date.ToString("yyyyMMdd")), 
+							this.GenerateReportCampagneVerification
+						)
+					);
 					break;
 
 				default:

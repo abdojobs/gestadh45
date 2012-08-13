@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
+namespace gestadh45.business.ViewModel {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResCampagnesVerification {
+    internal class ResCommon {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResCampagnesVerification() {
+        internal ResCommon() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.CampagnesVerificationVM.ResCampagnesVerification", typeof(ResCampagnesVerification).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.ResCommon", typeof(ResCommon).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,47 +61,11 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Commentaire obligatoire pour l&apos;équipement &quot;{0}&quot;.
+        ///   Recherche une chaîne localisée semblable à .xlsx.
         /// </summary>
-        internal static string ErrCommentaireObligatoire {
+        internal static string ExtensionExcel {
             get {
-                return ResourceManager.GetString("ErrCommentaireObligatoire", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le responsable est obligatoire.
-        /// </summary>
-        internal static string ErrResponsableObligatoire {
-            get {
-                return ResourceManager.GetString("ErrResponsableObligatoire", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à La campagne de vérification a été supprimée.
-        /// </summary>
-        internal static string InfoCampagneSupprimee {
-            get {
-                return ResourceManager.GetString("InfoCampagneSupprimee", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le rapport &quot;{0}&quot; a été généré.
-        /// </summary>
-        internal static string InfoRapportGenere {
-            get {
-                return ResourceManager.GetString("InfoRapportGenere", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à {0} - Campagne de vérification.
-        /// </summary>
-        internal static string NomFichierRapportCampagneVerification {
-            get {
-                return ResourceManager.GetString("NomFichierRapportCampagneVerification", resourceCulture);
+                return ResourceManager.GetString("ExtensionExcel", resourceCulture);
             }
         }
     }
