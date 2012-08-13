@@ -87,7 +87,9 @@
     <Compile Include="Reporting\CodesReport.cs" />
     <Compile Include="Reporting\ReportGenerator.cs" />
     <Compile Include="Reporting\Templates\ITemplateReport.cs" />
+    <Compile Include="Reporting\Templates\ReportInventaireEquipementComplet.cs" />
     <Compile Include="Reporting\Templates\ReportInventaireEquipementSimple.cs" />
+    <Compile Include="Reporting\Templates\ReportVerificationEquipement.cs" />
     <Compile Include="VCards\ResVCards.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

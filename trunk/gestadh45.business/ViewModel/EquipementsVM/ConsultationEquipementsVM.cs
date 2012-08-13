@@ -252,6 +252,10 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 					Messenger.Default.Send(new NMActionFileDialog<string>(".xlsx", "Inventaire", this.GenerateReportInventaireEquipementSimple));
 					break;
 
+				case CodesReport.InventaireCompletEquipementExcel:
+					Messenger.Default.Send(new NMActionFileDialog<string>(".xlsx", "Inventaire", this.GenerateReportInventaireEquipementComplet));
+					break;
+
 				default:
 					break;
 			}
@@ -260,6 +264,16 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		private void GenerateReportInventaireEquipementSimple(string nomFichier) {
 			var gen = new ReportGenerator<ReportInventaireEquipementSimple>(
 					ServiceReportingAdapter.EquipementToReportInventaireEquipementSimple(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
+					nomFichier
+				);
+			gen.GenerateExcelReport();
+
+			this.ShowUserNotification(string.Format(ResEquipements.InfoRapportGenere, nomFichier));
+		}
+
+		private void GenerateReportInventaireEquipementComplet(string nomFichier) {
+			var gen = new ReportGenerator<ReportInventaireEquipementComplet>(
+					ServiceReportingAdapter.EquipementToReportInventaireEquipementComplet(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
 					nomFichier
 				);
 			gen.GenerateExcelReport();

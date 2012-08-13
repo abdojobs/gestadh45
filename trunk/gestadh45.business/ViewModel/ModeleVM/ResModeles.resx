@@ -124,7 +124,7 @@
     <value>La marque est obligatoire</value>
   </data>
   <data name="ErrModeleExiste" xml:space="preserve">
-    <value>Ce modèle existe déjà (nom + couleurs)</value>
+    <value>Ce modèle existe déjà (catégorie + marque + nom + couleurs)</value>
   </data>
   <data name="ErrNomObligatoire" xml:space="preserve">
     <value>Le nom du modèle est obligatoire</value>

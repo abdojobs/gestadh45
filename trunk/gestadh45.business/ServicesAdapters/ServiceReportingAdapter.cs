@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using gestadh45.dal;
 using gestadh45.services.Reporting.Templates;
+using System.Linq;
 
 namespace gestadh45.business.ServicesAdapters
 {
@@ -19,6 +20,31 @@ namespace gestadh45.business.ServicesAdapters
 					DateAchat = (equip.DateAchat.HasValue ? equip.DateAchat.Value.ToShortDateString() : equip.DateCreation.ToShortDateString()),
 					Localisation = equip.Localisation.Libelle
 				};
+
+				result.Add(item);
+			}
+
+			return result;
+		}
+
+		public static ICollection<ReportInventaireEquipementComplet> EquipementToReportInventaireEquipementComplet(ICollection<Equipement> equipements) {
+			var result = new List<ReportInventaireEquipementComplet>();
+
+			foreach (var equip in equipements) {
+				var item = new ReportInventaireEquipementComplet()
+				{
+					Numero = equip.Numero,
+					Categorie = equip.Modele.Categorie.Libelle,
+					Modele = equip.Modele.LibelleCourt,
+					Marque = equip.Modele.Marque.Libelle,
+					DateAchat = (equip.DateAchat.HasValue ? equip.DateAchat.Value.ToShortDateString() : equip.DateCreation.ToShortDateString()),
+					Localisation = equip.Localisation.Libelle
+				};
+
+				var lastVerif = equip.Verifications.OrderBy(v => v.CampagneVerification.Date).Last();
+
+				item.DateDerniereVerification = lastVerif.CampagneVerification.Date.ToShortDateString();
+				item.StatutDerniereVerification = lastVerif.StatutVerification.Libelle;
 
 				result.Add(item);
 			}
