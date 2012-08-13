@@ -138,13 +138,22 @@
   <data name="InfoEquipementSupprime" xml:space="preserve">
     <value>L'équipement a été supprimé</value>
   </data>
-  <data name="InfoRapportGenere" xml:space="preserve">
-    <value>Le rapport "{0}" a été généré</value>
-  </data>
   <data name="NomFichierRapportInventaireComplet" xml:space="preserve">
-    <value>Inventaire complet</value>
+    <value>{0} - Inventaire complet</value>
   </data>
   <data name="NomFichierRapportInventaireSimple" xml:space="preserve">
-    <value>Inventaire simple</value>
+    <value>{0} - Inventaire simple</value>
+  </data>
+  <data name="SousTitreInventaireComplet" xml:space="preserve">
+    <value>{0} équipements</value>
+  </data>
+  <data name="SousTitreInventaireSimple" xml:space="preserve">
+    <value>{0} équipements</value>
+  </data>
+  <data name="TitreRapportInventaireComplet" xml:space="preserve">
+    <value>Inventaire détaillé ({0})</value>
+  </data>
+  <data name="TitreRapportInventaireSimple" xml:space="preserve">
+    <value>Inventaire ({0})</value>
   </data>
 </root>

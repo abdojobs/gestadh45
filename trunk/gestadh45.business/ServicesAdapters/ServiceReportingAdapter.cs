@@ -62,13 +62,38 @@ namespace gestadh45.business.ServicesAdapters
 					Marque = verif.Equipement.Modele.Marque.Libelle,
 					Modele = verif.Equipement.Modele.LibelleCourt,
 					Numero = verif.Equipement.Numero,
-					StatutVerification = verif.StatutVerification.Libelle
+					StatutVerification = verif.StatutVerification.Libelle,
+					RaisonStatutVerification = verif.Commentaire
 				};
 
 				result.Add(item);
 			}
 
 			return result;
+		}
+
+		public static ICollection<ReportListeAdherents> InscriptionsToListeAdherents(ICollection<Inscription> inscriptions) {
+			var result = new List<ReportListeAdherents>();
+
+			foreach (var ins in inscriptions) {
+				var item = new ReportListeAdherents()
+				{
+					Nom = ins.Adherent.Nom,
+					Prenom = ins.Adherent.Prenom,
+					DateNaissance = ins.Adherent.DateCreation.ToShortDateString(),
+					Telephone = ins.Adherent.Telephone1,
+					Email = ins.Adherent.Mail1,
+					Groupe = ins.Groupe.Libelle
+				};
+
+				result.Add(item);
+			}
+
+			return result;
+		}
+
+		public static ICollection<ReportListeAdherents> GroupeToReportListeAdherents(Groupe groupe) {
+			return InscriptionsToListeAdherents(groupe.Inscriptions);
 		}
 	}
 }

@@ -62,6 +62,7 @@
       <HintPath>..\packages\PDFsharp.1.32.2602.0\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
@@ -89,7 +90,28 @@
     <Compile Include="Reporting\Templates\ITemplateReport.cs" />
     <Compile Include="Reporting\Templates\ReportInventaireEquipementComplet.cs" />
     <Compile Include="Reporting\Templates\ReportInventaireEquipementSimple.cs" />
+    <Compile Include="Reporting\Templates\ReportListeAdherents.cs" />
     <Compile Include="Reporting\Templates\ReportVerificationEquipement.cs" />
+    <Compile Include="Reporting\Templates\ResReportInventaireEquipementComplet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResReportInventaireEquipementComplet.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\Templates\ResReportInventaireEquipementSimple.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResReportInventaireEquipementSimple.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\Templates\ResReportListeAdherents.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResReportListeAdherents.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\Templates\ResReportVerificationEquipement.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResReportVerificationEquipement.resx</DependentUpon>
+    </Compile>
     <Compile Include="VCards\ResVCards.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -103,6 +125,22 @@
     <EmbeddedResource Include="Documents\Templates\ResDocuments.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResDocuments.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\Templates\ResReportInventaireEquipementComplet.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResReportInventaireEquipementComplet.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\Templates\ResReportInventaireEquipementSimple.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResReportInventaireEquipementSimple.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\Templates\ResReportListeAdherents.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResReportListeAdherents.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\Templates\ResReportVerificationEquipement.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResReportVerificationEquipement.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="VCards\ResVCards.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

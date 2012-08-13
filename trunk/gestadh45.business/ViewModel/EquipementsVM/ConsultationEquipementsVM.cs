@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -233,11 +234,23 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		public override void ExecuteReportCommand(string codeReport) {
 			switch (codeReport) {
 				case CodesReport.InventaireSimpleEquipementExcel:
-					Messenger.Default.Send(new NMActionFileDialog<string>(ResCommon.ExtensionExcel, ResEquipements.NomFichierRapportInventaireSimple, this.GenerateReportInventaireEquipementSimple));
+					Messenger.Default.Send(
+						new NMActionFileDialog<string>(
+							ResCommon.ExtensionExcel,
+							string.Format(ResEquipements.NomFichierRapportInventaireSimple, DateTime.Now.ToString("yyyyMMdd")), 
+							this.GenerateReportInventaireEquipementSimple
+						)
+					);
 					break;
 
 				case CodesReport.InventaireCompletEquipementExcel:
-					Messenger.Default.Send(new NMActionFileDialog<string>(ResCommon.ExtensionExcel, ResEquipements.NomFichierRapportInventaireComplet, this.GenerateReportInventaireEquipementComplet));
+					Messenger.Default.Send(
+						new NMActionFileDialog<string>(
+							ResCommon.ExtensionExcel,
+							string.Format(ResEquipements.NomFichierRapportInventaireComplet, DateTime.Now.ToString("yyyyMMdd")), 
+							this.GenerateReportInventaireEquipementComplet
+						)
+					);
 					break;
 
 				default:
@@ -246,29 +259,33 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		}
 
 		private void GenerateReportInventaireEquipementSimple(string nomFichier) {
-			var gen = new ReportGenerator<ReportInventaireEquipementSimple>(
-					ServiceReportingAdapter.EquipementToReportInventaireEquipementSimple(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
-					nomFichier
-				);
+			if (nomFichier != null) {
+				var gen = new ReportGenerator<ReportInventaireEquipementSimple>(
+						ServiceReportingAdapter.EquipementToReportInventaireEquipementSimple(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
+						nomFichier
+					);
 
-			gen.SetTitle("Inventaire");
-			gen.SetSubTitle(string.Format("({0} équipements)", this.Equipements.Count()));
-			gen.GenerateExcelReport();
+				gen.SetTitle(string.Format(ResEquipements.TitreRapportInventaireSimple, DateTime.Now.ToShortDateString()));
+				gen.SetSubTitle(string.Format(ResEquipements.SousTitreInventaireSimple, this.Equipements.Count()));
+				gen.GenerateExcelReport();
 
-			this.ShowUserNotification(string.Format(ResEquipements.InfoRapportGenere, nomFichier));
+				this.ShowUserNotification(string.Format(ResCommon.InfoRapportGenere, nomFichier));
+			}
 		}
 
 		private void GenerateReportInventaireEquipementComplet(string nomFichier) {
-			var gen = new ReportGenerator<ReportInventaireEquipementComplet>(
-					ServiceReportingAdapter.EquipementToReportInventaireEquipementComplet(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
-					nomFichier
-				);
+			if (nomFichier != null) {
+				var gen = new ReportGenerator<ReportInventaireEquipementComplet>(
+						ServiceReportingAdapter.EquipementToReportInventaireEquipementComplet(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
+						nomFichier
+					);
 
-			gen.SetTitle("Inventaire (détaillé)");
-			gen.SetSubTitle(string.Format("({0} équipements)", this.Equipements.Count()));
-			gen.GenerateExcelReport();
+				gen.SetTitle(string.Format(ResEquipements.TitreRapportInventaireComplet, DateTime.Now.ToShortDateString()));
+				gen.SetSubTitle(string.Format(ResEquipements.SousTitreInventaireSimple, this.Equipements.Count()));
+				gen.GenerateExcelReport();
 
-			this.ShowUserNotification(string.Format(ResEquipements.InfoRapportGenere, nomFichier));
+				this.ShowUserNotification(string.Format(ResCommon.InfoRapportGenere, nomFichier));
+			}
 		}
 		#endregion
 	}

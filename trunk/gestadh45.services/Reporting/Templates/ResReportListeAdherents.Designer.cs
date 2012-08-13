@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gestadh45.business.ViewModel {
+namespace gestadh45.services.Reporting.Templates {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace gestadh45.business.ViewModel {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ResCommon {
+    public class ResReportListeAdherents {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResCommon() {
+        internal ResReportListeAdherents() {
         }
         
         /// <summary>
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.ResCommon", typeof(ResCommon).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.services.Reporting.Templates.ResReportListeAdherents", typeof(ResReportListeAdherents).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace gestadh45.business.ViewModel {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,20 +61,56 @@ namespace gestadh45.business.ViewModel {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .xlsx.
+        ///   Recherche une chaîne localisée semblable à Date de naissance.
         /// </summary>
-        internal static string ExtensionExcel {
+        public static string HeaderDateNaissance {
             get {
-                return ResourceManager.GetString("ExtensionExcel", resourceCulture);
+                return ResourceManager.GetString("HeaderDateNaissance", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le rapport &quot;{0}&quot; a été généré.
+        ///   Recherche une chaîne localisée semblable à Email.
         /// </summary>
-        internal static string InfoRapportGenere {
+        public static string HeaderEmail {
             get {
-                return ResourceManager.GetString("InfoRapportGenere", resourceCulture);
+                return ResourceManager.GetString("HeaderEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Groupe.
+        /// </summary>
+        public static string HeaderGroupe {
+            get {
+                return ResourceManager.GetString("HeaderGroupe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom.
+        /// </summary>
+        public static string HeaderNom {
+            get {
+                return ResourceManager.GetString("HeaderNom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Prénom.
+        /// </summary>
+        public static string HeaderPrenom {
+            get {
+                return ResourceManager.GetString("HeaderPrenom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Téléphone.
+        /// </summary>
+        public static string HeaderTelephone {
+            get {
+                return ResourceManager.GetString("HeaderTelephone", resourceCulture);
             }
         }
     }

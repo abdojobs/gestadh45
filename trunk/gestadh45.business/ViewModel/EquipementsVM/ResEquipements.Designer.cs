@@ -124,16 +124,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Le rapport &quot;{0}&quot; a été généré.
-        /// </summary>
-        internal static string InfoRapportGenere {
-            get {
-                return ResourceManager.GetString("InfoRapportGenere", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Inventaire complet.
+        ///   Recherche une chaîne localisée semblable à {0} - Inventaire complet.
         /// </summary>
         internal static string NomFichierRapportInventaireComplet {
             get {
@@ -142,11 +133,47 @@ namespace gestadh45.business.ViewModel.EquipementsVM {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Inventaire simple.
+        ///   Recherche une chaîne localisée semblable à {0} - Inventaire simple.
         /// </summary>
         internal static string NomFichierRapportInventaireSimple {
             get {
                 return ResourceManager.GetString("NomFichierRapportInventaireSimple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} équipements.
+        /// </summary>
+        internal static string SousTitreInventaireComplet {
+            get {
+                return ResourceManager.GetString("SousTitreInventaireComplet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {0} équipements.
+        /// </summary>
+        internal static string SousTitreInventaireSimple {
+            get {
+                return ResourceManager.GetString("SousTitreInventaireSimple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inventaire détaillé ({0}).
+        /// </summary>
+        internal static string TitreRapportInventaireComplet {
+            get {
+                return ResourceManager.GetString("TitreRapportInventaireComplet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inventaire ({0}).
+        /// </summary>
+        internal static string TitreRapportInventaireSimple {
+            get {
+                return ResourceManager.GetString("TitreRapportInventaireSimple", resourceCulture);
             }
         }
     }

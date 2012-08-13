@@ -32,6 +32,11 @@ namespace gestadh45.services.Reporting
 		public void SetFooter(string reportFooter) {
 			this._report.TextFields.Footer = reportFooter;
 		}
+
+		public void ConfigColumn(string columnName, string columnHeader, string columnDataFormat="{0}") {
+			this._report.DataFields[columnName].HeaderText = columnHeader;
+			this._report.DataFields[columnName].DataFormatString = columnDataFormat;
+		}
 		#endregion
 
 		#region Generation
