@@ -10,16 +10,17 @@
 ; See the Inno Setup documentation at http://www.jrsoftware.org/ for details on creating script files!    
 
 ;--------------------------------
+; A modifier en fonction de l'environnement
+#define SourceFilePath "D:\DEV\dotnet\gestadh45\trunk\release"
+#define OutputFilePath "C:\Users\Guillaume\Dropbox\GestAdh45\setups"
 
 #define MyAppName "GestAdh45"
-#define MyAppVersion "2.0 (x86)"
+#define MyAppVersion "2.0 (x64)"
 #define MyAppPublisher "Guillaume Porte"
 #define MyAppURL "http://code.google.com/p/gestadh45/"
 #define MyAppExeName "gestadh45.wpf.exe"
 
-; A modifier en fonction de l'environnement
-#define SourceFilePath "D:\users\gp.HARDIS\Documents\Perso\Dev\dotnet\gestadh45\trunk\release"
-#define OutputFilePath "C:\Users\gp.HARDIS\Dropbox\GestAdh45\setups"
+#define InstallPath "{userappdata}\GestAdh45"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
@@ -41,6 +42,8 @@ SetupIconFile={#SourceFilePath}\gestadh45.ico
 Compression=lzma2
 SolidCompression=yes
 
+DisableDirPage=yes
+
 [Languages]
 Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 
@@ -48,45 +51,47 @@ Name: "french"; MessagesFile: "compiler:Languages\French.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "{#SourceFilePath}\gestadh45.wpf.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\FR\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "{#SourceFilePath}\x86\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "{#SourceFilePath}\de\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "{#SourceFilePath}\gestadh45.wpf.exe.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\Microsoft.Windows.Shell.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\MigraDoc.DocumentObjectModel.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\MigraDoc.Rendering.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\PdfSharp.Charting.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\PdfSharp.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\RibbonControlsLibrary.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\System.Data.SqlServerCe.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\System.Data.SqlServerCe.Entity.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\System.Windows.Controls.DataVisualization.Toolkit.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\System.Windows.Controls.Input.Toolkit.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\System.Windows.Controls.Layout.Toolkit.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\System.Windows.Interactivity.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\WPFToolkit.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\WPFToolkit.Extended.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\EntityFramework.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\GalaSoft.MvvmLight.Extras.WPF4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\GalaSoft.MvvmLight.WPF4.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\gestadh45.business.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\gestadh45.dal.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\gestadh45.sdf"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\gestadh45.services.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\NLog.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\NLog.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\DoddleReport.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\DoddleReport.OpenXml.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourceFilePath}\gestadh45.wpf.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\gestadh45.wpf.exe"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\FR\*"; DestDir: "{#InstallPath}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#SourceFilePath}\x86\*"; DestDir: "{#InstallPath}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#SourceFilePath}\de\*"; DestDir: "{#InstallPath}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#SourceFilePath}\gestadh45.wpf.exe.config"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\Microsoft.Windows.Shell.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\MigraDoc.DocumentObjectModel.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\MigraDoc.Rendering.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\PdfSharp.Charting.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\PdfSharp.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\RibbonControlsLibrary.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\System.Data.SqlServerCe.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\System.Data.SqlServerCe.Entity.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\System.Windows.Controls.DataVisualization.Toolkit.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\System.Windows.Controls.Input.Toolkit.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\System.Windows.Controls.Layout.Toolkit.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\System.Windows.Interactivity.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\WPFToolkit.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\WPFToolkit.Extended.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\EntityFramework.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\GalaSoft.MvvmLight.Extras.WPF4.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\GalaSoft.MvvmLight.WPF4.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\gestadh45.business.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\gestadh45.dal.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\gestadh45.services.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\NLog.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\NLog.config"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\DoddleReport.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\DoddleReport.OpenXml.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\Controls.dll"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+Source: "{#SourceFilePath}\gestadh45.wpf.exe"; DestDir: "{#InstallPath}"; Flags: ignoreversion
+
+Source: "{#SourceFilePath}\gestadh45.sdf"; DestDir: "{#InstallPath}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{group}\{#MyAppName}"; Filename: "{#InstallPath}\{#MyAppExeName}"
 Name: "{group}\{cm:ProgramOnTheWeb,{#MyAppName}}"; Filename: "{#MyAppURL}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{#InstallPath}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{#InstallPath}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 ; End of file
