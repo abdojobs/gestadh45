@@ -106,31 +106,31 @@ namespace gestadh45.business.ServicesAdapters
 				};
 
 				item.NbHommesResident = inscriptions.Count(i =>
-					i.Adherent.Sexe.LibelleCourt.Equals("H")
+					i.Adherent.Sexe.LibelleCourt.Equals("M")
 					&& i.Adherent.Ville.ID == villeResident.ID
 					&& i.Adherent.Age >= tranche.AgeInf
-					&& i.Adherent.Age < tranche.AgeSup
+					&& i.Adherent.Age <= tranche.AgeSup
 				);
 
-				item.NbHommesResident = inscriptions.Count(i =>
+				item.NbFemmesResident = inscriptions.Count(i =>
 					i.Adherent.Sexe.LibelleCourt.Equals("F")
 					&& i.Adherent.Ville.ID == villeResident.ID
 					&& i.Adherent.Age >= tranche.AgeInf
-					&& i.Adherent.Age < tranche.AgeSup
+					&& i.Adherent.Age <= tranche.AgeSup
 				);
 
-				item.NbHommesResident = inscriptions.Count(i =>
-					i.Adherent.Sexe.LibelleCourt.Equals("H")
+				item.NbHommesExterieur = inscriptions.Count(i =>
+					i.Adherent.Sexe.LibelleCourt.Equals("M")
 					&& i.Adherent.Ville.ID != villeResident.ID
 					&& i.Adherent.Age >= tranche.AgeInf
-					&& i.Adherent.Age < tranche.AgeSup
+					&& i.Adherent.Age <= tranche.AgeSup
 				);
 
-				item.NbHommesResident = inscriptions.Count(i =>
+				item.NbFemmesExterieur = inscriptions.Count(i =>
 					i.Adherent.Sexe.LibelleCourt.Equals("F")
 					&& i.Adherent.Ville.ID != villeResident.ID
 					&& i.Adherent.Age >= tranche.AgeInf
-					&& i.Adherent.Age < tranche.AgeSup
+					&& i.Adherent.Age <= tranche.AgeSup
 				);
 
 				result.Add(item);

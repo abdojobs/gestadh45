@@ -13,12 +13,12 @@ namespace gestadh45.business.ViewModel.RepartitionAdherentsVM
 	public class EcranRepartitionAdherentsVM : VMConsultationBase
 	{
 		#region TranchesEffectif
-		private IList<TrancheEffectif> _tranchesEffectif;
+		private IList<ReportRepartitionAdherentsAge> _tranchesEffectif;
 
 		/// <summary>
 		/// Obtient/Définit la liste des tranches d'effectif
 		/// </summary>
-		public IList<TrancheEffectif> TranchesEffectif {
+		public IList<ReportRepartitionAdherentsAge> TranchesEffectif {
 			get {
 				return this._tranchesEffectif;
 			}
@@ -60,54 +60,11 @@ namespace gestadh45.business.ViewModel.RepartitionAdherentsVM
 		}
 
 		private void InitialisationTranchesEffectif() {
-			this.TranchesEffectif = new List<TrancheEffectif>();
-
-			foreach (TrancheAge tranche in this._daoTranchesAge.GetAll()) {
-				this.TranchesEffectif.Add(this.CreerTrancheEffectif(tranche));
-			}
-		}
-
-		private TrancheEffectif CreerTrancheEffectif(TrancheAge trancheAge) {
-			var tranche = new TrancheEffectif()
-			{
-				AgeInferieur = (int)trancheAge.AgeInf,
-				AgeSuperieur = (int)trancheAge.AgeSup
-			};
-
-			var rqEffectifResidentsH = from Inscription ins in this._inscriptionsSaisonCourante
-									   where ins.Adherent.Age >= trancheAge.AgeInf
-											 && ins.Adherent.Age <= trancheAge.AgeSup
-											 && ins.Adherent.ID_Ville == this._villeResident.ID
-											 && ins.Adherent.Sexe.LibelleCourt.Equals("M")
-									   select ins;
-
-			var rqEffectifResidentsF = from Inscription ins in this._inscriptionsSaisonCourante
-									   where ins.Adherent.Age >= trancheAge.AgeInf
-											 && ins.Adherent.Age <= trancheAge.AgeSup
-											 && ins.Adherent.ID_Ville == this._villeResident.ID
-											 && ins.Adherent.Sexe.LibelleCourt.Equals("F")
-									   select ins;
-
-			var rqEffectifExterieurH = from Inscription ins in this._inscriptionsSaisonCourante
-									   where ins.Adherent.Age >= trancheAge.AgeInf
-											 && ins.Adherent.Age <= trancheAge.AgeSup
-											 && ins.Adherent.ID_Ville != this._villeResident.ID
-											 && ins.Adherent.Sexe.LibelleCourt.Equals("M")
-									   select ins;
-
-			var rqEffectifExterieurF = from Inscription ins in this._inscriptionsSaisonCourante
-									   where ins.Adherent.Age >= trancheAge.AgeInf
-											 && ins.Adherent.Age <= trancheAge.AgeSup
-											 && ins.Adherent.ID_Ville != this._villeResident.ID
-											 && ins.Adherent.Sexe.LibelleCourt.Equals("F")
-									   select ins;
-
-			tranche.EffectifResidentsH = rqEffectifResidentsH.Count();
-			tranche.EffectifResidentsF = rqEffectifResidentsF.Count();
-			tranche.EffectifExterieursH = rqEffectifExterieurH.Count();
-			tranche.EffectifExterieursF = rqEffectifExterieurF.Count();
-
-			return tranche;
+			this.TranchesEffectif = ServiceReportingAdapter.InscriptionsToReportRepartitionAdherentsAge(
+				this._daoTranchesAge.GetAll(), 
+				this._villeResident, 
+				this._inscriptionsSaisonCourante
+			).ToList();
 		}
 
 		#region ReportCommand
@@ -135,7 +92,7 @@ namespace gestadh45.business.ViewModel.RepartitionAdherentsVM
 		private void GenerateReportRepartitionAdherentsAge(string nomFichier) {
 			if (nomFichier != null) {
 				var gen = new ReportGenerator<ReportRepartitionAdherentsAge>(
-						ServiceReportingAdapter.InscriptionsToReportRepartitionAdherentsAge(this._daoTranchesAge.GetAll(), this._villeResident, this._inscriptionsSaisonCourante),
+						this.TranchesEffectif,
 						nomFichier
 					);
 
