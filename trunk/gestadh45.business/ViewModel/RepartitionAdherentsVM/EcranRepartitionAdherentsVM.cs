@@ -1,8 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.IhmObjects;
+using gestadh45.business.PersonalizedMsg;
+using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
+using gestadh45.services.Reporting;
+using gestadh45.services.Reporting.Templates;
 
 namespace gestadh45.business.ViewModel.RepartitionAdherentsVM
 {
@@ -28,7 +32,7 @@ namespace gestadh45.business.ViewModel.RepartitionAdherentsVM
 		#endregion
 
 		#region champs privés
-		private IEnumerable _inscriptionsSaisonCourante;
+		private ICollection<Inscription> _inscriptionsSaisonCourante;
 		private Ville _villeResident;
 		#endregion
 
@@ -42,7 +46,7 @@ namespace gestadh45.business.ViewModel.RepartitionAdherentsVM
 		public EcranRepartitionAdherentsVM() {
 			this.CreateDao();
 
-			this._inscriptionsSaisonCourante =this._daoInscriptions.GetAll().Where(i => i.Groupe.Saison.EstSaisonCourante);
+			this._inscriptionsSaisonCourante =this._daoInscriptions.GetAll().Where(i => i.Groupe.Saison.EstSaisonCourante).ToList();
 			this._villeResident = this._daoInfosClub.GetFirst().Ville;
 
 			this.InitialisationTranchesEffectif();
@@ -105,5 +109,43 @@ namespace gestadh45.business.ViewModel.RepartitionAdherentsVM
 
 			return tranche;
 		}
+
+		#region ReportCommand
+		public override bool CanExecuteReportCommand(string codeReport) {
+			return this._daoTranchesAge.GetAll().Count > 0;
+		}
+
+		public override void ExecuteReportCommand(string codeReport) {
+			switch (codeReport) {
+				case CodesReport.RepartitionAdherentsAge:
+					Messenger.Default.Send(
+						new NMActionFileDialog<string>(
+							ResCommon.ExtensionExcel,
+							ResRepartitionAdherents.NomFichierRapportRepartitionAdherentsAge,
+							this.GenerateReportRepartitionAdherentsAge
+						)
+					);
+					break;
+
+				default:
+					break;
+			}
+		}
+
+		private void GenerateReportRepartitionAdherentsAge(string nomFichier) {
+			if (nomFichier != null) {
+				var gen = new ReportGenerator<ReportRepartitionAdherentsAge>(
+						ServiceReportingAdapter.InscriptionsToReportRepartitionAdherentsAge(this._daoTranchesAge.GetAll(), this._villeResident, this._inscriptionsSaisonCourante),
+						nomFichier
+					);
+
+				gen.SetTitle(ResRepartitionAdherents.TitreRapportRepartitionAdherentsAge);
+				gen.SetSubTitle(string.Format(ResRepartitionAdherents.SousTitreRepartitionAdherentsAge, this._inscriptionsSaisonCourante.Count));
+				gen.GenerateExcelReport();
+
+				this.ShowUserNotification(string.Format(ResCommon.InfoRapportGenere, nomFichier));
+			}
+		}
+		#endregion
 	}
 }

@@ -95,5 +95,48 @@ namespace gestadh45.business.ServicesAdapters
 		public static ICollection<ReportListeAdherents> GroupeToReportListeAdherents(Groupe groupe) {
 			return InscriptionsToListeAdherents(groupe.Inscriptions);
 		}
+
+		public static ICollection<ReportRepartitionAdherentsAge> InscriptionsToReportRepartitionAdherentsAge(ICollection<TrancheAge> tranchesAge, Ville villeResident, ICollection<Inscription> inscriptions) {
+			var result = new List<ReportRepartitionAdherentsAge>();
+
+			foreach (var tranche in tranchesAge) {
+				var item = new ReportRepartitionAdherentsAge()
+				{
+					Libelle = tranche.ToString()
+				};
+
+				item.NbHommesResident = inscriptions.Count(i =>
+					i.Adherent.Sexe.LibelleCourt.Equals("H")
+					&& i.Adherent.Ville.ID == villeResident.ID
+					&& i.Adherent.Age >= tranche.AgeInf
+					&& i.Adherent.Age < tranche.AgeSup
+				);
+
+				item.NbHommesResident = inscriptions.Count(i =>
+					i.Adherent.Sexe.LibelleCourt.Equals("F")
+					&& i.Adherent.Ville.ID == villeResident.ID
+					&& i.Adherent.Age >= tranche.AgeInf
+					&& i.Adherent.Age < tranche.AgeSup
+				);
+
+				item.NbHommesResident = inscriptions.Count(i =>
+					i.Adherent.Sexe.LibelleCourt.Equals("H")
+					&& i.Adherent.Ville.ID != villeResident.ID
+					&& i.Adherent.Age >= tranche.AgeInf
+					&& i.Adherent.Age < tranche.AgeSup
+				);
+
+				item.NbHommesResident = inscriptions.Count(i =>
+					i.Adherent.Sexe.LibelleCourt.Equals("F")
+					&& i.Adherent.Ville.ID != villeResident.ID
+					&& i.Adherent.Age >= tranche.AgeInf
+					&& i.Adherent.Age < tranche.AgeSup
+				);
+
+				result.Add(item);
+			}
+
+			return result;
+		}
 	}
 }
