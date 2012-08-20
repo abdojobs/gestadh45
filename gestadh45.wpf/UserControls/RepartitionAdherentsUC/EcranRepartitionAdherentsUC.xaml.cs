@@ -1,4 +1,7 @@
-﻿using System.Windows.Controls;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Windows.Controls;
+using gestadh45.services.Reporting.Templates;
 
 namespace gestadh45.wpf.UserControls.RepartitionAdherentsUC
 {
@@ -9,6 +12,15 @@ namespace gestadh45.wpf.UserControls.RepartitionAdherentsUC
 	{
 		public EcranRepartitionAdherentsUC() {
 			InitializeComponent();
+		}
+
+		private void dgTranchesEffectif_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e) {
+			var pd = e.PropertyDescriptor as PropertyDescriptor;
+			var displayAttrib = pd.Attributes[typeof(DisplayAttribute)] as DisplayAttribute;
+
+			if (displayAttrib != null) {
+				e.Column.Header = ResReportRepartitionAdherentsAge.ResourceManager.GetString(displayAttrib.Name);
+			}
 		}
 	}
 }

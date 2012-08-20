@@ -29,8 +29,8 @@
 		</StackPanel>
 		
 		
-		<DataGrid Name="dgTranchesEffectif" ItemsSource="{Binding Path=TranchesEffectif}" IsReadOnly="True" AutoGenerateColumns="False">
-			<DataGrid.Columns>
+		<DataGrid Name="dgTranchesEffectif" ItemsSource="{Binding Path=TranchesEffectif}" IsReadOnly="True" AutoGenerateColumns="True" AutoGeneratingColumn="dgTranchesEffectif_AutoGeneratingColumn">
+			<!--<DataGrid.Columns>
 				<DataGridTextColumn Header="Tranche" Binding="{Binding Path=Libelle}">
 					<DataGridTextColumn.CellStyle>
 						<Style TargetType="{x:Type DataGridCell}">
@@ -72,7 +72,7 @@
 						</Style>
 					</DataGridTextColumn.CellStyle>
 				</DataGridTextColumn>
-			</DataGrid.Columns>
+			</DataGrid.Columns>-->
 		</DataGrid>
 	</DockPanel>
 </UserControl>
