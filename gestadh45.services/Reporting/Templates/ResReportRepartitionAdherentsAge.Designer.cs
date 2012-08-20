@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gestadh45.services.VCards {
+namespace gestadh45.services.Reporting.Templates {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace gestadh45.services.VCards {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResVCards {
+    public class ResReportRepartitionAdherentsAge {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResVCards() {
+        internal ResReportRepartitionAdherentsAge() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace gestadh45.services.VCards {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.services.VCards.ResVCards", typeof(ResVCards).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.services.Reporting.Templates.ResReportRepartitionAdherentsAge", typeof(ResReportRepartitionAdherentsAge).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,20 +61,74 @@ namespace gestadh45.services.VCards {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .vcf.
+        ///   Recherche une chaîne localisée semblable à Extérieurs (F).
         /// </summary>
-        public static string ExtensionVcf {
+        public static string HeaderFemmesExterieur {
             get {
-                return ResourceManager.GetString("ExtensionVcf", resourceCulture);
+                return ResourceManager.GetString("HeaderFemmesExterieur", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à {0}.vcf.
+        ///   Recherche une chaîne localisée semblable à Résidents (F).
         /// </summary>
-        public static string InscriptionVCardFileName {
+        public static string HeaderFemmesResident {
             get {
-                return ResourceManager.GetString("InscriptionVCardFileName", resourceCulture);
+                return ResourceManager.GetString("HeaderFemmesResident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Extérieurs (H).
+        /// </summary>
+        public static string HeaderHommesExterieur {
+            get {
+                return ResourceManager.GetString("HeaderHommesExterieur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Résidents (H).
+        /// </summary>
+        public static string HeaderHommesResident {
+            get {
+                return ResourceManager.GetString("HeaderHommesResident", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Tranche d&apos;âge.
+        /// </summary>
+        public static string HeaderLibelle {
+            get {
+                return ResourceManager.GetString("HeaderLibelle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total.
+        /// </summary>
+        public static string HeaderTotal {
+            get {
+                return ResourceManager.GetString("HeaderTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total extérieurs.
+        /// </summary>
+        public static string HeaderTotalExterieurs {
+            get {
+                return ResourceManager.GetString("HeaderTotalExterieurs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total résidents.
+        /// </summary>
+        public static string HeaderTotalresidents {
+            get {
+                return ResourceManager.GetString("HeaderTotalresidents", resourceCulture);
             }
         }
     }

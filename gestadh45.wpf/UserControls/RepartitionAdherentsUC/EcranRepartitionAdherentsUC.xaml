@@ -4,6 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
 			 xmlns:b="clr-namespace:gestadh45.business;assembly=gestadh45.business"
+			 xmlns:report="clr-namespace:gestadh45.services.Reporting;assembly=gestadh45.services"
 			 mc:Ignorable="d" 
 			 DataContext="{Binding Path=EcranRepartitionAdherentsVM, Source={StaticResource Locator}}" 
 			 d:DesignHeight="500" d:DesignWidth="600">
@@ -18,6 +19,12 @@
 					Command="{Binding Path=ShowUCCommand}"
 					CommandParameter="{x:Static b:CodesUC.ConsultationTranchesAge}">
 				<Image Source="/gestadh45.wpf;component/Images/btn_configuration.png" />
+			</Button>
+
+			<Button Height="32" Width="32" ToolTip="Efectif (Excel)"
+					Command="{Binding Path=ReportCommand}"
+					CommandParameter="{x:Static report:CodesReport.RepartitionAdherentsAge}" >
+				<Image Source="/gestadh45.wpf;component/Images/btn_save.png" />
 			</Button>
 		</StackPanel>
 		

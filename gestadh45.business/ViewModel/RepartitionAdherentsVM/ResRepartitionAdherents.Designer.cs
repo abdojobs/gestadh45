@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gestadh45.services.VCards {
+namespace gestadh45.business.ViewModel.RepartitionAdherentsVM {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace gestadh45.services.VCards {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResVCards {
+    internal class ResRepartitionAdherents {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ResVCards() {
+        internal ResRepartitionAdherents() {
         }
         
         /// <summary>
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.services.VCards.ResVCards", typeof(ResVCards).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.RepartitionAdherentsVM.ResRepartitionAdherents", typeof(ResRepartitionAdherents).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace gestadh45.services.VCards {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,20 +61,29 @@ namespace gestadh45.services.VCards {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à .vcf.
+        ///   Recherche une chaîne localisée semblable à Répartition des adhérents.
         /// </summary>
-        public static string ExtensionVcf {
+        internal static string NomFichierRapportRepartitionAdherentsAge {
             get {
-                return ResourceManager.GetString("ExtensionVcf", resourceCulture);
+                return ResourceManager.GetString("NomFichierRapportRepartitionAdherentsAge", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à {0}.vcf.
+        ///   Recherche une chaîne localisée semblable à ({0} adhérents).
         /// </summary>
-        public static string InscriptionVCardFileName {
+        internal static string SousTitreRepartitionAdherentsAge {
             get {
-                return ResourceManager.GetString("InscriptionVCardFileName", resourceCulture);
+                return ResourceManager.GetString("SousTitreRepartitionAdherentsAge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Répartition des adhérents par âge.
+        /// </summary>
+        internal static string TitreRapportRepartitionAdherentsAge {
+            get {
+                return ResourceManager.GetString("TitreRapportRepartitionAdherentsAge", resourceCulture);
             }
         }
     }

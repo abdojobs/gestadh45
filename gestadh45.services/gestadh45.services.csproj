@@ -94,6 +94,7 @@
     <Compile Include="Reporting\Templates\ReportInventaireEquipementComplet.cs" />
     <Compile Include="Reporting\Templates\ReportInventaireEquipementSimple.cs" />
     <Compile Include="Reporting\Templates\ReportListeAdherents.cs" />
+    <Compile Include="Reporting\Templates\ReportRepartitionAdherentsAge.cs" />
     <Compile Include="Reporting\Templates\ReportVerificationEquipement.cs" />
     <Compile Include="Reporting\Templates\ResReportInventaireEquipementComplet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -109,6 +110,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResReportListeAdherents.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reporting\Templates\ResReportRepartitionAdherentsAge.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResReportRepartitionAdherentsAge.resx</DependentUpon>
     </Compile>
     <Compile Include="Reporting\Templates\ResReportVerificationEquipement.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -140,6 +146,10 @@
     <EmbeddedResource Include="Reporting\Templates\ResReportListeAdherents.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResReportListeAdherents.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporting\Templates\ResReportRepartitionAdherentsAge.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResReportRepartitionAdherentsAge.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reporting\Templates\ResReportVerificationEquipement.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
