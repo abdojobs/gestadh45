@@ -29,50 +29,10 @@
 		</StackPanel>
 		
 		
-		<DataGrid Name="dgTranchesEffectif" ItemsSource="{Binding Path=TranchesEffectif}" IsReadOnly="True" AutoGenerateColumns="True" AutoGeneratingColumn="dgTranchesEffectif_AutoGeneratingColumn">
-			<!--<DataGrid.Columns>
-				<DataGridTextColumn Header="Tranche" Binding="{Binding Path=Libelle}">
-					<DataGridTextColumn.CellStyle>
-						<Style TargetType="{x:Type DataGridCell}">
-							<Setter Property="Background" Value="Gainsboro" />
-							<Setter Property="FontWeight" Value="Bold" />
-						</Style>
-					</DataGridTextColumn.CellStyle>
-				</DataGridTextColumn>
-
-				<DataGridTextColumn Header="Résidents (H)" Binding="{Binding Path=EffectifResidentsH}" />
-				<DataGridTextColumn Header="Résidents (F)" Binding="{Binding Path=EffectifResidentsF}" />
-
-				<DataGridTextColumn Header="Total résidents" Binding="{Binding Path=EffectifTotalResidents}">
-					<DataGridTextColumn.CellStyle>
-						<Style TargetType="{x:Type DataGridCell}">
-							<Setter Property="Background" Value="LightGoldenrodYellow" />
-							<Setter Property="FontWeight" Value="Bold" />
-						</Style>
-					</DataGridTextColumn.CellStyle>
-				</DataGridTextColumn>
-
-				<DataGridTextColumn Header="Extérieurs (H)" Binding="{Binding Path=EffectifExterieursH}" />
-				<DataGridTextColumn Header="Extérieurs (F)" Binding="{Binding Path=EffectifExterieursF}" />
-
-				<DataGridTextColumn Header="Total extérieurs" Binding="{Binding Path=EffectifTotalExterieurs}">
-					<DataGridTextColumn.CellStyle>
-						<Style TargetType="{x:Type DataGridCell}">
-							<Setter Property="Background" Value="LightGoldenrodYellow" />
-							<Setter Property="FontWeight" Value="Bold" />
-						</Style>
-					</DataGridTextColumn.CellStyle>
-				</DataGridTextColumn>
-
-				<DataGridTextColumn Header="Total" Binding="{Binding Path=EffectifTotal}">
-					<DataGridTextColumn.CellStyle>
-						<Style TargetType="{x:Type DataGridCell}">
-							<Setter Property="Background" Value="LightBlue" />
-							<Setter Property="FontWeight" Value="Bold" />
-						</Style>
-					</DataGridTextColumn.CellStyle>
-				</DataGridTextColumn>
-			</DataGrid.Columns>-->
-		</DataGrid>
+		<DataGrid Name="dgTranchesEffectif" 
+				  ItemsSource="{Binding Path=TranchesEffectif}" 
+				  IsReadOnly="True" 
+				  AutoGenerateColumns="True" 
+				  AutoGeneratingColumn="dgTranchesEffectif_AutoGeneratingColumn" />
 	</DockPanel>
 </UserControl>
