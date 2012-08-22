@@ -92,21 +92,6 @@
 							CommandParameter="{x:Static b:CodesUC.FormulaireInscription}" />
 					</my:RibbonSplitButton>
 				</my:RibbonGroup>
-
-				<my:RibbonGroup Name="GrpTools" Header="Outils">
-					<my:RibbonSplitButton Command="{Binding Path=ShowUCCommand}" ToolTip="Statistiques"
-										  CommandParameter="{x:Static b:CodesUC.EcranStatistiques}"
-										  LargeImageSource="/gestadh45.wpf;component/Images/btn_statistiques.png" 
-										  SmallImageSource="/gestadh45.wpf;component/Images/btn_statistiques.png">
-						<my:RibbonMenuItem Header="Graphiques"
-							Command="{Binding Path=ShowUCCommand}"
-							CommandParameter="{x:Static b:CodesUC.EcranStatistiques}" />
-
-						<my:RibbonMenuItem Header="Répartition des effectifs"
-							Command="{Binding Path=ShowUCCommand}"
-							CommandParameter="{x:Static b:CodesUC.EcranRepartitionAdherents}" />
-					</my:RibbonSplitButton>
-				</my:RibbonGroup>
 			</my:RibbonTab>
 			
 			<my:RibbonTab Name="TabEquipement" Header="Equipement">
@@ -244,6 +229,23 @@
 							Command="{Binding Path=ShowUCCommand}"
 							CommandParameter="{x:Static b:CodesUC.FormulaireLocalisation}" />
 					</my:RibbonSplitButton>
+				</my:RibbonGroup>
+			</my:RibbonTab>
+
+			<my:RibbonTab Name="TabOutils" Header="Outils">
+				<my:RibbonGroup Name="GrpReports" Header="Rapports">
+					<my:RibbonButton Command="{Binding Path=ShowUCCommand}" ToolTip="Rapports"
+										  CommandParameter="{x:Static b:CodesUC.EcranReporting}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_report.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_report.png">
+					</my:RibbonButton>
+				</my:RibbonGroup>
+				<my:RibbonGroup Name="GrpGraphs" Header="Graphiques">
+					<my:RibbonButton Command="{Binding Path=ShowUCCommand}" ToolTip="Graphiques"
+										  CommandParameter="{x:Static b:CodesUC.EcranStatistiques}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_statistiques.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_statistiques.png">
+					</my:RibbonButton>
 				</my:RibbonGroup>
 			</my:RibbonTab>
 		</my:Ribbon>

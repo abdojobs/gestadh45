@@ -1,5 +1,5 @@
 ﻿
-namespace gestadh45.business.ViewModel.Statistiques
+namespace gestadh45.business.ViewModel.OutilsVM
 {
 	public class CodesGraphs
 	{

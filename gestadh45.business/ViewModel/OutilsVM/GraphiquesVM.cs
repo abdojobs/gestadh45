@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using gestadh45.business.IhmObjects;
 using gestadh45.dal;
-using System.Linq;
 
-namespace gestadh45.business.ViewModel.Statistiques
+namespace gestadh45.business.ViewModel.OutilsVM
 {
-	public class EcranStatistiquesVM : VMConsultationBase
+	public class GraphiquesVM : VMConsultationBase
 	{
 		#region ListeGraphs
 		private IList<ChoixItemIhm> _listeGraphs;
@@ -91,9 +91,9 @@ namespace gestadh45.business.ViewModel.Statistiques
 		private List<Inscription> _inscriptionsSaisonCourante;
 		#endregion
 
-		private const string ResourceBaseName = "gestadh45.business.ViewModel.Statistiques.RessourcesStats";
+		private const string ResourceBaseName = "gestadh45.business.ViewModel.OutilsVM.ResGraphiques";
 
-		public EcranStatistiquesVM() {
+		public GraphiquesVM() {
 			this.repoInscriptions = new Repository<Inscription>(this._context);
 			this.repoGroupes = new Repository<Groupe>(this._context);
 			this.repoSexes = new Repository<Sexe>(this._context);
@@ -210,8 +210,8 @@ namespace gestadh45.business.ViewModel.Statistiques
 			int nbMineurs = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Age < 18).Count();
 			int nbMajeurs = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Age >= 18).Count();
 
-			keyValues.Add(new KeyValuePair<string, int>(RessourcesStats.LibelleMineurs, nbMineurs));
-			keyValues.Add(new KeyValuePair<string, int>(RessourcesStats.LibelleMajeurs, nbMajeurs));
+			keyValues.Add(new KeyValuePair<string, int>(ResGraphiques.LibelleMineurs, nbMineurs));
+			keyValues.Add(new KeyValuePair<string, int>(ResGraphiques.LibelleMajeurs, nbMajeurs));
 
 			return keyValues;
 		}
@@ -224,8 +224,8 @@ namespace gestadh45.business.ViewModel.Statistiques
 			int nbResidents = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Ville.ID == villeClub.ID).Count();
 			int nbExterieurs = this._inscriptionsSaisonCourante.Where(ins => ins.Adherent.Ville.ID != villeClub.ID).Count();
 
-			keyValues.Add(new KeyValuePair<string, int>(RessourcesStats.LibelleResidents, nbResidents));
-			keyValues.Add(new KeyValuePair<string, int>(RessourcesStats.LibelleExtérieurs, nbExterieurs));
+			keyValues.Add(new KeyValuePair<string, int>(ResGraphiques.LibelleResidents, nbResidents));
+			keyValues.Add(new KeyValuePair<string, int>(ResGraphiques.LibelleExtérieurs, nbExterieurs));
 
 			return keyValues;
 		}

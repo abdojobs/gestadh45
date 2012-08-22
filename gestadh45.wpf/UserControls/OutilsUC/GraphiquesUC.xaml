@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="gestadh45.wpf.UserControls.StatistiquesUC.EcranStatistiquesUC"
+﻿<UserControl x:Class="gestadh45.wpf.UserControls.OutilsUC.GraphiquesUC"
 			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,25 +8,25 @@
 			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
 			 xmlns:customControls="clr-namespace:Controls;assembly=Controls"
 			 mc:Ignorable="d" 
-			 DataContext="{Binding Path=EcranStatistiquesVM, Source={StaticResource Locator}}"
+			 DataContext="{Binding Path=GraphiquesVM, Source={StaticResource ResourceKey=Locator}}"
 			 d:DesignHeight="400" d:DesignWidth="600">
 	<DockPanel Margin="5,5,5,5">
 		<TextBlock Text="Graphiques" DockPanel.Dock="Top"
 				   VerticalAlignment="Top" 
 				   Margin="0,5,0,10" TextAlignment="Center" 
 				   Style="{DynamicResource ResourceKey=titreUC}" />
-		
-			<ComboBox Name="comboChoixGraph" ItemsSource="{Binding Path=ListeGraphs}" DockPanel.Dock="Top">
-				<i:Interaction.Triggers>
-					<i:EventTrigger EventName="SelectionChanged">
-						<cmd:EventToCommand 
+
+		<ComboBox Name="comboChoixGraph" ItemsSource="{Binding Path=ListeGraphs}" DockPanel.Dock="Top">
+			<i:Interaction.Triggers>
+				<i:EventTrigger EventName="SelectionChanged">
+					<cmd:EventToCommand 
 							Command="{Binding Path=ChangeChartCommand, Mode=OneWay}" 
 							CommandParameter="{Binding ElementName=comboChoixGraph, Path=SelectedItem}" />
-					</i:EventTrigger>
-				</i:Interaction.Triggers>
-			</ComboBox>
+				</i:EventTrigger>
+			</i:Interaction.Triggers>
+		</ComboBox>
 
-			<Separator Margin="0,10,0,10" />
+		<Separator Margin="0,10,0,10" />
 
 		<customControls:LabeledPieChart x:Name="TestPieChart" Title="{Binding Path=TitreGraph}">
 			<customControls:LabeledPieChart.Series>
@@ -38,7 +38,7 @@
 												 PieChartLabelStyle="{DynamicResource ResourceKey=pieChartLabelStyle}"
 												 PieChartLabelItemTemplate="{DynamicResource ResourceKey=pieChartLabelDataTemplate}"
 												 LabelDisplayMode="Connected" />
-			</customControls:LabeledPieChart.Series>			
+			</customControls:LabeledPieChart.Series>
 		</customControls:LabeledPieChart>
 	</DockPanel>
 </UserControl>

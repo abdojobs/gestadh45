@@ -21,9 +21,6 @@ namespace gestadh45.business
 		public const string ConsultationGroupes = "ConsultationGroupes";
 		public const string FormulaireGroupe = "FormulaireGroupe";
 
-		public const string EcranStatistiques = "EcranStatistiques";
-		public const string EcranRepartitionAdherents = "EcranRepartitionAdherents";
-
 		public const string ConsultationTranchesAge = "ConsultationTranchesAge";
 		public const string FormulaireTrancheAge = "FormulaireTrancheAge";
 	
@@ -54,5 +51,8 @@ namespace gestadh45.business
 		public const string ConsultationCampagnesVerification = "ConsultationCampagnesVerification";
 		public const string FormulaireCreationCampagneVerification = "FormulaireCreationCampagneVerification";
 		public const string FormulaireSaisieCampagneVerification = "FormulaireSaisieCampagneVerification";
+
+		public const string EcranReporting = "EcranReporting";
+		public const string EcranStatistiques = "EcranStatistiques";
 	}
 }

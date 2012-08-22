@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using gestadh45.business.IhmObjects;
-using gestadh45.services.Reporting;
-using gestadh45.services.Reporting.Templates;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using gestadh45.business.ServicesAdapters;
+using gestadh45.business.IhmObjects;
 using gestadh45.dal;
+using gestadh45.services.Reporting;
+using gestadh45.services.Reporting.Templates;
 
-namespace gestadh45.business.ViewModel.ReportingVM
+namespace gestadh45.business.ViewModel.OutilsVM
 {
-	public class EcranReportingVM : VMConsultationBase
+	public class ReportingVM : VMConsultationBase
 	{
 		#region ListeReports
 		private ICollection<ChoixItemIhm> _listeReports;
@@ -96,10 +93,10 @@ namespace gestadh45.business.ViewModel.ReportingVM
 		private ICollection<Equipement> _equipements;
 		#endregion
 
-		private const string ResourceBaseName = "gestadh45.business.ViewModel.ReportingVM.ResReporting";
+		private const string ResourceBaseName = "gestadh45.business.ViewModel.OutilsVM.ResReporting";
 
 		#region Constructeur
-		public EcranReportingVM() {
+		public ReportingVM() {
 			this.PopulateListeReports();
 			this.CreateChangeReportCommand();
 
@@ -148,29 +145,8 @@ namespace gestadh45.business.ViewModel.ReportingVM
 
 		public void ExecuteChangeReportCommand(ChoixItemIhm choixReport) {
 			this.TitreReport = choixReport.ToString();
-
-			switch (choixReport.Code) {
-				case CodesReport.InventaireCompletEquipementExcel:
-					this.ReportDatas = ServiceReportingAdapter.EquipementToReportInventaireEquipementComplet(this._equipements);
-					break;
-
-				case CodesReport.InventaireSimpleEquipementExcel:
-					this.ReportDatas = ServiceReportingAdapter.EquipementToReportInventaireEquipementSimple(this._equipements);
-					break;
-
-				case CodesReport.ListeAdherents:
-					this.ReportDatas = ServiceReportingAdapter.InscriptionsToListeAdherents(this._inscriptionsSaisonCourante);
-					break;
-
-				case CodesReport.RepartitionAdherentsAge:
-					this.ReportDatas = ServiceReportingAdapter.InscriptionsToReportRepartitionAdherentsAge(this._tranchesAge, this._repoInfosClub.GetFirst().Ville, this._inscriptionsSaisonCourante);
-					break;
-
-				default:
-					this.ReportDatas.Clear();
-					this.ReportDatas = null;
-					break;
-			}
+			
+			// TODO alimenter les données
 		}
 		#endregion
 	}

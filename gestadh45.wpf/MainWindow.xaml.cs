@@ -20,7 +20,7 @@ using gestadh45.wpf.UserControls.LocalisationUC;
 using gestadh45.wpf.UserControls.MainScreenUC;
 using gestadh45.wpf.UserControls.MarquesUC;
 using gestadh45.wpf.UserControls.ModelesUC;
-using gestadh45.wpf.UserControls.RepartitionAdherentsUC;
+using gestadh45.wpf.UserControls.OutilsUC;
 using gestadh45.wpf.UserControls.Saisons;
 using gestadh45.wpf.UserControls.StatistiquesUC;
 using gestadh45.wpf.UserControls.TranchesAgeUC;
@@ -175,14 +175,6 @@ namespace gestadh45.wpf
 					userControl = new FormulaireGroupeUC();
 					break;
 
-				case CodesUC.EcranStatistiques:
-					userControl = new EcranStatistiquesUC();
-					break;
-
-				case CodesUC.EcranRepartitionAdherents:
-					userControl = new EcranRepartitionAdherentsUC();
-					break;
-
 				case CodesUC.ConsultationTranchesAge:
 					userControl = new ConsultationTranchesAgeUC();
 					break;
@@ -249,6 +241,14 @@ namespace gestadh45.wpf
 
 				case CodesUC.FormulaireCreationCampagneVerification:
 					userControl = new FormulaireCreationCampagneVerificationUC();
+					break;
+
+				case CodesUC.EcranStatistiques:
+					userControl = new GraphiquesUC();
+					break;
+
+				case CodesUC.EcranReporting:
+					userControl = new ReportingUC();
 					break;
 
 				case CodesUC.MainScreenCheck:
