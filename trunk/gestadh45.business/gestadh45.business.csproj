@@ -135,8 +135,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResRepartitionAdherents.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\ReportingVM\EcranReportingVM.cs" />
-    <Compile Include="ViewModel\ReportingVM\ResReporting.Designer.cs">
+    <Compile Include="ViewModel\OutilsVM\ReportingVM.cs" />
+    <Compile Include="ViewModel\OutilsVM\ResReporting.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResReporting.resx</DependentUpon>
@@ -147,11 +147,11 @@
       <DependentUpon>ResCommon.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\RepartitionAdherentsVM\EcranRepartitionAdherentsVM.cs" />
-    <Compile Include="ViewModel\Statistiques\CodesGraphs.cs" />
-    <Compile Include="ViewModel\Statistiques\RessourcesStats.Designer.cs">
+    <Compile Include="ViewModel\OutilsVM\CodesGraphs.cs" />
+    <Compile Include="ViewModel\OutilsVM\ResGraphiques.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RessourcesStats.resx</DependentUpon>
+      <DependentUpon>ResGraphiques.resx</DependentUpon>
     </Compile>
     <Compile Include="PersonalizedMsg\NMActionFileDialog.cs" />
     <Compile Include="PersonalizedMsg\NMActionFolderDialog.cs" />
@@ -203,7 +203,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResSaisons.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\Statistiques\EcranStatistiquesVM.cs" />
+    <Compile Include="ViewModel\OutilsVM\GraphiquesVM.cs" />
     <Compile Include="ViewModel\TranchesAgeVM\ConsultationTranchesAgeVM.cs" />
     <Compile Include="ViewModel\TranchesAgeVM\FormulaireTrancheAgeVM.cs" />
     <Compile Include="ViewModel\TranchesAgeVM\ResTranchesAge.Designer.cs">
@@ -276,7 +276,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResRepartitionAdherents.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewModel\ReportingVM\ResReporting.resx">
+    <EmbeddedResource Include="ViewModel\OutilsVM\ResReporting.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResReporting.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -284,9 +284,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResCommon.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ViewModel\Statistiques\RessourcesStats.resx">
+    <EmbeddedResource Include="ViewModel\OutilsVM\ResGraphiques.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>RessourcesStats.Designer.cs</LastGenOutput>
+      <LastGenOutput>ResGraphiques.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\AdherentsVM\ResAdherents.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -21,9 +21,8 @@ using gestadh45.business.ViewModel.LocalisationVM;
 using gestadh45.business.ViewModel.MainScreenVM;
 using gestadh45.business.ViewModel.MarquesVM;
 using gestadh45.business.ViewModel.ModeleVM;
-using gestadh45.business.ViewModel.RepartitionAdherentsVM;
+using gestadh45.business.ViewModel.OutilsVM;
 using gestadh45.business.ViewModel.SaisonsVM;
-using gestadh45.business.ViewModel.Statistiques;
 using gestadh45.business.ViewModel.TranchesAgeVM;
 using gestadh45.business.ViewModel.VillesVM;
 
@@ -102,22 +101,6 @@ namespace gestadh45.business.ViewModel
 
 		public static FormulaireGroupeVM FormulaireGroupeVM {
 			get { return new FormulaireGroupeVM(); }
-		}
-		#endregion
-
-		#region StatistiquesVM
-		public static EcranStatistiquesVM EcranStatistiquesVM {
-			get {
-				return new EcranStatistiquesVM();
-			}
-		}
-		#endregion
-
-		#region RepartitionAdherentsVM
-		public static EcranRepartitionAdherentsVM EcranRepartitionAdherentsVM {
-			get {
-				return new EcranRepartitionAdherentsVM();
-			}
 		}
 		#endregion
 
@@ -228,6 +211,16 @@ namespace gestadh45.business.ViewModel
 
 		public static FormulaireCreationCampagneVerificationVM FormulaireCreationCampagneVerificationVM {
 			get { return new FormulaireCreationCampagneVerificationVM(); }
+		}
+		#endregion
+
+		#region OutilsVM
+		public static ReportingVM ReportingVM {
+			get { return new ReportingVM(); }
+		}
+
+		public static GraphiquesVM GraphiquesVM {
+			get { return new GraphiquesVM(); }
 		}
 		#endregion
 	}

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace gestadh45.business.ViewModel.ReportingVM {
+namespace gestadh45.business.ViewModel.OutilsVM {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace gestadh45.business.ViewModel.ReportingVM {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.ReportingVM.ResReporting", typeof(ResReporting).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("gestadh45.business.ViewModel.OutilsVM.ResReporting", typeof(ResReporting).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -57,6 +57,42 @@ namespace gestadh45.business.ViewModel.ReportingVM {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inventaire complet.
+        /// </summary>
+        internal static string InventaireCompletEquipementExcel {
+            get {
+                return ResourceManager.GetString("InventaireCompletEquipementExcel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inventaire simple.
+        /// </summary>
+        internal static string InventaireSimpleEquipementExcel {
+            get {
+                return ResourceManager.GetString("InventaireSimpleEquipementExcel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Liste des adhérents.
+        /// </summary>
+        internal static string ListeAdherents {
+            get {
+                return ResourceManager.GetString("ListeAdherents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Répartition des adhérents par âge.
+        /// </summary>
+        internal static string RepartitionAdherentsAge {
+            get {
+                return ResourceManager.GetString("RepartitionAdherentsAge", resourceCulture);
             }
         }
     }
