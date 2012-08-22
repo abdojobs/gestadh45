@@ -96,30 +96,10 @@
     <Compile Include="Reporting\Templates\ReportListeAdherents.cs" />
     <Compile Include="Reporting\Templates\ReportRepartitionAdherentsAge.cs" />
     <Compile Include="Reporting\Templates\ReportVerificationEquipement.cs" />
-    <Compile Include="Reporting\Templates\ResReportInventaireEquipementComplet.Designer.cs">
+    <Compile Include="Reporting\Templates\ResReports.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ResReportInventaireEquipementComplet.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Reporting\Templates\ResReportInventaireEquipementSimple.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResReportInventaireEquipementSimple.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Reporting\Templates\ResReportListeAdherents.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResReportListeAdherents.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Reporting\Templates\ResReportRepartitionAdherentsAge.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResReportRepartitionAdherentsAge.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Reporting\Templates\ResReportVerificationEquipement.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResReportVerificationEquipement.resx</DependentUpon>
+      <DependentUpon>ResReports.resx</DependentUpon>
     </Compile>
     <Compile Include="VCards\ResVCards.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -135,25 +115,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResDocuments.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reporting\Templates\ResReportInventaireEquipementComplet.resx">
+    <EmbeddedResource Include="Reporting\Templates\ResReports.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResReportInventaireEquipementComplet.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reporting\Templates\ResReportInventaireEquipementSimple.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResReportInventaireEquipementSimple.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reporting\Templates\ResReportListeAdherents.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResReportListeAdherents.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reporting\Templates\ResReportRepartitionAdherentsAge.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResReportRepartitionAdherentsAge.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reporting\Templates\ResReportVerificationEquipement.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResReportVerificationEquipement.Designer.cs</LastGenOutput>
+      <LastGenOutput>ResReports.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="VCards\ResVCards.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -19,7 +19,7 @@ namespace gestadh45.wpf.UserControls.RepartitionAdherentsUC
 			var displayAttrib = pd.Attributes[typeof(DisplayAttribute)] as DisplayAttribute;
 
 			if (displayAttrib != null) {
-				e.Column.Header = ResReportRepartitionAdherentsAge.ResourceManager.GetString(displayAttrib.Name);
+				e.Column.Header = ResReports.ResourceManager.GetString(displayAttrib.Name);
 			}
 		}
 	}
