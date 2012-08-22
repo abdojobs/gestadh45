@@ -8,6 +8,7 @@ using gestadh45.business.IhmObjects;
 using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
 using gestadh45.services.Reporting;
+using gestadh45.services.Reporting.Templates;
 
 namespace gestadh45.business.ViewModel.OutilsVM
 {
@@ -68,6 +69,13 @@ namespace gestadh45.business.ViewModel.OutilsVM
 
 		private const string ResourceBaseName = "gestadh45.business.ViewModel.OutilsVM.ResReporting";
 
+		#region DataCache
+		private ICollection<ReportInventaireEquipementComplet> _cacheInventaireComplet;
+		private ICollection<ReportInventaireEquipementSimple> _cacheInventaireSimple;
+		private ICollection<ReportListeAdherents> _cacheListeAdherents;
+		private ICollection<ReportRepartitionAdherentsAge> _cacheRepartitionAdherentsAge;
+		#endregion
+
 		#region Constructeur
 		public ReportingVM() {
 			this.PopulateListeReports();
@@ -114,29 +122,46 @@ namespace gestadh45.business.ViewModel.OutilsVM
 
 			switch (choixReport.Code) {
 				case CodesReport.InventaireSimpleEquipementExcel:
-					src.Source = ServiceReportingAdapter.EquipementsToReportInventaireEquipementSimple(
-						this._repoEquipement.GetAll().Where(e => !e.EstAuRebut).OrderBy(e => e.Numero).ToList()
-					);
+					if (this._cacheInventaireSimple == null) {
+						this._cacheInventaireSimple = ServiceReportingAdapter.EquipementsToReportInventaireEquipementSimple(
+							this._repoEquipement.GetAll().Where(e => !e.EstAuRebut).OrderBy(e => e.Numero).ToList()
+						);
+					}
+
+					src.Source = this._cacheInventaireSimple;
 					break;
 
 				case CodesReport.InventaireCompletEquipementExcel:
-					src.Source = ServiceReportingAdapter.EquipementsToReportInventaireEquipementComplet(
-						this._repoEquipement.GetAll().Where(e => !e.EstAuRebut).OrderBy(e => e.Numero).ToList()
-					);
+					if (this._cacheInventaireComplet == null) {
+						this._cacheInventaireComplet = ServiceReportingAdapter.EquipementsToReportInventaireEquipementComplet(
+							this._repoEquipement.GetAll().Where(e => !e.EstAuRebut).OrderBy(e => e.Numero).ToList()
+						);
+					}
+
+					src.Source = this._cacheInventaireComplet;
 					break;
 
 				case CodesReport.ListeAdherents:
-					src.Source = ServiceReportingAdapter.InscriptionsToListeAdherents(
-						this._repoInscriptions.GetAll().Where(i => i.Groupe.Saison.EstSaisonCourante).OrderBy(i => i.Adherent.ToString()).ToList()
-					);
+					if (this._cacheListeAdherents == null) {
+						this._cacheListeAdherents = ServiceReportingAdapter.InscriptionsToListeAdherents(
+							this._repoInscriptions.GetAll().Where(i => i.Groupe.Saison.EstSaisonCourante).OrderBy(i => i.Adherent.ToString()).ToList()
+						);
+					}
+
+					src.Source = this._cacheListeAdherents;
 					break;
 
 				case CodesReport.RepartitionAdherentsAge:
-					src.Source = ServiceReportingAdapter.InscriptionsToReportRepartitionAdherentsAge(
-						this._repoTranchesAge.GetAll().OrderBy(t => t.AgeInf).ToList(),
-						this._repoInfosClub.GetFirst().Ville,
-						this._repoInscriptions.GetAll().Where(i => i.Groupe.Saison.EstSaisonCourante).ToList()
-					);
+					if (this._cacheRepartitionAdherentsAge == null) {
+						this._cacheRepartitionAdherentsAge = ServiceReportingAdapter.InscriptionsToReportRepartitionAdherentsAge(
+							this._repoTranchesAge.GetAll().OrderBy(t => t.AgeInf).ToList(),
+							this._repoInfosClub.GetFirst().Ville,
+							this._repoInscriptions.GetAll().Where(i => i.Groupe.Saison.EstSaisonCourante).ToList()
+						);
+					}
+
+
+					src.Source = this._cacheRepartitionAdherentsAge;
 					break;
 
 				default:
