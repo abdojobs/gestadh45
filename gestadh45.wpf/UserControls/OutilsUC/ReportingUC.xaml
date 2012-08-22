@@ -29,6 +29,6 @@
 		<DataGrid Name="dgReport"
 				  ItemsSource="{Binding Path=ReportDatas}" 
 				  IsReadOnly="True" 
-				  AutoGenerateColumns="True" />
+				  AutoGenerateColumns="True" AutoGeneratingColumn="dgReport_AutoGeneratingColumn" />
 	</DockPanel>
 </UserControl>

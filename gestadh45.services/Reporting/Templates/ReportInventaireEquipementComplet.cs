@@ -4,28 +4,28 @@ namespace gestadh45.services.Reporting.Templates
 {
 	public class ReportInventaireEquipementComplet : ITemplateReport
 	{
-		[Display(ResourceType = typeof(ResReportInventaireEquipementComplet), Name = "HeaderNumero")]
+		[Display(ResourceType = typeof(ResReports), Name = "HeaderNumero")]
 		public string Numero { get; set; }
 
-		[Display(ResourceType = typeof(ResReportInventaireEquipementComplet), Name = "HeaderCategorie")]
+		[Display(ResourceType = typeof(ResReports), Name = "HeaderCategorie")]
 		public string Categorie { get; set; }
 
-		[Display(ResourceType = typeof(ResReportInventaireEquipementComplet), Name = "HeaderMarque")]
+		[Display(ResourceType = typeof(ResReports), Name = "HeaderMarque")]
 		public string Marque { get; set; }
 
-		[Display(ResourceType = typeof(ResReportInventaireEquipementComplet), Name = "HeaderModele")]
+		[Display(ResourceType = typeof(ResReports), Name = "HeaderModele")]
 		public string Modele { get; set; }
 
-		[Display(ResourceType = typeof(ResReportInventaireEquipementComplet), Name = "HeaderDateAchat")]
+		[Display(ResourceType = typeof(ResReports), Name = "HeaderDateAchat")]
 		public string DateAchat { get; set; }
 
-		[Display(ResourceType = typeof(ResReportInventaireEquipementComplet), Name = "HeaderLocalisation")]
+		[Display(ResourceType = typeof(ResReports), Name = "HeaderLocalisation")]
 		public string Localisation { get; set; }
 
-		[Display(ResourceType = typeof(ResReportInventaireEquipementComplet), Name = "HeaderDateDerniereVerification")]
+		[Display(ResourceType = typeof(ResReports), Name = "HeaderDateDerniereVerification")]
 		public string DateDerniereVerification { get; set; }
 
-		[Display(ResourceType = typeof(ResReportInventaireEquipementComplet), Name = "HeaderStatutDerniereVerification")]
+		[Display(ResourceType = typeof(ResReports), Name = "HeaderStatutDerniereVerification")]
 		public string StatutDerniereVerification { get; set; }
 	}
 }
