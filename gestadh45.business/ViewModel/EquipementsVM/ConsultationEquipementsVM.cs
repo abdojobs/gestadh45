@@ -261,7 +261,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		private void GenerateReportInventaireEquipementSimple(string nomFichier) {
 			if (nomFichier != null) {
 				var gen = new ReportGenerator<ReportInventaireEquipementSimple>(
-						ServiceReportingAdapter.EquipementToReportInventaireEquipementSimple(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
+						ServiceReportingAdapter.EquipementsToReportInventaireEquipementSimple(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
 						nomFichier
 					);
 
@@ -276,7 +276,7 @@ namespace gestadh45.business.ViewModel.EquipementsVM
 		private void GenerateReportInventaireEquipementComplet(string nomFichier) {
 			if (nomFichier != null) {
 				var gen = new ReportGenerator<ReportInventaireEquipementComplet>(
-						ServiceReportingAdapter.EquipementToReportInventaireEquipementComplet(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
+						ServiceReportingAdapter.EquipementsToReportInventaireEquipementComplet(this.Equipements.OrderBy(e => e.Modele.ToString()).ToList()),
 						nomFichier
 					);
 
