@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodesUC.cs" />
-    <Compile Include="IhmObjects\ChoixGraphIhm.cs" />
+    <Compile Include="IhmObjects\ChoixItemIhm.cs" />
     <Compile Include="PersonalizedMsg\NMAskConfirmationDialog.cs" />
     <Compile Include="PersonalizedMsg\NMMainMenuState.cs" />
     <Compile Include="PersonalizedMsg\NMRefreshDatas.cs" />
@@ -134,6 +134,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ResRepartitionAdherents.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\ReportingVM\EcranReportingVM.cs" />
+    <Compile Include="ViewModel\ReportingVM\ResReporting.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResReporting.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ResCommon.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -269,6 +275,10 @@
     <EmbeddedResource Include="ViewModel\RepartitionAdherentsVM\ResRepartitionAdherents.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResRepartitionAdherents.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\ReportingVM\ResReporting.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResReporting.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\ResCommon.resx">
       <Generator>ResXFileCodeGenerator</Generator>

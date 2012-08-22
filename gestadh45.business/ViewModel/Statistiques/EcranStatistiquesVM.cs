@@ -10,7 +10,7 @@ namespace gestadh45.business.ViewModel.Statistiques
 	public class EcranStatistiquesVM : VMConsultationBase
 	{
 		#region ListeGraphs
-		private IList<ChoixGraphIhm> _listeGraphs;
+		private IList<ChoixItemIhm> _listeGraphs;
 
 		/// <summary>
 		/// Gets or sets the liste graphs.
@@ -18,7 +18,7 @@ namespace gestadh45.business.ViewModel.Statistiques
 		/// <value>
 		/// The liste graphs.
 		/// </value>
-		public IList<ChoixGraphIhm> ListeGraphs {
+		public IList<ChoixItemIhm> ListeGraphs {
 			get {
 				return this._listeGraphs;
 			}
@@ -91,6 +91,8 @@ namespace gestadh45.business.ViewModel.Statistiques
 		private List<Inscription> _inscriptionsSaisonCourante;
 		#endregion
 
+		private const string ResourceBaseName = "gestadh45.business.ViewModel.Statistiques.RessourcesStats";
+
 		public EcranStatistiquesVM() {
 			this.repoInscriptions = new Repository<Inscription>(this._context);
 			this.repoGroupes = new Repository<Groupe>(this._context);
@@ -119,17 +121,17 @@ namespace gestadh45.business.ViewModel.Statistiques
 		}
 
 		private void CreateChangeChartCommand() {
-			this.ChangeChartCommand = new RelayCommand<ChoixGraphIhm>(
+			this.ChangeChartCommand = new RelayCommand<ChoixItemIhm>(
 				this.ExecuteChangeChartCommand,
 				this.CanExecuteChangeChartCommand
 			);
 		}
 
-		public bool CanExecuteChangeChartCommand(ChoixGraphIhm choixGraph) {
+		public bool CanExecuteChangeChartCommand(ChoixItemIhm choixGraph) {
 			return true;
 		}
 
-		public void ExecuteChangeChartCommand(ChoixGraphIhm choixGraph) {
+		public void ExecuteChangeChartCommand(ChoixItemIhm choixGraph) {
 			this.TitreGraph = choixGraph.ToString();
 
 			// HACK pour contourner le problème de refresh du graph
@@ -165,12 +167,12 @@ namespace gestadh45.business.ViewModel.Statistiques
 		#endregion
 
 		private void PopulateListeGraphs() {
-			this.ListeGraphs = new List<ChoixGraphIhm>();
-			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RemplissageGroupes));
-			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionHommesFemmes));
-			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionMajeursMineurs));
-			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionResidentsExterieurs));
-			this.ListeGraphs.Add(new ChoixGraphIhm(CodesGraphs.RepartitionAdherentsVilles));
+			this.ListeGraphs = new List<ChoixItemIhm>();
+			this.ListeGraphs.Add(new ChoixItemIhm(ResourceBaseName, CodesGraphs.RemplissageGroupes));
+			this.ListeGraphs.Add(new ChoixItemIhm(ResourceBaseName, CodesGraphs.RepartitionHommesFemmes));
+			this.ListeGraphs.Add(new ChoixItemIhm(ResourceBaseName, CodesGraphs.RepartitionMajeursMineurs));
+			this.ListeGraphs.Add(new ChoixItemIhm(ResourceBaseName, CodesGraphs.RepartitionResidentsExterieurs));
+			this.ListeGraphs.Add(new ChoixItemIhm(ResourceBaseName, CodesGraphs.RepartitionAdherentsVilles));
 		}
 
 		#region Alimentation des graphs
