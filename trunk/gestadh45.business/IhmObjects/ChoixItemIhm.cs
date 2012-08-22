@@ -4,9 +4,9 @@ using System.Resources;
 namespace gestadh45.business.IhmObjects
 {
 	/// <summary>
-	/// Classe représentant un couple code/libellé pour le chois des graphs
+	/// Classe représentant un couple code/libellé pour un choix
 	/// </summary>
-	public class ChoixGraphIhm
+	public class ChoixItemIhm
 	{
 		/// <summary>
 		/// Gets or sets the code.
@@ -19,11 +19,15 @@ namespace gestadh45.business.IhmObjects
 			internal set;
 		}
 
+		private string _resourceBaseName;
+
 		/// <summary>
-		/// Initializes a new instance of the <see cref="ChoixGraphIhm"/> class.
+		/// Initializes a new instance of the <see cref="ChoixItemIhm"/> class.
 		/// </summary>
+		/// <param name="resourceBaseName">ResourceBaseName</param>
 		/// <param name="code">The code.</param>
-		public ChoixGraphIhm(string code) {
+		public ChoixItemIhm(string resourceBaseName, string code) {
+			this._resourceBaseName = resourceBaseName;
 			this.Code = code;
 		}
 
@@ -44,7 +48,7 @@ namespace gestadh45.business.IhmObjects
 		/// <returns>The resource</returns>
 		private string ReadResource(string resourceCode) {
 			Assembly assembly = this.GetType().Assembly;
-			ResourceManager resMan = new ResourceManager("gestadh45.business.ViewModel.Statistiques.RessourcesStats", assembly);
+			ResourceManager resMan = new ResourceManager(this._resourceBaseName, assembly);
 			return resMan.GetString(resourceCode);
 		}
 	}
