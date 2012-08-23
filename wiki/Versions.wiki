@@ -1,3 +1,5 @@
 ===Descriptif des versions===
 
  * v2.0 : 20/08/2012
+  * Migration SQLite => SQL Server CE pour la base de données (Incompatibilité avec les BDD de l'ancienne version)
+  * Refonte complète de l'accès aux données pour de meilleures performances
