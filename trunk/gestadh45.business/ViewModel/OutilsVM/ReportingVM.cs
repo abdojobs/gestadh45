@@ -4,7 +4,9 @@ using System.Linq;
 using System.Windows.Data;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using gestadh45.business.IhmObjects;
+using gestadh45.business.PersonalizedMsg;
 using gestadh45.business.ServicesAdapters;
 using gestadh45.dal;
 using gestadh45.services.Reporting;
@@ -68,6 +70,7 @@ namespace gestadh45.business.ViewModel.OutilsVM
 		#endregion
 
 		private const string ResourceBaseName = "gestadh45.business.ViewModel.OutilsVM.ResReporting";
+		private ChoixItemIhm _currentItem;
 
 		#region DataCache
 		private ICollection<ReportInventaireEquipementComplet> _cacheInventaireComplet;
@@ -119,6 +122,7 @@ namespace gestadh45.business.ViewModel.OutilsVM
 
 		public void ExecuteChangeReportCommand(ChoixItemIhm choixReport) {
 			CollectionViewSource src = new CollectionViewSource();
+			this._currentItem = choixReport;
 
 			switch (choixReport.Code) {
 				case CodesReport.InventaireSimpleEquipementExcel:
@@ -171,6 +175,54 @@ namespace gestadh45.business.ViewModel.OutilsVM
 
 
 			this.ReportDatas = src.View;
+		}
+		#endregion
+
+		#region ReportCommand
+		public override bool CanExecuteReportCommand(string codeReport) {
+			return this.ReportDatas != null;
+		}
+
+		public override void ExecuteReportCommand(string codeReport) {
+			Messenger.Default.Send(
+				new NMActionFileDialog<string>(
+					ResCommon.ExtensionExcel,
+					this._currentItem.ToString(),
+					this.GenerateReport
+				)
+			);
+		}
+
+		private void GenerateReport(string nomFichier) {
+			if (nomFichier != null) {
+				switch (this._currentItem.Code) {
+					case CodesReport.InventaireSimpleEquipementExcel:
+						var genInvSimple = new ReportGenerator<ReportInventaireEquipementSimple>(this._cacheInventaireSimple, nomFichier);
+						genInvSimple.SetTitle(this._currentItem.ToString());
+						genInvSimple.GenerateExcelReport();
+						break;
+
+					case CodesReport.InventaireCompletEquipementExcel:
+						var genInvComplet = new ReportGenerator<ReportInventaireEquipementComplet>(this._cacheInventaireComplet, nomFichier);
+						genInvComplet.SetTitle(this._currentItem.ToString());
+						genInvComplet.GenerateExcelReport();
+						break;
+
+					case CodesReport.ListeAdherents:
+						var genListAdh = new ReportGenerator<ReportListeAdherents>(this._cacheListeAdherents, nomFichier);
+						genListAdh.SetTitle(this._currentItem.ToString());
+						genListAdh.GenerateExcelReport();
+						break;
+
+					case CodesReport.RepartitionAdherentsAge:
+						var genRepAdh = new ReportGenerator<ReportRepartitionAdherentsAge>(this._cacheRepartitionAdherentsAge, nomFichier);
+						genRepAdh.SetTitle(this._currentItem.ToString());
+						genRepAdh.GenerateExcelReport();
+						break;
+				}
+
+				this.ShowUserNotification(string.Format(ResCommon.InfoRapportGenere, nomFichier));
+			}
 		}
 		#endregion
 	}
