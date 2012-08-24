@@ -71,6 +71,9 @@
 						
 						<TextBlock Style="{DynamicResource ResourceKey=labelForm}" VerticalAlignment="Center"
 								   Text="{Binding Path=SelectedInscription.Adherent}" />
+
+						<TextBlock VerticalAlignment="Center" Margin="10,0,0,0"
+							   Text="{Binding Path=SelectedInscription.Adherent.Ville, StringFormat='({0})'}" />
 					</StackPanel>					
 
 					<TextBlock>
