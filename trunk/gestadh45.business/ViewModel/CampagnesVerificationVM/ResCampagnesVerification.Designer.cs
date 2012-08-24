@@ -124,6 +124,15 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Etes-vous sûr de vouloir valider cette campagne? (elle ne sera plus modifiable et les équipements marqués au rebut n&apos;apparaîtront plus dans l&apos;inventaire).
+        /// </summary>
+        internal static string TexteConfirmationValidation {
+            get {
+                return ResourceManager.GetString("TexteConfirmationValidation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Campagne de vérification du {0}.
         /// </summary>
         internal static string TitreRapportVerificationEquipement {

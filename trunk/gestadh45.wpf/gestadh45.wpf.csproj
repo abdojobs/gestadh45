@@ -608,6 +608,9 @@
     <Content Include="gestadh45.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\btn_check.png" />
+    <Resource Include="Images\btn_disable.png" />
+    <Resource Include="Images\btn_validate.png" />
     <Resource Include="Images\btn_report.png" />
     <Resource Include="Images\btn_xlsx16.png" />
     <Resource Include="Images\btn_verrou.png" />

@@ -125,11 +125,22 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		}
 
 		public void ExecuteValidateCommand() {
-			this.CurrentCampagneVerification.EstValidee = true;
-			this._repoCampagneVerification.Edit(this.CurrentCampagneVerification);
-			this._repoCampagneVerification.Save();
+			Messenger.Default.Send(
+				new NMAskConfirmationDialog<bool>(
+					this.ExecuteValidateCommandCallBack, 
+					ResCampagnesVerification.TexteConfirmationValidation
+				)
+			);
+		}
 
-			Messenger.Default.Send(new NMShowUC(CodesUC.ConsultationCampagnesVerification));
+		private void ExecuteValidateCommandCallBack(bool validateConfirmation) {
+			if (validateConfirmation) {
+				this.CurrentCampagneVerification.EstValidee = true;
+				this._repoCampagneVerification.Edit(this.CurrentCampagneVerification);
+				this._repoCampagneVerification.Save();
+
+				Messenger.Default.Send(new NMShowUC(CodesUC.ConsultationCampagnesVerification));
+			}
 		}
 		#endregion
 	}

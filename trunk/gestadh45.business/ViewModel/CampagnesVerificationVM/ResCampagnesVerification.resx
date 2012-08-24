@@ -138,6 +138,9 @@
   <data name="TexteConfirmationSuppression" xml:space="preserve">
     <value>Etes-vous sûr de vouloir supprimer cette campagne?</value>
   </data>
+  <data name="TexteConfirmationValidation" xml:space="preserve">
+    <value>Etes-vous sûr de vouloir valider cette campagne? (elle ne sera plus modifiable et les équipements marqués au rebut n'apparaîtront plus dans l'inventaire)</value>
+  </data>
   <data name="TitreRapportVerificationEquipement" xml:space="preserve">
     <value>Campagne de vérification du {0}</value>
   </data>
