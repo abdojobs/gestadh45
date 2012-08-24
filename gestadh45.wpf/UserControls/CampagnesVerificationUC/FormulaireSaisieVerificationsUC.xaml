@@ -32,7 +32,7 @@
 
 		<Separator DockPanel.Dock="Bottom" Margin="0,20,0,20" />
 
-		<ListBox Name="lbxItems" Width="300" DockPanel.Dock="Left"
+		<ListBox Name="lbxItems" Width="400" DockPanel.Dock="Left"
 						ItemsSource="{Binding Path=CurrentCampagneVerification.Verifications}"
 						SelectedItem="{Binding Path=SelectedVerification}">
 			<i:Interaction.Triggers>
@@ -45,7 +45,11 @@
 
 			<ListBox.ItemTemplate>
 				<DataTemplate>
-					<TextBlock Text="{Binding Path=Equipement}" />
+					<StackPanel Orientation="Horizontal">
+						<Image Source="/gestadh45.wpf;component/Images/btn_check.png" 
+							   Visibility="{Binding Path=StatutVerification.EstDefaut, Converter={StaticResource ResourceKey=InvertAndVisibilitate}}" />
+						<TextBlock Text="{Binding Path=Equipement}" />
+					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
 		</ListBox>
