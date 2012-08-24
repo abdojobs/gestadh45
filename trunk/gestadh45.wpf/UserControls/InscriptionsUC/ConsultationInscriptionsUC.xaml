@@ -98,8 +98,42 @@
 				<StackPanel Orientation="Vertical">
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Certificat médical : " />
-						<CheckBox IsChecked="{Binding Path=SelectedInscription.CertificatMedicalRemis}"
-											IsHitTestVisible="False" Focusable="False" />
+
+						<Image Source="/gestadh45.wpf;component/Images/btn_check.png">
+							<Image.Style>
+								<Style TargetType="{x:Type Image}">
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding ElementName=lbxInscriptions, Path=SelectedItem}" Value="{x:Null}">
+											<Setter Property="Visibility" Value="Collapsed" />
+										</DataTrigger>
+										<DataTrigger Binding="{Binding Path=SelectedInscription.CertificatMedicalRemis}" Value="True">
+											<Setter Property="Visibility" Value="Visible" />
+										</DataTrigger>
+										<DataTrigger Binding="{Binding Path=SelectedInscription.CertificatMedicalRemis}" Value="False">
+											<Setter Property="Visibility" Value="Collapsed" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</Image.Style>
+						</Image>
+						
+						<Image Source="/gestadh45.wpf;component/Images/btn_disable.png">
+							<Image.Style>
+								<Style TargetType="{x:Type Image}">
+									<Style.Triggers>
+										<DataTrigger Binding="{Binding ElementName=lbxInscriptions, Path=SelectedItem}" Value="{x:Null}">
+											<Setter Property="Visibility" Value="Collapsed" />
+										</DataTrigger>
+										<DataTrigger Binding="{Binding Path=SelectedInscription.CertificatMedicalRemis}" Value="False">
+											<Setter Property="Visibility" Value="Visible" />
+										</DataTrigger>
+										<DataTrigger Binding="{Binding Path=SelectedInscription.CertificatMedicalRemis}" Value="True">
+											<Setter Property="Visibility" Value="Collapsed" />
+										</DataTrigger>
+									</Style.Triggers>
+								</Style>
+							</Image.Style>
+						</Image>
 					</StackPanel>
 					
 					<TextBlock Text="{Binding Path=SelectedInscription.Cotisation, StringFormat='Cotisation : {0} euros'}" />
