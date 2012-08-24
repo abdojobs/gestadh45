@@ -238,9 +238,6 @@
     <Compile Include="UserControls\SaisonsUC\FormulaireSaisonUC.xaml.cs">
       <DependentUpon>FormulaireSaisonUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\StatistiquesUC\EcranStatistiquesUC.xaml.cs">
-      <DependentUpon>EcranStatistiquesUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\TranchesAgeUC\ConsultationTranchesAgeUC.xaml.cs">
       <DependentUpon>ConsultationTranchesAgeUC.xaml</DependentUpon>
     </Compile>
@@ -404,10 +401,6 @@
     <Page Include="UserControls\SaisonsUC\FormulaireSaisonUC.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserControls\StatistiquesUC\EcranStatistiquesUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\TranchesAgeUC\ConsultationTranchesAgeUC.xaml">
       <SubType>Designer</SubType>

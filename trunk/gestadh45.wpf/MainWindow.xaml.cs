@@ -22,7 +22,6 @@ using gestadh45.wpf.UserControls.MarquesUC;
 using gestadh45.wpf.UserControls.ModelesUC;
 using gestadh45.wpf.UserControls.OutilsUC;
 using gestadh45.wpf.UserControls.Saisons;
-using gestadh45.wpf.UserControls.StatistiquesUC;
 using gestadh45.wpf.UserControls.TranchesAgeUC;
 using gestadh45.wpf.UserControls.Villes;
 using Microsoft.Win32;
