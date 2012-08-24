@@ -43,10 +43,11 @@ namespace gestadh45.business.ServicesAdapters
 					Localisation = equip.Localisation.Libelle
 				};
 
-				var lastVerif = equip.Verifications.OrderBy(v => v.CampagneVerification.Date).Last();
+				// on se base sur la dernière vérification validée
+				var lastVerif = equip.Verifications.OrderByDescending(v => v.CampagneVerification.Date).FirstOrDefault(v => v.CampagneVerification.EstValidee);
 
-				item.DateDerniereVerification = lastVerif.CampagneVerification.Date.ToShortDateString();
-				item.StatutDerniereVerification = lastVerif.StatutVerification.Libelle;
+				item.DateDerniereVerification = (lastVerif != null) ? lastVerif.CampagneVerification.Date.ToShortDateString() : string.Empty;
+				item.StatutDerniereVerification = (lastVerif != null) ? lastVerif.StatutVerification.Libelle : string.Empty;
 
 				result.Add(item);
 			}
