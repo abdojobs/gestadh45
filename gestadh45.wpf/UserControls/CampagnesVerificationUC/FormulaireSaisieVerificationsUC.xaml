@@ -46,8 +46,44 @@
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel Orientation="Horizontal">
-						<Image Source="/gestadh45.wpf;component/Images/btn_check.png" 
-							   Visibility="{Binding Path=StatutVerification.EstDefaut, Converter={StaticResource ResourceKey=InvertAndVisibilitate}}" />
+						<Image Source="/gestadh45.wpf;component/Images/btn_validate.png">
+							<Image.Style>
+								<Style TargetType="{x:Type Image}">
+									<Setter Property="Visibility" Value="Collapsed" />
+									<Style.Triggers>
+										<MultiDataTrigger>
+											<MultiDataTrigger.Conditions>
+												<Condition Binding="{Binding Path=StatutVerification.EstDefaut}" Value="False" />
+												<Condition Binding="{Binding Path=StatutVerification.EstRebut}" Value="False" />
+											</MultiDataTrigger.Conditions>
+											
+											<Setter Property="Visibility" Value="Visible" />
+										</MultiDataTrigger>
+									</Style.Triggers>
+								</Style>
+							</Image.Style>
+						</Image>
+
+						<Image Source="/gestadh45.wpf;component/Images/btn_disable.png">
+							<Image.Style>
+								<Style TargetType="{x:Type Image}">
+									<Setter Property="Visibility" Value="Collapsed" />
+									<Style.Triggers>
+										<MultiDataTrigger>
+											<MultiDataTrigger.Conditions>
+												<Condition Binding="{Binding Path=StatutVerification.EstDefaut}" Value="False" />
+												<Condition Binding="{Binding Path=StatutVerification.EstRebut}" Value="True" />
+											</MultiDataTrigger.Conditions>
+
+											<Setter Property="Visibility" Value="Visible" />
+										</MultiDataTrigger>
+									</Style.Triggers>
+								</Style>
+							</Image.Style>
+						</Image>
+
+						<!--<Image Source="/gestadh45.wpf;component/Images/btn_check.png" 
+							   Visibility="{Binding Path=StatutVerification.EstDefaut, Converter={StaticResource ResourceKey=InvertAndVisibilitate}}" />-->
 						<TextBlock Text="{Binding Path=Equipement}" />
 					</StackPanel>
 				</DataTemplate>
