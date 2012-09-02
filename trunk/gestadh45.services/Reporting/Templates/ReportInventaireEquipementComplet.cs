@@ -25,7 +25,7 @@ namespace gestadh45.services.Reporting.Templates
 		[Display(ResourceType = typeof(ResReports), Name = "HeaderDateDerniereVerification")]
 		public string DateDerniereVerification { get; set; }
 
-		[Display(ResourceType = typeof(ResReports), Name = "HeaderStatutDerniereVerification")]
+		[Display(ResourceType = typeof(ResReports), Name = "HeaderStatutVerification")]
 		public string StatutDerniereVerification { get; set; }
 	}
 }

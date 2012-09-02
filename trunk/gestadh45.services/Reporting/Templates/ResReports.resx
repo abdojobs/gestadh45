@@ -171,7 +171,7 @@
   <data name="HeaderRaisonStatutVerification" xml:space="preserve">
     <value>Raison</value>
   </data>
-  <data name="HeaderStatutDerniereVerification" xml:space="preserve">
+  <data name="HeaderStatutVerification" xml:space="preserve">
     <value>Statut</value>
   </data>
   <data name="HeaderTelephone" xml:space="preserve">
