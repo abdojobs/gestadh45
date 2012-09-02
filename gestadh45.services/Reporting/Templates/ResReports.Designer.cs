@@ -225,9 +225,9 @@ namespace gestadh45.services.Reporting.Templates {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Statut.
         /// </summary>
-        public static string HeaderStatutDerniereVerification {
+        public static string HeaderStatutVerification {
             get {
-                return ResourceManager.GetString("HeaderStatutDerniereVerification", resourceCulture);
+                return ResourceManager.GetString("HeaderStatutVerification", resourceCulture);
             }
         }
         
