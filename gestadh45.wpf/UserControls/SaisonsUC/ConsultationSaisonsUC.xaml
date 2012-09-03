@@ -15,8 +15,8 @@
 				   Style="{DynamicResource ResourceKey=titreUC}" />
 
 		<ListBox Name="lbxSaisons" Width="300" DockPanel.Dock="Left"
-					ItemsSource="{Binding Path=Saisons}"
-					SelectedItem="{Binding Path=Saison}">
+					ItemsSource="{Binding Path=Items}"
+					SelectedItem="{Binding Path=SelectedItem}">
 			<i:Interaction.Triggers>
 				<i:EventTrigger EventName="SelectionChanged">
 					<cmd:EventToCommand 
@@ -44,8 +44,8 @@
 						<TextBlock FontWeight="Bold" FontSize="14">
 							<TextBlock.Text>
 								<MultiBinding StringFormat="{}{0} - {1}">
-									<Binding Path="SelectedSaison.AnneeDebut" />
-									<Binding Path="SelectedSaison.Fin" />
+									<Binding Path="SelectedItem.AnneeDebut" />
+									<Binding Path="SelectedItem.AnneeFin" />
 								</MultiBinding>
 							</TextBlock.Text>
 						</TextBlock>
@@ -53,17 +53,17 @@
 					
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Année de début : " />
-						<TextBlock Text="{Binding Path=SelectedSaison.AnneeDebut}" />
+						<TextBlock Text="{Binding Path=SelectedItem.AnneeDebut}" />
 					</StackPanel>
 					
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Année de fin : " />
-						<TextBlock Text="{Binding Path=SelectedSaison.AnneeFin}" />
+						<TextBlock Text="{Binding Path=SelectedItem.AnneeFin}" />
 					</StackPanel>
 					
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Saison courante : " />
-						<CheckBox IsChecked="{Binding Path=SelectedSaison.EstSaisonCourante}" 
+						<CheckBox IsChecked="{Binding Path=SelectedItem.EstSaisonCourante}" 
 										IsHitTestVisible="False" Focusable="False" />
 					</StackPanel>
 					
