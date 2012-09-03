@@ -102,6 +102,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResEquipements.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\GenericConsultationVM.cs" />
     <Compile Include="ViewModel\LocalisationVM\ConsultationLocalisationsVM.cs" />
     <Compile Include="ViewModel\LocalisationVM\FormulaireLocalisationVM.cs" />
     <Compile Include="ViewModel\LocalisationVM\ResLocalisation.Designer.cs">

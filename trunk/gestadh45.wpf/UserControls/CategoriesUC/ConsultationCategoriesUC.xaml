@@ -14,8 +14,8 @@
 				   Style="{DynamicResource ResourceKey=titreUC}" />
 
 		<ListBox Name="lbxCategories" Width="300" DockPanel.Dock="Left"
-					ItemsSource="{Binding Path=Categories}"
-					SelectedItem="{Binding Path=SelectedCategorie}">
+					ItemsSource="{Binding Path=Items}"
+					SelectedItem="{Binding Path=SelectedItem}">
 			<i:Interaction.Triggers>
 				<i:EventTrigger EventName="SelectionChanged">
 					<cmd:EventToCommand 
@@ -40,7 +40,7 @@
 				<StackPanel Orientation="Vertical">
 					<StackPanel Orientation="Horizontal">
 						<TextBlock Text="Libellé : " />
-						<TextBlock Text="{Binding Path=SelectedCategorie.Libelle}" />
+						<TextBlock Text="{Binding Path=SelectedItem.Libelle}" />
 					</StackPanel>
 
 				</StackPanel>

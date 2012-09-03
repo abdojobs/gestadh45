@@ -16,8 +16,8 @@
 				   Style="{DynamicResource ResourceKey=titreUC}" />
 
 		<ListBox Name="lbxDureesDeVie" Width="300" DockPanel.Dock="Left" 
-					 ItemsSource="{Binding Path=DureesDeVie}"
-					 SelectedItem="{Binding Path=SelectedDureeDeVie}">
+					 ItemsSource="{Binding Path=Items}"
+					 SelectedItem="{Binding Path=SelectedItem}">
 			<i:Interaction.Triggers>
 				<i:EventTrigger EventName="SelectionChanged">
 					<cmd:EventToCommand 
@@ -40,10 +40,10 @@
 		</StackPanel>
 
 		<StackPanel Name="stkDetails" DockPanel.Dock="Right" Margin="20,0,0,0">
-			<GroupBox Name="gbxInfos" Header="Infos" Margin="0,0,0,10">
+			<GroupBox Name="gbxInfos" Header="Informations" Margin="0,0,0,10">
 				<StackPanel Orientation="Vertical">
-					<TextBlock Text="{Binding Path=SelectedDureeDeVie.NbAnnee, StringFormat='{}{0} an(s)'}" />
-					<TextBlock Text="{Binding Path=SelectedDureeDeVie.NbMois, StringFormat='{}{0} mois'}" />
+					<TextBlock Text="{Binding Path=SelectedItem.NbAnnees, StringFormat='{}{0} an(s)'}" />
+					<TextBlock Text="{Binding Path=SelectedItem.NbMois, StringFormat='{}{0} mois'}" />
 				</StackPanel>
 			</GroupBox>
 		</StackPanel>
