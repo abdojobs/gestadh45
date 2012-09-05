@@ -7,7 +7,7 @@ using gestadh45.dal;
 
 namespace gestadh45.business.ViewModel.OutilsVM
 {
-	public class GraphiquesVM : VMConsultationBase
+	public class GraphiquesVM : VMUCBase
 	{
 		#region ListeGraphs
 		private IList<ChoixItemIhm> _listeGraphs;

@@ -14,7 +14,7 @@ using gestadh45.services.Reporting.Templates;
 
 namespace gestadh45.business.ViewModel.OutilsVM
 {
-	public class ReportingVM : VMConsultationBase
+	public class ReportingVM : VMUCBase
 	{
 		#region ListeReports
 		private ICollection<ChoixItemIhm> _listeReports;
