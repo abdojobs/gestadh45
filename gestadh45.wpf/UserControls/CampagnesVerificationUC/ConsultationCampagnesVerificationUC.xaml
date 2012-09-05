@@ -62,6 +62,7 @@
 					<TextBlock Text="{Binding Path=SelectedCampagneVerification.Date, StringFormat='Date : {0:dd/MM/yyyy}'}" />
 					<TextBlock Text="{Binding Path=SelectedCampagneVerification.Responsable, StringFormat='Responsable : {0}'}" />
 					<TextBlock Text="{Binding Path=SelectedCampagneVerification.NbEquipements, StringFormat='Nb. équipements : {0}'}" />
+					<TextBlock Text="Cette campagne n'inclue pas tous les équipements actifs!" Foreground="Red" Visibility="{Binding Path=AfficherAvertissementEcartInventaire, Converter={StaticResource ResourceKey=boolToVisibility}}" />
 				</StackPanel>
 			</GroupBox>
 
