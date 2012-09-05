@@ -30,7 +30,6 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		}
 		#endregion
 
-
 		#region SelectedCampagneVerification
 		private CampagneVerification _selectedCampagneVerification;
 
@@ -47,17 +46,34 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 			}
 		}
 		#endregion
+
+
+		#region AfficherAvertissementEcartInventaire
+		private bool _afficherAvertissementEcartInventaire;
+		public bool AfficherAvertissementEcartInventaire {
+			get { return this._afficherAvertissementEcartInventaire; }
+			set {
+				if (this._afficherAvertissementEcartInventaire != value) {
+					this._afficherAvertissementEcartInventaire = value;
+					this.RaisePropertyChanged(() => this.AfficherAvertissementEcartInventaire);
+				}
+			}
+		}
+		#endregion
 				
 
 		#region Repositories
 		private Repository<CampagneVerification> _repoMain;
 		private Repository<Verification> _repoVerification;
+		private Repository<Equipement> _repoEquipement;
 		#endregion
 
 		#region Constructeur
 		public ConsultationCampagnesVerificationVM() {
 			this._repoMain = new Repository<CampagneVerification>(this._context);
 			this._repoVerification = new Repository<Verification>(this._context);
+			this._repoEquipement = new Repository<Equipement>(this._context);
+
 			this.CreateSaisirCommand();
 
 			this.PopulateCampagnesVerification();
@@ -83,6 +99,11 @@ namespace gestadh45.business.ViewModel.CampagnesVerificationVM
 		public override void ExecuteShowDetailsCommand(object selectedItem) {
 			if (selectedItem is CampagneVerification) {
 				this.SelectedCampagneVerification = selectedItem as CampagneVerification;
+
+				// si la campagne n'est pas validée ET qu'il y a un écart entre son nombre de vérifications et le nombre total d'équipement au rebut => avertissement
+				this.AfficherAvertissementEcartInventaire = 
+					!this.SelectedCampagneVerification.EstValidee 
+					&& this.SelectedCampagneVerification.Verifications.Count != this._repoEquipement.GetAll().Count(e => !e.EstAuRebut);
 			}
 		}
 		#endregion
