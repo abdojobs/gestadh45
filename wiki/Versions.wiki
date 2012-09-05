@@ -3,6 +3,7 @@
  * v2.1 : ??
   * Réorganisation des menus
   * Remplacement de l'écran permettant de visualiser la répartition des adhérents par un écran générique affichant le contenu des rapports Excel
+  * Ajout d'un écran permettant de supprimer toutes les données Adhérent/inscription non reliées à la saison courante (pour se mettre en conformité avec la CNIL)
 
  * v2.0 : 20/08/2012
   * Migration SQLite => SQL Server CE pour la base de données (Incompatibilité avec les BDD de l'ancienne version)
