@@ -11,7 +11,7 @@
 			 DataContext="{Binding Path=ConsultationInscriptionsVM, Source={StaticResource Locator}}" 
 			 d:DesignHeight="500" d:DesignWidth="600">
 	<DockPanel Margin="5,5,5,5">
-		<TextBlock Text="Inscriptions" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
+		<TextBlock Text="Inscriptions (saison courante)" DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="0,5,0,10" TextAlignment="Center" 
 				   Style="{DynamicResource ResourceKey=titreUC}" />
 
 		<TextBox Name="tbxFiltre" Margin="0,0,0,10" DockPanel.Dock="Top" Width="300" HorizontalAlignment="Left"

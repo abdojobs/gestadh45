@@ -226,6 +226,9 @@
     <Compile Include="UserControls\OutilsUC\GraphiquesUC.xaml.cs">
       <DependentUpon>GraphiquesUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\OutilsUC\NettoyageCNILUC.xaml.cs">
+      <DependentUpon>NettoyageCNILUC.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\OutilsUC\ReportingUC.xaml.cs">
       <DependentUpon>ReportingUC.xaml</DependentUpon>
     </Compile>
@@ -383,6 +386,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\OutilsUC\GraphiquesUC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\OutilsUC\NettoyageCNILUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -608,6 +615,8 @@
     <Content Include="gestadh45.sdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\btn_search.png" />
+    <Resource Include="Images\btn_clean.png" />
     <Resource Include="Images\btn_check.png" />
     <Resource Include="Images\btn_disable.png" />
     <Resource Include="Images\btn_validate.png" />

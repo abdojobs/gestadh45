@@ -250,6 +250,10 @@ namespace gestadh45.wpf
 					userControl = new ReportingUC();
 					break;
 
+				case CodesUC.NettoyageCNIL:
+					userControl = new NettoyageCNILUC();
+					break;
+
 				case CodesUC.MainScreenCheck:
 				default:
 					userControl = new MainScreenCheckUC();

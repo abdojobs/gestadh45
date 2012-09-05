@@ -222,6 +222,10 @@ namespace gestadh45.business.ViewModel
 		public static GraphiquesVM GraphiquesVM {
 			get { return new GraphiquesVM(); }
 		}
+
+		public static NettoyageCNILVM NettoyageCNILVM {
+			get { return new NettoyageCNILVM(); }
+		}
 		#endregion
 	}
 }

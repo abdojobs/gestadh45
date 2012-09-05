@@ -247,6 +247,14 @@
 										  SmallImageSource="/gestadh45.wpf;component/Images/btn_statistiques.png">
 					</my:RibbonButton>
 				</my:RibbonGroup>
+
+				<my:RibbonGroup Name="grpCnil" Header="CNIL">
+					<my:RibbonButton Command="{Binding Path=ShowUCCommand}" ToolTip="CNIL"
+										  CommandParameter="{x:Static b:CodesUC.NettoyageCNIL}"
+										  LargeImageSource="/gestadh45.wpf;component/Images/btn_clean.png" 
+										  SmallImageSource="/gestadh45.wpf;component/Images/btn_clean.png">
+					</my:RibbonButton>
+				</my:RibbonGroup>
 			</my:RibbonTab>
 		</my:Ribbon>
 
