@@ -131,6 +131,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResModeles.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\OutilsVM\NettoyageCNILVM.cs" />
+    <Compile Include="ViewModel\OutilsVM\ResNettoyageCNIL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResNettoyageCNIL.resx</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\RepartitionAdherentsVM\ResRepartitionAdherents.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -272,6 +278,10 @@
     <EmbeddedResource Include="ViewModel\ModeleVM\ResModeles.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResModeles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewModel\OutilsVM\ResNettoyageCNIL.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ResNettoyageCNIL.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\RepartitionAdherentsVM\ResRepartitionAdherents.resx">
       <Generator>ResXFileCodeGenerator</Generator>

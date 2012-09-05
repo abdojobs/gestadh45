@@ -54,5 +54,6 @@ namespace gestadh45.business
 
 		public const string EcranReporting = "EcranReporting";
 		public const string EcranStatistiques = "EcranStatistiques";
+		public const string NettoyageCNIL = "NettoyageCNIL";
 	}
 }
