@@ -12,6 +12,7 @@ using gestadh45.services.Documents.Templates;
 using gestadh45.services.Reporting;
 using gestadh45.services.Reporting.Templates;
 using gestadh45.services.VCards;
+using System.Collections.Generic;
 
 namespace gestadh45.business.ViewModel.GroupesVM
 {
@@ -64,6 +65,7 @@ namespace gestadh45.business.ViewModel.GroupesVM
 			this.CreateGenererDocumentsGroupeCommand();
 			this.CreateGenererVCardsGroupeDistinctCommand();
 			this.CreateGenererVCardsGroupeUniqueCommand();
+			this.CreateExtraireEmailsCommand();
 		}
 		#endregion
 
@@ -82,21 +84,6 @@ namespace gestadh45.business.ViewModel.GroupesVM
 			}
 			else {
 				return string.Format(ResDocuments.InscriptionPDFFileName, ins.Adherent.ToString());
-			}
-		}
-
-		private void GenererDocumentsCallBack(string folderPath, string codeDocument) {
-			if (!string.IsNullOrWhiteSpace(folderPath)) {
-				foreach (Inscription ins in this.SelectedGroupe.Inscriptions) {
-					var gen = new GenerateurDocumentPDF(
-						ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), ins),
-						string.Concat(folderPath, @"\", this.GetDocumentFileName(codeDocument, ins))
-					);
-
-					gen.CreerDocument(codeDocument);
-				}
-
-				this.ShowUserNotification(ResGroupes.InfosDocumentsGeneres);
 			}
 		}
 
@@ -158,6 +145,21 @@ namespace gestadh45.business.ViewModel.GroupesVM
 						}
 					)
 				);			
+			}
+		}
+
+		private void GenererDocumentsCallBack(string folderPath, string codeDocument) {
+			if (!string.IsNullOrWhiteSpace(folderPath)) {
+				foreach (Inscription ins in this.SelectedGroupe.Inscriptions.Where(i => i.StatutInscription.Ordre != 3)) {
+					var gen = new GenerateurDocumentPDF(
+						ServiceDocumentAdapter.InscriptionToDonneesDocument(this.repoInfosClub.GetFirst(), ins),
+						string.Concat(folderPath, @"\", this.GetDocumentFileName(codeDocument, ins))
+					);
+
+					gen.CreerDocument(codeDocument);
+				}
+
+				this.ShowUserNotification(ResGroupes.InfosDocumentsGeneres);
 			}
 		}
 		#endregion
@@ -305,6 +307,33 @@ namespace gestadh45.business.ViewModel.GroupesVM
 
 				this.ShowUserNotification(string.Format(ResCommon.InfoRapportGenere, nomFichier));
 			}
+		}
+		#endregion
+
+		#region ExtraireEmailsCommand
+		public ICommand ExtraireEmailsCommand { get; set; }
+
+		private void CreateExtraireEmailsCommand() {
+			this.ExtraireEmailsCommand = new RelayCommand(
+				this.ExecuteExtraireEmailsCommand,
+				this.CanExecuteExtraireEmailsCommand
+			);
+		}
+
+		public bool CanExecuteExtraireEmailsCommand() {
+			return this.SelectedGroupe != null;
+		}
+
+		public void ExecuteExtraireEmailsCommand() {
+			var listeMails = new List<string>();
+			
+			foreach (var ins in this.SelectedGroupe.Inscriptions.Where(i => i.StatutInscription.Ordre != 3)) {
+				listeMails.Add(ins.Adherent.Mail1);
+			}
+
+			var chaineMails = string.Join(",", listeMails);
+
+			this.ShowUserNotification(chaineMails);
 		}
 		#endregion
 	}

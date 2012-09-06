@@ -96,7 +96,9 @@ namespace gestadh45.business.ServicesAdapters
 		}
 
 		public static ICollection<ReportListeAdherents> GroupeToReportListeAdherents(Groupe groupe) {
-			return InscriptionsToListeAdherents(groupe.Inscriptions);
+			return InscriptionsToListeAdherents(
+				groupe.Inscriptions.Where(i => i.StatutInscription.Ordre != 3).ToList()
+			);
 		}
 
 		public static ICollection<ReportRepartitionAdherentsAge> InscriptionsToReportRepartitionAdherentsAge(ICollection<TrancheAge> tranchesAge, Ville villeResident, ICollection<Inscription> inscriptions) {

@@ -71,8 +71,8 @@
 			</GroupBox>
 
 			<GroupBox Header="Outils" Margin="0,0,0,10">
-				<StackPanel Orientation="Vertical" Margin="0,5,0,5">
-					<StackPanel Orientation="Horizontal">
+				<StackPanel Orientation="Vertical">
+					<StackPanel Orientation="Horizontal" Margin="0,5,0,5">
 						<Button Height="16" Width="16" ToolTip="Générer les fiches d'inscription du groupe au format PDF" 
 								CommandParameter="{x:Static doc:CodesDocument.FicheInscriptionPDF}" 
 								Command="{Binding Path=GenererDocumentsGroupeCommand}">
@@ -107,7 +107,7 @@
 					</StackPanel>
 
 					<StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-						<Button Height="16" Width="16" ToolTip="Efectif (Excel)"
+						<Button Height="16" Width="16" ToolTip="Effectif (Excel)"
 										Command="{Binding Path=ReportCommand}"
 										CommandParameter="{x:Static report:CodesReport.ListeAdherents}" >
 							<Image Source="/gestadh45.wpf;component/Images/btn_xlsx16.png" />
@@ -115,7 +115,15 @@
 						<TextBlock Text=" : Effectif (Excel)" />
 					</StackPanel>
 
-					<TextBlock Text="Les inscriptions annulées ne seront pas exportées" FontSize="10" TextWrapping="WrapWithOverflow" />
+					<StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+						<Button Height="16" Width="16" ToolTip="Extraction emails"
+										Command="{Binding Path=ExtraireEmailsCommand}" >
+							<Image Source="/gestadh45.wpf;component/Images/btn_search.png" />
+						</Button>
+						<TextBlock Text=" : Extraction emails" />
+					</StackPanel>
+
+					<TextBlock Text="Les inscriptions annulées ne seront pas prises en compte" FontSize="10" TextWrapping="WrapWithOverflow" />
 				</StackPanel>
 			</GroupBox>
 
