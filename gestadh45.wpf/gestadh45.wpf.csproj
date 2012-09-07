@@ -232,9 +232,6 @@
     <Compile Include="UserControls\OutilsUC\ReportingUC.xaml.cs">
       <DependentUpon>ReportingUC.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\RepartitionAdherentsUC\EcranRepartitionAdherentsUC.xaml.cs">
-      <DependentUpon>EcranRepartitionAdherentsUC.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\SaisonsUC\ConsultationSaisonsUC.xaml.cs">
       <DependentUpon>ConsultationSaisonsUC.xaml</DependentUpon>
     </Compile>
@@ -394,10 +391,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\OutilsUC\ReportingUC.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\RepartitionAdherentsUC\EcranRepartitionAdherentsUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

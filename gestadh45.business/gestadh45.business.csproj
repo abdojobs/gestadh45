@@ -137,11 +137,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResNettoyageCNIL.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\RepartitionAdherentsVM\ResRepartitionAdherents.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ResRepartitionAdherents.resx</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\OutilsVM\ReportingVM.cs" />
     <Compile Include="ViewModel\OutilsVM\ResReporting.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -153,7 +148,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResCommon.resx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\RepartitionAdherentsVM\EcranRepartitionAdherentsVM.cs" />
     <Compile Include="ViewModel\OutilsVM\CodesGraphs.cs" />
     <Compile Include="ViewModel\OutilsVM\ResGraphiques.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -282,10 +276,6 @@
     <EmbeddedResource Include="ViewModel\OutilsVM\ResNettoyageCNIL.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResNettoyageCNIL.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ViewModel\RepartitionAdherentsVM\ResRepartitionAdherents.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResRepartitionAdherents.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModel\OutilsVM\ResReporting.resx">
       <Generator>ResXFileCodeGenerator</Generator>
