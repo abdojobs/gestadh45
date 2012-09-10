@@ -328,7 +328,9 @@ namespace gestadh45.business.ViewModel.GroupesVM
 			var listeMails = new List<string>();
 			
 			foreach (var ins in this.SelectedGroupe.Inscriptions.Where(i => i.StatutInscription.Ordre != 3)) {
-				listeMails.Add(ins.Adherent.Mail1);
+				if (!string.IsNullOrWhiteSpace(ins.Adherent.Mail1)) { 
+					listeMails.Add(ins.Adherent.Mail1); 
+				}
 			}
 
 			var chaineMails = string.Join(",", listeMails);
