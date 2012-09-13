@@ -83,7 +83,7 @@ namespace gestadh45.business.ServicesAdapters
 				{
 					Nom = ins.Adherent.Nom,
 					Prenom = ins.Adherent.Prenom,
-					DateNaissance = ins.Adherent.DateCreation.ToShortDateString(),
+					DateNaissance = ins.Adherent.DateNaissance.ToShortDateString(),
 					Telephone = ins.Adherent.Telephone1,
 					Email = ins.Adherent.Mail1,
 					Groupe = ins.Groupe.Libelle
